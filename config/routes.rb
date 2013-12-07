@@ -1,6 +1,15 @@
 AquaticsApp::Application.routes.draw do
-  get "static_pages/home"
-  get "static_pages/about"
+  get "users/new"
+  
+  root  'static_pages#home'
+  match '/signup',  to: 'users#new',            via: 'get'
+  match '/chemicals',    to: 'static_pages#chemicals',    via: 'get'
+  match '/maintenance',   to: 'static_pages#maintenance',   via: 'get'
+  match '/contact', to: 'static_pages#contact', via: 'get'
+  match '/support',  to: 'users#support',            via: 'get'
+  match '/attendance',    to: 'static_pages#attendance',    via: 'get'
+  match '/lessons',   to: 'static_pages#lessons',   via: 'get'
+  match '/certifications', to: 'static_pages#certifications', via: 'get'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
