@@ -48,4 +48,14 @@ describe User do
 
     it { should_not be_valid }
   end
+
+  describe "when first name is too long" do
+    before { @user.first_name = "a" * 16 }
+    it { should_not be_valid }
+  end
+
+  describe "when last name is too long" do
+    before { @user.last_name = "a" * 16 }
+    it { should_not be_valid }
+  end
 end
