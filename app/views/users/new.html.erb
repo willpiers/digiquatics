@@ -1,3 +1,44 @@
 <% provide(:title, 'Create New User') %>
 <h1>Create New User</h1>
-<p>Create New User</p>
+
+<div class="row">
+  <div class="span6 offset3">
+    <%= form_for(@user) do |f| %>
+
+      <%= f.label :first_name %>
+      <%= f.text_field :first_name %>
+
+      <%= f.label :last_name %>
+      <%= f.text_field :last_name %>
+
+      <%= f.label :email %>
+      <%= f.text_field :email %>
+
+      <%= f.label :password %>
+      <%= f.password_field :password %>
+
+      <%= f.label :password_confirmation, "Confirmation" %>
+      <%= f.password_field :password_confirmation %>
+
+      <%= f.label :sex %>
+      <%= f.text_field :sex %>
+
+      <%= f.label :suit_size %>
+      <%= f.text_field :suit_size %>
+
+      <%= f.label :shirt_size %>
+      <%= f.text_field :shirt_size %>
+
+      <%= f.label :date_of_birth %>
+      <%= f.text_field :date_of_birth %>
+
+      <%= f.label :date_of_hire %>
+      <%= f.text_field :date_of_hire %>
+
+      <%= f.label :phone_number %>
+      <%= f.text_field :phone_number %>
+
+      <%= f.submit "Create my account", class: "btn btn-large btn-primary" %>
+    <% end %>
+  </div>
+</div>
