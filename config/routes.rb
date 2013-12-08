@@ -10,6 +10,9 @@ AquaticsApp::Application.routes.draw do
   match '/attendance',    to: 'static_pages#attendance',    via: 'get'
   match '/lessons',   to: 'static_pages#lessons',   via: 'get'
   match '/certifications', to: 'static_pages#certifications', via: 'get'
+
+  <form action="/users" class="new_user" id="new_user" method="post">
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
