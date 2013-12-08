@@ -7,4 +7,6 @@ class User < ActiveRecord::Base
   validates :email, presence: true, format: { with: VALID_EMAIL_REGEX }, uniqueness: { case_sensitive: false }
   validates :shirt_size, presence: true
   validates :suit_size, presence: true
+  has_secure_password
+  validates :password, length: { minimum: 6 }
 end
