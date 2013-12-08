@@ -21,13 +21,13 @@
       <%= f.password_field :password_confirmation %>
 
       <%= f.label :sex %>
-      <%= f.text_field :sex %>
+      <%= f.select :sex, options_for_select(%w[Male Female]) %>
 
       <%= f.label :suit_size %>
-      <%= f.text_field :suit_size %>
+      <%= f.select :suit_size, options_for_select(%w[XS S M L XL XXL]) %>
 
       <%= f.label :shirt_size %>
-      <%= f.text_field :shirt_size %>
+      <%= f.select :shirt_size, options_for_select(%w[XS S M L XL XXL]) %>
 
       <%= f.label :date_of_birth %>
       <%= f.text_field :date_of_birth %>
@@ -36,9 +36,12 @@
       <%= f.text_field :date_of_hire %>
 
       <%= f.label :phone_number %>
-      <%= f.text_field :phone_number %>
+      <%= f.telephone_field :phone_number %>
+      <br>
+      <br>
+      <br>
 
-      <%= f.submit "Create my account", class: "btn btn-large btn-primary" %>
+      <%= f.submit "Create/Save Account", class: "btn btn-medium btn-primary" %>
     <% end %>
   </div>
 </div>
