@@ -6,10 +6,10 @@
     <%= form_for(@user) do |f| %>
     <%= render 'shared/error_messages' %>
 
-      <%= f.label :first_name %>
+      <%= f.label :first_name, "First Name" %>
       <%= f.text_field :first_name %>
 
-      <%= f.label :last_name %>
+      <%= f.label :last_name, "Last Name" %>
       <%= f.text_field :last_name %>
 
       <%= f.label :email %>
@@ -18,25 +18,25 @@
       <%= f.label :password %>
       <%= f.password_field :password %>
 
-      <%= f.label :password_confirmation, "Confirmation" %>
+      <%= f.label :password_confirmation, "Confirm Password" %>
       <%= f.password_field :password_confirmation %>
 
       <%= f.label :sex %>
       <%= f.select :sex, options_for_select(%w[Male Female]) %>
 
-      <%= f.label :suit_size %>
+      <%= f.label :suit_size, "Suit Size" %>
       <%= f.select :suit_size, options_for_select(%w[XS S M L XL XXL]) %>
 
-      <%= f.label :shirt_size %>
+      <%= f.label :shirt_size, "Shirt Size" %>
       <%= f.select :shirt_size, options_for_select(%w[XS S M L XL XXL]) %>
 
-      <%= f.label :date_of_birth %>
+      <%= f.label :date_of_birth, "Date of Birth" %>
       <%= f.text_field :date_of_birth %>
 
-      <%= f.label :date_of_hire %>
+      <%= f.label :date_of_hire, "Date of Hire" %>
       <%= f.text_field :date_of_hire %>
 
-      <%= f.label :phone_number %>
+      <%= f.label :phone_number, "Phone Number" %>
       <%= f.telephone_field :phone_number %>
       <br>
       <br>

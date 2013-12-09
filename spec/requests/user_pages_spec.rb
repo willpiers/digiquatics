@@ -23,7 +23,7 @@ describe "signup" do
 
     before { visit signup_path }
 
-    let(:submit) { "Create my account" }
+    let(:submit) { "Create/Save Account" }
 
     describe "with invalid information" do
       it "should not create a user" do
@@ -32,15 +32,15 @@ describe "signup" do
     end
 
     describe "with valid information" do
-      before dof
+      before do
         fill_in "First Name",   with: "First"
         fill_in "Last Name",    with: "Last"
         fill_in "Email",        with: "user@example.com"
         fill_in "Password",     with: "foobar"
-        fill_in "Confirmation", with: "foobar"
-        fill_in "Suit Size",   with: "M"
-        fill_in "Shirt Size",   with: "M"
-        fill_in "Sex",   with: "M"
+        fill_in "Confirm Password", with: "foobar"
+        select('M', :from => 'Suit Size')
+        select('M', :from => 'Shirt Size')
+        select('M', :from => 'Sex')
         fill_in "Date of Birth",   with: "2000-01-30"
         fill_in "Date of Hire",   with: "2013-09-13"
         fill_in "Phone Number",   with: "7203879691"
