@@ -7,8 +7,8 @@ describe "User pages" do
   describe "index" do
     before do
       sign_in FactoryGirl.create(:user)
-      FactoryGirl.create(:user, name: "Bob", email: "bob@example.com")
-      FactoryGirl.create(:user, name: "Ben", email: "ben@example.com")
+      FactoryGirl.create(:user, first_name: "Bob", email: "bob@example.com")
+      FactoryGirl.create(:user, first_name: "Ben", email: "ben@example.com")
       visit users_path
     end
 
@@ -17,27 +17,65 @@ describe "User pages" do
 
     it "should list each user" do
       User.all.each do |user|
-        expect(page).to have_selector('li', text: user.name)
+        expect(page).to have_selector('li', text: user.first_name)
       end
     end
   end
 
   describe "profile page" do
-          let(:user) { FactoryGirl.create(:user) }
+    let(:user) { FactoryGirl.create(:user) }
     before { visit signup_path }
 
-           it { should have_content("First Name") }
+    it { should have_content("First Name") }
     it { should have_title("Create New User") }
-        end
+  end
 
-        describe "add account" do
-                before { visit signup_path}
+  describe "add account" do
+    before { visit signup_path}
 
-          it { should have_content('Create New User') }
-          it { should have_title('Create New User') }
-        end
+    it { should have_content('Create New User') }
+    it { should have_title('Create New User') }
+  end
 
-describe "signup" do
+  describe "edit" do
+    let(:user) { FactoryGirl.create(:user) }
+    before { visit edit_user_path(user) }
+
+    describe "page" do
+      it { should have_content("Update your profile") }
+      it { should have_title("Edit user") }
+    end
+
+    describe "with invalid information" do
+      before { click_button "Save changes" }
+
+      it { should have_content('error') }
+    end
+
+    describe "with valid information" do
+      before do
+        fill_in "First Name",   with: "First"
+        fill_in "Last Name",    with: "Last"
+        fill_in "Email",        with: "user@example.com"
+        fill_in "Password",     with: "foobar"
+        fill_in "Confirm Password", with: "foobar"
+        select('M', :from => 'Suit Size')
+        select('M', :from => 'Shirt Size')
+        select('M', :from => 'Sex')
+        fill_in "Date of Birth",   with: "2000-01-30"
+        fill_in "Date of Hire",   with: "2013-09-13"
+        fill_in "Phone Number",   with: "7203879691"
+      end
+
+      it { should have_title(new_name) }
+      it { should have_selector('div.alert.alert-success') }
+      it { should have_link('Sign out', href: signout_path) }
+      specify { expect(user.reload.name).to  eq new_name }
+      specify { expect(user.reload.email).to eq new_email }
+    end
+  end
+
+  describe "signup" do
 
     before { visit signup_path }
 
@@ -73,48 +111,9 @@ describe "signup" do
         let(:user) { User.find_by(email: 'user@example.com') }
 
         it { should have_link('Sign out') }
-        it { should have_title(user.name) }
+        it { should have_title(user.first_name) }
         it { should have_selector('div.alert.alert-success', text: 'Welcome') }
       end
-    end
-
-    describe "edit" do
-      let(:user) { FactoryGirl.create(:user) }
-      before { visit edit_user_path(user) }
-    end
-
-    describe "page" do
-      it { should have_content("Update your profile") }
-      it { should have_title("Edit user") }
-     
-    end
-
-    describe "with invalid information" do
-      before { click_button "Save changes" }
-
-      it { should have_content('error') }
-    end
-
-    describe "with valid information" do
-      before do
-        fill_in "First Name",   with: "First"
-        fill_in "Last Name",    with: "Last"
-        fill_in "Email",        with: "user@example.com"
-        fill_in "Password",     with: "foobar"
-        fill_in "Confirm Password", with: "foobar"
-        select('M', :from => 'Suit Size')
-        select('M', :from => 'Shirt Size')
-        select('M', :from => 'Sex')
-        fill_in "Date of Birth",   with: "2000-01-30"
-        fill_in "Date of Hire",   with: "2013-09-13"
-        fill_in "Phone Number",   with: "7203879691"
-      end
-
-      it { should have_title(new_name) }
-      it { should have_selector('div.alert.alert-success') }
-      it { should have_link('Sign out', href: signout_path) }
-      specify { expect(user.reload.name).to  eq new_name }
-      specify { expect(user.reload.email).to eq new_email }
     end
   end
 end
