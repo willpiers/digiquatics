@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :signed_in_user, only: [:edit, :update]
+  before_action :signed_in_user, only: [:index, :edit, :update]
   before_action :correct_user,   only: [:edit, :update]
 
   def index
@@ -15,6 +15,7 @@ class UsersController < ApplicationController
   	end
 
   def edit
+    @user = User.find(params[:id])
   end
 
   def update
@@ -37,7 +38,8 @@ class UsersController < ApplicationController
     end
   end
 
-  private
+
+private
 
     def user_params
       params.require(:user).permit(:first_name, :last_name, :email, :password,
