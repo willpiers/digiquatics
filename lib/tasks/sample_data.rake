@@ -6,6 +6,7 @@ namespace :db do
                          email: "example@affektive.com",
                          password: "foobar",
                          password_confirmation: "foobar",
+                         phone_number: "123921628",
                          shirt_size: "M", 
                          suit_size: "M",
                          admin: true)
@@ -18,6 +19,7 @@ namespace :db do
                    email: email,
                    password: password,
                    password_confirmation: password,
+                   phone_number: "12392162#{n+1}",
                    suit_size: "M",
                    shirt_size: "M")
     end

@@ -5,6 +5,10 @@ class UsersController < ApplicationController
   def index
     @users = User.all
   end
+
+  def certifications
+    @users = User.all.order('last_name ASC')
+  end
   
 	def show
 		@user = User.find(params[:id])

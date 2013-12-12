@@ -17,10 +17,10 @@ describe "User pages" do
 
     it "should list each user" do
       User.all.each do |user|
-        expect(page).to have_selector('li', text: user.first_name)
-        expect(page).to have_selector('li', text: user.last_name)
-        expect(page).to have_selector('li', text: user.email)
-        expect(page).to have_selector('li', text: user.phone_number)
+        expect(page).to have_content(user.first_name)
+        expect(page).to have_content(user.last_name)
+        expect(page).to have_content(user.email)
+        expect(page).to have_content(user.phone_number)
       end
     end
   end
@@ -126,5 +126,14 @@ describe "User pages" do
         it { should have_selector('div.alert.alert-success', text: 'This account has been successfully created!') }
       end
     end
+  end
+
+  require File.dirname(__FILE__) + '/../spec_helper'
+  
+  describe "certifications page" do
+    before { visit certifications_path }
+
+    it { should have_title(full_title('Certifications')) }
+    it { should have_selector('h1', text: 'Certifications') }
   end
 end
