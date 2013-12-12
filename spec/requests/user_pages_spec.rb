@@ -69,11 +69,15 @@ describe "User pages" do
         fill_in "Email",        with: new_email
         fill_in "Password",     with: "foobar"
         fill_in "Confirm Password", with: "foobar"
-        select('M', :from => 'Suit Size')
-        select('M', :from => 'Shirt Size')
-        select('M', :from => 'Sex')
-        fill_in "Date of Birth",   with: "2000-01-30"
-        fill_in "Date of Hire",   with: "2013-09-13"
+        select('M', from: 'Suit Size')
+        select('M', from: 'Shirt Size')
+        select('M', from: 'Sex')
+        select('1992', from: "user_date_of_birth_1i")
+        select('December', from: "user_date_of_birth_2i")
+        select('15', from: "user_date_of_birth_3i")
+        select('2013', from: "user_date_of_hire_1i")
+        select('January', from: "user_date_of_hire_2i")
+        select('1', from: "user_date_of_hire_3i")
         fill_in "Phone Number",   with: "7203879691"
         click_button "Save changes"
       end
@@ -108,8 +112,12 @@ describe "User pages" do
         select('M', :from => 'Suit Size')
         select('M', :from => 'Shirt Size')
         select('M', :from => 'Sex')
-        fill_in "Date of Birth",   with: "2000-01-30"
-        fill_in "Date of Hire",   with: "2013-09-13"
+        select('1992', from: "user_date_of_birth_1i")
+        select('December', from: "user_date_of_birth_2i")
+        select('15', from: "user_date_of_birth_3i")
+        select('2013', from: "user_date_of_hire_1i")
+        select('January', from: "user_date_of_hire_2i")
+        select('1', from: "user_date_of_hire_3i")
         fill_in "Phone Number",   with: "7203879691"
       end
 
@@ -133,7 +141,7 @@ describe "User pages" do
   describe "certifications page" do
     before { visit certifications_path }
 
-    it { should have_title(full_title('Certifications')) }
+    it { should have_title(full_title('Manage Certifications')) }
     it { should have_selector('h1', text: 'Certifications') }
   end
 end

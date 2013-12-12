@@ -11,4 +11,8 @@
   <td>
     <%= user.phone_number %>
   </td>
+  <% formatted_date = user.date_of_birth.strftime('%-m/%d/%Y') %>
+  <td>
+    <%= formatted_date %>
+  </td>
 </tr>

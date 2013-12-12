@@ -9,6 +9,8 @@ namespace :db do
                          phone_number: "123921628",
                          shirt_size: "M", 
                          suit_size: "M",
+                         date_of_birth: "1992-09-15",
+                         date_of_hire: "2008-07-01",
                          admin: true)
     100.times do |n|
       first_name  = Faker::Name.first_name
@@ -21,7 +23,9 @@ namespace :db do
                    password_confirmation: password,
                    phone_number: "12392162#{n+1}",
                    suit_size: "M",
-                   shirt_size: "M")
+                   shirt_size: "M",
+                   date_of_birth: "1992-09-15",
+                   date_of_hire: "2008-07-01")
     end
   end
 end
