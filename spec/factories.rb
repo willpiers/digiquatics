@@ -14,4 +14,8 @@ FactoryGirl.define do
     date_of_hire 					"2013-09-01"
     phone_number 					"6613339902"
   end
+
+  factory :admin do
+    admin true
+  end
 end

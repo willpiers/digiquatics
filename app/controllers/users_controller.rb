@@ -38,23 +38,22 @@ class UsersController < ApplicationController
     end
   end
 
-
 private
 
-    def user_params
-      params.require(:user).permit(:first_name, :last_name, :email, :password,
-                                   :password_confirmation, :date_of_birth, :date_of_hire, :sex, :phone_number, :shirt_size, :suit_size)
-    end
+  def user_params
+    params.require(:user).permit(:first_name, :last_name, :email, :password,
+                                 :password_confirmation, :date_of_birth, :date_of_hire, :sex, :phone_number, :shirt_size, :suit_size)
+  end
 
-    def signed_in_user
-      unless signed_in?
-        store_location
-        redirect_to signin_url, notice: "Please sign in."
+  def signed_in_user
+    unless signed_in?
+      store_location
+      redirect_to signin_url, notice: "Please sign in."
     end
+  end
 
-    def correct_user
-      @user = User.find(params[:id])
-      redirect_to(root_url) unless current_user?(@user)
-    end
+  def correct_user
+    @user = User.find(params[:id])
+    redirect_to(root_url) unless current_user?(@user)
   end
 end
