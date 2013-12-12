@@ -57,8 +57,8 @@ describe "User pages" do
     end
 
     describe "with valid information" do
-      let(:new_first_name)  { "First" }
-      let(:new_email) { "new@example.com" }
+      let(:new_first_name)  { "NewFirstName" }
+      let(:new_email) { "newEmail@example.com" }
     
       before do
         fill_in "First Name",   with: new_first_name
@@ -72,13 +72,14 @@ describe "User pages" do
         fill_in "Date of Birth",   with: "2000-01-30"
         fill_in "Date of Hire",   with: "2013-09-13"
         fill_in "Phone Number",   with: "7203879691"
+        click_button "Save changes"
       end
 
-      it { should have_title(new_first_name) }
+      it { should have_title(full_title(new_first_name)) }
       it { should have_selector('div.alert.alert-success') }
       it { should have_link('Sign out', href: signout_path) }
-      specify { expect(user.reload.name).to  eq new_first_name }
-      specify { expect(user.reload.email).to eq new_email }
+      specify { expect(user.reload.first_name).to eq new_first_name }
+      specify { expect(user.reload.email).to eq new_email.downcase }
     end
   end
 
@@ -119,7 +120,7 @@ describe "User pages" do
 
         it { should have_link('Sign out') }
         it { should have_title(user.first_name) }
-        it { should have_selector('div.alert.alert-success', text: 'Welcome') }
+        it { should have_selector('div.alert.alert-success', text: 'This account has been successfully created!') }
       end
     end
   end
