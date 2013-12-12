@@ -1,6 +1,17 @@
 <% provide(:title, 'All users') %>
 <h1>All users</h1>
 
+<right>
+	<%= link_to "Add User", signup_path, class: "btn btn-medium btn-primary" %>
+</right>
+<br>
+<br>
 <table class="table table-hover">
+	          <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email Address</th>
+            <th>Phone Number</th>
+          </tr>
   <%= render @users %>
 </table>
