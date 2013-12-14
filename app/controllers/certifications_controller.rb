@@ -4,7 +4,9 @@ class CertificationsController < ApplicationController
   # GET /certifications
   # GET /certifications.json
   def index
-    @certifications = Certification.all
+    # @certifications = Certification.all
+    @certifications = Certification.where(account_id = "1")
+
   end
 
   # GET /certifications/1

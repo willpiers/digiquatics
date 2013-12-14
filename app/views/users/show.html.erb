@@ -1,2 +1,5 @@
 <% provide(:title, @user.first_name) %>
 <h1><%= @user.first_name %></h1>
+<b>Account ID</b>
+<% @account = @user.account %>
+<p><%= @user.account_id %></p>

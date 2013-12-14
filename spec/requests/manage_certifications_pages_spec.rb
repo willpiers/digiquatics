@@ -5,10 +5,12 @@ describe "Manage Certifications" do
   subject { page }
 
   describe "page" do
+    let(:account) { FactoryGirl.create(:account) }
+    let(:user) { FactoryGirl.create(:user, email: "me@gmail.com") }
     before do
       sign_in FactoryGirl.create(:user)
-      FactoryGirl.create(:certification_name, name: 'CPR/AED')
-      FactoryGirl.create(:certification_name, name: 'Lifeguard')
+      FactoryGirl.create(:certification_name, name: 'CPR/AED', account_id: account.id)
+      FactoryGirl.create(:certification_name, name: 'Lifeguard', account_id: account.id)
       visit certification_names_path
     end
 
@@ -17,7 +19,9 @@ describe "Manage Certifications" do
 
     it "should list each certification_name" do
       CertificationName.all.each do |cert_name|
+        cert_name.account_id.should eq(user.account_id)
         expect(page).to have_content(cert_name.name)
+        expect(page).to have_content(cert_name.account_id)
         # Need to add test to check for a delete link for each Certification Name
       end
     end

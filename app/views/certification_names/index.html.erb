@@ -5,6 +5,7 @@
   <thead>
     <tr>
       <th>Name</th>
+      <th>Account ID</th>
     </tr>
   </thead>
 
@@ -12,6 +13,7 @@
     <% @certification_names.each do |certification_name| %>
       <tr>
         <td><%= certification_name.name %></td>
+        <td><%= certification_name.account_id %></td>
         <!-- <td><%= link_to 'Edit', edit_certification_name_path(certification_name) %></td> -->
         <td><%= link_to 'Delete', certification_name, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>

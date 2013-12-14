@@ -4,7 +4,7 @@ FactoryGirl.define do
   end
 
   factory :user do
-    first_name     				"First"
+    first_name     				"Joe"
     last_name							"Currin"
     email    							"newfactory@example.com"
     password 							"foobar"
@@ -22,6 +22,12 @@ FactoryGirl.define do
 
   factory :admin do
     admin true
+  end
+
+  factory :certification do
+    certification_name_id "1"
+    user_id               "1"
+    expiration_date       "2012-09-15"
   end
 
   factory :certification_name do

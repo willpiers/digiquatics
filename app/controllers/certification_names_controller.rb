@@ -24,7 +24,9 @@ class CertificationNamesController < ApplicationController
   # POST /certification_names
   # POST /certification_names.json
   def create
+    # account = current_user.account
     @certification_name = CertificationName.new(certification_name_params)
+    # @certification_name = account.certification_names.build(certification_name_params)
 
     respond_to do |format|
       if @certification_name.save

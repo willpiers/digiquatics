@@ -11,7 +11,8 @@ namespace :db do
                          suit_size: "M",
                          date_of_birth: "1992-09-15",
                          date_of_hire: "2008-07-01",
-                         admin: true)
+                         admin: true,
+                         account_id: "1")
     100.times do |n|
       first_name  = Faker::Name.first_name
       last_name = Faker::Name.last_name
@@ -30,5 +31,13 @@ namespace :db do
 
     Account.create!(name: "City of Lakewood")
     Account.create!(name: "Foothills")
+
+    CertificationName.create!(name: "CPR/AED1", account_id: "1")
+    CertificationName.create!(name: "LGI1", account_id: "1")
+    CertificationName.create!(name: "LGI2", account_id: "2")
+
+    Certification.create!(certification_name_id: "1", user_id: "1", expiration_date: "2012-09-05")
+    Certification.create!(certification_name_id: "3", user_id: "1", expiration_date: "2012-09-05")
+
   end
 end

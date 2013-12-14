@@ -13,9 +13,9 @@
   <tbody>
     <% @certifications.each do |certification| %>
       <tr>
-        <td><%= certification.certification_name_id %></td>
+        <td><%= certification.certification_name.name%></td>
         <td><%= certification.user.first_name %></td>
-        <td><%= certification.expiration_date.strftime('%-m/%d/%Y') %></td>
+        <td><%= certification.expiration_date.strftime('%-m/%-d/%Y') %></td>
       </tr>
     <% end %>
   </tbody>
