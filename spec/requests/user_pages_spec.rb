@@ -42,7 +42,6 @@ describe "User pages" do
 
   describe "edit" do
     let(:user) { FactoryGirl.create(:user) }
-    before { visit edit_user_path(user) }
     before do
       sign_in user 
       visit edit_user_path(user)
@@ -137,11 +136,4 @@ describe "User pages" do
   end
 
   require File.dirname(__FILE__) + '/../spec_helper'
-  
-  describe "certifications page" do
-    before { visit certifications_path }
-
-    it { should have_title(full_title('Manage Certifications')) }
-    it { should have_selector('h1', text: 'Certifications') }
-  end
 end

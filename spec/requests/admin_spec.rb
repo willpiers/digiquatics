@@ -3,8 +3,10 @@ require 'spec_helper'
 describe "admin setup" do
   subject { page }
 
-  let(:admin) { FactoryGirl.create(:user) }
-  before { sign_in admin }
+  let(:account) { FactoryGirl.create(:account) }
+  let(:user) { FactoryGirl.create(:user) }
+  before { user = account.users.build(user) }
+  before { sign_in user }
 
   describe "manage" do
     describe "users" do
@@ -40,7 +42,10 @@ describe "admin setup" do
     describe "lessons" do
     end
 
-    describe "billing" do
+    describe "account" do
+      before { click_link('Manage Account') }
+
+      it { should have_title(full_title('Manage Account')) }
     end
   end
 end

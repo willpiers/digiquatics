@@ -27,5 +27,8 @@ namespace :db do
                    date_of_birth: "1992-09-15",
                    date_of_hire: "2008-07-01")
     end
+
+    Account.create!(name: "City of Lakewood")
+    Account.create!(name: "Foothills")
   end
 end

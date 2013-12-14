@@ -20,9 +20,9 @@
                 <li><%= link_to "Manage Locations", locations_path %></li>
                 <li><%= link_to "Manage Positions", positions_path %></li>
                 <li><%= link_to "Manage Chemicals", chemicals_path %></li>
-                <li><%= link_to "Manage Certifications", certifications_path %></li>
+                <li><%= link_to "Manage Certifications", certification_names_path %></li>
                 <li><%= link_to "Manage Lessons", '#' %></li>
-                <li><%= link_to "Manage Billing", '#' %></li>
+                <li><%= link_to "Manage Account", edit_account_path(current_user) %></li>
                 <li><%= link_to "Settings", edit_user_path(current_user) %></li>
                 <li class="divider"></li>
                 <li><%= link_to "Sign out", signout_path, method: "delete" %></li>
