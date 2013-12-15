@@ -26,7 +26,8 @@ namespace :db do
                    suit_size: "M",
                    shirt_size: "M",
                    date_of_birth: "1992-09-15",
-                   date_of_hire: "2008-07-01")
+                   date_of_hire: "2008-07-01",
+                   account_id: "1")
     end
 
     Account.create!(name: "City of Lakewood")
@@ -37,6 +38,7 @@ namespace :db do
     CertificationName.create!(name: "LGI2", account_id: "2")
 
     Certification.create!(certification_name_id: "1", user_id: "1", expiration_date: "2012-09-05")
+    Certification.create!(certification_name_id: "2", user_id: "1", expiration_date: "2012-09-05")
     Certification.create!(certification_name_id: "3", user_id: "1", expiration_date: "2012-09-05")
 
   end

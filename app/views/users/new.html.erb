@@ -34,7 +34,7 @@
       <%= f.text_field :date_of_birth, :value => (@user.date_of_birth.blank? ? '' : @user.date_of_birth.strftime('%Y-%m-%d')), 'data-behaviour' => 'datepicker' %>
 
       <script type="text/javascript">
-        $('[data-behaviour~=datepicker]').datepicker({ dateFormat: 'yyyy-dd-mm HH:MM:ss' });
+        $('[data-behaviour~=datepicker]').datepicker({ Format: 'yyyy-dd-mm' });
       </script>
 
       <%= f.label :date_of_hire, "Date of Hire" %>

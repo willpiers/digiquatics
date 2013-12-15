@@ -32,5 +32,6 @@ FactoryGirl.define do
 
   factory :certification_name do
     name                  "CPR/AED"
+    account_id            "1"
   end
 end

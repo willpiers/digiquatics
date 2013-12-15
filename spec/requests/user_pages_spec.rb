@@ -71,9 +71,7 @@ describe "User pages" do
         select('M', from: 'Suit Size')
         select('M', from: 'Shirt Size')
         select('M', from: 'Sex')
-        select('1992', from: "user_date_of_birth_1i")
-        select('December', from: "user_date_of_birth_2i")
-        select('15', from: "user_date_of_birth_3i")
+        fill_in "Date of Birth", with: "1992-09-15"
         select('2013', from: "user_date_of_hire_1i")
         select('January', from: "user_date_of_hire_2i")
         select('1', from: "user_date_of_hire_3i")
@@ -111,9 +109,7 @@ describe "User pages" do
         select('M', :from => 'Suit Size')
         select('M', :from => 'Shirt Size')
         select('M', :from => 'Sex')
-        select('1992', from: "user_date_of_birth_1i")
-        select('December', from: "user_date_of_birth_2i")
-        select('15', from: "user_date_of_birth_3i")
+        fill_in "Date of Birth", with: "1992-09-15"
         select('2013', from: "user_date_of_hire_1i")
         select('January', from: "user_date_of_hire_2i")
         select('1', from: "user_date_of_hire_3i")

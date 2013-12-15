@@ -5,8 +5,8 @@ class CertificationsController < ApplicationController
   # GET /certifications.json
   def index
     # @certifications = Certification.all
-    @certifications = Certification.where(account_id = "1")
-
+    # @certifications = Certification.where(account_id = 1)
+    @certifications = Certification.joins(:certification_name).where(:certification_names => {account_id: current_user.account_id})
   end
 
   # GET /certifications/1
