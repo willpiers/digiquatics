@@ -10,8 +10,8 @@ gem 'bootstrap-datepicker-rails', '1.1.1.10'
 gem 'less', '2.4.0'
 gem 'therubyracer', '0.12.0'
 
-# Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+# Using MySQL Database
+gem 'mysql2'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'

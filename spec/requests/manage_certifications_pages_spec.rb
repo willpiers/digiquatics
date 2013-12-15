@@ -6,9 +6,9 @@ describe "Manage Certifications" do
 
   describe "page" do
     let(:account) { FactoryGirl.create(:account) }
-    let(:user) { FactoryGirl.create(:user, email: "me@gmail.com") }
+    let(:user) { FactoryGirl.create(:user, account_id: account.id, email: "me@gmail.com") }
     before do
-      sign_in FactoryGirl.create(:user)
+      sign_in FactoryGirl.create(:user, account_id: account.id)
       FactoryGirl.create(:certification_name, name: 'CPR/AED', account_id: account.id)
       FactoryGirl.create(:certification_name, name: 'Lifeguard', account_id: account.id)
       visit certification_names_path

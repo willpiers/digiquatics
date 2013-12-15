@@ -75,7 +75,7 @@ describe "User pages" do
         select('2013', from: "user_date_of_hire_1i")
         select('January', from: "user_date_of_hire_2i")
         select('1', from: "user_date_of_hire_3i")
-        fill_in "Phone Number",   with: "7203879691"
+        fill_in "Phone Number",   with: "1234"
         click_button "Save changes"
       end
 
@@ -113,7 +113,7 @@ describe "User pages" do
         select('2013', from: "user_date_of_hire_1i")
         select('January', from: "user_date_of_hire_2i")
         select('1', from: "user_date_of_hire_3i")
-        fill_in "Phone Number",   with: "7203879691"
+        fill_in "Phone Number",   with: "1234"
       end
 
       it "should create a user" do

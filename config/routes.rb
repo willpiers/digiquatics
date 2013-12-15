@@ -4,7 +4,7 @@ AquaticsApp::Application.routes.draw do
     resources :accounts
   end
   resources :accounts do
-    resources :users
+    # resources :users
     resources :certifications
   end
   resources :users
