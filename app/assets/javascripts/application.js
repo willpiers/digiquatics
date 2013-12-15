@@ -15,7 +15,5 @@
 //= require bootstrap
 //= require turbolinks
 //= require_tree .
+//= require bootstrap-datepicker
 
-$(function() {
-  $("#article_date_of_birth").datepicker();
-});
