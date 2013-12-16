@@ -4,15 +4,14 @@ class User < ActiveRecord::Base
 
   belongs_to :account
   has_many :certifications
-  
+
   validates :first_name, presence: true, length: { maximum: 15 }
   validates :last_name, presence: true, length: { maximum: 15 }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true, format: { with: VALID_EMAIL_REGEX }, uniqueness: { case_sensitive: false }
-  validates :shirt_size, presence: true
-  validates :suit_size, presence: true
+  validates_presence_of :shirt_size, :suit_size, :account_id
   has_secure_password
-  validates :password, length: { minimum: 6 }
+  validates_length_of :password, minimum: 6
 
   def User.new_remember_token
     SecureRandom.urlsafe_base64

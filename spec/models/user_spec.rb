@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe User do
 
-  before { @user = User.new(first_name: "First", last_name: "Last", email: "user@example.com", suit_size: "M", shirt_size: "M", password: "foobar", password_confirmation: "foobar") }
+  before { @user = User.new(first_name: "First", last_name: "Last", email: "user@example.com", suit_size: "M", shirt_size: "M", password: "foobar", password_confirmation: "foobar", account_id: 1) }
 
   subject { @user }
 
@@ -28,6 +28,11 @@ describe User do
     end
 
     it { should be_admin }
+  end
+
+  describe "without account id" do
+    before { @user.account_id = nil }
+    it { should_not be_valid }
   end
 
   describe "when first name is not present" do

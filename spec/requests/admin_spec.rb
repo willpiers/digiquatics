@@ -4,8 +4,8 @@ describe "admin setup" do
   subject { page }
 
   let(:account) { FactoryGirl.create(:account) }
-  let(:user) { FactoryGirl.create(:user) }
-  before { user = account.users.build(user) }
+  let(:user) { FactoryGirl.create(:user, account_id: account.id) }
+  # before { user = account.users.build(user) }
   before { sign_in user }
 
   describe "manage" do

@@ -1,0 +1,11 @@
+AllCops:
+  Includes:
+    - Rakefile
+    - config.ru
+    - Gemfile
+  Excludes:
+    - spec/spec_helper.rb
+    - db/**
+
+Documentation:
+  Enabled: false

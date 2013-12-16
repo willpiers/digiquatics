@@ -30,15 +30,11 @@
       <%= f.label :shirt_size, "Shirt Size" %>
       <%= f.select :shirt_size, options_for_select(%w[XS S M L XL XXL]) %>
 
-      <%= f.label :date_of_birth, "Date of Birth" %>
-      <%= f.text_field :date_of_birth, :value => (@user.date_of_birth.blank? ? '' : @user.date_of_birth.strftime('%Y-%m-%d')), 'data-behaviour' => 'datepicker' %>
+      <%= f.label :date_of_birth, "Date of Birth (yyyy-mm-dd)" %>
+      <%= f.text_field :date_of_birth %>
 
-      <script type="text/javascript">
-        $('[data-behaviour~=datepicker]').datepicker({ Format: 'yyyy-dd-mm' });
-      </script>
-
-      <%= f.label :date_of_hire, "Date of Hire" %>
-      <%= f.date_select :date_of_hire, end_year: 1900, start_year: 2014 %>
+      <%= f.label :date_of_hire, "Date of Hire (yyyy-mm-dd)" %>
+      <%= f.text_field :date_of_hire %>
 
       <%= f.label :phone_number, "Phone Number" %>
       <%= f.telephone_field :phone_number %>

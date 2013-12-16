@@ -1,15 +1,10 @@
 AquaticsApp::Application.routes.draw do
   resources :certifications
-  resources :certification_names do
-    resources :accounts
-  end
-  resources :accounts do
-    # resources :users
-    resources :certifications
-  end
+  resources :certification_names
+  resources :accounts
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
-  
+
   root  'static_pages#home'
   match '/signup',  to: 'users#new',            via: 'get'
   match '/signin',  to: 'sessions#new',         via: 'get'
@@ -25,7 +20,7 @@ AquaticsApp::Application.routes.draw do
   match '/locations', to: 'static_pages#locations', via: 'get'
   match '/positions', to: 'static_pages#positions', via: 'get'
 
-  
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -66,7 +61,7 @@ AquaticsApp::Application.routes.draw do
   #       get 'recent', on: :collection
   #     end
   #   end
-  
+
   # Example resource route with concerns:
   #   concern :toggleable do
   #     post 'toggle'
