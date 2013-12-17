@@ -6,6 +6,7 @@ AllCops:
   Excludes:
     - spec/spec_helper.rb
     - db/**
+    - config/application.rb
 
 Documentation:
   Enabled: false

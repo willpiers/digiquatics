@@ -5,6 +5,7 @@ class CertificationsController < ApplicationController
   # GET /certifications.json
   def index
     @certifications = Certification.joins(:certification_name).where(certification_names: {account_id: current_user.account_id})
+    @certifications = @certifications.sort_by &:expiration_date
   end
 
   # GET /certifications/1

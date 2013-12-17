@@ -20,7 +20,7 @@ class UsersController < ApplicationController
 
   def update
     if @user.update_attributes(user_params)
-      flash[:success] = "Profile updated"
+      flash[:success] = 'Profile updated'
       redirect_to @user
     else
       render 'edit'
@@ -32,7 +32,7 @@ class UsersController < ApplicationController
     @user.account_id = current_user ? current_user.account_id : 1
     if @user.save
     	sign_in @user
-    	flash[:success] = "This account has been successfully created!"
+    	flash[:success] = 'This account has been successfully created!'
     	redirect_to @user
     else
       render 'new'
@@ -49,7 +49,7 @@ class UsersController < ApplicationController
   def signed_in_user
     unless signed_in?
       store_location
-      redirect_to signin_url, notice: "Please sign in."
+      redirect_to signin_url, notice: 'Please sign in.'
     end
   end
 

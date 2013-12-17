@@ -1,6 +1,10 @@
 namespace :db do
   desc "Fill database with sample data"
   task populate: :environment do
+
+    Account.create!(name: "City of Lakewood")
+    Account.create!(name: "Foothills")
+
     User.create!(first_name: "first",
                  last_name: "last",
                  email: "example@affektive.com",
@@ -31,15 +35,27 @@ namespace :db do
                    account_id: 1)
     end
 
-    Account.create!(name: "City of Lakewood")
-    Account.create!(name: "Foothills")
-
     CertificationName.create!(name: "CPR/AED1", account_id: 1)
     CertificationName.create!(name: "LGI1", account_id: 1)
+    CertificationName.create!(name: "WSI1", account_id: 1)
     CertificationName.create!(name: "LGI2", account_id: 2)
 
-    Certification.create!(certification_name_id: 1, user_id: 1, expiration_date: "2012-09-05")
-    Certification.create!(certification_name_id: 2, user_id: 1, expiration_date: "2012-09-05")
-    Certification.create!(certification_name_id: 3, user_id: 1, expiration_date: "2012-09-05")
+    30.times do |n|
+      Certification.create!(certification_name_id: 1,
+                   user_id: n+1,
+                   expiration_date: Date.today + n.day)
+    end
+
+    30.times do |n|
+      Certification.create!(certification_name_id: 2,
+                   user_id: n+2,
+                   expiration_date: Date.today + n.day)
+    end
+
+    30.times do |n|
+      Certification.create!(certification_name_id: 3,
+                   user_id: n+3,
+                   expiration_date: Date.today + n.day)
+    end
   end
 end
