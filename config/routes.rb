@@ -1,4 +1,6 @@
 AquaticsApp::Application.routes.draw do
+  resources :positions
+
   resources :locations
 
   resources :certifications
