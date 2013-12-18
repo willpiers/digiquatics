@@ -6,7 +6,7 @@
 <br>
 <br>
 <br>
-<table class="table table-hover">
+<table class="table">
   <thead>
     <tr>
       <th>First Name</th>
@@ -19,19 +19,19 @@
   <tbody>
     <% @account_users.each do |user| %>
       <tr>
-        <td class="danger"><%= user.first_name %></td>
+        <td><%= user.first_name %></td>
         <td><%= user.last_name %></td>
         <% user.certifications.each do |cert| %>
-          <% if cert.expiration_date < ( Date.today + 30.days ) %>
+          <% if cert.expiration_date <= ( Date.today) %>
             <td class="danger">
               <%= cert.expiration_date.strftime('%-m/%-d/%Y') %>
             </td>
-          <% elsif cert.expiration_date > ( Date.today + 30.days ) && cert.expiration_date < ( Date.today + 60.days ) %>
+          <% elsif cert.expiration_date > ( Date.today ) && cert.expiration_date < ( Date.today + 60.days ) %>
             <td class="warning">
               <%= cert.expiration_date.strftime('%-m/%-d/%Y') %>
             </td>
           <% elsif cert.expiration_date > ( Date.today + 60.days ) %>
-            <td class="success">
+            <td>
               <%= cert.expiration_date.strftime('%-m/%-d/%Y') %>
             </td>          
           <% end %>

@@ -40,19 +40,19 @@ namespace :db do
     CertificationName.create!(name: "WSI1", account_id: 1)
     CertificationName.create!(name: "LGI2", account_id: 2)
 
-    30.times do |n|
+    99.times do |n|
       Certification.create!(certification_name_id: 1,
                    user_id: n+1,
                    expiration_date: Date.today + n.day)
     end
 
-    30.times do |n|
+    100.times do |n|
       Certification.create!(certification_name_id: 2,
                    user_id: n+2,
                    expiration_date: Date.today + n.day)
     end
 
-    30.times do |n|
+    101.times do |n|
       Certification.create!(certification_name_id: 3,
                    user_id: n+3,
                    expiration_date: Date.today + n.day)
