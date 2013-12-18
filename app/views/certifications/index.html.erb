@@ -1,26 +1,44 @@
 <% provide(:title, 'Certifications') %>
 <h1>Certifications</h1>
-
-<table>
+<ul class = "pull-right">
+  <%= link_to "Manage Certifications", certification_names_path, class: "btn btn-medium btn-primary" %>
+</ul>
+<br>
+<br>
+<br>
+<table class="table table-hover">
   <thead>
     <tr>
-      <th>Certification name</th>
-      <th>User</th>
-      <th>Expiration date</th>
+      <th>First Name</th>
+      <th>Last Name</th>
+        <% @certification_names.each do |certification_name| %>
+          <th><%= certification_name.name %></th>
+        <% end %>
     </tr>
   </thead>
-
   <tbody>
-    <% @certifications.each do |certification| %>
+    <% @account_users.each do |user| %>
       <tr>
-        <td><%= certification.certification_name.name%></td>
-        <td><%= certification.user.first_name %></td>
-        <td><%= certification.expiration_date.strftime('%-m/%-d/%Y') %></td>
+        <td class="danger"><%= user.first_name %></td>
+        <td><%= user.last_name %></td>
+        <% user.certifications.each do |cert| %>
+          <% if cert.expiration_date < ( Date.today + 30.days ) %>
+            <td class="danger">
+              <%= cert.expiration_date.strftime('%-m/%-d/%Y') %>
+            </td>
+          <% elsif cert.expiration_date > ( Date.today + 30.days ) && cert.expiration_date < ( Date.today + 60.days ) %>
+            <td class="warning">
+              <%= cert.expiration_date.strftime('%-m/%-d/%Y') %>
+            </td>
+          <% elsif cert.expiration_date > ( Date.today + 60.days ) %>
+            <td class="success">
+              <%= cert.expiration_date.strftime('%-m/%-d/%Y') %>
+            </td>          
+          <% end %>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<br>
 
-<%= link_to 'New Certification', new_certification_path %>
