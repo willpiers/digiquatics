@@ -1,4 +1,4 @@
 class Location < ActiveRecord::Base
 	belongs_to :account
-	has_many :locations
+	has_many :users
 end

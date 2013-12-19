@@ -1,7 +1,7 @@
 <% provide(:title, 'Certifications') %>
 <h1>Certifications</h1>
 <ul class = "pull-right">
-  <%= link_to "Manage Certifications", certification_names_path, class: "btn btn-medium btn-primary" %>
+  <%= link_to "Manage Certifications", certification_names_path, class: "btn btn-primary btn-lg active" %>
 </ul>
 <br>
 <br>
@@ -15,6 +15,7 @@
         <% @certification_names.each do |certification_name| %>
           <th><%= certification_name.name %></th>
         <% end %>
+      <th>Notes</th>  
     </tr>
   </thead>
   <tbody>
@@ -38,6 +39,7 @@
             </td>          
           <% end %>
         <% end %>
+        <td> </td>
       </tr>
     <% end %>
   </tbody>
