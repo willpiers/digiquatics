@@ -1,5 +1,27 @@
-<% provide(:title, @user.first_name) %>
-<h1><%= @user.first_name %></h1>
-<b>Account ID</b>
+<% provide(:title, @user.last_name) %>
+
+<h1><%= @user.first_name + " " + @user.last_name %></h1>
+
+<p> <b>Account ID: </b> <%= @user.account_id %></p>
+
 <% @account = @user.account %>
-<p><%= @user.account_id %></p>
+
+<table class="table" >
+
+	<thead>
+		<tr>
+			<th>Certification</th>
+			<th>Expiration</th>
+		</tr>
+	</thead>
+
+	<tbody>
+		<% @user.certifications.each do |cert| %>
+			<tr>
+				<td><%= cert.certification_name.name %></td>
+				<td><%= cert.expiration_date.strftime('%-m/%-d/%Y') %></td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>
+
