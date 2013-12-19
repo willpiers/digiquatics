@@ -22,7 +22,7 @@
       <tr>
         <td><%= user.first_name %></td>
         <td><%= user.last_name %></td>
-        <td><%= user.shirt_size %></td>
+        <td><%= user.location.name %></td>
         <% user.certifications.each do |cert| %>
           <% if cert.expiration_date <= ( Date.today) %>
             <td class="danger">

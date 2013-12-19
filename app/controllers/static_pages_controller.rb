@@ -7,4 +7,7 @@ class StaticPagesController < ApplicationController
 
   def positions
   end
+
+  def lessons
+  end
 end
