@@ -35,9 +35,9 @@ namespace :db do
                    account_id: 1)
     end
 
-    CertificationName.create!(name: "CPR/AED1", account_id: 1)
-    CertificationName.create!(name: "LGI1", account_id: 1)
-    CertificationName.create!(name: "WSI1", account_id: 1)
+    CertificationName.create!(name: "CPR/AED", account_id: 1)
+    CertificationName.create!(name: "LGI", account_id: 1)
+    CertificationName.create!(name: "WSI", account_id: 1)
     CertificationName.create!(name: "LGI2", account_id: 2)
 
     99.times do |n|
@@ -57,5 +57,28 @@ namespace :db do
                    user_id: n+3,
                    expiration_date: Date.today + n.day)
     end
+
+    Locations.create! (name: "Green Mountain Recreation Center", account_id: 1)
+    Locations.create! (name: "The Link Recreation Center", account_id: 2)
+    Locations.create! (name: "Whitlock Recreation Center", account_id: 3)
+
+    99.times do |n|
+      Locations.create!(:location_id: 1,
+                   user_id: n+1,
+                   "test1")
+    end
+
+    100.times do |n|
+      Locations.create!(:location_id: 2,
+                   user_id: n+2,
+                   "test2")
+    end
+
+    101.times do |n|
+      Locations.create!(:location_id: 3,
+                   user_id: n+3,
+                   "test3")
+    end
+
   end
 end

@@ -11,6 +11,7 @@
     <tr>
       <th>First Name</th>
       <th>Last Name</th>
+      <th>Location</th>
         <% @certification_names.each do |certification_name| %>
           <th><%= certification_name.name %></th>
         <% end %>
@@ -21,6 +22,7 @@
       <tr>
         <td><%= user.first_name %></td>
         <td><%= user.last_name %></td>
+        <td><%= user.shirt_size %></td>
         <% user.certifications.each do |cert| %>
           <% if cert.expiration_date <= ( Date.today) %>
             <td class="danger">
@@ -30,8 +32,8 @@
             <td class="warning">
               <%= cert.expiration_date.strftime('%-m/%-d/%Y') %>
             </td>
-          <% elsif cert.expiration_date > ( Date.today + 60.days ) %>
-            <td>
+          <% elsif cert.expiration_date >= ( Date.today + 60.days ) %>
+            <td class="success">
               <%= cert.expiration_date.strftime('%-m/%-d/%Y') %>
             </td>          
           <% end %>
