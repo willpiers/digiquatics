@@ -37,8 +37,8 @@
 	</thead>
 
 	<tbody>
-		<tr><th> Data Certified: </th></tr>
-		<tr><th> Expieration Date: </th>
+		<tr><th> Date Issued: </th></tr>
+		<tr><th> Expiration Date: </th>
 		<% @user.certifications.each do |cert| %>
 					<% if cert.expiration_date <= ( Date.today) %>
 						<td class="danger">
@@ -60,10 +60,8 @@
 <hr>
 <br>
 <ul class = "pull-left">
-  <%= link_to "Edit Profile", certification_names_path, class: "btn btn-primary btn-lg active" %>
-</ul>
-<ul class = "pull-left">
-  <%= link_to "Manage Availibility", certification_names_path, class: "btn btn-primary btn-lg active" %>
+  <%= link_to "Edit Profile", edit_user_path(@user), class: "btn btn-medium btn-primary" %>
+  <%= link_to "Manage Availibility", '#', class: "btn btn-medium btn-primary" %>
 </ul>
 <br>
 
