@@ -1,5 +1,68 @@
-<% provide(:title, @user.first_name) %>
-<h1><%= @user.first_name %></h1>
-<b>Account ID</b>
+<% provide(:title, @user.last_name) %>
+
+<h1><%= @user.first_name + " " + @user.last_name %></h1>
+
+<hr>
+
+<p> <b>Location: </b>Location</p>
+<br>
+<p> <b>Position: </b>Need to add to DB</p>
+<br>
+<p> <b>Email Address: </b> <%= @user.email %></p>
+<br>
+<p> <b>Phone Number (Cell): </b> <%= @user.phone_number %></p>
+<br>
+<p> <b>DOB: </b> <%= @user.date_of_birth.strftime('%-m/%-d/%Y') %></p>
+<br>
+<p> <b>DOH: </b> <%= @user.date_of_hire.strftime('%-m/%-d/%Y') %></p>
+<br>
+<p> <b>Sex: </b>Need to add to DB</p>
+<br>
+<p> <b>Shirt Size: </b> <%= @user.shirt_size %></p>
+<br>
+<p> <b>Suit Size: </b> <%= @user.suit_size %></p>
+<hr>
+
 <% @account = @user.account %>
-<p><%= @user.account_id %></p>
+
+<table class="table" align="center" >
+
+	<thead>
+		<tr>
+			<th> Certification: </th>
+			<% @user.certifications.each do |cert| %>
+				<th><%= cert.certification_name.name %></th>
+			<% end %>
+		</tr>
+	</thead>
+
+	<tbody>
+		<tr><th> Date Issued: </th></tr>
+		<tr><th> Expiration Date: </th>
+		<% @user.certifications.each do |cert| %>
+					<% if cert.expiration_date <= ( Date.today) %>
+						<td class="danger">
+							<%= cert.expiration_date.strftime('%-m/%-d/%Y') %>
+						</td>
+					<% elsif cert.expiration_date > ( Date.today ) && cert.expiration_date < ( Date.today + 60.days ) %>
+            <td class="warning">
+              <%= cert.expiration_date.strftime('%-m/%-d/%Y') %>
+            </td>
+          <% elsif cert.expiration_date >= ( Date.today + 60.days ) %>
+            <td class="success">
+              <%= cert.expiration_date.strftime('%-m/%-d/%Y') %>
+            </td>        
+           <% end %>
+		<% end %>
+	</tr>
+	</tbody>
+</table>
+<hr>
+<br>
+<ul class = "pull-left">
+  <%= link_to "Edit Profile", edit_user_path(@user), class: "btn btn-medium btn-primary" %>
+  <%= link_to "Manage Availibility", '#', class: "btn btn-medium btn-primary" %>
+</ul>
+<br>
+
+

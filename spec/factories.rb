@@ -18,6 +18,7 @@ FactoryGirl.define do
     date_of_hire 					'2013-09-01'
     phone_number 					1234
     account_id            1
+    location_id           1
   end
 
   factory :admin do

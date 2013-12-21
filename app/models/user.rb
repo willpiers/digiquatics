@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
 
   belongs_to :account
   has_many :certifications
+  belongs_to :location
 
   validates :first_name, presence: true, length: { maximum: 15 }
   validates :last_name, presence: true, length: { maximum: 15 }
