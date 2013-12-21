@@ -20,9 +20,14 @@
     <%= f.number_field :user_id %>
   </div>
   <div class="field">
-    <%= f.label :expiration_date %><br>
-    <%= f.datetime_select :expiration_date %>
+    <%= f.label :expiration_date, 'Expiration date (Ex. yyyy-mm-dd)' %><br>
+    <%= f.text_field :expiration_date %>
   </div>
+  <div class="field">
+    <%= f.label :attachment %><br>
+    <%= f.file_field :attachment %>
+  </div>
+
   <div class="actions">
     <%= f.submit %>
   </div>

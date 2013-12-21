@@ -17,6 +17,7 @@ class UsersController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
+    @certifications = @user.certifications
   end
 
   def update

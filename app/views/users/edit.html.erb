@@ -39,15 +39,25 @@
       <%= f.label :phone_number, "Phone Number" %>
       <%= f.telephone_field :phone_number %>
 
-      <% @user.certifications.each do |cert| %>
-      <%= f.label :phone_number, "Certification Experation Date" %>
-      <% end %>
-
       <%= f.label :location_id %>
       <%= f.text_field :location_id %>
 
       <%= f.label :position_id %>
       <%= f.text_field :position_id %>
+
+      <h4>Certifications</h4>
+
+        <%= f.fields_for :certifications do |cert| %>
+          <%= cert.label :expiration_date, 'Expiration Date (Ex. yyyy-mm-dd)' %>
+          <%= cert.text_field :expiration_date %>
+
+          <%= cert.file_field :attachment %>
+          <br>
+
+      <% end %>
+
+      <br>
+      <br>
 
       <ul class = "pull-left">
         <%= link_to "Manage Availibility", certification_names_path, class: "btn btn-medium btn-primary" %>
