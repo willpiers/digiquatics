@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131219025252) do
+ActiveRecord::Schema.define(version: 20131221194424) do
 
   create_table "accounts", force: true do |t|
     t.string   "name"
@@ -32,6 +32,10 @@ ActiveRecord::Schema.define(version: 20131219025252) do
     t.datetime "expiration_date"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "attachment_file_name"
+    t.string   "attachment_content_type"
+    t.integer  "attachment_file_size"
+    t.datetime "attachment_updated_at"
   end
 
   create_table "locations", force: true do |t|
@@ -66,6 +70,7 @@ ActiveRecord::Schema.define(version: 20131219025252) do
     t.boolean  "admin",           default: false
     t.integer  "account_id"
     t.integer  "location_id"
+    t.integer  "position_id"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

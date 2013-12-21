@@ -9,6 +9,9 @@ namespace :db do
     Location.create(name: "The Link Recreation Center", account_id: 1)
     Location.create(name: "Whitlock Recreation Center", account_id: 2)
 
+    Position.create(name: "Lifeguard", account_id: 1)
+    Position.create(name: "MOD", account_id: 1)
+
     User.create!(first_name: "first",
                  last_name: "last",
                  email: "example@affektive.com",
@@ -21,7 +24,8 @@ namespace :db do
                  date_of_hire: "2008-07-01",
                  admin: true,
                  account_id: 1,
-                 location_id: 1)
+                 location_id: 1,
+                 position_id: 2)
 
     50.times do |n|
       first_name  = Faker::Name.first_name
@@ -38,7 +42,8 @@ namespace :db do
                    date_of_birth: "1992-09-15",
                    date_of_hire: "2008-07-01",
                    account_id: 1,
-                   location_id: 1)
+                   location_id: 1,
+                   position_id: 1)
     end
 
     50.times do |n|
@@ -56,7 +61,8 @@ namespace :db do
                    date_of_birth: "1992-09-15",
                    date_of_hire: "2008-07-01",
                    account_id: 1,
-                   location_id: 2)
+                   location_id: 2,
+                   position_id: 2)
     end
 
     CertificationName.create!(name: "CPR/AED", account_id: 1)

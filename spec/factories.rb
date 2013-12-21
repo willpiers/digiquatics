@@ -3,6 +3,16 @@ FactoryGirl.define do
     name                  'City of Lakewood'
   end
 
+  factory :location do
+    name                  'Carmody Rec Center'
+    account_id            1
+  end
+
+  factory :position do
+    name                  'Lifeguard'
+    account_id            1
+  end
+
   factory :user do
     first_name     				'Joe'
     last_name							'Currin'
@@ -19,10 +29,27 @@ FactoryGirl.define do
     phone_number 					1234
     account_id            1
     location_id           1
+    position_id           1
   end
 
   factory :admin do
     admin true
+    first_name            'Joe'
+    last_name             'Currin'
+    email                 'newfactory@example.com'
+    password              'foobar'
+    password_confirmation 'foobar'
+    admin                 false
+    active                true
+    suit_size             'M'
+    shirt_size            'M'
+    sex                   'M'
+    date_of_birth         '1985-12-24'
+    date_of_hire          '2013-09-01'
+    phone_number          1234
+    account_id            1
+    location_id           1
+    position_id           1
   end
 
   factory :certification do

@@ -9,6 +9,7 @@ gem 'faker', '1.1.2'
 gem 'bootstrap-datepicker-rails', '1.1.1.10'
 gem 'less', '2.4.0'
 gem 'therubyracer', '0.12.0'
+gem 'paperclip', '~> 2.3'
 
 # Using MySQL Database
 gem 'mysql2'

@@ -2,9 +2,10 @@ class User < ActiveRecord::Base
   before_save { self.email = email.downcase }
   before_create :create_remember_token
 
-  belongs_to :account
-  has_many :certifications
-  belongs_to :location
+  belongs_to  :account
+  has_many    :certifications
+  belongs_to  :location
+  belongs_to  :position
 
   validates :first_name, presence: true, length: { maximum: 15 }
   validates :last_name, presence: true, length: { maximum: 15 }
@@ -13,6 +14,8 @@ class User < ActiveRecord::Base
   validates_presence_of :shirt_size, :suit_size, :account_id
   has_secure_password
   validates_length_of :password, minimum: 6
+  validates :location_id, presence: true
+  validates :position_id, presence: true
 
   def User.new_remember_token
     SecureRandom.urlsafe_base64

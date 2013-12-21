@@ -10,4 +10,10 @@ class StaticPagesController < ApplicationController
 
   def lessons
   end
+
+  def chemicals
+  end
+
+  def manage_chemicals
+  end
 end

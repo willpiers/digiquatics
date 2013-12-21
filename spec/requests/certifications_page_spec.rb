@@ -19,8 +19,11 @@ describe 'Certifications' do
       visit certifications_path
     end
 
-    it 'should have table header' do
-      page.should have_content('Certification name')
+    it 'should have correct table headers' do
+      page.should have_content('First Name')
+      page.should have_content('Last Name')
+      page.should have_content('Location')
+      page.should have_content('Notes')
     end
 
     it 'should list each certification belonging to an account' do

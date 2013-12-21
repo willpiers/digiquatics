@@ -6,13 +6,15 @@
     <%= user.last_name %>
   </td>
   <td>
+    <%= user.location_id %>
+  </td>
+  <td>
+    <%= user.position_id %>
+  </td>
+  <td>
     <%= user.email %>
   </td>
   <td>
     <%= user.phone_number %>
-  </td>
-  <% formatted_date = user.date_of_birth.strftime('%-m/%d/%Y') %>
-  <td>
-    <%= formatted_date %>
   </td>
 </tr>

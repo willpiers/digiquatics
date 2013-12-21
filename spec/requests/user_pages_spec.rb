@@ -5,10 +5,13 @@ describe 'User pages' do
   subject { page }
 
   describe 'index' do
+
     before do
-      sign_in FactoryGirl.create(:user)
-      FactoryGirl.create(:user, first_name: 'Bob', email: 'bob@example.com')
-      FactoryGirl.create(:user, first_name: 'Ben', email: 'ben@example.com')
+      sign_in FactoryGirl.create(:user, location_id: 1, position_id: 1)
+      FactoryGirl.create(:location, name: 'Green Mountain Rec Center')
+      FactoryGirl.create(:position, name: 'Lifeguard')
+      FactoryGirl.create(:user, first_name: 'Bob', email: 'bob@example.com', location_id: 1, position_id: 1)
+      FactoryGirl.create(:user, first_name: 'Ben', email: 'ben@example.com', location_id: 1, position_id: 1)
       visit users_path
     end
 
@@ -16,12 +19,13 @@ describe 'User pages' do
     it { should have_content('All users') }
 
     it 'should list each user' do
-      User.all.each do |user|
-        expect(page).to have_content(user.first_name)
-        expect(page).to have_content(user.last_name)
-        expect(page).to have_content(user.email)
-        expect(page).to have_content(user.phone_number)
-      end
+      user = User.find_by_email('bob@example.com')
+      page.should have_content(user.first_name)
+      page.should have_content(user.last_name)
+      page.should have_content('1')
+      page.should have_content('1')
+      page.should have_content(user.email)
+      page.should have_content(user.phone_number)
     end
   end
 
@@ -74,6 +78,8 @@ describe 'User pages' do
         fill_in 'Date of Birth', with: '1992-09-15'
         fill_in 'Date of Hire', with: '2012-08-15'
         fill_in 'Phone Number',   with: '1234'
+        fill_in 'Location',   with: 1
+        fill_in 'Position',  with: 1
         click_button 'Save changes'
       end
 
@@ -110,6 +116,8 @@ describe 'User pages' do
         fill_in 'Date of Birth', with: '1992-09-15'
         fill_in 'Date of Hire', with: '2012-08-15'
         fill_in 'Phone Number',   with: '1234'
+        fill_in 'Location',   with: 1
+        fill_in 'Position',  with: 1
       end
 
       it 'should create a user' do

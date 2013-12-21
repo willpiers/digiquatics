@@ -41,8 +41,13 @@
 
       <% @user.certifications.each do |cert| %>
       <%= f.label :phone_number, "Certification Experation Date" %>
-   
       <% end %>
+
+      <%= f.label :location_id %>
+      <%= f.text_field :location_id %>
+
+      <%= f.label :position_id %>
+      <%= f.text_field :position_id %>
 
       <ul class = "pull-left">
         <%= link_to "Manage Availibility", certification_names_path, class: "btn btn-medium btn-primary" %>

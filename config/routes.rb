@@ -1,8 +1,6 @@
 AquaticsApp::Application.routes.draw do
   resources :positions
-
   resources :locations
-
   resources :certifications
   resources :certification_names
   resources :accounts
@@ -15,6 +13,7 @@ AquaticsApp::Application.routes.draw do
   match '/signout', to: 'sessions#destroy',     via: 'delete'
   match '/signup',  to: 'users#new',            via: 'get'
   match '/chemicals',    to: 'static_pages#chemicals',    via: 'get'
+  match '/manage_chemicals',    to: 'static_pages#manage_chemicals',    via: 'get'
   match '/maintenance',   to: 'static_pages#maintenance',   via: 'get'
   match '/contact', to: 'static_pages#contact', via: 'get'
   match '/support',  to: 'users#support',            via: 'get'
