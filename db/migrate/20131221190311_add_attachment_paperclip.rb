@@ -1,4 +1,4 @@
-dclass AddAttachmentPaperclip < ActiveRecord::Migration
+class AddAttachmentPaperclip < ActiveRecord::Migration
   def change
     add_column :certifications, :attachment_file_name,    :string
     add_column :certifications, :attachment_content_type, :string

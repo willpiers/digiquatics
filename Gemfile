@@ -3,13 +3,13 @@ ruby '2.0.0'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.2'
-gem 'bootstrap-sass', '2.3.2.0'
+gem 'bootstrap-sass', '3.0.3.0'
 gem 'bcrypt-ruby', '3.1.2'
 gem 'faker', '1.1.2'
 gem 'bootstrap-datepicker-rails', '1.1.1.10'
 gem 'less', '2.4.0'
 gem 'therubyracer', '0.12.0'
-gem 'paperclip', '~> 2.3'
+gem 'paperclip', '2.3'
 
 # Using MySQL Database
 gem 'mysql2'
