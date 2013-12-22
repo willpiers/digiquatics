@@ -1,9 +1,9 @@
-   <header class="navbar navbar-fixed-top navbar-inverse">
-      <div class="navbar-inner">
+  <nav class="navbar navbar-fixed-top navbar-inverse">
+    <div class="navbar-header">
         <div class="container">
           <%= link_to "dashboard", root_path, id: "logo" %>
           <nav>
-            <ul class="nav pull-right">
+            <ul class="nav navbar-nav pull-right">
               <% if signed_in? %>
               <li><%= link_to "Chemicals", '#' %></li>
               <li><%= link_to "Maintenance",    '#' %></li>
@@ -33,10 +33,10 @@
             <li><%= link_to "Order", '#' %></li>
             <li><%= link_to "Private Lessons", '#' %></li>
             <li><%= link_to "Support", '#' %></li>
-            <li><%= link_to "Sign in", signin_path, class: "navbar-btn btn-primary" %></li>
+            <li><%= link_to "Sign in", signin_path, class: "navbar-btn btn-primary " %></li>
           <% end %>
             </ul>
           </nav>
         </div>
       </div>
-    </header>
+  </nav>

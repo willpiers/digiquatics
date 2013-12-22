@@ -81,7 +81,7 @@ footer {
 	margin-top: 45px;
 	padding-top: 5px;
 	border-top: 1px solid #eaeaea;
-	color: $grayLight;  //defined via bootstrap-sass gem
+	color: $lightgrey;  //defined via bootstrap-sass gem
 }
 
 footer a {
@@ -159,9 +159,10 @@ input {
   li {
     overflow: auto;
     padding: 10px 0;
-    border-top: 1px solid $grayLighter;
+    border-top: 1px solid $lightgrey;
     &:last-child {
-      border-bottom: 1px solid $grayLighter;
+      border-bottom: 1px solid $lightgrey;
     }
   }
 }
+
