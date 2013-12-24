@@ -1,10 +1,18 @@
 <%= form_for(@certification_name) do |f| %>
   <% @certification_name.account_id = current_user.account_id %>
+
+<div id="certificationnamesedit">
+
   <div class="field">
     <%= f.label :name %><br>
     <%= f.text_field :name %>
-  </div>
+	</div>
+
   <div class="actions">
     <%= f.submit %>
   </div>
+
+</div>
+
+  
 <% end %>

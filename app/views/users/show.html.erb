@@ -4,17 +4,45 @@
 
 <div class="table-responsive">
 
-	<table class="table table-bordered">
+	<table class="table table-bordered" id="userprofile">
 
-			<tr> <th> Location </th> <td> <%= @user.location.name %> </td> </tr>
-				<tr><th> Position </th><td> <%= @user.position.name %>  </td> </tr>
-				<tr><th> Email </th> <td> <%= @user.email %>  </td></tr>
-				<tr><th> Phone# </th><td> <%= @user.phone_number %>  </td> </tr>
-				<tr><th> DOB </th> <td> <%= @user.date_of_birth.strftime('%-m/%-d/%Y') %>  </td></tr>
-				<tr><th> DOH </th> <td> <%= @user.date_of_hire.strftime('%-m/%-d/%Y') %>  </td></tr>
-				<tr><th> Sex </th> <td> <%= @user.sex %>  </td></tr>
-				<tr><th> Shirt Size </th><td> <%= @user.shirt_size %>  </td> </tr>
-				<tr><th> Suit Size </th><td> <%= @user.suit_size %>  </td> </tr>
+		<tr> 
+			<th> Location </th> 
+				<td> <%= @user.location.name %> </td> 
+			</tr>
+			
+			<tr> 
+				<th> Position </th> <td> <%= @user.position.name %>  </td> 
+			</tr>
+
+			<tr> 
+				<th> Email </th> <td> <%= @user.email %>  </td>
+			</tr>
+			
+			<tr> 
+				<th> Phone# </th> <td> <%= @user.phone_number %>  </td> 
+			</tr>
+			
+			<tr> 
+				<th> DOB </th> <td> <%= @user.date_of_birth.strftime('%-m/%-d/%Y') %>  </td>
+			</tr>
+			
+			<tr> 
+				<th> DOH </th> <td> <%= @user.date_of_hire.strftime('%-m/%-d/%Y') %>  </td>
+			</tr>
+			
+			<tr> 
+				<th> Sex </th> <td> <%= @user.sex %>  </td>
+			</tr>
+			
+			<tr> 
+				<th> Shirt Size </th> <td> <%= @user.shirt_size %>  </td> 
+			</tr>
+			
+			<tr> 
+				<th> Suit Size </th> <td> <%= @user.suit_size %>  </td> 
+			</tr>
+
 	</table>
 
 </div>
@@ -23,7 +51,7 @@
 
 <div class="table-responsive">
 
-	<table class="table" align="center" >
+	<table class="table" id="userprofile">
 
 		<thead>
 			<tr>
