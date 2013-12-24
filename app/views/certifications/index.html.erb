@@ -10,8 +10,8 @@
   <thead>
     <tr>
       <th><%= link_to "First Name", sort: 'users.first_name' %></th>
-      <th><%= link_to "Last Name", sort: "last_name" %></th>
-      <th><%= link_to "Location", sort: "location" %></th>
+      <th><%= link_to "Last Name", sort: 'users.last_name' %></th>
+      <th><%= link_to "Location", sort: 'users.location' %></th>
         <% @certification_names.each do |certification_name| %>
           <th><%= certification_name.name %></th>
         <% end %>
