@@ -1,4 +1,6 @@
 class Certification < ActiveRecord::Base
+  scope :account, -> { where(account_id: current_user.account.id) }
+
   belongs_to :user
   belongs_to :certification_name
   belongs_to :account
