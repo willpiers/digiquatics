@@ -9,9 +9,9 @@
 <table class="table table-hover">
   <thead>
     <tr>
-      <th><%= link_to "First Name", sort: 'users.first_name' %></th>
-      <th><%= link_to "Last Name", sort: 'users.last_name' %></th>
-      <th><%= link_to "Location", sort: 'users.location' %></th>
+      <th><%= sortable 'first_name', 'First Name' %></th>
+      <th><%= sortable 'last_name', 'Last Name' %></th>
+      <th><%= sortable 'location', 'Location' %></th>
         <% @certification_names.each do |certification_name| %>
           <th><%= certification_name.name %></th>
         <% end %>
