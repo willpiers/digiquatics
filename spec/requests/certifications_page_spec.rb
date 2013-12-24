@@ -1,6 +1,9 @@
 require 'spec_helper'
 
 describe 'Certifications' do
+  let(:location) { FactoryGirl.create(:location) }
+  let(:position) { FactoryGirl.create(:position) }
+  let(:user) { FactoryGirl.create(:user, location_id: location.id, position_id: position.id) }
 
   subject { page }
 
@@ -10,7 +13,7 @@ describe 'Certifications' do
     it { should have_selector('h1', text: 'Certifications') }
 
     before do
-      sign_in FactoryGirl.create(:user, account_id: 1)
+      sign_in user
       FactoryGirl.create(:certification_name, account_id: 1, name: 'CPR/AED1')
       FactoryGirl.create(:certification_name, account_id: 2, name: 'CPR/AED2')
       FactoryGirl.create(:certification, certification_name_id: 1)

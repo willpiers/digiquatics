@@ -1,13 +1,15 @@
 require 'spec_helper'
 
 describe 'Manage Account' do
+  let(:account) { FactoryGirl.create(:account) }
+  let(:location) { FactoryGirl.create(:location) }
+  let(:position) { FactoryGirl.create(:position) }
+  let(:user) { FactoryGirl.create(:user, account_id: account.id, location_id: location.id, position_id: position.id) }
 
   subject { page }
 
   describe 'page' do
 
-    let(:account) { FactoryGirl.create(:account) }
-    let(:user) { FactoryGirl.create(:user, account_id: account.id) }
     before { user = account.users.build(user) }
     before do
       sign_in user

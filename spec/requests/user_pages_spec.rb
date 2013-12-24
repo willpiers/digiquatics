@@ -1,14 +1,14 @@
 require 'spec_helper'
 
 describe 'User pages' do
+  let(:location) { FactoryGirl.create(:location) }
+  let(:position) { FactoryGirl.create(:position) }
+  let(:user) { FactoryGirl.create(:user, location_id: location.id, position_id: position.id) }
 
   subject { page }
 
   describe 'index' do
-    let(:location) { FactoryGirl.create(:location) }
-    let(:position) { FactoryGirl.create(:position) }
-    let(:user) { FactoryGirl.create(:user, location_id: location.id, position_id: position.id) }
-
+    
     before do
       sign_in user
       FactoryGirl.create(:user, first_name: 'Bob', email: 'bob@example.com', location_id: location.id, position_id: position.id)
@@ -32,7 +32,6 @@ describe 'User pages' do
   end
 
   describe 'profile page' do
-    let(:user) { FactoryGirl.create(:user) }
     before { visit signup_path }
 
     it { should have_content('First Name') }
@@ -47,7 +46,6 @@ describe 'User pages' do
   end
 
   describe 'edit' do
-    let(:user) { FactoryGirl.create(:user) }
     before do
       sign_in user
       visit edit_user_path(user)
@@ -80,8 +78,8 @@ describe 'User pages' do
         fill_in 'Date of Birth', with: '1992-09-15'
         fill_in 'Date of Hire', with: '2012-08-15'
         fill_in 'Phone Number',   with: '1234'
-        fill_in 'Location',   with: 1
-        fill_in 'Position',  with: 1
+        fill_in 'Location',   with: location.id
+        fill_in 'Position',  with: position.id
         click_button 'Save changes'
       end
 
@@ -106,6 +104,7 @@ describe 'User pages' do
     end
 
     describe 'with valid information' do
+
       before do
         fill_in 'First Name',   with: 'First'
         fill_in 'Last Name',    with: 'Last'
@@ -118,8 +117,8 @@ describe 'User pages' do
         fill_in 'Date of Birth', with: '1992-09-15'
         fill_in 'Date of Hire', with: '2012-08-15'
         fill_in 'Phone Number',   with: '1234'
-        fill_in 'Location',   with: 1
-        fill_in 'Position',  with: 1
+        fill_in 'Location',   with: location.id
+        fill_in 'Position',  with: position.id
       end
 
       it 'should create a user' do
