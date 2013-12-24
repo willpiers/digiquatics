@@ -30,12 +30,12 @@ describe 'admin setup' do
       it { should have_selector('h1', text: 'Manage Positions') }
     end
 
-    describe 'chemicals' do
-      before { click_link('Manage Chemicals') }
+    #describe 'chemicals' do
+     # before { click_link('Manage Chemicals') }
 
-      it { should have_title(full_title('Manage Chemicals')) }
-      it { should have_selector('h1', text: 'Manage Chemicals') }
-    end
+      #it { should have_title(full_title('Manage Chemicals')) }
+      #it { should have_selector('h1', text: 'Manage Chemicals') }
+    #end
 
     describe 'certifications' do
       before { click_link('Manage Certifications') }
@@ -44,12 +44,12 @@ describe 'admin setup' do
       it { should have_selector('h1', text: 'Manage Certifications') }
     end
 
-    describe 'lessons' do
-      before { click_link('Manage Lessons') }
+    #describe 'lessons' do
+     # before { click_link('Manage Lessons') }
 
-      it { should have_title(full_title('Manage Private Lessons')) }
-      it { should have_selector('h1', text: 'Manage Private Lessons') }
-    end
+      #it { should have_title(full_title('Manage Private Lessons')) }
+      #it { should have_selector('h1', text: 'Manage Private Lessons') }
+    #end
 
     describe 'account' do
       before { click_link('Manage Account') }
