@@ -5,13 +5,14 @@ describe 'User pages' do
   subject { page }
 
   describe 'index' do
+    let(:location) { FactoryGirl.create(:location) }
+    let(:position) { FactoryGirl.create(:position) }
+    let(:user) { FactoryGirl.create(:user, location_id: location.id, position_id: position.id) }
 
     before do
-      sign_in FactoryGirl.create(:user, location_id: 1, position_id: 1)
-      FactoryGirl.create(:location, name: 'Green Mountain Rec Center')
-      FactoryGirl.create(:position, name: 'Lifeguard')
-      FactoryGirl.create(:user, first_name: 'Bob', email: 'bob@example.com', location_id: 1, position_id: 1)
-      FactoryGirl.create(:user, first_name: 'Ben', email: 'ben@example.com', location_id: 1, position_id: 1)
+      sign_in user
+      FactoryGirl.create(:user, first_name: 'Bob', email: 'bob@example.com', location_id: location.id, position_id: position.id)
+      FactoryGirl.create(:user, first_name: 'Ben', email: 'ben@example.com', location_id: location.id, position_id: position.id)
       visit users_path
     end
 
@@ -22,8 +23,9 @@ describe 'User pages' do
       user = User.find_by_email('bob@example.com')
       page.should have_content(user.first_name)
       page.should have_content(user.last_name)
-      page.should have_content('1')
-      page.should have_content('1')
+      page.should have_content(user.sex)
+      page.should have_content(user.location.name)
+      page.should have_content(user.position.name)
       page.should have_content(user.email)
       page.should have_content(user.phone_number)
     end

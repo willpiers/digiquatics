@@ -1,9 +1,15 @@
 <div class="center hero-unit">
 <h1>Aquatics App</h1>
 <p>
-  This is the home page for the meantime.   
- 
-
+  This is the home page for the meantime. Below is where database query tests are run.  
 </p>
-</div>
 
+<br>
+<p> <b> Total Users: </b> <%= @users.count %>  </p>
+<p> <b> Shirt Size: </b> <%= @users.group(:shirt_size).count %>  </p>
+<p> <b> Suit Size: </b> <%= @users.group(:suit_size).count %>  </p>
+<p> <b> Sex: </b> <%= @users.group(:sex).count %>  </p>
+<p> <b> Male Suits: </b> <%= @male_users.group(:suit_size).count %>  </p>
+<p> <b> Female Suits: </b> <%= @female_users.group(:suit_size).count %>  </p>
+<p> <b> Location: </b> <%= @users.group(:location).count %>  </p>
+</div>

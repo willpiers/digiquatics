@@ -1,15 +1,21 @@
 <tr>
   <td>
-    <%= user.first_name %>
+    <%= link_to user.first_name, user  %>
   </td>
   <td>
-    <%= user.last_name %>
+    <%= link_to user.last_name, user %>
+  </td>
+    <td>
+    <%= user.sex %>
   </td>
   <td>
-    <%= user.location_id %>
+    <%= user.date_of_birth %>
   </td>
   <td>
-    <%= user.position_id %>
+    <%= user.location.name %>
+  </td>
+  <td>
+    <%= user.position.name %>
   </td>
   <td>
     <%= user.email %>
