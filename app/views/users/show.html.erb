@@ -2,60 +2,85 @@
 
 <h1><%= @user.first_name + " " + @user.last_name %></h1>
 
-<table class="table table-bordered">
-
-		<tr> <th> Location </th> <td> <%= @user.location.name %> </td> </tr>
-			<tr><th> Position </th><td> <%= @user.position.name %>  </td> </tr>
-			<tr><th> Email </th> <td> <%= @user.email %>  </td></tr>
-			<tr><th> Phone# </th><td> <%= @user.phone_number %>  </td> </tr>
-			<tr><th> DOB </th> <td> <%= @user.date_of_birth.strftime('%-m/%-d/%Y') %>  </td></tr>
-			<tr><th> DOH </th> <td> <%= @user.date_of_hire.strftime('%-m/%-d/%Y') %>  </td></tr>
-			<tr><th> Sex </th> <td> <%= @user.sex %>  </td></tr>
-			<tr><th> Shirt Size </th><td> <%= @user.shirt_size %>  </td> </tr>
-			<tr><th> Suit Size </th><td> <%= @user.suit_size %>  </td> </tr>
-</table>
+<div class="table-responsive">
+	<table class="table table-bordered" id="userprofile">
+		<tr> 
+			<th> Location </th> 
+				<td> <%= @user.location.name %> </td> 
+			</tr>
+			<tr> 
+				<th> Position </th> <td> <%= @user.position.name %>  </td> 
+			</tr>
+			<tr> 
+				<th> Email </th> <td> <%= @user.email %>  </td>
+			</tr>
+			<tr> 
+				<th> Phone# </th> <td> <%= @user.phone_number %>  </td> 
+			</tr>
+			<tr> 
+				<th> DOB </th> <td> <%= @user.date_of_birth.strftime('%-m/%-d/%Y') %>  </td>
+			</tr>
+			<tr> 
+				<th> DOH </th> <td> <%= @user.date_of_hire.strftime('%-m/%-d/%Y') %>  </td>
+			</tr>
+			<tr> 
+				<th> Sex </th> <td> <%= @user.sex %>  </td>
+			</tr>
+			<tr> 
+				<th> Shirt Size </th> <td> <%= @user.shirt_size %>  </td> 
+			</tr>
+			<tr> 
+				<th> Suit Size </th> <td> <%= @user.suit_size %>  </td> 
+			</tr>
+	</table>
+</div>
 
 <% @account = @user.account %>
 
-<table class="table" align="center" >
-
-	<thead>
-		<tr>
-			<th> Certification Name </th>
-			<% @user.certifications.each do |cert| %>
+<div class="table-responsive">
+	<table class="table" id="userprofile">
+		<thead>
+			<tr>
+				<th> Certification Name </th>
+				<% @user.certifications.each do |cert| %>
 				<th><%= cert.certification_name.name %></th>
-			<% end %>
-		</tr>
-	</thead>
-
-	<tbody>
-		<tr><th> Issue Date: </th></tr>
-		<tr><th> Expiration Date: </th>
-		<% @user.certifications.each do |cert| %>
+				<% end %>
+			</tr>
+		</thead>
+		<tbody>
+			<tr><th> Issue Date </th></tr>
+			<tr><th> Expiration Date </th>
+				<% @user.certifications.each do |cert| %>
 					<% if cert.expiration_date <= ( Date.today) %>
 						<td class="danger">
 							<%= cert.expiration_date.strftime('%-m/%-d/%Y') %>
 						</td>
 					<% elsif cert.expiration_date > ( Date.today ) && cert.expiration_date < ( Date.today + 60.days ) %>
-            <td class="warning">
-              <%= cert.expiration_date.strftime('%-m/%-d/%Y') %>
-            </td>
-          <% elsif cert.expiration_date >= ( Date.today + 60.days ) %>
-            <td class="success">
-              <%= cert.expiration_date.strftime('%-m/%-d/%Y') %>
-            </td>
-           <% end %>
-		<% end %>
-	</tr>
-	<tr><th> Attached File: </th></tr>
-	</tbody>
-</table>
-<hr>
-<br>
+		        <td class="warning">
+		          <%= cert.expiration_date.strftime('%-m/%-d/%Y') %>
+		        </td>
+		      <% elsif cert.expiration_date >= ( Date.today + 60.days ) %>
+		        <td class="success">
+		        <%= cert.expiration_date.strftime('%-m/%-d/%Y') %>
+		        </td>
+		      <% end %>
+				<% end %>
+			</tr>
+			<tr>
+				<th> Attached File </th>
+				<% @user.certifications.each do |cert| %>
+				<th> <a href = "<% cert.attachment.url %>"> <b> PDF </b></a></th>
+				<% end %>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+<hr> <br>
+
 <ul class = "pull-left">
   <%= link_to "Edit Profile", edit_user_path(@user), class: "btn btn-default btn-primary" %>
   <%-# link_to "Manage Availibility", '#', class: "btn btn-default btn-primary" %>
 </ul>
+
 <br>
-
-
