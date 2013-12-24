@@ -5,10 +5,12 @@
           <nav>
             <ul class="nav navbar-nav navbar-right">
               <% if signed_in? %>
+    <!--
                 <li><%= link_to "Chemicals", '#' %></li>
                 <li><%= link_to "Maintenance",    '#' %></li>
                 <li><%= link_to "Attendance", '#' %></li>
                 <li><%= link_to "Lessons", '#' %></li>
+    -->
                 <li><%= link_to "Certifications", certifications_path %></li>
                 <li id="fat-menu" class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -19,19 +21,19 @@
                     <li><%= link_to "Manage Users", users_path %></li>
                     <li><%= link_to "Manage Locations", locations_path %></li>
                     <li><%= link_to "Manage Positions", positions_path %></li>
-                    <li><%= link_to "Manage Chemicals", manage_chemicals_path %></li>
+    <!--                <li><%= link_to "Manage Chemicals", manage_chemicals_path %></li>-->
                     <li><%= link_to "Manage Certifications", certification_names_path %></li>
-                    <li><%= link_to "Manage Lessons", lessons_path %></li>
-                    <li><%= link_to "Manage Account", edit_account_path(current_user.account_id) %></li>
+    <!--                <li><%= link_to "Manage Lessons", lessons_path %></li>
+    -->                <li><%= link_to "Manage Account", edit_account_path(current_user.account_id) %></li>
                     <li class="divider"></li>
                     <li><%= link_to "Sign out", signout_path, method: "delete" %></li>
                   </ul>
                 </li>
               <% else %>
-                <li><%= link_to "Product", '#' %></li>
+    <!--             <li><%= link_to "Product", '#' %></li>
                 <li><%= link_to "Order", '#' %></li>
                 <li><%= link_to "Private Lessons", '#' %></li>
-                <li><%= link_to "Support", '#' %></li>
+    -->             <li><%= link_to "Support", '#' %></li>
                 <li><%= link_to "Sign in", signin_path, class: "btn-primary " %></li>
               <% end %>
             </ul>

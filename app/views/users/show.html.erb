@@ -2,26 +2,18 @@
 
 <h1><%= @user.first_name + " " + @user.last_name %></h1>
 
-<hr>
+<table class="table table-bordered">
 
-<p> <b>Location: </b> <%= @user.location.name %> </p>
-<br>
-<p> <b>Position: </b> <%= @user.position.name %> </p>
-<br>
-<p> <b>Email Address: </b> <%= @user.email %></p>
-<br>
-<p> <b>Phone Number (Cell): </b> <%= @user.phone_number %></p>
-<br>
-<p> <b>DOB: </b> <%= @user.date_of_birth.strftime('%-m/%-d/%Y') %></p>
-<br>
-<p> <b>DOH: </b> <%= @user.date_of_hire.strftime('%-m/%-d/%Y') %></p>
-<br>
-<p> <b>Sex: </b> <%= @user.sex %></p>
-<br>
-<p> <b>Shirt Size: </b> <%= @user.shirt_size %></p>
-<br>
-<p> <b>Suit Size: </b> <%= @user.suit_size %></p>
-<hr>
+		<tr> <th> Location </th> <td> <%= @user.location.name %> </td> </tr>
+			<tr><th> Position </th><td> <%= @user.position.name %>  </td> </tr>
+			<tr><th> Email </th> <td> <%= @user.email %>  </td></tr>
+			<tr><th> Phone# </th><td> <%= @user.phone_number %>  </td> </tr>
+			<tr><th> DOB </th> <td> <%= @user.date_of_birth.strftime('%-m/%-d/%Y') %>  </td></tr>
+			<tr><th> DOH </th> <td> <%= @user.date_of_hire.strftime('%-m/%-d/%Y') %>  </td></tr>
+			<tr><th> Sex </th> <td> <%= @user.sex %>  </td></tr>
+			<tr><th> Shirt Size </th><td> <%= @user.shirt_size %>  </td> </tr>
+			<tr><th> Suit Size </th><td> <%= @user.suit_size %>  </td> </tr>
+</table>
 
 <% @account = @user.account %>
 
@@ -29,7 +21,7 @@
 
 	<thead>
 		<tr>
-			<th> Certification: </th>
+			<th> Certification Name </th>
 			<% @user.certifications.each do |cert| %>
 				<th><%= cert.certification_name.name %></th>
 			<% end %>
@@ -37,7 +29,7 @@
 	</thead>
 
 	<tbody>
-		<tr><th> Date Issued: </th></tr>
+		<tr><th> Issue Date: </th></tr>
 		<tr><th> Expiration Date: </th>
 		<% @user.certifications.each do |cert| %>
 					<% if cert.expiration_date <= ( Date.today) %>
@@ -55,13 +47,14 @@
            <% end %>
 		<% end %>
 	</tr>
+	<tr><th> Attached File: </th></tr>
 	</tbody>
 </table>
 <hr>
 <br>
 <ul class = "pull-left">
   <%= link_to "Edit Profile", edit_user_path(@user), class: "btn btn-default btn-primary" %>
-  <%= link_to "Manage Availibility", '#', class: "btn btn-default btn-primary" %>
+  <%-# link_to "Manage Availibility", '#', class: "btn btn-default btn-primary" %>
 </ul>
 <br>
 

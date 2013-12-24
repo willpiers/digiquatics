@@ -25,7 +25,6 @@ describe 'Manage Certifications' do
       CertificationName.all.each do |cert_name|
         cert_name.account_id.should eq(user.account_id)
         expect(page).to have_content(cert_name.name)
-        expect(page).to have_content(cert_name.account_id)
         # Need to add test to check for a delete link for each Certification Name
       end
     end

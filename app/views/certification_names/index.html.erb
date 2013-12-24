@@ -1,11 +1,13 @@
 <% provide(:title, 'Manage Certifications') %>
 <h1>Manage Certifications</h1>
 
-<table>
+<table class="table table-hover">
   <thead>
     <tr>
       <th>Name</th>
-      <th>Account ID</th>
+      <th>Show</th>
+      <th>Edit</th>
+      <th>Destroy</th>
     </tr>
   </thead>
 
@@ -13,15 +15,13 @@
     <% @certification_names.each do |certification_name| %>
       <tr>
         <td><%= certification_name.name %></td>
-        <td><%= certification_name.account_id %></td>
-        <!-- <td><%= link_to 'Edit', edit_certification_name_path(certification_name) %></td> -->
+        <td><%= link_to 'Show', certification_name %></td>
+        <td><%= link_to 'Edit', edit_certification_name_path(certification_name) %></td>
         <td><%= link_to 'Delete', certification_name, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
-    <tr>
-      <td>
-        <%= link_to 'Add', new_certification_name_path %>
-      </td>
-    </tr>
+
   </tbody>
 </table>
+
+   <%= link_to 'Add', new_certification_name_path %>
