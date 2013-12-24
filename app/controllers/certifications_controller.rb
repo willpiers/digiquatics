@@ -7,8 +7,8 @@ class CertificationsController < ApplicationController
   def index
     @certification_names = CertificationName.joins(:account).where(account_id: current_user.account_id)
     @account_users = User.joins(:account).where(account_id: current_user.account_id)
-    @certifications = Certification.joins(:certification_name).where(certification_names: {account_id: current_user.account_id})
-    @certifications = @certifications.sort_by &:expiration_date
+    @certifications = Certification.joins(:certification_name, :user).where(certification_names: {account_id: current_user.account_id})
+    # @certifications = @certifications.order(params[:sort])
   end
 
   # GET /certifications/1
@@ -66,7 +66,7 @@ class CertificationsController < ApplicationController
   end
 
   private
-  
+
   # Use callbacks to share common setup or constraints between actions.
   def set_certification
     @certification = Certification.find(params[:id])
