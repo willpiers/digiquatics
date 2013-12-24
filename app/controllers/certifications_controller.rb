@@ -1,5 +1,6 @@
 class CertificationsController < ApplicationController
   before_action :set_certification, only: [:show, :edit, :update, :destroy]
+  # before_action :admin, only: [:index]
 
   # GET /certifications
   # GET /certifications.json
@@ -65,13 +66,14 @@ class CertificationsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_certification
-      @certification = Certification.find(params[:id])
-    end
+  
+  # Use callbacks to share common setup or constraints between actions.
+  def set_certification
+    @certification = Certification.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def certification_params
-      params.require(:certification).permit(:certification_name_id, :user_id, :expiration_date)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def certification_params
+    params.require(:certification).permit(:certification_name_id, :user_id, :expiration_date)
+  end
 end

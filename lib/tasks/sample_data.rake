@@ -12,8 +12,8 @@ namespace :db do
     Position.create(name: "Lifeguard", account_id: 1)
     Position.create(name: "MOD", account_id: 1)
 
-    User.create!(first_name: "first",
-                 last_name: "last",
+    User.create!(first_name: "First",
+                 last_name: "Last",
                  email: "example@affektive.com",
                  password: "foobar",
                  password_confirmation: "foobar",
