@@ -1,8 +1,5 @@
 class StaticPagesController < ApplicationController
   def home
-    @users = User.all
-    @male_users = User.all.where(sex: 'M')
-    @female_users = User.all.where(sex: 'F')
   end
 
   def about
@@ -19,4 +16,17 @@ class StaticPagesController < ApplicationController
 
   def manage_chemicals
   end
+
+  def certifications_stats
+  end
+
+  def user_stats
+    @users = User.all
+    @male_users = User.all.where(sex: 'M')
+    @female_users = User.all.where(sex: 'F')
+    @active = User.all.where(active: true)
+    @inactive = User.all.where(active: false)
+    @admin_true = User.all.where(admin: true)
+  end
+
 end

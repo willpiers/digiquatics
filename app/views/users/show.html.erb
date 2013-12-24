@@ -69,7 +69,7 @@
 			<tr>
 				<th> Attached File </th>
 				<% @user.certifications.each do |cert| %>
-				<th> <a href = "<% cert.attachment.url %>"> <b> PDF </b></a></th>
+				<th> <%= link_to cert.attachment.url %> <b> PDF </b></th>
 				<% end %>
 			</tr>
 		</tbody>
