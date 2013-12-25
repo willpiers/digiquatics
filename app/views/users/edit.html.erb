@@ -32,10 +32,17 @@
       <%= f.select :shirt_size, options_for_select(%w[XS S M L XL XXL]) %>
 
       <%= f.label :date_of_birth, "Date of Birth (yyyy-mm-dd)" %>
-      <%= f.text_field :date_of_birth %>
+      <%= f.text_field :date_of_birth, :value=> f.object.date_of_birth.strftime('%Y-%m-%d') %>
 
       <%= f.label :date_of_hire, "Date of Hire (yyyy-mm-dd)" %>
-      <%= f.text_field :date_of_hire %>
+      <% if current_user.admin? %>
+          | <%= f.text_field :date_of_hire, :value=> f.object.date_of_hire.strftime('%Y-%m-%d')  %>
+          <% else %>
+          <br>
+          Note: Only admins can change hire date. 
+          <%= f.text_field :date_of_hire, :disabled => true, :value=> f.object.date_of_hire.strftime('%-m/%-d/%Y')  %>
+        <% end %>
+      <%=  %>
 
       <%= f.label :phone_number, "Phone Number" %>
       <%= f.telephone_field :phone_number %>
@@ -48,13 +55,18 @@
 
       <h4>Certifications</h4>
 
-        <%= f.fields_for :certifications do |cert| %>
-          <%= cert.label :expiration_date, 'Expiration Date (Ex. yyyy-mm-dd)' %>
-          <% if current_user.admin? %>
-            | <%= cert.text_field :expiration_date %>
-            <% else %>
-            <%= f.label :expiration_date %>
-          <% end %>
+      <%= f.fields_for :certifications do |cert| %>
+      <%= cert.label :expiration_date, 'Issued Date (Ex. yyyy-mm-dd)' %>
+      <%= cert.text_field :expiration_date, :value=> cert.object.expiration_date.strftime('%Y-%m-%d')  %>
+      
+      <%= cert.label :expiration_date, 'Expiration Date (Ex. yyyy-mm-dd)' %>
+        <% if current_user.admin? %>
+          | <%= cert.text_field :expiration_date, :value=> cert.object.expiration_date.strftime('%Y-%m-%d')  %>
+          <% else %>
+          <br>
+          Note: Only admins can change expiration date. 
+          <%= cert.text_field :expiration_date, :disabled => true, :value=> cert.object.expiration_date.strftime('%-m/%-d/%Y')  %>
+        <% end %>
 
           <%= cert.file_field :attachment %>
           <br>
