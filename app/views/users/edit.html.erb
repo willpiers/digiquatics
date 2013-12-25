@@ -50,7 +50,11 @@
 
         <%= f.fields_for :certifications do |cert| %>
           <%= cert.label :expiration_date, 'Expiration Date (Ex. yyyy-mm-dd)' %>
-          <%= cert.text_field :expiration_date %>
+          <% if current_user.admin? %>
+            | <%= cert.text_field :expiration_date %>
+            <% else %>
+            <%= f.label :expiration_date %>
+          <% end %>
 
           <%= cert.file_field :attachment %>
           <br>
