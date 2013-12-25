@@ -19,7 +19,7 @@ AquaticsApp::Application.routes.draw do
   match '/support',  to: 'users#support',            via: 'get'
   match '/attendance',    to: 'static_pages#attendance',    via: 'get'
   match '/lessons',   to: 'static_pages#lessons',   via: 'get'
-  match '/certifications_stats', to: 'static_pages#certification_stats',   via: 'get'
+  match '/certifications_stats', to: 'static_pages#certifications_stats',   via: 'get'
   match '/user_stats',   to: 'static_pages#user_stats',   via: 'get'
 
   # The priority is based upon order of creation: first created -> highest priority.

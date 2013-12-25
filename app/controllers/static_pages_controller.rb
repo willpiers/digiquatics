@@ -1,4 +1,5 @@
 class StaticPagesController < ApplicationController
+
   def home
   end
 
@@ -27,6 +28,7 @@ class StaticPagesController < ApplicationController
     @active = User.all.where(active: true)
     @inactive = User.all.where(active: false)
     @admin_true = User.all.where(admin: true)
+    @location = Location.all
   end
 
 end
