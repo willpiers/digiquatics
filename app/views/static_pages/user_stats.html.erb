@@ -31,10 +31,9 @@
 
 <h2> Location </h2>
 	<table class="table table-bordered">	
-
-		
+		<tr><th>Metric</th><th>Count</td></tr>
+		<tr><td>Locations</td><td> <%= @users.group(:location).count %>  </td></tr>
 	</table>		
 
-	<p> <b> Location: </b> <%= @users.group(:location).count %>  </p>
 
 </div>
