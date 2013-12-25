@@ -1,5 +1,30 @@
 <% provide(:title, 'Certifications Statistics') %>
 <div class="center hero-unit">
-<h1>Certification Statistics</h1>
 
+	<div id="stats">	
+
+
+
+		<h1>Certifications Statistics</h1>
+
+			<h2> By User </h2>
+				<table class="table table-bordered">
+					<tr>
+						<th>Certification Name</th>
+						<th>Count</th>
+						<th>Expired</th>
+						<th>0-60 Days</th>
+						<th>Acceptable</th>
+					</tr>
+					<tr>
+						<% @certification_names.each do |certification_name| %>
+							<td><%= certification_name.name %><td>
+						<% end %>
+					</tr>
+					
+				
+				</table> 	
+
+	</div>
 </div>
+
