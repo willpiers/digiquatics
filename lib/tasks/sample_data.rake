@@ -24,6 +24,7 @@ namespace :db do
                  date_of_birth: "1992-09-15",
                  date_of_hire: "2008-07-01",
                  admin: true,
+                 active: true,
                  account_id: 1,
                  location_id: 1,
                  position_id: 2)
@@ -43,6 +44,7 @@ namespace :db do
                    sex: "M",
                    date_of_birth: "1992-09-15",
                    date_of_hire: "2008-07-01",
+                   active: true,
                    account_id: 1,
                    location_id: 1,
                    position_id: 1)
@@ -63,6 +65,7 @@ namespace :db do
                    sex: "F",
                    date_of_birth: "1992-09-15",
                    date_of_hire: "2008-07-01",
+                   active: true,
                    account_id: 1,
                    location_id: 2,
                    position_id: 2)
@@ -71,7 +74,6 @@ namespace :db do
     CertificationName.create!(name: "CPR/AED", account_id: 1)
     CertificationName.create!(name: "LGI", account_id: 1)
     CertificationName.create!(name: "WSI", account_id: 1)
-    CertificationName.create!(name: "LGI2", account_id: 2)
 
     99.times do |n|
       Certification.create!(certification_name_id: 1,
