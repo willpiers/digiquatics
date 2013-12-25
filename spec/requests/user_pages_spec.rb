@@ -69,17 +69,18 @@ describe 'User pages' do
       before do
         fill_in 'First Name',   with: new_first_name
         fill_in 'Last Name',    with: 'Last'
+        fill_in 'Phone Number',   with: '1234'
         fill_in 'Email',        with: new_email
         fill_in 'Password',     with: 'foobar'
         fill_in 'Confirm Password', with: 'foobar'
-        select('M', from: 'Suit Size')
-        select('M', from: 'Shirt Size')
         select('M', from: 'Sex')
         fill_in 'Date of Birth', with: '1992-09-15'
         fill_in 'Date of Hire', with: '2012-08-15'
-        fill_in 'Phone Number',   with: '1234'
         fill_in 'Location',   with: location.id
         fill_in 'Position',  with: position.id
+        select('M', from: 'Shirt Size')
+        select('M', from: 'Shorts Size')
+        select('28', from: 'One Piece Size (F)')
         click_button 'Save changes'
       end
 
@@ -108,17 +109,18 @@ describe 'User pages' do
       before do
         fill_in 'First Name',   with: 'First'
         fill_in 'Last Name',    with: 'Last'
+        fill_in 'Phone Number',   with: '1234'
         fill_in 'Email',        with: 'user@example.com'
         fill_in 'Password',     with: 'foobar'
         fill_in 'Confirm Password', with: 'foobar'
-        select('M', from: 'Suit Size')
-        select('M', from: 'Shirt Size')
         select('M', from: 'Sex')
         fill_in 'Date of Birth', with: '1992-09-15'
         fill_in 'Date of Hire', with: '2012-08-15'
-        fill_in 'Phone Number',   with: '1234'
         fill_in 'Location',   with: location.id
         fill_in 'Position',  with: position.id
+        select('M', from: 'Shirt Size')
+        select('M', from: 'Shorts Size')
+        select('28', from: 'One Piece Size (F)')
       end
 
       it 'should create a user' do
