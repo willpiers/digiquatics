@@ -18,6 +18,8 @@ class UsersController < ApplicationController
   def edit
     @user = User.find(params[:id])
     @certifications = @user.certifications
+    @location = @user.location
+    @position = @user.position
   end
 
   def update

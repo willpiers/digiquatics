@@ -46,10 +46,12 @@
       <div class="col-md-8"><%= f.select :suit_size, options_for_select(%w[XS S M L XL XXL]) %> </div>
       </div>
 
+      <% if current_user.sex == 'F' %>
       <div class="row">
       <div class="col-md-4"><%= f.label :femalesuit, "One Piece Size (F)" %> </div>
       <div class="col-md-8"><%= f.select :femalesuit, options_for_select(%w[28 30 32 34 36 38 40]) %> </div>
       </div>
+      <% end %>
 
       <div class="row"> 
       <div class="col-md-4"><%= f.label :date_of_birth, "Date of Birth (yyyy-mm-dd)" %> </div>
@@ -75,17 +77,24 @@
       <div class="col-md-8"><%= f.telephone_field :phone_number %> </div>
       </div>
 
+      <%= f.fields_for :location do |location| %>
       <div class="row">
       <div class="col-md-4"><%= f.label :location_id %> </div>
-      <div class="col-md-8"><%= f.number_field :location_id %> </div>
+      <div class="col-md-8"><%= location.select :location_id, options_for_select([@location.name]) %> </div>
       </div>
+      <% end %>
 
+      <%= f.fields_for :position do |position| %>
       <div class="row">
       <div class="col-md-4"><%= f.label :position_id %> </div>
-      <div class="col-md-8"><%= f.number_field :position_id %> </div>
+      <div class="col-md-8"><%= position.select :position_id, options_for_select([@position.name]) %> </div>
       </div>
+      <% end %>
+      <br>
+      <br>
 
       <h4>Certifications</h4>
+      <br>
 
 <div class="row">
   
