@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131225214851) do
+ActiveRecord::Schema.define(version: 20131227042923) do
 
   create_table "accounts", force: true do |t|
     t.string   "name"
@@ -64,7 +64,7 @@ ActiveRecord::Schema.define(version: 20131225214851) do
     t.string   "sex"
     t.datetime "date_of_birth"
     t.datetime "date_of_hire"
-    t.integer  "phone_number"
+    t.string   "phone_number"
     t.string   "password_digest"
     t.string   "remember_token"
     t.boolean  "admin",           default: false
