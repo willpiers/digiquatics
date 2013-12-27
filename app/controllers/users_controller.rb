@@ -1,10 +1,11 @@
 class UsersController < ApplicationController
+  helper_method :sort_column, :sort_direction
   before_action :signed_in_user, only: [:index, :edit, :update]
   before_action :correct_user,   only: [:edit, :update]
   #before_action :admin, only: [:edit, :update]
 
   def index
-    @users = User.all
+    @users = User.order(sort_column + " " + sort_direction)
   end
 
 	def show
@@ -60,5 +61,15 @@ class UsersController < ApplicationController
   def correct_user
     @user = User.find(params[:id])
     redirect_to(root_url) unless current_user?(@user) || current_user.admin?
+    end
   end
-end
+
+  def sort_column
+    params[:sort] || "first_name"
+  end
+
+  def sort_direction
+    params[:direction] || "asc"
+  end
+
+

@@ -12,15 +12,15 @@
 <br>
 <br>
 <table class="table table-hover">
-	          <tr>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Sex</th>
-            <th>DOB</th>
-            <th>Location</th>
-            <th>Position</th>
-            <th>Email Address</th>
-            <th>Phone Number</th>
-          </tr>
+  <tr>
+    <th><%= sortable "first_name", "First Name"%></th>
+    <th><%= sortable "last_name", "Last Name"%></th>
+    <th><%= sortable "sex", "Sex"%></th>
+    <th><%= sortable "date_of_birth", "DOB"%></th>
+    <th><%= sortable "location", "Location" %></th>
+    <th><%= sortable "position", "Position"%></th>
+    <th><%= sortable "email", "Email Address" %></th>
+    <th><%= sortable "phone_number", "Phone Number"%></th>
+  </tr>
   <%= render @users %>
 </table>
