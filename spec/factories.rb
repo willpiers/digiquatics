@@ -19,7 +19,7 @@ FactoryGirl.define do
     email    							'newfactory@example.com'
     password 							'foobar'
     password_confirmation 'foobar'
-    admin 								false
+    admin                 false
     active 								true
     suit_size 						'M'
     shirt_size 						'M'
@@ -32,14 +32,13 @@ FactoryGirl.define do
     position_id           1
   end
 
-  factory :admin do
-    admin true
+    factory :admin, class: User do
     first_name            'Joe'
     last_name             'Currin'
     email                 'newfactory@example.com'
     password              'foobar'
     password_confirmation 'foobar'
-    admin                 false
+    admin                 true
     active                true
     suit_size             'M'
     shirt_size            'M'
@@ -51,6 +50,7 @@ FactoryGirl.define do
     location_id           1
     position_id           1
   end
+
 
   factory :certification do
     certification_name_id 1
