@@ -1,67 +1,67 @@
 <% provide(:title, "Edit user") %>
-<h1>Update your profile</h1>
+<h1>Update my profile</h1>
 
-<div id="userform">
-  <div class= "col-md-12">
+  <div id="userform">
+    <div class= "col-md-12">
     <%= form_for(@user) do |f| %>
-      <%= render 'shared/error_messages' %>
+    <%= render 'shared/error_messages' %>
 
       <div class="row">
-        <div class="col-md-4"> <%= f.label :first_name, "First Name" %> </div>
-        <div class="col-md-8"><%= f.text_field :first_name %> </div>
+        <div class="col-md-5"> <%= f.label :first_name, "First Name" %> </div>
+        <div class="col-md-7"><%= f.text_field :first_name %> </div>
       </div>
 
       <div class="row">
-      <div class="col-md-4"><%= f.label :last_name, "Last Name" %> </div>
-      <div class="col-md-8"><%= f.text_field :last_name %> </div>
+        <div class="col-md-5"><%= f.label :last_name, "Last Name" %> </div>
+        <div class="col-md-7"><%= f.text_field :last_name %> </div>
       </div>
 
       <div class="row">
-      <div class="col-md-4"><%= f.label :email %> </div>
-      <div class="col-md-8"><%= f.text_field :email %> </div>
+        <div class="col-md-5"><%= f.label :email %> </div>
+        <div class="col-md-7"><%= f.text_field :email %> </div>
       </div>
 
       <div class="row">
-      <div class="col-md-4"><%= f.label :password %> </div>
-      <div class="col-md-8"><%= f.password_field :password %> </div>
+        <div class="col-md-5"><%= f.label :password %> </div>
+        <div class="col-md-7"><%= f.password_field :password %> </div>
       </div>
 
       <div class="row">
-      <div class="col-md-4"><%= f.label :password_confirmation, "Confirm Password" %> </div>
-      <div class="col-md-8"><%= f.password_field :password_confirmation %> </div>
+        <div class="col-md-5"><%= f.label :password_confirmation, "Confirm Password" %> </div>
+        <div class="col-md-7"><%= f.password_field :password_confirmation %> </div>
       </div>
 
       <div class="row">
-      <div class="col-md-4"><%= f.label :sex %> </div>
-      <div class="col-md-8"><%= f.select :sex, options_for_select(%w[M F]) %> </div>
+        <div class="col-md-5"><%= f.label :sex %> </div>
+        <div class="col-md-7"><%= f.select :sex, options_for_select(%w[M F]) %> </div>
       </div>
 
       <div class="row">
-      <div class="col-md-4"><%= f.label :shirt_size, "Shirt Size" %> </div>
-      <div class="col-md-8"><%= f.select :shirt_size, options_for_select(%w[XS S M L XL XXL]) %></div>
+        <div class="col-md-5"><%= f.label :shirt_size, "Shirt Size" %> </div>
+        <div class="col-md-7"><%= f.select :shirt_size, options_for_select(%w[XS S M L XL XXL]) %></div>
       </div>
 
       <div class="row">
-      <div class="col-md-4"><%= f.label :suit_size, "Shorts Size" %> </div>
-      <div class="col-md-8"><%= f.select :suit_size, options_for_select(%w[XS S M L XL XXL]) %> </div>
+        <div class="col-md-5"><%= f.label :suit_size, "Shorts Size" %> </div>
+        <div class="col-md-7"><%= f.select :suit_size, options_for_select(%w[XS S M L XL XXL]) %> </div>
       </div>
 
       <% if current_user.sex == 'F' %>
       <div class="row">
-      <div class="col-md-4"><%= f.label :femalesuit, "One Piece Size (F)" %> </div>
-      <div class="col-md-8"><%= f.select :femalesuit, options_for_select(%w[28 30 32 34 36 38 40]) %> </div>
+        <div class="col-md-5"><%= f.label :femalesuit, "One Piece Size (F)" %> </div>
+        <div class="col-md-7"><%= f.select :femalesuit, options_for_select(%w[28 30 32 34 36 38 40]) %> </div>
       </div>
       <% end %>
 
       <div class="row"> 
-      <div class="col-md-4"><%= f.label :date_of_birth, "Date of Birth (yyyy-mm-dd)" %> </div>
-      <div class="col-md-8"><%= f.text_field :date_of_birth, :value=> f.object.date_of_birth.strftime('%Y-%m-%d') %> </div>
+        <div class="col-md-5"><%= f.label :date_of_birth, "Date of Birth (yyyy-mm-dd)" %> </div>
+        <div class="col-md-7"><%= f.text_field :date_of_birth, :value=> f.object.date_of_birth.strftime('%Y-%m-%d') %> </div>
       </div>
 
       <div class="row"> 
 
-      <div class="col-md-4"> <%= f.label :date_of_hire, "Date of Hire (yyyy-mm-dd)" %> </div>
-      <div class="col-md-8">
+      <div class="col-md-5"> <%= f.label :date_of_hire, "Date of Hire (yyyy-mm-dd)" %> </div>
+      <div class="col-md-7">
         <% if current_user.admin? %>
           <%= f.text_field :date_of_hire, :value=> f.object.date_of_hire.strftime('%Y-%m-%d')  %> 
         <% else %>
@@ -70,64 +70,54 @@
           <%= f.text_field :date_of_hire, :disabled => true, :value=> f.object.date_of_hire.strftime('%-m/%-d/%Y')  %> 
         <% end %>
       </div>
-    </div>
+      </div>
 
       <div class="row">
-      <div class="col-md-4"><%= f.label :phone_number, "Phone Number" %> </div>
-      <div class="col-md-8"><%= f.telephone_field :phone_number %> </div>
+        <div class="col-md-5"><%= f.label :phone_number, "Phone Number" %> </div>
+        <div class="col-md-7"><%= f.text_field :phone_number %> </div>
       </div>
 
       <%= f.fields_for :location do |location| %>
       <div class="row">
-      <div class="col-md-4"><%= f.label :location_id %> </div>
-      <div class="col-md-8"><%= location.select :location_id, options_for_select([@location.name]) %> </div>
+        <div class="col-md-5"><%= f.label :location_id %> </div>
+        <div class="col-md-7"><%= location.select :location_id, options_for_select([@location.name]) %> </div>
       </div>
       <% end %>
 
       <%= f.fields_for :position do |position| %>
       <div class="row">
-      <div class="col-md-4"><%= f.label :position_id %> </div>
-      <div class="col-md-8"><%= position.select :position_id, options_for_select([@position.name]) %> </div>
+        <div class="col-md-5"><%= f.label :position_id %> </div>
+        <div class="col-md-7"><%= position.select :position_id, options_for_select([@position.name]) %> </div>
       </div>
       <% end %>
-      <br>
-      <br>
 
       <h4>Certifications</h4>
       <br>
 
-<div class="row">
-  
+      <div class="row">
       <%= f.fields_for :certifications do |cert| %>
-    
-
-      <div class="col-md-4"><%= cert.label :expiration_date, 'Issued Date (Ex. yyyy-mm-dd)' %> </div>
-      <div class="col-md-8"><%= cert.text_field :expiration_date, :value=> cert.object.expiration_date.strftime('%Y-%m-%d')  %> </div>
-      </div>
+        <div class="col-md-5"><%= cert.label :expiration_date, 'Issued Date (yyyy-mm-dd)' %> </div>
+          <div class="col-md-7"><%= cert.text_field :expiration_date, :value=> cert.object.expiration_date.strftime('%Y-%m-%d')  %> </div>
+        </div>
 
       <div class="row">
-        <div class="col-md-4">
-      <%= cert.label :expiration_date, 'Expiration Date (Ex. yyyy-mm-dd)' %>
+        <div class="col-md-5">
+        <%= cert.label :expiration_date, 'Expiration Date (yyyy-mm-dd)' %>
         </div>
-        <div class="col-md-8">
+        <div class="col-md-7">
         <% if current_user.admin? %>
           <%= cert.text_field :expiration_date, :value=> cert.object.expiration_date.strftime('%Y-%m-%d')  %>
-          <% else %>
-          <br>
-          Note: Only admins can change expiration date. 
-          <%= cert.text_field :expiration_date, :disabled => true, :value=> cert.object.expiration_date.strftime('%-m/%-d/%Y')  %>
+        <% else %>
+        <br>
+        Note: Only admins can change expiration date. 
+        <%= cert.text_field :expiration_date, :disabled => true, :value=> cert.object.expiration_date.strftime('%-m/%-d/%Y')  %>
         <% end %>
+        </div>
       </div>
-    </div>
 
-      
-            
-          <%= cert.file_field :attachment %>
-          <br>
-        
-        
-
-      <% end %>
+    <%= cert.file_field :attachment %>
+    <br>
+    <% end %>
 
       <div id="userformbutton">
         <center>
@@ -135,9 +125,14 @@
         </center>
       <% end %>
     </div>
-
     </div>
-</div>    
+    </div>
+    </div>
+
+
+    <br>
+
+
 
 
 

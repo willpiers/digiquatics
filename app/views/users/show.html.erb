@@ -2,8 +2,16 @@
 
 <h1><%= @user.first_name + " " + @user.last_name %></h1>
 
-<div class="table-responsive">
-	<table class="table table-bordered" id="userprofile">
+
+
+<div class="table-responsive" id="userform">
+
+ <%= link_to "Edit Profile", edit_user_path(@user), class: "btn btn-default btn-primary" %>
+ <%-# link_to "Manage Availibility", '#', class: "btn btn-default btn-primary" %>
+<br>
+<br>
+
+	<table class="table table-bordered" >
 		<tr> 
 			<th> Location </th> 
 				<td> <%= @user.location.name %> </td> 
@@ -42,7 +50,7 @@
 <% @account = @user.account %>
 
 <div class="table-responsive">
-	<table class="table" id="userprofile">
+	<table class="table" id="userform">
 		<thead>
 			<tr>
 				<th> Certification Name </th>
@@ -79,12 +87,3 @@
 		</tbody>
 	</table>
 </div>
-
-<hr> <br>
-
-<ul class = "pull-left">
-  <%= link_to "Edit Profile", edit_user_path(@user), class: "btn btn-default btn-primary" %>
-  <%-# link_to "Manage Availibility", '#', class: "btn btn-default btn-primary" %>
-</ul>
-
-<br>
