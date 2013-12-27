@@ -17,7 +17,7 @@
       <th><%= sortable 'last_name', 'Last Name' %></th>
       <th><%= sortable 'location', 'Location' %></th>
         <% @certification_names.each do |certification_name| %>
-          <th><%= certification_name.name %></th>
+          <th><%= sortable 'certification_name.name', certification_name.name %></th>
         <% end %>
     </tr>
   </thead>

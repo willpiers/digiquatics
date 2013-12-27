@@ -1,4 +1,5 @@
 class CertificationsController < ApplicationController
+  helper_method :sort_column, :sort_direction
   before_action :set_certification, only: [:show, :edit, :update, :destroy]
   # before_action :admin, only: [:index]
 
@@ -7,7 +8,7 @@ class CertificationsController < ApplicationController
   def index
     @certification_names = CertificationName.joins(:account).where(account_id: current_user.account_id)
     @certifications = Certification.joins(:certification_name, :user).where(certification_names: {account_id: current_user.account_id})
-    @certifications = @certifications.order(params[:sort] + " " + params[:direction])
+    @certifications = @certifications.order(sort_column + " " + sort_direction)
   end
 
   # GET /certifications/1
@@ -76,3 +77,14 @@ class CertificationsController < ApplicationController
     params.require(:certification).permit(:certification_name_id, :user_id, :expiration_date)
   end
 end
+
+  #Sorting
+  def sort_column
+    params[:sort] || "first_name"
+  end
+
+  def sort_direction
+    params[:direction] || "asc"
+  end
+
+
