@@ -11,6 +11,7 @@ namespace :db do
 
     Position.create(name: "Lifeguard", account_id: 1)
     Position.create(name: "MOD", account_id: 1)
+    Position.create(name: "WSI", account_id: 1)
 
     User.create!(first_name: "First",
                  last_name: "Last",
@@ -52,8 +53,8 @@ namespace :db do
                    date_of_hire: "2008-07-01",
                    active: true,
                    account_id: 1,
-                   location_id: 1,
-                   position_id: 1
+                   location_id: [1,2,3].sample,
+                   position_id: [1,2,3].sample
                    )
     end
 
