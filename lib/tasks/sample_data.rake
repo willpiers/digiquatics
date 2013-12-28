@@ -32,13 +32,14 @@ namespace :db do
     50.times do |n|
       first_name  = Faker::Name.first_name
       last_name = Faker::Name.last_name
-      email = "example-#{n+1}@affektive.com"
+      phone_number = Faker::PhoneNumber.phone_number
+      email = Faker::Internet.email
       password  = "password"
       User.create!(first_name: first_name, last_name: last_name,
                    email: email,
                    password: password,
                    password_confirmation: password,
-                   phone_number: '303-123-4567',
+                   phone_number: phone_number,
                    suit_size: "M",
                    shirt_size: "L",
                    sex: "M",
@@ -55,6 +56,7 @@ namespace :db do
       last_name = Faker::Name.last_name
       email = "example-#{n+51}@affektive.com"
       password  = "password"
+      sex = ["M", "F"]
       User.create!(first_name: first_name, last_name: last_name,
                    email: email,
                    password: password,
