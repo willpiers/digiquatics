@@ -7,8 +7,7 @@ class CertificationsController < ApplicationController
   # GET /certifications.json
   def index
     @certification_names = CertificationName.joins(:account).where(account_id: current_user.account_id)
-    @certifications = Certification.joins(:certification_name, :user).where(certification_names: {account_id: current_user.account_id})
-    @certifications = @certifications.order(sort_column + " " + sort_direction)
+    @users = User.joins(:account).where(account_id: current_user.account_id).order(sort_column + " " + sort_direction)
   end
 
   # GET /certifications/1

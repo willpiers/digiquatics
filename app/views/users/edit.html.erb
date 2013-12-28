@@ -47,10 +47,10 @@
       </div>
 
       <% if current_user.sex == 'F' %>
-      <div class="row">
-        <div class="col-md-5"><%= f.label :femalesuit, "One Piece Size (F)" %> </div>
-        <div class="col-md-7"><%= f.select :femalesuit, options_for_select(%w[28 30 32 34 36 38 40]) %> </div>
-      </div>
+        <div class="row">
+          <div class="col-md-5"><%= f.label :femalesuit, "One Piece Size (F)" %> </div>
+          <div class="col-md-7"><%= f.select :femalesuit, options_for_select(%w[28 30 32 34 36 38 40]) %> </div>
+        </div>
       <% end %>
 
       <div class="row"> 
@@ -59,17 +59,10 @@
       </div>
 
       <div class="row"> 
-
-      <div class="col-md-5"> <%= f.label :date_of_hire, "Date of Hire (yyyy-mm-dd)" %> </div>
-      <div class="col-md-7">
-        <% if current_user.admin? %>
-          <%= f.text_field :date_of_hire, :value=> f.object.date_of_hire.strftime('%Y-%m-%d')  %> 
-        <% else %>
-          <br>
-          Note: Only admins can change hire date. 
-          <%= f.text_field :date_of_hire, :disabled => true, :value=> f.object.date_of_hire.strftime('%-m/%-d/%Y')  %> 
-        <% end %>
+      <div class="col-md-5"> <%= f.label :date_of_hire, "Date of Hire (yyyy-mm-dd)" %> 
       </div>
+      <div class="col-md-7">
+          <%= f.text_field :date_of_hire, :value=> f.object.date_of_hire.strftime('%Y-%m-%d')  %>
       </div>
 
       <div class="row">
@@ -77,19 +70,19 @@
         <div class="col-md-7"><%= f.text_field :phone_number %> </div>
       </div>
 
-      <%= f.fields_for :location do |location| %>
-      <div class="row">
-        <div class="col-md-5"><%= f.label :location_id %> </div>
-        <div class="col-md-7"><%= location.select :location_id, options_for_select([@location.name]) %> </div>
-      </div>
-      <% end %>
+     <%= f.fields_for :location do |location| %>
+     <div class="row">
+       <div class="col-md-5"><%= f.label :location_id %> </div>
+       <div class="col-md-7"><%= location.select :location_id, options_from_collection_for_select(Location.all, :name, :name) %> </div>
+     </div>
+     <% end %>
 
-      <%= f.fields_for :position do |position| %>
-      <div class="row">
-        <div class="col-md-5"><%= f.label :position_id %> </div>
-        <div class="col-md-7"><%= position.select :position_id, options_for_select([@position.name]) %> </div>
-      </div>
-      <% end %>
+     <%= f.fields_for :position do |position| %>
+     <div class="row">
+       <div class="col-md-5"><%= f.label :position_id %> </div>
+       <div class="col-md-7"><%= position.select :position_id, options_from_collection_for_select(Position.all, :name, :name) %> </div>
+     </div>
+     <% end %>
 
       <h4>Certifications</h4>
       <br>
@@ -105,13 +98,7 @@
         <%= cert.label :expiration_date, 'Expiration Date (yyyy-mm-dd)' %>
         </div>
         <div class="col-md-7">
-        <% if current_user.admin? %>
           <%= cert.text_field :expiration_date, :value=> cert.object.expiration_date.strftime('%Y-%m-%d')  %>
-        <% else %>
-        <br>
-        Note: Only admins can change expiration date. 
-        <%= cert.text_field :expiration_date, :disabled => true, :value=> cert.object.expiration_date.strftime('%-m/%-d/%Y')  %>
-        <% end %>
         </div>
       </div>
 

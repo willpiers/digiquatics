@@ -7,7 +7,7 @@ namespace :db do
 
     Location.create(name: "Green Mountain Recreation Center", account_id: 1)
     Location.create(name: "The Link Recreation Center", account_id: 1)
-    Location.create(name: "Whitlock Recreation Center", account_id: 2)
+    Location.create(name: "Ridge Recreation Center", account_id: 2)
 
     Position.create(name: "Lifeguard", account_id: 1)
     Position.create(name: "MOD", account_id: 1)
@@ -21,7 +21,7 @@ namespace :db do
                  phone_number: '303-123-4567',
                  shirt_size: "M",
                  suit_size: "M",
-                 sex: "M",
+                 sex: "F",
                  date_of_birth: "1992-09-15",
                  date_of_hire: "2008-07-01",
                  admin: true,
@@ -64,20 +64,17 @@ namespace :db do
 
     99.times do |n|
       Certification.create!(certification_name_id: 1,
-                   user_id: n+1,
-                   expiration_date: Date.today + n.day)
-    end
+        user_id: n+1,
+        expiration_date: Date.today + rand(100).day)
 
-    100.times do |n|
       Certification.create!(certification_name_id: 2,
-                   user_id: n+2,
-                   expiration_date: Date.today + n.day)
+        user_id: n+1,
+        expiration_date: Date.today + rand(100).day)
+
+      Certification.create!(certification_name_id: 3,
+        user_id: n+1,
+        expiration_date: Date.today + rand(100).day)
     end
 
-    101.times do |n|
-      Certification.create!(certification_name_id: 3,
-                   user_id: n+3,
-                   expiration_date: Date.today + n.day)
-    end
   end
 end

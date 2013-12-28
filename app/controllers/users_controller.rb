@@ -5,6 +5,7 @@ class UsersController < ApplicationController
   #before_action :admin, only: [:edit, :update]
 
   def index
+    @users = User.joins(:account).where(account_id: current_user.account_id)
     @users = User.order(sort_column + " " + sort_direction)
   end
 
@@ -14,6 +15,8 @@ class UsersController < ApplicationController
 
   def new
   	@user = User.new
+    @locations = Location.all
+    @positions = Position.all
   end
 
   def edit
@@ -48,7 +51,7 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:first_name, :last_name, :email, :password,
-                                 :password_confirmation, :date_of_birth, :date_of_hire, :sex, :phone_number, :shirt_size, :suit_size, :location_id, :position_id)
+                                 :password_confirmation, :date_of_birth, :date_of_hire, :sex, :phone_number, :shirt_size, :suit_size, :location_id, :position_id, :femalesuit)
   end
 
   def signed_in_user

@@ -51,14 +51,15 @@
       <div class="col-md-7"><%= f.text_field :date_of_hire %> </div>
       </div>
 
+
       <div class="row">
-      <div class="col-md-5"><%= f.label :location_id %> </div>
-      <div class="col-md-7"><%= f.number_field :location_id %> </div>
+        <div class="col-md-5"><%= f.label :location_id %> </div>
+        <div class="col-md-7"><%= f.select :location_id, options_from_collection_for_select(Location.all, :id, :name) %> </div>
       </div>
 
       <div class="row">
-      <div class="col-md-5"><%= f.label :position_id %> </div>
-      <div class="col-md-7"><%= f.number_field :position_id %> </div>
+        <div class="col-md-5"><%= f.label :position_id %> </div>
+        <div class="col-md-7"><%= f.select :position_id, options_from_collection_for_select(Position.all, :id, :name) %> </div>
       </div>
 
       <div class="row">
@@ -76,13 +77,11 @@
       <div class="col-md-7"><%= f.select :femalesuit, options_for_select(%w[28 30 32 34 36 38 40]) %> </div>
       </div>
 
+      <br>
+
+      <div id="userformbutton"> <center>
+        <%= f.submit "Create/Save Account", class: "btn btn-default btn-primary" %></center>
+      </div>
+    <% end %>
   </div>
 </div>
-
-<br>
-
-<div id="userformbutton"> <center>
-  <%= f.submit "Create/Save Account", class: "btn btn-default btn-primary" %></center>
-  <% end %>
-</div>
-

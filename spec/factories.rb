@@ -23,7 +23,7 @@ FactoryGirl.define do
     active 								true
     suit_size 						'M'
     shirt_size 						'M'
-    sex 									'M'
+    sex 									'F'
     date_of_birth 				'1985-12-24'
     date_of_hire 					'2013-09-01'
     phone_number 					1234

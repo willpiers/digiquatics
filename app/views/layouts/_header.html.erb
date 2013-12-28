@@ -18,7 +18,7 @@
                 </a>
                   <ul class="dropdown-menu">
                     <li><%= link_to "My Profile", current_user %></li>
-                    <li><%= link_to "Edit Your Profile", edit_user_path(current_user) %></li>
+                    <li><%= link_to "Edit My Profile", edit_user_path(current_user) %></li>
                     <% if current_user.admin? %>
                       <li><%= link_to "Manage Users", users_path %></li>
                       <li><%= link_to "Manage Locations", locations_path %></li>
