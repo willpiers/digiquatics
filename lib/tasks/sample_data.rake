@@ -29,48 +29,32 @@ namespace :db do
                  location_id: 1,
                  position_id: 2)
 
-    50.times do |n|
+    100.times do |n|
       first_name  = Faker::Name.first_name
       last_name = Faker::Name.last_name
       phone_number = Faker::PhoneNumber.phone_number
       email = Faker::Internet.email
+      sex = ["M","F"]
+      suit_size = ["XS", "S", "M", "L", "XL"]
+      shirt_size = ["XS", "S", "M", "L", "XL"]
       password  = "password"
+      sex = ["M","F"]
+
       User.create!(first_name: first_name, last_name: last_name,
                    email: email,
                    password: password,
                    password_confirmation: password,
                    phone_number: phone_number,
-                   suit_size: "M",
-                   shirt_size: "L",
-                   sex: "M",
+                   suit_size: suit_size.sample,
+                   shirt_size: shirt_size.sample,
+                   sex: sex.sample,
                    date_of_birth: "1992-09-15",
                    date_of_hire: "2008-07-01",
                    active: true,
                    account_id: 1,
                    location_id: 1,
-                   position_id: 1)
-    end
-
-    50.times do |n|
-      first_name  = Faker::Name.first_name
-      last_name = Faker::Name.last_name
-      email = "example-#{n+51}@affektive.com"
-      password  = "password"
-      sex = ["M", "F"]
-      User.create!(first_name: first_name, last_name: last_name,
-                   email: email,
-                   password: password,
-                   password_confirmation: password,
-                   phone_number: '303-123-4567',
-                   suit_size: "S",
-                   shirt_size: "S",
-                   sex: "F",
-                   date_of_birth: "1992-09-15",
-                   date_of_hire: "2008-07-01",
-                   active: true,
-                   account_id: 1,
-                   location_id: 2,
-                   position_id: 2)
+                   position_id: 1
+                   )
     end
 
     CertificationName.create!(name: "CPR/AED", account_id: 1)
