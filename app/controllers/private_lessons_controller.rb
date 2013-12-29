@@ -4,7 +4,7 @@ class PrivateLessonsController < ApplicationController
   # GET /private_lessons
   # GET /private_lessons.json
   def index
-    @private_lessons = PrivateLesson.all
+    @private_lessons = PrivateLesson.order(sort_column + " " + sort_direction)
   end
 
   def my_lessons
@@ -75,9 +75,7 @@ class PrivateLessonsController < ApplicationController
     def private_lesson_params
       params.require(:private_lesson).permit(:first_name, :email)
     end
-end
-
-private
+  private
 
   def sort_column
     params[:sort] || "first_name"
@@ -86,3 +84,4 @@ private
   def sort_direction
     params[:direction] || "asc"
   end
+end
