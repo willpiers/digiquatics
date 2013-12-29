@@ -1,4 +1,6 @@
 AquaticsApp::Application.routes.draw do
+  resources :private_lessons
+
   resources :positions
   resources :locations
   resources :certifications
@@ -18,7 +20,6 @@ AquaticsApp::Application.routes.draw do
   match '/contact', to: 'static_pages#contact', via: 'get'
   match '/support',  to: 'users#support',            via: 'get'
   match '/attendance',    to: 'static_pages#attendance',    via: 'get'
-  match '/lessons',   to: 'static_pages#lessons',   via: 'get'
   match '/certifications_stats', to: 'static_pages#certifications_stats',   via: 'get'
   match '/user_stats',   to: 'static_pages#user_stats',   via: 'get'
 

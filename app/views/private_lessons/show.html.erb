@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>First name:</strong>
+  <%= @private_lesson.first_name %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @private_lesson.email %>
+</p>
+
+<%= link_to 'Edit', edit_private_lesson_path(@private_lesson) %> |
+<%= link_to 'Back', private_lessons_path %>

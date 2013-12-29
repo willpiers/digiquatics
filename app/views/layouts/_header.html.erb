@@ -9,8 +9,8 @@
                 <li><%= link_to "Chemicals", '#' %></li>
                 <li><%= link_to "Maintenance",    '#' %></li>
                 <li><%= link_to "Attendance", '#' %></li>
-                <li><%= link_to "Lessons", '#' %></li>
-    -->
+    -->            <li><%= link_to "Private Lessons", private_lessons_path %></li>
+  
                 <li><%= link_to "Certifications", certifications_path %></li>
                 <li id="fat-menu" class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -25,7 +25,7 @@
                       <li><%= link_to "Manage Positions", positions_path %></li>
                       <!--<li><%= link_to "Manage Chemicals", manage_chemicals_path %></li>-->
                       <li><%= link_to "Manage Certifications", certification_names_path %></li>
-                      <!--<li><%= link_to "Manage Lessons", lessons_path %></li>-->
+                      <!--<li><%= link_to "Manage Lessons", '#' %></li>-->
                       <li><%= link_to "Manage Account", edit_account_path(current_user.account_id) %></li>
                     <% end %>
                     <li class="divider"></li>

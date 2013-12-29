@@ -76,5 +76,29 @@ namespace :db do
         expiration_date: Date.today + rand(100).day)
     end
 
+    20.times do |n|
+    first_name  = Faker::Name.first_name
+    last_name = Faker::Name.last_name
+    age = [1,2,3,4,5,6,7,8,9,10,11,12]
+    sex = ["M", "F"]
+    skill = [1,2,3,4,5,6]
+    day = ["Mon", "Tues", "Wed","Thurs","Fri","Sat","Sun"]
+    time =["AM","AFTN","PM"]
+
+    PrivateLesson.create!(first_name: first_name, last_name: last_name,
+                          age: age.sample,
+                          sex: sex.sample,
+                          ability_level: skill.sample ,
+                          day: day.sample,
+                          time: time.sample       
+
+
+      )
+
+
+
+    end
+
+
   end
 end
