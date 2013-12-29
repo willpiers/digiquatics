@@ -62,4 +62,21 @@ FactoryGirl.define do
     name                  'CPR/AED'
     account_id            1
   end
+
+  factory :private_lesson do
+    first_name            'Michael'
+    last_name             'Pierce'
+    parent_first_name     'Trent'
+    parent_last_name      'Allen'
+    email                 'michael@affektive.com'
+    phone_number          1234
+    age                   12
+    sex                   'M'
+    instructor_gender     'F'
+    ability_level          6
+    day                    "Mon"
+    time                   "AM"
+    notes                  "None at this moment"
+    preferred_location     1
+  end
 end

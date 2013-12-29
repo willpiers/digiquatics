@@ -84,21 +84,21 @@ namespace :db do
     skill = [1,2,3,4,5,6]
     day = ["Mon", "Tues", "Wed","Thurs","Fri","Sat","Sun"]
     time =["AM","AFTN","PM"]
+    
 
     PrivateLesson.create!(first_name: first_name, last_name: last_name,
+                          parent_first_name: Faker::Name.first_name,
+                          parent_last_name: Faker::Name.last_name,
+                          email: Faker::Internet.email,
+                          phone_number: Faker::PhoneNumber.phone_number,
                           age: age.sample,
                           sex: sex.sample,
-                          ability_level: skill.sample ,
+                          instructor_gender: ["M", "F"].sample,
+                          ability_level: skill.sample,
                           day: day.sample,
-                          time: time.sample       
-
-
-      )
-
-
-
+                          time: time.sample,
+                          notes: "Nothing to say now",
+                          preferred_location: [1,2,3].sample )
     end
-
-
   end
 end

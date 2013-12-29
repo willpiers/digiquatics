@@ -7,6 +7,10 @@ class PrivateLessonsController < ApplicationController
     @private_lessons = PrivateLesson.all
   end
 
+  def my_lessons
+
+  end
+
   # GET /private_lessons/1
   # GET /private_lessons/1.json
   def show
