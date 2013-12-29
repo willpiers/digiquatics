@@ -8,7 +8,7 @@ class PrivateLessonsController < ApplicationController
   end
 
   def my_lessons
-
+    @my_lessons = PrivateLesson.joins(:user).where(assigned_user_id: current_user.id)
   end
 
   # GET /private_lessons/1

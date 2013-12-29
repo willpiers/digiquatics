@@ -1,14 +1,69 @@
-<p id="notice"><%= notice %></p>
+<% provide(:title, @private_lesson.first_name) %>
 
-<p>
-  <strong>First name:</strong>
-  <%= @private_lesson.first_name %>
-</p>
+<h1><%= @private_lesson.first_name + " " + @private_lesson.last_name %></h1>
 
-<p>
-  <strong>Email:</strong>
-  <%= @private_lesson.email %>
-</p>
+<div class="table-responsive" id="userform">
 
-<%= link_to 'Edit', edit_private_lesson_path(@private_lesson) %> |
-<%= link_to 'Back', private_lessons_path %>
+	<%= link_to "Claim Lesson", "#", class: "btn btn-default btn-primary" %>
+	<br>
+	<br>	
+
+		<table class="table table-bordered" >
+			<h4> Parent Information </h4>
+				<tr> 
+					<th> First Name </th> 
+					<td> <%= @private_lesson.parent_first_name %> </td> 
+				</tr>
+				<tr> 
+					<th> Last Name </th> 
+					<td> <%= @private_lesson.parent_last_name %> </td> 
+				</tr>
+				<tr> 
+					<th> Phone Number</th> 
+					<td> <%= @private_lesson.phone_number %> </td> 
+				</tr>
+				<tr> 
+					<th> Email </th> 
+					<td> <%= @private_lesson.email %> </td> 
+				</tr>
+				<tr> 
+					<th> Preferred Contact Method </th> 
+					<td> <%= @private_lesson.contact_method %> </td> 
+				</tr>
+		</table>
+
+		<table class="table table-bordered" >
+			<h4> Student Information </h4>
+				<tr> 
+					<th> First Name </th> 
+					<td> <%= @private_lesson.first_name %> </td> 
+				</tr>
+				<tr> 
+					<th> Last Name </th> 
+					<td> <%= @private_lesson.last_name %> </td> 
+				</tr>
+				<tr> 
+					<th> Gender</th> 
+					<td> <%= @private_lesson.sex %> </td> 
+				</tr>
+				<tr> 
+					<th> Age </th> 
+					<td> <%= @private_lesson.age %> </td> 
+				</tr>
+		</table>
+
+	<table class="table table-bordered" >
+		<h4> Preferences </h4>
+			<tr> 
+				<th> Instructor Gender </th> 
+				<td> <%= @private_lesson.instructor_gender %> </td> 
+			</tr>
+			<tr> 
+				<th> Special Requests </th> 
+				<td> <%= @private_lesson.notes %> </td> 
+			</tr>
+	</table>
+
+	<%= link_to 'Edit (Admin Only)', edit_private_lesson_path(@private_lesson) %>
+
+</div>

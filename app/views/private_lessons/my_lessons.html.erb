@@ -1,16 +1,6 @@
 <% provide(:title, 'My Lessons') %>
 <h1>My Lessons</h1>
 
-<ul class = "pull-right">
-  <%= link_to "New Private Lesson", new_private_lesson_path, class: "btn btn-primary" %>
-</ul>
-
-<ul class = "pull-right">
-  <%= link_to "Statistics", "#", class: "btn btn-success" %>
-</ul>
-
-<br><br><br>
-
 <table class="table table-hover">
   <thead>
     <tr>
@@ -27,7 +17,7 @@
   </thead>
 
   <tbody>
-    <% @private_lessons.each do |private_lesson| %>
+    <% @my_lessons.each do |private_lesson| %>
       <tr>
         <td><%=private_lesson.first_name%></td>
         <td><%=private_lesson.last_name%></td>

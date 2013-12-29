@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
 
   belongs_to  :account
   has_many    :certifications
+  has_many    :private_lessons
   belongs_to  :location
   belongs_to  :position
 

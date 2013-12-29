@@ -29,8 +29,8 @@
   <tbody>
     <% @private_lessons.each do |private_lesson| %>
       <tr>
-        <td><%= private_lesson.first_name %></td>
-        <td><%= private_lesson.last_name %></td>
+        <td><%= link_to private_lesson.first_name, private_lesson %></td>
+        <td><%= link_to private_lesson.last_name, private_lesson %></td>
         <td><%= private_lesson.age %></td>
         <td><%= private_lesson.sex %></td>
         <td><%= private_lesson.ability_level %></td>
