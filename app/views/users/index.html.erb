@@ -7,31 +7,14 @@
 <ul class = "pull-right">
   <%= link_to "Statistics", user_stats_path, class: "btn btn-success" %>
 </ul>
+
 <br>
 
-<div id="userformbutton">
-
-<%= form_tag users_path, method: 'get' do %>
+<%= form_tag users_path, method: 'get', id: "users_search" do %>
   <p>
     <%= text_field_tag :search, params[:search]%>
     <%= submit_tag "Search", name:nil, class:"btn btn-default" %>
   </p>
+  <div id="users_ajax"><%= render 'userindex' %></div>
 <% end %>
 
-</div>
-
-<br>
-<br>
-<table class="table table-hover">
-  <tr>
-    <th><%= sortable "first_name", "First Name"%></th>
-    <th><%= sortable "last_name", "Last Name"%></th>
-    <th><%= sortable "sex", "Sex"%></th>
-    <th><%= sortable "date_of_birth", "DOB"%></th>
-    <th><%= sortable "location", "Location" %></th>
-    <th><%= sortable "position", "Position"%></th>
-    <th><%= sortable "email", "Email Address" %></th>
-    <th><%= sortable "phone_number", "Phone Number"%></th>
-  </tr>
-  <%= render @users %>
-</table>

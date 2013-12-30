@@ -1,0 +1,16 @@
+  <%= hidden_field_tag :direction, params[:direction] %>
+  <%= hidden_field_tag :sort, params[:sort] %>
+
+<table class="table table-hover">
+  <tr>
+    <th><%= sortable "first_name", "First Name"%></th>
+    <th><%= sortable "last_name", "Last Name"%></th>
+    <th><%= sortable "sex", "Sex"%></th>
+    <th><%= sortable "date_of_birth", "DOB"%></th>
+    <th><%= sortable "location", "Location" %></th>
+    <th><%= sortable "position", "Position"%></th>
+    <th><%= sortable "email", "Email Address" %></th>
+    <th><%= sortable "phone_number", "Phone Number"%></th>
+  </tr>
+  <%= render @users %>
+</table>

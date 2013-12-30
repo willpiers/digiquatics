@@ -32,7 +32,7 @@ class User < ActiveRecord::Base
     if search
       where('first_name LIKE ?', "%#{search}%")
     else
-      scoped
+      User.all
     end
   end
 
