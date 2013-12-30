@@ -1,44 +1,44 @@
+<% provide(:title, 'Chemical Record') %>
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Chlorine ppm:</strong>
-  <%= @chemical_record.chlorine_ppm %>
-</p>
+<h1><%="Chemical Record"%></h1>
 
-<p>
-  <strong>Chlorine orp:</strong>
-  <%= @chemical_record.chlorine_orp %>
-</p>
+<div id="tabledata">
+<table class="table table-bordered">
+    <tr> 
+      <th>Chlorine(ppm)</th> 
+      <td><%=@chemical_record.chlorine_ppm%></td> 
+    </tr>
+    <tr> 
+      <th> Chlorine(orp)</th> 
+      <td><%=@chemical_record.chlorine_orp%></td> 
+    </tr>
+    <tr> 
+      <th>PH</th> 
+      <td><%=@chemical_record.ph%> </td> 
+    </tr>
+    <tr> 
+      <th>Alkalinity</th> 
+      <td><%=@chemical_record.alkalinity%></td> 
+    </tr>
+    <tr> 
+      <th>Calcium Hardness</th> 
+      <td><%=@chemical_record.calcium_hardness%></td> 
+    </tr>
+  <tr> 
+    <th>Pool Temp</th> 
+    <td><%=@chemical_record.pool_temp%></td> 
+  </tr>
+  <tr> 
+    <th>Air Temp</th> 
+    <td><%=@chemical_record.air_temp%></td> 
+  </tr>
+  <tr> 
+    <th>Date Created</th> 
+    <td><%=@chemical_record.created_at%></td> 
+  </tr>
+</table>
 
-<p>
-  <strong>Ph:</strong>
-  <%= @chemical_record.ph %>
-</p>
+<%= link_to 'Edit', edit_chemical_record_path(@chemical_record) %>
 
-<p>
-  <strong>Alkalinity:</strong>
-  <%= @chemical_record.alkalinity %>
-</p>
-
-<p>
-  <strong>Calcium hardness:</strong>
-  <%= @chemical_record.calcium_hardness %>
-</p>
-
-<p>
-  <strong>Pool temp:</strong>
-  <%= @chemical_record.pool_temp %>
-</p>
-
-<p>
-  <strong>Air temp:</strong>
-  <%= @chemical_record.air_temp %>
-</p>
-
-<p>
-  <strong>Si index:</strong>
-  <%= @chemical_record.si_index %>
-</p>
-
-<%= link_to 'Edit', edit_chemical_record_path(@chemical_record) %> |
-<%= link_to 'Back', chemical_records_path %>
+</div>
