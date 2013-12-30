@@ -9,6 +9,8 @@
 <br>
 <br>
 
+<h4> User Information </h4>
+
 	<table class="table table-bordered" >
 		<tr> 
 			<th> Location </th> 
@@ -48,7 +50,10 @@
 <% @account = @user.account %>
 
 <div class="table-responsive" id="userform">
-	<table class="table" id="userform">
+
+	<h4> Certification Information </h4>
+
+	<table class="table table-bordered" id="userform">
 		<thead>
 			<tr>
 				<th> Certification Name </th>
@@ -84,7 +89,7 @@
 			<tr>
 				<th> Attached File </th>
 				<% @user.certifications.each do |cert| %>
-				<th> <%= link_to cert.attachment.url %> <b> <img src="/images/PDF.png" alt="PDF Link" height="50px" width="50px" /> </b></th>
+				<th> <!--<%= link_to cert.attachment.url %>--> <b> <img src="/images/PDF.png" alt="PDF Link" height="50px" width="50px" /> </b></th>
 				<% end %>
 			</tr>
 		</tbody>
@@ -92,9 +97,10 @@
 
 	<div style="font-size: 60%"> 
 		<br>
-		<p > <img src="/images/reddot.png" alt="red" height="10px" width="10px" /> = Expired </p>
-		<p> <img src="/images/yellowdot.png" alt="yellow" height="10px" width="10px" /> = Expires within 60 days </p>
-		<p> <img src="/images/greendot.png" alt="green" height="10px" width="10px" /> = Normal</p>
+			<p >
+				<img src="/images/reddot.png" alt="red" height="10px" width="10px" /> = Expired 
+				<img src="/images/yellowdot.png" alt="yellow" height="10px" width="10px" /> = Expires within 60 days 
+		 		<img src="/images/greendot.png" alt="green" height="10px" width="10px" /> = Normal
+		 </p>
 	</div>
 </div>
-
