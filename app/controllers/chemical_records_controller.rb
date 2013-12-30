@@ -4,7 +4,7 @@ class ChemicalRecordsController < ApplicationController
   # GET /chemical_records
   # GET /chemical_records.json
   def index
-    @chemical_records = ChemicalRecord.all
+    @chemical_records = ChemicalRecord.order(sort_column + " " + sort_direction)
   end
 
   # GET /chemical_records/1
@@ -70,5 +70,13 @@ class ChemicalRecordsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def chemical_record_params
       params.require(:chemical_record).permit(:chlorine_ppm, :chlorine_orp, :ph, :alkalinity, :calcium_hardness, :pool_temp, :air_temp, :si_index)
+    end
+
+    def sort_column
+      params[:sort] || "id"
+    end
+
+    def sort_direction
+      params[:direction] || "asc"
     end
 end

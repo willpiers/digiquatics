@@ -18,26 +18,30 @@
 <table class="table table-hover">
   <thead>
     <tr>
-      <th>Chlorine</th>
-      <th>Ph</th>
-      <th>Alkalinity</th>
-      <th>Calcium hardness</th>
-      <th>Pool temp</th>
-      <th>Air temp</th>
-      <th>Si index</th>
+      <th><%= sortable "id", "Record ID" %></th>
+      <th><%= sortable "chlorine_ppm", "Chlorine" %></th>
+      <th><%= sortable "ph", "Ph" %></th>
+      <th><%= sortable "alkalinity", "Alkalinity" %></th>
+      <th><%= sortable "calcium_hardness", "Calcium hardness" %></th>
+      <th><%= sortable "pool_temp", "Pool temp" %></th>
+      <th><%= sortable "air_temp", "Air temp" %></th>
+      <th><%= sortable "si_index", "Si index" %></th>
+      <th><%= sortable "created_at", "Submitted" %></th>
     </tr>
   </thead>
 
   <tbody>
     <% @chemical_records.each do |chemical_record| %>
       <tr>
+        <th><%= link_to chemical_record.id, chemical_record%></th>
         <td><%= chemical_record.chlorine_ppm %></td>
-        <td><%= chemical_record.ph %></td>
+        <td><%= chemical_record.ph.round(1) %></td>
         <td><%= chemical_record.alkalinity %></td>
         <td><%= chemical_record.calcium_hardness %></td>
-        <td><%= chemical_record.pool_temp %></td>
-        <td><%= chemical_record.air_temp %></td>
-        <td><%= chemical_record.si_index %></td>
+        <td><%= chemical_record.pool_temp.round(1) %></td>
+        <td><%= chemical_record.air_temp.round(1) %></td>
+        <td><%= chemical_record.si_index.round(1) %></td>
+        <td><%= chemical_record.created_at %></td>
       </tr>
     <% end %>
   </tbody>

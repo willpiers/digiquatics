@@ -112,7 +112,8 @@ namespace :db do
                            alkalinity: [50,60,70,80,90,100].sample,
                            calcium_hardness: [60, 80, 100, 120, 140].sample,
                            pool_temp: [81, 82, 83, 84, 85, 86].sample,
-                           air_temp: [75, 76, 77, 78, 79, 80].sample
+                           air_temp: [75, 76, 77, 78, 79, 80].sample,
+                           si_index: [-0.3, -0.2, -0.1, 0.0, 0.1, 0.2, 0.3].sample
       )
     end
   end
