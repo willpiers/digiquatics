@@ -4,7 +4,7 @@
 <div class="row" id="userform">
   <div class="span6 offset3">
   	<!-- we deleted out url: sessions_path from the () below to get the form to work. -->
-    <%= form_for User.new, url: sessions_path, builder: BootstrapFormBuilder do |f| %>
+    <%= form_for User.new, as: :session, url: sessions_path, builder: BootstrapFormBuilder do |f| %>
 
       <%= f.text_field :email %>
 
