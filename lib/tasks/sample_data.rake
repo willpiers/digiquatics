@@ -80,29 +80,40 @@ namespace :db do
     end
 
     20.times do |n|
-    first_name  = Faker::Name.first_name
-    last_name = Faker::Name.last_name
-    age = [1,2,3,4,5,6,7,8,9,10,11,12]
-    sex = ["M", "F"]
-    skill = [1,2,3,4,5,6]
-    day = ["Mon", "Tues", "Wed","Thurs","Fri","Sat","Sun"]
-    time =["AM","AFTN","PM"]
-    
+      first_name  = Faker::Name.first_name
+      last_name = Faker::Name.last_name
+      age = [1,2,3,4,5,6,7,8,9,10,11,12]
+      sex = ["M", "F"]
+      skill = [1,2,3,4,5,6]
+      day = ["Mon", "Tues", "Wed","Thurs","Fri","Sat","Sun"]
+      time =["AM","AFTN","PM"]
 
-    PrivateLesson.create!(first_name: first_name, last_name: last_name,
-                          parent_first_name: Faker::Name.first_name,
-                          parent_last_name: Faker::Name.last_name,
-                          email: Faker::Internet.email,
-                          phone_number: Faker::PhoneNumber.phone_number,
-                          age: age.sample,
-                          sex: sex.sample,
-                          instructor_gender: ["M", "F"].sample,
-                          ability_level: skill.sample,
-                          day: day.sample,
-                          time: time.sample,
-                          notes: "Nothing to say now",
-                          preferred_location: [1,2,3].sample,
-                          user_id: [1,2,3].sample)
+      PrivateLesson.create!(first_name: first_name, last_name: last_name,
+                            parent_first_name: Faker::Name.first_name,
+                            parent_last_name: Faker::Name.last_name,
+                            email: Faker::Internet.email,
+                            phone_number: Faker::PhoneNumber.phone_number,
+                            age: age.sample,
+                            sex: sex.sample,
+                            instructor_gender: ["M", "F"].sample,
+                            ability_level: skill.sample,
+                            day: day.sample,
+                            time: time.sample,
+                            notes: "Nothing to say now",
+                            preferred_location: [1,2,3].sample,
+                            user_id: [1,2,3].sample)
+    end
+
+
+    50.times do |n|
+
+      ChemicalRecord.create!(chlorine_ppm: [1,2,3,4,5].sample,
+                           ph: [7.4, 7.5, 7.6, 7.7, 7.8, 7.9, 8.0].sample,
+                           alkalinity: [50,60,70,80,90,100].sample,
+                           calcium_hardness: [60, 80, 100, 120, 140].sample,
+                           pool_temp: [81, 82, 83, 84, 85, 86].sample,
+                           air_temp: [75, 76, 77, 78, 79, 80].sample
+      )
     end
   end
 end

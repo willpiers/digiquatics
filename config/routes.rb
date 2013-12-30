@@ -23,7 +23,6 @@ AquaticsApp::Application.routes.draw do
   match '/maintenance',   to: 'static_pages#maintenance',   via: 'get'
   match '/contact', to: 'static_pages#contact', via: 'get'
   match '/support',  to: 'users#support',            via: 'get'
-  match '/attendance',    to: 'static_pages#attendance',    via: 'get'
   match '/certifications_stats', to: 'static_pages#certifications_stats',   via: 'get'
   match '/user_stats',   to: 'static_pages#user_stats',   via: 'get'
   match '/my_lessons',  to: 'private_lessons#my_lessons',            via: 'get'
