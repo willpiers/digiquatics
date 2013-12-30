@@ -58,7 +58,12 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr><th> Issue Date </th></tr>
+			<tr><th> Issue Date </th>
+				<% @user.certifications.each do |cert| %>
+				<td><%= cert.issue_date.strftime('%-m/%-d/%Y') %></td>
+				<% end %>
+			</tr>
+				
 			<tr><th> Expiration Date </th>
 				<% @user.certifications.each do |cert| %>
 					<% if cert.expiration_date <= ( Date.today) %>
