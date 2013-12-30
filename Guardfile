@@ -33,3 +33,9 @@ guard 'spork', :cucumber_env => { 'RAILS_ENV' => 'test' },
   watch('test/test_helper.rb') { :test_unit }
   watch(%r{features/support/}) { :cucumber }
 end
+
+guard 'bundler' do
+  watch('Gemfile')
+  # Uncomment next line if Gemfile contain `gemspec' command
+  # watch(/^.+\.gemspec/)
+end
