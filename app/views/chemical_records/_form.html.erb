@@ -1,0 +1,49 @@
+<%= form_for(@chemical_record) do |f| %>
+  <% if @chemical_record.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@chemical_record.errors.count, "error") %> prohibited this chemical_record from being saved:</h2>
+
+      <ul>
+      <% @chemical_record.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :chlorine_ppm %><br>
+    <%= f.text_field :chlorine_ppm %>
+  </div>
+  <div class="field">
+    <%= f.label :chlorine_orp %><br>
+    <%= f.text_field :chlorine_orp %>
+  </div>
+  <div class="field">
+    <%= f.label :ph %><br>
+    <%= f.text_field :ph %>
+  </div>
+  <div class="field">
+    <%= f.label :alkalinity %><br>
+    <%= f.text_field :alkalinity %>
+  </div>
+  <div class="field">
+    <%= f.label :calcium_hardness %><br>
+    <%= f.text_field :calcium_hardness %>
+  </div>
+  <div class="field">
+    <%= f.label :pool_temp %><br>
+    <%= f.text_field :pool_temp %>
+  </div>
+  <div class="field">
+    <%= f.label :air_temp %><br>
+    <%= f.text_field :air_temp %>
+  </div>
+  <div class="field">
+    <%= f.label :si_index %><br>
+    <%= f.text_field :si_index %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

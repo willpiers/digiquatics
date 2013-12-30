@@ -1,0 +1,2 @@
+module ChemicalRecordsHelper
+end

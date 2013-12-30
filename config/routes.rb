@@ -1,4 +1,8 @@
 AquaticsApp::Application.routes.draw do
+  resources :attendance_records
+
+  resources :chemical_records
+
   resources :private_lessons
 
   resources :positions

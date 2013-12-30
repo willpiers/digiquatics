@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Chlorine ppm:</strong>
+  <%= @chemical_record.chlorine_ppm %>
+</p>
+
+<p>
+  <strong>Chlorine orp:</strong>
+  <%= @chemical_record.chlorine_orp %>
+</p>
+
+<p>
+  <strong>Ph:</strong>
+  <%= @chemical_record.ph %>
+</p>
+
+<p>
+  <strong>Alkalinity:</strong>
+  <%= @chemical_record.alkalinity %>
+</p>
+
+<p>
+  <strong>Calcium hardness:</strong>
+  <%= @chemical_record.calcium_hardness %>
+</p>
+
+<p>
+  <strong>Pool temp:</strong>
+  <%= @chemical_record.pool_temp %>
+</p>
+
+<p>
+  <strong>Air temp:</strong>
+  <%= @chemical_record.air_temp %>
+</p>
+
+<p>
+  <strong>Si index:</strong>
+  <%= @chemical_record.si_index %>
+</p>
+
+<%= link_to 'Edit', edit_chemical_record_path(@chemical_record) %> |
+<%= link_to 'Back', chemical_records_path %>
