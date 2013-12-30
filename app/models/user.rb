@@ -28,6 +28,14 @@ class User < ActiveRecord::Base
     Digest::SHA1.hexdigest(token.to_s)
   end
 
+  def self.search(search)
+    if search
+      find(:all, conditions: ['first_name LIKE ?', "%#{search}%"])
+    else
+      find(:all)
+    end
+  end
+
   private
 
     def create_remember_token

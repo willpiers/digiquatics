@@ -7,6 +7,7 @@ class UsersController < ApplicationController
   def index
     @users = User.joins(:account).where(account_id: current_user.account_id)
     @users = User.order(sort_column + " " + sort_direction)
+    @users = User.search(params[:search])
   end
 
 	def show
