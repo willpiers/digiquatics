@@ -8,7 +8,7 @@ class PrivateLessonsController < ApplicationController
   end
 
   def my_lessons
-    @my_lessons = PrivateLesson.joins(:user).where(assigned_user_id: current_user.id)
+    @my_lessons = PrivateLesson.joins(:user).where(user_id: current_user.id)
   end
 
   # GET /private_lessons/1
@@ -47,6 +47,7 @@ class PrivateLessonsController < ApplicationController
     respond_to do |format|
       if @private_lesson.update(private_lesson_params)
         format.html { redirect_to @private_lesson, notice: 'Private lesson was successfully updated.' }
+        format.js
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -64,6 +65,10 @@ class PrivateLessonsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  # def claim!(current_user)
+  #   @private_lesson = 
+  # end
 
   private
     # Use callbacks to share common setup or constraints between actions.

@@ -1,6 +1,6 @@
 class PrivateLesson < ActiveRecord::Base
 
-	belongs_to  :account
+	belongs_to :account
 	belongs_to :user
 
 	validates_presence_of :first_name, :email, :last_name, :phone_number, :parent_first_name,

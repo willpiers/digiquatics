@@ -4,9 +4,12 @@
 
 <div class="table-responsive" id="userform">
 
-	<%= link_to "Claim Lesson", "#", class: "btn btn-default btn-primary" %>
-	<br>
-	<br>	
+
+
+	<%= form_for(@private_lesson, remote: true) do |f| %>
+
+	<%= f.submit "Claim Lesson", class: "btn btn-default btn-primary" %>
+	<% end %>
 
 		<table class="table table-bordered" >
 			<h4> Parent Information </h4>

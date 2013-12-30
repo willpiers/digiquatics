@@ -101,7 +101,8 @@ namespace :db do
                           day: day.sample,
                           time: time.sample,
                           notes: "Nothing to say now",
-                          preferred_location: [1,2,3].sample )
+                          preferred_location: [1,2,3].sample,
+                          user_id: [1,2,3].sample)
     end
   end
 end
