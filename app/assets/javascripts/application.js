@@ -18,7 +18,7 @@
 //= require bootstrap-datepicker
 
 $(function() {
-  $("#users_ajax th a").live("click", function() {
+  $("#users th a").live("click", function() {
     $.getScript(this.href);
     return false;
   });
