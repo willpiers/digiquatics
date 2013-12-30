@@ -1,19 +1,30 @@
-<h1>Listing chemical_records</h1>
+<% provide(:title, 'Chemical Records') %>
+<h1>Chemical Records</h1>
 
-<table>
+<ul class = "pull-right">
+  <%= link_to "New Chemical Record", new_chemical_record_path, class: "btn btn-primary" %>
+</ul>
+
+<ul class = "pull-right">
+  <%= link_to "Export", "#", class: "btn btn-warning" %>
+</ul>
+
+<ul class = "pull-right">
+  <%= link_to "Statistics", "#", class: "btn btn-success" %>
+</ul>
+
+<br><br><br>
+
+<table class="table table-hover">
   <thead>
     <tr>
-      <th>Chlorine ppm</th>
-      <th>Chlorine orp</th>
+      <th>Chlorine</th>
       <th>Ph</th>
       <th>Alkalinity</th>
       <th>Calcium hardness</th>
       <th>Pool temp</th>
       <th>Air temp</th>
       <th>Si index</th>
-      <th></th>
-      <th></th>
-      <th></th>
     </tr>
   </thead>
 
@@ -21,21 +32,15 @@
     <% @chemical_records.each do |chemical_record| %>
       <tr>
         <td><%= chemical_record.chlorine_ppm %></td>
-        <td><%= chemical_record.chlorine_orp %></td>
         <td><%= chemical_record.ph %></td>
         <td><%= chemical_record.alkalinity %></td>
         <td><%= chemical_record.calcium_hardness %></td>
         <td><%= chemical_record.pool_temp %></td>
         <td><%= chemical_record.air_temp %></td>
         <td><%= chemical_record.si_index %></td>
-        <td><%= link_to 'Show', chemical_record %></td>
-        <td><%= link_to 'Edit', edit_chemical_record_path(chemical_record) %></td>
-        <td><%= link_to 'Destroy', chemical_record, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
-
-<%= link_to 'New Chemical record', new_chemical_record_path %>
