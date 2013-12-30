@@ -52,7 +52,7 @@ describe 'User pages' do
     end
 
     describe 'page' do
-      it { should have_content('Update your profile') }
+      it { should have_content('Update my profile') }
       it { should have_title('Edit user') }
     end
 
@@ -76,11 +76,11 @@ describe 'User pages' do
         select('M', from: 'Sex')
         fill_in 'Date of Birth', with: '1992-09-15'
         fill_in 'Date of Hire', with: '2012-08-15'
-        fill_in 'Location',   with: location.id
-        fill_in 'Position',  with: position.id
+        select location.name, from: 'user[location][location_id]'
+        select position.name,  from: 'user[position][position_id]'
         select('M', from: 'Shirt Size')
         select('M', from: 'Shorts Size')
-        select('28', from: 'One Piece Size (F)')
+        select('28', from: 'user[femalesuit]')
         click_button 'Save changes'
       end
 
@@ -94,7 +94,11 @@ describe 'User pages' do
 
   describe 'signup' do
 
-    before { visit signup_path }
+    before do
+      FactoryGirl.create(:location, name: 'newlocation')
+      FactoryGirl.create(:position, name: 'newposition')
+      visit signup_path
+    end
 
     let(:submit) { 'Create/Save Account' }
 
@@ -116,11 +120,11 @@ describe 'User pages' do
         select('M', from: 'Sex')
         fill_in 'Date of Birth', with: '1992-09-15'
         fill_in 'Date of Hire', with: '2012-08-15'
-        fill_in 'Location',   with: location.id
-        fill_in 'Position',  with: position.id
+        select 'newlocation', from: 'user[location_id]'
+        select 'newposition',  from: 'user[position_id]'
         select('M', from: 'Shirt Size')
         select('M', from: 'Shorts Size')
-        select('28', from: 'One Piece Size (F)')
+        select('28', from: 'user[femalesuit]')
       end
 
       it 'should create a user' do

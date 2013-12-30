@@ -7,10 +7,11 @@ namespace :db do
 
     Location.create(name: "Green Mountain Recreation Center", account_id: 1)
     Location.create(name: "The Link Recreation Center", account_id: 1)
-    Location.create(name: "Whitlock Recreation Center", account_id: 2)
+    Location.create(name: "Ridge Recreation Center", account_id: 2)
 
     Position.create(name: "Lifeguard", account_id: 1)
     Position.create(name: "MOD", account_id: 1)
+    Position.create(name: "WSI", account_id: 1)
 
     User.create!(first_name: "First",
                  last_name: "Last",
@@ -20,7 +21,7 @@ namespace :db do
                  phone_number: '303-123-4567',
                  shirt_size: "M",
                  suit_size: "M",
-                 sex: "M",
+                 sex: "F",
                  date_of_birth: "1992-09-15",
                  date_of_hire: "2008-07-01",
                  admin: true,
@@ -29,46 +30,32 @@ namespace :db do
                  location_id: 1,
                  position_id: 2)
 
-    50.times do |n|
+    100.times do |n|
       first_name  = Faker::Name.first_name
       last_name = Faker::Name.last_name
-      email = "example-#{n+1}@affektive.com"
+      phone_number = Faker::PhoneNumber.phone_number
+      email = Faker::Internet.email
+      sex = ["M","F"]
+      suit_size = ["XS", "S", "M", "L", "XL"]
+      shirt_size = ["XS", "S", "M", "L", "XL"]
       password  = "password"
-      User.create!(first_name: first_name, last_name: last_name,
-                   email: email,
-                   password: password,
-                   password_confirmation: password,
-                   phone_number: '303-123-4567',
-                   suit_size: "M",
-                   shirt_size: "L",
-                   sex: "M",
-                   date_of_birth: "1992-09-15",
-                   date_of_hire: "2008-07-01",
-                   active: true,
-                   account_id: 1,
-                   location_id: 1,
-                   position_id: 1)
-    end
+      sex = ["M","F"]
 
-    50.times do |n|
-      first_name  = Faker::Name.first_name
-      last_name = Faker::Name.last_name
-      email = "example-#{n+51}@affektive.com"
-      password  = "password"
       User.create!(first_name: first_name, last_name: last_name,
                    email: email,
                    password: password,
                    password_confirmation: password,
-                   phone_number: '303-123-4567',
-                   suit_size: "S",
-                   shirt_size: "S",
-                   sex: "F",
+                   phone_number: phone_number,
+                   suit_size: suit_size.sample,
+                   shirt_size: shirt_size.sample,
+                   sex: sex.sample,
                    date_of_birth: "1992-09-15",
                    date_of_hire: "2008-07-01",
                    active: true,
                    account_id: 1,
-                   location_id: 2,
-                   position_id: 2)
+                   location_id: [1,2,3].sample,
+                   position_id: [1,2,3].sample
+                   )
     end
 
     CertificationName.create!(name: "CPR/AED", account_id: 1)
@@ -77,20 +64,45 @@ namespace :db do
 
     99.times do |n|
       Certification.create!(certification_name_id: 1,
-                   user_id: n+1,
-                   expiration_date: Date.today + n.day)
-    end
+        user_id: n+1,
+        expiration_date: Date.today + rand(100).day,
+        issue_date: Date.today + rand(100).day )
 
-    100.times do |n|
       Certification.create!(certification_name_id: 2,
-                   user_id: n+2,
-                   expiration_date: Date.today + n.day)
+        user_id: n+1,
+        expiration_date: Date.today + rand(100).day,
+        issue_date: Date.today + rand(100).day )
+
+      Certification.create!(certification_name_id: 3,
+        user_id: n+1,
+        expiration_date: Date.today + rand(100).day,
+        issue_date: Date.today + rand(100).day )
     end
 
-    101.times do |n|
-      Certification.create!(certification_name_id: 3,
-                   user_id: n+3,
-                   expiration_date: Date.today + n.day)
+    20.times do |n|
+    first_name  = Faker::Name.first_name
+    last_name = Faker::Name.last_name
+    age = [1,2,3,4,5,6,7,8,9,10,11,12]
+    sex = ["M", "F"]
+    skill = [1,2,3,4,5,6]
+    day = ["Mon", "Tues", "Wed","Thurs","Fri","Sat","Sun"]
+    time =["AM","AFTN","PM"]
+    
+
+    PrivateLesson.create!(first_name: first_name, last_name: last_name,
+                          parent_first_name: Faker::Name.first_name,
+                          parent_last_name: Faker::Name.last_name,
+                          email: Faker::Internet.email,
+                          phone_number: Faker::PhoneNumber.phone_number,
+                          age: age.sample,
+                          sex: sex.sample,
+                          instructor_gender: ["M", "F"].sample,
+                          ability_level: skill.sample,
+                          day: day.sample,
+                          time: time.sample,
+                          notes: "Nothing to say now",
+                          preferred_location: [1,2,3].sample,
+                          user_id: [1,2,3].sample)
     end
   end
 end

@@ -2,8 +2,16 @@
 
 <h1><%= @user.first_name + " " + @user.last_name %></h1>
 
-<div class="table-responsive">
-	<table class="table table-bordered" id="userprofile">
+<div class="table-responsive" id="userform">
+
+ <%= link_to "Edit Profile", edit_user_path(@user), class: "btn btn-default btn-primary" %>
+ <%-# link_to "Manage Availibility", '#', class: "btn btn-default btn-primary" %>
+<br>
+<br>
+
+<h4> User Information </h4>
+
+	<table class="table table-bordered" >
 		<tr> 
 			<th> Location </th> 
 				<td> <%= @user.location.name %> </td> 
@@ -41,8 +49,11 @@
 
 <% @account = @user.account %>
 
-<div class="table-responsive">
-	<table class="table" id="userprofile">
+<div class="table-responsive" id="userform">
+
+	<h4> Certification Information </h4>
+
+	<table class="table table-bordered" id="userform">
 		<thead>
 			<tr>
 				<th> Certification Name </th>
@@ -52,7 +63,12 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr><th> Issue Date </th></tr>
+			<tr><th> Issue Date </th>
+				<% @user.certifications.each do |cert| %>
+				<td><%= cert.issue_date.strftime('%-m/%-d/%Y') %></td>
+				<% end %>
+			</tr>
+				
 			<tr><th> Expiration Date </th>
 				<% @user.certifications.each do |cert| %>
 					<% if cert.expiration_date <= ( Date.today) %>
@@ -73,18 +89,18 @@
 			<tr>
 				<th> Attached File </th>
 				<% @user.certifications.each do |cert| %>
-				<th> <%= link_to cert.attachment.url %> <b> <img src="/images/PDF.png" alt="PDF Link" height="50px" width="50px" /> </b></th>
+				<th> <!--<%= link_to cert.attachment.url %>--> <b> <img src="/images/PDF.png" alt="PDF Link" height="50px" width="50px" /> </b></th>
 				<% end %>
 			</tr>
 		</tbody>
 	</table>
+
+	<div style="font-size: 60%"> 
+		<br>
+			<p >
+				<img src="/images/reddot.png" alt="red" height="10px" width="10px" /> = Expired 
+				<img src="/images/yellowdot.png" alt="yellow" height="10px" width="10px" /> = Expires within 60 days 
+		 		<img src="/images/greendot.png" alt="green" height="10px" width="10px" /> = Normal
+		 </p>
+	</div>
 </div>
-
-<hr> <br>
-
-<ul class = "pull-left">
-  <%= link_to "Edit Profile", edit_user_path(@user), class: "btn btn-default btn-primary" %>
-  <%-# link_to "Manage Availibility", '#', class: "btn btn-default btn-primary" %>
-</ul>
-
-<br>

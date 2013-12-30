@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131227042923) do
+ActiveRecord::Schema.define(version: 20131230041939) do
 
   create_table "accounts", force: true do |t|
     t.string   "name"
@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(version: 20131227042923) do
     t.string   "attachment_content_type"
     t.integer  "attachment_file_size"
     t.datetime "attachment_updated_at"
+    t.datetime "issue_date"
   end
 
   create_table "locations", force: true do |t|
@@ -50,6 +51,29 @@ ActiveRecord::Schema.define(version: 20131227042923) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "private_lessons", force: true do |t|
+    t.string   "first_name"
+    t.string   "email"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "last_name"
+    t.string   "phone_number"
+    t.string   "parent_first_name"
+    t.string   "parent_last_name"
+    t.string   "contact_method"
+    t.string   "string"
+    t.string   "sex"
+    t.integer  "age"
+    t.string   "instructor_gender"
+    t.string   "notes"
+    t.string   "day"
+    t.string   "time"
+    t.string   "preferred_location"
+    t.integer  "ability_level"
+    t.integer  "facility_level"
+    t.integer  "user_id"
   end
 
   create_table "users", force: true do |t|

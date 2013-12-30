@@ -4,4 +4,5 @@ class Account < ActiveRecord::Base
   has_many :certifications, through: :certification_names
   has_many :locations
   has_many :positions
+  has_many :private_lessons
 end

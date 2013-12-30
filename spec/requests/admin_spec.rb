@@ -6,7 +6,7 @@ describe 'admin setup' do
   let(:account) { FactoryGirl.create(:account) }
   let(:location) { FactoryGirl.create(:location) }
   let(:position) { FactoryGirl.create(:position) }
-  let(:user) { FactoryGirl.create(:user, account_id: account.id, location_id: location.id, position_id: position.id) }
+  let(:user) { FactoryGirl.create(:admin, account_id: account.id, location_id: location.id, position_id: position.id) }
   before { sign_in user }
 
   describe 'manage' do
@@ -19,12 +19,12 @@ describe 'admin setup' do
     describe 'locations' do
       before { click_link('Manage Locations') }
 
-      it { should have_title(full_title('Manage Locations')) }
+      it { should have_title(full_title('Manage Locations')) }  
       it { should have_selector('h1', text: 'Manage Locations') }
     end
 
     describe 'positions' do
-      before { click_link('Manage Positions') }
+      before { click_link('Manage Positions') } 
 
       it { should have_title(full_title('Manage Positions')) }
       it { should have_selector('h1', text: 'Manage Positions') }

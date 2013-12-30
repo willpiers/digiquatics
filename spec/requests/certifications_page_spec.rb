@@ -42,39 +42,39 @@ describe 'Certifications' do
       end
     end
 
-    describe 'sorting' do
+    # describe 'sorting' do
 
-      describe 'by first name' do
+    #   describe 'by first name' do
 
-        before { click_link 'First Name' }
+    #     before { click_link 'First Name' }
 
-        let(:first_user) { FactoryGirl.create(:user, email: 'hello4@gmail.com', first_name: 'Al') }
-        let(:next_user) { FactoryGirl.create(:user, email: 'hello5@gmail.com', first_name: 'Bob') }
+    #     let(:first_user) { FactoryGirl.create(:user, email: 'hello4@gmail.com', first_name: 'Al') }
+    #     let(:next_user) { FactoryGirl.create(:user, email: 'hello5@gmail.com', first_name: 'Bob') }
 
-        it { body.index(first_user.first_name).should < body.index(next_user.first_name) }
-      end
+    #     it { body.index(first_user.first_name).should < body.index(next_user.first_name) }
+    #   end
 
-      describe 'by last name' do
+    #   describe 'by last name' do
 
-        before { click_link 'Last Name' }
+    #     before { click_link 'Last Name' }
 
-        let(:first_user) { FactoryGirl.create(:user, email: 'hello@gmail.com', last_name: 'Al') }
-        let(:next_user) { FactoryGirl.create(:user, email: 'hello1@gmail.com', last_name: 'Bob') }
+    #     let(:first_user) { FactoryGirl.create(:user, email: 'hello@gmail.com', last_name: 'Al') }
+    #     let(:next_user) { FactoryGirl.create(:user, email: 'hello1@gmail.com', last_name: 'Bob') }
 
-        it { body.index(first_user.last_name).should < body.index(next_user.last_name) }
-      end
+    #     it { body.index(first_user.last_name).should < body.index(next_user.last_name) }
+    #   end
 
-      describe 'by location' do
+    #   describe 'by location' do
 
-        before { click_link 'Location' }
-        let(:first_location) { FactoryGirl.create(:location, name: 'Aurora Rec Center') }
-        let(:next_location) { FactoryGirl.create(:location, name: 'Carmody Rec Center') }
+    #     before { click_link 'Location' }
+    #     let(:first_location) { FactoryGirl.create(:location, name: 'Aurora Rec Center') }
+    #     let(:next_location) { FactoryGirl.create(:location, name: 'Carmody Rec Center') }
 
-        let(:first_user) { FactoryGirl.create(:user, email: 'hello2@gmail.com', location_id: first_location.id) }
-        let(:next_user) { FactoryGirl.create(:user, email: 'hello3@gmail.com', location_id: next_location.id) }
+    #     let(:first_user) { FactoryGirl.create(:user, email: 'hello2@gmail.com', location_id: first_location.id) }
+    #     let(:next_user) { FactoryGirl.create(:user, email: 'hello3@gmail.com', location_id: next_location.id) }
 
-        it { body.index(first_user.location.name).should < body.index(next_user.location.name) }
-      end
-    end
+    #     it { body.index(first_user.location.name).should < body.index(next_user.location.name) }
+    #   end
+    # end
   end
 end

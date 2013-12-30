@@ -1,0 +1,48 @@
+<% provide(:title, 'Private Lessons') %>
+<h1>Private Lessons</h1>
+
+<ul class = "pull-right">
+  <%= link_to "New Private Lesson", new_private_lesson_path, class: "btn btn-primary" %>
+</ul>
+
+<ul class = "pull-right">
+  <%= link_to "Statistics", "#", class: "btn btn-success" %>
+</ul>
+
+<br><br><br>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th><%= sortable "first_name" %></th>
+      <th><%= sortable "last_name" %></th>
+      <th><%= sortable "age" %></th>
+      <th><%= sortable "sex" %></th>
+      <th><%= sortable "ability_level" %></th>
+      <th><%= sortable "day" %></th>
+      <th><%= sortable "time" %></th>
+      <th><%= sortable "created_at" %></th>
+      <th><%= sortable "preferred_location" %></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @private_lessons.each do |private_lesson| %>
+      <tr>
+        <td><%= link_to private_lesson.first_name, private_lesson %></td>
+        <td><%= link_to private_lesson.last_name, private_lesson %></td>
+        <td><%= private_lesson.age %></td>
+        <td><%= private_lesson.sex %></td>
+        <td><%= private_lesson.ability_level %></td>
+        <td><%= private_lesson.day %></td>
+        <td><%= private_lesson.time %></td>
+        <td><%= private_lesson.created_at.strftime('%-m/%-d/%Y') %></td>
+        <td><%= Location.find_by_id(private_lesson.preferred_location).name %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+
