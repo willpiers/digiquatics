@@ -12,5 +12,35 @@
     <th><%= sortable "email", "Email Address" %></th>
     <th><%= sortable "phone_number", "Phone Number"%></th>
   </tr>
-  <%= render @users %>
+
+  <% @users.each do |user| %>
+    <tr>
+    <td>
+      <%= link_to user.first_name, user  %>
+    </td>
+    <td>
+      <%= link_to user.last_name, user %>
+    </td>
+      <td>
+      <%= user.sex %>
+    </td>
+    <td>
+      <%= user.date_of_birth.strftime('%-m/%-d/%Y') %>
+    </td>
+    <td>
+      <%= user.location.name %>
+    </td>
+    <td>
+      <%= user.position.name %>
+    </td>
+    <td>
+      <%= user.email %>
+    </td>
+    <td>
+      <%= user.phone_number %>
+    </td>
+  </tr>
+  <% end %>
 </table>
+
+

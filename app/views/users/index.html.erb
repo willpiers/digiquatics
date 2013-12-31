@@ -13,8 +13,8 @@
 <%= form_tag users_path, method: 'get', id: "users_search" do %>
   <p>
     <%= text_field_tag :search, params[:search]%>
-    <%= submit_tag "Search", name:nil, class:"btn btn-default" %>
+    <%= submit_tag "Search", name: nil, class:"btn btn-default" %>
   </p>
-  <div id="users_ajax"><%= render 'userindex' %></div>
+  <div id="users"><%= render 'users' %></div>
 <% end %>
 

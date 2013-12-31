@@ -3,7 +3,7 @@
 
 <div id="stats">
 
-<h2> Basic Information </h2>
+<h4> Basic Information </h4>
 	<table class="table table-bordered">
 		<tr><th>Metric</th><th>Count</td></tr>
 		<tr><td>Users </td><td><%= @users.count %></td></tr>
@@ -11,7 +11,7 @@
 		<tr><td>Female </td><td><%= @female_users.count %></td></tr>
 	</table>
 
-<h2> Classification </h2>
+<h4> Classification </h4>
 	<table class="table table-bordered">
 		<tr><th>Metric</th><th>Count</td></tr>
 		<tr><td>Admin </td><td><%= @admin_true.count %></td></tr>
@@ -19,7 +19,7 @@
 		<tr><td>Inactive </td><td><%= @inactive.count %></td></tr>
 	</table>
 	
-<h2> Inventory </h2>			
+<h4> Inventory </h4>			
 	<table class="table table-bordered">
 		<tr><th>Metric</th><th>Count</td></tr>
 		<tr><td>Shirts </td><td><%= @users.group(:shirt_size).count %></td></tr>
@@ -29,7 +29,7 @@
 		<tr><td>Female Bottom </td><td><%= @female_users.group(:suit_size).count %></td></tr>
 	</table>		
 
-<h2> Location </h2>
+<h4> Location </h4>
 	<table class="table table-bordered">	
 		<tr><th>Metric</th><th>Count</td></tr>
 		<tr><td>Locations</td><td> <%= @users.group(:location).count %>  </td></tr>

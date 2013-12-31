@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131230064559) do
+ActiveRecord::Schema.define(version: 20131231160226) do
 
   create_table "accounts", force: true do |t|
     t.string   "name"
@@ -20,16 +20,12 @@ ActiveRecord::Schema.define(version: 20131230064559) do
   end
 
   create_table "attendance_records", force: true do |t|
-    t.integer  "t0500_0600"
-    t.integer  "t0600_0700"
-    t.integer  "t0700_0800"
-    t.integer  "t0800_0900"
-    t.integer  "t0900_1000"
-    t.integer  "t1000_1100"
-    t.integer  "t1100_1200"
-    t.integer  "pool_id"
+    t.integer  "patrons"
+    t.datetime "start_time"
+    t.datetime "end_time"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "pool_id"
   end
 
   create_table "certification_names", force: true do |t|
@@ -68,6 +64,13 @@ ActiveRecord::Schema.define(version: 20131230064559) do
   create_table "locations", force: true do |t|
     t.integer  "account_id"
     t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "pools", force: true do |t|
+    t.string   "name"
+    t.integer  "location_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
