@@ -1,55 +1,23 @@
-<%= form_for(@chemical_record) do |f| %>
-  <% if @chemical_record.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@chemical_record.errors.count, "error") %> prohibited this chemical_record from being saved:</h2>
-
-      <ul>
-      <% @chemical_record.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class= "col-md-12">
-    <div class="row">
-      <div class="col-md-5"><%= f.label :chlorine_ppm %></div>
-      <div class="col-md-7"><%= f.text_field :chlorine_ppm %></div>
-    </div>
-    <div class="row">
-      <div class="col-md-5"><%= f.label :chlorine_orp %></div>
-      <div class="col-md-7"><%= f.text_field :chlorine_orp %></div>
-    </div>
-    <div class="row">
-      <div class="col-md-5"><%= f.label :ph %></div>
-      <div class="col-md-7"><%= f.text_field :ph %></div>
-    </div>
-    <div class="row">
-      <div class="col-md-5"><%= f.label :alkalinity %></div>
-      <div class="col-md-7"><%= f.text_field :alkalinity %></div>
-    </div>
-    <div class="row">
-      <div class="col-md-5"><%= f.label :calcium_hardness %></div>
-      <div class="col-md-7"><%= f.text_field :calcium_hardness %></div>
-    </div>
-    <div class="row">
-      <div class="col-md-5"><%= f.label :pool_temp %></div>
-      <div class="col-md-7"><%= f.text_field :pool_temp %></div>
-    </div>
-    <div class="row">
-      <div class="col-md-5"><%= f.label :air_temp %></div>
-      <div class="col-md-7"><%= f.text_field :air_temp %></div>
-    </div>
-    <div class="row">
-      <div class="col-md-5"><%= f.label :si_index %></div>
-      <div class="col-md-7"><%= f.text_field :si_index %></div>
-    </div>
-    <br>
-    <div id="userformbutton">
-      <center>
-        <%= f.submit "Save changes", class: "btn btn-primary" %>
-      </center>
-    </div>
-  </div>
-<% end %>
+<%= bootstrap_form_for(@chemical_record) do |f| %>
+<% if @chemical_record.errors.any? %>
+<div id="error_explanation">
+  <h2><%= pluralize(@chemical_record.errors.count, "error") %> prohibited this chemical_record from being saved:</h2>
+  <ul>
+    <% @chemical_record.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+    <% end %>
+  </ul>
 </div>
+<% end %>
+<%= content_tag(:legend, legend) unless !legend %>
+<%= f.text_field :chlorine_ppm %>
+<%= f.text_field :chlorine_orp %>
+<%= f.text_field :ph %>
+<%= f.text_field :alkalinity %>
+<%= f.text_field :calcium_hardness %>
+<%= f.text_field :pool_temp %>
+<%= f.text_field :air_temp %>
+<%= f.text_field :si_index %>
+<%= f.primary "Save changes" %>
+
+<% end %>
