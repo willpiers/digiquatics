@@ -8,7 +8,7 @@ describe 'User pages' do
   subject { page }
 
   describe 'index' do
-    
+
     before do
       sign_in user
       FactoryGirl.create(:user, first_name: 'Bob', email: 'bob@example.com', location_id: location.id, position_id: position.id)
@@ -52,7 +52,7 @@ describe 'User pages' do
     end
 
     describe 'page' do
-      it { should have_content('Update my profile') }
+      it { should have_content('Update My Profile') }
       it { should have_title('Edit user') }
     end
 
