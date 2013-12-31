@@ -7,7 +7,7 @@
     <th><%= sortable "first_name", "First Name"%></th>
     <th><%= sortable "last_name", "Last Name"%></th>
     <th><%= sortable "sex", "Sex"%></th>
-    <th><%= sortable "date_of_birth", "DOB"%></th>
+    <th><%= sortable "date_of_birth", "Age"%></th>
     <th><%= sortable "location", "Location" %></th>
     <th><%= sortable "position", "Position"%></th>
     <th><%= sortable "email", "Email Address" %></th>
@@ -28,7 +28,7 @@
       <%= user.sex %>
     </td>
     <td>
-      <%= user.date_of_birth.strftime('%-m/%-d/%Y') %>
+      <%= age(user.date_of_birth) %>
     </td>
     <td>
       <%= user.location.name %>
