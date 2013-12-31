@@ -30,6 +30,10 @@
         <%= cert.file_field :attachment %>
       <% end %>
 
+      <h4>User Classification</h4>
+      <%= f.check_box :admin, style: "width: 20px; height: 50px;" %>
+      <%= f.check_box :active, style: "width: 20px; height: 50px;" %>       
+
       <%= f.primary "Save changes" %>
 
     <% end %>

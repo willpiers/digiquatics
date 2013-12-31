@@ -111,7 +111,7 @@ ActiveRecord::Schema.define(version: 20131231160226) do
     t.string   "email"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "active"
+    t.boolean  "active", default: true
     t.string   "suit_size"
     t.string   "shirt_size"
     t.string   "sex"
