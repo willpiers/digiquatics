@@ -12,6 +12,8 @@
     <th><%= sortable "position", "Position"%></th>
     <th><%= sortable "email", "Email Address" %></th>
     <th><%= sortable "phone_number", "Phone Number"%></th>
+    <th><%= sortable "admin", "Admin"%></th>
+    <th><%= sortable "active", "Active"%></th>
   </tr>
 
   <% @users.each do |user| %>
@@ -39,6 +41,12 @@
     </td>
     <td>
       <%= user.phone_number %>
+    </td>
+    <td>
+      <%= boolean_to_words(user.admin) %>
+    </td>
+    <td>
+      <%= boolean_to_words(user.active) %>
     </td>
   </tr>
   <% end %>

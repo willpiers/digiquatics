@@ -9,6 +9,10 @@ module ApplicationHelper
     end
   end
 
+  def boolean_to_words(value)
+    value ? "Yes" : "No"
+  end
+
   def sortable(column, title = nil)
     title ||= column.titleize
     direction = (column == sort_column && sort_direction == "asc") ? "desc" : "asc"
