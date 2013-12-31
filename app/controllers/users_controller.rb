@@ -6,8 +6,7 @@ class UsersController < ApplicationController
 
   def index
     @users = User.joins(:account).where(account_id: current_user.account_id)
-    @users = User.search(params[:search]).order(sort_column + " " + sort_direction)
-   
+    @users = User.includes(:location, :position).search(params[:search]).order(sort_column + " " + sort_direction)
   end
 
 	def show
@@ -76,7 +75,7 @@ class UsersController < ApplicationController
     params[:direction] || "asc"
   end
 
-  
+
 
 
 
