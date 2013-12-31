@@ -1,116 +1,42 @@
 <% provide(:title, "Edit user") %>
-<h1>Update My Profile</h1>
+<div class="row">
+  <div class="userform">
+    <%= bootstrap_form_for @user do |f| %>
+      <%= render 'shared/error_messages' %>
 
-  <div id="userform">
-    <div class= "col-md-12">
-    <%= form_for(@user) do |f| %>
-    <%= render 'shared/error_messages' %>
+      <legend>Update My Profile</legend>
 
-      <div class="row">
-        <div class="col-md-5"> <%= f.label :first_name, "First Name" %> </div>
-        <div class="col-md-7"><%= f.text_field :first_name %> </div>
-      </div>
+      <%= f.text_field :first_name, label: 'First Name' %>
+      <%= f.text_field :last_name, label: 'Last Name' %>
+      <%= f.text_field :email %>
+      <%= f.password_field :password %>
+      <%= f.password_field :password_confirmation, label: 'Confirm Password' %>
+      <%= f.select :sex, %w[M F]%>
+      <%= f.select :shirt_size, %w[XS S M L XL XXL], {}, label: 'Shirt Size' %>
+      <%= f.select :suit_size, %w[XS S M L XL XXL],  {}, label: 'Shorts Size' %>
+      <%= f.select :femalesuit, %w[28 30 32 34 36 38 40], {}, label: 'One Piece Size (F)' if @user.sex == 'F' %>
+      <%= f.text_field :date_of_birth, :value => f.object.date_of_birth.strftime('%Y-%m-%d'), label: 'Date of Birth' %>
+      <%= f.text_field :date_of_hire, :value => f.object.date_of_hire.strftime('%Y-%m-%d'), label: 'Date of Hire'  %>
+      <%= f.text_field :phone_number, label: "Phone Number" %>
 
-      <div class="row">
-        <div class="col-md-5"><%= f.label :last_name, "Last Name" %> </div>
-        <div class="col-md-7"><%= f.text_field :last_name %> </div>
-      </div>
-
-      <div class="row">
-        <div class="col-md-5"><%= f.label :email %> </div>
-        <div class="col-md-7"><%= f.text_field :email %> </div>
-      </div>
-
-      <div class="row">
-        <div class="col-md-5"><%= f.label :password %> </div>
-        <div class="col-md-7"><%= f.password_field :password %> </div>
-      </div>
-
-      <div class="row">
-        <div class="col-md-5"><%= f.label :password_confirmation, "Confirm Password" %> </div>
-        <div class="col-md-7"><%= f.password_field :password_confirmation %> </div>
-      </div>
-
-      <div class="row">
-        <div class="col-md-5"><%= f.label :sex %> </div>
-        <div class="col-md-7"><%= f.select :sex, options_for_select(%w[M F]) %> </div>
-      </div>
-
-      <div class="row">
-        <div class="col-md-5"><%= f.label :shirt_size, "Shirt Size" %> </div>
-        <div class="col-md-7"><%= f.select :shirt_size, options_for_select(%w[XS S M L XL XXL]) %></div>
-      </div>
-
-      <div class="row">
-        <div class="col-md-5"><%= f.label :suit_size, "Shorts Size" %> </div>
-        <div class="col-md-7"><%= f.select :suit_size, options_for_select(%w[XS S M L XL XXL]) %> </div>
-      </div>
-
-      <% if current_user.sex == 'F' %>
-        <div class="row">
-          <div class="col-md-5"><%= f.label :femalesuit, "One Piece Size (F)" %> </div>
-          <div class="col-md-7"><%= f.select :femalesuit, options_for_select(%w[28 30 32 34 36 38 40]) %> </div>
-        </div>
+      <%= f.fields_for :location do |location| %>
+       <%= location.select :location_id, options_from_collection_for_select(Location.all, :id, :name) %>
       <% end %>
 
-      <div class="row"> 
-        <div class="col-md-5"><%= f.label :date_of_birth, "Date of Birth (yyyy-mm-dd)" %> </div>
-        <div class="col-md-7"><%= f.text_field :date_of_birth, :value=> f.object.date_of_birth.strftime('%Y-%m-%d') %> </div>
-      </div>
-
-      <div class="row"> 
-        <div class="col-md-5"> <%= f.label :date_of_hire, "Date of Hire (yyyy-mm-dd)" %> </div>
-        <div class="col-md-7">
-        <%= f.text_field :date_of_hire, :value=> f.object.date_of_hire.strftime('%Y-%m-%d')  %></div>
-      </div>
-
-      <div class="row">
-        <div class="col-md-5"><%= f.label :phone_number, "Phone Number" %> </div>
-        <div class="col-md-7"><%= f.text_field :phone_number %> </div>
-      </div>
-
-     <%= f.fields_for :location do |location| %>
-     <div class="row">
-       <div class="col-md-5"><%= f.label :location_id %> </div>
-       <div class="col-md-7"><%= location.select :location_id, options_from_collection_for_select(Location.all, :name, :name) %> </div>
-     </div>
-     <% end %>
-
-     <%= f.fields_for :position do |position| %>
-     <div class="row">
-       <div class="col-md-5"><%= f.label :position_id %> </div>
-       <div class="col-md-7"><%= position.select :position_id, options_from_collection_for_select(Position.all, :name, :name) %> </div>
-     </div>
-     <% end %>
+      <%= f.fields_for :position do |position| %>
+        <%= position.select :position_id, options_from_collection_for_select(Position.all, :id, :name) %>
+      <% end %>
 
       <h4>Certifications</h4>
-      <br>
 
       <%= f.fields_for :certifications do |cert| %>
-      <div class="row">  
-          <div class="col-md-5"><%= cert.label :expiration_date, 'Issued Date (yyyy-mm-dd)' %> </div>
-          <div class="col-md-7"><%= cert.text_field :expiration_date, :value=> cert.object.expiration_date.strftime('%Y-%m-%d')  %> </div>
-      </div>
-
-      <div class="row">
-        <div class="col-md-5">
-        <%= cert.label :expiration_date, 'Expiration Date (yyyy-mm-dd)' %>
-        </div>
-        <div class="col-md-7">
-          <%= cert.text_field :expiration_date, :value=> cert.object.expiration_date.strftime('%Y-%m-%d')  %>
-        </div>
-      </div>
-
-      <%= cert.file_field :attachment %>
-      <br>
+        <%= cert.text_field :expiration_date, :value=> cert.object.expiration_date.strftime('%Y-%m-%d'), label: 'Issued Date (yyyy-mm-dd)'  %>
+        <%= cert.text_field :expiration_date, :value=> cert.object.expiration_date.strftime('%Y-%m-%d'), label: 'Expiration Date (yyyy-mm-dd)'  %>
+        <%= cert.file_field :attachment %>
       <% end %>
 
-      <div id="userformbutton">
-        <center>
-        <%= f.submit "Save changes", class: "btn btn-primary" %>
-        </center>
-      <% end %>
-    </div>
-    </div>
-    </div>
-    </div>
+      <%= f.primary "Save changes" %>
+
+    <% end %>
+  </div>
+</div>
