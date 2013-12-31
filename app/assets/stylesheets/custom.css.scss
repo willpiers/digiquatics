@@ -151,6 +151,22 @@ input {
   @extend .error;
 }
 
+.btn{
+	width: 200px;
+	margin: auto;
+	display: block;
+}
+
+// Default form width convenience class
+.userform{
+	@extend .col-sm-8;
+	@extend .col-sm-offset-2;
+}
+
+legend{
+	@extend h1;
+}
+
 /* Users index */
 
 .users {
