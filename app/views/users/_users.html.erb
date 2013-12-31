@@ -1,5 +1,6 @@
   <%= hidden_field_tag :direction, params[:direction] %>
   <%= hidden_field_tag :sort, params[:sort] %>
+  <%= will_paginate @users, previous_label: h("<"), next_label: h(">") %>
 
 <table class="table table-hover">
   <tr>

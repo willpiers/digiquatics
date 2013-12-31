@@ -6,7 +6,7 @@ class UsersController < ApplicationController
 
   def index
     @users = User.joins(:account).where(account_id: current_user.account_id)
-    @users = User.includes(:location, :position).search(params[:search]).order(sort_column + " " + sort_direction)
+    @users = User.includes(:location, :position).search(params[:search]).order(sort_column + " " + sort_direction).paginate(:per_page => 25, :page => params[:page])
   end
 
 	def show

@@ -11,6 +11,7 @@ gem 'bootstrap_form', :git => 'git://github.com/potenza/bootstrap_form.git'
 gem 'less', '2.4.0'
 gem 'therubyracer', '0.12.0'
 gem 'paperclip', '~>2.3'
+gem 'will_paginate', '~>3.0.4'
 
 # Using MySQL Database
 gem 'mysql2'
