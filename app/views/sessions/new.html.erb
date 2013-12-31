@@ -1,17 +1,10 @@
-<% provide(:title, "Sign in") %>
-<h1>Sign in</h1>
-
-<div class="row" id="userform">
-  <div class="span6 offset3">
-  	<!-- we deleted out url: sessions_path from the () below to get the form to work. -->
-    <%= form_for User.new, as: :session, url: sessions_path, builder: BootstrapFormBuilder do |f| %>
-
+<div class="row">
+  <div class="userform">
+    <%= bootstrap_form_for :session, :url => signin_path do |f| %>
+      <legend>Sign In</legend>
       <%= f.text_field :email %>
-
       <%= f.password_field :password %>
-			<center>
-      <%= f.submit "Sign in", class: "btn btn-default btn-primary" %>
-    	</center>
+      <%= f.primary "Sign in" %>
     <% end %>
   </div>
 </div>

@@ -15,9 +15,10 @@ AquaticsApp::Application.routes.draw do
 
   root  'static_pages#home'
   match '/signup',  to: 'users#new',            via: 'get'
-  match '/signin',  to: 'sessions#new',         via: 'get'
-  match '/signout', to: 'sessions#destroy',     via: 'delete'
   match '/signup',  to: 'users#new',            via: 'get'
+  match '/signin',  to: 'sessions#new',         via: 'get'
+  match '/signin',  to: 'sessions#create',      via: 'post'
+  match '/signout', to: 'sessions#destroy',     via: 'delete'
   match '/chemicals',    to: 'static_pages#chemicals',    via: 'get'
   match '/manage_chemicals',    to: 'static_pages#manage_chemicals',    via: 'get'
   match '/maintenance',   to: 'static_pages#maintenance',   via: 'get'
