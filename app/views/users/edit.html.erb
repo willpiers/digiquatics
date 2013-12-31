@@ -19,13 +19,8 @@
       <%= f.text_field :date_of_hire, :value => f.object.date_of_hire.strftime('%Y-%m-%d'), label: 'Date of Hire'  %>
       <%= f.text_field :phone_number, label: "Phone Number" %>
 
-      <%= f.fields_for :location do |location| %>
-       <%= location.select :location_id, options_from_collection_for_select(Location.all, :id, :name) %>
-      <% end %>
-
-      <%= f.fields_for :position do |position| %>
-        <%= position.select :position_id, options_from_collection_for_select(Position.all, :id, :name) %>
-      <% end %>
+      <%= f.select :location_id, options_from_collection_for_select(Location.all, :id, :name) %>
+      <%= f.select :position_id, options_from_collection_for_select(Position.all, :id, :name) %>
 
       <h4>Certifications</h4>
 
