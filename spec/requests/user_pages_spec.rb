@@ -57,7 +57,7 @@ describe 'User pages' do
     end
 
     describe 'with invalid information' do
-      before { click_button 'Save changes' }
+      before { click_button 'Save Changes' }
 
       it { should have_content('error') }
     end
@@ -74,14 +74,18 @@ describe 'User pages' do
         fill_in 'Password',     with: 'foobar'
         fill_in 'Confirm Password', with: 'foobar'
         select('M', from: 'Sex')
-        fill_in 'Date of Birth', with: '1992-09-15'
-        fill_in 'Date of Hire', with: '2012-08-15'
+        select 'September', from: 'user_date_of_birth_2i'
+        select '15', from: 'user_date_of_birth_3i'
+        select '1992', from: 'user_date_of_birth_1i'
+        select 'August', from: 'user_date_of_hire_2i'
+        select '15', from: 'user_date_of_hire_3i'
+        select '2012', from: 'user_date_of_hire_1i'
         select location.name, from: 'user[location_id]'
         select position.name,  from: 'user[position_id]'
         select('M', from: 'Shirt Size')
         select('M', from: 'Shorts Size')
         select('28', from: 'user[femalesuit]')
-        click_button 'Save changes'
+        click_button 'Save Changes'
       end
 
       it { should have_title(full_title(new_first_name)) }
@@ -102,7 +106,7 @@ describe 'User pages' do
       visit signup_path
     end
 
-    let(:submit) { 'Create/Save Account' }
+    let(:submit) { 'Create Account' }
 
     describe 'with invalid information' do
       it 'should not create a user' do
@@ -120,8 +124,15 @@ describe 'User pages' do
         fill_in 'Password',     with: 'foobar'
         fill_in 'Confirm Password', with: 'foobar'
         select('M', from: 'Sex')
-        fill_in 'Date of Birth', with: '1992-09-15'
-        fill_in 'Date of Hire', with: '2012-08-15'
+
+        select 'September', from: 'user_date_of_birth_2i'
+        select '8', from: 'user_date_of_birth_3i'
+        select '1992', from: 'user_date_of_birth_1i'
+
+        select 'August', from: 'user_date_of_hire_2i'
+        select '15', from: 'user_date_of_hire_3i'
+        select '2012', from: 'user_date_of_hire_1i'
+
         select 'newlocation', from: 'user[location_id]'
         select 'newposition',  from: 'user[position_id]'
         select('M', from: 'Shirt Size')
