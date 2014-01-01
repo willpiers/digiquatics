@@ -33,49 +33,17 @@ include Math
     return @si
   end
 
-  #SI General Recommendaiton
-  def si_index_recommendation(si_index)
-    return '?' if !si_index
-    if si_index == 0
-      "No Treatment"
-    elsif si_index >= -0.5 and si_index < 0
-      "Acceptable"
-    elsif si_index > 0 and si_index <=0.5
-      "Acceptable"
-    elsif si_index > -3 and si_index < 0.5
-      "Treatment May Be Needed"
-    elsif si_index > 0.5 and si_index < 3
-      "Treatment May Be Needed"
-    else
-      "Treatment Recommended"
-    end
-  end
-
   #SI Description
   def si_index_description(si_index)
     return '?' if !si_index
-    if si_index <= -5
-      "Severe Corrosion"
-    elsif si_index > -5 and si_index <= -2
-      "Moderate Corrosion"
-    elsif si_index > -2 and si_index <= -1
-      "Mild Corrosion"
-    elsif si_index > -1 and si_index < -0.3
-      "Possible Mild Corrosion"
-    elsif si_index >= -0.3 and si_index <= 0.3
-      "Balanced"
-    elsif si_index > 0.3 and si_index < 1
-      "Possible Mild Scale Coatings"
-    elsif si_index >=1 and si_index < 2
-      "Mild Scale Coatings"
-    elsif si_index >=2 and si_index < 3
-      "Mild to Moderate Scale Coatings"
-    elsif si_index >=3 and si_index < 4
-      "Moderate Scale Forming"
-    elsif si_index >=4
-      "Severe Scale Forming"
-    else
-      "Error"
+      if si_index < -0.3
+        "Corrosion"
+      elsif si_index > 0.3 
+        "Scale Forming"
+      elsif si_index >= -0.3 and si_index <= 0.3
+        "Balanced"       
+      else
+        "Error"
     end
   end
       

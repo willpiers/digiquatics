@@ -41,10 +41,6 @@
       <td><%=si_index_description(si_index(@chemical_record.ph, @chemical_record.pool_temp, @chemical_record.calcium_hardness, @chemical_record.alkalinity))%></td> 
     </tr>
     <tr> 
-      <th>SI Index Recomendation</th> 
-      <td><%=si_index_recommendation(si_index(@chemical_record.ph, @chemical_record.pool_temp, @chemical_record.calcium_hardness, @chemical_record.alkalinity))%></td> 
-    </tr>
-    <tr> 
       <th>SI Index</th> 
       <td><%=si_index(@chemical_record.ph, @chemical_record.pool_temp, @chemical_record.calcium_hardness, @chemical_record.alkalinity).round(1)%></td> 
     </tr>
