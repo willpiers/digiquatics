@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131231211237) do
+ActiveRecord::Schema.define(version: 20140101004554) do
 
   create_table "accounts", force: true do |t|
     t.string   "name"
@@ -49,14 +49,14 @@ ActiveRecord::Schema.define(version: 20131231211237) do
   end
 
   create_table "chemical_records", force: true do |t|
-    t.decimal  "chlorine_ppm",     precision: 10, scale: 0
-    t.decimal  "chlorine_orp",     precision: 10, scale: 0
-    t.decimal  "ph",               precision: 10, scale: 0
-    t.decimal  "alkalinity",       precision: 10, scale: 0
-    t.decimal  "calcium_hardness", precision: 10, scale: 0
-    t.decimal  "pool_temp",        precision: 10, scale: 0
-    t.decimal  "air_temp",         precision: 10, scale: 0
-    t.decimal  "si_index",         precision: 10, scale: 0
+    t.decimal  "chlorine_ppm",     precision: 6, scale: 2
+    t.decimal  "chlorine_orp",     precision: 6, scale: 2
+    t.decimal  "ph",               precision: 6, scale: 2
+    t.decimal  "alkalinity",       precision: 6, scale: 2
+    t.decimal  "calcium_hardness", precision: 6, scale: 2
+    t.decimal  "pool_temp",        precision: 6, scale: 2
+    t.decimal  "air_temp",         precision: 6, scale: 2
+    t.decimal  "si_index",         precision: 6, scale: 2
     t.datetime "created_at"
     t.datetime "updated_at"
   end

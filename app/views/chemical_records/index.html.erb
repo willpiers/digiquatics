@@ -34,10 +34,10 @@
     <% @chemical_records.each do |chemical_record| %>
       <tr>
         <th><%= link_to chemical_record.id, chemical_record%></th>
-        <td><%= chemical_record.chlorine_ppm %></td>
+        <td><%= chemical_record.chlorine_ppm.round %></td>
         <td><%= chemical_record.ph.round(1) %></td>
-        <td><%= chemical_record.alkalinity %></td>
-        <td><%= chemical_record.calcium_hardness %></td>
+        <td><%= chemical_record.alkalinity.round %></td>
+        <td><%= chemical_record.calcium_hardness.round %></td>
         <td><%= chemical_record.pool_temp.round(1) %></td>
         <td><%= chemical_record.air_temp.round(1) %></td>
         <td><%= chemical_record.si_index.round(1) %></td>
