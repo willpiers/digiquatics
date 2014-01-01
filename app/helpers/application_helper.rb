@@ -1,4 +1,6 @@
 module ApplicationHelper
+include Math
+
 # Returns the full title on a per-page basis.
   def full_title(page_title)
     base_title = "Aquatics App"
@@ -17,6 +19,31 @@ module ApplicationHelper
     return '?' if !dob
     now = Time.now.utc.to_date
     now.year - dob.year - ((now.month > dob.month || (now.month == dob.month && now.day >= dob.day)) ? 0 : 1)
+  end
+
+  #SI Index equation
+  def si_index(ph_reading, pool_temp, calcium_hardness, total_alkalinity)
+    return '?' if (!ph_reading or !pool_temp or !calcium_hardness or !total_alkalinity) 
+    ph = ph_reading
+    temp = ((0.7571*log(pool_temp))-2.6639)
+    ch = ((0.4341*log(calcium_hardness))-0.3926)
+    ta = ((0.4341*log(total_alkalinity))+0.0074)
+    tds = 12.1
+    @si = (ph + temp + ch + ta - tds)
+    return @si
+  end
+
+  #SI General Recommendaiton
+  def si_index_description(si_index)
+    return '?' if !si_index
+    @answer = si_index
+    case @answer
+      when 0 .. 2
+        puts ""
+      else
+        puts "normal"
+    end
+    return @answer 
   end
 
   def sortable(column, title = nil)
