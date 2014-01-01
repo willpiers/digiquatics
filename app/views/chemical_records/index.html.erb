@@ -43,7 +43,7 @@
         <td><%= chemical_record.air_temp.round(1) %></td>
         <td><%= si_index(chemical_record.ph, chemical_record.pool_temp, chemical_record.calcium_hardness, chemical_record.alkalinity).round(2) %></td>
         <td><%= si_index_description(si_index(chemical_record.ph, chemical_record.pool_temp, chemical_record.calcium_hardness, chemical_record.alkalinity)) %></td>
-        <td><%= chemical_record.created_at %></td>
+        <td><%= chemical_record.created_at.strftime("%-m/%-d/%Y" + " " + "%l:%M%P") %></td>
       </tr>
     <% end %>
   </tbody>

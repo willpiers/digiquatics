@@ -2,8 +2,8 @@ namespace :db do
   desc "Fill database with sample data"
   task populate: :environment do
 
-    Account.create(name: "City of Lakewood")
-    Account.create(name: "Foothills")
+    Account.create(name: "City of Lakewood", time_zone: 'Mountain Time (US & Canada)')
+    Account.create(name: "Foothills", time_zone: 'Mountain Time (US & Canada)')
 
     Location.create(name: "Green Mountain Recreation Center", account_id: 1)
     Location.create(name: "The Link Recreation Center", account_id: 1)
