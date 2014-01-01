@@ -15,7 +15,6 @@
 //= require bootstrap
 //= require turbolinks
 //= require_tree .
-//= require bootstrap-datepicker
 
 $(function() {
   $("#users th a, #users .pagination a").live("click", function() {
