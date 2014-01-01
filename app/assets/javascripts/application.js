@@ -15,7 +15,6 @@
 //= require bootstrap
 //= require turbolinks
 //= require_tree .
-//= require bootstrap-datepicker
 
 $(function() {
   $("#users_search input").keyup(function() {

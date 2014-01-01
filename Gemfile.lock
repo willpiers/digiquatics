@@ -1,12 +1,4 @@
 GIT
-  remote: git://github.com/bernat/best_in_place.git
-  revision: df178520bf9ba405baee9528d5dbb630d6ff760c
-  specs:
-    best_in_place (2.1.0)
-      jquery-rails
-      rails (>= 3.1)
-
-GIT
   remote: git://github.com/potenza/bootstrap_form.git
   revision: 7c66985241ee994acab5aed09c8d5cc1d5cad024
   specs:
@@ -221,7 +213,6 @@ PLATFORMS
 
 DEPENDENCIES
   bcrypt-ruby (= 3.1.2)
-  best_in_place!
   bootstrap-sass (= 3.0.3.0)
   bootstrap_form!
   capybara (= 2.1.0)
