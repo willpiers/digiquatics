@@ -1,4 +1,12 @@
 GIT
+  remote: git://github.com/bernat/best_in_place.git
+  revision: df178520bf9ba405baee9528d5dbb630d6ff760c
+  specs:
+    best_in_place (2.1.0)
+      jquery-rails
+      rails (>= 3.1)
+
+GIT
   remote: git://github.com/potenza/bootstrap_form.git
   revision: 7c66985241ee994acab5aed09c8d5cc1d5cad024
   specs:
@@ -34,8 +42,6 @@ GEM
     arel (4.0.1)
     atomic (1.1.14)
     bcrypt-ruby (3.1.2)
-    bootstrap-datepicker-rails (1.1.1.10)
-      railties (>= 3.0)
     bootstrap-sass (3.0.3.0)
       sass (~> 3.2)
     builder (3.1.4)
@@ -215,7 +221,7 @@ PLATFORMS
 
 DEPENDENCIES
   bcrypt-ruby (= 3.1.2)
-  bootstrap-datepicker-rails (= 1.1.1.10)
+  best_in_place!
   bootstrap-sass (= 3.0.3.0)
   bootstrap_form!
   capybara (= 2.1.0)
