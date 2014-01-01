@@ -23,7 +23,7 @@ textarea {
 
 .center {
 	text-align: center;
-	
+
 	h1 {
 	margin-bottom: 10px;
 	}
@@ -138,6 +138,24 @@ input {
   height: auto !important;
 }
 
+.date-select{
+	.form-group select {
+		@extend .col-sm-4;
+		width: 32%;
+		margin-left: 2%;
+		&:first-of-type {
+			margin-left: 0!important;
+		}
+	}
+	.form-group label{
+		display: block;
+	}
+}
+
+legend{
+	@extend h1;
+}
+
 #error_explanation {
   color: #f00;
   ul {
@@ -163,10 +181,6 @@ input {
 	@extend .col-sm-offset-2;
 }
 
-legend{
-	@extend h1;
-}
-
 /* Users index */
 
 .users {
@@ -181,4 +195,3 @@ legend{
     }
   }
 }
-
