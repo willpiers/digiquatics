@@ -12,6 +12,16 @@
 
 	<table class="table table-bordered" >
 		<tr>
+		<th> Admin </th>
+			<td> <%= boolean_to_words(@user.admin) %> </td>
+		</tr>
+		<tr>
+			<tr>
+			<th> Active </th>
+				<td> <%= boolean_to_words(@user.active) %> </td>
+			</tr>
+			<tr>
+			<tr>
 			<th> Location </th>
 				<td> <%= @user.location.name %> </td>
 			</tr>
@@ -104,7 +114,6 @@
 	</div>
 
 	<h4> Notes </h4>
-
 	<%= @user.notes %>
 
 </div>
