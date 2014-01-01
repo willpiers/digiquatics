@@ -25,8 +25,8 @@
       <th><%= sortable "calcium_hardness", "Calcium hardness" %></th>
       <th><%= sortable "pool_temp", "Pool temp" %></th>
       <th><%= sortable "air_temp", "Air temp" %></th>
-      <th><%= sortable "si_description", "Description" %></th>
-      <th><%= sortable "si_index", "Si index" %></th>
+      <th><%= sortable "si_index", "SI index" %></th>
+      <th><%= sortable "si_status", "Status" %></th>
       <th><%= sortable "created_at", "Submitted" %></th>
     </tr>
   </thead>
@@ -41,8 +41,8 @@
         <td><%= chemical_record.calcium_hardness.round %></td>
         <td><%= chemical_record.pool_temp.round(1) %></td>
         <td><%= chemical_record.air_temp.round(1) %></td>
-        <td><%= si_index_description(si_index(chemical_record.ph, chemical_record.pool_temp, chemical_record.calcium_hardness, chemical_record.alkalinity)) %></td>
         <td><%= si_index(chemical_record.ph, chemical_record.pool_temp, chemical_record.calcium_hardness, chemical_record.alkalinity).round(2) %></td>
+        <td><%= si_index_description(si_index(chemical_record.ph, chemical_record.pool_temp, chemical_record.calcium_hardness, chemical_record.alkalinity)) %></td>
         <td><%= chemical_record.created_at %></td>
       </tr>
     <% end %>

@@ -61,6 +61,8 @@ class AccountsController < ApplicationController
     end
   end
 
+  around_filter :user_time_zone, if: :current_user
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_account
@@ -71,4 +73,10 @@ class AccountsController < ApplicationController
     def account_params
       params.require(:account).permit(:name)
     end
+
+    #Time Zone Setting
+    def user_time_zone(&block)
+      Time.use_zone(current_user.time_zone, &block)
+    end
+
 end

@@ -18,11 +18,11 @@
       <th><%= sortable "last_name" %></th>
       <th><%= sortable "age" %></th>
       <th><%= sortable "sex" %></th>
-      <th><%= sortable "ability_level" %></th>
+      <th><%= sortable "ability_level", "Level" %></th>
       <th><%= sortable "day" %></th>
       <th><%= sortable "time" %></th>
-      <th><%= sortable "created_at" %></th>
-      <th><%= sortable "preferred_location" %></th>
+      <th><%= sortable "preferred_location", "Location" %></th>
+      <th><%= sortable "created_at", "Date" %></th>
     </tr>
   </thead>
 
@@ -36,8 +36,8 @@
         <td><%= private_lesson.ability_level %></td>
         <td><%= private_lesson.day %></td>
         <td><%= private_lesson.time %></td>
-        <td><%= private_lesson.created_at.strftime('%-m/%-d/%Y') %></td>
         <td><%= Location.find_by_id(private_lesson.preferred_location).name %></td>
+        <td><%= private_lesson.created_at.strftime('%-m/%-d/%Y') %></td>
       </tr>
     <% end %>
   </tbody>

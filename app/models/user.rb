@@ -20,6 +20,8 @@ class User < ActiveRecord::Base
   validates :location_id, presence: true
   validates :position_id, presence: true
 
+  validates_inclusion_of :time_zone, in: ActiveSupport::TimeZone.zones_map(&:name)
+
   def User.new_remember_token
     SecureRandom.urlsafe_base64
   end
