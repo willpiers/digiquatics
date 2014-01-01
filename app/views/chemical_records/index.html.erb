@@ -42,8 +42,8 @@
         <td><%= chemical_record.calcium_hardness.round %></td>
         <td><%= chemical_record.pool_temp.round(1) %></td>
         <td><%= chemical_record.air_temp.round(1) %></td>
-        <td><%= chemical_record.air_temp.round(1) %></td>
         <td><%= si_index_description(si_index(chemical_record.ph, chemical_record.pool_temp, chemical_record.calcium_hardness, chemical_record.alkalinity)) %></td>
+        <td><%= si_index_recommendation(si_index(chemical_record.ph, chemical_record.pool_temp, chemical_record.calcium_hardness, chemical_record.alkalinity)) %></td>
         <td><%= si_index(chemical_record.ph, chemical_record.pool_temp, chemical_record.calcium_hardness, chemical_record.alkalinity).round(1) %></td>
         <td><%= chemical_record.created_at %></td>
       </tr>
