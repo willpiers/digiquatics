@@ -4,7 +4,9 @@ class Certification < ActiveRecord::Base
   belongs_to :user
   belongs_to :certification_name
   belongs_to :account
-  has_attached_file :attachment
+  has_attached_file :attachment,
+        :path => ":rails_root/public/system/:attachment/:id/:style/:filename",
+        :url => "/system/:attachment/:id/:style/:filename"
 
   validates :certification_name_id, presence: true
   validates :user_id, presence: true
