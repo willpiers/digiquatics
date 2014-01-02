@@ -98,7 +98,8 @@
 			<tr>
 				<th> Attached File </th>
 				<% @user.certifications.each do |cert| %>
-				<th> <!--<%= link_to cert.attachment.url %>--> <b> <img src="/images/PDF.png" alt="PDF Link" height="50px" width="50px" /> </b></th>
+				<th><%= link_to cert.attachment.url %>
+					<!-- <img src="/images/PDF.png" alt="PDF Link" height="50px" width="50px" /> --></th>
 				<% end %>
 			</tr>
 		</tbody>
