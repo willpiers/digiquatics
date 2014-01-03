@@ -6,18 +6,6 @@ class StaticPagesController < ApplicationController
   def about
   end
 
-  def positions
-  end
-
-  def lessons
-  end
-
-  def chemicals
-  end
-
-  def manage_chemicals
-  end
-
   def certifications_stats
     @users = User.all
     @certification_names = CertificationName.joins(:account)
