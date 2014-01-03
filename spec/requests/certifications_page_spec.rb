@@ -1,10 +1,11 @@
 require 'spec_helper'
 
 describe 'Certifications' do
+  let(:account) { FactoryGirl.create(:account) }
   let(:location) { FactoryGirl.create(:location) }
   let(:position) { FactoryGirl.create(:position) }
-  let(:user) { FactoryGirl.create(:user, location_id: location.id, 
-    position_id: position.id) }
+  let(:user) { FactoryGirl.create(:user, location_id: location.id,
+    position_id: position.id, account_id: account.id) }
 
   subject { page }
 

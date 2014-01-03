@@ -11,7 +11,9 @@ AquaticsApp::Application.routes.draw do
   resources :locations
   resources :certifications
   resources :certification_names
-  resources :accounts
+  resources :accounts do
+    resources :users
+  end
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
 

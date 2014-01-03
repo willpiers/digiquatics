@@ -1,6 +1,7 @@
 FactoryGirl.define do
   factory :account do
     name                  'City of Lakewood'
+    time_zone             'Mountain Time (US & Canada)'
   end
 
   factory :location do

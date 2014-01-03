@@ -1,10 +1,11 @@
 require 'spec_helper'
 
 describe 'Authentication' do
+  let(:account) { FactoryGirl.create(:account) }
   let(:location) { FactoryGirl.create(:location) }
   let(:position) { FactoryGirl.create(:position) }
-  let(:user) { FactoryGirl.create(:user, location_id: location.id, 
-    position_id: position.id) }
+  let(:user) { FactoryGirl.create(:user, location_id: location.id,
+    position_id: position.id, account_id: account.id) }
 
   subject { page }
 
@@ -92,7 +93,7 @@ describe 'Authentication' do
   end
 
   describe 'as wrong user' do
-    let(:wrong_user) { FactoryGirl.create(:user, 
+    let(:wrong_user) { FactoryGirl.create(:user,
       email: 'wrong@example.com') }
 
     before { sign_in user, no_capybara: true }

@@ -1,10 +1,11 @@
 require 'spec_helper'
 
 describe 'User pages' do
+  let(:account) { FactoryGirl.create(:account) }
   let(:location) { FactoryGirl.create(:location) }
   let(:position) { FactoryGirl.create(:position) }
-  let(:user) { FactoryGirl.create(:user, location_id: location.id, 
-    position_id: position.id) }
+  let(:user) { FactoryGirl.create(:user, location_id: location.id,
+    position_id: position.id, account_id: account.id) }
 
   subject { page }
 
@@ -12,9 +13,9 @@ describe 'User pages' do
 
     before do
       sign_in user
-      FactoryGirl.create(:user, first_name: 'Bob', email: 'bob@example.com', 
+      FactoryGirl.create(:user, first_name: 'Bob', email: 'bob@example.com',
         location_id: location.id, position_id: position.id)
-      FactoryGirl.create(:user, first_name: 'Ben', email: 'ben@example.com', 
+      FactoryGirl.create(:user, first_name: 'Ben', email: 'ben@example.com',
         location_id: location.id, position_id: position.id)
       visit users_path
     end
@@ -136,6 +137,7 @@ describe 'User pages' do
         select '15', from: 'user_date_of_hire_3i'
         select '2012', from: 'user_date_of_hire_1i'
 
+        select 'account_name', from: 'user[account_id]'
         select 'newlocation', from: 'user[location_id]'
         select 'newposition',  from: 'user[position_id]'
         select('M', from: 'Shirt Size')
@@ -153,7 +155,7 @@ describe 'User pages' do
 
         it { should have_link('Sign out') }
         it { should have_title(user.first_name) }
-        it { should have_selector('div.alert.alert-success', 
+        it { should have_selector('div.alert.alert-success',
           text: 'This account has been successfully created!') }
       end
     end
