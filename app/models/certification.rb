@@ -7,7 +7,7 @@ class Certification < ActiveRecord::Base
   has_attached_file :attachment,
         :path => ":rails_root/public/system/:attachment/:id/:style/:filename",
         :url => "/system/:attachment/:id/:style/:filename"
-
+        
   validates :certification_name_id, presence: true
   validates :user_id, presence: true
   validates :expiration_date, presence: true
