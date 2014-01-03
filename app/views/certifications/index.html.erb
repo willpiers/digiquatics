@@ -1,24 +1,26 @@
 <% provide(:title, 'Certifications') %>
 <h1>Certifications</h1>
 <ul class = "pull-right">
-  <%= link_to "Manage Certifications", certification_names_path, class: "btn btn-primary" %>
+  <%= link_to "Manage Certifications", certification_names_path, 
+    class: "btn btn-primary" %>
 </ul>
 <ul class = "pull-right">
-  <%= link_to "Statistics", certifications_stats_path, class: "btn btn-success" %>
+  <%= link_to "Statistics", certifications_stats_path, 
+    class: "btn btn-success" %>
 </ul>
 
-<br>
-<br>
-<br>
+<br><br><br>
+
 <table class="table table-hover">
   <thead>
     <tr>
       <th><%= sortable 'first_name', 'First Name' %></th>
       <th><%= sortable 'last_name', 'Last Name' %></th>
       <th><%= sortable 'location', 'Location' %></th>
-        <% @certification_names.each do |certification_name| %>
-          <th><%= sortable 'certification_name.name', certification_name.name %></th>
-        <% end %>
+      <% @certification_names.each do |certification_name| %>
+        <th><%= sortable 'certification_name.name', 
+          certification_name.name %></th>
+      <% end %>
     </tr>
   </thead>
   <tbody>
@@ -32,7 +34,8 @@
             <td class="danger">
               <%= cert.expiration_date.strftime('%-m/%-d/%Y') %>
             </td>
-          <% elsif cert.expiration_date > ( Date.today ) && cert.expiration_date < ( Date.today + 60.days ) %>
+          <% elsif cert.expiration_date > ( Date.today ) && 
+            cert.expiration_date < ( Date.today + 60.days ) %>
             <td class="warning">
               <%= cert.expiration_date.strftime('%-m/%-d/%Y') %>
             </td>

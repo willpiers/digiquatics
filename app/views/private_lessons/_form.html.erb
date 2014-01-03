@@ -8,62 +8,106 @@
       <br>
 
       <div class="row">
-        <div class="col-md-5"> <%= f.label :parent_first_name, "First Name" %> </div>
-        <div class="col-md-7"><%= f.text_field :parent_first_name %> </div>
+        <div class="col-md-5">
+          <%= f.label :parent_first_name, "First Name" %> 
+        </div>
+        <div class="col-md-7">
+          <%= f.text_field :parent_first_name %> 
+        </div>
       </div>
 
       <div class="row">
-        <div class="col-md-5"><%= f.label :parent_last_name, "Last Name" %> </div>
-        <div class="col-md-7"><%= f.text_field :parent_last_name %> </div>
+        <div class="col-md-5">
+          <%= f.label :parent_last_name, "Last Name" %> 
+        </div>
+        <div class="col-md-7">
+          <%= f.text_field :parent_last_name %> 
+        </div>
       </div>
 
       <div class="row">
-        <div class="col-md-5"><%= f.label :phone_number, "Phone Number" %> </div>
-        <div class="col-md-7"><%= f.telephone_field :phone_number %> </div>
+        <div class="col-md-5">
+          <%= f.label :phone_number, "Phone Number" %> 
+        </div>
+        <div class="col-md-7">
+          <%= f.telephone_field :phone_number %> 
+        </div>
       </div>
 
       <div class="row">
-        <div class="col-md-5"><%= f.label :email %> </div>
-        <div class="col-md-7"><%= f.text_field :email %> </div>
+        <div class="col-md-5">
+          <%= f.label :email %> 
+        </div>
+        <div class="col-md-7">
+          <%= f.text_field :email %> 
+        </div>
       </div>
 
       <div class="row">
-        <div class="col-md-5"><%= f.label :contact_method, "Preferred Contact Method" %> </div>
-        <div class="col-md-7"><%= f.select :contact_method, options_for_select(%w[Call Email Text]) %> </div>
+        <div class="col-md-5">
+          <%= f.label :contact_method, "Preferred Contact Method" %> 
+        </div>
+        <div class="col-md-7">
+          <%= f.select :contact_method, options_for_select(%w[Call Email Text]) %> 
+        </div>
       </div>
 
       <h4> Student Information </h4>
 
       <div class="row">
-        <div class="col-md-5"> <%= f.label :first_name, "First Name" %> </div>
-        <div class="col-md-7"><%= f.text_field :first_name %> </div>
+        <div class="col-md-5">
+         <%= f.label :first_name, "First Name" %> 
+       </div>
+        <div class="col-md-7">
+          <%= f.text_field :first_name %> 
+        </div>
       </div>
 
       <div class="row">
-        <div class="col-md-5"><%= f.label :last_name, "Last Name" %> </div>
-        <div class="col-md-7"><%= f.text_field :last_name %> </div>
+        <div class="col-md-5">
+          <%= f.label :last_name, "Last Name" %> 
+        </div>
+        <div class="col-md-7">
+          <%= f.text_field :last_name %> 
+        </div>
       </div>
 
       <div class="row">
-        <div class="col-md-5"><%= f.label :sex, "Gender" %> </div>
-        <div class="col-md-7"><%= f.select :sex, options_for_select(%w[M F]) %> </div>
+        <div class="col-md-5">
+          <%= f.label :sex, "Gender" %> 
+        </div>
+        <div class="col-md-7">
+          <%= f.select :sex, options_for_select(%w[M F]) %> 
+        </div>
       </div>
 
       <div class="row">
-        <div class="col-md-5"><%= f.label :age, "Age" %> </div>
-        <div class="col-md-7"><%= f.text_field :age %> </div>
+        <div class="col-md-5">
+          <%= f.label :age, "Age" %> 
+        </div>
+        <div class="col-md-7">
+          <%= f.text_field :age %> 
+        </div>
       </div>
 
       <h4> Preferences </h4>
 
       <div class="row">
-        <div class="col-md-5"><%= f.label :instructor_gender, "Instructor Gender Prefence" %> </div>
-        <div class="col-md-7"><%= f.select :instructor_gender, options_for_select(%w[M F]) %> </div>
+        <div class="col-md-5">
+          <%= f.label :instructor_gender, "Instructor Gender Prefence" %> 
+        </div>
+        <div class="col-md-7">
+          <%= f.select :instructor_gender, options_for_select(%w[M F]) %> 
+        </div>
       </div>
 
       <div class="row">
-        <div class="col-md-5"><%= f.label :notes, "Special Requests" %> </div>
-        <div class="col-md-7"><%= f.text_area :notes, size: "2x" %> </div>
+        <div class="col-md-5">
+          <%= f.label :notes, "Special Requests" %> 
+        </div>
+        <div class="col-md-7">
+          <%= f.text_area :notes, size: "2x" %> 
+        </div>
       </div>
 
       <br>

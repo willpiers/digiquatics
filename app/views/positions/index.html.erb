@@ -17,7 +17,8 @@
       <tr>
         <td><%= position.name %></td>
         <td><%= link_to 'Edit', edit_position_path(position) %></td>
-        <td><%= link_to 'Delete', position, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Delete', position, method: :delete, 
+          data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>

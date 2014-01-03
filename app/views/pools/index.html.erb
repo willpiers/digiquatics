@@ -18,7 +18,8 @@
         <td><%= pool.location_id %></td>
         <td><%= link_to 'Show', pool %></td>
         <td><%= link_to 'Edit', edit_pool_path(pool) %></td>
-        <td><%= link_to 'Destroy', pool, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Destroy', pool, method: :delete, 
+          data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>

@@ -1,47 +1,42 @@
-  <nav class="navbar navbar-fixed-top navbar-inverse">
-    <div class="navbar-header">
-        <div class="container">
-          <%= link_to "dashboard", root_path, id: "logo" %>
-          <nav>
-            <ul class="nav navbar-nav navbar-right">
-              <% if signed_in? %>
-    
-                <li><%= link_to "Chemicals", chemical_records_path %></li>
-     <!--           <li><%= link_to "Maintenance",    '#' %></li>
-                <li><%= link_to "Attendance", '#' %></li>
-    -->            <li><%= link_to "Private Lessons", private_lessons_path %></li>
-  
-                <li><%= link_to "Certifications", certifications_path %></li>
-                <li id="fat-menu" class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                  Account <b class="caret"></b>
-                </a>
-                  <ul class="dropdown-menu">
-                    <li><%= link_to "My Profile", current_user %></li>
-                    <li><%= link_to "Edit My Profile", edit_user_path(current_user) %></li>
-                    <li><%= link_to "My Lessons", my_lessons_path %></li>
-                    <% if current_user.admin? %>
-                      <li><%= link_to "Manage Users", users_path %></li>
-                      <li><%= link_to "Manage Locations", locations_path %></li>
-                      <li><%= link_to "Manage Positions", positions_path %></li>
-                      <!--<li><%= link_to "Manage Chemicals", manage_chemicals_path %></li>-->
-                      <li><%= link_to "Manage Certifications", certification_names_path %></li>
-                      <!--<li><%= link_to "Manage Lessons", '#' %></li>-->
-                      <li><%= link_to "Manage Account", edit_account_path(current_user.account_id) %></li>
-                    <% end %>
-                    <li class="divider"></li>
-                    <li><%= link_to "Sign out", signout_path, method: "delete" %></li>
-                  </ul>
-                </li>
-              <% else %>
-    <!--             <li><%= link_to "Product", '#' %></li>
-                <li><%= link_to "Order", '#' %></li>
-                <li><%= link_to "Private Lessons", '#' %></li>
-    --><!--             <li><%= link_to "Support", '#' %></li>
-    -->            <li><%= link_to "Sign in", signin_path, class: "btn btn-defualt " %></li>
-              <% end %>
-            </ul>
-          </nav>
-        </div>
+<nav class="navbar navbar-fixed-top navbar-inverse">
+  <div class="navbar-header">
+      <div class="container">
+        <%= link_to "dashboard", root_path, id: "logo" %>
+        <nav>
+          <ul class="nav navbar-nav navbar-right">
+            <% if signed_in? %>
+              <li><%= link_to "Chemicals", chemical_records_path %></li>
+              <li><%= link_to "Private Lessons", private_lessons_path %></li>
+              <li><%= link_to "Certifications", certifications_path %></li>
+              <li id="fat-menu" class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                Account <b class="caret"></b>
+              </a>
+                <ul class="dropdown-menu">
+                  <li><%= link_to "My Profile", current_user %></li>
+                  <li><%= link_to "Edit My Profile", 
+                    edit_user_path(current_user) %></li>
+                  <li><%= link_to "My Lessons", my_lessons_path %></li>
+                  <% if current_user.admin? %>
+                    <li><%= link_to "Manage Users", users_path %></li>
+                    <li><%= link_to "Manage Locations", locations_path %></li>
+                    <li><%= link_to "Manage Positions", positions_path %></li>
+                    <li><%= link_to "Manage Certifications", 
+                      certification_names_path %></li>
+                    <li><%= link_to "Manage Account", 
+                      edit_account_path(current_user.account_id) %></li>
+                  <% end %>
+                  <li class="divider"></li>
+                  <li><%= link_to "Sign out", signout_path, 
+                    method: "delete" %></li>
+                </ul>
+              </li>
+            <% else %>
+              <li><%= link_to "Sign in", signin_path, 
+                class: "btn btn-defualt " %></li>
+            <% end %>
+          </ul>
+        </nav>
       </div>
-  </nav>
+    </div>
+</nav>
