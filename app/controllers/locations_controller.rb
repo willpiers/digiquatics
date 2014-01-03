@@ -5,7 +5,8 @@ class LocationsController < ApplicationController
   # GET /locations.json
   def index
     # @locations = Location.all
-    @locations = Location.joins(:account).where(account_id: current_user.account_id)
+    @locations = Location.joins(:account)
+      .where(account_id: current_user.account_id)
   end
 
   # GET /locations/1
@@ -29,11 +30,14 @@ class LocationsController < ApplicationController
 
     respond_to do |format|
       if @location.save
-        format.html { redirect_to @location, notice: 'Location was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @location }
+        format.html { redirect_to @location, 
+          notice: 'Location was successfully created.' }
+        format.json { render action: 'show', status: :created, 
+          location: @location }
       else
         format.html { render action: 'new' }
-        format.json { render json: @location.errors, status: :unprocessable_entity }
+        format.json { render json: @location.errors, 
+          status: :unprocessable_entity }
       end
     end
   end
@@ -43,11 +47,13 @@ class LocationsController < ApplicationController
   def update
     respond_to do |format|
       if @location.update(location_params)
-        format.html { redirect_to @location, notice: 'Location was successfully updated.' }
+        format.html { redirect_to @location, 
+          notice: 'Location was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
-        format.json { render json: @location.errors, status: :unprocessable_entity }
+        format.json { render json: @location.errors, 
+          status: :unprocessable_entity }
       end
     end
   end
@@ -68,7 +74,7 @@ class LocationsController < ApplicationController
       @location = Location.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
+    # Only allow the white list through.
     def location_params
       params.require(:location).permit(:name, :account_id)
     end

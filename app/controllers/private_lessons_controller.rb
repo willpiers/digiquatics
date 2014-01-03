@@ -33,11 +33,14 @@ class PrivateLessonsController < ApplicationController
 
     respond_to do |format|
       if @private_lesson.save
-        format.html { redirect_to @private_lesson, notice: 'Private lesson was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @private_lesson }
+        format.html { redirect_to @private_lesson, 
+          notice: 'Private lesson was successfully created.' }
+        format.json { render action: 'show', status: :created, 
+          location: @private_lesson }
       else
         format.html { render action: 'new' }
-        format.json { render json: @private_lesson.errors, status: :unprocessable_entity }
+        format.json { render json: @private_lesson.errors, 
+          status: :unprocessable_entity }
       end
     end
   end
@@ -47,12 +50,14 @@ class PrivateLessonsController < ApplicationController
   def update
     respond_to do |format|
       if @private_lesson.update(private_lesson_params)
-        format.html { redirect_to @private_lesson, notice: 'Private lesson was successfully updated.' }
+        format.html { redirect_to @private_lesson, 
+          notice: 'Private lesson was successfully updated.' }
         format.js
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
-        format.json { render json: @private_lesson.errors, status: :unprocessable_entity }
+        format.json { render json: @private_lesson.errors, 
+          status: :unprocessable_entity }
       end
     end
   end
@@ -77,7 +82,7 @@ class PrivateLessonsController < ApplicationController
       @private_lesson = PrivateLesson.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
+    # Only allow the white list through.
     def private_lesson_params
       params.require(:private_lesson).permit(:first_name, :email)
     end

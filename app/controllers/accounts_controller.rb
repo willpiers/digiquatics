@@ -28,11 +28,14 @@ class AccountsController < ApplicationController
 
     respond_to do |format|
       if @account.save
-        format.html { redirect_to @account, notice: 'Account was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @account }
+        format.html { redirect_to @account, 
+          notice: 'Account was successfully created.' }
+        format.json { render action: 'show', status: :created, 
+          location: @account }
       else
         format.html { render action: 'new' }
-        format.json { render json: @account.errors, status: :unprocessable_entity }
+        format.json { render json: @account.errors, 
+          status: :unprocessable_entity }
       end
     end
   end
@@ -42,11 +45,13 @@ class AccountsController < ApplicationController
   def update
     respond_to do |format|
       if @account.update(account_params)
-        format.html { redirect_to @account, notice: 'Account was successfully updated.' }
+        format.html { redirect_to @account, 
+          notice: 'Account was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
-        format.json { render json: @account.errors, status: :unprocessable_entity }
+        format.json { render json: @account.errors, 
+          status: :unprocessable_entity }
       end
     end
   end
@@ -67,7 +72,7 @@ class AccountsController < ApplicationController
     @account = Account.find(params[:id])
   end
 
-  # Never trust parameters from the scary internet, only allow the white list through.
+  # Only allow the white list through.
   def account_params
     params.require(:account).permit(:name, :time_zone)
   end

@@ -6,8 +6,10 @@ class CertificationsController < ApplicationController
   # GET /certifications
   # GET /certifications.json
   def index
-    @certification_names = CertificationName.joins(:account).where(account_id: current_user.account_id)
-    @users = User.joins(:account).where(account_id: current_user.account_id).order(sort_column + " " + sort_direction)
+    @certification_names = CertificationName.joins(:account)
+      .where(account_id: current_user.account_id)
+    @users = User.joins(:account).where(account_id: current_user.account_id)
+      .order(sort_column + " " + sort_direction)
   end
 
   # GET /certifications/1
@@ -31,11 +33,14 @@ class CertificationsController < ApplicationController
 
     respond_to do |format|
       if @certification.save
-        format.html { redirect_to @certification, notice: 'Certification was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @certification }
+        format.html { redirect_to @certification, 
+          notice: 'Certification was successfully created.' }
+        format.json { render action: 'show', status: :created, 
+          location: @certification }
       else
         format.html { render action: 'new' }
-        format.json { render json: @certification.errors, status: :unprocessable_entity }
+        format.json { render json: @certification.errors, 
+          status: :unprocessable_entity }
       end
     end
   end
@@ -45,11 +50,13 @@ class CertificationsController < ApplicationController
   def update
     respond_to do |format|
       if @certification.update(certification_params)
-        format.html { redirect_to @certification, notice: 'Certification was successfully updated.' }
+        format.html { redirect_to @certification, 
+          notice: 'Certification was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
-        format.json { render json: @certification.errors, status: :unprocessable_entity }
+        format.json { render json: @certification.errors, 
+          status: :unprocessable_entity }
       end
     end
   end
@@ -71,9 +78,10 @@ class CertificationsController < ApplicationController
     @certification = Certification.find(params[:id])
   end
 
-  # Never trust parameters from the scary internet, only allow the white list through.
+  # Only allow the white list through.
   def certification_params
-    params.require(:certification).permit(:certification_name_id, :user_id, :expiration_date)
+    params.require(:certification).permit(:certification_name_id, :user_id, 
+      :expiration_date)
   end
 end
 

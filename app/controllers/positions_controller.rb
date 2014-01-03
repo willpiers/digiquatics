@@ -28,11 +28,14 @@ class PositionsController < ApplicationController
 
     respond_to do |format|
       if @position.save
-        format.html { redirect_to @position, notice: 'Position was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @position }
+        format.html { redirect_to @position, 
+          notice: 'Position was successfully created.' }
+        format.json { render action: 'show', status: :created, 
+          location: @position }
       else
         format.html { render action: 'new' }
-        format.json { render json: @position.errors, status: :unprocessable_entity }
+        format.json { render json: @position.errors, 
+          status: :unprocessable_entity }
       end
     end
   end
@@ -42,11 +45,13 @@ class PositionsController < ApplicationController
   def update
     respond_to do |format|
       if @position.update(position_params)
-        format.html { redirect_to @position, notice: 'Position was successfully updated.' }
+        format.html { redirect_to @position, 
+          notice: 'Position was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
-        format.json { render json: @position.errors, status: :unprocessable_entity }
+        format.json { render json: @position.errors, 
+          status: :unprocessable_entity }
       end
     end
   end
@@ -67,7 +72,7 @@ class PositionsController < ApplicationController
       @position = Position.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
+    # Only allow the white list through.
     def position_params
       params.require(:position).permit(:name, :account_id)
     end
