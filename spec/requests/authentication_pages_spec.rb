@@ -3,7 +3,8 @@ require 'spec_helper'
 describe 'Authentication' do
   let(:location) { FactoryGirl.create(:location) }
   let(:position) { FactoryGirl.create(:position) }
-  let(:user) { FactoryGirl.create(:user, location_id: location.id, position_id: position.id) }
+  let(:user) { FactoryGirl.create(:user, location_id: location.id, 
+    position_id: position.id) }
 
   subject { page }
 
@@ -39,9 +40,9 @@ describe 'Authentication' do
       end
 
       it { should have_title(user.first_name) }
-      it { should have_link('My Profile',     href: user_path(user)) }
-      it { should have_link('Edit My Profile',     href: edit_user_path(user)) }
-      it { should have_link('Sign out',    href: signout_path) }
+      it { should have_link('My Profile', href: user_path(user)) }
+      it { should have_link('Edit My Profile', href: edit_user_path(user)) }
+      it { should have_link('Sign out', href: signout_path) }
       it { should_not have_link('Sign in', href: signin_path) }
 
   		describe 'followed by signout' do
@@ -91,7 +92,8 @@ describe 'Authentication' do
   end
 
   describe 'as wrong user' do
-    let(:wrong_user) { FactoryGirl.create(:user, email: 'wrong@example.com') }
+    let(:wrong_user) { FactoryGirl.create(:user, 
+      email: 'wrong@example.com') }
 
     before { sign_in user, no_capybara: true }
 

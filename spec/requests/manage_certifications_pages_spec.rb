@@ -8,13 +8,15 @@ describe 'Manage Certifications' do
     let(:account) { FactoryGirl.create(:account) }
     let(:location) { FactoryGirl.create(:location) }
     let(:position) { FactoryGirl.create(:position) }
-    let(:user) { FactoryGirl.create(:user,
-                                    account_id: account.id, location_id: location.id, position_id: position.id) }
+    let(:user) { FactoryGirl.create(:user, account_id: account.id, 
+      location_id: location.id, position_id: position.id) }
 
     before do
       sign_in user
-      FactoryGirl.create(:certification_name, name: 'CPR/AED', account_id: account.id)
-      FactoryGirl.create(:certification_name, name: 'Lifeguard', account_id: account.id)
+      FactoryGirl.create(:certification_name, name: 'CPR/AED', 
+        account_id: account.id)
+      FactoryGirl.create(:certification_name, name: 'Lifeguard', 
+        account_id: account.id)
       visit certification_names_path
     end
 

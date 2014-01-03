@@ -3,7 +3,8 @@ require 'spec_helper'
 describe 'User pages' do
   let(:location) { FactoryGirl.create(:location) }
   let(:position) { FactoryGirl.create(:position) }
-  let(:user) { FactoryGirl.create(:user, location_id: location.id, position_id: position.id) }
+  let(:user) { FactoryGirl.create(:user, location_id: location.id, 
+    position_id: position.id) }
 
   subject { page }
 
@@ -11,8 +12,10 @@ describe 'User pages' do
 
     before do
       sign_in user
-      FactoryGirl.create(:user, first_name: 'Bob', email: 'bob@example.com', location_id: location.id, position_id: position.id)
-      FactoryGirl.create(:user, first_name: 'Ben', email: 'ben@example.com', location_id: location.id, position_id: position.id)
+      FactoryGirl.create(:user, first_name: 'Bob', email: 'bob@example.com', 
+        location_id: location.id, position_id: position.id)
+      FactoryGirl.create(:user, first_name: 'Ben', email: 'ben@example.com', 
+        location_id: location.id, position_id: position.id)
       visit users_path
     end
 
@@ -150,7 +153,8 @@ describe 'User pages' do
 
         it { should have_link('Sign out') }
         it { should have_title(user.first_name) }
-        it { should have_selector('div.alert.alert-success', text: 'This account has been successfully created!') }
+        it { should have_selector('div.alert.alert-success', 
+          text: 'This account has been successfully created!') }
       end
     end
   end

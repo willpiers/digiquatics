@@ -3,7 +3,8 @@ require 'spec_helper'
 describe 'Certifications' do
   let(:location) { FactoryGirl.create(:location) }
   let(:position) { FactoryGirl.create(:position) }
-  let(:user) { FactoryGirl.create(:user, location_id: location.id, position_id: position.id) }
+  let(:user) { FactoryGirl.create(:user, location_id: location.id, 
+    position_id: position.id) }
 
   subject { page }
 
@@ -37,7 +38,8 @@ describe 'Certifications' do
       end
 
       it 'should not list certifications from another account' do
-        Certification.joins(:certification_name).where(certification_names: {account_id: 2}).each do |cert|
+        Certification.joins(:certification_name)
+          .where(certification_names: {account_id: 2}).each do |cert|
           page.should_not have_content(cert.certification_name.name)
       end
     end
