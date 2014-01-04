@@ -2,13 +2,16 @@
 
 <h1><%= @private_lesson.first_name + " " + @private_lesson.last_name %></h1>
 
-<div class="table-responsive" id="userform">
-
+<div id="userformbutton">
 	<%= form_for(@private_lesson, remote: true) do |f| %>
 		<%= f.submit "Claim Lesson", class: "btn btn-default btn-primary" %>
 	<% end %>
+</div>
 
-		<table class="table table-bordered" >
+<br> <br>
+
+<div class="table-responsive">
+		<table class="table table-bordered table-condensed" >
 			<h4> Parent Information </h4>
 				<tr> 
 					<th> First Name </th> 

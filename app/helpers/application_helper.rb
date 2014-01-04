@@ -11,7 +11,7 @@ module ApplicationHelper
   end
 
   def boolean_to_words(value)
-    value ? "Yes" : "No"
+    value ? "Y" : "N"
   end
       
   def sortable(column, title = nil)
