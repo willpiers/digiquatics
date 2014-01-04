@@ -3,12 +3,16 @@
 
 <h1><%="Chemical Record"%></h1>
 
-<div id="tabledata">
-  <%=link_to "Edit Chemical Record", 
-    edit_chemical_record_path(@chemical_record), 
-      class: "btn btn-default btn-primary"%>
-  <br> <br>
-  <table class="table table-bordered">
+<div id="userformbutton">
+<%=link_to "Edit Record", edit_chemical_record_path(@chemical_record), 
+    class: "btn btn-primary btn-sm"%>
+</div>
+
+<br> <br>
+
+<div class="table-responsive">
+  
+  <table class="table table-bordered table-condensed">
       <tr> 
         <th>Chlorine(ppm)</th> 
         <td><%=@chemical_record.chlorine_ppm%></td> 
@@ -51,7 +55,7 @@
     </tr>
     <tr> 
       <th>Date Created</th> 
-      <td><%=@chemical_record.created_at%></td> 
+      <td><%=@chemical_record.created_at.strftime("%-m/%-d/%y" + " " + "%l:%M%P")%></td> 
     </tr>
   </table>
 </div>
