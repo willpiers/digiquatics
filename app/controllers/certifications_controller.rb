@@ -10,6 +10,7 @@ class CertificationsController < ApplicationController
       .where(account_id: current_user.account_id)
     @users = User.joins(:account).where(account_id: current_user.account_id)
       .order(sort_column + " " + sort_direction)
+      .paginate(:per_page => 25, :page => params[:page])
   end
 
   # GET /certifications/1

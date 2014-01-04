@@ -2,6 +2,10 @@ class ChemicalRecordsController < ApplicationController
   helper_method :sort_column, :sort_direction
   before_action :set_chemical_record, only: [:show, :edit, :update, :destroy]
 
+  before_filter only: :index do
+  @per_page = 10_000 if request.format == 'csv'
+  end
+
   # GET /chemical_records
   # GET /chemical_records.json
   def index

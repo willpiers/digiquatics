@@ -105,15 +105,17 @@ namespace :db do
     end
 
 
-    50.times do |n|
+    250.times do |n|
 
       ChemicalRecord.create!(chlorine_ppm: [1,2,3,4,5].sample,
-                           ph: [7.4, 7.5, 7.6, 7.7, 7.8, 7.9, 8.0].sample,
-                           alkalinity: [50,60,70,80,90,100].sample,
-                           calcium_hardness: [60, 80, 100, 120, 140].sample,
+                           ph: [6.8, 6.9, 7.0, 7.1, 7.2, 7.3, 7.4, 7.5, 7.6, 
+                            7.7, 7.8, 7.9, 8.0].sample,
+                           alkalinity: [30, 40, 50,60,70,80,90,100, 110, 120, 
+                            130].sample,
+                           calcium_hardness: [60, 80, 100, 120, 140, 160, 180, 
+                            200].sample,
                            pool_temp: [81, 82, 83, 84, 85, 86].sample,
                            air_temp: [75, 76, 77, 78, 79, 80].sample,
-                           si_index: [-0.3, -0.2, -0.1, 0.0, 0.1, 0.2, 0.3].sample
       )
     end
   end
