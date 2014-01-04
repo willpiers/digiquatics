@@ -14,7 +14,7 @@ describe 'admin setup' do
     describe 'users' do
       before { click_link('Manage Users') }
 
-      it { should have_title(full_title('All users')) }
+      it { should have_title(full_title('Users')) }
     end
 
     describe 'locations' do

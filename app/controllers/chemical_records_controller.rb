@@ -88,6 +88,6 @@ class ChemicalRecordsController < ApplicationController
     end
 
     def sort_direction
-      params[:direction] || "asc"
+      params[:direction] || "desc"
     end
 end
