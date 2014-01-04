@@ -1,8 +1,8 @@
 <div class = "navbar navbar-inverse navbar-static-top">
   <div class = "container">
-   
-    <%= link_to "dashboard", root_path, id: "logo" %>
-   
+    <% if signed_in? %>
+      <%= link_to "Aquatics App Beta", root_path, id: "logo" %>
+    <% end %>
     <button class = "navbar-toggle" data-toggle = "collapse" 
     data-target = ".navHeaderCollapse">
       <span class = "icon-bar"></span>

@@ -7,7 +7,7 @@ class ChemicalRecordsController < ApplicationController
   def index
     @all_chem_records = ChemicalRecord.all
     @chemical_records = ChemicalRecord.order(sort_column + " " + sort_direction)
-      .paginate(:per_page => 25, :page => params[:page])
+      .paginate(:per_page => 25, :page => params[:page] )
     respond_to do |format|
       format.html
       format.csv { send_data @all_chem_records.to_csv }

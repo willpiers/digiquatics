@@ -11,10 +11,12 @@ AquaticsApp::Application.routes.draw do
   resources :locations
   resources :certifications
   resources :certification_names
-  resources :accounts do
-    resources :users
+  resources :accounts
+  resources :users do
+    member do
+      get 'certifications'
+    end
   end
-  resources :users
   resources :sessions, only: [:new, :create, :destroy]
 
   root  'static_pages#home'

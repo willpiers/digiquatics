@@ -8,8 +8,9 @@ class User < ActiveRecord::Base
   belongs_to  :location
   belongs_to  :position
 
-  accepts_nested_attributes_for :certifications, 
-    reject_if: lambda { |a| a[:attachment].blank? }
+  accepts_nested_attributes_for :certifications
+
+  # , reject_if: lambda { |a| a[:attachment].blank? }
 
   validates :first_name, presence: true, length: { maximum: 15 }
   validates :last_name, presence: true, length: { maximum: 15 }

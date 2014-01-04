@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   helper_method :sort_column, :sort_direction
   before_action :signed_in_user, only: [:index, :edit, :update]
   before_action :correct_user,   only: [:edit, :update]
-  #before_action :admin, only: [:edit, :update]
+  before_action :set_user, only: [:edit, :show, :certifications]
 
   def index
     @users = User.joins(:account).where(account_id: current_user.account_id)
@@ -12,7 +12,6 @@ class UsersController < ApplicationController
   end
 
 	def show
-		@user = User.find(params[:id])
 	end
 
   def new
@@ -22,8 +21,6 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find(params[:id])
-    @certifications = @user.certifications
     @location = @user.location
     @position = @user.position
   end
@@ -49,14 +46,25 @@ class UsersController < ApplicationController
     end
   end
 
+  def certifications
+    @certifications = @user.certifications
+  end
+
   private
 
+  def set_user
+    @user = User.find(params[:id])
+  end
+
   def user_params
-    params.require(:user).permit(:first_name, :last_name, :email, :password,
-                                 :password_confirmation, :date_of_birth, 
-                                 :date_of_hire, :sex, :phone_number, 
-                                 :shirt_size, :suit_size, :location_id, 
-                                 :position_id, :femalesuit, :notes)
+    params.require(:user).permit(:admin, :active, :first_name, :last_name, :email, :password,
+                                :password_confirmation, :date_of_birth, 
+                                :date_of_hire, :sex, :phone_number, 
+                                :shirt_size, :suit_size, :location_id, 
+                                :position_id, :femalesuit, :notes, 
+                                certifications_attributes: [:id, 
+                                :certification_name_id, :user_id, :issue_date,
+                                :expiration_date, :attachment])
   end
 
   def signed_in_user

@@ -102,12 +102,16 @@
 					<% end %>
 				</tr>
 				<tr>
-					<th> Attached File </th>
+					<th> Attached File (PDF) </th>
 					<% @user.certifications.each do |cert| %>
 					<th>
-						<img src="/images/PDF.png" alt="PDF Link" height="50px" width="50px" />
+						<!-- Only render if attachment exists -->
+						<% if cert.attachment? %>
+							<%= link_to "", cert.attachment.url, class: "glyphicon glyphicon-download-alt" %>
+						<% else %>
+						<% end %>
 					</th>
-				<!-- 	<%= link_to cert.attachment.url %> -->
+
 					<% end %>
 				</tr>
 			</tbody>

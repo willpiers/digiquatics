@@ -11,6 +11,7 @@ gem 'less', '2.4.0'
 gem 'therubyracer', '0.12.0'
 gem 'paperclip', '3.5.2'
 gem 'will_paginate', '~>3.0.4'
+gem 'bootstrap-will_paginate'
 
 # Using MySQL Database
 gem 'mysql2'

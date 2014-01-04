@@ -1,6 +1,6 @@
 <div class="row">
   <div class="userform">
-    <%= bootstrap_form_for user do |f| %>
+    <%= bootstrap_form_for @user do |f| %>
       <%= render 'shared/error_messages' %>
 
       <legend><%= legend %></legend>
@@ -35,14 +35,11 @@
 
       <h4>Certifications</h4>
 
-      <%= f.fields_for :certifications do |cert| %>
-        <%= cert.text_field :expiration_date, :value=> 
-          cert.object.expiration_date.strftime('%Y-%m-%d'), 
-            label: 'Issued Date (yyyy-mm-dd)'  %>
-        <%= cert.text_field :expiration_date, :value=> 
-          cert.object.expiration_date.strftime('%Y-%m-%d'), 
-            label: 'Expiration Date (yyyy-mm-dd)'  %>
-        <%= cert.file_field :attachment %>
+      <%= f.fields_for :certifications do |builder| %>
+        <%= builder.text_field :certification_name_id %>
+        <%= builder.text_field :issue_date %>
+        <%= builder.text_field :expiration_date %>
+        <%= builder.file_field :attachment %>
       <% end %>
 
       <h4>User Classification</h4>
