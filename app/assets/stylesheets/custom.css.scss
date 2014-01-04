@@ -65,7 +65,7 @@ P {
 	color: #fff;
 	text-transform: uppercase;
 	letter-spacing: -1px;
-	padding-top: 9px;
+	padding-top: 12px;
 	font-weight: bold;
 	line-height: 1;
 
@@ -170,9 +170,13 @@ legend{
 }
 
 .btn{
-	width: 200px;
 	margin: auto;
 	display: block;
+
+}
+
+.fixbtn {
+ margin: 7px;
 }
 
 // Default form width convenience class
@@ -195,3 +199,5 @@ legend{
     }
   }
 }
+
+

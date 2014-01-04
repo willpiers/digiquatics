@@ -2,56 +2,59 @@
 <h1>Chemical Records</h1>
 
 <ul class = "pull-right">
-  <%= link_to "New Chemical Record", new_chemical_record_path, 
-    class: "btn btn-primary" %>
+  <%= link_to "Add Record", new_chemical_record_path, 
+    class: "btn btn-primary btn-default" %>
 </ul>
 
 <ul class = "pull-right">
-  <%= link_to "Export", "#", class: "btn btn-warning" %>
+  <%= link_to "Export XLS", "#", class: "btn btn-warning btn-default" %>
 </ul>
 
 <ul class = "pull-right">
-  <%= link_to "Statistics", "#", class: "btn btn-success" %>
+  <%= link_to "Statistics", "#", class: "btn btn-success btn-default" %>
 </ul>
 
 <br><br><br>
 
-<table class="table table-hover">
-  <thead>
-    <tr>
-      <th><%= sortable "id", "Record ID" %></th>
-      <th><%= sortable "chlorine_ppm", "Chlorine" %></th>
-      <th><%= sortable "ph", "Ph" %></th>
-      <th><%= sortable "alkalinity", "Alkalinity" %></th>
-      <th><%= sortable "calcium_hardness", "Calcium hardness" %></th>
-      <th><%= sortable "pool_temp", "Pool temp" %></th>
-      <th><%= sortable "air_temp", "Air temp" %></th>
-      <th><%= sortable "si_index", "SI index" %></th>
-      <th><%= sortable "si_status", "Status" %></th>
-      <th><%= sortable "created_at", "Submitted" %></th>
-    </tr>
-  </thead>
+<div class="table-responsive">
 
-  <tbody>
-    <% @chemical_records.each do |chemical_record| %>
-      <tr>
-        <th><%= link_to chemical_record.id, chemical_record%></th>
-        <td><%= chemical_record.chlorine_ppm.round %></td>
-        <td><%= chemical_record.ph.round(1) %></td>
-        <td><%= chemical_record.alkalinity.round %></td>
-        <td><%= chemical_record.calcium_hardness.round %></td>
-        <td><%= chemical_record.pool_temp.round(1) %></td>
-        <td><%= chemical_record.air_temp.round(1) %></td>
-        <td><%= si_index(chemical_record.ph, chemical_record.pool_temp, 
-          chemical_record.calcium_hardness, chemical_record.alkalinity).round(2) 
-            %></td>
-        <td><%= si_index_description(si_index(chemical_record.ph, 
-          chemical_record.pool_temp, chemical_record.calcium_hardness, 
-            chemical_record.alkalinity)) %></td>
-        <td><%= chemical_record.created_at
-          .strftime("%-m/%-d/%Y" + " " + "%l:%M%P") %></td>
+  <table class="table table-hover table-condensed">
+    <thead>
+      <tr style="word-wrap:break-word;">
+        <th><%= sortable "id", "ID" %></th>
+        <th><%= sortable "chlorine_ppm", "Cl" %></th>
+        <th><%= sortable "ph", "Ph" %></th>
+        <th><%= sortable "alkalinity", "Alk" %></th>
+        <th><%= sortable "calcium_hardness", "CH" %></th>
+        <th><%= sortable "pool_temp", "Pool(F)" %></th>
+        <th><%= sortable "air_temp", "Air(F)" %></th>
+        <th><%= sortable "si_index", "SI index" %></th>
+        <th><%= sortable "si_status", "Status" %></th>
+        <th><%= sortable "created_at", "Submitted" %></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
-<br>
+    </thead>
+
+    <tbody>
+      <% @chemical_records.each do |chemical_record| %>
+        <tr>
+          <th><%= link_to chemical_record.id, chemical_record%></th>
+          <td><%= chemical_record.chlorine_ppm.round %></td>
+          <td><%= chemical_record.ph.round(1) %></td>
+          <td><%= chemical_record.alkalinity.round %></td>
+          <td><%= chemical_record.calcium_hardness.round %></td>
+          <td><%= chemical_record.pool_temp.round(1) %></td>
+          <td><%= chemical_record.air_temp.round(1) %></td>
+          <td><%= si_index(chemical_record.ph, chemical_record.pool_temp, 
+            chemical_record.calcium_hardness, chemical_record.alkalinity)
+              .round(2) %></td>
+          <td><%= si_index_description(si_index(chemical_record.ph, 
+            chemical_record.pool_temp, chemical_record.calcium_hardness, 
+              chemical_record.alkalinity)) %></td>
+          <td><%= chemical_record.created_at
+            .strftime("%-m/%-d/%y" + " " + "%l:%M%P") %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <br>
+</div>
