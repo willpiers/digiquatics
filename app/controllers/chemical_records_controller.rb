@@ -1,10 +1,15 @@
 class ChemicalRecordsController < ApplicationController
+  helper_method :sort_column, :sort_direction
   before_action :set_chemical_record, only: [:show, :edit, :update, :destroy]
 
   # GET /chemical_records
   # GET /chemical_records.json
   def index
     @chemical_records = ChemicalRecord.order(sort_column + " " + sort_direction)
+    respond_to do |format|
+      format.html
+      format.csv { send_data @chemical_records.to_csv }
+    end
   end
 
   # GET /chemical_records/1
