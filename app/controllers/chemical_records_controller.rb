@@ -2,18 +2,15 @@ class ChemicalRecordsController < ApplicationController
   helper_method :sort_column, :sort_direction
   before_action :set_chemical_record, only: [:show, :edit, :update, :destroy]
 
-  before_filter only: :index do
-  @per_page = 10_000 if request.format == 'csv'
-  end
-
   # GET /chemical_records
   # GET /chemical_records.json
   def index
+    @all_chem_records = ChemicalRecord.all
     @chemical_records = ChemicalRecord.order(sort_column + " " + sort_direction)
       .paginate(:per_page => 25, :page => params[:page])
     respond_to do |format|
       format.html
-      format.csv { send_data @chemical_records.to_csv }
+      format.csv { send_data @all_chem_records.to_csv }
     end
   end
 
@@ -38,7 +35,7 @@ class ChemicalRecordsController < ApplicationController
 
     respond_to do |format|
       if @chemical_record.save
-        format.html { redirect_to @chemical_record, 
+        format.html { redirect_to chemical_records_path, 
           notice: 'Chemical record was successfully created.' }
         format.json { render action: 'show', status: :created, 
           location: @chemical_record }
