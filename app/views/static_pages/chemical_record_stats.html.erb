@@ -1,0 +1,66 @@
+<% provide(:title, 'Chemical Statistics') %>
+<h1>Chemical Statistics</h1>
+
+<div class="table-responsive">
+<h4> Basic Information </h4>
+	<table class="table table-bordered table-condensed">
+		<tr>
+			<th>Type</th>
+			<th>Min</th>
+			<th>Max</th>
+			<th>Avg</th>
+			<th>Count</th>
+		</tr>
+		<tr>
+			<td>Chlorine (PPM) </td>
+			<td><%= @chemical_records.minimum('chlorine_ppm') %></td>
+			<td><%= @chemical_records.maximum('chlorine_ppm') %></td>
+			<td><%= @chemical_records.average('chlorine_ppm').round(1) %></td>
+			<td><%= @chemical_records.count(:chlorine_ppm) %></td>
+		</tr>
+		<tr>
+			<td>PH </td>
+			<td><%= @chemical_records.minimum('ph') %></td>
+			<td><%= @chemical_records.maximum('ph') %></td>
+			<td><%= @chemical_records.average('ph').round(1) %></td>
+			<td><%= @chemical_records.count(:ph) %></td>
+		</tr>
+		<tr>
+			<td>Alkalinity </td>
+			<td><%= @chemical_records.minimum('alkalinity').round %></td>
+			<td><%= @chemical_records.maximum('alkalinity').round %></td>
+			<td><%= @chemical_records.average('alkalinity').round(1) %></td>
+			<td><%= @chemical_records.count(:alkalinity) %></td>
+		</tr>
+		<tr>
+			<td>Calcium Hardness </td>
+			<td><%= @chemical_records.minimum('calcium_hardness').round %></td>
+			<td><%= @chemical_records.maximum('calcium_hardness').round %></td>
+			<td><%= @chemical_records.average('calcium_hardness').round(1) %></td>
+			<td><%= @chemical_records.count(:calcium_hardness) %></td>
+		</tr>
+		<tr>
+			<td>Air Temp (F) </td>
+			<td><%= @chemical_records.minimum('air_temp') %></td>
+			<td><%= @chemical_records.maximum('air_temp') %></td>
+			<td><%= @chemical_records.average('air_temp').round(1) %></td>
+			<td><%= @chemical_records.count(:air_temp) %></td>
+		</tr>
+		<tr>
+			<td>Pool Temp (F) </td>
+			<td><%= @chemical_records.minimum('pool_temp') %></td>
+			<td><%= @chemical_records.maximum('pool_temp') %></td>
+			<td><%= @chemical_records.average('pool_temp').round(1) %></td>
+			<td><%= @chemical_records.count(:pool_temp) %></td>
+		</tr>
+		<tr>
+			<td>SI Index</td>
+			<td><%= @chemical_records.minimum('si_index') %></td>
+			<td><%= @chemical_records.maximum('si_index') %></td>
+			<td><%= @chemical_records.average('si_index') %></td>
+			<td><%= @chemical_records.count(:si_index) %></td>
+		</tr>
+	</table>
+</div>
+
+

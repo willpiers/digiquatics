@@ -1,11 +1,11 @@
 <%= will_paginate(@chemical_records, page_links:false, next_label:"-->", previous_label:"<--")%>
 
-<div class="table-responsive">
+<div class="table-responsive" class="overflow-x: hidden">
 
   <table class="table table-hover table-condensed">
     <thead>
       <tr style="word-wrap:break-word;">
-        <th><%= sortable "id", "ID" %></th>
+        <th class="hidden-xs hidden-sm"><%= sortable "id", "ID" %></th>
         <th><%= sortable "chlorine_ppm", "Cl" %></th>
         <th><%= sortable "ph", "Ph" %></th>
         <th><%= sortable "alkalinity", "Alk" %></th>
@@ -21,7 +21,7 @@
     <tbody>
       <% @chemical_records.each do |chemical_record| %>
         <tr>
-          <th><%= link_to chemical_record.id, chemical_record%></th>
+          <th class="hidden-xs hidden-sm"><%= link_to chemical_record.id, chemical_record%></th>
           <td><%= chemical_record.chlorine_ppm.round %></td>
           <td><%= chemical_record.ph.round(1) %></td>
           <td><%= chemical_record.alkalinity.round %></td>

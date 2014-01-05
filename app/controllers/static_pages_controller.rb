@@ -6,6 +6,17 @@ class StaticPagesController < ApplicationController
   def about
   end
 
+  def chemical_record_stats
+    @chemical_records = ChemicalRecord.all
+    @cl = ChemicalRecord.all.where(chlorine_ppm: '>0')
+    @ph = ChemicalRecord.all.where()
+    @alk = ChemicalRecord.all.where()
+    @ch = ChemicalRecord.all.where()
+    @air = ChemicalRecord.all.where()
+    @pool = ChemicalRecord.all.where()
+    @si = ChemicalRecord.all.where()
+  end
+
   def certifications_stats
     @users = User.all
     @certification_names = CertificationName.joins(:account)
