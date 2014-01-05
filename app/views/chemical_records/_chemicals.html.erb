@@ -1,6 +1,6 @@
-<%= will_paginate(@chemical_records, page_links:false, next_label:"-->", previous_label:"<--")%>
+<%= will_paginate @chemical_records, :page_links => false %>
 
-<div class="table-responsive" class="overflow-x: hidden">
+<div class="table-responsive">
 
   <table class="table table-hover table-condensed">
     <thead>
