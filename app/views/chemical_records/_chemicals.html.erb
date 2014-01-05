@@ -1,4 +1,4 @@
-<%= will_paginate @chemical_records, previous_label: h("<"), next_label: h(">") %>
+<%= will_paginate(@chemical_records, page_links:false, next_label:"-->", previous_label:"<--")%>
 
 <div class="table-responsive">
 
