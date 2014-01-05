@@ -9,12 +9,9 @@ class CertificationsController < ApplicationController
     @certification_names = CertificationName.joins(:account)
       .where(account_id: current_user.account_id)
     @users = User.joins(:account).where(account_id: current_user.account_id)
-      .joins(:location)
+      .includes(:certifications)
       .order(sort_column + " " + sort_direction)
       .paginate(:per_page => 25, :page => params[:page])
-    # @users.each do |p|
-    #   puts p.location.inspect
-    # end
   end
 
   # GET /certifications/1

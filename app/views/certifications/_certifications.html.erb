@@ -10,8 +10,9 @@
         <th><%= sortable 'last_name', 'Last Name' %></th>
         <th><%= sortable 'location_id', 'Location' %></th>
         <% @certification_names.each do |certification_name| %>
-          <th><%= sortable 'certification_name', 
-            certification_name.name %></th>
+          <th>
+            <%= sortable 'certifications.expiration_date', certification_name.name %>
+          </th>
         <% end %>
       </tr>
     </thead>
@@ -20,7 +21,7 @@
         <tr>
           <td><%= link_to user.first_name, user %></td>
           <td><%= link_to user.last_name, user %></td>
-          <td><%= Location.find_by_id(user.location_id).name %></td>
+          <td><%= user.location.name %></td>
           <% user.certifications.each do |cert| %>
             <% if cert.expiration_date <= ( Date.today) %>
               <td class="danger">
