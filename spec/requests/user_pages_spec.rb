@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'pp'
 
 describe 'User pages' do
   let(:account) { FactoryGirl.create(:account) }
@@ -105,6 +106,7 @@ describe 'User pages' do
   describe 'signup' do
 
     before do
+      FactoryGirl.create(:account, name: 'hi', time_zone: 'Mountain Time (US & Canada)')
       FactoryGirl.create(:location, name: 'newlocation')
       FactoryGirl.create(:position, name: 'newposition')
       visit signup_path
@@ -137,7 +139,7 @@ describe 'User pages' do
         select '15', from: 'user_date_of_hire_3i'
         select '2012', from: 'user_date_of_hire_1i'
 
-        select 'account_name', from: 'user[account_id]'
+        select 'hi', from: 'user[account_id]'
         select 'newlocation', from: 'user[location_id]'
         select 'newposition',  from: 'user[position_id]'
         select('M', from: 'Shirt Size')
@@ -147,12 +149,12 @@ describe 'User pages' do
 
       it 'should create a user' do
         expect { click_button submit }.to change(User, :count).by(1)
+        pp current_user
       end
 
       describe 'after saving the user' do
         before { click_button submit }
         let(:user) { User.find_by(email: 'user@example.com') }
-
         it { should have_link('Sign out') }
         it { should have_title(user.first_name) }
         it { should have_selector('div.alert.alert-success',
