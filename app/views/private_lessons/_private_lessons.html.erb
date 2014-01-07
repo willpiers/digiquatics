@@ -1,12 +1,10 @@
-<%= will_paginate @private_lessons, previous_label: h("<"), next_label: h(">") %>
-
 <div class="table-responsive">
 
   <table class="table table-hover table-condensed">
     <thead>
       <tr>
-        <th><%= sortable "first_name" %></th>
         <th><%= sortable "last_name" %></th>
+        <th><%= sortable "first_name" %></th>
         <th><%= sortable "age" %></th>
         <th><%= sortable "sex" %></th>
         <th><%= sortable "ability_level", "Level" %></th>
@@ -20,8 +18,8 @@
     <tbody>
       <% @private_lessons.each do |private_lesson| %>
         <tr>
-          <td><%= link_to private_lesson.first_name, private_lesson %></td>
           <td><%= link_to private_lesson.last_name, private_lesson %></td>
+          <td><%= link_to private_lesson.first_name, private_lesson %></td>
           <td><%= private_lesson.age %></td>
           <td><%= private_lesson.sex %></td>
           <td><%= private_lesson.ability_level %></td>

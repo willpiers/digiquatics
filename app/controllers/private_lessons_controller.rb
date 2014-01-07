@@ -5,7 +5,6 @@ class PrivateLessonsController < ApplicationController
   # GET /private_lessons.json
   def index
     @private_lessons = PrivateLesson.order(sort_column + " " + sort_direction)
-      .paginate(:per_page => 25, :page => params[:page])
   end
 
   def my_lessons
