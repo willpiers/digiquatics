@@ -1,13 +1,12 @@
   <%= hidden_field_tag :direction, params[:direction] %>
   <%= hidden_field_tag :sort, params[:sort] %>
-  <%= will_paginate @users, previous_label: h("<"), next_label: h(">") %>
 
 <div class="table-responsive">
 
   <table class="table table-hover table-condensed" >
     <tr>
-      <th><%= sortable "first_name", "First Name"%></th>
       <th><%= sortable "last_name", "Last Name"%></th>
+      <th><%= sortable "first_name", "First Name"%></th>
       <th><%= sortable "date_of_birth", "Age"%></th>
       <th><%= sortable "location_id", "Location" %></th>
       <th><%= sortable "position_id", "Position"%></th>
@@ -20,10 +19,10 @@
     <% @users.each do |user| %>
       <tr>
       <td>
-        <%= link_to user.first_name, user  %>
-      </td>
-      <td>
         <%= link_to user.last_name, user %>
+      </td>  
+      <td>
+        <%= link_to user.first_name, user  %>
       </td>
       <td>
         <%= age(user.date_of_birth) %>

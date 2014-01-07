@@ -11,7 +11,6 @@ class CertificationsController < ApplicationController
     @users = User.joins(:account).where(account_id: current_user.account_id)
       .includes(:certifications)
       .order(sort_column + " " + sort_direction)
-      .paginate(:per_page => 25, :page => params[:page])
   end
 
   # GET /certifications/1
@@ -88,7 +87,7 @@ class CertificationsController < ApplicationController
 
   #Sorting
   def sort_column
-    params[:sort] || "first_name"
+    params[:sort] || "last_name"
   end
 
   def sort_direction

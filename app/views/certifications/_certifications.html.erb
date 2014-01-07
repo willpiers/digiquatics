@@ -1,13 +1,11 @@
 <!-- Notes below use @users versus @certifications to use pagination bc of the render on index uses users. -->
-<%= will_paginate @users, previous_label: h("<"), next_label: h(">") %>
-
 <div class="table-responsive">
 
   <table class="table table-hover table-condensed">
     <thead>
       <tr>
-        <th><%= sortable 'first_name', 'First Name' %></th>
         <th><%= sortable 'last_name', 'Last Name' %></th>
+        <th><%= sortable 'first_name', 'First Name' %></th>
         <th><%= sortable 'location_id', 'Location' %></th>
         <% @certification_names.each do |certification_name| %>
           <th>
@@ -19,8 +17,8 @@
     <tbody>
       <% @users.each do |user| %>
         <tr>
-          <td><%= link_to user.first_name, user %></td>
           <td><%= link_to user.last_name, user %></td>
+          <td><%= link_to user.first_name, user %></td>
           <td><%= user.location.name %></td>
           <% user.certifications.each do |cert| %>
             <% if cert.expiration_date <= ( Date.today) %>
