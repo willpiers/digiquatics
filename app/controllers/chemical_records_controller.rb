@@ -5,11 +5,10 @@ class ChemicalRecordsController < ApplicationController
   # GET /chemical_records
   # GET /chemical_records.json
   def index
-    @all_chem_records = ChemicalRecord.all
     @chemical_records = ChemicalRecord.order(sort_column + " " + sort_direction)
     respond_to do |format|
       format.html
-      format.csv { send_data @all_chem_records.to_csv }
+      format.csv { send_data @chemical_records.to_csv }
     end
   end
 

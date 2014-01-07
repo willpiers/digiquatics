@@ -8,6 +8,10 @@ class UsersController < ApplicationController
     @users = User.joins(:account).where(account_id: current_user.account_id)
     @users = User.includes(:location, :position).search(params[:search])
       .order(sort_column + " " + sort_direction)
+      respond_to do |format|
+        format.html
+        format.csv { send_data @users.to_csv }
+      end
   end
 
 	def show
@@ -56,14 +60,13 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:admin, :active, :first_name, :last_name, :email, :password,
-                                :password_confirmation, :date_of_birth, 
-                                :date_of_hire, :sex, :phone_number, 
-                                :shirt_size, :suit_size, :location_id, 
-                                :position_id, :femalesuit, :notes, 
-                                certifications_attributes: [:id, 
-                                :certification_name_id, :user_id, :issue_date,
-                                :expiration_date, :attachment])
+    params.require(:user)
+      .permit(:admin, :active, :first_name, :last_name, :email, :password,
+              :password_confirmation, :date_of_birth, :date_of_hire, :sex, 
+              :phone_number, :shirt_size, :suit_size, :location_id, :position_id, 
+              :femalesuit, :notes, 
+                certifications_attributes: [:id, :certification_name_id, 
+                :user_id, :issue_date, :expiration_date, :attachment])
   end
 
   def signed_in_user
