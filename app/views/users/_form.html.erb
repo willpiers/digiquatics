@@ -1,0 +1,56 @@
+<div class="row">
+  <div class="userform">
+    <%= bootstrap_form_for @user do |f| %>
+      <%= render 'shared/error_messages' %>
+
+      <legend><%= legend %></legend>
+
+      <%= f.text_field :first_name, label: 'First Name' %>
+      <%= f.text_field :last_name, label: 'Last Name' %>
+      <%= f.text_field :email %>
+      <%= f.password_field :password %>
+      <%= f.password_field :password_confirmation, label: 'Confirm Password' %>
+      <%= f.select :sex, %w[M F]%>
+      <%= f.select :shirt_size, %w[XS S M L XL XXL], {}, label: 'Shirt Size' %>
+      <%= f.select :suit_size, %w[XS S M L XL XXL],  {}, label: 'Shorts Size' %>
+      <%= f.select :femalesuit, %w[28 30 32 34 36 38 40], {},
+        label: 'One Piece Size (F)' if f.object.new_record? || user.sex == 'F' %>
+
+      <div class="date-select">
+        <%= f.date_select :date_of_birth, { start_year: Time.now.year,
+          end_year: 1900, order: [:month, :day, :year], prompt: true},
+            label: 'Date of Birth' %>
+      </div>
+      <div class="date-select">
+       <%= f.date_select :date_of_hire, { start_year: Time.now.year,
+        end_year: Time.now.year-30, order: [:month, :day, :year], prompt: true},
+          label: 'Date of Hire'  %>
+      </div>
+      <%= f.text_field :phone_number, label: "Phone Number" %>
+      <%= f.select :account_id,
+        options_from_collection_for_select(Account.all, :id, :name) %>
+      <%= f.select :location_id,
+        options_from_collection_for_select(Location.all, :id, :name) %>
+      <%= f.select :position_id,
+        options_from_collection_for_select(Position.all, :id, :name) %>
+
+      <h4>Certifications</h4>
+
+      <%= f.fields_for :certifications do |builder| %>
+        <%= builder.text_field :certification_name_id %>
+        <%= builder.text_field :issue_date %>
+        <%= builder.text_field :expiration_date %>
+        <%= builder.file_field :attachment %>
+      <% end %>
+
+      <h4>User Classification</h4>
+      <%= f.check_box :admin, style: "width: 20px; height: 50px;" %>
+      <%= f.check_box :active, style: "width: 20px; height: 50px;" %>
+
+      <%= f.text_area :notes, size: "2x" %>
+
+      <%= f.primary ( f.object.new_record? ?  "Create Account" :
+        "Save Changes" ) %>
+    <% end %>
+  </div>
+</div>

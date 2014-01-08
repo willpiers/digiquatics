@@ -1,0 +1,25 @@
+<%= bootstrap_form_for(@chemical_record) do |f| %>
+<% if @chemical_record.errors.any? %>
+
+	<div id="error_explanation">
+	  <h2><%= pluralize(@chemical_record.errors.count, "error") %> 
+	  	prohibited this chemical_record from being saved:</h2>
+	  <ul>
+	    <% @chemical_record.errors.full_messages.each do |msg| %>
+	    	<li><%= msg %></li>
+	    <% end %>
+	  </ul>
+	</div>
+<% end %>
+
+<%= content_tag(:legend, legend) unless !legend %>
+<%= f.text_field :chlorine_ppm %>
+<%= f.text_field :chlorine_orp %>
+<%= f.text_field :ph %>
+<%= f.text_field :alkalinity %>
+<%= f.text_field :calcium_hardness %>
+<%= f.text_field :pool_temp %>
+<%= f.text_field :air_temp %>
+<%= f.primary "Submit"%>
+
+<% end %>

@@ -1,0 +1,25 @@
+<% provide(:title, 'Users') %>
+<h1>Users</h1>
+
+<ul class = "pull-right">
+	<%= link_to "Add User", signup_path, class: "btn btn-primary btn-sm" %>
+</ul>
+
+<ul class = "pull-right">
+  <%= link_to "Export CSV", users_path(format: "csv") , class: "btn btn-warning btn-sm" %>
+</ul>
+
+<ul class = "pull-right">
+  <%= link_to "Statistics", user_stats_path, class: "btn btn-success btn-sm" %>
+</ul>
+
+<div id="searchbox">
+	<%= form_tag users_path, method: 'get', id: "users_search" do %>
+	  <%= text_field_tag :search, params[:search]%>
+	  <%= submit_tag "Search", name: nil, class:"btn btn-default btn-sm" %>
+</div>
+
+<br>
+
+<%= render 'users' %>
+<% end %>

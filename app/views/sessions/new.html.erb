@@ -1,0 +1,11 @@
+<% provide(:title, "Sign in") %>
+<div class="row">
+  <div class="userform">
+    <%= bootstrap_form_for :session, :url => signin_path do |f| %>
+      <legend>Sign in</legend>
+      <%= f.text_field :email %>
+      <%= f.password_field :password %>
+      <%= f.primary "Sign in" %>
+    <% end %>
+  </div>
+</div>

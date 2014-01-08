@@ -1,0 +1,49 @@
+<%= form_for(@attendance_record) do |f| %>
+  <% if @attendance_record.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@attendance_record.errors.count, "error") %> 
+        prohibited this attendance_record from being saved:</h2>
+      <ul>
+        <% @attendance_record.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :0500_0600 %><br>
+    <%= f.number_field :0500_0600 %>
+  </div>
+  <div class="field">
+    <%= f.label :0600_0700 %><br>
+    <%= f.number_field :0600_0700 %>
+  </div>
+  <div class="field">
+    <%= f.label :0700_0800 %><br>
+    <%= f.number_field :0700_0800 %>
+  </div>
+  <div class="field">
+    <%= f.label :0800_0900 %><br>
+    <%= f.number_field :0800_0900 %>
+  </div>
+  <div class="field">
+    <%= f.label :0900_1000 %><br>
+    <%= f.number_field :0900_1000 %>
+  </div>
+  <div class="field">
+    <%= f.label :1000_1100 %><br>
+    <%= f.number_field :1000_1100 %>
+  </div>
+  <div class="field">
+    <%= f.label :1100_1200 %><br>
+    <%= f.number_field :1100_1200 %>
+  </div>
+  <div class="field">
+    <%= f.label :pool_id %><br>
+    <%= f.number_field :pool_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

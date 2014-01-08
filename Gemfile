@@ -1,10 +1,21 @@
 source 'https://rubygems.org'
+ruby '2.0.0'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.0.0'
+gem 'rails', '4.0.2'
+gem 'bootstrap-sass', '3.0.3.0'
+gem 'bcrypt-ruby', '3.1.2'
+gem 'faker', '1.1.2'
+gem 'bootstrap_form', :git => 'git://github.com/potenza/bootstrap_form.git'
+gem 'less', '2.4.0'
+gem 'therubyracer', '0.12.0'
+gem 'paperclip', '3.5.2'
+gem 'will_paginate', '~>3.0.4'
+gem 'bootstrap-will_paginate'
+gem 'intercom-rails', '~> 0.2.21'
 
-# Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+# Using MySQL Database
+gem 'mysql2'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
@@ -16,6 +27,7 @@ gem 'uglifier', '>= 1.3.0'
 group :development, :test do
   gem 'rspec-rails'
   gem 'guard-rspec'
+  gem 'guard-bundler'
   gem 'spork-rails', '4.0.0'
   gem 'guard-spork', '1.5.0'
   gem 'childprocess', '0.3.6'
@@ -23,6 +35,7 @@ end
 
 group :test do
   gem 'capybara', '2.1.0'
+  gem 'factory_girl_rails', '4.2.1'
 end
 
 # Use CoffeeScript for .js.coffee assets and views

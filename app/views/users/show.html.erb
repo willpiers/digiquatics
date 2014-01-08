@@ -1,0 +1,135 @@
+<% provide(:title, @user.first_name) %>
+
+<h1><%= @user.first_name + " " + @user.last_name %></h1>
+
+<div id="userformbutton">
+	<%= link_to "Edit Profile", edit_user_path(@user),
+		class: "btn btn-default btn-primary" %>
+</div>
+
+<br>
+
+<div class="table-responsive">
+
+	<h4> User Information </h4>
+
+		<table class="table table-bordered table-condensed" >
+			<tr>
+			<th> Admin </th>
+				<td> <%= boolean_to_words(@user.admin) %> </td>
+			</tr>
+			<tr>
+				<tr>
+				<th> Active </th>
+					<td> <%= boolean_to_words(@user.active) %> </td>
+				</tr>
+				<tr>
+				<tr>
+				<th> Account </th>
+					<td> <%= @user.account.name %> </td>
+				</tr>
+				<tr>
+				<th> Location </th>
+					<td> <%= @user.location.name %> </td>
+				</tr>
+				<tr>
+					<th> Position </th> <td> <%= @user.position.name %>  </td>
+				</tr>
+				<tr>
+					<th> Email </th> <td> <%= @user.email %>  </td>
+				</tr>
+				<tr>
+					<th> Phone# </th> <td> <%= @user.phone_number %>  </td>
+				</tr>
+				<tr>
+					<th> DOB </th> <td> <%= @user.date_of_birth ?
+						@user.date_of_birth.strftime('%-m/%-d/%Y') : '-' %>  </td>
+				</tr>
+				<tr>
+					<th> DOH </th> <td> <%= @user.date_of_hire ?
+						@user.date_of_hire.strftime('%-m/%-d/%Y') : '-' %>  </td>
+				</tr>
+				<tr>
+					<th> Sex </th> <td> <%= @user.sex %>  </td>
+				</tr>
+				<tr>
+					<th> Shirt Size </th> <td> <%= @user.shirt_size %>  </td>
+				</tr>
+				<tr>
+					<th> Suit Size </th> <td> <%= @user.suit_size %>  </td>
+				</tr>
+
+				<tr>
+					<th> One Piece Size </th> <td> <%= @user.femalesuit %>  </td>
+				</tr>
+		</table>
+	</div>
+
+	<% @account = @user.account %>
+
+	<div class="table-responsive">
+
+		<h4> Certification Information </h4>
+
+		<table class="table table-bordered table-condensed" >
+			<thead>
+				<tr>
+					<th> Certification Name </th>
+					<% @user.certifications.each do |cert| %>
+					<th><%= cert.certification_name.name %></th>
+					<% end %>
+				</tr>
+			</thead>
+			<tbody>
+				<tr><th> Issue Date </th>
+					<% @user.certifications.each do |cert| %>
+					<td><%= cert.issue_date.strftime('%-m/%-d/%y') %></td>
+					<% end %>
+				</tr>
+
+				<tr><th> Expiration Date </th>
+					<% @user.certifications.each do |cert| %>
+						<% if cert.expiration_date <= ( Date.today) %>
+							<td class="danger">
+								<%= cert.expiration_date.strftime('%-m/%-d/%y') %>
+							</td>
+						<% elsif cert.expiration_date > ( Date.today ) &&
+							cert.expiration_date < ( Date.today + 60.days ) %>
+			        <td class="warning">
+			          <%= cert.expiration_date.strftime('%-m/%-d/%y') %>
+			        </td>
+			      <% elsif cert.expiration_date >= ( Date.today + 60.days ) %>
+			        <td class="success">
+			        <%= cert.expiration_date.strftime('%-m/%-d/%y') %>
+			        </td>
+			      <% end %>
+					<% end %>
+				</tr>
+				<tr>
+					<th> Attached File (PDF) </th>
+					<% @user.certifications.each do |cert| %>
+					<th>
+						<!-- Only render if attachment exists -->
+						<% if cert.attachment? %>
+							<%= link_to "", cert.attachment.url, class: "glyphicon glyphicon-download-alt" %>
+						<% else %>
+						<% end %>
+					</th>
+
+					<% end %>
+				</tr>
+			</tbody>
+		</table>
+
+		<div style="font-size: 60%">
+			<br>
+				<p >
+					<img src="/images/reddot.png" alt="red" height="10px" width="10px" /> = Expired
+					<img src="/images/yellowdot.png" alt="yellow" height="10px" width="10px" /> = Expires within 60 days
+			 		<img src="/images/greendot.png" alt="green" height="10px" width="10px" /> = Normal
+			 </p>
+		</div>
+
+		<h4> Notes </h4>
+		<%= @user.notes %>
+</div>
