@@ -29,12 +29,12 @@
           <td class="hidden-xs hidden-sm"><%= si_index_description(si_index(chemical_record.ph, 
             chemical_record.pool_temp, chemical_record.calcium_hardness, 
               chemical_record.alkalinity)) %></td>
-          <td><%= chemical_record.created_at
-            .strftime("%-m/%-d/%y" + " " + "%l:%M%P") %></td>
+          <td><%= link_to chemical_record.created_at.strftime("%-m/%-d/%y" + " " + "%l:%M%P") ,chemical_record
+            %></td>
         </tr>
       <% end %>
     </tbody>
   </table>
   <br>
-  	</div>  	
+</div>  	
 
