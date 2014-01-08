@@ -12,6 +12,7 @@ gem 'therubyracer', '0.12.0'
 gem 'paperclip', '3.5.2'
 gem 'will_paginate', '~>3.0.4'
 gem 'bootstrap-will_paginate'
+gem 'intercom-rails', '~> 0.2.21'
 
 # Using MySQL Database
 gem 'mysql2'
