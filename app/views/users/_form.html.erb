@@ -28,7 +28,7 @@
       </div>
       <%= f.text_field :phone_number, label: "Phone Number" %>
       <%= f.select :account_id,
-        options_from_collection_for_select(Account.all, :id, :name) %>
+        options_from_collection_for_select(Account.all, :id, :id) %>
       <%= f.select :location_id,
         options_from_collection_for_select(Location.all, :id, :name) %>
       <%= f.select :position_id,

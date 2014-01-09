@@ -41,9 +41,8 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     @user.account_id = current_user ? current_user.account_id : 1
     if @user.save
-    	sign_in @user
     	flash[:success] = 'This account has been successfully created!'
-    	redirect_to @user
+    	redirect_to users_path
     else
       render 'new'
     end
@@ -61,11 +60,11 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user)
-      .permit(:admin, :active, :first_name, :last_name, :email, :password,
-              :password_confirmation, :date_of_birth, :date_of_hire, :sex, 
-              :phone_number, :shirt_size, :suit_size, :location_id, :position_id, 
-              :femalesuit, :notes, 
-                certifications_attributes: [:id, :certification_name_id, 
+      .permit(:admin, :active, :account_id, :first_name, :last_name, :email, :password,
+              :password_confirmation, :date_of_birth, :date_of_hire, :sex,
+              :phone_number, :shirt_size, :suit_size, :location_id, :position_id,
+              :femalesuit, :notes,
+                certifications_attributes: [:id, :certification_name_id,
                 :user_id, :issue_date, :expiration_date, :attachment])
   end
 

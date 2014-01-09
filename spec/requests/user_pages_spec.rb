@@ -2,13 +2,66 @@ require 'spec_helper'
 require 'pp'
 
 describe 'User pages' do
-  let(:account) { FactoryGirl.create(:account) }
-  let(:location) { FactoryGirl.create(:location) }
-  let(:position) { FactoryGirl.create(:position) }
-  let(:user) { FactoryGirl.create(:user, location_id: location.id,
+  let!(:account) { FactoryGirl.create(:account) }
+  let!(:location) { FactoryGirl.create(:location) }
+  let!(:position) { FactoryGirl.create(:position) }
+  let!(:user) { FactoryGirl.create(:user, location_id: location.id,
     position_id: position.id, account_id: account.id) }
 
   subject { page }
+
+  describe 'signup' do
+    before do
+      sign_in user
+      visit signup_path
+    end
+
+    let(:submit) { 'Create Account' }
+
+    describe 'with invalid information' do
+
+      it 'should not create a user' do
+        expect { click_button submit }.not_to change(User, :count)
+      end
+    end
+
+    describe 'with valid information' do
+
+      before do
+        fill_in 'First Name',   with: 'First'
+        fill_in 'Last Name',    with: 'Last'
+        fill_in 'Phone Number',   with: '1234'
+        fill_in 'Email',        with: 'user@example.com'
+        fill_in 'Password',     with: 'foobar'
+        fill_in 'Confirm Password', with: 'foobar'
+        select('M', from: 'Sex')
+
+        select 'September', from: 'user_date_of_birth_2i'
+        select '8', from: 'user_date_of_birth_3i'
+        select '1992', from: 'user_date_of_birth_1i'
+
+        select 'August', from: 'user_date_of_hire_2i'
+        select '15', from: 'user_date_of_hire_3i'
+        select '2012', from: 'user_date_of_hire_1i'
+        select account.id, from: 'user[account_id]'
+        select location.name, from: 'user[location_id]'
+        select position.name,  from: 'user[position_id]'
+        select('M', from: 'Shirt Size')
+        select('M', from: 'Shorts Size')
+        select('28', from: 'user[femalesuit]')
+      end
+
+      it 'should create a user' do
+        expect { click_button submit }.to change(User, :count).by(1)
+      end
+
+      describe 'after saving the user' do
+        before { click_button submit }
+        it { should have_link('Sign out') }
+        it { should have_selector('div.alert.alert-success') }
+      end
+    end
+  end
 
   describe 'index' do
 
@@ -100,66 +153,6 @@ describe 'User pages' do
       specify { expect(user.reload.email).to eq new_email.downcase }
       specify { expect(user.reload.location.id).to eq location.id}
       specify { expect(user.reload.position.id).to eq position.id}
-    end
-  end
-
-  describe 'signup' do
-
-    before do
-      FactoryGirl.create(:account, name: 'hi', time_zone: 'Mountain Time (US & Canada)')
-      FactoryGirl.create(:location, name: 'newlocation')
-      FactoryGirl.create(:position, name: 'newposition')
-      visit signup_path
-    end
-
-    let(:submit) { 'Create Account' }
-
-    describe 'with invalid information' do
-      it 'should not create a user' do
-        expect { click_button submit }.not_to change(User, :count)
-      end
-    end
-
-    describe 'with valid information' do
-
-      before do
-        fill_in 'First Name',   with: 'First'
-        fill_in 'Last Name',    with: 'Last'
-        fill_in 'Phone Number',   with: '1234'
-        fill_in 'Email',        with: 'user@example.com'
-        fill_in 'Password',     with: 'foobar'
-        fill_in 'Confirm Password', with: 'foobar'
-        select('M', from: 'Sex')
-
-        select 'September', from: 'user_date_of_birth_2i'
-        select '8', from: 'user_date_of_birth_3i'
-        select '1992', from: 'user_date_of_birth_1i'
-
-        select 'August', from: 'user_date_of_hire_2i'
-        select '15', from: 'user_date_of_hire_3i'
-        select '2012', from: 'user_date_of_hire_1i'
-
-        select 'hi', from: 'user[account_id]'
-        select 'newlocation', from: 'user[location_id]'
-        select 'newposition',  from: 'user[position_id]'
-        select('M', from: 'Shirt Size')
-        select('M', from: 'Shorts Size')
-        select('28', from: 'user[femalesuit]')
-      end
-
-      it 'should create a user' do
-        expect { click_button submit }.to change(User, :count).by(1)
-        pp current_user
-      end
-
-      describe 'after saving the user' do
-        before { click_button submit }
-        let(:user) { User.find_by(email: 'user@example.com') }
-        it { should have_link('Sign out') }
-        it { should have_title(user.first_name) }
-        it { should have_selector('div.alert.alert-success',
-          text: 'This account has been successfully created!') }
-      end
     end
   end
 
