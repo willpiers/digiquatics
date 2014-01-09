@@ -1,7 +1,4 @@
 <%= bootstrap_form_for @certification_name do |f| %>
-<% @certification_name.account_id = current_user.account_id %>
-
-<div id="certificationnamesedit">
 
   <div class="field">
     <%= f.text_field :name %>
@@ -11,7 +8,4 @@
     <%= f.submit %>
   </div>
 
-</div>
-
-  
 <% end %>

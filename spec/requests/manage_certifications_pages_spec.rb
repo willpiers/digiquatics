@@ -8,14 +8,14 @@ describe 'Manage Certifications' do
     let(:account) { FactoryGirl.create(:account) }
     let(:location) { FactoryGirl.create(:location) }
     let(:position) { FactoryGirl.create(:position) }
-    let(:user) { FactoryGirl.create(:user, account_id: account.id, 
+    let(:user) { FactoryGirl.create(:user, account_id: account.id,
       location_id: location.id, position_id: position.id) }
 
     before do
       sign_in user
-      FactoryGirl.create(:certification_name, name: 'CPR/AED', 
+      FactoryGirl.create(:certification_name, name: 'CPR/AED',
         account_id: account.id)
-      FactoryGirl.create(:certification_name, name: 'Lifeguard', 
+      FactoryGirl.create(:certification_name, name: 'Lifeguard',
         account_id: account.id)
       visit certification_names_path
     end
@@ -34,6 +34,18 @@ describe 'Manage Certifications' do
     describe 'links' do
       it { should have_link('Add') }
       it { should have_link('Delete') }
+    end
+
+    describe 'creating a new certification_name' do
+      before do
+        visit new_certification_name_path
+        fill_in 'Name', with: 'LG'
+      end
+
+      it 'should create a new cert name' do
+        expect { click_button 'Create Certification name'}
+        .to change(CertificationName, :count).by(1)
+      end
     end
   end
 end

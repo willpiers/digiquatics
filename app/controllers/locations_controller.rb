@@ -27,16 +27,17 @@ class LocationsController < ApplicationController
   # POST /locations.json
   def create
     @location = Location.new(location_params)
+    @location.account_id = current_user.account_id
 
     respond_to do |format|
       if @location.save
-        format.html { redirect_to @location, 
-          notice: 'Location was successfully created.' }
-        format.json { render action: 'show', status: :created, 
+        format.html { redirect_to certification_names_path,
+          notice: 'Certification name was successfully created.' }
+        format.json { render action: 'show', status: :created,
           location: @location }
       else
         format.html { render action: 'new' }
-        format.json { render json: @location.errors, 
+        format.json { render json: @location.errors,
           status: :unprocessable_entity }
       end
     end
@@ -47,12 +48,12 @@ class LocationsController < ApplicationController
   def update
     respond_to do |format|
       if @location.update(location_params)
-        format.html { redirect_to @location, 
+        format.html { redirect_to @location,
           notice: 'Location was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
-        format.json { render json: @location.errors, 
+        format.json { render json: @location.errors,
           status: :unprocessable_entity }
       end
     end
@@ -69,13 +70,14 @@ class LocationsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_location
-      @location = Location.find(params[:id])
-    end
 
-    # Only allow the white list through.
-    def location_params
-      params.require(:location).permit(:name, :account_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_location
+    @location = Location.find(params[:id])
+  end
+
+  # Only allow the white list through.
+  def location_params
+    params.require(:location).permit(:name, :account_id)
+  end
 end

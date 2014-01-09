@@ -1,5 +1,4 @@
 class CertificationNamesController < ApplicationController
-  
   before_action :set_certification_name, only: [:show, :edit, :update, :destroy]
 
   # GET /certification_names
@@ -28,16 +27,17 @@ class CertificationNamesController < ApplicationController
   # POST /certification_names.json
   def create
     @certification_name = CertificationName.new(certification_name_params)
+    @certification_name.account_id = current_user.account_id
 
     respond_to do |format|
       if @certification_name.save
-        format.html { redirect_to @certification_name, 
+        format.html { redirect_to certification_names_path,
           notice: 'Certification name was successfully created.' }
-        format.json { render action: 'show', 
+        format.json { render action: 'show',
           status: :created, location: @certification_name }
       else
         format.html { render action: 'new' }
-        format.json { render json: @certification_name.errors, 
+        format.json { render json: @certification_name.errors,
           status: :unprocessable_entity }
       end
     end
@@ -48,12 +48,12 @@ class CertificationNamesController < ApplicationController
   def update
     respond_to do |format|
       if @certification_name.update(certification_name_params)
-        format.html { redirect_to @certification_name, 
+        format.html { redirect_to @certification_name,
           notice: 'Certification name was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
-        format.json { render json: @certification_name.errors, 
+        format.json { render json: @certification_name.errors,
           status: :unprocessable_entity }
       end
     end
