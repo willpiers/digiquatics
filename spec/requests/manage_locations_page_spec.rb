@@ -41,7 +41,6 @@ describe 'Manage Locations' do
       before do
         visit new_location_path
         fill_in 'Name', with: 'Ridge Rec Center'
-        pp locations_path
       end
 
       it 'should create a new location' do

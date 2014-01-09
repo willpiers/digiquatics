@@ -25,16 +25,16 @@ class PositionsController < ApplicationController
   # POST /positions.json
   def create
     @position = Position.new(position_params)
-
+    @position.account_id = current_user.account_id
     respond_to do |format|
       if @position.save
-        format.html { redirect_to @position, 
+        format.html { redirect_to positions_path,
           notice: 'Position was successfully created.' }
-        format.json { render action: 'show', status: :created, 
+        format.json { render action: 'show', status: :created,
           location: @position }
       else
         format.html { render action: 'new' }
-        format.json { render json: @position.errors, 
+        format.json { render json: @position.errors,
           status: :unprocessable_entity }
       end
     end
@@ -45,12 +45,12 @@ class PositionsController < ApplicationController
   def update
     respond_to do |format|
       if @position.update(position_params)
-        format.html { redirect_to @position, 
+        format.html { redirect_to @position,
           notice: 'Position was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
-        format.json { render json: @position.errors, 
+        format.json { render json: @position.errors,
           status: :unprocessable_entity }
       end
     end
