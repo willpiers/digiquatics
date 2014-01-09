@@ -39,7 +39,7 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    @user.account_id = current_user ? current_user.account_id : 1
+    @user.account_id = current_user.account_id
     if @user.save
     	flash[:success] = 'This account has been successfully created!'
     	redirect_to users_path

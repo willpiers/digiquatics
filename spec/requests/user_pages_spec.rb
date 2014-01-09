@@ -43,7 +43,6 @@ describe 'User pages' do
         select 'August', from: 'user_date_of_hire_2i'
         select '15', from: 'user_date_of_hire_3i'
         select '2012', from: 'user_date_of_hire_1i'
-        select account.id, from: 'user[account_id]'
         select location.name, from: 'user[location_id]'
         select position.name,  from: 'user[position_id]'
         select('M', from: 'Shirt Size')
@@ -57,6 +56,12 @@ describe 'User pages' do
 
       describe 'after saving the user' do
         before { click_button submit }
+        let(:created_user) { User.find_by_email('user@example.com') }
+
+        it 'should have same account_id as current_user' do
+          created_user.account_id.should eq(user.account_id)
+        end
+
         it { should have_link('Sign out') }
         it { should have_selector('div.alert.alert-success') }
       end
