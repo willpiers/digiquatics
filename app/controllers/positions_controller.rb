@@ -74,6 +74,6 @@ class PositionsController < ApplicationController
 
     # Only allow the white list through.
     def position_params
-      params.require(:position).permit(:name, :account_id)
+      params.require(:position).permit(:name)
     end
 end

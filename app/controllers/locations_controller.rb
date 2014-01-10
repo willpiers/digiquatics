@@ -78,6 +78,6 @@ class LocationsController < ApplicationController
 
   # Only allow the white list through.
   def location_params
-    params.require(:location).permit(:name, :account_id)
+    params.require(:location).permit(:name)
   end
 end

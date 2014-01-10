@@ -77,6 +77,6 @@ class CertificationNamesController < ApplicationController
 
     # Only allow the white list through.
     def certification_name_params
-      params.require(:certification_name).permit(:account_id, :name)
+      params.require(:certification_name).permit(:name)
     end
 end
