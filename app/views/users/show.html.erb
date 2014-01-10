@@ -10,7 +10,11 @@
 <br>
 
 <div style = "margin-left:0px;">
-<%= image_tag @user.avatar.url(:thumb) %>
+<% if @user.avatar.file? %>
+	<%= image_tag @user.avatar.url, size: '100x100' %>
+<% else %>
+	<img src="/images/missingavatar.png" alt='red' height="100px" width="100px" />	
+<% end %>
 </div>
 
 <div class="table-responsive">
