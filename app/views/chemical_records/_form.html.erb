@@ -20,6 +20,18 @@
 <%= f.text_field :calcium_hardness %>
 <%= f.text_field :pool_temp %>
 <%= f.text_field :air_temp %>
+
+<div class="date-select">
+  <%= f.date_select :date_time_reading, { start_year: Time.now.year,
+  	end_year: Time.now.year-2, use_short_month: true,
+  	order: [:month, :day, :year], 
+  	prompt: true},
+    label: 'Date'  %>
+  <%= f.time_select :date_time_reading, { order: [:minute, :hour], 
+  	ampm: true, minute_step: 15, prompt: true},
+    label: 'Time'  %>  
+</div>
+
 <%= f.primary "Submit"%>
 
 <% end %>
