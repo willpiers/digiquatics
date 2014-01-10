@@ -8,7 +8,17 @@ class User < ActiveRecord::Base
   belongs_to  :location
   belongs_to  :position
 
-  accepts_nested_attributes_for :certifications, reject_if: lambda { |a| a[:attachment].blank? }
+  has_attached_file :avatar,
+    :path => ":rails_root/public/system/:attachment/:id/:style/:filename",
+    :url => "/system/:attachment/:id/:style/:filename",
+    styles: {
+      thumb: '100x100>',
+      square: '200x200#',
+      medium: '300x300>'
+    }
+
+  accepts_nested_attributes_for :certifications, 
+    reject_if: lambda { |a| a[:attachment].blank? }
 
   validates :first_name, presence: true, length: { maximum: 15 }
   validates :last_name, presence: true, length: { maximum: 15 }
