@@ -42,9 +42,11 @@ describe 'Manage Certifications' do
         fill_in 'Name', with: 'LG'
       end
 
-      it 'should create a new cert name' do
+      it 'should create a new cert name and redirect to index' do
         expect { click_button 'Create Certification name'}
         .to change(CertificationName, :count).by(1)
+
+        current_path.should == certification_names_path
       end
     end
   end

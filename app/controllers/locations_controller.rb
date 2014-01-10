@@ -31,7 +31,7 @@ class LocationsController < ApplicationController
 
     respond_to do |format|
       if @location.save
-        format.html { redirect_to certification_names_path,
+        format.html { redirect_to locations_path,
           notice: 'Certification name was successfully created.' }
         format.json { render action: 'show', status: :created,
           location: @location }

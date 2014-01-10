@@ -43,9 +43,11 @@ describe 'Manage Locations' do
         fill_in 'Name', with: 'Ridge Rec Center'
       end
 
-      it 'should create a new location' do
+      it 'should create a new location and redirect to index' do
         expect { click_button 'Create Location'}
         .to change(Location, :count).by(1)
+
+        current_path.should == locations_path
       end
     end
   end
