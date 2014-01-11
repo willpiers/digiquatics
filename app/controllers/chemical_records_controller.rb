@@ -7,8 +7,9 @@ class ChemicalRecordsController < ApplicationController
   def index
     @chemical_records = ChemicalRecord.order(sort_column + " " + sort_direction)
     respond_to do |format|
-      format.html
-      format.csv { send_data @chemical_records.to_csv }
+      format.html # index.html.erb
+      format.xml  { render :xml => @chemical_records}
+      format.csv { render :csv => @chemical_records}
     end
   end
 

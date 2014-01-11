@@ -61,6 +61,8 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.6.3)
+    comma (3.2.0)
+      activesupport (>= 3.0.0)
     commonjs (0.2.7)
     diff-lcs (1.2.5)
     erubis (2.7.0)
@@ -223,6 +225,7 @@ DEPENDENCIES
   capybara (= 2.1.0)
   childprocess (= 0.3.6)
   coffee-rails (~> 4.0.0)
+  comma (~> 3.0)
   factory_girl_rails (= 4.2.1)
   faker (= 1.1.2)
   guard-bundler

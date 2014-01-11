@@ -116,6 +116,7 @@ namespace :db do
                             200].sample,
                            pool_temp: [81, 82, 83, 84, 85, 86].sample,
                            air_temp: [75, 76, 77, 78, 79, 80].sample,
+                           date_time_reading: "2014-01-01",
       )
     end
   end

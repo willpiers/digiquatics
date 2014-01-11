@@ -13,6 +13,7 @@ gem 'paperclip', '3.5.2'
 gem 'will_paginate', '~>3.0.4'
 gem 'bootstrap-will_paginate'
 gem 'intercom-rails', '~> 0.2.21'
+gem 'comma', '~> 3.0'
 
 # Using MySQL Database
 gem 'mysql2'
