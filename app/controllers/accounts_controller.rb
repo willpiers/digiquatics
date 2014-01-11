@@ -21,6 +21,18 @@ class AccountsController < ApplicationController
   def edit
   end
 
+  def admin_dashboard
+    @locations = Location.joins(:account)
+      .where(account_id: current_user.account_id)
+    @positions = Position.joins(:account)
+      .where(account_id: current_user.account_id)
+    @certification_names = CertificationName.joins(:account)
+      .where(account_id: current_user.account_id) 
+
+
+
+  end
+
   # POST /accounts
   # POST /accounts.json
   def create
