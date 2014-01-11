@@ -29,11 +29,8 @@
           <td class="hidden-xs hidden-sm"><%= si_index_description(si_index(chemical_record.ph, 
             chemical_record.pool_temp, chemical_record.calcium_hardness, 
               chemical_record.alkalinity)) %></td>
-          <td>
-
-            <%= link_to chemical_record.date_time_reading ,chemical_record%>
-
-          </td>
+          <td><%= link_to chemical_record.date_time_reading.strftime("%-m/%-d/%y" + " " + "%l:%M%P") ,chemical_record
+            %></td>
         </tr>
       <% end %>
     </tbody>
