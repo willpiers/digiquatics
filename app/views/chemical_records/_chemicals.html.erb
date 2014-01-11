@@ -10,7 +10,7 @@
         <th class="hidden-xs hidden-sm"><%= sortable "air_temp", "Air(F)" %></th>
         <th class="hidden-xs hidden-sm"><%= sortable "si_index", "SI index" %></th>
         <th class="hidden-xs hidden-sm"><%= sortable "si_status", "Status" %></th>
-        <th><%= sortable "created_at", "Submitted" %></th>
+        <th><%= sortable "date_time_reading", "Submitted" %></th>
       </tr>
     </thead>
 
@@ -29,7 +29,7 @@
           <td class="hidden-xs hidden-sm"><%= si_index_description(si_index(chemical_record.ph, 
             chemical_record.pool_temp, chemical_record.calcium_hardness, 
               chemical_record.alkalinity)) %></td>
-          <td><%= link_to chemical_record.date_time_reading.strftime("%-m/%-d/%y" + " " + "%l:%M%P") ,chemical_record
+          <td><%= link_to chemical_record.date_time_reading.strftime("%-m/%-d/%Y" + " " + "%l:%M%P") ,chemical_record
             %></td>
         </tr>
       <% end %>

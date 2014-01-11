@@ -39,8 +39,8 @@
 
       <%= f.fields_for :certifications do |builder| %>
         <%= builder.text_field :certification_name_id %>
-        <%= builder.text_field :issue_date %>
-        <%= builder.text_field :expiration_date %>
+        <%= builder.text_field :issue_date, :value => (builder.object.issue_date.strftime('%-m/%-d/%Y')) %>
+        <%= builder.text_field :expiration_date, :value => (builder.object.expiration_date.strftime('%-m/%-d/%Y')) %>
         <%= builder.file_field :attachment %>
       <% end %>
 
