@@ -12,7 +12,7 @@ class UsersController < ApplicationController
         respond_to do |format|
           format.html # index.html.erb
           format.xml  { render :xml => @users}
-          format.csv { render :csv => @users}
+          format.csv { render csv: @users, filename: 'active_users'}
         end
   end
 
@@ -22,8 +22,9 @@ class UsersController < ApplicationController
       .includes(:location, :position).search(params[:search])
         .order(sort_column + " " + sort_direction)
         respond_to do |format|
-          format.html
-          format.csv { send_data @users.to_csv }
+          format.html # index.html.erb
+          format.xml  { render :xml => @inactive_users}
+          format.csv { render csv: @inactive_users, filename: 'inactive_users'}
         end
   end
 
