@@ -9,6 +9,7 @@ class CertificationsController < ApplicationController
     @certification_names = CertificationName.joins(:account)
       .where(account_id: current_user.account_id)
     @users = User.joins(:account).where(account_id: current_user.account_id)
+      .where(active: true)
       .includes(:certifications)
       .order(sort_column + " " + sort_direction)
   end
