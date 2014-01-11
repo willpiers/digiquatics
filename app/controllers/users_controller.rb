@@ -64,7 +64,7 @@ class UsersController < ApplicationController
       .permit(:admin, :active, :first_name, :last_name, :email, :password,
               :password_confirmation, :date_of_birth, :date_of_hire, :sex, 
               :phone_number, :shirt_size, :suit_size, :location_id, :position_id, 
-              :femalesuit, :notes, :avatar, 
+              :femalesuit, :notes, :avatar, :employee_id,
                 certifications_attributes: [:id, :certification_name_id, 
                 :user_id, :issue_date, :expiration_date, :attachment])
   end

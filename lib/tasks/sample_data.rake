@@ -28,7 +28,8 @@ namespace :db do
                  active: true,
                  account_id: 1,
                  location_id: 1,
-                 position_id: 2)
+                 position_id: 2,
+                 employee_id: 1313)
 
     100.times do |n|
       first_name  = Faker::Name.first_name
@@ -54,7 +55,8 @@ namespace :db do
                    active: true,
                    account_id: 1,
                    location_id: [1,2,3].sample,
-                   position_id: [1,2,3].sample
+                   position_id: [1,2,3].sample,
+                   employee_id: rand(1000)
                    )
     end
 

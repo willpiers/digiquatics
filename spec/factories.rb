@@ -31,6 +31,7 @@ FactoryGirl.define do
     account_id            1
     location_id           1
     position_id           1
+    empployee_id          1313
   end
 
     factory :admin, class: User do

@@ -7,6 +7,7 @@
     <tr>
       <th><%= sortable "last_name", "Last Name"%></th>
       <th><%= sortable "first_name", "First Name"%></th>
+      <th><%= sortable "employee_id", "ID"%></th>
       <th><%= sortable "date_of_birth", "Age"%></th>
       <th><%= sortable "location_id", "Location" %></th>
       <th><%= sortable "position_id", "Position"%></th>
@@ -23,6 +24,9 @@
       </td>  
       <td>
         <%= link_to user.first_name, user  %>
+      </td>
+      <td>
+        <%= user.employee_id %>
       </td>
       <td>
         <%= age(user.date_of_birth) %>

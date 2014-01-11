@@ -23,6 +23,9 @@
 
 		<table class="table table-bordered table-condensed" >
 			<tr>
+			<th> Employee ID </th>
+				<td> <%= @user.employee_id %> </td>
+			</tr>
 			<th> Admin </th>
 				<td> <%= boolean_to_words(@user.admin) %> </td>
 			</tr>
