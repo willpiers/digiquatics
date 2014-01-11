@@ -5,13 +5,26 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:edit, :show, :certifications]
 
   def index
-    @users = User.joins(:account).where(account_id: current_user.account_id)
-    @users = User.includes(:location, :position).search(params[:search])
-      .order(sort_column + " " + sort_direction)
-      respond_to do |format|
-        format.html
-        format.csv { send_data @users.to_csv }
-      end
+    @users = User.joins(:account)
+      .where(account_id: current_user.account_id).where(active: true)
+      .includes(:location, :position).search(params[:search])
+        .order(sort_column + " " + sort_direction)
+        respond_to do |format|
+          format.html # index.html.erb
+          format.xml  { render :xml => @users}
+          format.csv { render :csv => @users}
+        end
+  end
+
+  def inactive_index
+    @inactive_users = User.joins(:account)
+      .where(account_id: current_user.account_id).where(active: false)
+      .includes(:location, :position).search(params[:search])
+        .order(sort_column + " " + sort_direction)
+        respond_to do |format|
+          format.html
+          format.csv { send_data @users.to_csv }
+        end
   end
 
 	def show

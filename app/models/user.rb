@@ -47,14 +47,21 @@ class User < ActiveRecord::Base
     end
   end
 
-  def self.to_csv
-    CSV.generate do |csv|
-      csv << column_names
-      all.each do |user|
-        csv << user.attributes.values_at(*column_names)
-      end
-    end
-  end  
+  # ===============
+  # = CSV support =
+  # ===============
+  comma do  # implicitly named :default
+    last_name
+    first_name
+    employee_id 'ID'
+    date_of_birth
+    location :name => 'Location'
+    position :name => 'Position'
+    email
+    phone_number
+    admin
+    active
+  end
 
   private
 
