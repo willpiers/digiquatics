@@ -69,10 +69,12 @@
 				<tr>
 					<th> Suit Size </th> <td> <%= @user.suit_size %>  </td>
 				</tr>
+				<% if @user.sex == 'F' %>	
+					<tr>
+						<th> One Piece Size </th> <td> <%= @user.femalesuit %>  </td>
+					</tr>
+				<% end %>
 
-				<tr>
-					<th> One Piece Size </th> <td> <%= @user.femalesuit %>  </td>
-				</tr>
 		</table>
 	</div>
 
