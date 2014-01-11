@@ -12,6 +12,12 @@ class CertificationsController < ApplicationController
       .where(active: true)
       .includes(:certifications)
       .order(sort_column + " " + sort_direction)
+    @certifications = Certification.all
+      respond_to do |format|
+        format.html # index.html.erb
+        format.xml  { render :xml => @certifications}
+        format.csv { render csv: @certifications, filename: 'certifications'}
+      end
   end
 
   # GET /certifications/1

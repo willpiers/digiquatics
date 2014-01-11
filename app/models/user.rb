@@ -51,14 +51,19 @@ class User < ActiveRecord::Base
   # = CSV support =
   # ===============
   comma do  # implicitly named :default
-    last_name
-    first_name
+    last_name 'Last'
+    first_name 'First'
+    date_of_birth 'DOB'
+    sex
     employee_id 'ID'
-    date_of_birth
+    date_of_hire 'DOH'
     location :name => 'Location'
     position :name => 'Position'
     email
-    phone_number
+    phone_number 'Phone#'
+    suit_size
+    shirt_size
+    femalesuit
     admin
     active
   end
