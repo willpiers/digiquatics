@@ -4,7 +4,6 @@ class LocationsController < ApplicationController
   # GET /locations
   # GET /locations.json
   def index
-    # @locations = Location.all
     @locations = Location.joins(:account)
       .where(account_id: current_user.account_id)
   end
@@ -31,7 +30,7 @@ class LocationsController < ApplicationController
 
     respond_to do |format|
       if @location.save
-        format.html { redirect_to certification_names_path,
+        format.html { redirect_to locations_path,
           notice: 'Certification name was successfully created.' }
         format.json { render action: 'show', status: :created,
           location: @location }
@@ -78,6 +77,6 @@ class LocationsController < ApplicationController
 
   # Only allow the white list through.
   def location_params
-    params.require(:location).permit(:name, :account_id)
+    params.require(:location).permit(:name)
   end
 end

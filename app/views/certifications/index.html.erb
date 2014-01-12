@@ -1,12 +1,9 @@
 <% provide(:title, 'Certifications') %>
 <h1>Certifications</h1>
+
 <ul class = "pull-right">
-  <%= link_to "Manage Certifications", certification_names_path, 
-    class: "btn btn-primary btn-sm" %>
-</ul>
-<ul class = "pull-right">
-  <%= link_to "Statistics", certifications_stats_path, 
-    class: "btn btn-success btn-sm" %>
+  <%= link_to "Export CSV", certifications_path(format: "csv"), 
+  	class: "btn btn-warning btn-sm" %>
 </ul>
 
 <br><br><br>

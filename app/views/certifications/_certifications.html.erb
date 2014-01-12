@@ -9,7 +9,8 @@
         <th><%= sortable 'location_id', 'Location' %></th>
         <% @certification_names.each do |certification_name| %>
           <th>
-            <%= sortable 'certifications.expiration_date', certification_name.name %>
+            <%= sortable 'certifications.expiration_date',
+              certification_name.name %>
           </th>
         <% end %>
       </tr>
@@ -23,20 +24,20 @@
           <% user.certifications.each do |cert| %>
             <% if cert.expiration_date <= ( Date.today) %>
               <td class="danger">
-                <%= cert.expiration_date.strftime('%-m/%-d/%y') %>
+                <%= cert.expiration_date.strftime('%-m/%-d/%Y') %>
                 <!-- show the cert_name_id for testing purposes -->
                 <%= cert.certification_name_id %>
               </td>
             <% elsif cert.expiration_date > ( Date.today ) &&
               cert.expiration_date < ( Date.today + 60.days ) %>
               <td class="warning">
-                <%= cert.expiration_date.strftime('%-m/%-d/%y') %>
+                <%= cert.expiration_date.strftime('%-m/%-d/%Y') %>
                 <!-- show the cert_name_id for testing purposes -->
                 <%= cert.certification_name_id %>
               </td>
             <% elsif cert.expiration_date >= ( Date.today + 60.days ) %>
               <td class="success">
-                <%= cert.expiration_date.strftime('%-m/%-d/%y') %>
+                <%= cert.expiration_date.strftime('%-m/%-d/%Y') %>
                 <!-- show the cert_name_id for testing purposes -->
                 <%= cert.certification_name_id %>
               </td>

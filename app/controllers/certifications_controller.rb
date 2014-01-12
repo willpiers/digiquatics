@@ -9,8 +9,15 @@ class CertificationsController < ApplicationController
     @certification_names = CertificationName.joins(:account)
       .where(account_id: current_user.account_id)
     @users = User.joins(:account).where(account_id: current_user.account_id)
+      .where(active: true)
       .includes(:certifications)
       .order(sort_column + " " + sort_direction)
+    @certifications = Certification.all
+      respond_to do |format|
+        format.html # index.html.erb
+        format.xml  { render :xml => @certifications}
+        format.csv { render csv: @certifications, filename: 'certifications'}
+      end
   end
 
   # GET /certifications/1

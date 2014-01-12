@@ -43,9 +43,11 @@ describe 'Manage Positions' do
         fill_in 'Name', with: 'Ridge Rec Center'
       end
 
-      it 'should create a new position' do
+      it 'should create a new position and redirect to index' do
         expect { click_button 'Create Position'}
         .to change(Position, :count).by(1)
+
+        current_path.should == positions_path
       end
     end
   end

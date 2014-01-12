@@ -1,5 +1,4 @@
 require 'spec_helper'
-require 'pp'
 
 describe 'User pages' do
   let!(:account) { FactoryGirl.create(:account) }
@@ -19,14 +18,12 @@ describe 'User pages' do
     let(:submit) { 'Create Account' }
 
     describe 'with invalid information' do
-
       it 'should not create a user' do
         expect { click_button submit }.not_to change(User, :count)
       end
     end
 
     describe 'with valid information' do
-
       before do
         fill_in 'First Name',   with: 'First'
         fill_in 'Last Name',    with: 'Last'
@@ -76,7 +73,6 @@ describe 'User pages' do
       sign_in user
       FactoryGirl.create(:certification, certification_name_id: cert1.id, user_id: user.id)
       FactoryGirl.create(:certification, certification_name_id: cert2.id, user_id: user.id)
-      pp user.certifications
       visit user_path(user)
     end
 
@@ -87,28 +83,28 @@ describe 'User pages' do
   end
 
   describe 'index' do
+    let(:bob) { User.find_by_email('bob@example.com') }
 
     before do
       sign_in user
+
       FactoryGirl.create(:user, first_name: 'Bob', email: 'bob@example.com',
-        location_id: location.id, position_id: position.id)
-      FactoryGirl.create(:user, first_name: 'Ben', email: 'ben@example.com',
-        location_id: location.id, position_id: position.id)
+        location_id: location.id, position_id: position.id, account_id: account.id)
+
       visit users_path
     end
 
-    it { should have_title('Users') }
-    it { should have_content('Users') }
 
-    it 'should list each user' do
-      user = User.find_by_email('bob@example.com')
-      page.should have_content(user.first_name)
-      page.should have_content(user.last_name)
-      page.should have_content(user.sex)
-      page.should have_content(user.location.name)
-      page.should have_content(user.position.name)
-      page.should have_content(user.email)
-      page.should have_content(user.phone_number)
+    it { should have_title('Users') }
+
+    it do
+      should have_content(bob.first_name)
+      should have_content(bob.last_name)
+      should have_content(bob.sex)
+      should have_content(bob.location.name)
+      should have_content(bob.position.name)
+      should have_content(bob.email)
+      should have_content(bob.phone_number)
     end
   end
 
@@ -178,6 +174,4 @@ describe 'User pages' do
       specify { expect(user.reload.position.id).to eq position.id}
     end
   end
-
-  require File.dirname(__FILE__) + '/../spec_helper'
 end

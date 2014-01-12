@@ -28,18 +28,10 @@
             Account<b class = "caret"></b></a>
           <ul class = "dropdown-menu">
             <li><%= link_to "My Profile", current_user %></li>
-            <li><%= link_to "Edit My Profile",
-              edit_user_path(current_user) %></li>
             <li><%= link_to "My Lessons", my_lessons_path %></li>
-            <li><%= link_to "Manage Users", users_path %></li>
-            <li><%= link_to "Manage Locations", locations_path %></li>
-            <li><%= link_to "Manage Positions", positions_path %></li>
-            <li><%= link_to "Manage Certifications",
-              certification_names_path %></li>
-              <li><%= link_to "Manage Chemicals",
-                manage_chemicals_path %></li>
-            <li><%= link_to "Manage Account",
-              edit_account_path(current_user.account_id) %></li>
+             <li class="divider"></li> 
+             <li><%= link_to "Manage Users", users_path %></li>
+             <li><%= link_to "Admin Dashboard", admin_dashboard_path %></li> 
             <li class="divider"></li>
             <li><%= link_to "Sign out", signout_path,
               method: "delete" %></li>

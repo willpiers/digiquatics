@@ -8,7 +8,20 @@ class User < ActiveRecord::Base
   belongs_to  :location
   belongs_to  :position
 
-  accepts_nested_attributes_for :certifications, reject_if: lambda { |a| a[:attachment].blank? }
+  has_attached_file :avatar,
+    :path => ":rails_root/public/system/:attachment/:id/:style/:filename",
+    :url => "/system/:attachment/:id/:style/:filename",
+    styles: {
+      thumb: '100x100>',
+      square: '200x200#',
+      medium: '300x300>'
+    }
+
+  scope :active, -> { where(active: true) }
+  scope :inactive, -> { where(active: false) }
+
+  accepts_nested_attributes_for :certifications,
+    reject_if: lambda { |a| a[:attachment].blank? }
 
   validates :first_name, presence: true, length: { maximum: 15 }
   validates :last_name, presence: true, length: { maximum: 15 }
@@ -37,14 +50,26 @@ class User < ActiveRecord::Base
     end
   end
 
-  def self.to_csv
-    CSV.generate do |csv|
-      csv << column_names
-      all.each do |user|
-        csv << user.attributes.values_at(*column_names)
-      end
-    end
-  end  
+  # ===============
+  # = CSV support =
+  # ===============
+  comma do  # implicitly named :default
+    last_name 'Last'
+    first_name 'First'
+    date_of_birth 'DOB'
+    sex
+    employee_id 'ID'
+    date_of_hire 'DOH'
+    location :name => 'Location'
+    position :name => 'Position'
+    email
+    phone_number 'Phone#'
+    suit_size
+    shirt_size
+    femalesuit
+    admin
+    active
+  end
 
   private
 

@@ -1,0 +1,12 @@
+<% provide(:title, 'Inactive users') %>
+<h1>Inactive Users</h1>
+
+<ul class = "pull-right">
+  <%= link_to "Manage Active", users_path , class: "btn btn-danger btn-sm" %>
+</ul>
+
+<ul class = "pull-right">
+  <%= link_to "Export CSV", inactive_index_path(format: "csv") , class: "btn btn-warning btn-sm" %>
+</ul>
+
+<%= render 'inactive_users' %>

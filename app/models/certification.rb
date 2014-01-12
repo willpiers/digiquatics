@@ -12,4 +12,20 @@ class Certification < ActiveRecord::Base
   validates :user_id, presence: true
   validates :expiration_date, presence: true
 
+  # ===============
+  # = CSV support =
+  # ===============
+  comma do  # implicitly named :default
+    user :last_name => 'Last'
+    user :first_name => 'First'
+    user :employee_id => 'ID'
+    user :phone_number => 'Phone#'
+    user :email
+
+    certification_name :name
+
+    issue_date
+    expiration_date
+  end
+
 end

@@ -24,7 +24,7 @@
 			<tr><td>Shirts </td><td><%= @users.group(:shirt_size).count %></td></tr>
 			<tr><td>Male Suit </td><td><%= @male_users.group(:suit_size).count %></td>
 				</tr>
-			<tr><td>Female One-Peice </td><td><%=  %></td></tr>
+			<tr><td>Female One-Peice </td><td><%= @female_users.group(:femalesuit).count %></td></tr>
 			<tr><td>Female Top</td><td><%= @female_users.group(:shirt_size).count %>
 				</td></tr>
 			<tr><td>Female Bottom </td><td><%= @female_users.group(:suit_size).count %>
