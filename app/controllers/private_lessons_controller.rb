@@ -4,7 +4,9 @@ class PrivateLessonsController < ApplicationController
   # GET /private_lessons
   # GET /private_lessons.json
   def index
-    @private_lessons = PrivateLesson.order(sort_column + " " + sort_direction)
+    @private_lessons = PrivateLesson
+      .order(sort_column + " " + sort_direction)
+
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @private_lessons}
@@ -19,6 +21,7 @@ class PrivateLessonsController < ApplicationController
   # GET /private_lessons/1
   # GET /private_lessons/1.json
   def show
+
   end
 
   # GET /private_lessons/new

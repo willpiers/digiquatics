@@ -17,7 +17,10 @@ class User < ActiveRecord::Base
       medium: '300x300>'
     }
 
-  accepts_nested_attributes_for :certifications, 
+  scope :active, -> { where(active: true) }
+  scope :inactive, -> { where(active: false) }
+
+  accepts_nested_attributes_for :certifications,
     reject_if: lambda { |a| a[:attachment].blank? }
 
   validates :first_name, presence: true, length: { maximum: 15 }

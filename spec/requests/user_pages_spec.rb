@@ -11,7 +11,6 @@ describe 'User pages' do
   subject { page }
 
   describe 'index' do
-
     before do
       sign_in user
       FactoryGirl.create(:user, first_name: 'Bob', email: 'bob@example.com',
@@ -149,7 +148,6 @@ describe 'User pages' do
 
       it 'should create a user' do
         expect { click_button submit }.to change(User, :count).by(1)
-        pp current_user
       end
 
       describe 'after saving the user' do
@@ -162,6 +160,4 @@ describe 'User pages' do
       end
     end
   end
-
-  require File.dirname(__FILE__) + '/../spec_helper'
 end
