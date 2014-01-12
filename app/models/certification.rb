@@ -24,9 +24,6 @@ class Certification < ActiveRecord::Base
 
     certification_name :name
 
-    certification_name.attributes.each {|attr_name, attr_value|}
-
-
     issue_date
     expiration_date
   end

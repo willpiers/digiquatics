@@ -16,6 +16,18 @@ class UsersController < ApplicationController
         end
   end
 
+  def all_users
+    @all_users = User.joins(:account)
+      .where(account_id: current_user.account_id)
+      .includes(:location, :position).search(params[:search])
+        .order(sort_column + " " + sort_direction)
+        respond_to do |format|
+          format.html # index.html.erb
+          format.xml  { render :xml => @all_users}
+          format.csv { render csv: @all_users, filename: 'all_users'}
+        end
+  end
+
   def inactive_index
     @inactive_users = User.joins(:account)
       .where(account_id: current_user.account_id).where(active: false)
