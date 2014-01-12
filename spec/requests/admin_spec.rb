@@ -17,10 +17,10 @@ describe 'admin setup' do
       it { should have_title(full_title('Users')) }
     end
 
-    describe 'account' do
-      before { click_link('Manage Account') }
+    describe 'admin dashboard' do
+      before { click_link('Admin Dashboard') }
 
-      it { should have_title(full_title('Manage Account')) }
+      it { should have_title(full_title('Admin dashboard')) }
     end
   end
 end
