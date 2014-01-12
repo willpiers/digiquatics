@@ -68,6 +68,24 @@ describe 'User pages' do
     end
   end
 
+  describe 'user profile' do
+    let!(:cert1) { FactoryGirl.create(:certification_name, account_id: 1, name: 'CPR/AED1') }
+    let!(:cert2) { FactoryGirl.create(:certification_name, account_id: 2, name: 'CPR/AED2') }
+
+    before do
+      sign_in user
+      FactoryGirl.create(:certification, certification_name_id: cert1.id, user_id: user.id)
+      FactoryGirl.create(:certification, certification_name_id: cert2.id, user_id: user.id)
+      pp user.certifications
+      visit user_path(user)
+    end
+
+    it 'should list the certifications in the correct order' do
+      user.certifications.first.certification_name_id.should <
+      user.certifications.second.certification_name_id
+    end
+  end
+
   describe 'index' do
 
     before do

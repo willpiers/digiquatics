@@ -56,6 +56,7 @@ FactoryGirl.define do
   factory :certification do
     certification_name_id 1
     user_id               1
+    issue_date            '2011-09-15'
     expiration_date       '2012-09-15'
   end
 

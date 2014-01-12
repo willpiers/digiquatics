@@ -24,15 +24,21 @@
             <% if cert.expiration_date <= ( Date.today) %>
               <td class="danger">
                 <%= cert.expiration_date.strftime('%-m/%-d/%y') %>
+                <!-- show the cert_name_id for testing purposes -->
+                <%= cert.certification_name_id %>
               </td>
-            <% elsif cert.expiration_date > ( Date.today ) && 
+            <% elsif cert.expiration_date > ( Date.today ) &&
               cert.expiration_date < ( Date.today + 60.days ) %>
               <td class="warning">
                 <%= cert.expiration_date.strftime('%-m/%-d/%y') %>
+                <!-- show the cert_name_id for testing purposes -->
+                <%= cert.certification_name_id %>
               </td>
             <% elsif cert.expiration_date >= ( Date.today + 60.days ) %>
               <td class="success">
                 <%= cert.expiration_date.strftime('%-m/%-d/%y') %>
+                <!-- show the cert_name_id for testing purposes -->
+                <%= cert.certification_name_id %>
               </td>
             <% end %>
           <% end %>

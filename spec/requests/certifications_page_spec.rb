@@ -1,5 +1,11 @@
 require 'spec_helper'
 
+# Rspec::Matchers.define :appear_before do |later_content|
+#   match do |earlier_content|
+#     page.body.index(earlier_content) < page.body.index(later_content)
+#   end
+# end
+
 describe 'Certifications' do
   let(:account) { FactoryGirl.create(:account) }
   let(:location) { FactoryGirl.create(:location) }
@@ -11,6 +17,9 @@ describe 'Certifications' do
 
   describe 'page' do
 
+    let!(:new_cert_name) { FactoryGirl.create(:certification_name, name: 'new') }
+    let!(:old_cert_name) { FactoryGirl.create(:certification_name, name: 'old') }
+
     it { should have_title(full_title('Certifications')) }
     it { should have_selector('h1', text: 'Certifications') }
 
@@ -18,8 +27,8 @@ describe 'Certifications' do
         sign_in user
         FactoryGirl.create(:certification_name, account_id: 1, name: 'CPR/AED1')
         FactoryGirl.create(:certification_name, account_id: 2, name: 'CPR/AED2')
-        FactoryGirl.create(:certification, certification_name_id: 1)
-        FactoryGirl.create(:certification, certification_name_id: 2)
+        FactoryGirl.create(:certification, certification_name_id: 1, user_id: user.id)
+        FactoryGirl.create(:certification, certification_name_id: 2, user_id: user.id)
         visit certifications_path
       end
 
@@ -27,6 +36,13 @@ describe 'Certifications' do
         page.should have_content('First Name')
         page.should have_content('Last Name')
         page.should have_content('Location')
+      end
+
+      let(:cert_user) { User.find_by_id(user.id) }
+
+      it 'should have certification dates in the correct order' do
+        cert_user.certifications.first.certification_name_id.should eq(1)
+        cert_user.certifications.second.certification_name_id.should eq(2)
       end
 
       it 'should list each certification belonging to an account' do
@@ -44,40 +60,5 @@ describe 'Certifications' do
           page.should_not have_content(cert.certification_name.name)
       end
     end
-
-    # describe 'sorting' do
-
-    #   describe 'by first name' do
-
-    #     before { click_link 'First Name' }
-
-    #     let(:first_user) { FactoryGirl.create(:user, email: 'hello4@gmail.com', first_name: 'Al') }
-    #     let(:next_user) { FactoryGirl.create(:user, email: 'hello5@gmail.com', first_name: 'Bob') }
-
-    #     it { body.index(first_user.first_name).should < body.index(next_user.first_name) }
-    #   end
-
-    #   describe 'by last name' do
-
-    #     before { click_link 'Last Name' }
-
-    #     let(:first_user) { FactoryGirl.create(:user, email: 'hello@gmail.com', last_name: 'Al') }
-    #     let(:next_user) { FactoryGirl.create(:user, email: 'hello1@gmail.com', last_name: 'Bob') }
-
-    #     it { body.index(first_user.last_name).should < body.index(next_user.last_name) }
-    #   end
-
-    #   describe 'by location' do
-
-    #     before { click_link 'Location' }
-    #     let(:first_location) { FactoryGirl.create(:location, name: 'Aurora Rec Center') }
-    #     let(:next_location) { FactoryGirl.create(:location, name: 'Carmody Rec Center') }
-
-    #     let(:first_user) { FactoryGirl.create(:user, email: 'hello2@gmail.com', location_id: first_location.id) }
-    #     let(:next_user) { FactoryGirl.create(:user, email: 'hello3@gmail.com', location_id: next_location.id) }
-
-    #     it { body.index(first_user.location.name).should < body.index(next_user.location.name) }
-    #   end
-    # end
   end
 end
