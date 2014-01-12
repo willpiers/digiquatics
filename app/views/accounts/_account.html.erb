@@ -1,6 +1,16 @@
 <table class="table" >
 	<tbody>
-		<td> <%= @account.name %> </td>
-		<td> <%=  %> </td>
+		<tr> 
+			<td> <%= @account.name %> </td> 
+			<td> <%= link_to " Edit", edit_account_path(current_user.account_id),
+				class: "glyphicon glyphicon-pencil" %>
+			</td>
+		</tr>
+		<tr> 
+			<td> <%= @account.time_zone %> </td> 
+			<td> <%= link_to " Edit", edit_account_path(current_user.account_id),
+		 		class: "glyphicon glyphicon-pencil" %>
+			</td>
+		</tr>		
 	</tbody>
 </table>

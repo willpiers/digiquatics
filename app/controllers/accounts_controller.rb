@@ -28,7 +28,7 @@ class AccountsController < ApplicationController
       .where(account_id: current_user.account_id)
     @certification_names = CertificationName.joins(:account)
       .where(account_id: current_user.account_id) 
-    @account = Account.all
+   @account = Account.find(current_user.account_id)
   end
 
   # POST /accounts
