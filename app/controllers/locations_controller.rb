@@ -4,7 +4,6 @@ class LocationsController < ApplicationController
   # GET /locations
   # GET /locations.json
   def index
-    # @locations = Location.all
     @locations = Location.joins(:account)
       .where(account_id: current_user.account_id)
   end

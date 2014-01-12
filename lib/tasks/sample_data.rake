@@ -1,8 +1,10 @@
 namespace :db do
   desc "Fill database with sample data"
   task populate: :environment do
+    Rake.application['db:reset'].invoke
 
-    Account.create(name: "City of Lakewood", time_zone: 'Mountain Time (US & Canada)')
+    Account.create(name: "City of Lakewood",
+                   time_zone: 'Mountain Time (US & Canada)')
     Account.create(name: "Foothills", time_zone: 'Mountain Time (US & Canada)')
 
     Location.create(name: "Green Mountain Recreation Center", account_id: 1)
@@ -28,7 +30,8 @@ namespace :db do
                  active: true,
                  account_id: 1,
                  location_id: 1,
-                 position_id: 2)
+                 position_id: 2,
+                 employee_id: 1313)
 
     100.times do |n|
       first_name  = Faker::Name.first_name
@@ -48,13 +51,15 @@ namespace :db do
                    phone_number: phone_number,
                    suit_size: suit_size.sample,
                    shirt_size: shirt_size.sample,
+                   femalesuit: [28, 30, 32, 34, 36, 38, 40].sample,
                    sex: sex.sample,
                    date_of_birth: "1992-09-15",
                    date_of_hire: "2008-07-01",
-                   active: true,
+                   active: [true, false].sample,
                    account_id: 1,
-                   location_id: [1,2,3].sample,
-                   position_id: [1,2,3].sample
+                   location_id: rand(3) + 1,
+                   position_id: rand(3) + 1,
+                   employee_id: rand(1000)
                    )
     end
 
@@ -100,23 +105,23 @@ namespace :db do
                             day: day.sample,
                             time: time.sample,
                             notes: "Nothing to say now",
-                            preferred_location: [1,2,3].sample,
-                            user_id: [1,2,3].sample)
+                            preferred_location: rand(3) + 1 )
     end
 
-
     250.times do |n|
-
-      ChemicalRecord.create!(chlorine_ppm: [1,2,3,4,5].sample,
-                           ph: [6.8, 6.9, 7.0, 7.1, 7.2, 7.3, 7.4, 7.5, 7.6, 
+      ChemicalRecord.create!(chlorine_ppm: rand(5) + 1,
+                           ph: [6.8, 6.9, 7.0, 7.1, 7.2, 7.3, 7.4, 7.5, 7.6,
                             7.7, 7.8, 7.9, 8.0].sample,
-                           alkalinity: [30, 40, 50,60,70,80,90,100, 110, 120, 
+                           alkalinity: [30, 40, 50,60,70,80,90,100, 110, 120,
                             130].sample,
-                           calcium_hardness: [60, 80, 100, 120, 140, 160, 180, 
+                           calcium_hardness: [60, 80, 100, 120, 140, 160, 180,
                             200].sample,
                            pool_temp: [81, 82, 83, 84, 85, 86].sample,
                            air_temp: [75, 76, 77, 78, 79, 80].sample,
+                           date_time_reading: "2014-01-01",
       )
     end
+
+    Rake.application['db:test:prepare'].invoke
   end
 end

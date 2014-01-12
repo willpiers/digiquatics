@@ -17,45 +17,10 @@ describe 'admin setup' do
       it { should have_title(full_title('Users')) }
     end
 
-    describe 'locations' do
-      before { click_link('Manage Locations') }
+    describe 'admin dashboard' do
+      before { click_link('Admin Dashboard') }
 
-      it { should have_title(full_title('Manage Locations')) }  
-      it { should have_selector('h1', text: 'Manage Locations') }
-    end
-
-    describe 'positions' do
-      before { click_link('Manage Positions') } 
-
-      it { should have_title(full_title('Manage Positions')) }
-      it { should have_selector('h1', text: 'Manage Positions') }
-    end
-
-    #describe 'chemicals' do
-     # before { click_link('Manage Chemicals') }
-
-      #it { should have_title(full_title('Manage Chemicals')) }
-      #it { should have_selector('h1', text: 'Manage Chemicals') }
-    #end
-
-    describe 'certifications' do
-      before { click_link('Manage Certifications') }
-
-      it { should have_title(full_title('Manage Certifications')) }
-      it { should have_selector('h1', text: 'Manage Certifications') }
-    end
-
-    #describe 'lessons' do
-     # before { click_link('Manage Lessons') }
-
-      #it { should have_title(full_title('Manage Private Lessons')) }
-      #it { should have_selector('h1', text: 'Manage Private Lessons') }
-    #end
-
-    describe 'account' do
-      before { click_link('Manage Account') }
-
-      it { should have_title(full_title('Manage Account')) }
+      it { should have_title(full_title('Admin dashboard')) }
     end
   end
 end

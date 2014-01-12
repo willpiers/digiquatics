@@ -9,12 +9,23 @@
 
 <br>
 
+<div style = "margin-left:0px;">
+<% if @user.avatar.file? %>
+	<%= image_tag @user.avatar.url, size: '100x100' %>
+<% else %>
+	<img src="/images/missingavatar.png" alt='red' height="100px" width="100px" />	
+<% end %>
+</div>
+
 <div class="table-responsive">
 
 	<h4> User Information </h4>
 
 		<table class="table table-bordered table-condensed" >
 			<tr>
+			<th> Employee ID </th>
+				<td> <%= @user.employee_id %> </td>
+			</tr>
 			<th> Admin </th>
 				<td> <%= boolean_to_words(@user.admin) %> </td>
 			</tr>
@@ -58,10 +69,12 @@
 				<tr>
 					<th> Suit Size </th> <td> <%= @user.suit_size %>  </td>
 				</tr>
+				<% if @user.sex == 'F' %>	
+					<tr>
+						<th> One Piece Size </th> <td> <%= @user.femalesuit %>  </td>
+					</tr>
+				<% end %>
 
-				<tr>
-					<th> One Piece Size </th> <td> <%= @user.femalesuit %>  </td>
-				</tr>
 		</table>
 	</div>
 
@@ -83,7 +96,7 @@
 			<tbody>
 				<tr><th> Issue Date </th>
 					<% @user.certifications.each do |cert| %>
-					<td><%= cert.issue_date.strftime('%-m/%-d/%y') %></td>
+					<td><%= cert.issue_date.strftime('%-m/%-d/%Y') %></td>
 					<% end %>
 				</tr>
 
@@ -91,16 +104,16 @@
 					<% @user.certifications.each do |cert| %>
 						<% if cert.expiration_date <= ( Date.today) %>
 							<td class="danger">
-								<%= cert.expiration_date.strftime('%-m/%-d/%y') %>
+								<%= cert.expiration_date.strftime('%-m/%-d/%Y') %>
 							</td>
 						<% elsif cert.expiration_date > ( Date.today ) &&
 							cert.expiration_date < ( Date.today + 60.days ) %>
 			        <td class="warning">
-			          <%= cert.expiration_date.strftime('%-m/%-d/%y') %>
+			          <%= cert.expiration_date.strftime('%-m/%-d/%Y') %>
 			        </td>
 			      <% elsif cert.expiration_date >= ( Date.today + 60.days ) %>
 			        <td class="success">
-			        <%= cert.expiration_date.strftime('%-m/%-d/%y') %>
+			        <%= cert.expiration_date.strftime('%-m/%-d/%Y') %>
 			        </td>
 			      <% end %>
 					<% end %>

@@ -1,36 +1,37 @@
 FactoryGirl.define do
   factory :account do
-    name                  'City of Lakewood'
-    time_zone             'Mountain Time (US & Canada)'
+    name      'City of Lakewood'
+    time_zone 'Mountain Time (US & Canada)'
   end
 
   factory :location do
-    name                  'Carmody Rec Center'
-    account_id            1
+    name       'Carmody Rec Center'
+    account_id 1
   end
 
   factory :position do
-    name                  'Lifeguard'
-    account_id            1
+    name       'Lifeguard'
+    account_id 1
   end
 
   factory :user do
-    first_name     				'Joe'
-    last_name							'Currin'
-    email    							'newfactory@example.com'
-    password 							'foobar'
+    first_name            'Joe'
+    last_name             'Currin'
+    email                 'newfactory@example.com'
+    password              'foobar'
     password_confirmation 'foobar'
     admin                 false
-    active 								true
-    suit_size 						'M'
-    shirt_size 						'M'
-    sex 									'F'
-    date_of_birth 				'1985-12-24'
-    date_of_hire 					'2013-09-01'
-    phone_number 					1234
+    active                true
+    suit_size             'M'
+    shirt_size            'M'
+    sex                   'F'
+    date_of_birth         '1985-12-24'
+    date_of_hire          '2013-09-01'
+    phone_number          1234
     account_id            1
     location_id           1
     position_id           1
+    employee_id          1313
   end
 
     factory :admin, class: User do

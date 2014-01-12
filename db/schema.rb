@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140101214623) do
+ActiveRecord::Schema.define(version: 20140111003707) do
 
   create_table "accounts", force: true do |t|
     t.string   "name"
@@ -50,16 +50,17 @@ ActiveRecord::Schema.define(version: 20140101214623) do
   end
 
   create_table "chemical_records", force: true do |t|
-    t.decimal  "chlorine_ppm",     precision: 6, scale: 2
-    t.decimal  "chlorine_orp",     precision: 6, scale: 2
-    t.decimal  "ph",               precision: 6, scale: 2
-    t.decimal  "alkalinity",       precision: 6, scale: 2
-    t.decimal  "calcium_hardness", precision: 6, scale: 2
-    t.decimal  "pool_temp",        precision: 6, scale: 2
-    t.decimal  "air_temp",         precision: 6, scale: 2
-    t.decimal  "si_index",         precision: 6, scale: 2
+    t.decimal  "chlorine_ppm",      precision: 6, scale: 2
+    t.decimal  "chlorine_orp",      precision: 6, scale: 2
+    t.decimal  "ph",                precision: 6, scale: 2
+    t.decimal  "alkalinity",        precision: 6, scale: 2
+    t.decimal  "calcium_hardness",  precision: 6, scale: 2
+    t.decimal  "pool_temp",         precision: 6, scale: 2
+    t.decimal  "air_temp",          precision: 6, scale: 2
+    t.decimal  "si_index",          precision: 6, scale: 2
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.datetime "date_time_reading"
   end
 
   create_table "locations", force: true do |t|
@@ -112,7 +113,7 @@ ActiveRecord::Schema.define(version: 20140101214623) do
     t.string   "email"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "active",          default: true
+    t.boolean  "active",              default: true
     t.string   "suit_size"
     t.string   "shirt_size"
     t.string   "sex"
@@ -121,12 +122,17 @@ ActiveRecord::Schema.define(version: 20140101214623) do
     t.string   "phone_number"
     t.string   "password_digest"
     t.string   "remember_token"
-    t.boolean  "admin",           default: false
+    t.boolean  "admin",               default: false
     t.integer  "account_id"
     t.integer  "location_id"
     t.integer  "position_id"
     t.integer  "femalesuit"
     t.text     "notes"
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
+    t.string   "employee_id"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
