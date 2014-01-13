@@ -18,11 +18,10 @@ describe 'Manage Locations' do
       FactoryGirl.create(:location, name: 'Green Mtn Rec Center',
         account_id: account.id)
       location.update_attribute(:account_id, account.id)
-      visit locations_path
+      visit admin_dashboard_path
     end
 
-    it { should have_title('Manage Locations') }
-    it { should have_selector('h1', text: 'Manage Locations') }
+    it { should have_content('Manage Locations') }
 
     it 'should list each location' do
       Location.all.each do |location|
@@ -32,7 +31,7 @@ describe 'Manage Locations' do
     end
 
     describe 'links' do
-      it { should have_link('New Location') }
+      it { should have_link('New', href: new_location_path) }
       it { should have_link('Edit') }
       it { should have_link('Delete') }
     end

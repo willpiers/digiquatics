@@ -18,11 +18,10 @@ describe 'Manage Positions' do
       FactoryGirl.create(:position, name: 'Green Mtn Rec Center',
         account_id: account.id)
       position.update_attribute(:account_id, account.id)
-      visit positions_path
+      visit admin_dashboard_path
     end
 
-    it { should have_title('Manage Positions') }
-    it { should have_selector('h1', text: 'Manage Positions') }
+    it { should have_content('Manage Positions') }
 
     it 'should list each position' do
       Position.all.each do |position|
@@ -32,7 +31,7 @@ describe 'Manage Positions' do
     end
 
     describe 'links' do
-      it { should have_link('New Position') }
+      it { should have_link('New', href: new_position_path) }
       it { should have_link('Edit') }
       it { should have_link('Delete') }
     end
@@ -47,7 +46,54 @@ describe 'Manage Positions' do
         expect { click_button 'Create Position'}
         .to change(Position, :count).by(1)
 
-        current_path.should == positions_path
+        current_path.should == admin_dashboard_path
+      end
+
+      describe 'clicking the back button' do
+        before { click_link 'Back' }
+
+        it 'should redirect to admin dash' do
+          current_path.should == admin_dashboard_path
+        end
+      end
+    end
+
+    describe 'editing an existing position' do
+      before do
+        visit edit_position_path(position)
+        fill_in 'Name', with: 'new position name'
+      end
+
+      describe 'clicking the back button' do
+        before { click_link 'Back' }
+
+        it 'should redirect to admin dash' do
+          current_path.should == admin_dashboard_path
+        end
+      end
+
+      it 'should update the position and redirect to admin dashboard' do
+        expect { click_button 'Update Position'}
+        .to_not change(Position, :count).by(1)
+
+        expect(position.reload.name).to eq('new position name')
+        current_path.should == admin_dashboard_path
+      end
+    end
+
+    describe 'deleting a position' do
+      before do
+        visit admin_dashboard_path
+      end
+
+      it { should have_link('Delete', href: position_path(position)) }
+
+      it 'should be able to delete position' do
+        expect do
+          click_link('Delete', match: :first)
+        end.to change(Position, :count).by(-1)
+
+        current_path.should == admin_dashboard_path
       end
     end
   end
