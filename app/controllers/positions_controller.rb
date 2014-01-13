@@ -28,7 +28,7 @@ class PositionsController < ApplicationController
     @position.account_id = current_user.account_id
     respond_to do |format|
       if @position.save
-        format.html { redirect_to positions_path,
+        format.html { redirect_to admin_dashboard_path,
           notice: 'Position was successfully created.' }
         format.json { render action: 'show', status: :created,
           location: @position }
@@ -45,7 +45,7 @@ class PositionsController < ApplicationController
   def update
     respond_to do |format|
       if @position.update(position_params)
-        format.html { redirect_to @position,
+        format.html { redirect_to admin_dashboard_path,
           notice: 'Position was successfully updated.' }
         format.json { head :no_content }
       else
@@ -61,7 +61,7 @@ class PositionsController < ApplicationController
   def destroy
     @position.destroy
     respond_to do |format|
-      format.html { redirect_to positions_url }
+      format.html { redirect_to admin_dashboard_path }
       format.json { head :no_content }
     end
   end
