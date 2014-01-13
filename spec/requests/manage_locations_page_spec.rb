@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe 'Manage Locations' do
-
   subject { page }
 
   describe 'page' do
@@ -74,8 +73,7 @@ describe 'Manage Locations' do
       end
 
       it 'should update the location and redirect to admin dashboard' do
-        expect { click_button 'Update Location'}
-        .to_not change(Location, :count).by(1)
+        expect { click_button 'Update Location'}.to_not change(Location, :count)
 
         expect(location.reload.name).to eq('new location name')
         current_path.should == admin_dashboard_path
@@ -90,9 +88,8 @@ describe 'Manage Locations' do
       it { should have_link('Delete', href: location_path(location)) }
 
       it 'should be able to delete location' do
-        expect do
-          click_link('Delete', match: :first)
-        end.to change(Location, :count).by(-1)
+        expect { click_link('Delete', match: :first) }
+        .to change(Location, :count).by(-1)
 
         current_path.should == admin_dashboard_path
       end
