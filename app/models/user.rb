@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
+  include PaperclipHelper
+
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
-  PAPERCLIP_PATH = ':rails_root/public/system/:attachment/:id/:style/:filename'
 
   before_save { self.email = email.downcase }
   before_create :create_remember_token
