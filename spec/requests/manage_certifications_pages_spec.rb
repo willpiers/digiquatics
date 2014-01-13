@@ -8,32 +8,34 @@ describe 'Manage Certifications' do
     let(:account) { FactoryGirl.create(:account) }
     let(:location) { FactoryGirl.create(:location) }
     let(:position) { FactoryGirl.create(:position) }
-    let(:user) { FactoryGirl.create(:user, account_id: account.id,
-      location_id: location.id, position_id: position.id) }
+    let(:user) { FactoryGirl.create(:user,
+                                    account_id: account.id,
+                                    location_id: location.id,
+                                    position_id: position.id) }
+    let!(:cert_name1) { FactoryGirl.create(:certification_name,
+                                           name: 'CPR/AED',
+                                           account_id: account.id) }
+    let!(:cert_name2) { FactoryGirl.create(:certification_name,
+                                           name: 'Lifeguard',
+                                           account_id: account.id) }
 
     before do
       sign_in user
-      FactoryGirl.create(:certification_name, name: 'CPR/AED',
-        account_id: account.id)
-      FactoryGirl.create(:certification_name, name: 'Lifeguard',
-        account_id: account.id)
-      visit certification_names_path
+      visit admin_dashboard_path
     end
 
-    it { should have_title('Manage Certifications') }
-    it { should have_selector('h1', text: 'Manage Certifications') }
+    it { should have_content('Manage Certifications') }
+    it { should have_link('New', href: new_certification_name_path) }
 
-    it 'should list each certification_name' do
+    describe 'should list each certification_name' do
       CertificationName.all.each do |cert_name|
         cert_name.account_id.should eq(user.account_id)
-        expect(page).to have_content(cert_name.name)
-        # Need to add test to check for a delete link for each Certification Name
+        it { should have_content(cert_name.name) }
+        it { should have_link('Edit',
+          href: edit_certification_name_path(certification_name))}
+        it { should have_link('Delete',
+          href: certification_name_path(certification_name)) }
       end
-    end
-
-    describe 'links' do
-      it { should have_link('Add') }
-      it { should have_link('Delete') }
     end
 
     describe 'creating a new certification_name' do
@@ -42,11 +44,56 @@ describe 'Manage Certifications' do
         fill_in 'Name', with: 'LG'
       end
 
-      it 'should create a new cert name and redirect to index' do
+      it 'should create a new cert name and redirect to admin dashboard' do
         expect { click_button 'Create Certification name'}
         .to change(CertificationName, :count).by(1)
 
-        current_path.should == certification_names_path
+        current_path.should == admin_dashboard_path
+      end
+
+      describe 'clicking the back button' do
+        before { click_link 'Back' }
+
+        it 'should redirect to admin dash' do
+          current_path.should == admin_dashboard_path
+        end
+      end
+    end
+
+    describe 'editing an existing certification_name' do
+      before do
+        visit edit_certification_name_path(cert_name1)
+        fill_in 'Name', with: 'new certification_name name'
+      end
+
+      describe 'clicking the back button' do
+        before { click_link 'Back' }
+
+        it 'should redirect to admin dash' do
+          current_path.should == admin_dashboard_path
+        end
+      end
+
+      it 'should update the cert_name and redirect to admin dashboard' do
+        expect { click_button 'Update Certification name'}
+        .to_not change(CertificationName, :count).by(1)
+
+        expect(cert_name1.reload.name).to eq('new certification_name name')
+        current_path.should == admin_dashboard_path
+      end
+    end
+
+    describe 'deleting a certification_name' do
+      before do
+        visit admin_dashboard_path
+      end
+
+      it 'should delete certification_name' do
+        expect do
+          click_link('Delete', match: :first)
+        end.to change(CertificationName, :count).by(-1)
+
+        current_path.should == admin_dashboard_path
       end
     end
   end

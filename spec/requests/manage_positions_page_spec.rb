@@ -8,32 +8,36 @@ describe 'Manage Positions' do
     let(:account) { FactoryGirl.create(:account) }
     let(:location) { FactoryGirl.create(:location) }
     let(:position) { FactoryGirl.create(:position) }
-    let(:user) { FactoryGirl.create(:user, account_id: account.id,
-      location_id: location.id, position_id: position.id) }
+    let(:user) { FactoryGirl.create(:user,
+                                    account_id: account.id,
+                                    location_id: location.id,
+                                    position_id: position.id) }
 
     before do
       sign_in user
-      FactoryGirl.create(:position, name: 'Carmody Rec Center',
-        account_id: account.id)
-      FactoryGirl.create(:position, name: 'Green Mtn Rec Center',
-        account_id: account.id)
+
+      FactoryGirl.create(:position,
+                         name: 'Carmody Rec Center',
+                         account_id: account.id)
+      FactoryGirl.create(:position,
+                         name: 'Green Mtn Rec Center',
+                         account_id: account.id)
+
       position.update_attribute(:account_id, account.id)
       visit admin_dashboard_path
     end
 
     it { should have_content('Manage Positions') }
+    it { should have_link('New', href: new_position_path) }
 
-    it 'should list each position' do
+    describe 'should list each position' do
       Position.all.each do |position|
         position.account_id.should eq(user.account_id)
-        page.should have_content(position.name)
-      end
-    end
+        it { should have_content(position.name) }
+        it { should have_link('Edit', href: edit_position_path(position)) }
+        it { should have_link('Delete', href: position_path(position)) }
 
-    describe 'links' do
-      it { should have_link('New', href: new_position_path) }
-      it { should have_link('Edit') }
-      it { should have_link('Delete') }
+      end
     end
 
     describe 'creating a new position' do

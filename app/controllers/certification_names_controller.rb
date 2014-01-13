@@ -31,7 +31,7 @@ class CertificationNamesController < ApplicationController
 
     respond_to do |format|
       if @certification_name.save
-        format.html { redirect_to certification_names_path,
+        format.html { redirect_to admin_dashboard_path,
           notice: 'Certification name was successfully created.' }
         format.json { render action: 'show',
           status: :created, location: @certification_name }
@@ -48,7 +48,7 @@ class CertificationNamesController < ApplicationController
   def update
     respond_to do |format|
       if @certification_name.update(certification_name_params)
-        format.html { redirect_to @certification_name,
+        format.html { redirect_to admin_dashboard_path,
           notice: 'Certification name was successfully updated.' }
         format.json { head :no_content }
       else
@@ -64,7 +64,7 @@ class CertificationNamesController < ApplicationController
   def destroy
     @certification_name.destroy
     respond_to do |format|
-      format.html { redirect_to certification_names_url }
+      format.html { redirect_to admin_dashboard_path }
       format.json { head :no_content }
     end
   end
