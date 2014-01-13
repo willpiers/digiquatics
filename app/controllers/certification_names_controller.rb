@@ -4,9 +4,8 @@ class CertificationNamesController < ApplicationController
   # GET /certification_names
   # GET /certification_names.json
   def index
-    # @certification_names = CertificationName.all
     @certification_names = CertificationName.joins(:account)
-      .where(account_id: current_user.account_id)
+      .same_account_as(current_user)
   end
 
   # GET /certification_names/1

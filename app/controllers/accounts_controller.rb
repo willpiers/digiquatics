@@ -22,13 +22,11 @@ class AccountsController < ApplicationController
   end
 
   def admin_dashboard
-    @locations = Location.joins(:account)
-      .where(account_id: current_user.account_id)
-    @positions = Position.joins(:account)
-      .where(account_id: current_user.account_id)
+    @locations = Location.joins(:account).same_account_as(current_user)
+    @positions = Position.joins(:account).same_account_as(current_user)
     @certification_names = CertificationName.joins(:account)
-      .where(account_id: current_user.account_id) 
-   @account = Account.find(current_user.account_id)
+      .same_account_as(current_user)
+    @account = Account.find(current_user.account_id)
   end
 
   # POST /accounts
@@ -38,13 +36,13 @@ class AccountsController < ApplicationController
 
     respond_to do |format|
       if @account.save
-        format.html { redirect_to @account, 
+        format.html { redirect_to @account,
           notice: 'Account was successfully created.' }
-        format.json { render action: 'show', status: :created, 
+        format.json { render action: 'show', status: :created,
           location: @account }
       else
         format.html { render action: 'new' }
-        format.json { render json: @account.errors, 
+        format.json { render json: @account.errors,
           status: :unprocessable_entity }
       end
     end
@@ -55,12 +53,12 @@ class AccountsController < ApplicationController
   def update
     respond_to do |format|
       if @account.update(account_params)
-        format.html { redirect_to @account, 
+        format.html { redirect_to @account,
           notice: 'Account was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
-        format.json { render json: @account.errors, 
+        format.json { render json: @account.errors,
           status: :unprocessable_entity }
       end
     end

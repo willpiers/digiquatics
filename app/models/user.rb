@@ -1,7 +1,12 @@
 class User < ActiveRecord::Base
   include PaperclipHelper
+  extend ScopeHelper
+  include_scopes
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+
+  scope :active, -> { where(active: true) }
+  scope :inactive, -> { where(active: false) }
 
   before_save { self.email = email.downcase }
   before_create :create_remember_token
@@ -21,9 +26,6 @@ class User < ActiveRecord::Base
                       medium: '300x300>'
                     },
                     default_url: '/images/missing.png'
-
-  scope :active, -> { where(active: true) }
-  scope :inactive, -> { where(active: false) }
 
   accepts_nested_attributes_for :certifications,
                                 reject_if: proc { |a| a[:attachment].blank? }
