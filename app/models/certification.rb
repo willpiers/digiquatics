@@ -9,8 +9,7 @@ class Certification < ActiveRecord::Base
         path: ':rails_root/public/system/:attachment/:id/:style/:filename',
         url: '/system/:attachment/:id/:style/:filename'
 
-  validates_presence_of :certification_name_id, :expiration_date, :account_id,
-                        :user_id
+  validates_presence_of :certification_name_id, :expiration_date, :user_id
 
   comma do
     user last_name: 'Last'

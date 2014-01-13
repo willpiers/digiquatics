@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140113094347) do
+ActiveRecord::Schema.define(version: 20140111003707) do
 
   create_table "accounts", force: true do |t|
     t.string   "name"
@@ -47,7 +47,6 @@ ActiveRecord::Schema.define(version: 20140113094347) do
     t.integer  "attachment_file_size"
     t.datetime "attachment_updated_at"
     t.datetime "issue_date"
-    t.integer  "account_id"
   end
 
   create_table "chemical_records", force: true do |t|
