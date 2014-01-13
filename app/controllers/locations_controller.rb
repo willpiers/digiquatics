@@ -30,7 +30,7 @@ class LocationsController < ApplicationController
 
     respond_to do |format|
       if @location.save
-        format.html { redirect_to locations_path,
+        format.html { redirect_to admin_dashboard_path,
           notice: 'Certification name was successfully created.' }
         format.json { render action: 'show', status: :created,
           location: @location }
@@ -47,7 +47,7 @@ class LocationsController < ApplicationController
   def update
     respond_to do |format|
       if @location.update(location_params)
-        format.html { redirect_to @location,
+        format.html { redirect_to admin_dashboard_path,
           notice: 'Location was successfully updated.' }
         format.json { head :no_content }
       else
@@ -63,7 +63,7 @@ class LocationsController < ApplicationController
   def destroy
     @location.destroy
     respond_to do |format|
-      format.html { redirect_to locations_url }
+      format.html { redirect_to admin_dashboard_path }
       format.json { head :no_content }
     end
   end
