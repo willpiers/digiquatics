@@ -10,11 +10,7 @@
 <br>
 
 <div style = "margin-left:0px;">
-<% if @user.avatar.file? %>
 	<%= image_tag @user.avatar.url, size: '100x100' %>
-<% else %>
-	<img src="/images/missingavatar.png" alt='red' height="100px" width="100px" />	
-<% end %>
 </div>
 
 <div class="table-responsive">
@@ -69,7 +65,7 @@
 				<tr>
 					<th> Suit Size </th> <td> <%= @user.suit_size %>  </td>
 				</tr>
-				<% if @user.sex == 'F' %>	
+				<% if @user.sex == 'F' %>
 					<tr>
 						<th> One Piece Size </th> <td> <%= @user.femalesuit %>  </td>
 					</tr>

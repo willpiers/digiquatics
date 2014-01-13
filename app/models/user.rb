@@ -1,4 +1,7 @@
 class User < ActiveRecord::Base
+  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+  PAPERCLIP_PATH = ':rails_root/public/system/:attachment/:id/:style/:filename'
+
   before_save { self.email = email.downcase }
   before_create :create_remember_token
 
@@ -9,59 +12,58 @@ class User < ActiveRecord::Base
   belongs_to  :position
 
   has_attached_file :avatar,
-    :path => ":rails_root/public/system/:attachment/:id/:style/:filename",
-    :url => "/system/:attachment/:id/:style/:filename",
-    styles: {
-      thumb: '100x100>',
-      square: '200x200#',
-      medium: '300x300>'
-    }
+                    path: PAPERCLIP_PATH,
+                    url: '/system/:attachment/:id/:style/:filename',
+                    styles: {
+                      thumb: '100x100>',
+                      square: '200x200#',
+                      medium: '300x300>'
+                    },
+                    default_url: '/images/missing.png'
 
   scope :active, -> { where(active: true) }
   scope :inactive, -> { where(active: false) }
 
   accepts_nested_attributes_for :certifications,
-    reject_if: lambda { |a| a[:attachment].blank? }
+                                reject_if: proc { |a| a[:attachment].blank? }
 
   validates :first_name, presence: true, length: { maximum: 15 }
   validates :last_name, presence: true, length: { maximum: 15 }
-  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
-  validates :email, presence: true, format:
-    { with: VALID_EMAIL_REGEX }, uniqueness: { case_sensitive: false }
+  validates :email, presence: true,
+                    format: { with: VALID_EMAIL_REGEX },
+                    uniqueness: { case_sensitive: false }
   validates_presence_of :shirt_size, :suit_size, :account_id, :location_id,
-    :position_id
+                        :position_id
+
   has_secure_password
   validates_length_of :password, minimum: 6
 
-  def User.new_remember_token
+  def self.new_remember_token
     SecureRandom.urlsafe_base64
   end
 
-  def User.encrypt(token)
+  def self.encrypt(token)
     Digest::SHA1.hexdigest(token.to_s)
   end
 
   def self.search(search)
     if search
-      where('first_name LIKE ? OR last_name LIKE ? ', "%#{search}%",
-        "%#{search}%")
+      where('first_name LIKE ? OR last_name LIKE ? ',
+            "%#{search}%", "%#{search}%")
     else
       User.all
     end
   end
 
-  # ===============
-  # = CSV support =
-  # ===============
-  comma do  # implicitly named :default
+  comma do
     last_name 'Last'
     first_name 'First'
     date_of_birth 'DOB'
     sex
     employee_id 'ID'
     date_of_hire 'DOH'
-    location :name => 'Location'
-    position :name => 'Position'
+    location name: 'Location'
+    position name: 'Position'
     email
     phone_number 'Phone#'
     suit_size
@@ -73,7 +75,7 @@ class User < ActiveRecord::Base
 
   private
 
-    def create_remember_token
-      self.remember_token = User.encrypt(User.new_remember_token)
-    end
+  def create_remember_token
+    self.remember_token = User.encrypt(User.new_remember_token)
+  end
 end
