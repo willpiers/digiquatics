@@ -1,6 +1,6 @@
 class Account < ActiveRecord::Base
-  validates_inclusion_of :time_zone, 
-  	in: ActiveSupport::TimeZone.zones_map(&:name)
+  validates_inclusion_of :time_zone,
+                         in: ActiveSupport::TimeZone.zones_map(&:name)
 
   has_many :certification_names
   has_many :users

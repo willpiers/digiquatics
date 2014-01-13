@@ -1,7 +1,7 @@
 <!-- Notes below use @users versus @certifications to use pagination bc of the render on index uses users. -->
-<div class="table-responsive">
+<div class='table-responsive'>
 
-  <table class="table table-hover table-condensed">
+  <table class='table table-hover table-condensed'>
     <thead>
       <tr>
         <th><%= sortable 'last_name', 'Last Name' %></th>
@@ -23,23 +23,20 @@
           <td><%= user.location.name %></td>
           <% user.certifications.each do |cert| %>
             <% if cert.expiration_date <= ( Date.today) %>
-              <td class="danger">
+              <td class='danger'>
                 <%= cert.expiration_date.strftime('%-m/%-d/%Y') %>
-                <!-- show the cert_name_id for testing purposes -->
-                <%= cert.certification_name_id %>
+                <%= render_certification_name_id_in_dev(cert) %>
               </td>
             <% elsif cert.expiration_date > ( Date.today ) &&
               cert.expiration_date < ( Date.today + 60.days ) %>
-              <td class="warning">
+              <td class='warning'>
                 <%= cert.expiration_date.strftime('%-m/%-d/%Y') %>
-                <!-- show the cert_name_id for testing purposes -->
-                <%= cert.certification_name_id %>
+                <%= render_certification_name_id_in_dev(cert) %>
               </td>
             <% elsif cert.expiration_date >= ( Date.today + 60.days ) %>
-              <td class="success">
+              <td class='success'>
                 <%= cert.expiration_date.strftime('%-m/%-d/%Y') %>
-                <!-- show the cert_name_id for testing purposes -->
-                <%= cert.certification_name_id %>
+                <%= render_certification_name_id_in_dev(cert) %>
               </td>
             <% end %>
           <% end %>

@@ -2,9 +2,9 @@ require 'spec_helper'
 
 describe User do
 
-  before { @user = User.new(first_name: "First", last_name: "Last", 
-    email: "user@example.com", suit_size: "M", shirt_size: "M", 
-      password: "foobar", password_confirmation: "foobar", 
+  before { @user = User.new(first_name: "First", last_name: "Last",
+    email: "user@example.com", suit_size: "M", shirt_size: "M",
+      password: "foobar", password_confirmation: "foobar",
         account_id: 1, location_id: 1, position_id: 1) }
 
   subject { @user }
@@ -22,6 +22,7 @@ describe User do
   it { should respond_to(:account_id) }
   it { should respond_to(:location) }
   it { should respond_to(:position) }
+  it { should respond_to(:avatar) }
 
   it { should be_valid }
   it { should_not be_admin }
@@ -106,7 +107,7 @@ describe User do
 
   describe "when password is not present" do
     before do
-      @user = User.new(first_name: "First", last_name: "Last", 
+      @user = User.new(first_name: "First", last_name: "Last",
         email: "user@example.com", password: " ", password_confirmation: " ")
     end
 
@@ -138,6 +139,31 @@ describe "with a password that's too short" do
 
       it { should_not eq user_for_invalid_password }
       specify { expect(user_for_invalid_password).to be_false }
+    end
+  end
+
+  describe 'user avatar' do
+    context 'on user creation' do
+      it 'should use the default url' do
+        @user.avatar.url.should == '/images/missing.png'
+      end
+    end
+
+    context 'adding an avatar' do
+      before do
+        upload_file = ActionDispatch::Http::UploadedFile.new({
+          :filename => 'avatar.jpg',
+          :content_type => 'image/jpeg',
+          :tempfile => File.new("#{Rails.root}/spec/support/avatar.jpg")
+        })
+
+        @user.update_attribute(:avatar, upload_file)
+      end
+
+      it 'should use the correct url' do
+        path_regex = /^\/system\/avatars\/\d{4}\/original\/avatar.jpg\?\d{10}$/
+        @user.avatar.url.should match(path_regex)
+      end
     end
   end
 end
