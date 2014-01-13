@@ -1,11 +1,13 @@
 require 'spec_helper'
 
 describe User do
-
-  before { @user = User.new(first_name: "First", last_name: "Last",
-    email: "user@example.com", suit_size: "M", shirt_size: "M",
-      password: "foobar", password_confirmation: "foobar",
-        account_id: 1, location_id: 1, position_id: 1) }
+  before do
+    @user = User.new(first_name: 'First', last_name: 'Last',
+                     email: 'user@example.com', suit_size: 'M',
+                     shirt_size: 'M', password: 'foobar',
+                     password_confirmation: 'foobar', account_id: 1,
+                     location_id: 1, position_id: 1)
+  end
 
   subject { @user }
 
@@ -27,7 +29,7 @@ describe User do
   it { should be_valid }
   it { should_not be_admin }
 
-  describe "with admin attribute set to 'true'" do
+  describe 'with admin attribute set to \'true\'' do
     before do
       @user.save!
       @user.toggle!(:admin)
@@ -36,47 +38,47 @@ describe User do
     it { should be_admin }
   end
 
-  describe "without account id" do
+  describe 'without account id' do
     before { @user.account_id = nil }
     it { should_not be_valid }
   end
 
-  describe "without location id" do
+  describe 'without location id' do
     before { @user.location_id = nil }
     it { should_not be_valid }
   end
 
-  describe "without account id" do
+  describe 'without account id' do
     before { @user.position_id = nil }
     it { should_not be_valid }
   end
 
-  describe "when first name is not present" do
-    before { @user.first_name = " " }
+  describe 'when first name is not present' do
+    before { @user.first_name = ' ' }
     it { should_not be_valid }
   end
 
-  describe "when last name is not present" do
-    before { @user.last_name = " " }
+  describe 'when last name is not present' do
+    before { @user.last_name = ' ' }
     it { should_not be_valid }
   end
 
-  describe "when email is not present" do
-    before { @user.email = " " }
+  describe 'when email is not present' do
+    before { @user.email = ' ' }
     it { should_not be_valid }
   end
 
-  describe "when shirt size is not present" do
-    before { @user.shirt_size = " " }
+  describe 'when shirt size is not present' do
+    before { @user.shirt_size = ' ' }
     it { should_not be_valid }
   end
 
-  describe "when suit size is not present" do
-    before { @user.suit_size = " " }
+  describe 'when suit size is not present' do
+    before { @user.suit_size = ' ' }
     it { should_not be_valid }
   end
 
-  describe "when email address is already taken" do
+  describe 'when email address is already taken' do
     before do
       user_with_same_email = @user.dup
       user_with_same_email.email = @user.email.upcase
@@ -86,56 +88,51 @@ describe User do
     it { should_not be_valid }
   end
 
-    it { should respond_to(:password_confirmation) }
-    it { should respond_to(:remember_token) }
-    it { should respond_to(:authenticate) }
-
-  describe "remember token" do
+  describe 'remember token' do
     before { @user.save }
     its(:remember_token) { should_not be_blank }
   end
 
-  describe "when first name is too long" do
-    before { @user.first_name = "a" * 16 }
+  describe 'when first name is too long' do
+    before { @user.first_name = 'a' * 16 }
     it { should_not be_valid }
   end
 
-  describe "when last name is too long" do
-    before { @user.last_name = "a" * 16 }
+  describe 'when last name is too long' do
+    before { @user.last_name = 'a' * 16 }
     it { should_not be_valid }
   end
 
-  describe "when password is not present" do
+  describe 'when password is not present' do
     before do
-      @user = User.new(first_name: "First", last_name: "Last",
-        email: "user@example.com", password: " ", password_confirmation: " ")
+      @user = User.new(first_name: 'First', last_name: 'Last',
+                       email: 'user@example.com', password: ' ',
+                       password_confirmation: ' ')
     end
 
     it { should_not be_valid }
   end
 
-  describe "when password doesn't match confirmation" do
-    before { @user.password_confirmation = "mismatch" }
+  describe 'when password doesn\'t match confirmation' do
+    before { @user.password_confirmation = 'mismatch' }
     it { should_not be_valid }
   end
 
-  it { should respond_to(:authenticate) }
-
-describe "with a password that's too short" do
-    before { @user.password = @user.password_confirmation = "a" * 5 }
+  describe 'with a password that\'s too short' do
+    before { @user.password = @user.password_confirmation = 'a' * 5 }
     it { should be_invalid }
   end
 
-  describe "return value of authenticate method" do
+  describe 'return value of authenticate method' do
     before { @user.save }
     let(:found_user) { User.find_by(email: @user.email) }
 
-    describe "with valid password" do
+    describe 'with valid password' do
       it { should eq found_user.authenticate(@user.password) }
     end
 
-    describe "with invalid password" do
-      let(:user_for_invalid_password) { found_user.authenticate("invalid") }
+    describe 'with invalid password' do
+      let(:user_for_invalid_password) { found_user.authenticate('invalid') }
 
       it { should_not eq user_for_invalid_password }
       specify { expect(user_for_invalid_password).to be_false }
@@ -151,17 +148,22 @@ describe "with a password that's too short" do
 
     context 'adding an avatar' do
       before do
-        upload_file = ActionDispatch::Http::UploadedFile.new({
-          :filename => 'avatar.jpg',
-          :content_type => 'image/jpeg',
-          :tempfile => File.new("#{Rails.root}/spec/support/avatar.jpg")
-        })
+        upload_file = ActionDispatch::Http::UploadedFile.new(
+          filename: 'avatar.jpg',
+          content_type: 'image/jpeg',
+          tempfile: File.new(File.join(Rails.root, 'spec/support/avatar.jpg')))
 
         @user.update_attribute(:avatar, upload_file)
       end
 
+      after do
+        File.unlink(@user.avatar.path)
+      end
+
       it 'should use the correct url' do
-        path_regex = /^\/system\/avatars\/\d{4}\/original\/avatar.jpg\?\d{10}$/
+        path_regex =
+          %r{^\/system\/avatars\/\d{2,5}\/original\/avatar.jpg\?\d{10}$}
+
         @user.avatar.url.should match(path_regex)
       end
     end
