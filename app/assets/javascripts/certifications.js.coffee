@@ -1,3 +1,17 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://coffeescript.org/
+@aquaticsApp = angular.module 'aquaticsApp', ['ngResource']
+
+@aquaticsApp.factory 'Certs', ['$resource', ($resource) ->
+  $resource '/certifications_api.json'
+]
+
+@aquaticsApp.controller 'CertsCtrl', ['$scope', '$log', 'Certs',
+  ($scope, $log, Certs) ->
+    $scope.$log = $log
+    $scope.sorter =
+      value: 'firstName'
+
+    response = Certs.get (data) ->
+      $scope.certNames = response.certification_names
+      $scope.certs = response.certifications
+      $scope.users = response.users
+]

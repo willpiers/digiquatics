@@ -10,13 +10,36 @@ class CertificationsController < ApplicationController
     @users = User.joins(:account).same_account_as(current_user).active
       .includes(:certifications).order("#{sort_column} #{sort_direction}")
 
-    @certifications = Certification.all
-
     respond_to do |format|
       format.html
       format.xml { render xml: @certifications }
       format.csv { render csv: @certifications, filename: 'certifications' }
     end
+  end
+
+  def index_api
+    render json: {
+      users: User.same_account_as(current_user).active
+      .map { |u|
+        {
+          lastName: u.last_name,
+          firstName: u.first_name,
+          location: u.location.name
+        }.tap { |user_data| u.certifications.each_with_object(user_data) do |cert, hash|
+          hash[cert.certification_name.name] = cert.expiration_date.strftime('%-m/%-d/%Y')
+          hash[cert.certification_name.name + 'class'] = if cert.expiration_date <= Date.today
+              'danger'
+            elsif cert.expiration_date > Date.today &&
+              cert.expiration_date < (Date.today + 60.days)
+              'warning'
+            elsif cert.expiration_date >= (Date.today + 60.days)
+              'success'
+            end
+        end
+      }
+      },
+      certification_names: CertificationName.same_account_as(current_user)
+    }
   end
 
   def show

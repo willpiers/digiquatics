@@ -38,6 +38,7 @@ AquaticsApp::Application.routes.draw do
   match '/inactive_index', to: 'users#inactive_index', via: 'get'
   match '/all_users', to: 'users#all_users', via: 'get'
   match '/admin_dashboard', to: 'accounts#admin_dashboard', via: 'get'
+  match '/certifications_api', to: 'certifications#index_api', via: 'get'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
