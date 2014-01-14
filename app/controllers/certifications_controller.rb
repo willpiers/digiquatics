@@ -17,7 +17,7 @@ class CertificationsController < ApplicationController
     end
   end
 
-  def index_api
+  def expirations
     render json: {
       users: User.same_account_as(current_user).active
       .map { |u|
@@ -26,7 +26,7 @@ class CertificationsController < ApplicationController
           firstName: u.first_name,
           location: u.location.name
         }.tap { |user_data| u.certifications.each_with_object(user_data) do |cert, hash|
-          hash[cert.certification_name.name] = cert.expiration_date.strftime('%-m/%-d/%Y')
+          hash[cert.certification_name.name] = cert.expiration_date
           hash[cert.certification_name.name + 'class'] = if cert.expiration_date <= Date.today
               'danger'
             elsif cert.expiration_date > Date.today &&

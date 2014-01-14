@@ -35,6 +35,8 @@ group :development, :test do
   gem 'childprocess', '0.3.6'
   gem 'debugger'
   gem 'rubocop'
+  gem 'teaspoon'
+  gem 'phantomjs'
 end
 
 group :test do

@@ -1,17 +1,24 @@
 @aquaticsApp = angular.module 'aquaticsApp', ['ngResource']
 
-@aquaticsApp.factory 'Certs', ['$resource', ($resource) ->
-  $resource '/certifications_api.json'
+@aquaticsApp.factory 'Certs', ['$resource', @Certs = ($resource) ->
+  $resource '/certification_expirations.json'
 ]
 
-@aquaticsApp.controller 'CertsCtrl', ['$scope', '$log', 'Certs',
-  ($scope, $log, Certs) ->
-    $scope.$log = $log
+@aquaticsApp.controller 'CertsCtrl', ['$scope', 'Certs',
+  @CertsCtrl = ($scope, Certs) ->
+    $scope.formatDate = (dateString)  ->
+      d = new Date(dateString)
+
+      curr_month = d.getMonth() + 1
+      curr_date = d.getDate()
+      curr_year = d.getFullYear()
+
+      "#{curr_month}/#{curr_date}/#{curr_year}"
+
     $scope.sorter =
       value: 'firstName'
 
-    response = Certs.get (data) ->
-      $scope.certNames = response.certification_names
-      $scope.certs = response.certifications
-      $scope.users = response.users
+    Certs.get (data) ->
+      $scope.certNames = data.certification_names
+      $scope.users = data.users
 ]

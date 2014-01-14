@@ -1,4 +1,8 @@
 AquaticsApp::Application.configure do
+  # from http://vaporbase.com/postings/integrating-angular-dot-js-with-rails
+  # and http://stackoverflow.com/a/11924505/505018 for angular
+  config.assets.js_compressor = Sprockets::LazyCompressor.new { Uglifier.new(:mangle => false) }
+
   # Settings specified here will take precedence over those in config/application.rb.
 
   # Code is not reloaded between requests.
