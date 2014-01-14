@@ -1,9 +1,13 @@
 class StaticPagesController < ApplicationController
 
-  def home
+  def dashboard
   end
 
   def about
+  end
+
+  def index
+    render file: 'public/index.html'
   end
 
   def chemical_record_stats
