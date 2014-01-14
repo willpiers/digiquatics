@@ -27,7 +27,7 @@ class AccountsController < ApplicationController
     @positions = Position.joins(:account)
       .where(account_id: current_user.account_id)
     @certification_names = CertificationName.joins(:account)
-      .where(account_id: current_user.account_id) 
+      .where(account_id: current_user.account_id)
    @account = Account.find(current_user.account_id)
   end
 
@@ -38,13 +38,13 @@ class AccountsController < ApplicationController
 
     respond_to do |format|
       if @account.save
-        format.html { redirect_to @account, 
+        format.html { redirect_to admin_dashboard_path,
           notice: 'Account was successfully created.' }
-        format.json { render action: 'show', status: :created, 
+        format.json { render action: 'show', status: :created,
           location: @account }
       else
         format.html { render action: 'new' }
-        format.json { render json: @account.errors, 
+        format.json { render json: @account.errors,
           status: :unprocessable_entity }
       end
     end
@@ -55,12 +55,12 @@ class AccountsController < ApplicationController
   def update
     respond_to do |format|
       if @account.update(account_params)
-        format.html { redirect_to @account, 
+        format.html { redirect_to admin_dashboard_path,
           notice: 'Account was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
-        format.json { render json: @account.errors, 
+        format.json { render json: @account.errors,
           status: :unprocessable_entity }
       end
     end
@@ -71,7 +71,7 @@ class AccountsController < ApplicationController
   def destroy
     @account.destroy
     respond_to do |format|
-      format.html { redirect_to accounts_url }
+      format.html { redirect_to admin_dashboard_path }
       format.json { head :no_content }
     end
   end

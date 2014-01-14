@@ -3,7 +3,7 @@ require 'spec_helper'
 describe PrivateLesson do
 
   before { @private_lesson = PrivateLesson.new(
-  	first_name: 'Michael',
+    first_name: 'Michael',
     email: 'michael@affektive.com',
     last_name: 'Pierce',
     phone_number:'720-387-9691',

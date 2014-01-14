@@ -41,13 +41,13 @@ class PrivateLessonsController < ApplicationController
 
     respond_to do |format|
       if @private_lesson.save
-        format.html { redirect_to @private_lesson, 
+        format.html { redirect_to @private_lesson,
           notice: 'Private lesson was successfully created.' }
-        format.json { render action: 'show', status: :created, 
+        format.json { render action: 'show', status: :created,
           location: @private_lesson }
       else
         format.html { render action: 'new' }
-        format.json { render json: @private_lesson.errors, 
+        format.json { render json: @private_lesson.errors,
           status: :unprocessable_entity }
       end
     end
@@ -58,13 +58,13 @@ class PrivateLessonsController < ApplicationController
   def update
     respond_to do |format|
       if @private_lesson.update(private_lesson_params)
-        format.html { redirect_to @private_lesson, 
+        format.html { redirect_to @private_lesson,
           notice: 'Private lesson was successfully updated.' }
         format.js
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
-        format.json { render json: @private_lesson.errors, 
+        format.json { render json: @private_lesson.errors,
           status: :unprocessable_entity }
       end
     end
@@ -81,7 +81,7 @@ class PrivateLessonsController < ApplicationController
   end
 
   # def claim!(current_user)
-  #   @private_lesson = 
+  #   @private_lesson =
   # end
 
   private

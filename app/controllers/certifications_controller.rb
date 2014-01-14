@@ -41,13 +41,13 @@ class CertificationsController < ApplicationController
 
     respond_to do |format|
       if @certification.save
-        format.html { redirect_to @certification, 
+        format.html { redirect_to @certification,
           notice: 'Certification was successfully created.' }
-        format.json { render action: 'show', status: :created, 
+        format.json { render action: 'show', status: :created,
           location: @certification }
       else
         format.html { render action: 'new' }
-        format.json { render json: @certification.errors, 
+        format.json { render json: @certification.errors,
           status: :unprocessable_entity }
       end
     end
@@ -58,12 +58,12 @@ class CertificationsController < ApplicationController
   def update
     respond_to do |format|
       if @certification.update(certification_params)
-        format.html { redirect_to @certification, 
+        format.html { redirect_to @certification,
           notice: 'Certification was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
-        format.json { render json: @certification.errors, 
+        format.json { render json: @certification.errors,
           status: :unprocessable_entity }
       end
     end
@@ -88,7 +88,7 @@ class CertificationsController < ApplicationController
 
   # Only allow the white list through.
   def certification_params
-    params.require(:certification).permit(:certification_name_id, :user_id, 
+    params.require(:certification).permit(:certification_name_id, :user_id,
       :expiration_date)
   end
 

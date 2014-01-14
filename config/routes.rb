@@ -19,7 +19,7 @@ AquaticsApp::Application.routes.draw do
   end
   resources :sessions, only: [:new, :create, :destroy]
 
-  root  'static_pages#home'
+  root  'static_pages#index'
   match '/signup', to: 'users#new', via: 'get'
   match '/signup', to: 'users#new', via: 'get'
   match '/signin', to: 'sessions#new', via: 'get'
@@ -38,6 +38,7 @@ AquaticsApp::Application.routes.draw do
   match '/inactive_index', to: 'users#inactive_index', via: 'get'
   match '/all_users', to: 'users#all_users', via: 'get'
   match '/admin_dashboard', to: 'accounts#admin_dashboard', via: 'get'
+  match '/dashboard', to: 'static_pages#dashboard', via: 'get'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
