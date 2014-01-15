@@ -1,7 +1,6 @@
 class CertificationsController < ApplicationController
   helper_method :sort_column, :sort_direction
   before_action :set_certification, only: [:show, :edit, :update, :destroy]
-  # before_action :admin, only: [:index]
 
   def index
     @certification_names = CertificationName.joins(:account)
@@ -19,25 +18,7 @@ class CertificationsController < ApplicationController
 
   def expirations
     render json: {
-      users: User.same_account_as(current_user).active
-      .map { |u|
-        {
-          lastName: u.last_name,
-          firstName: u.first_name,
-          location: u.location.name
-        }.tap { |user_data| u.certifications.each_with_object(user_data) do |cert, hash|
-          hash[cert.certification_name.name] = cert.expiration_date
-          hash[cert.certification_name.name + 'class'] = if cert.expiration_date <= Date.today
-              'danger'
-            elsif cert.expiration_date > Date.today &&
-              cert.expiration_date < (Date.today + 60.days)
-              'warning'
-            elsif cert.expiration_date >= (Date.today + 60.days)
-              'success'
-            end
-        end
-      }
-      },
+      users: users_certification_expiration_data,
       certification_names: CertificationName.same_account_as(current_user)
     }
   end
@@ -92,6 +73,8 @@ class CertificationsController < ApplicationController
   end
 
   private
+
+  include CertificationsHelper
 
   # Use callbacks to share common setup or constraints between actions.
   def set_certification

@@ -1,5 +1,4 @@
 class BootstrapFormBuilder < ActionView::Helpers::FormBuilder
-
   FORM_HELPERS = %w{text_field password_field email_field select}
 
   delegate :content_tag, to: :@template
@@ -11,13 +10,13 @@ class BootstrapFormBuilder < ActionView::Helpers::FormBuilder
     field_errors = @object.errors[method].join(', ')
       if !@object.errors[method].blank?
 
-    content_tag :div, class: "form-group #{ 'has-error' 
+    content_tag :div, class: "form-group #{ 'has-error'
       unless @object.errors[method].blank?}" do
-      content = label_tag("#{object_name}[#{method}]", "#{options[:label]}", 
+      content = label_tag("#{object_name}[#{method}]", "#{options[:label]}",
         :class => "control-label")
-      content << @template.send(type+'_tag', "#{object_name}[#{method}]", nil, 
+      content << @template.send(type+'_tag', "#{object_name}[#{method}]", nil,
         :class => "form-control #{options[:class]}")
-      content << (content_tag(:span, field_errors.humanize, 
+      content << (content_tag(:span, field_errors.humanize,
         class: 'help-block')) if field_errors
       content.html_safe
     end
