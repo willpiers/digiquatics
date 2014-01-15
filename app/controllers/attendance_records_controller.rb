@@ -28,14 +28,11 @@ class AttendanceRecordsController < ApplicationController
 
     respond_to do |format|
       if @attendance_record.save
-        format.html { redirect_to @attendance_record,
-          notice: 'Attendance record was successfully created.' }
-        format.json { render action: 'show',
-          status: :created, location: @attendance_record }
+        format.html { redirect_to @attendance_record, notice: 'Attendance record was successfully created.' }
+        format.json { render action: 'show', status: :created, location: @attendance_record }
       else
         format.html { render action: 'new' }
-        format.json { render json: @attendance_record.errors,
-          status: :unprocessable_entity }
+        format.json { render json: @attendance_record.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -45,13 +42,11 @@ class AttendanceRecordsController < ApplicationController
   def update
     respond_to do |format|
       if @attendance_record.update(attendance_record_params)
-        format.html { redirect_to @attendance_record,
-          notice: 'Attendance record was successfully updated.' }
+        format.html { redirect_to @attendance_record, notice: 'Attendance record was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
-        format.json { render json: @attendance_record.errors,
-          status: :unprocessable_entity }
+        format.json { render json: @attendance_record.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -72,9 +67,8 @@ class AttendanceRecordsController < ApplicationController
       @attendance_record = AttendanceRecord.find(params[:id])
     end
 
-    # Only allow the white list through.
+    # Never trust parameters from the scary internet, only allow the white list through.
     def attendance_record_params
-      params.require(:attendance_record).permit(:0500_0600, :0600_0700,
-        :0700_0800, :0800_0900, :0900_1000, :1000_1100, :1100_1200, :pool_id)
+      params.require(:attendance_record).permit(:name)
     end
 end

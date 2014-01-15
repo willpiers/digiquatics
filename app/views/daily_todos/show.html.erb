@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @daily_todo.name %>
+</p>
+
+<p>
+  <strong>Type:</strong>
+  <%= @daily_todo.type %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @daily_todo.status %>
+</p>
+
+<%= link_to 'Edit', edit_daily_todo_path(@daily_todo) %> |
+<%= link_to 'Back', daily_todos_path %>

@@ -24,16 +24,9 @@ describe 'Authentication' do
 
       it { should have_title('Sign in') }
       it { should have_selector('div.alert.alert-danger', text: 'Invalid') }
-
-      describe 'after visiting another page' do
-        before { click_link "Aquatics App Beta" }
-
-        it { should_not have_selector('div.alert.alert-danger') }
-      end
     end
 
     describe 'with valid information' do
-
       before do
         fill_in 'Email',    with: user.email.upcase
         fill_in 'Password', with: user.password

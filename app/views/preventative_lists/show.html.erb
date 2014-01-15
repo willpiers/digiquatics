@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @preventative_list.name %>
+</p>
+
+<p>
+  <strong>Type:</strong>
+  <%= @preventative_list.type %>
+</p>
+
+<%= link_to 'Edit', edit_preventative_list_path(@preventative_list) %> |
+<%= link_to 'Back', preventative_lists_path %>
