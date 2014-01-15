@@ -1,4 +1,7 @@
 class Account < ActiveRecord::Base
+  extend ScopeHelper
+  include_scopes
+
   validates_inclusion_of :time_zone,
                          in: ActiveSupport::TimeZone.zones_map(&:name)
 

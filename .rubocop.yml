@@ -10,3 +10,9 @@ AllCops:
 
 Documentation:
   Enabled: false
+
+MethodLength:
+  Max: 5
+
+ClassLength:
+  Max: 100

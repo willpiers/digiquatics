@@ -1,4 +1,7 @@
 class Certification < ActiveRecord::Base
+  extend ScopeHelper
+  include_scopes
+
   belongs_to :user
   belongs_to :certification_name
   belongs_to :account
@@ -6,9 +9,7 @@ class Certification < ActiveRecord::Base
         path: ':rails_root/public/system/:attachment/:id/:style/:filename',
         url: '/system/:attachment/:id/:style/:filename'
 
-  validates :certification_name_id, presence: true
-  validates :user_id, presence: true
-  validates :expiration_date, presence: true
+  validates_presence_of :certification_name_id, :expiration_date, :user_id
 
   comma do
     user last_name: 'Last'

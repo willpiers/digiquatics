@@ -1,47 +1,25 @@
-<!-- Notes below use @users versus @certifications to use pagination bc of the render on index uses users. -->
-<div class='table-responsive'>
-
-  <table class='table table-hover table-condensed'>
+<div ng-app='aquaticsApp' class='table-responsive'>
+  <table ng-controller='CertsCtrl' class='table table-hover table-condensed'>
     <thead>
       <tr>
-        <th><%= sortable 'last_name', 'Last Name' %></th>
-        <th><%= sortable 'first_name', 'First Name' %></th>
-        <th><%= sortable 'location_id', 'Location' %></th>
-        <% @certification_names.each do |certification_name| %>
-          <th>
-            <%= sortable 'certifications.expiration_date',
-              certification_name.name %>
-          </th>
-        <% end %>
+        <th ng-click='sorter.value="lastName"'>Last Name</th>
+        <th ng-click='sorter.value="firstName"'>First Name</th>
+        <th ng-click='sorter.value="location"'>Location</th>
+        <th ng-repeat='certName in certNames' ng-click='sorter.value=certName.name'>
+          {{certName.name}}
+        </th>
       </tr>
     </thead>
     <tbody>
-      <% @users.each do |user| %>
-        <tr>
-          <td><%= link_to user.last_name, user %></td>
-          <td><%= link_to user.first_name, user %></td>
-          <td><%= user.location.name %></td>
-          <% user.certifications.each do |cert| %>
-            <% if cert.expiration_date <= ( Date.today) %>
-              <td class='danger'>
-                <%= cert.expiration_date.strftime('%-m/%-d/%Y') %>
-                <%= render_certification_name_id_in_dev(cert) %>
-              </td>
-            <% elsif cert.expiration_date > ( Date.today ) &&
-              cert.expiration_date < ( Date.today + 60.days ) %>
-              <td class='warning'>
-                <%= cert.expiration_date.strftime('%-m/%-d/%Y') %>
-                <%= render_certification_name_id_in_dev(cert) %>
-              </td>
-            <% elsif cert.expiration_date >= ( Date.today + 60.days ) %>
-              <td class='success'>
-                <%= cert.expiration_date.strftime('%-m/%-d/%Y') %>
-                <%= render_certification_name_id_in_dev(cert) %>
-              </td>
-            <% end %>
-          <% end %>
-        </tr>
-      <% end %>
+      <tr ng-repeat='userData in users | orderBy:sorter.value'>
+        <td>{{userData.lastName}}</td>
+        <td>{{userData.firstName}}</td>
+        <td>{{userData.location}}</td>
+        <td ng-repeat='certName in certNames' class='{{userData[certName.name + "class"]}}'>
+          {{formatDate(userData[certName.name])}}
+        </td>
+        </td>
+      </tr>
     </tbody>
   </table>
 </div>

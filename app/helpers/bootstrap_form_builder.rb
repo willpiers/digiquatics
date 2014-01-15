@@ -1,5 +1,4 @@
 class BootstrapFormBuilder < ActionView::Helpers::FormBuilder
-
   FORM_HELPERS = %w{text_field password_field email_field select}
 
   delegate :content_tag, to: :@template

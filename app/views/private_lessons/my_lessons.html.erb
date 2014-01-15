@@ -15,18 +15,17 @@
       <th>Location</th>
     </tr>
   </thead>
-
   <tbody>
     <% @my_lessons.each do |private_lesson| %>
       <tr>
-        <td><%=private_lesson.last_name%></td>
-        <td><%=private_lesson.first_name%></td>
-        <td><%=private_lesson.age%></td>
-        <td><%=private_lesson.sex%></td>
-        <td><%=private_lesson.ability_level%></td>
-        <td><%=private_lesson.day%></td>
-        <td><%=private_lesson.time%></td>
-        <td><%=private_lesson.created_at%></td>
+        <td><%= private_lesson.last_name     %></td>
+        <td><%= private_lesson.first_name    %></td>
+        <td><%= private_lesson.age           %></td>
+        <td><%= private_lesson.sex           %></td>
+        <td><%= private_lesson.ability_level %></td>
+        <td><%= private_lesson.day           %></td>
+        <td><%= private_lesson.time          %></td>
+        <td><%= private_lesson.created_at    %></td>
         <td></td>
       </tr>
     <% end %>

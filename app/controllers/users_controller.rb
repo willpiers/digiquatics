@@ -5,8 +5,7 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:edit, :show, :certifications]
 
   def index
-    @users = User.joins(:account).where(account_id: current_user.account_id)
-    .active
+    @users = User.joins(:account).same_account_as(current_user).active
     .includes(:location, :position).search(params[:search])
     .order(sort_column + " " + sort_direction)
 
@@ -18,7 +17,7 @@ class UsersController < ApplicationController
   end
 
   def all_users
-    @all_users = User.joins(:account).where(account_id: current_user.account_id)
+    @all_users = User.joins(:account).same_account_as(current_user)
     .includes(:location, :position).search(params[:search])
     .order(sort_column + " " + sort_direction)
 
@@ -30,10 +29,8 @@ class UsersController < ApplicationController
   end
 
   def inactive_index
-    @inactive_users = User.joins(:account)
-    .where(account_id: current_user.account_id)
-    .inactive
-    .includes(:location, :position).search(params[:search])
+    @inactive_users = User.joins(:account).same_account_as(current_user)
+    .inactive.includes(:location, :position).search(params[:search])
     .order(sort_column + " " + sort_direction)
 
     respond_to do |format|
