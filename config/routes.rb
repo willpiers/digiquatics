@@ -1,6 +1,14 @@
 AquaticsApp::Application.routes.draw do
 
   resources :attendance_records
+
+  resources :help_desks
+
+  resources :preventative_lists
+
+  resources :daily_todos
+
+  resources :pools
   resources :chemical_records
   resources :private_lessons
   resources :positions

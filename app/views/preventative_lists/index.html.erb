@@ -1,0 +1,29 @@
+<h1>Listing preventative_lists</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @preventative_lists.each do |preventative_list| %>
+      <tr>
+        <td><%= preventative_list.name %></td>
+        <td><%= preventative_list.type %></td>
+        <td><%= link_to 'Show', preventative_list %></td>
+        <td><%= link_to 'Edit', edit_preventative_list_path(preventative_list) %></td>
+        <td><%= link_to 'Destroy', preventative_list, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Preventative list', new_preventative_list_path %>

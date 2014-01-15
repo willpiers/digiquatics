@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'fileutils'
 
 describe User do
   before do
@@ -157,7 +158,7 @@ describe User do
       end
 
       after do
-        File.unlink(@user.avatar.path)
+        FileUtils.rm_r(File.expand_path('../../..', @user.avatar.path))
       end
 
       it 'should use the correct url' do
