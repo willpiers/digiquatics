@@ -1,0 +1,31 @@
+<h1>Listing daily_todos</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Status</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @daily_todos.each do |daily_todo| %>
+      <tr>
+        <td><%= daily_todo.name %></td>
+        <td><%= daily_todo.type %></td>
+        <td><%= daily_todo.status %></td>
+        <td><%= link_to 'Show', daily_todo %></td>
+        <td><%= link_to 'Edit', edit_daily_todo_path(daily_todo) %></td>
+        <td><%= link_to 'Destroy', daily_todo, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Daily todo', new_daily_todo_path %>

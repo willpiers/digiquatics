@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140114024619) do
+ActiveRecord::Schema.define(version: 20140115203613) do
 
   create_table "accounts", force: true do |t|
     t.string   "name"
@@ -21,12 +21,9 @@ ActiveRecord::Schema.define(version: 20140114024619) do
   end
 
   create_table "attendance_records", force: true do |t|
-    t.integer  "patrons"
-    t.datetime "start_time"
-    t.datetime "end_time"
+    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "pool_id"
   end
 
   create_table "certification_names", force: true do |t|
@@ -64,6 +61,20 @@ ActiveRecord::Schema.define(version: 20140114024619) do
     t.datetime "time_stamp"
   end
 
+  create_table "daily_todos", force: true do |t|
+    t.string   "name"
+    t.string   "type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "help_desks", force: true do |t|
+    t.string   "name"
+    t.string   "type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "locations", force: true do |t|
     t.integer  "account_id"
     t.string   "name"
@@ -81,6 +92,13 @@ ActiveRecord::Schema.define(version: 20140114024619) do
   create_table "positions", force: true do |t|
     t.integer  "account_id"
     t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "preventative_lists", force: true do |t|
+    t.string   "name"
+    t.string   "type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
