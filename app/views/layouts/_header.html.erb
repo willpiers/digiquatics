@@ -1,6 +1,8 @@
 <div class = "navbar navbar-inverse navbar-static-top">
   <div class = "container">
-    <%= link_to "Aquatics App Beta", root_path, id: "logo" %>
+    <% if signed_in? %>
+      <%= link_to "Aquatics App Beta", dashboard_path, id: "logo" %>
+    <% end %>
     <button class = "navbar-toggle" data-toggle = "collapse"
     data-target = ".navHeaderCollapse">
       <span class = "icon-bar"></span>
@@ -29,9 +31,9 @@
           <ul class = "dropdown-menu">
             <li><%= link_to "My Profile", current_user %></li>
             <li><%= link_to "My Lessons", my_lessons_path %></li>
-             <li class="divider"></li> 
+             <li class="divider"></li>
              <li><%= link_to "Manage Users", users_path %></li>
-             <li><%= link_to "Admin Dashboard", admin_dashboard_path %></li> 
+             <li><%= link_to "Admin Dashboard", admin_dashboard_path %></li>
             <li class="divider"></li>
             <li><%= link_to "Sign out", signout_path,
               method: "delete" %></li>

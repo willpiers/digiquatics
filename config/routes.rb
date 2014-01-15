@@ -1,12 +1,8 @@
 AquaticsApp::Application.routes.draw do
   resources :pools
-
   resources :attendance_records
-
   resources :chemical_records
-
   resources :private_lessons
-
   resources :positions
   resources :locations
   resources :certifications
@@ -18,9 +14,11 @@ AquaticsApp::Application.routes.draw do
       get 'certifications'
     end
   end
+
   resources :sessions, only: [:new, :create, :destroy]
 
-  root  'static_pages#home'
+  root  'static_pages#index'
+
   match '/signup', to: 'users#new', via: 'get'
   match '/signin', to: 'sessions#new', via: 'get'
   match '/signin', to: 'sessions#create', via: 'post'
@@ -42,6 +40,7 @@ AquaticsApp::Application.routes.draw do
   match '/all_users', to: 'users#all_users', via: 'get'
   match '/admin_dashboard', to: 'accounts#admin_dashboard', via: 'get'
   match '/certification_expirations', to: 'certifications#expirations', via: 'get'
+  match '/dashboard', to: 'static_pages#dashboard', via: 'get'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

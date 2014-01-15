@@ -27,7 +27,7 @@ class PrivateLessonsController < ApplicationController
   # GET /private_lessons/new
   def new
     @private_lesson = PrivateLesson.new
-    render layout: 'lessons_signup'
+    #render layout: 'lessons_signup'
   end
 
   # GET /private_lessons/1/edit

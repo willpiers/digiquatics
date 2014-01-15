@@ -162,7 +162,7 @@ describe User do
 
       it 'should use the correct url' do
         path_regex =
-          %r{^\/system\/avatars\/\d{2,5}\/original\/avatar.jpg\?\d{10}$}
+          %r{^\/system\/avatars\/\d+\/original\/avatar.jpg\?\d{10}$}
 
         @user.avatar.url.should match(path_regex)
       end

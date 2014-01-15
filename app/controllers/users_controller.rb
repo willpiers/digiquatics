@@ -40,11 +40,11 @@ class UsersController < ApplicationController
     end
   end
 
-	def show
-	end
+  def show
+  end
 
   def new
-  	@user = User.new
+    @user = User.new
     @locations = Location.all
     @positions = Position.all
   end
@@ -68,8 +68,8 @@ class UsersController < ApplicationController
     @user.account_id = current_user.account_id
 
     if @user.save
-    	flash[:success] = 'This account has been successfully created!'
-    	redirect_to users_path
+      flash[:success] = 'This account has been successfully created!'
+      redirect_to users_path
     else
       render 'new'
     end

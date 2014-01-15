@@ -5,7 +5,7 @@ describe 'Manage Locations' do
 
   describe 'page' do
     let(:account) { FactoryGirl.create(:account) }
-    let(:location) { FactoryGirl.create(:location) }
+    let(:location) { FactoryGirl.create(:location, account_id: account.id) }
     let(:position) { FactoryGirl.create(:position) }
     let(:user) { FactoryGirl.create(:user,
                                     account_id: account.id,
@@ -14,25 +14,22 @@ describe 'Manage Locations' do
 
     before do
       sign_in user
-      FactoryGirl.create(:location,
-                         name: 'Carmody Rec Center',
-                         account_id: account.id)
-      FactoryGirl.create(:location,
-                         name: 'Green Mtn Rec Center',
-                         account_id: account.id)
-      location.update_attribute(:account_id, account.id)
+      FactoryGirl.create(:location, name: 'Carmody Rec Center',
+                                    account_id: account.id)
       visit admin_dashboard_path
     end
 
     it { should have_content('Manage Locations') }
     it { should have_link('New', href: new_location_path) }
 
-    describe 'should list each location' do
-      Location.all.each do |location|
-        location.account_id.should eq(user.account_id)
-        it { should have_content(location.name) }
-        it { should have_link('Edit', href: edit_location_path(location)) }
-        it { should have_link('Delete', href: location_path(location)) }
+    describe 'admin dashboard' do
+      it 'should list each location' do
+        Location.all.each do |location|
+          location.account_id.should eq(user.account_id)
+          should have_content(location.name)
+          should have_link('Edit', href: edit_location_path(location))
+          should have_link('Delete', href: location_path(location))
+        end
       end
     end
 
@@ -43,7 +40,7 @@ describe 'Manage Locations' do
       end
 
       it 'should create a new location and redirect to index' do
-        expect { click_button 'Create Location'}
+        expect { click_button 'Create Location' }
         .to change(Location, :count).by(1)
 
         current_path.should == admin_dashboard_path
@@ -73,9 +70,10 @@ describe 'Manage Locations' do
       end
 
       it 'should update the location and redirect to admin dashboard' do
-        expect { click_button 'Update Location'}.to_not change(Location, :count)
+        expect { click_button 'Update Location' }
+        .to_not change(Location, :count)
 
-        expect(location.reload.name).to eq('new location name')
+        location.reload.name.should == 'new location name'
         current_path.should == admin_dashboard_path
       end
     end
