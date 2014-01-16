@@ -1,21 +1,15 @@
 <%= form_for(@attendance_record) do |f| %>
   <% if @attendance_record.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@attendance_record.errors.count, "error") %> prohibited this attendance_record from being saved:</h2>
-
+      <h2><%= pluralize(@attendance_record.errors.count, "error") %>
+        prohibited this attendance_record from being saved:</h2>
       <ul>
-      <% @attendance_record.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
+        <% @attendance_record.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
       </ul>
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+
 <% end %>
