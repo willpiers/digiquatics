@@ -1,0 +1,17 @@
+<%= bootstrap_form_for @shift_report do |f| %>
+  <%= f.text_field :post_title %>
+  <%= f.text_area :post_content %>
+
+  <div class="date-select">
+    <%= f.date_select :date_stamp, {}, label: 'Date'  %>
+    <%= f.time_select :time_stamp, { ampm: true },
+      label: 'Time' %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+
+<br>
+<br>
