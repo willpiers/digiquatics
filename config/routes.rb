@@ -1,4 +1,6 @@
 AquaticsApp::Application.routes.draw do
+  resources :shift_reports
+
   resources :attendance_records
 
   resources :help_desks

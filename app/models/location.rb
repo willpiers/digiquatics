@@ -6,4 +6,5 @@ class Location < ActiveRecord::Base
   validates :name, presence: true
   belongs_to :account
   has_many :users
+  has_many :shift_reports
 end

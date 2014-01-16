@@ -1,0 +1,26 @@
+<% @shift_reports.each do |shift_report| %>
+
+  <div class="panel panel-info">
+    <div class="panel-heading"><%= shift_report.post_title %> -
+      <%= Location.find(shift_report.location_id).name %>
+    </div>
+
+    <table class="table table-bordered table-condensed" >
+      <tr>
+        <td width="200">
+          <div style = "margin-left:5px; margin-top:5px;">
+            <%= image_tag User.find(shift_report.user_id).avatar.url,
+              size: '100x100' %>
+            <p> <%= User.find(shift_report.user_id).first_name %> </p>
+            <p> <%= User.find(shift_report.user_id).last_name %> </p>
+          </div>
+        </td>
+        <td>
+          <div class="panel-body"><%= shift_report.post_content %></div>
+        </td>
+      </tr>
+    </table>
+  </div>
+<% end %>
+
+<br>
