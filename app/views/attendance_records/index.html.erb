@@ -3,7 +3,7 @@
 <table>
   <thead>
     <tr>
-      <th>Name</th>
+      <th>Pool</th>
       <th></th>
       <th></th>
       <th></th>
@@ -13,10 +13,12 @@
   <tbody>
     <% @attendance_records.each do |attendance_record| %>
       <tr>
-        <td><%= attendance_record.name %></td>
+        <td><%= attendance_record.pool_id %></td>
         <td><%= link_to 'Show', attendance_record %></td>
-        <td><%= link_to 'Edit', edit_attendance_record_path(attendance_record) %></td>
-        <td><%= link_to 'Destroy', attendance_record, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Edit', edit_attendance_record_path(attendance_record)
+          %></td>
+        <td><%= link_to 'Destroy', attendance_record, method: :delete,
+          data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
