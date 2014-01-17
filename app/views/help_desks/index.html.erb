@@ -15,6 +15,7 @@
   <table class="table table-hover table-condensed">
     <thead>
       <tr>
+        <th> </th>
         <th>Location</th>
         <th>Description</th>
         <th>Urgency</th>
@@ -26,6 +27,13 @@
   <tbody>
     <% @help_desks.each do |help_desk| %>
       <tr>
+        <td>
+          <% if help_desk.help_desk_attachment? %>
+            <%= link_to "", help_desk.help_desk_attachment.url,
+            class: "glyphicon glyphicon-picture" %>
+          <% else %>
+          <% end %>
+        </td>
         <td><%= Location.find(help_desk.location_id).name %></td>
         <td><%= help_desk.name %></td>
         <td><%= help_desk.urgency %></td>
