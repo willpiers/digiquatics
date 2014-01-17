@@ -1,17 +1,17 @@
 <table class="table">
   <tbody>
       <% @locations.each do |location| %>
-        <tr>
-          <td><%= location.name %></td>
-          <td>
-            <%= link_to ' Edit', edit_location_path(location),
-              class: "glyphicon glyphicon-pencil" %>
-          </td>
-          <td>
-            <%= link_to ' Delete', location,
-              class: "glyphicon glyphicon-trash", method: :delete,
-              data: { confirm: 'Are you sure?' } %></td>
-        </tr>
+      <tr>
+        <td style="width:66%"><%= location.name %></td>
+        <td>
+          <%= link_to ' Edit', edit_location_path(location),
+            class: "glyphicon glyphicon-pencil" %>
+        </td>
+        <td>
+          <%= link_to ' Delete', location,
+            class: "glyphicon glyphicon-trash", method: :delete,
+            data: { confirm: 'Are you sure?' } %></td>
+      </tr>
       <% end %>
       <tr>
         <td>

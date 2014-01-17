@@ -2,7 +2,8 @@
   <tbody>
     <% @positions.each do |position| %>
       <tr>
-        <td><%= position.name %></td>
+        <td style="width:66%"><%= position.name %></td>
+
         <td><%= link_to ' Edit', edit_position_path(position),
         class: "glyphicon glyphicon-pencil" %></td>
         <td><%= link_to ' Delete', position, method: :delete,
