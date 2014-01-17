@@ -17,6 +17,7 @@ class User < ActiveRecord::Base
   has_many    :shift_reports
   belongs_to  :location
   belongs_to  :position
+  has_many    :help_desks
 
   has_attached_file :avatar,
                     path: PAPERCLIP_PATH,

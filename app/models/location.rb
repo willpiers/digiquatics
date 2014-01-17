@@ -15,4 +15,6 @@ class Location < ActiveRecord::Base
 
   has_many :shift_reports
 
+  has_many :help_desks
+
 end
