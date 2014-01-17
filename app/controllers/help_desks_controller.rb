@@ -71,6 +71,7 @@ class HelpDesksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def help_desk_params
-      params.require(:help_desk).permit(:name, :urgency, :user_id, :location_id, :status)
+      params.require(:help_desk).permit(:name, :urgency, :user_id, :location_id, :status,
+                                        :help_desk_attachment)
     end
 end
