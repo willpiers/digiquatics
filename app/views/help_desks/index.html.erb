@@ -1,24 +1,38 @@
-<h1>Listing help_desks</h1>
+<% provide(:title, 'Help Desk') %>
+<h1>Open Help Desk Tickets</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Type</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
+<ul class = "pull-right">
+  <%= link_to "Add Ticket", new_help_desk_path,
+    class: "btn btn-primary btn-sm" %>
+</ul>
+
+<ul class = "pull-right">
+  <%= link_to "Export CSV", "#",
+    class: "btn btn-warning btn-sm" %>
+</ul>
+
+<div class="table-responsive">
+  <table class="table table-hover table-condensed">
+    <thead>
+      <tr>
+        <th>Location</th>
+        <th>Description</th>
+        <th>Urgency</th>
+        <th>Submitted By</th>
+        <th>Date Submitted</th>
+      </tr>
   </thead>
 
   <tbody>
     <% @help_desks.each do |help_desk| %>
       <tr>
+        <td><%= Location.find(help_desk.location_id).name %></td>
         <td><%= help_desk.name %></td>
-        <td><%= help_desk.type %></td>
-        <td><%= link_to 'Show', help_desk %></td>
-        <td><%= link_to 'Edit', edit_help_desk_path(help_desk) %></td>
-        <td><%= link_to 'Destroy', help_desk, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= help_desk.urgency %></td>
+        <td><%= User.find(help_desk.user_id).first_name %>
+          <%= User.find(help_desk.user_id).last_name %>
+        </td>
+        <td><%= help_desk.created_at.strftime('%-m/%-d/%Y') %></td>
       </tr>
     <% end %>
   </tbody>
@@ -26,4 +40,3 @@
 
 <br>
 
-<%= link_to 'New Help desk', new_help_desk_path %>
