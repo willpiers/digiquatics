@@ -15,6 +15,7 @@ class LocationsController < ApplicationController
   # GET /locations/new
   def new
     @location = Location.new
+    1.times { @location.pools.build }
   end
 
   # GET /locations/1/edit
@@ -76,6 +77,6 @@ class LocationsController < ApplicationController
 
   # Only allow the white list through.
   def location_params
-    params.require(:location).permit(:name)
+    params.require(:location).permit(:name, pools_attributes: [:id, :location_id, :name, :_destroy])
   end
 end
