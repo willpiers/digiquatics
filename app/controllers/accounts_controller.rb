@@ -21,6 +21,7 @@ class AccountsController < ApplicationController
     @certification_names = CertificationName.joins(:account)
       .same_account_as(current_user)
     @account = Account.find(current_user.account_id)
+    @private_lesson_details = PrivateLessonDetail.all
   end
 
   def create

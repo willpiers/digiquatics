@@ -1,0 +1,2 @@
+module PrivateLessonDetailsHelper
+end

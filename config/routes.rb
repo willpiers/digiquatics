@@ -1,5 +1,7 @@
 AquaticsApp::Application.routes.draw do
-<<<<<<< HEAD
+
+  resources :private_lesson_details
+
 
   resources :shift_reports
 
@@ -50,6 +52,7 @@ AquaticsApp::Application.routes.draw do
   match '/user_stats', to: 'static_pages#user_stats', via: 'get'
 
   match '/my_lessons', to: 'private_lessons#my_lessons', via: 'get'
+  match '/manage_private_lessons', to: 'private_lessons#manage_private_lessons', via: 'get'
   match '/chemical_record_stats', to: 'static_pages#chemical_record_stats', via: 'get'
 
   match '/inactive_index', to: 'users#inactive_index', via: 'get'
