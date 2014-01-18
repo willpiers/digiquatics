@@ -1,0 +1,22 @@
+<%= bootstrap_form_for(@private_lesson_detail) do |f| %>
+  <% if @private_lesson_detail.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@private_lesson_detail.errors.count, "error") %> prohibited this private_lesson_detail from being saved:</h2>
+
+      <ul>
+      <% @private_lesson_detail.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= f.text_field :first_name %>
+  <%= f.text_field :last_name %>
+  <%= f.text_field :phone_number %>
+  <%= f.text_field :email %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

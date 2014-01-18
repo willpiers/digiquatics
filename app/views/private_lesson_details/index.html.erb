@@ -1,0 +1,31 @@
+<h1>Listing private_lesson_details</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Phone Number</th>
+      <th>Email</th>
+      <th>Attachment</th>
+    </tr>
+  </thead>z
+
+  <tbody>
+    <% @private_lesson_details.each do |private_lesson_detail| %>
+      <tr>
+        <td> <%= private_lesson_detail.first_name %> </td>
+        <td> <%= private_lesson_detail.last_name %> </td>
+        <td> <%= private_lesson_detail.phone_number %> </td>
+        <td> <%= private_lesson_detail.email %> </td>
+        <td><%= link_to 'Show', private_lesson_detail %></td>
+        <td><%= link_to 'Edit', edit_private_lesson_detail_path(private_lesson_detail) %></td>
+        <td><%= link_to 'Destroy', private_lesson_detail, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Private lesson detail', new_private_lesson_detail_path %>

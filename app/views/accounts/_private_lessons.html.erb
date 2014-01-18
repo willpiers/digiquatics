@@ -1,0 +1,24 @@
+<table class="table">
+  <tbody>
+    <% @private_lesson_details.each do |private_lesson_detail| %>
+      <tr>
+        <td style="width:66%"> <%= private_lesson_detail.first_name %>
+        <%= private_lesson_detail.last_name %>
+         <%= private_lesson_detail.phone_number %>
+        <%= private_lesson_detail.email %> </td>
+
+        <td><%= link_to ' Edit', edit_private_lesson_detail_path(private_lesson_detail),
+        class: "glyphicon glyphicon-pencil" %></td>
+        <td><%= link_to ' Delete', private_lesson_detail, method: :delete,
+          class: "glyphicon glyphicon-trash",
+          data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+    <td>
+      <%= link_to ' New', new_private_lesson_detail_path,
+        class: "glyphicon glyphicon-plus-sign" %>
+    </td>
+
+  </tbody>
+</table>
+
