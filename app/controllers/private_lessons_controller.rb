@@ -1,5 +1,6 @@
 class PrivateLessonsController < ApplicationController
-  before_action :set_private_lesson, only: [:show, :edit, :update, :destroy]
+  before_action :set_private_lesson, only: [:show, :edit, :update, :destroy,
+    :manage_private_lessons]
 
   # GET /private_lessons
   # GET /private_lessons.json
@@ -16,6 +17,23 @@ class PrivateLessonsController < ApplicationController
 
   def my_lessons
     @my_lessons = PrivateLesson.joins(:user).claimed_by(current_user)
+  end
+
+  def manage_private_lessons
+    @private_lesson = PrivateLesson.new(private_lesson_params)
+
+    respond_to do |format|
+      if @private_lesson.save
+        format.html { redirect_to @private_lesson,
+          notice: 'Private lesson was successfully created.' }
+        format.json { render action: 'show', status: :created,
+          location: @private_lesson }
+      else
+        format.html { render action: 'new' }
+        format.json { render json: @private_lesson.errors,
+          status: :unprocessable_entity }
+      end
+    end
   end
 
   # GET /private_lessons/1
@@ -92,7 +110,7 @@ class PrivateLessonsController < ApplicationController
 
     # Only allow the white list through.
     def private_lesson_params
-      params.require(:private_lesson).permit(:first_name, :email)
+      params.require(:private_lesson).permit(:first_name, :email, :attachment)
     end
   private
 
