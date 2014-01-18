@@ -25,6 +25,8 @@ class HelpDesksController < ApplicationController
   # POST /help_desks.json
   def create
     @help_desk = HelpDesk.new(help_desk_params)
+    @help_desk.user_id = current_user.id
+    @help_desk.location_id = current_user.location_id
 
     respond_to do |format|
       if @help_desk.save
@@ -69,6 +71,7 @@ class HelpDesksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def help_desk_params
-      params.require(:help_desk).permit(:name, :type)
+      params.require(:help_desk).permit(:name, :urgency, :user_id, :location_id, :status,
+                                        :help_desk_attachment)
     end
 end

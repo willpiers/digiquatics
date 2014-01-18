@@ -7,4 +7,5 @@ class Location < ActiveRecord::Base
   belongs_to :account
   has_many :users
   has_many :shift_reports
+  has_many :help_desks
 end

@@ -1,25 +1,11 @@
-<%= form_for(@help_desk) do |f| %>
-  <% if @help_desk.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@help_desk.errors.count, "error") %> prohibited this help_desk from being saved:</h2>
+<div id="accountform">
+  <%= bootstrap_form_for(@help_desk) do |f| %>
 
-      <ul>
-      <% @help_desk.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
+    <%= f.text_field :name, label: 'Description' %>
+    <%= f.text_field :urgency, label: 'Urgency' %>
+    <%= f.file_field :help_desk_attachment %>
+
+    <%= f.primary "Submit"%>
+
   <% end %>
-
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :type %><br>
-    <%= f.text_field :type %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+</div>

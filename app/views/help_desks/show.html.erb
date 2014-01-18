@@ -7,8 +7,10 @@
 
 <p>
   <strong>Type:</strong>
-  <%= @help_desk.type %>
+  <%= @help_desk.urgency %>
 </p>
+
+
 
 <%= link_to 'Edit', edit_help_desk_path(@help_desk) %> |
 <%= link_to 'Back', help_desks_path %>

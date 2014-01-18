@@ -12,4 +12,5 @@ class Account < ActiveRecord::Base
   has_many :positions
   has_many :private_lessons
   has_many :shift_reports
+  has_many :help_desks
 end
