@@ -1,13 +1,18 @@
 AquaticsApp::Application.routes.draw do
-  resources :pools
+
   resources :attendance_records
   resources :chemical_records
   resources :private_lessons
   resources :positions
-  resources :locations
   resources :certifications
   resources :certification_names
   resources :accounts
+
+  resources :locations do
+    member do
+      get 'pools'
+    end
+  end
 
   resources :users do
     member do

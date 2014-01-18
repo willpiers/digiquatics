@@ -1,8 +1,14 @@
 <%= bootstrap_form_for @location do |f| %>
 
-  <div class="field">
-    <%= f.text_field :name %>
-  </div>
+  <fieldset>
+    <%= f.text_field :name, label: 'Location Name' %>
+
+    <%= f.fields_for :pools do |builder| %>
+      <%= render 'pool_fields', f: builder %>
+    <% end %>
+
+    <%= link_to_add_fields raw('<i class="glyphicon glyphicon-plus-sign"></i>'), f, :pools %>
+  </fieldset>
 
   <div class="actions">
     <%= f.submit %>
