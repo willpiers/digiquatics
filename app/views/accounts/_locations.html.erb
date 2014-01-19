@@ -2,7 +2,16 @@
   <tbody>
       <% @locations.each do |location| %>
       <tr>
-        <td style="width:66%"><%= location.name %></td>
+        <td style="width=66%"><%= location.name %>
+          <br>
+          <% location.pools.each do |pool| %>
+            <ul>
+              <li>
+                <%= pool.name %>
+              </li>
+            </ul>
+          <% end %>
+        </td>
         <td>
           <%= link_to ' Edit', edit_location_path(location),
             class: "glyphicon glyphicon-pencil" %>
@@ -12,6 +21,7 @@
             class: "glyphicon glyphicon-trash", method: :delete,
             data: { confirm: 'Are you sure?' } %></td>
       </tr>
+
       <% end %>
       <tr>
         <td>
