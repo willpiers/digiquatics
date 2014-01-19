@@ -1,16 +1,52 @@
-<p id="notice"><%= notice %></p>
+<% provide(:title, 'Help Desk Issue') %>
 
-<p>
-  <strong>Name:</strong>
-  <%= @help_desk.name %>
-</p>
+<h1> Issue # <%= @help_desk.id %></h1>
 
-<p>
-  <strong>Type:</strong>
-  <%= @help_desk.urgency %>
-</p>
+<div id="userformbutton">
+  <%= link_to "Edit", edit_help_desk_path(@help_desk),
+    class: "btn btn-default btn-primary" %>
+</div>
+
+<br>
+
+<div class="table-responsive">
+
+  <h4> Issue Description </h4>
+
+    <table class="table table-bordered table-condensed" >
+      <tr>
+        <th> Name </th>
+        <td> <%= @help_desk.name %> </td>
+      </tr>
+      <tr>
+        <th> Description </th>
+        <td> <%=  %> </td>
+      </tr>
+      <tr>
+        <th> Urgency </th>
+        <td> <%= @help_desk.urgency %> </td>
+      </tr>
+      <tr>
+        <th> Location </th>
+        <td> <%= @help_desk.urgency %> </td>
+      </tr>
+      <tr>
+        <th> Submitted By </th>
+        <td> <%= @help_desk.urgency %> </td>
+      </tr>
+      <tr>
+        <th> Submitted </th>
+        <td> <%= @help_desk.created_at.strftime('%-m/%-d/%Y') %> </td>
+      </tr>
+    </table>
+</div>
+
+
+<%= image_tag @help_desk.help_desk_attachment.url, size: '100x100' %>
+
+<%= image_tag @help_desk.help_desk_attachment.url, size: '100x100' %>
+
+<%= image_tag @help_desk.help_desk_attachment.url, size: '100x100' %>
 
 
 
-<%= link_to 'Edit', edit_help_desk_path(@help_desk) %> |
-<%= link_to 'Back', help_desks_path %>
