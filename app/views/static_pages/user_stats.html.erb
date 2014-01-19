@@ -17,8 +17,8 @@
 			<tr><td>Active </td><td><%= @active.count %></td></tr>
 			<tr><td>Inactive </td><td><%= @inactive.count %></td></tr>
 		</table>
-		
-	<h4> Inventory </h4>			
+
+	<h4> Inventory </h4>
 		<table class="table table-bordered table-condensed">
 			<tr><th>Metric</th><th>Count</td></tr>
 			<tr><td>Shirts </td><td><%= @users.group(:shirt_size).count %></td></tr>
@@ -29,11 +29,11 @@
 				</td></tr>
 			<tr><td>Female Bottom </td><td><%= @female_users.group(:suit_size).count %>
 				</td></tr>
-		</table>		
+		</table>
 
 	<h4> Location </h4>
 		<table class="table table-bordered table-condensed">
 			<tr><th>Metric</th><th>Count</td></tr>
-			<tr><td>Locations</td><td> <%= @users.group(:location).count %></td></tr>
-		</table>		
+			<tr><td>Locations</td><td> <% @users.group(:location).count %></td></tr>
+		</table>
 </div>
