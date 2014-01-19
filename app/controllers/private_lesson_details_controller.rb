@@ -28,7 +28,7 @@ class PrivateLessonDetailsController < ApplicationController
 
     respond_to do |format|
       if @private_lesson_detail.save
-        format.html { redirect_to @private_lesson_detail, notice: 'Private lesson detail was successfully created.' }
+        format.html { redirect_to admin_dashboard_path, notice: 'Private lesson detail was successfully created.' }
         format.json { render action: 'show', status: :created, location: @private_lesson_detail }
       else
         format.html { render action: 'new' }
@@ -42,7 +42,7 @@ class PrivateLessonDetailsController < ApplicationController
   def update
     respond_to do |format|
       if @private_lesson_detail.update(private_lesson_detail_params)
-        format.html { redirect_to @private_lesson_detail, notice: 'Private lesson detail was successfully updated.' }
+        format.html { redirect_to admin_dashboard_path, notice: 'Private lesson detail was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
