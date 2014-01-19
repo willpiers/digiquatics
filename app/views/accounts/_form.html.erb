@@ -1,7 +1,7 @@
 <%= bootstrap_form_for @account do |f| %>
   <% if @account.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@account.errors.count, "error") %> 
+      <h2><%= pluralize(@account.errors.count, "error") %>
         prohibited this account from being saved:</h2>
       <ul>
         <% @account.errors.full_messages.each do |msg| %>
@@ -11,15 +11,15 @@
     </div>
   <% end %>
 
-  <div class="field" id="accountform">
+  <div id="accountform">
 
     <%= f.text_field :name %>
 
     <%= f.label :time_zone %><br>
     <%= f.time_zone_select :time_zone, ActiveSupport::TimeZone.us_zones %>
-    
+
     <div class="actions">
-      <%= f.primary %>
+      <%= f.submit %>
     </div>
   </div>
 <% end %>

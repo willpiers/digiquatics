@@ -1,7 +1,7 @@
-<%= form_for(@pool) do |f| %>
+<%= bootstrap_form_for(@pool) do |f| %>
   <% if @pool.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@pool.errors.count, "error") %> 
+      <h2><%= pluralize(@pool.errors.count, "error") %>
         prohibited this pool from being saved:</h2>
       <ul>
       <% @pool.errors.full_messages.each do |msg| %>
@@ -11,14 +11,9 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :name %><br>
     <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :location_id %><br>
     <%= f.number_field :location_id %>
-  </div>
+
   <div class="actions">
     <%= f.submit %>
   </div>
