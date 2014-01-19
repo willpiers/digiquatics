@@ -21,6 +21,7 @@
         <th>Urgency</th>
         <th>Submitted By</th>
         <th>Date Submitted</th>
+        <th>Edit</th>
       </tr>
   </thead>
 
@@ -36,11 +37,23 @@
         </td>
         <td><%= Location.find(help_desk.location_id).name %></td>
         <td><%= help_desk.name %></td>
-        <td><%= help_desk.urgency %></td>
+        <% if help_desk.urgency == "Low"  %>
+          <td class="success"><%= help_desk.urgency %></td>
+        <% elsif help_desk.urgency == "Medium"  %>
+          <td class="warning"><%= help_desk.urgency %></td>
+        <% elsif help_desk.urgency == "High"  %>
+          <td class="danger"><%= help_desk.urgency %></td>
+        <% else %>
+           <td><%= help_desk.urgency %></td>
+        <% end %>
         <td><%= User.find(help_desk.user_id).first_name %>
           <%= User.find(help_desk.user_id).last_name %>
         </td>
         <td><%= help_desk.created_at.strftime('%-m/%-d/%Y') %></td>
+        <td>
+          <%= link_to help_desk.id, help_desk,
+            class: "glyphicon glyphicon-pencil" %>
+        </td>
       </tr>
     <% end %>
   </tbody>

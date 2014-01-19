@@ -1,6 +1,6 @@
   <%= bootstrap_form_for(@help_desk) do |f| %>
     <%= f.text_field :name, label: 'Description' %>
-    <%= f.text_field :urgency, label: 'Urgency' %>
+    <%= f.select :urgency, %w[Low Medium High], label: 'Urgency' %>
     <%= f.file_field :help_desk_attachment %>
 
     <%= f.primary "Submit"%>

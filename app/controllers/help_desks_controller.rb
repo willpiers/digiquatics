@@ -30,7 +30,7 @@ class HelpDesksController < ApplicationController
 
     respond_to do |format|
       if @help_desk.save
-        format.html { redirect_to @help_desk, notice: 'Help desk was successfully created.' }
+        format.html { redirect_to help_desks_path, notice: 'Help desk was successfully created.' }
         format.json { render action: 'show', status: :created, location: @help_desk }
       else
         format.html { render action: 'new' }
