@@ -1,5 +1,5 @@
 <div class="userform">
-  <%= bootstrap_form_for @user do |f| %>
+  <%= bootstrap_form_for(@user, style: :horizontal, left: "col-sm-4", right: "col-sm-8") do |f| %>
     <%= render 'shared/error_messages' %>
 
     <legend><%= legend %></legend>
@@ -37,7 +37,7 @@
     <h4>Certifications</h4>
 
     <%= f.fields_for :certifications do |builder| %>
-        <%= builder.object.certification_name.name %>
+        <b><%= builder.object.certification_name.name %></b>
         <%= builder.text_field :issue_date, :value => (builder.object.issue_date.strftime('%-m/%-d/%Y')) %>
         <%= builder.text_field :expiration_date, :value => (builder.object.expiration_date.strftime('%-m/%-d/%Y')) %>
         <%= builder.file_field :attachment %>
@@ -45,12 +45,18 @@
 
     <% if signed_in? && current_user.admin %>
       <h4>User Classification</h4>
+      <%= f.form_group do %>
       <%= f.check_box :admin, style: "width: 20px; height: 50px;" %>
       <%= f.check_box :active, style: "width: 20px; height: 50px;" %>
-      <%= f.text_area :notes, size: "2x" %>
+      <% end %>
     <% end %>
 
+    <h4>User Notes</h4>
+    <%= f.text_area :notes, size: "2x", hide_label: :true, placeholder: "Leave a comment..." %>
+
+     <%= f.form_group do %>
     <%= f.primary ( f.object.new_record? ?  "Create Account" :
       "Save Changes" ) %>
+      <% end %>
   <% end %>
 </div>
