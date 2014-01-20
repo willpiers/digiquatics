@@ -5,7 +5,19 @@ class PrivateLessonsController < ApplicationController
   # GET /private_lessons
   # GET /private_lessons.json
   def index
-    @private_lessons = PrivateLesson
+    @private_lessons = PrivateLesson.joins(:account).same_account_as(current_user)
+      .order(sort_column + " " + sort_direction)
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.xml  { render :xml => @private_lessons}
+      format.csv { render csv: @private_lessons, filename: 'private_lessons'}
+    end
+  end
+
+  def queue
+    @private_lessons = PrivateLesson.joins(:account).same_account_as(current_user)
+      .where(user_id = nil)
       .order(sort_column + " " + sort_direction)
 
     respond_to do |format|
@@ -17,6 +29,7 @@ class PrivateLessonsController < ApplicationController
 
   def my_lessons
     @my_lessons = PrivateLesson.joins(:user).claimed_by(current_user)
+      .order(sort_column + " " + sort_direction)
   end
 
   def manage_private_lessons
@@ -39,7 +52,6 @@ class PrivateLessonsController < ApplicationController
   # GET /private_lessons/1
   # GET /private_lessons/1.json
   def show
-
   end
 
   # GET /private_lessons/new
@@ -74,6 +86,10 @@ class PrivateLessonsController < ApplicationController
   # PATCH/PUT /private_lessons/1
   # PATCH/PUT /private_lessons/1.json
   def update
+
+      @private_lesson.user_id = params[:user_id]
+
+
     respond_to do |format|
       if @private_lesson.update(private_lesson_params)
         format.html { redirect_to @private_lesson,
@@ -110,7 +126,8 @@ class PrivateLessonsController < ApplicationController
 
     # Only allow the white list through.
     def private_lesson_params
-      params.require(:private_lesson).permit(:first_name, :email, :attachment)
+      params.require(:private_lesson).permit(:first_name, :email, :attachment,
+                                            :user_id)
     end
   private
 
