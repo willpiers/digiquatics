@@ -2,10 +2,17 @@
 
 <h1> Issue # <%= @help_desk.id %></h1>
 
-<div id="userformbutton">
+<ul class = "pull-right">
   <%= link_to "Edit", edit_help_desk_path(@help_desk),
     class: "btn btn-default btn-primary" %>
-</div>
+</ul>
+
+<ul class = "pull-right">
+<%= bootstrap_form_for @help_desk do |f| %>
+  <%= f.hidden_field :issue_status, :value => false %>
+  <%= f.submit "Mark Closed"  %>
+<% end %>
+</ul>
 
 <br>
 
@@ -15,38 +22,63 @@
 
     <table class="table table-bordered table-condensed" >
       <tr>
-        <th> Name </th>
+        <th> Problem </th>
         <td> <%= @help_desk.name %> </td>
       </tr>
       <tr>
         <th> Description </th>
-        <td> <%=  %> </td>
+        <td> <%= @help_desk.description %> </td>
+      </tr>
+      <tr>
+        <th> Original Picture </th>
+        <td>
+          <% if @help_desk.help_desk_attachment? %>
+            <%= link_to "", @help_desk.help_desk_attachment.url,
+            class: "glyphicon glyphicon-picture" %>
+          <% else %>
+          <% end %>
+        </td>
       </tr>
       <tr>
         <th> Urgency </th>
-        <td> <%= @help_desk.urgency %> </td>
+        <% if @help_desk.urgency == "Low"  %>
+          <td class="success"><%= @help_desk.urgency %></td>
+        <% elsif @help_desk.urgency == "Medium"  %>
+          <td class="warning"><%= @help_desk.urgency %></td>
+        <% elsif @help_desk.urgency == "High"  %>
+          <td class="danger"><%= @help_desk.urgency %></td>
+        <% else %>
+           <td><%= @help_desk.urgency %></td>
+        <% end %>
       </tr>
       <tr>
         <th> Location </th>
-        <td> <%= @help_desk.urgency %> </td>
+        <td> <%= Location.find(@help_desk.location_id).name %> </td>
       </tr>
       <tr>
         <th> Submitted By </th>
-        <td> <%= @help_desk.urgency %> </td>
+        <td>
+          <%= User.find(@help_desk.user_id).first_name %>
+          <%= User.find(@help_desk.user_id).last_name %>
+        </td>
       </tr>
       <tr>
         <th> Submitted </th>
         <td> <%= @help_desk.created_at.strftime('%-m/%-d/%Y') %> </td>
       </tr>
+      <tr>
+        <th> Status </th>
+        <td> <%= @help_desk.issue_status %> </td>
+      </tr>
     </table>
 </div>
 
-
-<%= image_tag @help_desk.help_desk_attachment.url, size: '100x100' %>
-
-<%= image_tag @help_desk.help_desk_attachment.url, size: '100x100' %>
-
-<%= image_tag @help_desk.help_desk_attachment.url, size: '100x100' %>
+<center>
+<% if @help_desk.help_desk_attachment? %>
+  <h4> Attached Picture </h4>
+  <%= image_tag @help_desk.help_desk_attachment.url, height: '300px'%>
+<% end %>
+</center>
 
 
 

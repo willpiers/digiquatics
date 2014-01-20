@@ -4,12 +4,15 @@ class HelpDesksController < ApplicationController
   # GET /help_desks
   # GET /help_desks.json
   def index
-    @help_desks = HelpDesk.all
+    @help_desks = HelpDesk.order(sort_column + " " + sort_direction)
   end
 
   # GET /help_desks/1
   # GET /help_desks/1.json
   def show
+    if params[:issue_status] == true
+      @help_desk = HelpDesk.False
+    end
   end
 
   # GET /help_desks/new
@@ -71,7 +74,17 @@ class HelpDesksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def help_desk_params
-      params.require(:help_desk).permit(:name, :urgency, :user_id, :location_id, :status,
+      params.require(:help_desk).permit(:name, :description, :urgency, :user_id,
+                                        :location_id, :issue_status,
                                         :help_desk_attachment)
     end
+
+    def sort_column
+      params[:sort] || "name"
+    end
+
+    def sort_direction
+      params[:direction] || "asc"
+    end
+
 end
