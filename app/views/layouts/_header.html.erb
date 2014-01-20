@@ -25,7 +25,7 @@
           <%= link_to "Certifications", certifications_path %>
         </li>
         <li>
-          <%= link_to "Lessons", private_lessons_path %>
+          <%= link_to "Private Lessons", private_lessons_path %>
         </li>
 
         <li class = "dropdown">
@@ -47,9 +47,10 @@
             Account<b class = "caret"></b></a>
           <ul class = "dropdown-menu">
             <li><%= link_to "My Profile", current_user %></li>
-            <li><%= link_to "My Lessons", my_lessons_path %></li>
+            <li><%= link_to "My Private Lessons", my_lessons_path %></li>
              <li class="divider"></li>
              <li><%= link_to "Manage Users", users_path %></li>
+             <li><%= link_to "Manage Private Lessons", users_path %></li>
              <li><%= link_to "Admin Dashboard", admin_dashboard_path %></li>
             <li class="divider"></li>
             <li><%= link_to "Sign out", signout_path,

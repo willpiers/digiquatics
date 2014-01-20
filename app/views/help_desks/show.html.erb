@@ -8,10 +8,17 @@
 </ul>
 
 <ul class = "pull-right">
-<%= bootstrap_form_for @help_desk do |f| %>
-  <%= f.hidden_field :issue_status, :value => false %>
-  <%= f.submit "Mark Closed"  %>
-<% end %>
+  <% if @help_desk.issue_status == true %>
+    <%= bootstrap_form_for @help_desk do |f| %>
+      <%= f.hidden_field :issue_status, value: false %>
+      <%= f.submit "Close Issue"  %>
+      <% end %>
+  <% elsif @help_desk.issue_status == false %>
+    <%= bootstrap_form_for @help_desk do |f| %>
+      <%= f.hidden_field :issue_status, value: true %>
+      <%= f.submit "Open Issue"  %>
+      <% end %>
+  <% end %>
 </ul>
 
 <br>
@@ -79,6 +86,3 @@
   <%= image_tag @help_desk.help_desk_attachment.url, height: '300px'%>
 <% end %>
 </center>
-
-
-

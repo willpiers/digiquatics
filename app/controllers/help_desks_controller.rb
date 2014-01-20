@@ -10,9 +10,6 @@ class HelpDesksController < ApplicationController
   # GET /help_desks/1
   # GET /help_desks/1.json
   def show
-    if params[:issue_status] == true
-      @help_desk = HelpDesk.False
-    end
   end
 
   # GET /help_desks/new
@@ -33,11 +30,14 @@ class HelpDesksController < ApplicationController
 
     respond_to do |format|
       if @help_desk.save
-        format.html { redirect_to help_desks_path, notice: 'Help desk was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @help_desk }
+        format.html { redirect_to help_desks_path,
+          notice: 'Help desk was successfully created.' }
+        format.json { render action: 'show',
+          status: :created, location: @help_desk }
       else
         format.html { render action: 'new' }
-        format.json { render json: @help_desk.errors, status: :unprocessable_entity }
+        format.json { render json: @help_desk.errors,
+          status: :unprocessable_entity }
       end
     end
   end
@@ -45,13 +45,18 @@ class HelpDesksController < ApplicationController
   # PATCH/PUT /help_desks/1
   # PATCH/PUT /help_desks/1.json
   def update
+    if params[:issue_status] = false
+      @help_desk.issue_status = false
+    end
     respond_to do |format|
       if @help_desk.update(help_desk_params)
-        format.html { redirect_to @help_desk, notice: 'Help desk was successfully updated.' }
+        format.html { redirect_to @help_desk,
+          notice: 'Help desk was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
-        format.json { render json: @help_desk.errors, status: :unprocessable_entity }
+        format.json { render json: @help_desk.errors,
+          status: :unprocessable_entity }
       end
     end
   end
@@ -72,7 +77,7 @@ class HelpDesksController < ApplicationController
       @help_desk = HelpDesk.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
+    # Never trust parameters from the scary internet
     def help_desk_params
       params.require(:help_desk).permit(:name, :description, :urgency, :user_id,
                                         :location_id, :issue_status,

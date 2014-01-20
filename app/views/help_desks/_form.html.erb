@@ -3,6 +3,7 @@
     <%= f.text_area :description, label: 'Description' %>
     <%= f.select :urgency, %w[Low Medium High], label: 'Urgency' %>
     <%= f.file_field :help_desk_attachment, label: 'Attachment' %>
+    <%= f.hidden_field :issue_status, value: @help_desk.issue_status %>
     <%= f.primary "Submit"%>
   <% end %>
 
