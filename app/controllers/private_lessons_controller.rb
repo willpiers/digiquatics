@@ -5,7 +5,7 @@ class PrivateLessonsController < ApplicationController
   # GET /private_lessons
   # GET /private_lessons.json
   def index
-    @private_lessons = PrivateLesson.joins(:account).same_account_as(current_user)
+    @private_lessons = PrivateLesson.all
       .order(sort_column + " " + sort_direction)
 
     respond_to do |format|
@@ -126,9 +126,16 @@ class PrivateLessonsController < ApplicationController
 
     # Only allow the white list through.
     def private_lesson_params
-      params.require(:private_lesson).permit(:first_name, :email, :attachment,
-                                            :user_id)
+      params.require(:private_lesson).permit(:first_name, :email, :last_name,
+                                              :phone_number, :parent_first_name,
+                                              :parent_last_name, :contact_method,
+                                              :sex, :age, :instructor_gender,
+                                              :notes, :day, :time,
+                                              :preferred_location, :ability_level,
+                                              :user_id, :attachment,
+                                              :number_lessons )
     end
+
   private
 
   def sort_column

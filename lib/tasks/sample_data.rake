@@ -105,7 +105,8 @@ namespace :db do
                             day: day.sample,
                             time: time.sample,
                             notes: "Nothing to say now",
-                            preferred_location: rand(3) + 1 )
+                            preferred_location: rand(3) + 1,
+                            number_lessons: rand(5) + 1 )
     end
 
     250.times do |n|
