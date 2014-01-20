@@ -1,0 +1,11 @@
+<% provide(:title, 'Admin Index') %>
+<h1>Private Lessons Queue (Admin)</h1>
+
+<ul class = "pull-right">
+  <%= link_to "Export CSV", private_lessons_path(format: "csv"),
+    class: "btn btn-warning btn-sm" %>
+</ul>
+
+<br><br><br>
+
+<%= render 'admin_private_lessons' %>

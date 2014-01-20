@@ -51,7 +51,7 @@
             <% if current_user && current_user.admin? %>
               <li class="divider"></li>
               <li><%= link_to "Manage Users", users_path %></li>
-              <li><%= link_to "Manage Private Lessons", users_path %></li>
+              <li><%= link_to "Manage Private Lessons", admin_index_path %></li>
               <li><%= link_to "Admin Dashboard", admin_dashboard_path %></li>
             <% end %>
             <li class="divider"></li>

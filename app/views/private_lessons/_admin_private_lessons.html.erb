@@ -1,0 +1,45 @@
+<table class="table table-hover table-condensed">
+  <thead>
+    <tr>
+      <th> Instructor </th>
+      <th> Phone# </th>
+      <th>Parent</th>
+      <th> Phone# </th>
+      <th>Student</th>
+      <th>Day</th>
+      <th>Time</th>
+      <th><%= sortable "preferred_location", "Location" %></th>
+      <th><%= sortable "created_at", "Submitted" %></th>
+      <th><%= sortable "created_at", "Claimed" %></th>
+      <th><%= sortable "#", "Completed" %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @admin_index.each do |private_lesson| %>
+      <tr>
+        <td>
+          <%= User.find(private_lesson.user_id).first_name %>
+          <%= User.find(private_lesson.user_id).last_name %>
+        </td>
+        <td><%= User.find(private_lesson.user_id).phone_number %></td>
+        <td>
+          <%= private_lesson.parent_first_name %>
+          <%= private_lesson.parent_last_name %>
+        </td>
+        <td><%= private_lesson.phone_number %></td>
+        <td>
+          <%= private_lesson.first_name %>
+          <%= private_lesson.last_name %>
+        </td>
+
+        <td><%= private_lesson.day %></td>
+        <td><%= private_lesson.time %></td>
+        <td><%= Location.find_by_id(private_lesson.preferred_location).name %>
+          </td>
+        <td><%= private_lesson.created_at.strftime('%-m/%-d/%Y') %></td>
+        <td></td>
+        <td></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

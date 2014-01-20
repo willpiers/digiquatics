@@ -1,4 +1,7 @@
 class PrivateLesson < ActiveRecord::Base
+  extend ScopeHelper
+  include_scopes
+
   scope :claimed_by, -> (user) { where(user_id: user.id) }
   scope :unclaimed,  -> { where(user_id: nil) }
 

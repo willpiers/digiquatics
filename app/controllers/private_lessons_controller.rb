@@ -15,16 +15,9 @@ class PrivateLessonsController < ApplicationController
     end
   end
 
-  def queue
-    @private_lessons = PrivateLesson.joins(:account).same_account_as(current_user)
-      .where(user_id = nil)
+  def admin_index
+    @admin_index = PrivateLesson.joins(:user).where(user_id =! nil)
       .order(sort_column + " " + sort_direction)
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @private_lessons}
-      format.csv { render csv: @private_lessons, filename: 'private_lessons'}
-    end
   end
 
   def my_lessons
