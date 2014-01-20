@@ -37,17 +37,18 @@
     <h4>Certifications</h4>
 
     <%= f.fields_for :certifications do |builder| %>
-      <%= builder.text_field :certification_name_id %>
-      <%= builder.text_field :issue_date, :value => (builder.object.issue_date.strftime('%-m/%-d/%Y')) %>
-      <%= builder.text_field :expiration_date, :value => (builder.object.expiration_date.strftime('%-m/%-d/%Y')) %>
-      <%= builder.file_field :attachment %>
+        <%= builder.object.certification_name.name %>
+        <%= builder.text_field :issue_date, :value => (builder.object.issue_date.strftime('%-m/%-d/%Y')) %>
+        <%= builder.text_field :expiration_date, :value => (builder.object.expiration_date.strftime('%-m/%-d/%Y')) %>
+        <%= builder.file_field :attachment %>
     <% end %>
 
-    <h4>User Classification</h4>
-    <%= f.check_box :admin, style: "width: 20px; height: 50px;" %>
-    <%= f.check_box :active, style: "width: 20px; height: 50px;" %>
-
-    <%= f.text_area :notes, size: "2x" %>
+    <% if signed_in? && current_user.admin %>
+      <h4>User Classification</h4>
+      <%= f.check_box :admin, style: "width: 20px; height: 50px;" %>
+      <%= f.check_box :active, style: "width: 20px; height: 50px;" %>
+      <%= f.text_area :notes, size: "2x" %>
+    <% end %>
 
     <%= f.primary ( f.object.new_record? ?  "Create Account" :
       "Save Changes" ) %>

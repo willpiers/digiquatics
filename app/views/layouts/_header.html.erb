@@ -48,9 +48,12 @@
           <ul class = "dropdown-menu">
             <li><%= link_to "My Profile", current_user %></li>
             <li><%= link_to "My Lessons", my_lessons_path %></li>
-             <li class="divider"></li>
-             <li><%= link_to "Manage Users", users_path %></li>
-             <li><%= link_to "Admin Dashboard", admin_dashboard_path %></li>
+            <% if current_user && current_user.admin? %>
+              <li class="divider"></li>
+              <li><%= link_to "Manage Users", users_path %></li>
+
+              <li><%= link_to "Admin Dashboard", admin_dashboard_path %></li>
+            <% end %>
             <li class="divider"></li>
             <li><%= link_to "Sign out", signout_path,
               method: "delete" %></li>

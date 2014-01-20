@@ -11,11 +11,6 @@ describe Pool do
 
   it { should be_valid }
 
-  describe "when location_id is not present" do
-    before { @pool.location_id = nil }
-    it { should_not be_valid }
-  end
-
   describe "when pool name is not present" do
     before { @pool.name = " " }
     it { should_not be_valid }

@@ -6,6 +6,8 @@ describe 'User pages' do
   let!(:position) { FactoryGirl.create(:position) }
   let!(:user) { FactoryGirl.create(:user, location_id: location.id,
     position_id: position.id, account_id: account.id) }
+  let(:admin) { FactoryGirl.create(:admin, location_id: location.id,
+    position_id: position.id, account_id: account.id) }
 
   subject { page }
 
@@ -86,7 +88,7 @@ describe 'User pages' do
     let(:bob) { User.find_by_email('bob@example.com') }
 
     before do
-      sign_in user
+      sign_in admin
 
       FactoryGirl.create(:user, first_name: 'Bob', email: 'bob@example.com',
         location_id: location.id, position_id: position.id, account_id: account.id)
@@ -131,6 +133,27 @@ describe 'User pages' do
     describe 'page' do
       it { should have_content('Update My Profile') }
       it { should have_title('Edit user') }
+
+      describe 'as non-admin' do
+        it { should have_no_field('Admin') }
+        it { should have_no_field('Active') }
+        it { should have_no_field('Notes') }
+      end
+
+      describe 'as admin' do
+        let(:admin) { FactoryGirl.create(:user, email: 'hi@google.com',
+          admin: true, location_id: location.id, position_id: position.id,
+          account_id: account.id) }
+
+        before do
+          sign_in admin
+          visit edit_user_path(user)
+        end
+
+        it { should have_field('Admin') }
+        it { should have_field('Active') }
+        it { should have_field('Notes') }
+      end
     end
 
     describe 'with invalid information' do

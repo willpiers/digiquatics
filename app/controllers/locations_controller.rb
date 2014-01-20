@@ -15,7 +15,7 @@ class LocationsController < ApplicationController
   # GET /locations/new
   def new
     @location = Location.new
-    1.times { @location.pools.build }
+    4.times { @location.pools.build }
   end
 
   # GET /locations/1/edit

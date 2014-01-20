@@ -1,8 +1,10 @@
 class UsersController < ApplicationController
+  include ApplicationHelper
   helper_method :sort_column, :sort_direction
   before_action :signed_in_user, only: [:index, :edit, :update]
   before_action :correct_user,   only: [:edit, :update]
   before_action :set_user, only: [:edit, :show, :certifications]
+  before_action :admin_user, only: [:index]
 
   def index
     @users = User.joins(:account).same_account_as(current_user).active
@@ -86,13 +88,17 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user)
-    .permit(:admin, :active, :first_name, :last_name, :email, :password,
+    if current_user && current_user.admin?
+      params.require(:user).permit!
+    else
+      params.require(:user)
+        .permit(:first_name, :last_name, :email, :password,
             :password_confirmation, :date_of_birth, :date_of_hire, :sex,
             :phone_number, :shirt_size, :suit_size, :location_id, :position_id,
-            :femalesuit, :notes, :avatar, :employee_id,
+            :femalesuit, :avatar, :employee_id,
             certifications_attributes: [:id, :certification_name_id,
             :user_id, :issue_date, :expiration_date, :attachment])
+    end
   end
 
   def signed_in_user

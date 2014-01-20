@@ -15,9 +15,9 @@ FactoryGirl.define do
   end
 
   factory :user do
-    first_name            'Joe'
-    last_name             'Currin'
-    email                 'newfactory@example.com'
+    first_name            'Josh'
+    last_name             'Duffy'
+    email                 'newuser@example.com'
     password              'foobar'
     password_confirmation 'foobar'
     admin                 false
@@ -35,9 +35,9 @@ FactoryGirl.define do
   end
 
     factory :admin, class: User do
-    first_name            'Joe'
-    last_name             'Currin'
-    email                 'newfactory@example.com'
+    first_name            'Michael'
+    last_name             'Pierce'
+    email                 'newadmin@example.com'
     password              'foobar'
     password_confirmation 'foobar'
     admin                 true

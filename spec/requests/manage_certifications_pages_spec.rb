@@ -8,7 +8,7 @@ describe 'Manage Certifications' do
     let(:account) { FactoryGirl.create(:account) }
     let(:location) { FactoryGirl.create(:location) }
     let(:position) { FactoryGirl.create(:position) }
-    let(:user) { FactoryGirl.create(:user,
+    let(:user) { FactoryGirl.create(:admin,
                                     account_id: account.id,
                                     location_id: location.id,
                                     position_id: position.id) }

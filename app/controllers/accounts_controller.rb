@@ -1,5 +1,8 @@
 class AccountsController < ApplicationController
+  include ApplicationHelper
+
   before_action :set_account, only: [:show, :edit, :update, :destroy]
+  before_action :admin_user, only: [:admin_dashboard]
 
   def index
     @accounts = Account.all
