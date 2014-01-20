@@ -1,4 +1,5 @@
-<%= bootstrap_form_for(@certification) do |f| %>
+<%= bootstrap_form_for(@certification,
+  style: :horizontal, left: "col-sm-4", right: "col-sm-8") do |f| %>
   <% if @certification.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@certification.errors.count, "error") %>
@@ -11,12 +12,14 @@
       </ul>
     </div>
   <% end %>
+
     <%= f.number_field :certification_name_id %>
     <%= f.number_field :user_id %>
-    <%= f.text_field :expiration_date, label: 'Expiration date (Ex. dd-mm-yyyy)' %>
+    <%= f.text_field :expiration_date,
+      label: 'Expiration date (Ex. dd-mm-yyyy)' %>
     <%= f.file_field :attachment %>
 
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+    <%= f.form_group do %>
+      <%= f.submit %>
+    <% end %>
 <% end %>

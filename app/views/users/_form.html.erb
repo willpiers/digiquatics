@@ -1,5 +1,7 @@
 <div class="userform">
-  <%= bootstrap_form_for(@user, style: :horizontal, left: "col-sm-4", right: "col-sm-8") do |f| %>
+  <%= bootstrap_form_for(@user,
+    style: :horizontal, left: "col-sm-4", right: "col-sm-8") do |f| %>
+
     <%= render 'shared/error_messages' %>
 
     <legend><%= legend %></legend>
@@ -22,13 +24,14 @@
         end_year: 1900, order: [:month, :day, :year], prompt: true},
           label: 'Date of Birth' %>
     </div>
+
     <div class="date-select">
      <%= f.date_select :date_of_hire, { start_year: Time.now.year,
       end_year: Time.now.year-30, order: [:month, :day, :year], prompt: true},
         label: 'Date of Hire'  %>
     </div>
-    <%= f.text_field :phone_number, label: "Phone Number" %>
 
+    <%= f.text_field :phone_number, label: "Phone Number" %>
     <%= f.select :location_id,
       options_from_collection_for_select(Location.all, :id, :name) %>
     <%= f.select :position_id,
@@ -38,8 +41,10 @@
 
     <%= f.fields_for :certifications do |builder| %>
         <b><%= builder.object.certification_name.name %></b>
-        <%= builder.text_field :issue_date, :value => (builder.object.issue_date.strftime('%-m/%-d/%Y')) %>
-        <%= builder.text_field :expiration_date, :value => (builder.object.expiration_date.strftime('%-m/%-d/%Y')) %>
+        <%= builder.text_field :issue_date,
+          :value => (builder.object.issue_date.strftime('%-m/%-d/%Y')) %>
+        <%= builder.text_field :expiration_date,
+          :value => (builder.object.expiration_date.strftime('%-m/%-d/%Y')) %>
         <%= builder.file_field :attachment %>
     <% end %>
 
@@ -52,7 +57,8 @@
     <% end %>
 
     <h4>User Notes</h4>
-    <%= f.text_area :notes, size: "2x", hide_label: :true, placeholder: "Leave a comment..." %>
+    <%= f.text_area :notes, size: "2x",
+      hide_label: :true, placeholder: "Leave a comment..." %>
 
      <%= f.form_group do %>
     <%= f.primary ( f.object.new_record? ?  "Create Account" :

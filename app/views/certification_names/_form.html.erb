@@ -1,14 +1,9 @@
-<%= bootstrap_form_for @certification_name do |f| %>
+<%= bootstrap_form_for(@certification_name,
+  style: :horizontal, left: "col-sm-4", right: "col-sm-8") do |f| %>
 
-<div class="field" id="accountform">
-
-  <div class="field">
-    <%= f.text_field :name %>
-	</div>
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-
-</div>
+  <%= f.text_field :name %>
+    <%= f.form_group do %>
+      <%= f.submit %>
+    <% end %>
 <% end %>
+

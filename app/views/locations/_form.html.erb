@@ -1,6 +1,6 @@
-<%= bootstrap_form_for @location do |f| %>
+<%= bootstrap_form_for(@location,
+  style: :horizontal, left: "col-sm-4", right: "col-sm-8") do |f| %>
 
-  <fieldset>
     <%= f.text_field :name, label: 'Location Name' %>
 
     <%= f.fields_for :pools do |builder| %>
@@ -9,10 +9,7 @@
 
     <%= link_to_add_fields raw('<i class="glyphicon glyphicon-plus-sign glyphicon-2x"></i>'), f, :pools %>
 
-  </fieldset>
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-
+    <%= f.form_group do %>
+      <%= f.submit %>
+    <% end %>
 <% end %>

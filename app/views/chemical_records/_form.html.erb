@@ -1,4 +1,5 @@
-<%= bootstrap_form_for(@chemical_record) do |f| %>
+<%= bootstrap_form_for(@chemical_record,
+  style: :horizontal, left: "col-sm-4", right: "col-sm-8") do |f| %>
 <% if @chemical_record.errors.any? %>
 
   <div id="error_explanation">
@@ -13,7 +14,8 @@
 <% end %>
 
 <%= content_tag(:legend, legend) unless !legend %>
-<%= f.select :chlorine_ppm, %w[0 0.5 1 2 3 4 5 6], {}, label: 'Chlorine (ppm)' %>
+<%= f.select :chlorine_ppm, %w[0 0.5 1 2 3 4 5 6],
+  {}, label: 'Chlorine (ppm)' %>
 <%= f.select :ph, %w[6.8 6.9 7.0 7.1 7.2 7.3 7.4 7.5 7.6 7.7 7.8 7.9 8.0 8.1 8.2],
   {}, label: 'PH' %>
 <%= f.select :alkalinity, %w[0 10 20 30 40 50 60 70 80 90 100 110 120 130 140 150],
@@ -29,6 +31,7 @@
     label: 'Time' %>
 </div>
 
-<%= f.submit "Submit"%>
-
+  <%= f.form_group do %>
+    <%= f.submit "Submit"%>
+  <% end %>
 <% end %>

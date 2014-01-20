@@ -1,5 +1,6 @@
 <% provide(:title, "Edit Lesson") %>
-  <%= bootstrap_form_for(@private_lesson) do |f| %>
+  <%= bootstrap_form_for(@private_lesson,
+  style: :horizontal, left: "col-sm-4", right: "col-sm-8") do |f| %>
 
   <h4> Parent Information </h4>
   <br>
@@ -19,5 +20,7 @@
     <%= f.select :instructor_gender, options_for_select(%w[M F]) %>
     <%= f.text_area :notes, size: "2x" %>
   <br>
-    <%= f.submit "Save Changes", class: "btn btn-default btn-primary" %>
+    <%= f.form_group do %>
+      <%= f.submit "Save Changes", class: "btn btn-default btn-primary" %>
+    <% end %>
 <% end %>

@@ -1,4 +1,5 @@
-<%= bootstrap_form_for @attendance_record do |f| %>
+<%= bootstrap_form_for(@attendance_record,
+  style: :horizontal, left: "col-sm-4", right: "col-sm-8") do |f| %>
   <% if @attendance_record.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@attendance_record.errors.count, "error") %>
@@ -11,10 +12,8 @@
     </div>
   <% end %>
 
-<div class="field" id="accountform">
 <%= f.text_field :name %>
-    <div class="actions">
-      <%= f.primary %>
-    </div>
-</div>
+  <%= f.form_group do %>
+    <%= f.primary %>
+  <% end %>
 <% end %>

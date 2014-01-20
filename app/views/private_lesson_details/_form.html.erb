@@ -1,7 +1,10 @@
-<%= bootstrap_form_for(@private_lesson_detail) do |f| %>
+<%= bootstrap_form_for(@private_lesson_detail,
+  style: :horizontal, left: "col-sm-4", right: "col-sm-8") do |f| %>
   <% if @private_lesson_detail.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@private_lesson_detail.errors.count, "error") %> prohibited this private_lesson_detail from being saved:</h2>
+      <h2><%= pluralize(@private_lesson_detail.errors.count, "error") %>
+        prohibited this private_lesson_detail from being saved:
+      </h2>
 
       <ul>
       <% @private_lesson_detail.errors.full_messages.each do |msg| %>
@@ -16,7 +19,7 @@
   <%= f.text_field :phone_number %>
   <%= f.text_field :email %>
 
-  <div class="actions">
+  <%= f.form_group do %>
     <%= f.submit %>
-  </div>
+  <% end %>
 <% end %>

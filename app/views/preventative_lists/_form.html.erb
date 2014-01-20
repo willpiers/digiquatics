@@ -1,7 +1,10 @@
-<%= bootstrap_form_for(@preventative_list) do |f| %>
+<%= bootstrap_form_for(@preventative_list,
+  style: :horizontal, left: "col-sm-4", right: "col-sm-8") do |f| %>
   <% if @preventative_list.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@preventative_list.errors.count, "error") %> prohibited this preventative_list from being saved:</h2>
+      <h2><%= pluralize(@preventative_list.errors.count, "error") %>
+          prohibited this preventative_list from being saved:
+      </h2>
 
       <ul>
       <% @preventative_list.errors.full_messages.each do |msg| %>
@@ -14,8 +17,7 @@
     <%= f.text_field :name %>
     <%= f.text_field :type %>
 
-
-  <div class="actions">
+  <%= f.form_group do %>
     <%= f.submit %>
-  </div>
+  <% end %>
 <% end %>
