@@ -16,7 +16,7 @@
         <td>{{userData.firstName}}</td>
         <td>{{userData.location}}</td>
         <td ng-repeat='certName in certNames' class='{{userData[certName.name + "class"]}}'>
-          {{formatDate(userData[certName.name])}}
+          {{userData[certName.name] | formatDate}}
         </td>
         </td>
       </tr>

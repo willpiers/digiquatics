@@ -26,9 +26,6 @@ describe 'CertsCtrl', ->
       $scope: scope
   )
 
-  it 'formatDate', ->
-    expect(scope.formatDate('2014-03-07T17:00:00.000-07:00')).toBe '3/7/2014'
-
   it 'should set the cert names and users on scope', ->
     expect(scope.certNames).toEqual undefined
     expect(scope.users).toEqual undefined
