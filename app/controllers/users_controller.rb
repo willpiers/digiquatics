@@ -7,6 +7,7 @@ class UsersController < ApplicationController
   before_action :admin_user, only: [:index]
 
   def index
+    debugger
     @users = User.joins(:account).same_account_as(current_user).active
     .includes(:location, :position).search(params[:search])
     .order(sort_column + " " + sort_direction)
@@ -14,7 +15,9 @@ class UsersController < ApplicationController
     respond_to do |format|
       format.html
       format.csv { render csv: @users, filename: 'active_users' }
-      format.json { render json: @users }
+      format.json do
+        render json: @users.to_json(include: [:location, :position])
+      end
     end
   end
 
@@ -24,7 +27,7 @@ class UsersController < ApplicationController
     .order(sort_column + " " + sort_direction)
 
     respond_to do |format|
-      format.html # index.html.erb
+      format.html
       format.csv { render csv: @all_users, filename: 'all_users' }
     end
   end

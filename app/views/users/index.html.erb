@@ -4,7 +4,7 @@
     <h1>Users</h1>
 
     <div class='row'>
-      <div id='searchbox' class='col-md-1'>
+      <div id='searchbox' class='col-md-2'>
         <%= form_tag users_path, method: 'get', id: 'users_search' do %>
           <%= text_field_tag :search, params[:search]%>
           <%= submit_tag 'Search', name: nil, class:'btn btn-default btn-sm' %>
@@ -13,7 +13,8 @@
 
       <div class='col-md-2'>
         Filter locations:
-        <select ng-model='filter_location'>
+        <select ng-model='filterLocation'>
+          <option value=''>All</option>
           <option ng-repeat='location in locations' value='{{location.name}}'>{{location.name}}</option>
         </select>
       </div>
@@ -27,11 +28,9 @@
         </div>
       </div>
 
-
     </div>
 
     <br>
     <%= render 'users' %>
-
   </div>
 </div>

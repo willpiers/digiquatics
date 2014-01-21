@@ -7,3 +7,7 @@ angular.module('aquaticsAppFilters', []).filter 'age', ->
     age--  if m < 0 or (m is 0 and today.getDate() < birthDate.getDate())
 
     age
+
+.filter 'booleanToWords', ->
+  (input) ->
+    if input then 'Yes' else 'No'

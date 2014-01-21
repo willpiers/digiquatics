@@ -124,6 +124,11 @@ describe User do
     it { should be_invalid }
   end
 
+  context 'when account of user is not the same as account of user location' do
+    before { @user.= 'a' * 5 }
+    it { should be_invalid }
+  end
+
   describe 'return value of authenticate method' do
     before { @user.save }
     let(:found_user) { User.find_by(email: @user.email) }
