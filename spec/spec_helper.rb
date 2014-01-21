@@ -48,7 +48,7 @@ Spork.prefork do
 end
 
 Spork.each_run do
-  system("rubocop #{Rails.root}")
+  # system("rubocop #{Rails.root}")
 end
 
 # --- Instructions ---

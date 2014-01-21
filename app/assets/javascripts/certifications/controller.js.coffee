@@ -1,9 +1,3 @@
-@aquaticsApp = angular.module 'aquaticsApp', ['ngResource']
-
-@aquaticsApp.factory 'Certs', ['$resource', @Certs = ($resource) ->
-  $resource '/certification_expirations.json'
-]
-
 @aquaticsApp.controller 'CertsCtrl', ['$scope', 'Certs',
   @CertsCtrl = ($scope, Certs) ->
     $scope.formatDate = (dateString)  ->
