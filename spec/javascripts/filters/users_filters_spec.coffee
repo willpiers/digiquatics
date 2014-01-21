@@ -1,5 +1,5 @@
-describe 'filters', ->
-  beforeEach module('aquaticsAppFilters')
+describe 'usersFilters', ->
+  beforeEach angular.mock.module('digiquaticsFilters')
 
   describe 'age', ->
     it 'should give the age in years from a date', inject((ageFilter) ->
@@ -12,10 +12,3 @@ describe 'filters', ->
       expect(booleanToWordsFilter(true)).toEqual 'Yes'
       expect(booleanToWordsFilter(false)).toEqual 'No'
     )
-
-  describe 'formatDate', ->
-    it 'should format the date with month/day/year', inject((formatDateFilter) ->
-      expect(formatDateFilter('2014-03-07T17:00:00.000-07:00')).toBe '3/7/2014'
-      expect(formatDateFilter('1091-12-17T17:00:00.000-07:00')).toBe '12/17/1091'
-    )
-

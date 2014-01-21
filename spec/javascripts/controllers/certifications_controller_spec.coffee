@@ -1,7 +1,7 @@
-describe 'CertsCtrl', ->
+describe 'CertificationsCtrl', ->
   scope = $httpBackend = undefined
 
-  certNames = ['CPR', 'LGI']
+  certificationNames = ['CPR', 'LGI']
   users = [
     lastName: 'Last'
     firstName: 'First'
@@ -12,25 +12,25 @@ describe 'CertsCtrl', ->
     CPR: '2014-02-08T17:00:00.000-07:00'
   ]
 
-  beforeEach angular.mock.module('aquaticsApp')
+  beforeEach angular.mock.module('digiquatics')
 
   beforeEach inject((_$httpBackend_, $rootScope, $controller) ->
     $httpBackend = _$httpBackend_
 
     $httpBackend.expectGET('/certification_expirations.json').respond
-      certification_names: certNames
+      certification_names: certificationNames
       users: users
 
     scope = $rootScope.$new()
-    ctrl = $controller CertsCtrl,
+    ctrl = $controller CertificationsCtrl,
       $scope: scope
   )
 
-  it 'should set the cert names and users on scope', ->
-    expect(scope.certNames).toEqual undefined
-    expect(scope.users).toEqual undefined
+  it 'should set the certification names and users on scope', ->
+    expect(scope.certificationNames).toEqualData undefined
+    expect(scope.users).toEqualData undefined
 
     $httpBackend.flush()
 
-    expect(scope.certNames).toEqual certNames
+    expect(scope.certificationNames).toEqual certificationNames
     expect(scope.users).toEqual users

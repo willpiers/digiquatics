@@ -17,7 +17,7 @@ describe 'LocationsCtrl', ->
 
   users = [users: 'users!']
 
-  beforeEach angular.mock.module('aquaticsApp')
+  beforeEach angular.mock.module('digiquatics')
 
   beforeEach inject((_$httpBackend_, $rootScope, $controller) ->
     $httpBackend = _$httpBackend_
@@ -31,8 +31,8 @@ describe 'LocationsCtrl', ->
   )
 
   it 'should set locations on scope', ->
-    expect(scope.locations).toEqual undefined
-    expect(scope.users).toEqual undefined
+    expect(scope.locations).toEqualData []
+    expect(scope.users).toEqualData []
 
     $httpBackend.flush()
 

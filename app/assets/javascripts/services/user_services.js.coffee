@@ -1,3 +1,4 @@
-@aquaticsApp.factory 'Users', ['$resource', @Users = ($resource) ->
-  $resource('/users.json', {}, { get: { method: 'GET', isArray: true}})
+@digiquatics.factory 'Users', ['$resource',
+  ($resource) ->
+    $resource('/users.json', {}, { index: { method: 'GET', isArray: true}})
 ]
