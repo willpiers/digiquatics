@@ -1,4 +1,4 @@
-# PaperlessPipeline
+# Digiquatics
 
 ## Database Setup
 - download MySQL from [http://dev.mysql.com/downloads/mysql/](http://dev.mysql.com/downloads/mysql/)
