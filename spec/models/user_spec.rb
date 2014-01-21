@@ -105,12 +105,7 @@ describe User do
   end
 
   describe 'when password is not present' do
-    before do
-      @user = User.new(first_name: 'First', last_name: 'Last',
-                       email: 'user@example.com', password: ' ',
-                       password_confirmation: ' ')
-    end
-
+    before { @user.password = @user.password_confirmation = ' ' }
     it { should_not be_valid }
   end
 
@@ -121,11 +116,6 @@ describe User do
 
   describe 'with a password that\'s too short' do
     before { @user.password = @user.password_confirmation = 'a' * 5 }
-    it { should be_invalid }
-  end
-
-  context 'when account of user is not the same as account of user location' do
-    before { @user.= 'a' * 5 }
     it { should be_invalid }
   end
 

@@ -23,5 +23,13 @@ describe 'users' do
       actual.count.should == 1
       actual.first['first_name'].should == user.first_name
     end
+
+    it 'should include location data' do
+      actual.first['location'].should_not be_nil
+    end
+
+    it 'should include position data' do
+      actual.first['position'].should_not be_nil
+    end
   end
 end

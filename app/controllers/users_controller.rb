@@ -7,10 +7,7 @@ class UsersController < ApplicationController
   before_action :admin_user, only: [:index]
 
   def index
-    debugger
     @users = User.joins(:account).same_account_as(current_user).active
-    .includes(:location, :position).search(params[:search])
-    .order(sort_column + " " + sort_direction)
 
     respond_to do |format|
       format.html
