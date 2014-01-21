@@ -12,7 +12,7 @@
     </thead>
     <tbody>
       <tr ng-repeat='userData in users | orderBy:sorter.value'>
-        <td>{{userData.lastName}}</td>
+        <td ng-bind=userData.lastName></td>
         <td>{{userData.firstName}}</td>
         <td>{{userData.location}}</td>
         <td ng-repeat='certName in certNames' class='{{userData[certName.name + "class"]}}'>

@@ -12,9 +12,9 @@ class UsersController < ApplicationController
     .order(sort_column + " " + sort_direction)
 
     respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @users}
-      format.csv { render csv: @users, filename: 'active_users'}
+      format.html
+      format.csv { render csv: @users, filename: 'active_users' }
+      format.json { render json: @users }
     end
   end
 
@@ -25,8 +25,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
-      format.xml  { render :xml => @all_users}
-      format.csv { render csv: @all_users, filename: 'all_users'}
+      format.csv { render csv: @all_users, filename: 'all_users' }
     end
   end
 
@@ -36,9 +35,8 @@ class UsersController < ApplicationController
     .order(sort_column + " " + sort_direction)
 
     respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @inactive_users}
-      format.csv { render csv: @inactive_users, filename: 'inactive_users'}
+      format.html
+      format.csv { render csv: @inactive_users, filename: 'inactive_users' }
     end
   end
 
@@ -111,7 +109,6 @@ class UsersController < ApplicationController
   def correct_user
     @user = User.find(params[:id])
     redirect_to(root_url) unless current_user?(@user) || current_user.admin?
-    end
   end
 
   def sort_column
@@ -121,3 +118,4 @@ class UsersController < ApplicationController
   def sort_direction
     params[:direction] || "asc"
   end
+end

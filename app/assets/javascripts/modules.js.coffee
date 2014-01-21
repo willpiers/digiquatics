@@ -1,1 +1,2 @@
-@aquaticsApp = angular.module 'aquaticsApp', ['ngResource']
+@aquaticsApp = angular.module 'aquaticsApp',
+  ['ngResource', 'aquaticsAppFilters']
