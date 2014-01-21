@@ -76,6 +76,8 @@
 			</tr>
 	</table>
 
-	<%= link_to 'Edit', edit_private_lesson_path(@private_lesson) %>
-
+	<%if current_user.admin? %>
+	  <%= link_to 'Edit', edit_private_lesson_path(@private_lesson) %>
+	<% else %>
+	<% end %>
 </div>

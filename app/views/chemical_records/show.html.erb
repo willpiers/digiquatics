@@ -54,6 +54,12 @@
           @chemical_record.alkalinity))%></td>
     </tr>
     <tr>
+      <th>SI Recommendation</th>
+      <td><%=si_index_recommendation(si_index(@chemical_record.ph,
+        @chemical_record.pool_temp, @chemical_record.calcium_hardness,
+          @chemical_record.alkalinity))%></td>
+    </tr>
+    <tr>
       <th>Date Created</th>
       <td><%=@chemical_record.date_stamp.strftime('%-m/%-d/%Y')%></td>
     </tr>

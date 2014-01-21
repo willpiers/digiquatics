@@ -69,9 +69,6 @@ class PrivateLessonDetailsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def private_lesson_detail_params
-      params.require(:private_lesson_detail).permit(:first_name, :email,
-                                                    :last_name, :phone_number,
-                                                    :attachment
-                                                    )
+      params.require(:private_lesson_detail).permit!
     end
 end

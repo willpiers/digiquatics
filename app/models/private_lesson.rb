@@ -7,6 +7,7 @@ class PrivateLesson < ActiveRecord::Base
 
   belongs_to :account
   belongs_to :user
+  has_many :private_lesson_details
 
   has_attached_file :attachment,
         path: ':rails_root/public/system/:attachment/:id/:style/:filename',

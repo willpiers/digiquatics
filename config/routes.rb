@@ -18,7 +18,12 @@ AquaticsApp::Application.routes.draw do
   resources :positions
   resources :certifications
   resources :certification_names
-  resources :accounts
+
+  resources :accounts do
+    member do
+      get 'private_lessons'
+    end
+  end
 
   resources :locations do
     member do
