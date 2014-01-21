@@ -9,7 +9,7 @@ describe 'filters', ->
 
   describe 'booleanToWords', ->
     it 'should convert a boolean to yes/no', inject((booleanToWordsFilter) ->
-      expect(booleanToWordsFilter(true)).toEqual 'YES'
-      expect(booleanToWordsFilter(false)).toEqual 'NO'
+      expect(booleanToWordsFilter(true)).toEqual 'Yes'
+      expect(booleanToWordsFilter(false)).toEqual 'No'
     )
 

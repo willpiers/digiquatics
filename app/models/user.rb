@@ -43,8 +43,6 @@ class User < ActiveRecord::Base
   has_secure_password
   validates_length_of :password, minimum: 6
 
-  # validate :account_has_user_location
-
   def self.new_remember_token
     SecureRandom.urlsafe_base64
   end
@@ -84,13 +82,5 @@ class User < ActiveRecord::Base
 
   def create_remember_token
     self.remember_token = User.encrypt(User.new_remember_token)
-  end
-
-  def account_has_user_location
-    return unless self.location_id
-
-    if self.account_id != Location.find(self.location_id).account_id
-      errors.add(:location, 'must belong to same account as user')
-    end
   end
 end
