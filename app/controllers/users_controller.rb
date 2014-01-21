@@ -60,6 +60,9 @@ class UsersController < ApplicationController
     if params[:active] = false
       @user.active = false
     end
+    if params[:admin] = false
+      @user.admin = false
+    end
     if @user.update_attributes(user_params)
       flash[:success] = 'Profile updated'
       redirect_to @user
