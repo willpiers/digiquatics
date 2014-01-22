@@ -1,16 +1,20 @@
-<div class="table-responsive">
-  <table class="table table-hover table-condensed">
+<div class='table-responsive'>
+  <table class='table table-hover table-condensed'>
     <thead>
-      <tr style="word-wrap:break-word;">
-        <th><%= sortable "chlorine_ppm", "Cl" %></th>
-        <th><%= sortable "ph", "Ph" %></th>
-        <th><%= sortable "alkalinity", "Alk" %></th>
-        <th><%= sortable "calcium_hardness", "CH" %></th>
-        <th><%= sortable "pool_temp", "Pool(F)" %></th>
-        <th class="hidden-xs hidden-sm"><%= sortable "air_temp", "Air(F)" %></th>
-        <th class="hidden-xs hidden-sm"><%= sortable "si_index", "SI index" %></th>
-        <th class="hidden-xs hidden-sm">Status</th>
-        <th><%= sortable "date_stamp", "Date" %></th>
+      <tr style='word-wrap:break-word;'>
+        <th><%= sortable 'chlorine_ppm', 'Cl' %></th>
+        <th><%= sortable 'ph', 'Ph' %></th>
+        <th><%= sortable 'alkalinity', 'Alk' %></th>
+        <th><%= sortable 'calcium_hardness', 'CH' %></th>
+        <th><%= sortable 'pool_temp', 'Pool(F)' %></th>
+        <th class='hidden-xs hidden-sm'>
+          <%= sortable 'air_temp', 'Air(F)' %>
+        </th>
+        <th class='hidden-xs hidden-sm'>
+          <%= sortable 'si_index', 'SI index' %>
+        </th>
+        <th class='hidden-xs hidden-sm'>Status</th>
+        <th><%= sortable 'date_stamp', 'Date' %></th>
         <th> Time</th>
       </tr>
     </thead>
@@ -23,19 +27,22 @@
           <td><%= chemical_record.alkalinity.round %></td>
           <td><%= chemical_record.calcium_hardness.round %></td>
           <td><%= chemical_record.pool_temp.round(1) %></td>
-          <td class="hidden-xs hidden-sm"><%= chemical_record.air_temp.round(1) %></td>
+          <td class='hidden-xs hidden-sm'>
+            <%= chemical_record.air_temp.round(1) %>
+          </td>
 
           <% if si_index(chemical_record.ph, chemical_record.pool_temp,
                 chemical_record.calcium_hardness, chemical_record.alkalinity)
-                  .round(2) >= -0.3 and si_index(chemical_record.ph, chemical_record.pool_temp,
+                  .round(2) >= -0.3 and si_index(chemical_record.ph,
+                    chemical_record.pool_temp,
                 chemical_record.calcium_hardness, chemical_record.alkalinity)
                   .round(2) <= 0.3%>
-            <td class="success hidden-xs hidden-sm">
+            <td class='success hidden-xs hidden-sm'>
               <%= si_index(chemical_record.ph, chemical_record.pool_temp,
                 chemical_record.calcium_hardness, chemical_record.alkalinity)
                   .round(2) %>
             </td>
-            <td class="success hidden-xs hidden-sm">
+            <td class='success hidden-xs hidden-sm'>
               <%= si_index_description(si_index(chemical_record.ph,
                 chemical_record.pool_temp, chemical_record.calcium_hardness,
                   chemical_record.alkalinity)) %>
@@ -43,15 +50,16 @@
 
           <% elsif si_index(chemical_record.ph, chemical_record.pool_temp,
                 chemical_record.calcium_hardness, chemical_record.alkalinity)
-                  .round(2) > 0.3 and si_index(chemical_record.ph, chemical_record.pool_temp,
+                  .round(2) > 0.3 and si_index(chemical_record.ph,
+                    chemical_record.pool_temp,
                 chemical_record.calcium_hardness, chemical_record.alkalinity)
                   .round(2) < 3%>
-            <td class="warning hidden-xs hidden-sm">
+            <td class='warning hidden-xs hidden-sm'>
               <%= si_index(chemical_record.ph, chemical_record.pool_temp,
                 chemical_record.calcium_hardness, chemical_record.alkalinity)
                   .round(2) %>
             </td>
-            <td class="warning hidden-xs hidden-sm">
+            <td class='warning hidden-xs hidden-sm'>
               <%= si_index_description(si_index(chemical_record.ph,
                 chemical_record.pool_temp, chemical_record.calcium_hardness,
                   chemical_record.alkalinity)) %>
@@ -59,15 +67,16 @@
 
             <% elsif si_index(chemical_record.ph, chemical_record.pool_temp,
                   chemical_record.calcium_hardness, chemical_record.alkalinity)
-                    .round(2) < -0.3 and si_index(chemical_record.ph, chemical_record.pool_temp,
+                    .round(2) < -0.3 and si_index(chemical_record.ph,
+                      chemical_record.pool_temp,
                   chemical_record.calcium_hardness, chemical_record.alkalinity)
                     .round(2) > -3%>
-              <td class="warning hidden-xs hidden-sm">
+              <td class='warning hidden-xs hidden-sm'>
                 <%= si_index(chemical_record.ph, chemical_record.pool_temp,
                   chemical_record.calcium_hardness, chemical_record.alkalinity)
                     .round(2) %>
               </td>
-              <td class="warning hidden-xs hidden-sm">
+              <td class='warning hidden-xs hidden-sm'>
                 <%= si_index_description(si_index(chemical_record.ph,
                   chemical_record.pool_temp, chemical_record.calcium_hardness,
                     chemical_record.alkalinity)) %>
@@ -75,15 +84,16 @@
 
             <% elsif si_index(chemical_record.ph, chemical_record.pool_temp,
                   chemical_record.calcium_hardness, chemical_record.alkalinity)
-                    .round(2) >= 3 or si_index(chemical_record.ph, chemical_record.pool_temp,
+                    .round(2) >= 3 or si_index(chemical_record.ph,
+                      chemical_record.pool_temp,
                   chemical_record.calcium_hardness, chemical_record.alkalinity)
                     .round(2) <= -3%>
-              <td class="warning hidden-xs hidden-sm">
+              <td class='warning hidden-xs hidden-sm'>
                 <%= si_index(chemical_record.ph, chemical_record.pool_temp,
                   chemical_record.calcium_hardness, chemical_record.alkalinity)
                     .round(2) %>
               </td>
-              <td class="warning hidden-xs hidden-sm">
+              <td class='warning hidden-xs hidden-sm'>
                 <%= si_index_description(si_index(chemical_record.ph,
                   chemical_record.pool_temp, chemical_record.calcium_hardness,
                     chemical_record.alkalinity)) %>
@@ -95,7 +105,7 @@
               chemical_record.calcium_hardness, chemical_record.alkalinity)
                 .round(2) %>
             </td>
-            <td class="hidden-xs hidden-sm">
+            <td class='hidden-xs hidden-sm'>
               <%= si_index_description(si_index(chemical_record.ph,
                 chemical_record.pool_temp, chemical_record.calcium_hardness,
                   chemical_record.alkalinity)) %>
@@ -117,4 +127,3 @@
   </table>
   <br>
 </div>
-

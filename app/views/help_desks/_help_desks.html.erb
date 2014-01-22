@@ -1,5 +1,5 @@
-<div class="table-responsive">
-  <table class="table table-hover table-condensed">
+<div class='table-responsive'>
+  <table class='table table-hover table-condensed'>
     <thead>
       <tr>
         <th> </th>
@@ -18,19 +18,19 @@
 
         <td>
           <% if help_desk.help_desk_attachment? %>
-            <%= link_to "", help_desk.help_desk_attachment.url,
-            class: "glyphicon glyphicon-picture" %>
+            <%= link_to '', help_desk.help_desk_attachment.url,
+            class: 'glyphicon glyphicon-picture' %>
           <% else %>
           <% end %>
         </td>
         <td><%= link_to help_desk.name, help_desk %></td>
 
-        <% if help_desk.urgency == "Low"  %>
-          <td class="success"><%= help_desk.urgency %></td>
-        <% elsif help_desk.urgency == "Medium"  %>
-          <td class="warning"><%= help_desk.urgency %></td>
-        <% elsif help_desk.urgency == "High"  %>
-          <td class="danger"><%= help_desk.urgency %></td>
+        <% if help_desk.urgency == 'Low'  %>
+          <td class='success'><%= help_desk.urgency %></td>
+        <% elsif help_desk.urgency == 'Medium'  %>
+          <td class='warning'><%= help_desk.urgency %></td>
+        <% elsif help_desk.urgency == 'High'  %>
+          <td class='danger'><%= help_desk.urgency %></td>
         <% else %>
            <td><%= help_desk.urgency %></td>
         <% end %>

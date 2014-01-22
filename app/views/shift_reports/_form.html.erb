@@ -1,10 +1,10 @@
 <%= bootstrap_form_for(@shift_report,
-  style: :horizontal, left: "col-sm-4", right: "col-sm-8") do |f| %>
+  style: :horizontal, left: 'col-sm-4', right: 'col-sm-8') do |f| %>
 
   <%= f.text_field :post_title %>
   <%= f.text_area :post_content %>
 
-  <div class="date-select">
+  <div class='date-select'>
     <%= f.date_select :date_stamp, {}, label: 'Date'  %>
     <%= f.time_select :time_stamp, { ampm: true },
       label: 'Time' %>

@@ -1,8 +1,8 @@
 <%= bootstrap_form_for(@preventative_list,
-  style: :horizontal, left: "col-sm-4", right: "col-sm-8") do |f| %>
+  style: :horizontal, left: 'col-sm-4', right: 'col-sm-8') do |f| %>
   <% if @preventative_list.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@preventative_list.errors.count, "error") %>
+    <div id='error_explanation'>
+      <h2><%= pluralize(@preventative_list.errors.count, 'error') %>
           prohibited this preventative_list from being saved:
       </h2>
 

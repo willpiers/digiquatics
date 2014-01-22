@@ -1,9 +1,9 @@
 <% provide(:title, 'Manage Locations') %>
 <h1>Manage Locations</h1>
 
-<div class="table-responsive">
+<div class='table-responsive'>
 
-  <table class="table table-hover table-condensed">
+  <table class='table table-hover table-condensed'>
     <thead>
       <tr>
         <th>Name</th>
@@ -17,7 +17,7 @@
         <tr>
           <td><%= location.name %></td>
           <td><%= link_to 'Edit', edit_location_path(location) %></td>
-          <td><%= link_to 'Delete', location, method: :delete, 
+          <td><%= link_to 'Delete', location, method: :delete,
             data: { confirm: 'Are you sure?' } %></td>
         </tr>
       <% end %>
