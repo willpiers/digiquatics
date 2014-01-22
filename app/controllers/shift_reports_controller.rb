@@ -67,6 +67,7 @@ class ShiftReportsController < ApplicationController
   end
 
   private
+
     # Use callbacks to share common setup or constraints between actions.
     def set_shift_report
       @shift_report = ShiftReport.find(params[:id])

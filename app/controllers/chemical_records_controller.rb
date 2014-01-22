@@ -87,10 +87,10 @@ class ChemicalRecordsController < ApplicationController
   end
 
   def sort_column
-    params[:sort] || "created_at"
+    params[:sort] || 'created_at'
   end
 
   def sort_direction
-    params[:direction] || "desc"
+    params[:direction] || 'desc'
   end
 end

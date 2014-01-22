@@ -69,6 +69,7 @@ class HelpDesksController < ApplicationController
   end
 
   private
+
     # Use callbacks to share common setup or constraints between actions.
     def set_help_desk
       @help_desk = HelpDesk.find(params[:id])
@@ -82,11 +83,11 @@ class HelpDesksController < ApplicationController
     end
 
     def sort_column
-      params[:sort] || "name"
+      params[:sort] || 'name'
     end
 
     def sort_direction
-      params[:direction] || "asc"
+      params[:direction] || 'asc'
     end
 
 end

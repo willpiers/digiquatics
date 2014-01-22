@@ -67,6 +67,7 @@ class AccountsController < ApplicationController
   end
 
   private
+
   # Use callbacks to share common setup or constraints between actions.
   def set_account
     @account = Account.find(params[:id])
@@ -75,6 +76,6 @@ class AccountsController < ApplicationController
   # Only allow the white list through.
   def account_params
     params.require(:account).permit(:name, :time_zone,
-      private_lessons_attributes: [:id])
+                                     private_lessons_attributes: [:id])
   end
 end
