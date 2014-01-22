@@ -1,12 +1,12 @@
 require File.expand_path('../boot', __FILE__)
 
 # Pick the frameworks you want:
-require "active_record/railtie"
-require "action_controller/railtie"
-require "action_mailer/railtie"
-require "sprockets/railtie"
+require 'active_record/railtie'
+require 'action_controller/railtie'
+require 'action_mailer/railtie'
+require 'sprockets/railtie'
 require 'csv'
-# require "rails/test_unit/railtie"
+# require 'rails/test_unit/railtie'
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -15,6 +15,7 @@ Bundler.require(:default, Rails.env)
 module Digiquatics
   class Application < Rails::Application
     system("rubocop #{Rails.root}") if Rails.env.development?
+    # rubocop:disable LineLength, StringLiterals
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
@@ -26,6 +27,7 @@ module Digiquatics
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
+    # rubocop:enable LineLength, StringLiterals
     I18n.enforce_available_locales = true
     config.assets.precompile += %w(*.png *.jpg *.jpeg *.gif)
   end
