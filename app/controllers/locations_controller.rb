@@ -15,7 +15,7 @@ class LocationsController < ApplicationController
 
   def new
     @location = Location.new
-    4.times { @location.pools.build }
+    1.times { @location.pools.build }
   end
 
   def edit

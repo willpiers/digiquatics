@@ -9,4 +9,4 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-AquaticsApp::Application.config.secret_key_base = '872f81b8afe3a40ab8ea486d996629a5a968883f15439fdd30c3aa22a20fa0dceb748c34a466ebc514fd839c9270dfebeeb70fd5130d63bab21c080189edb863'
+Digiquatics::Application.config.secret_key_base = '872f81b8afe3a40ab8ea486d996629a5a968883f15439fdd30c3aa22a20fa0dceb748c34a466ebc514fd839c9270dfebeeb70fd5130d63bab21c080189edb863'
