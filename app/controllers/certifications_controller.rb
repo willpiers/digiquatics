@@ -83,8 +83,9 @@ class CertificationsController < ApplicationController
 
   # Only allow the white list through.
   def certification_params
-    params.require(:certification).permit(:certification_name_id, :user_id, :issue_date,
-      :expiration_date, :attachment)
+    params.require(:certification).permit(:certification_name_id, :user_id,
+                                          :issue_date, :expiration_date,
+                                          :attachment)
   end
 
   #Sorting

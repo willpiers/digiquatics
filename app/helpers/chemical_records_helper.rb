@@ -1,16 +1,17 @@
 module ChemicalRecordsHelper
   include Math
 
+  # rubocop : disable all
   def si_index(ph_reading, pool_temp, calcium_hardness, total_alkalinity)
     if !ph_reading || !pool_temp || !calcium_hardness || !total_alkalinity
       '?'
     else
       ph = ph_reading
-      temp = ((0.7571 * log(pool_temp)) -2.6639)
-      ch = ((0.4341 * log(calcium_hardness)) -0.3926)
-      ta = ((0.4341 * log(total_alkalinity)) +0.0074)
+      temp = ((0.7571 * log(pool_temp)) - 2.6639)
+      ch = ((0.4341 * log(calcium_hardness)) - 0.3926)
+      ta = ((0.4341 * log(total_alkalinity)) + 0.0074)
       tds = 12.1
-      si = (ph + temp + ch + ta - tds)
+      @si = (ph + temp + ch + ta - tds)
     end
   end
 
@@ -77,4 +78,7 @@ module ChemicalRecordsHelper
       'Error'
     end
   end
+
+  # rubocop : enable all
+
 end

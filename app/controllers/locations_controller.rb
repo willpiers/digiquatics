@@ -70,6 +70,7 @@ class LocationsController < ApplicationController
 
   # Only allow the white list through.
   def location_params
-    params.require(:location).permit(:name, pools_attributes: [:id, :location_id, :name, :_destroy])
+    params.require(:location)
+      .permit(:name, pools_attributes: [:id, :location_id, :name, :_destroy])
   end
 end
