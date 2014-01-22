@@ -16,9 +16,9 @@
       <% @certification_names.each do |certification_name| %>
         <tr>
           <td><%= certification_name.name %></td>
-          <td><%= link_to 'Edit', edit_certification_name_path(certification_name) 
+          <td><%= link_to 'Edit', edit_certification_name_path(certification_name)
             %></td>
-          <td><%= link_to 'Delete', certification_name, method: :delete, 
+          <td><%= link_to 'Delete', certification_name, method: :delete,
             data: { confirm: 'Are you sure?' } %></td>
         </tr>
       <% end %>

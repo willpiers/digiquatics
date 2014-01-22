@@ -5,10 +5,11 @@ class Certification < ActiveRecord::Base
   belongs_to :user
   belongs_to :certification_name
   belongs_to :account
+  # rubocop:disable LineLength, StringLiterals
   has_attached_file :attachment,
-        path: ':rails_root/public/system/:attachment/:id/:style/:filename',
-        url: '/system/:attachment/:id/:style/:filename'
-
+                    path: ':rails_root/public/system/:attachment/:id/:style/:filename',
+                    url: '/system/:attachment/:id/:style/:filename'
+  # rubocop:enable LineLength, StringLiterals
   validates_presence_of :certification_name_id, :expiration_date, :user_id
 
   comma do
