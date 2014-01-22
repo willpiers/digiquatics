@@ -1,29 +1,37 @@
-<% provide(:title, 'Users') %>
-<h1>Users</h1>
+<div ng-app='digiquatics'>
+  <div ng-controller='LocationsCtrl'>
+    <% provide(:title, 'Users') %>
+    <h1>Users</h1>
 
-<ul class = "pull-right">
-  <%= link_to "Manage Inactive", inactive_index_path , class: "btn btn-danger btn-sm" %>
-</ul>
+    <div class='row'>
+      <div class='col-md-2'>
+        <h4>Search:</h4>
+        <input ng-model='search' type='text' class='form-control'>
+      </div>
 
-<ul class = "pull-right">
-	<%= link_to "Add User", signup_path, class: "btn btn-primary btn-sm" %>
-</ul>
+      <div class='col-md-3'>
+        <h4>Filter locations:</h4>
+        <select ng-model='locationFilter' class='form-control'>
+          <option value=''>All</option>
+          <option ng-repeat='location in locations' value='{{location.name}}'>{{location.name}}</option>
+        </select>
+      </div>
 
-<ul class = "pull-right">
-  <%= link_to "Export CSV", users_path(format: "csv") , class: "btn btn-warning btn-sm" %>
-</ul>
+      <div class='col-md-2'></div>
 
-<ul class = "pull-right">
-  <%= link_to "Statistics", user_stats_path, class: "btn btn-success btn-sm" %>
-</ul>
+      <div class='col-md-5'>
+        <br><br>
+        <div class='btn-group'>
+          <%= link_to 'Manage Inactive', inactive_index_path, class: 'btn btn-danger btn-sm', role: 'button' %>
+          <%= link_to 'Add User', signup_path, class: 'btn btn-primary btn-sm', role: 'button' %>
+          <%= link_to 'Export CSV', users_path(format: 'csv'), class: 'btn btn-warning btn-sm', role: 'button' %>
+          <%= link_to 'Statistics', user_stats_path, class: 'btn btn-success btn-sm', role: 'button' %>
+        </div>
+      </div>
 
-<div id="searchbox">
-	<%= form_tag users_path, method: 'get', id: "users_search" do %>
-	  <%= text_field_tag :search, params[:search]%>
-	  <%= submit_tag "Search", name: nil, class:"btn btn-default btn-sm" %>
+    </div>
+
+    <br>
+    <%= render 'users' %>
+  </div>
 </div>
-
-<br>
-
-<%= render 'users' %>
-<% end %>

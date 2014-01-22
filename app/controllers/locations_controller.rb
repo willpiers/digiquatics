@@ -1,29 +1,26 @@
 class LocationsController < ApplicationController
   before_action :set_location, only: [:show, :edit, :update, :destroy]
 
-  # GET /locations
-  # GET /locations.json
   def index
     @locations = Location.joins(:account).same_account_as(current_user)
+
+    respond_to do |format|
+      format.html
+      format.json { render json: @locations }
+    end
   end
 
-  # GET /locations/1
-  # GET /locations/1.json
   def show
   end
 
-  # GET /locations/new
   def new
     @location = Location.new
     4.times { @location.pools.build }
   end
 
-  # GET /locations/1/edit
   def edit
   end
 
-  # POST /locations
-  # POST /locations.json
   def create
     @location = Location.new(location_params)
     @location.account_id = current_user.account_id
@@ -42,8 +39,6 @@ class LocationsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /locations/1
-  # PATCH/PUT /locations/1.json
   def update
     respond_to do |format|
       if @location.update(location_params)
@@ -58,8 +53,6 @@ class LocationsController < ApplicationController
     end
   end
 
-  # DELETE /locations/1
-  # DELETE /locations/1.json
   def destroy
     @location.destroy
     respond_to do |format|

@@ -25,3 +25,7 @@
 #= require application
 
 #= require angular-mocks
+
+beforeEach ->
+  @addMatchers toEqualData: (expected) ->
+    angular.equals JSON.stringify(@actual), JSON.stringify(expected)

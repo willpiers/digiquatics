@@ -105,12 +105,7 @@ describe User do
   end
 
   describe 'when password is not present' do
-    before do
-      @user = User.new(first_name: 'First', last_name: 'Last',
-                       email: 'user@example.com', password: ' ',
-                       password_confirmation: ' ')
-    end
-
+    before { @user.password = @user.password_confirmation = ' ' }
     it { should_not be_valid }
   end
 
