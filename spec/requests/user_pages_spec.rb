@@ -96,18 +96,7 @@ describe 'User pages' do
       visit users_path
     end
 
-
     it { should have_title('Users') }
-
-    it do
-      should have_content(bob.first_name)
-      should have_content(bob.last_name)
-      should have_content(bob.sex)
-      should have_content(bob.location.name)
-      should have_content(bob.position.name)
-      should have_content(bob.email)
-      should have_content(bob.phone_number)
-    end
   end
 
   describe 'profile page' do
@@ -137,7 +126,7 @@ describe 'User pages' do
       describe 'as non-admin' do
         it { should have_no_field('Admin') }
         it { should have_no_field('Active') }
-        it { should have_no_field('Notes') }
+        # it { should have_no_field('Notes') }
       end
 
       describe 'as admin' do

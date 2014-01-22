@@ -15,6 +15,7 @@ gem 'bootstrap-will_paginate'
 gem 'intercom-rails', '~> 0.2.21'
 gem 'comma', '~> 3.0'
 gem 'angularjs-rails'
+gem 'jquery-turbolinks'
 
 # Using MySQL Database
 gem 'mysql2'
