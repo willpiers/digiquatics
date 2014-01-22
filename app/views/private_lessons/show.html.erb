@@ -15,7 +15,7 @@
 		<table class="table table-bordered table-condensed" >
 			<h4> Parent Information </h4>
 				<tr>
-					 <th style="width:25%"> First Name </th>
+					 <th id="fixtablewidth"> First Name </th>
 					<td> <%= @private_lesson.parent_first_name %> </td>
 				</tr>
 				<tr>
@@ -39,7 +39,7 @@
 		<table class="table table-bordered" >
 			<h4> Student Information </h4>
 				<tr>
-					 <th style="width:25%"> First Name </th>
+					 <th id="fixtablewidth"> First Name </th>
 					<td> <%= @private_lesson.first_name %> </td>
 				</tr>
 				<tr>
@@ -59,7 +59,7 @@
 	<table class="table table-bordered" >
 		<h4> Preferences </h4>
 			<tr>
-				<th style="width:25%"> Instructor Gender </th>
+				<th id="fixtablewidth"> Instructor Gender </th>
 				<td> <%= @private_lesson.instructor_gender %> </td>
 			</tr>
 			<tr>
@@ -71,13 +71,12 @@
 	<table class="table table-bordered" >
 		<h4> Lesson Request </h4>
 			<tr>
-				<th style="width:25%"> Number Lessons </th>
+				<th id="fixtablewidth"> Number Lessons </th>
 				<td> <%= @private_lesson.number_lessons %> </td>
 			</tr>
 	</table>
 
 	<%if current_user.admin? %>
 	  <%= link_to 'Edit', edit_private_lesson_path(@private_lesson) %>
-	<% else %>
 	<% end %>
 </div>
