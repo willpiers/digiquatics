@@ -1,7 +1,7 @@
 development:
   adapter: mysql2
   encoding: utf8
-  database: aquatics_app_development
+  database: digiquatics_development
   pool: 5
   username: root
   password:
@@ -13,7 +13,7 @@ development:
 test:
   adapter: mysql2
   encoding: utf8
-  database: aquatics_app_test
+  database: digiquatics_test
   pool: 5
   username: root
   password:

@@ -37,28 +37,43 @@
     <%= f.select :position_id,
       options_from_collection_for_select(Position.all, :id, :name) %>
 
-    <h4>Certifications</h4>
-
-    <%= f.fields_for :certifications do |builder| %>
-        <b><%= builder.object.certification_name.name %></b>
-        <%= builder.text_field :issue_date,
-          :value => (builder.object.issue_date.strftime('%-m/%-d/%Y')) %>
-        <%= builder.text_field :expiration_date,
-          :value => (builder.object.expiration_date.strftime('%-m/%-d/%Y')) %>
-        <%= builder.file_field :attachment %>
-    <% end %>
-
     <% if signed_in? && current_user.admin %>
+      <h4>Certifications</h4>
+
+
+      <%= f.fields_for :certifications do |builder| %>
+        <%= builder.select :certification_name_id,
+          options_from_collection_for_select(CertificationName.all, :id, :name) %>
+
+        <div class="date-select">
+         <%= builder.date_select :issue_date, { start_year: Time.now.year,
+          end_year: Time.now.year-30, order: [:month, :day, :year], prompt: true},
+            label: 'Issue Date'  %>
+        </div>
+
+        <div class="date-select">
+         <%= builder.date_select :expiration_date, { start_year: Time.now.year,
+          end_year: Time.now.year-30, order: [:month, :day, :year], prompt: true},
+            label: 'Expiration Date'  %>
+        </div>
+
+        <%= builder.file_field :attachment %>
+      <% end %>
+
+
       <h4>User Classification</h4>
       <%= f.form_group do %>
       <%= f.check_box :admin, style: "width: 20px; height: 50px;" %>
       <%= f.check_box :active, style: "width: 20px; height: 50px;" %>
       <% end %>
-    <% end %>
 
-    <h4>User Notes</h4>
-    <%= f.text_area :notes, size: "2x",
-      hide_label: :true, placeholder: "Leave a comment..." %>
+
+      <h4>User Notes</h4>
+      <%= f.text_area :notes,
+                      size: "2x",
+                      hide_label: :true,
+                      placeholder: "Leave a comment..." %>
+    <% end %>
 
      <%= f.form_group do %>
       <%= f.primary ( f.object.new_record? ?  "Create Account" :

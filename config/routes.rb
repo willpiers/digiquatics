@@ -1,4 +1,4 @@
-AquaticsApp::Application.routes.draw do
+Digiquatics::Application.routes.draw do
 
   resources :private_lesson_details
 

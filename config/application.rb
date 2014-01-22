@@ -12,7 +12,7 @@ require 'csv'
 # you've limited to :test, :development, or :production.
 Bundler.require(:default, Rails.env)
 
-module AquaticsApp
+module Digiquatics
   class Application < Rails::Application
     system("rubocop #{Rails.root}") if Rails.env.development?
     # Settings in config/environments/* take precedence over those specified here.

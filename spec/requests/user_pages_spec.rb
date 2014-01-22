@@ -13,7 +13,7 @@ describe 'User pages' do
 
   describe 'signup' do
     before do
-      sign_in user
+      sign_in admin
       visit signup_path
     end
 
@@ -124,9 +124,13 @@ describe 'User pages' do
       it { should have_title('Edit user') }
 
       describe 'as non-admin' do
+        it { should_not have_selector('h4', text: 'Certifications') }
+        it { should have_no_field('user_certifications_attributes_0_issue_date') }
+        it { should have_no_field('user_certifications_attributes_0_expiration_date') }
+        it { should have_no_field('user_certifications_attributes_0_attachment') }
         it { should have_no_field('Admin') }
         it { should have_no_field('Active') }
-        # it { should have_no_field('Notes') }
+        it { should have_no_field('Notes') }
       end
 
       describe 'as admin' do
@@ -139,6 +143,10 @@ describe 'User pages' do
           visit edit_user_path(user)
         end
 
+        it { should have_selector('h4', text: 'Certifications') }
+        it { should have_no_field('user_certifications_attributes_0_issue_date') }
+        it { should have_no_field('user_certifications_attributes_0_expiration_date') }
+        it { should have_no_field('user_certifications_attributes_0_attachment') }
         it { should have_field('Admin') }
         it { should have_field('Active') }
         it { should have_field('Notes') }
