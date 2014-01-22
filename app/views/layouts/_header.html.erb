@@ -1,14 +1,18 @@
 <div class = "navbar navbar-inverse navbar-static-top">
   <div class = "container">
-    <% if signed_in? %>
-      <%= link_to "Digiquatics", dashboard_path, id: "logo" %>
-    <% end %>
     <button class = "navbar-toggle" data-toggle = "collapse"
     data-target = ".navHeaderCollapse">
       <span class = "icon-bar"></span>
       <span class = "icon-bar"></span>
       <span class = "icon-bar"></span>
     </button>
+
+    <a id="logoimage" class="float:left">
+        <img src="/images/water.png" alt="red" height="40px" width="40px"/>
+    </a>
+    <% if signed_in? %>
+      <%= link_to "Digiquatics", dashboard_path, id: "logo" %>
+    <% end %>
 
     <div class = "collapse navbar-collapse navHeaderCollapse">
 

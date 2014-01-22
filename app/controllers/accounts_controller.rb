@@ -74,6 +74,7 @@ class AccountsController < ApplicationController
 
   # Only allow the white list through.
   def account_params
-    params.require(:account).permit(:name, :time_zone)
+    params.require(:account).permit(:name, :time_zone,
+      private_lessons_attributes: [:id])
   end
 end

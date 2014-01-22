@@ -14,6 +14,14 @@
 
   <table class="table table-bordered table-condensed">
       <tr>
+        <th id="fixtablewidth">Location</th>
+        <td><%=%></td>
+      </tr>
+      <tr>
+        <th>Pool</th>
+        <td><%=%></td>
+      </tr>
+      <tr>
         <th>Chlorine(ppm)</th>
         <td><%=@chemical_record.chlorine_ppm%></td>
       </tr>
@@ -50,6 +58,12 @@
     <tr>
       <th>SI Status</th>
       <td><%=si_index_description(si_index(@chemical_record.ph,
+        @chemical_record.pool_temp, @chemical_record.calcium_hardness,
+          @chemical_record.alkalinity))%></td>
+    </tr>
+    <tr>
+      <th>SI Recommendation</th>
+      <td><%=si_index_recommendation(si_index(@chemical_record.ph,
         @chemical_record.pool_temp, @chemical_record.calcium_hardness,
           @chemical_record.alkalinity))%></td>
     </tr>
