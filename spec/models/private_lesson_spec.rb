@@ -35,68 +35,68 @@ describe PrivateLesson do
 
   it { should be_valid }
 
-  describe "without first name is not present" do
+  describe 'without first name is not present' do
     before { @private_lesson.first_name = nil }
     it { should_not be_valid }
   end
 
-  describe "without email is not present" do
+  describe 'without email is not present' do
     before { @private_lesson.email = nil }
     it { should_not be_valid }
   end
 
-  describe "without last name is not present" do
+  describe 'without last name is not present' do
     before { @private_lesson.last_name = nil }
     it { should_not be_valid }
   end
 
-  describe "when phone number is not present" do
-    before { @private_lesson.phone_number = " " }
+  describe 'when phone number is not present' do
+    before { @private_lesson.phone_number = ' ' }
     it { should_not be_valid }
   end
 
-  describe "when parent first name is not present" do
-    before { @private_lesson.parent_first_name = " " }
+  describe 'when parent first name is not present' do
+    before { @private_lesson.parent_first_name = ' ' }
     it { should_not be_valid }
   end
 
-  describe "when parent last name is not present" do
-    before { @private_lesson.parent_last_name = " " }
+  describe 'when parent last name is not present' do
+    before { @private_lesson.parent_last_name = ' ' }
     it { should_not be_valid }
   end
 
-  describe "when sex is not present" do
-    before { @private_lesson.sex = " " }
+  describe 'when sex is not present' do
+    before { @private_lesson.sex = ' ' }
     it { should_not be_valid }
   end
 
-  describe "when age is not present" do
-    before { @private_lesson.age = " " }
+  describe 'when age is not present' do
+    before { @private_lesson.age = ' ' }
     it { should_not be_valid }
   end
 
-  describe "when instructor gender is not present" do
-    before { @private_lesson.instructor_gender = " " }
+  describe 'when instructor gender is not present' do
+    before { @private_lesson.instructor_gender = ' ' }
     it { should_not be_valid }
   end
 
-  describe "when notes is not present" do
-    before { @private_lesson.notes = " " }
+  describe 'when notes is not present' do
+    before { @private_lesson.notes = ' ' }
     it { should_not be_valid }
   end
 
-    describe "when day is not present" do
-    before { @private_lesson.day = " " }
+    describe 'when day is not present' do
+    before { @private_lesson.day = ' ' }
     it { should_not be_valid }
   end
 
-  describe "when time is not present" do
-    before { @private_lesson.time = " " }
+  describe 'when time is not present' do
+    before { @private_lesson.time = ' ' }
     it { should_not be_valid }
   end
 
-  describe "when ability level is not present" do
-    before { @private_lesson.ability_level = " " }
+  describe 'when ability level is not present' do
+    before { @private_lesson.ability_level = ' ' }
     it { should_not be_valid }
   end
 
