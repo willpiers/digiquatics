@@ -13,7 +13,7 @@ describe 'User pages' do
 
   describe 'signup' do
     before do
-      sign_in user
+      sign_in admin
       visit signup_path
     end
 
@@ -130,7 +130,7 @@ describe 'User pages' do
         it { should have_no_field('user_certifications_attributes_0_attachment') }
         it { should have_no_field('Admin') }
         it { should have_no_field('Active') }
-        # it { should have_no_field('Notes') }
+        it { should have_no_field('Notes') }
       end
 
       describe 'as admin' do
@@ -141,7 +141,6 @@ describe 'User pages' do
         before do
           sign_in admin
           visit edit_user_path(user)
-          puts current_path
         end
 
         it { should have_selector('h4', text: 'Certifications') }
