@@ -2,7 +2,7 @@
   <tbody>
     <% @certification_names.each do |certification_name| %>
       <tr>
-        <td style='width:80%'><%= certification_name.name %></td>
+        <td class='fixtablewidthadmin'><%= certification_name.name %></td>
         <td><%= link_to ' Edit', edit_certification_name_path(certification_name),
           class: 'glyphicon glyphicon-pencil' %></td>
         <td><%= link_to 'Delete', certification_name,

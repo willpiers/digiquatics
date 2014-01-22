@@ -2,7 +2,7 @@
   <tbody>
     <% @positions.each do |position| %>
       <tr>
-        <td style='width:80%'><%= position.name %></td>
+        <td class='fixtablewidthadmin'> <%= position.name %></td>
 
         <td><%= link_to ' Edit', edit_position_path(position),
         class: 'glyphicon glyphicon-pencil' %></td>
