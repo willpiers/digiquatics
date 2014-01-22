@@ -1,8 +1,8 @@
-<table class="table">
+<table class='table'>
   <tbody>
       <% @locations.each do |location| %>
       <tr>
-        <td style="width:80%"><%= location.name %>
+        <td style='width:80%'><%= location.name %>
           <br>
           <% location.pools.each do |pool| %>
             <ul>
@@ -14,11 +14,11 @@
         </td>
         <td>
           <%= link_to ' Edit', edit_location_path(location),
-            class: "glyphicon glyphicon-pencil" %>
+            class: 'glyphicon glyphicon-pencil' %>
         </td>
         <td>
           <%= link_to ' Delete', location,
-            class: "glyphicon glyphicon-trash", method: :delete,
+            class: 'glyphicon glyphicon-trash', method: :delete,
             data: { confirm: 'Are you sure?' } %></td>
       </tr>
 
@@ -26,7 +26,7 @@
       <tr>
         <td>
           <%= link_to ' New', new_location_path,
-            class: "glyphicon glyphicon-plus-sign" %>
+            class: 'glyphicon glyphicon-plus-sign' %>
         </td>
       </tr>
   </tbody>
