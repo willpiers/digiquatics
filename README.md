@@ -126,3 +126,6 @@ load 'config/deploy' # remove this line to skip loading any of the default tasks
 ```
 
 Change `deploy.rb` and create `nginx.conf` and change stuff
+
+Run:
+`rake assets:precompile`
