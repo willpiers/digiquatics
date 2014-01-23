@@ -115,17 +115,104 @@ gem 'capistrano'
 Install Capistrano:
 `cap install`
 
-Add this to Capfile:
+Adjust deploy.rb file:
 
 ``` ruby
-load 'deploy'
-# Uncomment if you are using Rails' asset pipeline
-load 'deploy/assets'
-Dir['vendor/gems/*/recipes/*.rb','vendor/plugins/*/recipes/*.rb'].each { |plugin| load(plugin) }
-load 'config/deploy' # remove this line to skip loading any of the default tasks
+set :application, 'digiquatics'
+set :repo_url, 'https://github.com/duffcodester/digiquatics.git'
+
+# Default branch is :master
+# ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }
+
+# Default deploy_to directory is /var/www/my_app
+set :deploy_to, '/var/www/digiquatics'
 ```
 
-Change `deploy.rb` and create `nginx.conf` and change stuff
+Adjust production.rb file:
 
-Run:
-`rake assets:precompile`
+``` ruby
+role :app, %w{198.199.105.193}
+role :web, %w{198.199.105.193}
+role :db,  %w{198.199.105.193}
+```
+
+Create `nginx.conf` and change stuff
+
+Run `ssh-add -L` on local machine to view full ssh key
+
+Login to remote server using your own user:
+ssh josh@198.199.105.193
+
+create new file in ~/.ssh/authorized_keys and add full ssh key, save, exit
+
+```
+cd ~
+chmod 700 .ssh
+cdmod 600 .ssh/authorized_keys
+```
+
+If it works try:
+
+```
+ssh josh@198.199.105.193 'hostname; uptime'
+```
+
+And you should get:
+
+AquaticsApp
+ 23:53:17 up 10 days, 11:03,  0 users,  load average: 0.00, 0.01, 0.05
+
+Create the directories in var/www/digiquatics:
+
+```
+~/var: mkdir www
+~/var/www: mkdir digiquatics
+~/var/www/digiquatics: mkdir releases
+~/var/www/digiquatics: mkdir shared
+```
+
+Check directory structure on remote server:
+ssh josh@198.199.105.193 'ls -lR /var/www/digiquatics'
+
+/var/www/digiquatics:
+total 8
+drwxr-xr-x 2 root root 4096 Jan 23 00:01 releases
+drwxr-xr-x 2 root root 4096 Jan 23 00:01 shared
+
+/var/www/digiquatics/releases:
+total 0
+
+/var/www/digiquatics/shared:
+total 0
+
+Add File to lib/capistrano/tasks called 'access_check.cap':
+
+```
+desc "Check that we can access everything"
+task :check_write_permissions do
+  on roles(:all) do |host|
+    if test("[ -w #{fetch(:deploy_to)} ]")
+      info "#{fetch(:deploy_to)} is writable on #{host}"
+    else
+      error "#{fetch(:deploy_to)} is not writable on #{host}"
+    end
+  end
+end
+```
+
+Add `gem 'capistrano-rbenv', github: "capistrano/rbenv"` to Gemfile
+
+Add the following to the correct files:
+
+```
+# Capfile
+require 'capistrano/rbenv'
+
+
+# config/deploy.rb
+set :rbenv_type, :user # or :system, depends on your rbenv setup
+set :rbenv_ruby, '2.0.0-p247'
+set :rbenv_prefix, "RBENV_ROOT=#{fetch(:rbenv_path)} RBENV_VERSION=#{fetch(:rbenv_ruby)} #{fetch(:rbenv_path)}/bin/rbenv exec"
+set :rbenv_map_bins, %w{rake gem bundle ruby rails}
+set :rbenv_roles, :all # default value
+```
