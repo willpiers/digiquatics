@@ -56,12 +56,6 @@ class UsersController < ApplicationController
   end
 
   def update
-    if params[:active] == false
-     @user.update_attributes(user_params)
-    end
-    if params[:admin] == false
-      @user.update_attributes(user_params)
-    end
     if @user.update_attributes(user_params)
       flash[:success] = 'Profile updated'
       redirect_to @user
@@ -119,10 +113,10 @@ class UsersController < ApplicationController
   end
 
   def sort_column
-    params[:sort] || "first_name"
+    params[:sort] || 'first_name'
   end
 
   def sort_direction
-    params[:direction] || "asc"
+    params[:direction] || 'asc'
   end
 end

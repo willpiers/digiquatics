@@ -1,4 +1,5 @@
 Digiquatics::Application.routes.draw do
+  # rubocop:disable LineLength, StringLiterals
 
   resources :private_lesson_details
 
@@ -119,4 +120,6 @@ Digiquatics::Application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
+
+  # rubocop:enable LineLength, StringLiterals
 end

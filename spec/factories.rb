@@ -77,9 +77,9 @@ FactoryGirl.define do
     sex                   'M'
     instructor_gender     'F'
     ability_level          6
-    day                    "Mon"
-    time                   "AM"
-    notes                  "None at this moment"
+    day                    'Mon'
+    time                   'AM'
+    notes                  'None at this moment'
     preferred_location     1
     user_id                1
   end

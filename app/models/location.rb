@@ -10,8 +10,8 @@ class Location < ActiveRecord::Base
   has_many :pools, dependent: :destroy
 
   accepts_nested_attributes_for :pools,
-    reject_if: lambda { |a| a[:name].blank? },
-    allow_destroy: true
+                                reject_if: ->(a) { a[:name].blank? },
+                                allow_destroy: true
 
   has_many :shift_reports
 

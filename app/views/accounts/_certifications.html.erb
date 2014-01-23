@@ -1,18 +1,18 @@
-<table class="table">
+<table class='table'>
   <tbody>
     <% @certification_names.each do |certification_name| %>
       <tr>
-        <td style="width:80%"><%= certification_name.name %></td>
+        <td class='fixtablewidthadmin'><%= certification_name.name %></td>
         <td><%= link_to ' Edit', edit_certification_name_path(certification_name),
-          class: "glyphicon glyphicon-pencil" %></td>
+          class: 'glyphicon glyphicon-pencil' %></td>
         <td><%= link_to 'Delete', certification_name,
-        class: "glyphicon glyphicon-trash", method: :delete,
+        class: 'glyphicon glyphicon-trash', method: :delete,
           data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
     <td>
       <%= link_to ' New', new_certification_name_path,
-        class: "glyphicon glyphicon-plus-sign" %>
+        class: 'glyphicon glyphicon-plus-sign' %>
     </td>
 
   </tbody>

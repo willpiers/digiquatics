@@ -62,6 +62,7 @@ class DailyTodosController < ApplicationController
   end
 
   private
+
     # Use callbacks to share common setup or constraints between actions.
     def set_daily_todo
       @daily_todo = DailyTodo.find(params[:id])

@@ -1,10 +1,10 @@
 <% provide(:title, 'Chemical Statistics') %>
 <h1>Chemical Statistics</h1>
 
-<div class="table-responsive">
+<div class='table-responsive'>
 <h4> Basic Information </h4>
 
-	<table class="table table-bordered table-condensed">
+	<table class='table table-bordered table-condensed'>
 		<tr>
 			<th>Type</th>
 			<th>Min</th>
@@ -58,43 +58,43 @@
 			<td>SI Index</td>
 			<td><%= @chemical_records
 				.minimum(si_index(@chemical_records.minimum('ph'),
-													@chemical_records.minimum('pool_temp'), 
-													@chemical_records.minimum('calcium_hardness'), 
+													@chemical_records.minimum('pool_temp'),
+													@chemical_records.minimum('calcium_hardness'),
 													@chemical_records.minimum('alkalinity'))).round(2) %>
 			</td>
 			<td><%= @chemical_records
 				.maximum(si_index(@chemical_records.maximum('ph'),
-													@chemical_records.maximum('pool_temp'), 
-													@chemical_records.maximum('calcium_hardness'), 
+													@chemical_records.maximum('pool_temp'),
+													@chemical_records.maximum('calcium_hardness'),
 													@chemical_records.maximum('alkalinity'))).round(2) %>
 			</td>
 			<td><%= @chemical_records
 				.average(si_index(@chemical_records.average('ph'),
-													@chemical_records.average('pool_temp'), 
-													@chemical_records.average('calcium_hardness'), 
+													@chemical_records.average('pool_temp'),
+													@chemical_records.average('calcium_hardness'),
 													@chemical_records.average('alkalinity'))).round(2) %>
-			<td><%= "N/A" %></td>
+			<td><%= 'N/A' %></td>
 		</tr>
-		<tr class="hidden-xs hidden-sm">
+		<tr class='hidden-xs hidden-sm'>
 			<td>SI Status</td>
 			<td><%= si_index_description(@chemical_records
 				.minimum(si_index(@chemical_records.minimum('ph'),
-													@chemical_records.minimum('pool_temp'), 
-													@chemical_records.minimum('calcium_hardness'), 
+													@chemical_records.minimum('pool_temp'),
+													@chemical_records.minimum('calcium_hardness'),
 													@chemical_records.minimum('alkalinity')))) %>
 			</td>
 			<td><%= si_index_description(@chemical_records
 				.maximum(si_index(@chemical_records.maximum('ph'),
-													@chemical_records.maximum('pool_temp'), 
-													@chemical_records.maximum('calcium_hardness'), 
+													@chemical_records.maximum('pool_temp'),
+													@chemical_records.maximum('calcium_hardness'),
 													@chemical_records.maximum('alkalinity'))))%>
 			</td>
 			<td><%= si_index_description(@chemical_records
 				.average(si_index(@chemical_records.average('ph'),
-													@chemical_records.average('pool_temp'), 
-													@chemical_records.average('calcium_hardness'), 
+													@chemical_records.average('pool_temp'),
+													@chemical_records.average('calcium_hardness'),
 													@chemical_records.average('alkalinity')))) %>
-			<td><%= "N/A" %></td>
+			<td><%= 'N/A' %></td>
 		</tr>
 
 	</table>

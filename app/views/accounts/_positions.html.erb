@@ -1,19 +1,19 @@
-<table class="table">
+<table class='table'>
   <tbody>
     <% @positions.each do |position| %>
       <tr>
-        <td style="width:80%"><%= position.name %></td>
+        <td class='fixtablewidthadmin'> <%= position.name %></td>
 
         <td><%= link_to ' Edit', edit_position_path(position),
-        class: "glyphicon glyphicon-pencil" %></td>
+        class: 'glyphicon glyphicon-pencil' %></td>
         <td><%= link_to ' Delete', position, method: :delete,
-          class: "glyphicon glyphicon-trash",
+          class: 'glyphicon glyphicon-trash',
           data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
     <td>
       <%= link_to ' New', new_position_path,
-        class: "glyphicon glyphicon-plus-sign" %>
+        class: 'glyphicon glyphicon-plus-sign' %>
     </td>
 
   </tbody>

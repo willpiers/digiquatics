@@ -1,0 +1,49 @@
+<div class='table-responsive'>
+  <table class='table table-hover table-condensed'>
+    <thead>
+      <tr>
+        <th> </th>
+        <th>Problem</th>
+        <th>Urgency</th>
+        <th>Location</th>
+        <th>Submitted By</th>
+        <th>Date Submitted</th>
+        <th>Status</th>
+      </tr>
+  </thead>
+
+  <tbody>
+    <% @help_desks.each do |help_desk| %>
+      <tr>
+
+        <td>
+          <% if help_desk.help_desk_attachment? %>
+            <%= link_to '', help_desk.help_desk_attachment.url,
+            class: 'glyphicon glyphicon-picture' %>
+          <% else %>
+          <% end %>
+        </td>
+        <td><%= link_to help_desk.name, help_desk %></td>
+
+        <% if help_desk.urgency == 'Low'  %>
+          <td class='success'><%= help_desk.urgency %></td>
+        <% elsif help_desk.urgency == 'Medium'  %>
+          <td class='warning'><%= help_desk.urgency %></td>
+        <% elsif help_desk.urgency == 'High'  %>
+          <td class='danger'><%= help_desk.urgency %></td>
+        <% else %>
+           <td><%= help_desk.urgency %></td>
+        <% end %>
+
+        <td><%= Location.find(help_desk.location_id).name %></td>
+
+        <td><%= User.find(help_desk.user_id).first_name %>
+          <%= User.find(help_desk.user_id).last_name %>
+        </td>
+
+        <td><%= help_desk.created_at.strftime('%-m/%-d/%Y') %></td>
+        <td><%= help_desk.issue_status %> </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

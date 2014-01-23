@@ -5,7 +5,7 @@ class BootstrapFormBuilder < ActionView::Helpers::FormBuilder
   delegate :label_tag, to: :@template
 
   def standard_html type, method, options = {}
-    options[:class] ||= ""
+    options[:class] ||= ''
     options[:label] ||= method.to_s.titleize
     field_errors = @object.errors[method].join(', ')
       if !@object.errors[method].blank?

@@ -1,24 +1,25 @@
 <% provide(:title, 'Private Lessons Queue') %>
 <h1>Private Lessons Queue</h1>
 
-<ul class = "pull-right">
-  <%= link_to "New Private Lesson", new_private_lesson_path,
-    class: "btn btn-primary btn-sm" %>
-</ul>
+<div class='row'>
 
-<ul class = "pull-right">
-	<%= link_to "Export CSV", private_lessons_path(format: "csv"),
-		class: "btn btn-warning btn-sm" %>
-</ul>
+  <div class='col-md-7'></div>
 
-<%if current_user.admin? %>
-  <ul class = "pull-right">
-    <%= link_to "Manage Private Lessons", admin_index_path,
-      class: "btn btn-danger btn-sm" %>
-  </ul>
-<% else %>
-<% end %>
+  <div class='col-md-5'>
+    <br><br>
+    <div class='btn-group'>
+      <%= link_to 'New Private Lesson', new_private_lesson_path,
+        class: 'btn btn-primary btn-sm', role: 'button' %>
+      <%= link_to 'Export CSV', private_lessons_path(format: 'csv'),
+        class: 'btn btn-warning btn-sm', role: 'button' %>
+      <%if current_user.admin? %>
+        <%= link_to 'Manage Private Lessons', admin_index_path,
+          class: 'btn btn-success btn-sm', role: 'button' %>
+      <% end %>
+    </div>
+  </div>
+</div>
 
-<br><br><br>
+<br>
 
 <%= render 'private_lessons' %>

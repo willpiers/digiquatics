@@ -45,9 +45,6 @@ class HelpDesksController < ApplicationController
   # PATCH/PUT /help_desks/1
   # PATCH/PUT /help_desks/1.json
   def update
-    if params[:issue_status] = false
-      @help_desk.issue_status = false
-    end
     respond_to do |format|
       if @help_desk.update(help_desk_params)
         format.html { redirect_to @help_desk,
@@ -72,6 +69,7 @@ class HelpDesksController < ApplicationController
   end
 
   private
+
     # Use callbacks to share common setup or constraints between actions.
     def set_help_desk
       @help_desk = HelpDesk.find(params[:id])
@@ -85,11 +83,11 @@ class HelpDesksController < ApplicationController
     end
 
     def sort_column
-      params[:sort] || "name"
+      params[:sort] || 'name'
     end
 
     def sort_direction
-      params[:direction] || "asc"
+      params[:direction] || 'asc'
     end
 
 end

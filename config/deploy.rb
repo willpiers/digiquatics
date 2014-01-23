@@ -1,10 +1,10 @@
 # config valid only for Capistrano 3.1
 lock '3.1.0'
 
-server "198.199.105.193", :web, :app, :db, primary: true
+server '198.199.105.193', :web, :app, :db, primary: true
 
 set :application, 'digiquatics'
-set :user, "josh"
+set :user, 'josh'
 
 set :deploy_to, "/var/www/#{application}"
 set :deploy_via, :remote_cache
@@ -36,7 +36,7 @@ set :pty, false
 
 ssh_options[:forward_agent] = true
 
-after "deploy", "deploy:cleanup"
+after 'deploy', 'deploy:cleanup'
 
 namespace :deploy do
   %w[start stop restart].each do |command|
@@ -53,20 +53,20 @@ namespace :deploy do
     put File.read("config/database.example.yml"), "#{shared_path}/config/database.yml"
     puts "Now edit the config files in #{shared_path}."
   end
-  after "deploy:setup", "deploy:setup_config"
+  after 'deploy:setup', 'deploy:setup_config'
 
   task :symlink_config, roles: :app do
     run "ln -nfs #{shared_path}/config/database.yml #{release_path}/config/database.yml"
   end
-  after "deploy:finalize_update", "deploy:symlink_config"
+  after 'deploy:finalize_update', 'deploy:symlink_config'
 
-  desc "Make sure local git is in sync with remote."
+  desc 'Make sure local git is in sync with remote.'
   task :check_revision, roles: :web do
     unless `git rev-parse HEAD` == `git rev-parse origin/master`
-      puts "WARNING: HEAD is not the same as origin/master"
-      puts "Run `git push` to sync changes."
+      puts 'WARNING: HEAD is not the same as origin/master'
+      puts 'Run `git push` to sync changes.'
       exit
     end
   end
-  before "deploy", "deploy:check_revision"
+  before 'deploy', 'deploy:check_revision'
 end

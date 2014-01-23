@@ -1,12 +1,11 @@
 class ShiftReport < ActiveRecord::Base
-extend ScopeHelper
-include_scopes
+  extend ScopeHelper
+  include_scopes
 
-belongs_to :account
-belongs_to :location
-has_many  :users
+  belongs_to :account
+  belongs_to :location
+  has_many  :users
 
-
-accepts_nested_attributes_for :users
+  accepts_nested_attributes_for :users
 
 end
