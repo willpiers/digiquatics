@@ -216,3 +216,55 @@ set :rbenv_prefix, "RBENV_ROOT=#{fetch(:rbenv_path)} RBENV_VERSION=#{fetch(:rben
 set :rbenv_map_bins, %w{rake gem bundle ruby rails}
 set :rbenv_roles, :all # default value
 ```
+
+ssh -A josh@digiquatics.com
+git ls-remote git@github.com:duffcodester/digiquatics.git
+
+me@localhost $ ssh root@remote
+# Capistrano will use /var/www/....... where ... is the value set in
+# :application, you can override this by setting the ':deploy_to' variable
+root@remote $ deploy_to=/var/www/digiquatics
+root@remote $ mkdir -p ${deploy_to}
+root@remote $ chown josh:josh ${deploy_to}
+root@remote $ umask 0002
+root@remote $ chmod g+s ${deploy_to}
+root@remote $ mkdir ${deploy_to}/{releases,shared}
+
+cap production git:check
+
+Create file:
+
+```
+# lib/capistrano/tasks/agent_forwarding.cap
+
+desc "Check if agent forwarding is working"
+task :forwarding do
+  on roles(:all) do |h|
+    if test("env | grep SSH_AUTH_SOCK")
+      info "Agent forwarding is up to #{h}"
+    else
+      error "Agent forwarding is NOT up to #{h}"
+    end
+  end
+end
+```
+
+`cap production forwarding` should return:
+
+```
+DEBUG [5820424c] Running /usr/bin/env [ ! -d ~/.rbenv/versions/2.0.0-p247 ] on digiquatics.com
+DEBUG [5820424c] Command: [ ! -d ~/.rbenv/versions/2.0.0-p247 ]
+DEBUG [5820424c] Finished in 1.191 seconds with exit status 1 (failed).
+DEBUG [2c042b04] Running /usr/bin/env env | grep SSH_AUTH_SOCK on digiquatics.com
+DEBUG [2c042b04] Command: env | grep SSH_AUTH_SOCK
+DEBUG [2c042b04]  SSH_AUTH_SOCK=/tmp/ssh-l7DBCwrxNn/agent.12124
+DEBUG [2c042b04] Finished in 0.215 seconds with exit status 0 (successful).
+INFO Agent forwarding is up to digiquatics.com
+```
+
+Comment out these two lines in Capfile:
+
+```
+#require 'capistrano/rails/assets'
+#require 'capistrano/rails/migrations'
+```
