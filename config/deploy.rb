@@ -1,17 +1,19 @@
 # config valid only for Capistrano 3.1
 lock '3.1.0'
 
-server '198.199.105.193', :web, :app, :db, primary: true
+# require 'capistrano-unicorn'
 
 set :application, 'digiquatics'
-set :user, 'josh'
+set :repo_url, 'git@github.com:duffcodester/digiquatics.git'
 
-set :deploy_to, "/var/www/#{application}"
-set :deploy_via, :remote_cache
-set :use_sudo, false
+# Default branch is :master
+# ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }
 
-set :scm, :git
-set :repo_url, 'git@github.com:duffcodester/#{application}.git'
+# Default deploy_to directory is /var/www/my_app
+set :deploy_to, '/var/www/digiquatics'
+
+# Default value for :scm is :git
+# set :scm, :git
 
 # Default value for :format is :pretty
 # set :format, :pretty
@@ -20,7 +22,7 @@ set :repo_url, 'git@github.com:duffcodester/#{application}.git'
 # set :log_level, :debug
 
 # Default value for :pty is false
-set :pty, false
+# set :pty, true
 
 # Default value for :linked_files is []
 # set :linked_files, %w{config/database.yml}
@@ -34,39 +36,32 @@ set :pty, false
 # Default value for keep_releases is 5
 # set :keep_releases, 5
 
-ssh_options[:forward_agent] = true
-
-after 'deploy', 'deploy:cleanup'
+# Stuff for rbenv:
+set :rbenv_type, :user # or :system, depends on your rbenv setup
+set :rbenv_ruby, '2.0.0-p247'
+set :rbenv_prefix, "RBENV_ROOT=#{fetch(:rbenv_path)} RBENV_VERSION=#{fetch(:rbenv_ruby)} #{fetch(:rbenv_path)}/bin/rbenv exec"
+set :rbenv_map_bins, %w{rake gem bundle ruby rails}
+set :rbenv_roles, :all # default value
 
 namespace :deploy do
-  %w[start stop restart].each do |command|
-    desc "#{command} unicorn server"
-    task command, roles: :app, except: {no_release: true} do
-      run "/etc/init.d/unicorn_#{application} #{command}"
+
+  desc 'Restart application'
+  task :restart do
+    on roles(:app), in: :sequence, wait: 5 do
+      # Your restart mechanism here, for example:
+      # execute :touch, release_path.join('tmp/restart.txt')
     end
   end
 
-  task :setup_config, roles: :app do
-    sudo "ln -nfs #{current_path}/config/nginx.conf /etc/nginx/sites-enabled/#{application}"
-    sudo "ln -nfs #{current_path}/config/unicorn_init.sh /etc/init.d/unicorn_#{application}"
-    run "mkdir -p #{shared_path}/config"
-    put File.read("config/database.example.yml"), "#{shared_path}/config/database.yml"
-    puts "Now edit the config files in #{shared_path}."
-  end
-  after 'deploy:setup', 'deploy:setup_config'
+  after :publishing, :restart
 
-  task :symlink_config, roles: :app do
-    run "ln -nfs #{shared_path}/config/database.yml #{release_path}/config/database.yml"
-  end
-  after 'deploy:finalize_update', 'deploy:symlink_config'
-
-  desc 'Make sure local git is in sync with remote.'
-  task :check_revision, roles: :web do
-    unless `git rev-parse HEAD` == `git rev-parse origin/master`
-      puts 'WARNING: HEAD is not the same as origin/master'
-      puts 'Run `git push` to sync changes.'
-      exit
+  after :restart, :clear_cache do
+    on roles(:web), in: :groups, limit: 3, wait: 10 do
+      # Here we can do anything such as:
+      # within release_path do
+      #   execute :rake, 'cache:clear'
+      # end
     end
   end
-  before 'deploy', 'deploy:check_revision'
+
 end
