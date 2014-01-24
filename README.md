@@ -268,3 +268,39 @@ Comment out these two lines in Capfile:
 #require 'capistrano/rails/assets'
 #require 'capistrano/rails/migrations'
 ```
+
+Make sure database.yml file is ignored in git
+
+Create directory `config` in `/var/www/digiquatics/shared`
+
+Create new file called `database.yml` in `/var/www/digiquatics/shared/config`
+
+```
+production:
+  adapter: mysql2
+  encoding: utf8
+  reconnect: false
+  database: digiquatics_production
+  pool: 5
+  username: root
+  password:
+  socket: /tmp/mysql.sock
+```
+
+Remove Nginx default page:
+
+```
+sudo rm /etc/nginx/sites-enabled/default
+```
+
+Restart Nginx:
+
+```
+sudo service nginx restart
+```
+
+Make Unicorn run properly when Nginx starts:
+
+```
+sudo update-rc.d unicorn_blog defaults
+```

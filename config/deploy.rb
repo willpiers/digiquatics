@@ -1,6 +1,8 @@
 # config valid only for Capistrano 3.1
 lock '3.1.0'
 
+# require 'capistrano-unicorn'
+
 set :application, 'digiquatics'
 set :repo_url, 'git@github.com:duffcodester/digiquatics.git'
 

@@ -72,5 +72,8 @@ end
 gem 'unicorn'
 
 # Use Capistrano for deployment
-gem 'capistrano-rails', group: :development
-gem 'capistrano-rbenv', github: "capistrano/rbenv"
+group :development do
+  gem 'capistrano-rails'
+  # gem 'capistrano-unicorn', require: false
+end
+gem 'capistrano-rbenv', github: 'capistrano/rbenv'
