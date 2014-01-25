@@ -1,6 +1,6 @@
 <% provide(:title, @user.first_name) %>
 
-<h1><%= @user.first_name + " " + @user.last_name %></h1>
+<h1><%= @user.first_name +  " " + @user.last_name %></h1>
 
 <ul class = "pull-right">
   <%= link_to "Edit", edit_user_path(@user),
@@ -68,7 +68,26 @@
 					<td> <%= @user.location.name %> </td>
 				</tr>
 				<tr>
+				<th> Grouping </th>
+					<td> <%= @user.grouping%> </td>
+				</tr>
+				<tr>
 					<th> Position </th> <td> <%= @user.position.name %>  </td>
+				</tr>
+				<tr>
+					<th> Address 1 </th> <td> <%= @user.address1 %>  </td>
+				</tr>
+				<tr>
+					<th> Address 2 </th> <td> <%= @user.address2 %>  </td>
+				</tr>
+				<tr>
+					<th> City </th> <td> <%= @user.city %>  </td>
+				</tr>
+				<tr>
+					<th> State </th> <td> <%= @user.state %>  </td>
+				</tr>
+				<tr>
+					<th> Zipcode </th> <td> <%= @user.zipcode %>  </td>
 				</tr>
 				<tr>
 					<th> Email </th> <td> <%= @user.email %>  </td>
@@ -98,6 +117,15 @@
 						<th> One Piece Size </th> <td> <%= @user.femalesuit %>  </td>
 					</tr>
 				<% end %>
+				<tr>
+					<th> Emergency First Name </th> <td> <%= @user.emergency_first %>  </td>
+				</tr>
+				<tr>
+					<th>  Emergency Last Name </th> <td> <%= @user.emergency_last %>  </td>
+				</tr>
+				<tr>
+					<th>  Emergency Phone Number </th> <td> <%= @user.emergency_phone %>  </td>
+				</tr>
 
 		</table>
 	</div>
