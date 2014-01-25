@@ -131,11 +131,11 @@
 								<%= cert.expiration_date.strftime('%-m/%-d/%Y') %>
 							</td>
 						<% elsif cert.expiration_date > ( Date.today ) &&
-							cert.expiration_date < ( Date.today + 60.days ) %>
+							cert.expiration_date <= ( Date.today + 90.days ) %>
 			        <td class="warning">
 			          <%= cert.expiration_date.strftime('%-m/%-d/%Y') %>
 			        </td>
-			      <% elsif cert.expiration_date >= ( Date.today + 60.days ) %>
+			      <% elsif cert.expiration_date > ( Date.today + 90.days ) %>
 			        <td class="success">
 			        <%= cert.expiration_date.strftime('%-m/%-d/%Y') %>
 			        </td>
@@ -162,7 +162,7 @@
 			<br>
 				<p >
 					<img src="/images/reddot.png" alt="red" height="10px" width="10px" /> = Expired
-					<img src="/images/yellowdot.png" alt="yellow" height="10px" width="10px" /> = Expires within 60 days
+					<img src="/images/yellowdot.png" alt="yellow" height="10px" width="10px" /> = Expires within 90 days
 			 		<img src="/images/greendot.png" alt="green" height="10px" width="10px" /> = Normal
 			 </p>
 		</div>
