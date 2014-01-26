@@ -18,7 +18,4 @@
 /log/*.log
 /tmp
 
-# Ignore database config files
-/config/database.yml
-
 .DS_Store
