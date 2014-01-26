@@ -1,4 +1,12 @@
 <center><h1>Admin</h1></center>
+<%= f.select :location_id,
+  options_from_collection_for_select(Location.same_account_as(current_user),
+                                     :id,
+                                     :name) %>
+<%= f.select :position_id,
+  options_from_collection_for_select(Position.same_account_as(current_user),
+                                     :id,
+                                     :name) %>
 <%= f.text_field :employee_id, label: 'Employee ID' %>
 <%= f.text_field :grouping, label: 'Grouping' %>
 <div class='date-select'>

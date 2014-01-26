@@ -148,6 +148,8 @@ describe 'User pages' do
         end
 
         describe 'should not see other admin fields' do
+          it { should have_no_field('user_location_id') }
+          it { should have_no_field('user_position_id') }
           it { should have_no_field('user_employee_id') }
           it { should have_no_field('user_grouping') }
           it { should have_no_field('user_payrate') }
@@ -187,8 +189,6 @@ describe 'User pages' do
             fill_in 'City',               with: 'Lakewood'
             select('CO',                  from: 'State')
             fill_in 'Zipcode',            with: '80228'
-            select location.name,         from: 'user[location_id]'
-            select position.name,         from: 'user[position_id]'
             # skip avatar
 
             # Sizing Information
@@ -243,6 +243,8 @@ describe 'User pages' do
         end
 
         describe 'should see other admin fields' do
+          it { should have_field('user_location_id') }
+          it { should have_field('user_position_id') }
           it { should have_field('user_employee_id') }
           it { should have_field('user_grouping') }
           it { should have_field('user_payrate') }
@@ -297,8 +299,7 @@ describe 'User pages' do
             fill_in 'City',               with: 'Lakewood'
             select('CO',                  from: 'State')
             fill_in 'Zipcode',            with: '80228'
-            select location.name,         from: 'user[location_id]'
-            select position.name,         from: 'user[position_id]'
+
             # skip avatar
 
             # Sizing Information
@@ -312,6 +313,8 @@ describe 'User pages' do
             fill_in 'Emergency Phone #',    with: '303-999-8765'
 
             # Admin User Information
+            select location.name,         from: 'user[location_id]'
+            select position.name,         from: 'user[position_id]'
             fill_in 'Employee ID',    with: '1313'
             fill_in 'Grouping',    with: 'West'
             select 'September',           from: 'user_date_of_hire_2i'

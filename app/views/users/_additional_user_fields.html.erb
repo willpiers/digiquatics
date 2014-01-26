@@ -14,14 +14,6 @@
 <%= f.text_field :zipcode, label: 'Zipcode' %>
 
 <%= f.file_field :avatar, label: 'User Avatar' %>
-<%= f.select :location_id,
-  options_from_collection_for_select(Location.same_account_as(current_user),
-                                     :id,
-                                     :name) %>
-<%= f.select :position_id,
-  options_from_collection_for_select(Position.same_account_as(current_user),
-                                     :id,
-                                     :name) %>
 
 <center><h4>Sizing Information</h4></center>
 
