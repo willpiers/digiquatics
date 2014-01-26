@@ -42,24 +42,10 @@
 
 
       <%= f.fields_for :certifications do |builder| %>
-        <%= builder.select :certification_name_id,
-          options_from_collection_for_select(CertificationName.same_account_as(current_user), :id, :name, builder.object.certification_name_id) %>
-
-        <div class="date-select">
-         <%= builder.date_select :issue_date, { start_year: Time.now.year,
-          end_year: Time.now.year-30, order: [:month, :day, :year], prompt: true},
-            label: 'Issue Date'  %>
-        </div>
-
-        <div class="date-select">
-         <%= builder.date_select :expiration_date, { start_year: Time.now.year,
-          end_year: Time.now.year-30, order: [:month, :day, :year], prompt: true},
-            label: 'Expiration Date'  %>
-        </div>
-
-        <%= builder.file_field :attachment %>
+        <%= render 'certification_fields', f: builder %>
       <% end %>
 
+      <%= link_to_add_fields raw('<i class="glyphicon glyphicon-plus-sign glyphicon-2x"></i>'), f, :certifications %>
 
       <h4>User Classification</h4>
       <%= f.form_group do %>
