@@ -4,6 +4,6 @@
       value: 'firstName'
 
     data = Certifications.get (data) ->
-      $scope.certificationNames = data.certification_names
+      $scope.certNames = data.certification_names
       $scope.users = data.users
 ]
