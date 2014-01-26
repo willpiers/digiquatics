@@ -13,9 +13,26 @@ describe User do
   subject { @user }
 
   it { should respond_to(:first_name) }
+  it { should respond_to(:active) }
+  it { should respond_to(:date_of_birth) }
+  it { should respond_to(:date_of_hire) }
+  it { should respond_to(:sex) }
+  it { should respond_to(:nickname) }
   it { should respond_to(:last_name) }
   it { should respond_to(:email) }
+  it { should respond_to(:employee_id) }
+  it { should respond_to(:address1) }
+  it { should respond_to(:address2) }
+  it { should respond_to(:city) }
+  it { should respond_to(:state) }
+  it { should respond_to(:zipcode) }
   it { should respond_to(:suit_size) }
+  it { should respond_to(:femalesuit) }
+  it { should respond_to(:emergency_first) }
+  it { should respond_to(:emergency_last) }
+  it { should respond_to(:emergency_phone) }
+  it { should respond_to(:payrate) }
+  it { should respond_to(:grouping) }
   it { should respond_to(:shirt_size) }
   it { should respond_to(:password_digest) }
   it { should respond_to(:password) }
@@ -26,6 +43,8 @@ describe User do
   it { should respond_to(:location) }
   it { should respond_to(:position) }
   it { should respond_to(:avatar) }
+  it { should respond_to(:notes) }
+  it { should respond_to(:phone_number) }
 
   it { should be_valid }
   it { should_not be_admin }
@@ -44,19 +63,14 @@ describe User do
     it { should_not be_valid }
   end
 
-  describe 'without location id' do
-    before { @user.location_id = nil }
-    it { should_not be_valid }
-  end
-
-  describe 'without account id' do
-    before { @user.position_id = nil }
-    it { should_not be_valid }
-  end
-
   describe 'when first name is not present' do
     before { @user.first_name = ' ' }
     it { should_not be_valid }
+  end
+
+  describe 'when preferred name is not present' do
+    before { @user.nickname = ' ' }
+    it { should be_valid }
   end
 
   describe 'when last name is not present' do
@@ -66,16 +80,6 @@ describe User do
 
   describe 'when email is not present' do
     before { @user.email = ' ' }
-    it { should_not be_valid }
-  end
-
-  describe 'when shirt size is not present' do
-    before { @user.shirt_size = ' ' }
-    it { should_not be_valid }
-  end
-
-  describe 'when suit size is not present' do
-    before { @user.suit_size = ' ' }
     it { should_not be_valid }
   end
 

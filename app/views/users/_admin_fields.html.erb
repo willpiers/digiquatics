@@ -1,0 +1,22 @@
+<center><h1>Admin</h1></center>
+<%= f.text_field :employee_id, label: 'Employee ID' %>
+<%= f.text_field :grouping, label: 'Grouping' %>
+<div class='date-select'>
+ <%= f.date_select :date_of_hire, { start_year: Time.now.year,
+  end_year: Time.now.year-30, order: [:month, :day, :year], prompt: true},
+    label: 'Date of Hire'  %>
+</div>
+<%= f.text_field :payrate,prepend: "$", label: 'Pay Rate' %>
+
+<center><h4>Certifications</h4></center>
+<%= f.fields_for :certifications do |builder| %>
+  <%= render 'certification_fields', f: builder %>
+<% end %>
+
+<%= link_to_add_fields raw('<i class="glyphicon glyphicon-plus-sign glyphicon-2x"></i>'), f, :certifications %>
+
+<%= f.text_area :notes, size: '2x',
+  placeholder: 'Leave a comment...' %>
+
+
+

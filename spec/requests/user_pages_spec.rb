@@ -10,8 +10,11 @@ describe 'User pages' do
   let!(:admin) { FactoryGirl.create(:admin, location_id: location.id,
     position_id: position.id, account_id: account.id) }
 
-  let!(:cert1) { FactoryGirl.create(:certification_name, account_id: account.id, name: 'CPR/AED1') }
-  let!(:cert2) { FactoryGirl.create(:certification_name, account_id: another_account.id, name: 'CPR/AED2') }
+  let!(:cert1) { FactoryGirl.create(:certification_name,
+                                    account_id: account.id, name: 'CPR/AED1') }
+  let!(:cert2) { FactoryGirl.create(:certification_name,
+                                    account_id: another_account.id,
+                                    name: 'CPR/AED2') }
 
   subject { page }
 
@@ -32,25 +35,12 @@ describe 'User pages' do
     describe 'with valid information' do
       before do
         fill_in 'First Name',   with: 'First'
+        fill_in 'Preferred Name',   with: 'Dubbs'
         fill_in 'Last Name',    with: 'Last'
         fill_in 'Phone Number',   with: '1234'
         fill_in 'Email',        with: 'user@example.com'
         fill_in 'Password',     with: 'foobar'
         fill_in 'Confirm Password', with: 'foobar'
-        select('M', from: 'Sex')
-
-        select 'September', from: 'user_date_of_birth_2i'
-        select '8', from: 'user_date_of_birth_3i'
-        select '1992', from: 'user_date_of_birth_1i'
-
-        select 'August', from: 'user_date_of_hire_2i'
-        select '15', from: 'user_date_of_hire_3i'
-        select '2012', from: 'user_date_of_hire_1i'
-        select location.name, from: 'user[location_id]'
-        select position.name,  from: 'user[position_id]'
-        select('M', from: 'Shirt Size')
-        select('M', from: 'Shorts Size')
-        select('28', from: 'user[femalesuit]')
       end
 
       it 'should create a user' do
@@ -74,8 +64,10 @@ describe 'User pages' do
   describe 'user profile' do
     before do
       sign_in user
-      FactoryGirl.create(:certification, certification_name_id: cert1.id, user_id: user.id)
-      FactoryGirl.create(:certification, certification_name_id: cert2.id, user_id: user.id)
+      FactoryGirl.create(:certification, certification_name_id: cert1.id,
+                          user_id: user.id)
+      FactoryGirl.create(:certification, certification_name_id: cert2.id,
+                          user_id: user.id)
       visit user_path(user)
     end
 
@@ -92,7 +84,8 @@ describe 'User pages' do
       sign_in admin
 
       FactoryGirl.create(:user, first_name: 'Bob', email: 'bob@example.com',
-        location_id: location.id, position_id: position.id, account_id: account.id)
+                          location_id: location.id, position_id: position.id,
+                          account_id: account.id)
 
       visit users_path
     end
@@ -125,89 +118,192 @@ describe 'User pages' do
       it { should have_title('Edit user') }
 
       describe 'as non-admin' do
-        it { should_not have_selector('h4', text: 'Certifications') }
-        it { should have_no_field('user_certifications_attributes_0_issue_date_1i') }
-        it { should have_no_field('user_certifications_attributes_0_issue_date_2i') }
-        it { should have_no_field('user_certifications_attributes_0_issue_date_3i') }
 
-        it { should have_no_field('user_certifications_attributes_0_expiration_date_1i') }
-        it { should have_no_field('user_certifications_attributes_0_expiration_date_2i') }
-        it { should have_no_field('user_certifications_attributes_0_expiration_date_3i') }
+        describe 'should not see certifications' do
+          it { should_not have_selector('h4', text: 'Certifications') }
+          it { should have_no_field('user_certifications_attributes_0_issue_date_1i') }
+          it { should have_no_field('user_certifications_attributes_0_issue_date_2i') }
+          it { should have_no_field('user_certifications_attributes_0_issue_date_3i') }
 
-        it { should have_no_field('user_certifications_attributes_0_attachment') }
-        it { should have_no_field('Admin') }
-        it { should have_no_field('Active') }
-        it { should have_no_field('Notes') }
+          it { should have_no_field('user_certifications_attributes_0_expiration_date_1i') }
+          it { should have_no_field('user_certifications_attributes_0_expiration_date_2i') }
+          it { should have_no_field('user_certifications_attributes_0_expiration_date_3i') }
+
+          it { should have_no_field('user_certifications_attributes_0_attachment') }
+        end
+
+        describe 'should not see other admin fields' do
+          it { should have_no_field('user_employee_id') }
+          it { should have_no_field('user_grouping') }
+          it { should have_no_field('user_payrate') }
+          it { should have_no_field('user_date_of_hire_1i') }
+          it { should have_no_field('user_date_of_hire_2i') }
+          it { should have_no_field('user_date_of_hire_3i') }
+          it { should have_no_field('Notes') }
+        end
+
+        describe 'with invalid information' do
+          before { click_button 'Save Changes' }
+
+          it { should have_content('error') }
+        end
+
+        describe 'with valid information' do
+          let(:new_first_name)  { 'NewFirstName' }
+          let(:new_email) { 'newEmail@example.com' }
+
+          before do
+            # Basic User Information
+            fill_in 'First Name',         with: new_first_name
+            fill_in 'Preferred Name',     with: 'dubbs'
+            fill_in 'Last Name',          with: 'Last'
+            fill_in 'Phone Number',       with: '720-387-9691'
+            fill_in 'Email',              with: new_email
+            fill_in 'Password',           with: 'foobar'
+            fill_in 'Confirm Password',   with: 'foobar'
+
+            # Additional User Information
+            select 'September',           from: 'user_date_of_birth_2i'
+            select '15',                  from: 'user_date_of_birth_3i'
+            select '1992',                from: 'user_date_of_birth_1i'
+            select('M',                   from: 'Sex')
+            fill_in 'Address 1',          with: '14270 W Warren Dr.'
+            fill_in 'Address 2',          with: 'Unit B'
+            fill_in 'City',               with: 'Lakewood'
+            select('CO',                  from: 'State')
+            fill_in 'Zipcode',            with: '80228'
+            select location.name,         from: 'user[location_id]'
+            select position.name,         from: 'user[position_id]'
+            # skip avatar
+
+            # Sizing Information
+            select('M',                   from: 'Shirt Size')
+            select('M',                   from: 'Shorts Size')
+            select('28',                  from: 'user[femalesuit]')
+
+            # Emergency Contact Information
+            fill_in 'Emergency First Name',    with: 'my'
+            fill_in 'Emergency Last Name',     with: 'mom'
+            fill_in 'Emergency Phone #',    with: '303-999-8765'
+
+            # Admin User Information
+            # No admin information
+
+            click_button 'Save Changes'
+          end
+
+          it { should have_title(full_title(new_first_name)) }
+          it { should have_selector('div.alert.alert-success') }
+          it { should have_link('Sign out', href: signout_path) }
+          specify { expect(user.reload.first_name).to eq new_first_name }
+          specify { expect(user.reload.email).to eq new_email.downcase }
+          specify { expect(user.reload.location.id).to eq location.id}
+          specify { expect(user.reload.position.id).to eq position.id}
+        end
       end
 
       describe 'as admin' do
         before do
           sign_in admin
-          FactoryGirl.create(:certification, certification_name_id: cert1.id, user_id: user.id)
-          FactoryGirl.create(:certification, certification_name_id: cert2.id, user_id: user.id)
+          FactoryGirl.create(:certification, certification_name_id: cert1.id,
+                              user_id: user.id)
+          FactoryGirl.create(:certification, certification_name_id: cert2.id,
+                              user_id: user.id)
           visit edit_user_path(user)
         end
 
-        it { should have_selector('h4', text: 'Certifications') }
-        it { should have_field('user_certifications_attributes_0_issue_date_1i') }
-        it { should have_field('user_certifications_attributes_0_issue_date_2i') }
-        it { should have_field('user_certifications_attributes_0_issue_date_3i') }
+        describe 'should see certs' do
+          it { should have_selector('h4', text: 'Certifications') }
+          it { should have_field('user_certifications_attributes_0_issue_date_1i') }
+          it { should have_field('user_certifications_attributes_0_issue_date_2i') }
+          it { should have_field('user_certifications_attributes_0_issue_date_3i') }
 
-        it { should have_field('user_certifications_attributes_0_expiration_date_1i') }
-        it { should have_field('user_certifications_attributes_0_expiration_date_2i') }
-        it { should have_field('user_certifications_attributes_0_expiration_date_3i') }
+          it { should have_field('user_certifications_attributes_0_expiration_date_1i') }
+          it { should have_field('user_certifications_attributes_0_expiration_date_2i') }
+          it { should have_field('user_certifications_attributes_0_expiration_date_3i') }
 
-        it { should have_field('user_certifications_attributes_0_attachment') }
-        it { should have_field('Admin') }
-        it { should have_field('Active') }
-        it { should have_field('Notes') }
+          it { should have_field('user_certifications_attributes_0_attachment') }
+        end
+
+        describe 'should see other admin fields' do
+          it { should have_field('user_employee_id') }
+          it { should have_field('user_grouping') }
+          it { should have_field('user_payrate') }
+          it { should have_field('user_date_of_hire_1i') }
+          it { should have_field('user_date_of_hire_2i') }
+          it { should have_field('user_date_of_hire_3i') }
+          it { should have_field('Notes') }
+        end
 
         describe 'should have certification names for current users account' do
           it { should have_selector('option', text: cert1.name) }
           it { should_not have_selector('option', text: cert2.name) }
         end
+
+        describe 'with invalid information' do
+          before { click_button 'Save Changes' }
+
+          it { should have_content('error') }
+        end
+
+        describe 'with valid information' do
+          let(:new_first_name)  { 'NewFirstName' }
+          let(:new_email) { 'newEmail@example.com' }
+
+          before do
+            # Basic User Information
+            fill_in 'First Name',         with: new_first_name
+            fill_in 'Preferred Name',     with: 'dubbs'
+            fill_in 'Last Name',          with: 'Last'
+            fill_in 'Phone Number',       with: '720-387-9691'
+            fill_in 'Email',              with: new_email
+            fill_in 'Password',           with: 'foobar'
+            fill_in 'Confirm Password',   with: 'foobar'
+
+            # Additional User Information
+            select 'September',           from: 'user_date_of_birth_2i'
+            select '15',                  from: 'user_date_of_birth_3i'
+            select '1992',                from: 'user_date_of_birth_1i'
+            select('M',                   from: 'Sex')
+            fill_in 'Address 1',          with: '14270 W Warren Dr.'
+            fill_in 'Address 2',          with: 'Unit B'
+            fill_in 'City',               with: 'Lakewood'
+            select('CO',                  from: 'State')
+            fill_in 'Zipcode',            with: '80228'
+            select location.name,         from: 'user[location_id]'
+            select position.name,         from: 'user[position_id]'
+            # skip avatar
+
+            # Sizing Information
+            select('M',                   from: 'Shirt Size')
+            select('M',                   from: 'Shorts Size')
+            select('28',                  from: 'user[femalesuit]')
+
+            # Emergency Contact Information
+            fill_in 'Emergency First Name',    with: 'my'
+            fill_in 'Emergency Last Name',     with: 'mom'
+            fill_in 'Emergency Phone #',    with: '303-999-8765'
+
+            # Admin User Information
+            fill_in 'Employee ID',    with: '1313'
+            fill_in 'Grouping',    with: 'West'
+            select 'September',           from: 'user_date_of_hire_2i'
+            select '15',                  from: 'user_date_of_hire_3i'
+            select '2013',                from: 'user_date_of_hire_1i'
+            fill_in 'Pay Rate',    with: '9.50'
+
+            click_button 'Save Changes'
+          end
+
+          it { should have_title(full_title(new_first_name)) }
+          it { should have_selector('div.alert.alert-success') }
+          it { should have_link('Sign out', href: signout_path) }
+          specify { expect(user.reload.first_name).to eq new_first_name }
+          specify { expect(user.reload.email).to eq new_email.downcase }
+          specify { expect(user.reload.location.id).to eq location.id}
+          specify { expect(user.reload.position.id).to eq position.id}
+        end
       end
-    end
-
-    describe 'with invalid information' do
-      before { click_button 'Save Changes' }
-
-      it { should have_content('error') }
-    end
-
-    describe 'with valid information' do
-      let(:new_first_name)  { 'NewFirstName' }
-      let(:new_email) { 'newEmail@example.com' }
-
-      before do
-        fill_in 'First Name',   with: new_first_name
-        fill_in 'Last Name',    with: 'Last'
-        fill_in 'Phone Number',   with: '1234'
-        fill_in 'Email',        with: new_email
-        fill_in 'Password',     with: 'foobar'
-        fill_in 'Confirm Password', with: 'foobar'
-        select('M', from: 'Sex')
-        select 'September', from: 'user_date_of_birth_2i'
-        select '15', from: 'user_date_of_birth_3i'
-        select '1992', from: 'user_date_of_birth_1i'
-        select 'August', from: 'user_date_of_hire_2i'
-        select '15', from: 'user_date_of_hire_3i'
-        select '2012', from: 'user_date_of_hire_1i'
-        select location.name, from: 'user[location_id]'
-        select position.name,  from: 'user[position_id]'
-        select('M', from: 'Shirt Size')
-        select('M', from: 'Shorts Size')
-        select('28', from: 'user[femalesuit]')
-        click_button 'Save Changes'
-      end
-
-      it { should have_title(full_title(new_first_name)) }
-      it { should have_selector('div.alert.alert-success') }
-      it { should have_link('Sign out', href: signout_path) }
-      specify { expect(user.reload.first_name).to eq new_first_name }
-      specify { expect(user.reload.email).to eq new_email.downcase }
-      specify { expect(user.reload.location.id).to eq location.id}
-      specify { expect(user.reload.position.id).to eq position.id}
     end
   end
 end
