@@ -47,7 +47,7 @@ class UsersController < ApplicationController
     @user = User.new
     @locations = Location.all
     @positions = Position.all
-    3.times { @user.certifications.build }
+    1.times { @user.certifications.build }
   end
 
   def edit
