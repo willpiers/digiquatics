@@ -8,7 +8,7 @@
       end_year: Time.now.year-30, order: [:month, :day, :year], prompt: true},
         label: 'Date of Hire'  %>
     </div>
-    <%= f.text_field :payrate, label: 'Pay Rate' %>
+    <%= f.text_field :payrate,prepend: "$", label: 'Pay Rate' %>
     <%= f.text_area :notes, size: '2x',
       placeholder: 'Leave a comment...' %>
 <% end %>

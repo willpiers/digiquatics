@@ -50,6 +50,7 @@ module ApplicationHelper
 
   def us_states
     [
+      ['-', '-'],
       ['AK', 'AK'],
       ['AK', 'AK'],
       ['AL', 'AL'],

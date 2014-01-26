@@ -1,18 +1,39 @@
 <div class ='row'>
   <div class='col-md-3'>
-    <%= link_to 'User Data', all_users_path(format: 'csv'),
-      class: 'btn btn-danger btn-sm' %>
-  </div>
-    <div class='col-md-3'>
-      <%= link_to 'Certifications Data', certifications_path(format: 'csv'),
-        class: 'btn btn-danger btn-sm' %>
-    </div>
-  <div class='col-md-3'>
-    <%= link_to 'Chemical Records Data', chemical_records_path(format: 'csv'),
+    <%= link_to 'Attendance', private_lessons_path(format: 'csv'),
       class: 'btn btn-danger btn-sm' %>
   </div>
   <div class='col-md-3'>
-    <%= link_to 'Private Lessons Data', private_lessons_path(format: 'csv'),
+    <%= link_to 'Chemical Records', chemical_records_path(format: 'csv'),
+      class: 'btn btn-danger btn-sm' %>
+  </div>
+  <div class='col-md-3'>
+    <%= link_to 'Help Desk', private_lessons_path(format: 'csv'),
+      class: 'btn btn-danger btn-sm' %>
+  </div>
+  <div class='col-md-3'>
+    <%= link_to 'Private Lessons Queue', private_lessons_path(format: 'csv'),
+      class: 'btn btn-danger btn-sm' %>
+  </div>
+</div>
+
+<br>
+
+<div class ='row'>
+  <div class='col-md-3'>
+    <%= link_to 'Scheduling', private_lessons_path(format: 'csv'),
+      class: 'btn btn-danger btn-sm' %>
+  </div>
+  <div class='col-md-3'>
+    <%= link_to 'Shift Reports', private_lessons_path(format: 'csv'),
+      class: 'btn btn-danger btn-sm' %>
+  </div>
+  <div class='col-md-3'>
+    <%= link_to 'User Certifications', certifications_path(format: 'csv'),
+      class: 'btn btn-danger btn-sm' %>
+  </div>
+  <div class='col-md-3'>
+    <%= link_to 'User Information', all_users_path(format: 'csv'),
       class: 'btn btn-danger btn-sm' %>
   </div>
 </div>
