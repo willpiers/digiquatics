@@ -3,12 +3,22 @@ require 'spec_helper'
 describe 'User pages' do
   let!(:account) { FactoryGirl.create(:account) }
   let!(:another_account) { FactoryGirl.create(:account) }
-  let!(:location) { FactoryGirl.create(:location) }
-  let!(:position) { FactoryGirl.create(:position) }
-  let!(:user) { FactoryGirl.create(:user, location_id: location.id,
-    position_id: position.id, account_id: account.id) }
-  let!(:admin) { FactoryGirl.create(:admin, location_id: location.id,
-    position_id: position.id, account_id: account.id) }
+  let!(:location) { FactoryGirl.create(:location, account_id: account.id) }
+  let!(:another_location) { FactoryGirl.create(:location,
+                                               name: 'Another Location',
+                                               account_id: another_account.id) }
+  let!(:position) { FactoryGirl.create(:position, account_id: account.id) }
+  let!(:another_position) { FactoryGirl.create(:position,
+                                               name: 'Another position',
+                                               account_id: another_account.id) }
+  let!(:user) { FactoryGirl.create(:user,
+                                   location_id: location.id,
+                                   position_id: position.id,
+                                   account_id: account.id) }
+  let!(:admin) { FactoryGirl.create(:admin,
+                                    location_id: location.id,
+                                    position_id: position.id,
+                                    account_id: account.id) }
 
   let!(:cert1) { FactoryGirl.create(:certification_name,
                                     account_id: account.id, name: 'CPR/AED1') }
@@ -34,12 +44,12 @@ describe 'User pages' do
 
     describe 'with valid information' do
       before do
-        fill_in 'First Name',   with: 'First'
+        fill_in 'First Name',       with: 'First'
         fill_in 'Preferred Name',   with: 'Dubbs'
-        fill_in 'Last Name',    with: 'Last'
-        fill_in 'Phone Number',   with: '1234'
-        fill_in 'Email',        with: 'user@example.com'
-        fill_in 'Password',     with: 'foobar'
+        fill_in 'Last Name',        with: 'Last'
+        fill_in 'Phone Number',     with: '1234'
+        fill_in 'Email',            with: 'user@example.com'
+        fill_in 'Password',         with: 'foobar'
         fill_in 'Confirm Password', with: 'foobar'
       end
 
@@ -64,10 +74,12 @@ describe 'User pages' do
   describe 'user profile' do
     before do
       sign_in user
-      FactoryGirl.create(:certification, certification_name_id: cert1.id,
-                          user_id: user.id)
-      FactoryGirl.create(:certification, certification_name_id: cert2.id,
-                          user_id: user.id)
+      FactoryGirl.create(:certification,
+                         certification_name_id: cert1.id,
+                         user_id: user.id)
+      FactoryGirl.create(:certification,
+                         certification_name_id: cert2.id,
+                         user_id: user.id)
       visit user_path(user)
     end
 
@@ -83,9 +95,12 @@ describe 'User pages' do
     before do
       sign_in admin
 
-      FactoryGirl.create(:user, first_name: 'Bob', email: 'bob@example.com',
-                          location_id: location.id, position_id: position.id,
-                          account_id: account.id)
+      FactoryGirl.create(:user,
+                         first_name: 'Bob',
+                         email: 'bob@example.com',
+                         location_id: location.id,
+                         position_id: position.id,
+                         account_id: account.id)
 
       visit users_path
     end
@@ -133,6 +148,8 @@ describe 'User pages' do
         end
 
         describe 'should not see other admin fields' do
+          it { should have_no_field('user_location_id') }
+          it { should have_no_field('user_position_id') }
           it { should have_no_field('user_employee_id') }
           it { should have_no_field('user_grouping') }
           it { should have_no_field('user_payrate') }
@@ -172,8 +189,6 @@ describe 'User pages' do
             fill_in 'City',               with: 'Lakewood'
             select('CO',                  from: 'State')
             fill_in 'Zipcode',            with: '80228'
-            select location.name,         from: 'user[location_id]'
-            select position.name,         from: 'user[position_id]'
             # skip avatar
 
             # Sizing Information
@@ -197,18 +212,20 @@ describe 'User pages' do
           it { should have_link('Sign out', href: signout_path) }
           specify { expect(user.reload.first_name).to eq new_first_name }
           specify { expect(user.reload.email).to eq new_email.downcase }
-          specify { expect(user.reload.location.id).to eq location.id}
-          specify { expect(user.reload.position.id).to eq position.id}
+          specify { expect(user.reload.location.id).to eq location.id }
+          specify { expect(user.reload.position.id).to eq position.id }
         end
       end
 
       describe 'as admin' do
         before do
           sign_in admin
-          FactoryGirl.create(:certification, certification_name_id: cert1.id,
-                              user_id: user.id)
-          FactoryGirl.create(:certification, certification_name_id: cert2.id,
-                              user_id: user.id)
+          FactoryGirl.create(:certification,
+                             certification_name_id: cert1.id,
+                             user_id: user.id)
+          FactoryGirl.create(:certification,
+                             certification_name_id: cert2.id,
+                             user_id: user.id)
           visit edit_user_path(user)
         end
 
@@ -226,6 +243,8 @@ describe 'User pages' do
         end
 
         describe 'should see other admin fields' do
+          it { should have_field('user_location_id') }
+          it { should have_field('user_position_id') }
           it { should have_field('user_employee_id') }
           it { should have_field('user_grouping') }
           it { should have_field('user_payrate') }
@@ -238,6 +257,16 @@ describe 'User pages' do
         describe 'should have certification names for current users account' do
           it { should have_selector('option', text: cert1.name) }
           it { should_not have_selector('option', text: cert2.name) }
+        end
+
+        describe 'should only have locations for current users account' do
+          it { should have_selector('option', text: location.name) }
+          it { should_not have_selector('option', text: another_location.name) }
+        end
+
+        describe 'should only have positions for current users account' do
+          it { should have_selector('option', text: position.name) }
+          it { should_not have_selector('option', text: another_position.name) }
         end
 
         describe 'with invalid information' do
@@ -270,8 +299,7 @@ describe 'User pages' do
             fill_in 'City',               with: 'Lakewood'
             select('CO',                  from: 'State')
             fill_in 'Zipcode',            with: '80228'
-            select location.name,         from: 'user[location_id]'
-            select position.name,         from: 'user[position_id]'
+
             # skip avatar
 
             # Sizing Information
@@ -285,6 +313,8 @@ describe 'User pages' do
             fill_in 'Emergency Phone #',    with: '303-999-8765'
 
             # Admin User Information
+            select location.name,         from: 'user[location_id]'
+            select position.name,         from: 'user[position_id]'
             fill_in 'Employee ID',    with: '1313'
             fill_in 'Grouping',    with: 'West'
             select 'September',           from: 'user_date_of_hire_2i'
@@ -300,8 +330,8 @@ describe 'User pages' do
           it { should have_link('Sign out', href: signout_path) }
           specify { expect(user.reload.first_name).to eq new_first_name }
           specify { expect(user.reload.email).to eq new_email.downcase }
-          specify { expect(user.reload.location.id).to eq location.id}
-          specify { expect(user.reload.position.id).to eq position.id}
+          specify { expect(user.reload.location.id).to eq location.id }
+          specify { expect(user.reload.position.id).to eq position.id }
         end
       end
     end
