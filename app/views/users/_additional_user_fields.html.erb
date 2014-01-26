@@ -1,0 +1,33 @@
+<center><h4>Additional User Information</h4></center>
+
+<div class='date-select'>
+  <%= f.date_select :date_of_birth, { start_year: Time.now.year,
+    end_year: 1900, order: [:month, :day, :year], prompt: true},
+      label: 'Date of Birth' %>
+</div>
+
+<%= f.select :sex, %w[- M F]%>
+<%= f.text_field :address1, label: 'Address 1' %>
+<%= f.text_field :address2, label: 'Address 2' %>
+<%= f.text_field :city, label: 'City' %>
+<%= f.select :state, us_states, label: 'State' %>
+<%= f.text_field :zipcode, label: 'Zipcode' %>
+
+<%= f.file_field :avatar, label: 'User Avatar' %>
+<%= f.select :location_id,
+  options_from_collection_for_select(Location.all, :id, :name) %>
+<%= f.select :position_id,
+  options_from_collection_for_select(Position.all, :id, :name) %>
+
+<center><h4>Sizing Information</h4></center>
+
+<%= f.select :shirt_size, %w[- XS S M L XL XXL], {}, label: 'Shirt Size' %>
+<%= f.select :suit_size, %w[- XS S M L XL XXL],  {}, label: 'Shorts Size' %>
+<%= f.select :femalesuit, %w[- 28 30 32 34 36 38 40], {},
+  label: 'One Piece Size (F)' if f.object.new_record? || user.sex == 'F' %>
+
+<center><h4>Emergency Contact Information</h4></center>
+
+<%= f.text_field :emergency_first, label: 'Emergency First Name' %>
+<%= f.text_field :emergency_last, label: 'Emergency Last Name' %>
+<%= f.text_field :emergency_phone, label: 'Emergency Phone #' %>

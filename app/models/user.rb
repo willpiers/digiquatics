@@ -37,8 +37,7 @@ class User < ActiveRecord::Base
   validates :email, presence: true,
                     format: { with: VALID_EMAIL_REGEX },
                     uniqueness: { case_sensitive: false }
-  validates_presence_of :shirt_size, :suit_size, :account_id, :location_id,
-                        :position_id
+  validates_presence_of :account_id
 
   has_secure_password
   validates_length_of :password, minimum: 6
