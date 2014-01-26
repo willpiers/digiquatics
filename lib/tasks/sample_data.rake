@@ -70,18 +70,18 @@ namespace :db do
     99.times do |n|
       Certification.create!(certification_name_id: 1,
         user_id: n+1,
-        expiration_date: Date.today + rand(100).day,
-        issue_date: Date.today + rand(100).day)
+        expiration_date: Date.today + rand(365).day,
+        issue_date: Date.today + rand(365).day)
 
       Certification.create!(certification_name_id: 2,
         user_id: n+1,
-        expiration_date: Date.today + rand(100).day,
-        issue_date: Date.today + rand(100).day)
+        expiration_date: Date.today + rand(365).day,
+        issue_date: Date.today + rand(365).day)
 
       Certification.create!(certification_name_id: 3,
         user_id: n+1,
-        expiration_date: Date.today + rand(100).day,
-        issue_date: Date.today + rand(100).day)
+        expiration_date: Date.today + rand(365).day,
+        issue_date: Date.today + rand(365).day)
     end
 
     50.times do |n|
