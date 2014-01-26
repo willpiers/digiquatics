@@ -69,7 +69,7 @@ class UsersController < ApplicationController
     @user.account_id = current_user.account_id
 
     if @user.save
-      flash[:success] = 'This account has been successfully created!'
+      flash[:success] = 'This user has been successfully created!'
       redirect_to users_path
     else
       render 'new'
@@ -91,14 +91,39 @@ class UsersController < ApplicationController
       params.require(:user).permit!
     else
       params.require(:user)
-        .permit(:first_name, :last_name, :email, :password,
-            :password_confirmation, :date_of_birth, :date_of_hire, :sex,
-            :phone_number, :shirt_size, :suit_size, :location_id, :position_id,
-            :femalesuit, :avatar, :employee_id, :emergency_first,
-            :emergency_last, :emergeny_phone, :nickname, :payrate, :grouping,
-            :address1, :address2, :city, :state, :zipcode,
-            certifications_attributes: [:id, :certification_name_id,
-            :user_id, :issue_date, :expiration_date, :attachment])
+        .permit(:first_name,
+                :nickname,
+                :last_name,
+                :email,
+                :password,
+                :password_confirmation,
+                :date_of_birth,
+                :date_of_hire,
+                :sex,
+                :phone_number,
+                :shirt_size,
+                :suit_size,
+                :location_id,
+                :position_id,
+                :femalesuit,
+                :avatar,
+                :employee_id,
+                :emergency_first,
+                :emergency_last,
+                :emergeny_phone,
+                :payrate,
+                :grouping,
+                :address1,
+                :address2,
+                :city,
+                :state,
+                :zipcode,
+                certifications_attributes: [:id,
+                                            :certification_name_id,
+                                            :user_id,
+                                            :issue_date,
+                                            :expiration_date,
+                                            :attachment])
     end
   end
 

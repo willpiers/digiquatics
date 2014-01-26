@@ -13,6 +13,7 @@ class AccountsController < ApplicationController
 
   def new
     @account = Account.new
+    1.times { @account.users.build }
   end
 
   def edit
@@ -29,7 +30,6 @@ class AccountsController < ApplicationController
 
   def create
     @account = Account.new(account_params)
-
     respond_to do |format|
       if @account.save
         format.html { redirect_to admin_dashboard_path,
@@ -75,7 +75,17 @@ class AccountsController < ApplicationController
 
   # Only allow the white list through.
   def account_params
-    params.require(:account).permit(:name, :time_zone,
-                                     private_lessons_attributes: [:id])
+    params.require(:account).permit(:name,
+                                    :time_zone,
+                                    private_lessons_attributes: [:id],
+                                    users_attributes: [:id,
+                                                       :first_name,
+                                                       :nickname,
+                                                       :last_name,
+                                                       :email,
+                                                       :account_id,
+                                                       :password,
+                                                       :password_confirmation,
+                                                       :phone_number])
   end
 end

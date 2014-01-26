@@ -31,7 +31,7 @@ describe 'User pages' do
   describe 'signup' do
     before do
       sign_in admin
-      visit signup_path
+      visit new_user_path
     end
 
     let(:submit) { 'Create Account' }
@@ -108,15 +108,8 @@ describe 'User pages' do
     it { should have_title('Users') }
   end
 
-  describe 'profile page' do
-    before { visit signup_path }
-
-    it { should have_content('First Name') }
-    it { should have_title('Create New User') }
-  end
-
-  describe 'add account' do
-    before { visit signup_path }
+  describe 'add user account' do
+    before { visit new_user_path }
 
     it { should have_content('Create New User') }
     it { should have_title('Create New User') }

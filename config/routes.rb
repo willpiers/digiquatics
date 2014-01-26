@@ -42,7 +42,7 @@ Digiquatics::Application.routes.draw do
 
   root  'static_pages#index'
 
-  match '/signup', to: 'users#new', via: 'get'
+  match '/signup', to: 'accounts#new', via: 'get'
   match '/signin', to: 'sessions#new', via: 'get'
   match '/signin', to: 'sessions#create', via: 'post'
   match '/signout', to: 'sessions#destroy', via: 'delete'
