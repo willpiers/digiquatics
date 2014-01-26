@@ -2,12 +2,16 @@ require 'spec_helper'
 
 describe 'User pages' do
   let!(:account) { FactoryGirl.create(:account) }
+  let!(:another_account) { FactoryGirl.create(:account) }
   let!(:location) { FactoryGirl.create(:location) }
   let!(:position) { FactoryGirl.create(:position) }
   let!(:user) { FactoryGirl.create(:user, location_id: location.id,
     position_id: position.id, account_id: account.id) }
-  let(:admin) { FactoryGirl.create(:admin, location_id: location.id,
+  let!(:admin) { FactoryGirl.create(:admin, location_id: location.id,
     position_id: position.id, account_id: account.id) }
+
+  let!(:cert1) { FactoryGirl.create(:certification_name, account_id: account.id, name: 'CPR/AED1') }
+  let!(:cert2) { FactoryGirl.create(:certification_name, account_id: another_account.id, name: 'CPR/AED2') }
 
   subject { page }
 
@@ -68,9 +72,6 @@ describe 'User pages' do
   end
 
   describe 'user profile' do
-    let!(:cert1) { FactoryGirl.create(:certification_name, account_id: 1, name: 'CPR/AED1') }
-    let!(:cert2) { FactoryGirl.create(:certification_name, account_id: 2, name: 'CPR/AED2') }
-
     before do
       sign_in user
       FactoryGirl.create(:certification, certification_name_id: cert1.id, user_id: user.id)
@@ -125,8 +126,14 @@ describe 'User pages' do
 
       describe 'as non-admin' do
         it { should_not have_selector('h4', text: 'Certifications') }
-        it { should have_no_field('user_certifications_attributes_0_issue_date') }
-        it { should have_no_field('user_certifications_attributes_0_expiration_date') }
+        it { should have_no_field('user_certifications_attributes_0_issue_date_1i') }
+        it { should have_no_field('user_certifications_attributes_0_issue_date_2i') }
+        it { should have_no_field('user_certifications_attributes_0_issue_date_3i') }
+
+        it { should have_no_field('user_certifications_attributes_0_expiration_date_1i') }
+        it { should have_no_field('user_certifications_attributes_0_expiration_date_2i') }
+        it { should have_no_field('user_certifications_attributes_0_expiration_date_3i') }
+
         it { should have_no_field('user_certifications_attributes_0_attachment') }
         it { should have_no_field('Admin') }
         it { should have_no_field('Active') }
@@ -134,22 +141,31 @@ describe 'User pages' do
       end
 
       describe 'as admin' do
-        let(:admin) { FactoryGirl.create(:user, email: 'hi@google.com',
-          admin: true, location_id: location.id, position_id: position.id,
-          account_id: account.id) }
-
         before do
           sign_in admin
+          FactoryGirl.create(:certification, certification_name_id: cert1.id, user_id: user.id)
+          FactoryGirl.create(:certification, certification_name_id: cert2.id, user_id: user.id)
           visit edit_user_path(user)
         end
 
         it { should have_selector('h4', text: 'Certifications') }
-        it { should have_no_field('user_certifications_attributes_0_issue_date') }
-        it { should have_no_field('user_certifications_attributes_0_expiration_date') }
-        it { should have_no_field('user_certifications_attributes_0_attachment') }
+        it { should have_field('user_certifications_attributes_0_issue_date_1i') }
+        it { should have_field('user_certifications_attributes_0_issue_date_2i') }
+        it { should have_field('user_certifications_attributes_0_issue_date_3i') }
+
+        it { should have_field('user_certifications_attributes_0_expiration_date_1i') }
+        it { should have_field('user_certifications_attributes_0_expiration_date_2i') }
+        it { should have_field('user_certifications_attributes_0_expiration_date_3i') }
+
+        it { should have_field('user_certifications_attributes_0_attachment') }
         it { should have_field('Admin') }
         it { should have_field('Active') }
         it { should have_field('Notes') }
+
+        describe 'should have certification names for current users account' do
+          it { should have_selector('option', text: cert1.name) }
+          it { should_not have_selector('option', text: cert2.name) }
+        end
       end
     end
 

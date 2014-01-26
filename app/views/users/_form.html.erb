@@ -27,7 +27,7 @@
     <%= f.password_field :password %>
     <%= f.password_field :password_confirmation, label: 'Confirm Password' %>
 
-    <% unless f.object.new_record? %>
+      <% unless f.object.new_record? %>
       <center><h4>Additional User Information</h4></center>
       <%= f.file_field :avatar, label: 'User Avatar' %>
       <%= f.select :location_id,
@@ -49,18 +49,6 @@
       <%= render 'admin_form' %>
 
     <% end %>
-
-    <% if false %>
-      <h4>Certifications</h4>
-        <%= f.fields_for :certifications do |builder| %>
-            <b><%= builder.object.certification_name.name %></b>
-            <%= builder.text_field :issue_date,
-              :value => (builder.object.issue_date.strftime('%-m/%-d/%Y')) %>
-            <%= builder.text_field :expiration_date,
-              :value => (builder.object.expiration_date.strftime('%-m/%-d/%Y')) %>
-            <%= builder.file_field :attachment %>
-        <% end %>
-      <% end %>
 
     <%= f.primary ( f.object.new_record? ?  'Create Account' :
     'Save Changes' ) %>
