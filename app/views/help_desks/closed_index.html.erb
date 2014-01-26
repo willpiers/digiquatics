@@ -1,5 +1,5 @@
 <% provide(:title, 'Open Issues') %>
-<h1>Open Issues</h1>
+<h1>Closed Issues</h1>
 
 <div class='row'>
 
@@ -8,14 +8,10 @@
   <div class='col-md-3'>
     <br><br>
     <div class='btn-group'>
-      <%= link_to 'Add Issue', new_help_desk_path,
-        class: 'btn btn-primary btn-sm', role: 'button' %>
-      <%= link_to 'View Closed', closed_index_path,
+      <%= link_to 'View Open Issues', help_desks_path,
         class: 'btn btn-danger btn-sm', role: 'button' %>
     </div>
   </div>
 </div>
 
 <br>
-
-<%= render 'help_desks' %>

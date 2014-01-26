@@ -1,0 +1,16 @@
+<center><h4>Admin</h4></center>
+<%= bootstrap_form_for(@user,
+  style: :horizontal, left: 'col-sm-4', right: 'col-sm-8') do |f| %>
+    <%= f.text_field :employee_id, label: 'Employee ID' %>
+    <%= f.text_field :grouping, label: 'Grouping' %>
+    <div class='date-select'>
+     <%= f.date_select :date_of_hire, { start_year: Time.now.year,
+      end_year: Time.now.year-30, order: [:month, :day, :year], prompt: true},
+        label: 'Date of Hire'  %>
+    </div>
+    <%= f.text_field :payrate,prepend: "$", label: 'Pay Rate' %>
+    <%= f.text_area :notes, size: '2x',
+      placeholder: 'Leave a comment...' %>
+<% end %>
+
+

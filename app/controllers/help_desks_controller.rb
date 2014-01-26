@@ -12,6 +12,10 @@ class HelpDesksController < ApplicationController
   def show
   end
 
+  def closed_index
+    @helpdesk = HelpDesk.all
+  end
+
   # GET /help_desks/new
   def new
     @help_desk = HelpDesk.new

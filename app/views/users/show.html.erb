@@ -1,6 +1,6 @@
 <% provide(:title, @user.first_name) %>
 
-<h1><%= @user.first_name + " " + @user.last_name %></h1>
+<h1><%= @user.first_name +  " " + @user.last_name %></h1>
 
 <ul class = "pull-right">
   <%= link_to "Edit", edit_user_path(@user),
@@ -68,7 +68,26 @@
 					<td> <%= @user.location.name %> </td>
 				</tr>
 				<tr>
+				<th> Grouping </th>
+					<td> <%= @user.grouping%> </td>
+				</tr>
+				<tr>
 					<th> Position </th> <td> <%= @user.position.name %>  </td>
+				</tr>
+				<tr>
+					<th> Address 1 </th> <td> <%= @user.address1 %>  </td>
+				</tr>
+				<tr>
+					<th> Address 2 </th> <td> <%= @user.address2 %>  </td>
+				</tr>
+				<tr>
+					<th> City </th> <td> <%= @user.city %>  </td>
+				</tr>
+				<tr>
+					<th> State </th> <td> <%= @user.state %>  </td>
+				</tr>
+				<tr>
+					<th> Zipcode </th> <td> <%= @user.zipcode %>  </td>
 				</tr>
 				<tr>
 					<th> Email </th> <td> <%= @user.email %>  </td>
@@ -98,6 +117,15 @@
 						<th> One Piece Size </th> <td> <%= @user.femalesuit %>  </td>
 					</tr>
 				<% end %>
+				<tr>
+					<th> Emergency First Name </th> <td> <%= @user.emergency_first %>  </td>
+				</tr>
+				<tr>
+					<th>  Emergency Last Name </th> <td> <%= @user.emergency_last %>  </td>
+				</tr>
+				<tr>
+					<th>  Emergency Phone Number </th> <td> <%= @user.emergency_phone %>  </td>
+				</tr>
 
 		</table>
 	</div>
@@ -108,10 +136,10 @@
 
 		<h4> Certification Information </h4>
 
-		<table class="table table-bordered table-condensed" >
+		<table class='table table-bordered table-condensed' >
 			<thead>
 				<tr>
-					<th style="width:25%"> Certification Name </th>
+					<th class='fixtablewidth'> Certification Name </th>
 					<% @user.certifications.each do |cert| %>
 					<th><%= cert.certification_name.name %></th>
 					<% end %>
@@ -127,16 +155,16 @@
 				<tr><th> Expiration Date </th>
 					<% @user.certifications.each do |cert| %>
 						<% if cert.expiration_date <= ( Date.today) %>
-							<td class="danger">
+							<td class='danger'>
 								<%= cert.expiration_date.strftime('%-m/%-d/%Y') %>
 							</td>
 						<% elsif cert.expiration_date > ( Date.today ) &&
-							cert.expiration_date < ( Date.today + 60.days ) %>
-			        <td class="warning">
+							cert.expiration_date <= ( Date.today + 90.days ) %>
+			        <td class='warning'>
 			          <%= cert.expiration_date.strftime('%-m/%-d/%Y') %>
 			        </td>
-			      <% elsif cert.expiration_date >= ( Date.today + 60.days ) %>
-			        <td class="success">
+			      <% elsif cert.expiration_date > ( Date.today + 90.days ) %>
+			        <td class='success'>
 			        <%= cert.expiration_date.strftime('%-m/%-d/%Y') %>
 			        </td>
 			      <% end %>
@@ -148,7 +176,7 @@
 					<th>
 						<!-- Only render if attachment exists -->
 						<% if cert.attachment? %>
-							<%= link_to "", cert.attachment.url, class: "glyphicon glyphicon-download-alt" %>
+							<%= link_to '', cert.attachment.url, class: 'glyphicon glyphicon-download-alt' %>
 						<% else %>
 						<% end %>
 					</th>
@@ -158,12 +186,12 @@
 			</tbody>
 		</table>
 
-		<div style="font-size: 60%">
+		<div style='font-size: 60%'>
 			<br>
 				<p >
-					<img src="/images/reddot.png" alt="red" height="10px" width="10px" /> = Expired
-					<img src="/images/yellowdot.png" alt="yellow" height="10px" width="10px" /> = Expires within 60 days
-			 		<img src="/images/greendot.png" alt="green" height="10px" width="10px" /> = Normal
+					<img src='/images/reddot.png' alt='red' height='10px' width='10px' /> = Expired
+					<img src='/images/yellowdot.png' alt='yellow' height='10px' width='10px' /> = Expires within 90 days
+			 		<img src='/images/greendot.png' alt='green' height='10px' width='10px' /> = Normal
 			 </p>
 		</div>
 
