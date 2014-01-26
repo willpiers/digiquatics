@@ -1,4 +1,5 @@
 Digiquatics::Application.routes.draw do
+  # rubocop:disable LineLength, StringLiterals
 
   resources :private_lesson_details
 
@@ -65,6 +66,8 @@ Digiquatics::Application.routes.draw do
   match '/certification_expirations', to: 'certifications#expirations', via: 'get'
   match '/dashboard', to: 'static_pages#dashboard', via: 'get'
 
+  match '/closed_index', to: 'help_desks#closed_index', via: 'get'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -119,4 +122,6 @@ Digiquatics::Application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
+
+  # rubocop:enable LineLength, StringLiterals
 end

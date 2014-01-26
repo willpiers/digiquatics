@@ -1,8 +1,8 @@
 <%= bootstrap_form_for(@daily_todo,
-  style: :horizontal, left: "col-sm-4", right: "col-sm-8") do |f| %>
+  style: :horizontal, left: 'col-sm-4', right: 'col-sm-8') do |f| %>
   <% if @daily_todo.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@daily_todo.errors.count, "error") %> prohibited this daily_todo from being saved:</h2>
+    <div id='error_explanation'>
+      <h2><%= pluralize(@daily_todo.errors.count, 'error') %> prohibited this daily_todo from being saved:</h2>
 
       <ul>
       <% @daily_todo.errors.full_messages.each do |msg| %>

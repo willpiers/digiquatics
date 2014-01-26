@@ -32,7 +32,7 @@ describe 'Manage Certifications' do
         cert_name.account_id.should eq(user.account_id)
         it { should have_content(cert_name.name) }
         it { should have_link('Edit',
-          href: edit_certification_name_path(certification_name))}
+          href: edit_certification_name_path(certification_name)) }
         it { should have_link('Delete',
           href: certification_name_path(certification_name)) }
       end
@@ -75,7 +75,7 @@ describe 'Manage Certifications' do
       end
 
       it 'should update the cert_name and redirect to admin dashboard' do
-        expect { click_button 'Update Certification name'}
+        expect { click_button 'Update Certification name' }
         .to_not change(CertificationName, :count).by(1)
 
         expect(cert_name1.reload.name).to eq('new certification_name name')

@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Pool do
 
-  before { @pool = Pool.new(location_id: "1", name: "Indoor") }
+  before { @pool = Pool.new(location_id: '1', name: 'Indoor') }
 
   subject { @pool }
 
@@ -11,8 +11,8 @@ describe Pool do
 
   it { should be_valid }
 
-  describe "when pool name is not present" do
-    before { @pool.name = " " }
+  describe 'when pool name is not present' do
+    before { @pool.name = ' ' }
     it { should_not be_valid }
   end
 end

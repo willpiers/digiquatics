@@ -65,6 +65,7 @@ class PoolsController < ApplicationController
   end
 
   private
+
     # Use callbacks to share common setup or constraints between actions.
     def set_pool
       @pool = Pool.find(params[:id])

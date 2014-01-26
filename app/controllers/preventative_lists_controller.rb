@@ -62,6 +62,7 @@ class PreventativeListsController < ApplicationController
   end
 
   private
+
     # Use callbacks to share common setup or constraints between actions.
     def set_preventative_list
       @preventative_list = PreventativeList.find(params[:id])

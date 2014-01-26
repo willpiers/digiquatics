@@ -5,7 +5,7 @@ class PrivateLessonsController < ApplicationController
 
   def index
     @private_lessons = PrivateLesson.all
-      .order(sort_column + " " + sort_direction)
+      .order(sort_column + ' ' + sort_direction)
 
     respond_to do |format|
       format.html
@@ -16,12 +16,12 @@ class PrivateLessonsController < ApplicationController
 
   def admin_index
     @admin_index = PrivateLesson.joins(:user).where(user_id =! nil)
-      .order(sort_column + " " + sort_direction)
+      .order(sort_column + ' ' + sort_direction)
   end
 
   def my_lessons
     @my_lessons = PrivateLesson.joins(:user).claimed_by(current_user)
-      .order(sort_column + " " + sort_direction)
+      .order(sort_column + ' ' + sort_direction)
   end
 
   def manage_private_lessons
@@ -116,10 +116,10 @@ class PrivateLessonsController < ApplicationController
   end
 
   def sort_column
-    params[:sort] || "first_name"
+    params[:sort] || 'first_name'
   end
 
   def sort_direction
-    params[:direction] || "asc"
+    params[:direction] || 'asc'
   end
 end

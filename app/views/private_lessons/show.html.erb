@@ -2,20 +2,20 @@
 
 <h1><%= @private_lesson.first_name + " " + @private_lesson.last_name %></h1>
 
-<ul class = "pull-right">
+<ul class = 'pull-right'>
 <%= bootstrap_form_for @private_lesson do |f| %>
   <%= f.hidden_field :user_id, value: current_user.id %>
-  <%= f.submit "Claim Lesson"  %>
+  <%= f.submit 'Claim Lesson'  %>
 <% end %>
 </ul>
 
 <br> <br>
 
-<div class="table-responsive">
-		<table class="table table-bordered table-condensed" >
+<div class='table-responsive'>
+		<table class='table table-bordered table-condensed' >
 			<h4> Parent Information </h4>
 				<tr>
-					 <th id="fixtablewidth"> First Name </th>
+					 <th id='fixtablewidth'> First Name </th>
 					<td> <%= @private_lesson.parent_first_name %> </td>
 				</tr>
 				<tr>
@@ -36,10 +36,10 @@
 				</tr>
 		</table>
 
-		<table class="table table-bordered" >
+		<table class='table table-bordered' >
 			<h4> Student Information </h4>
 				<tr>
-					 <th id="fixtablewidth"> First Name </th>
+					 <th id='fixtablewidth'> First Name </th>
 					<td> <%= @private_lesson.first_name %> </td>
 				</tr>
 				<tr>
@@ -56,10 +56,10 @@
 				</tr>
 		</table>
 
-	<table class="table table-bordered" >
+	<table class='table table-bordered' >
 		<h4> Preferences </h4>
 			<tr>
-				<th id="fixtablewidth"> Instructor Gender </th>
+				<th id='fixtablewidth'> Instructor Gender </th>
 				<td> <%= @private_lesson.instructor_gender %> </td>
 			</tr>
 			<tr>
@@ -68,10 +68,10 @@
 			</tr>
 	</table>
 
-	<table class="table table-bordered" >
+	<table class='table table-bordered' >
 		<h4> Lesson Request </h4>
 			<tr>
-				<th id="fixtablewidth"> Number Lessons </th>
+				<th id='fixtablewidth'> Number Lessons </th>
 				<td> <%= @private_lesson.number_lessons %> </td>
 			</tr>
 	</table>

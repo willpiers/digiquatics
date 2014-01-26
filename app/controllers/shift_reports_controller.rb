@@ -67,6 +67,7 @@ class ShiftReportsController < ApplicationController
   end
 
   private
+
     # Use callbacks to share common setup or constraints between actions.
     def set_shift_report
       @shift_report = ShiftReport.find(params[:id])
@@ -74,10 +75,9 @@ class ShiftReportsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def shift_report_params
-      params.require(:shift_report).permit(:post_title, :post_content,
-                                          :date_stamp, :time_stamp, :user_id,
-                                          :location_id, users_attributes: [:id, :first_name,
-                                            :last_name])
+      params.require(:shift_report)
+        .permit(:post_title, :post_content, :date_stamp, :time_stamp, :user_id,
+                :location_id, users_attributes: [:id, :first_name, :last_name])
     end
 
 end

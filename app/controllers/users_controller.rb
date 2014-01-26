@@ -56,12 +56,6 @@ class UsersController < ApplicationController
   end
 
   def update
-    if params[:active] == false
-     @user.update_attributes(user_params)
-    end
-    if params[:admin] == false
-      @user.update_attributes(user_params)
-    end
     if @user.update_attributes(user_params)
       flash[:success] = 'Profile updated'
       redirect_to @user
@@ -100,7 +94,9 @@ class UsersController < ApplicationController
         .permit(:first_name, :last_name, :email, :password,
             :password_confirmation, :date_of_birth, :date_of_hire, :sex,
             :phone_number, :shirt_size, :suit_size, :location_id, :position_id,
-            :femalesuit, :avatar, :employee_id,
+            :femalesuit, :avatar, :employee_id, :emergency_first,
+            :emergency_last, :emergeny_phone, :nickname, :payrate, :grouping,
+            :address1, :address2, :city, :state, :zipcode,
             certifications_attributes: [:id, :certification_name_id,
             :user_id, :issue_date, :expiration_date, :attachment])
     end
@@ -119,10 +115,10 @@ class UsersController < ApplicationController
   end
 
   def sort_column
-    params[:sort] || "first_name"
+    params[:sort] || 'first_name'
   end
 
   def sort_direction
-    params[:direction] || "asc"
+    params[:direction] || 'asc'
   end
 end
