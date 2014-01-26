@@ -43,7 +43,7 @@
 
       <%= f.fields_for :certifications do |builder| %>
         <%= builder.select :certification_name_id,
-          options_from_collection_for_select(CertificationName.all, :id, :name) %>
+          options_from_collection_for_select(CertificationName.all, :id, :name, builder.object.certification_name_id) %>
 
         <div class="date-select">
          <%= builder.date_select :issue_date, { start_year: Time.now.year,
