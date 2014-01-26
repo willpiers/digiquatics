@@ -17,10 +17,10 @@ describe 'Manage Positions' do
       sign_in user
 
       FactoryGirl.create(:position,
-                         name: 'Carmody Rec Center',
+                         name: 'Advanced Lifeguard',
                          account_id: account.id)
       FactoryGirl.create(:position,
-                         name: 'Green Mtn Rec Center',
+                         name: 'Lifeguard',
                          account_id: account.id)
 
       position.update_attribute(:account_id, account.id)
