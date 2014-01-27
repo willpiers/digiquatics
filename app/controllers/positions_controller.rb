@@ -1,69 +1,43 @@
 class PositionsController < ApplicationController
   before_action :set_position, only: [:show, :edit, :update, :destroy]
 
-  # GET /positions
-  # GET /positions.json
   def index
     @positions = Position.all
   end
 
-  # GET /positions/1
-  # GET /positions/1.json
   def show
   end
 
-  # GET /positions/new
   def new
     @position = Position.new
   end
 
-  # GET /positions/1/edit
   def edit
   end
 
-  # POST /positions
-  # POST /positions.json
   def create
     @position = Position.new(position_params)
     @position.account_id = current_user.account_id
-    respond_to do |format|
-      if @position.save
-        format.html { redirect_to admin_dashboard_path,
-          notice: 'Position was successfully created.' }
-        format.json { render action: 'show', status: :created,
-          location: @position }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @position.errors,
-          status: :unprocessable_entity }
-      end
+    if @position.save
+      flash[:success] = 'Position was successfully created.'
+      redirect_to admin_dashboard_path
+    else
+      render 'new'
     end
   end
 
-  # PATCH/PUT /positions/1
-  # PATCH/PUT /positions/1.json
   def update
-    respond_to do |format|
-      if @position.update(position_params)
-        format.html { redirect_to admin_dashboard_path,
-          notice: 'Position was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: 'edit' }
-        format.json { render json: @position.errors,
-          status: :unprocessable_entity }
-      end
+    if @position.update(position_params)
+      flash[:success] = 'Position was successfully updated.'
+      redirect_to admin_dashboard_path
+    else
+      render 'edit'
     end
   end
 
-  # DELETE /positions/1
-  # DELETE /positions/1.json
   def destroy
     @position.destroy
-    respond_to do |format|
-      format.html { redirect_to admin_dashboard_path }
-      format.json { head :no_content }
-    end
+    redirect_to admin_dashboard_path
   end
 
   private

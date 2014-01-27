@@ -3,11 +3,6 @@ class LocationsController < ApplicationController
 
   def index
     @locations = Location.joins(:account).same_account_as(current_user)
-
-    respond_to do |format|
-      format.html
-      format.json { render json: @locations }
-    end
   end
 
   def show
@@ -25,41 +20,27 @@ class LocationsController < ApplicationController
     @location = Location.new(location_params)
     @location.account_id = current_user.account_id
 
-    respond_to do |format|
-      if @location.save
-        format.html { redirect_to admin_dashboard_path,
-          notice: 'Certification name was successfully created.' }
-        format.json { render action: 'show', status: :created,
-          location: @location }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @location.errors,
-          status: :unprocessable_entity }
-      end
+    if @location.save
+      flash[:success] = 'Certification name was successfully created.'
+      redirect_to admin_dashboard_path
+    else
+      render 'new'
     end
   end
 
   def update
-    respond_to do |format|
-      if @location.update(location_params)
-        format.html { redirect_to admin_dashboard_path,
-          notice: 'Location was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: 'edit' }
-        format.json { render json: @location.errors,
-          status: :unprocessable_entity }
-      end
+    if @location.update(location_params)
+      flash[:success] = 'Location was successfully updated.'
+      redirect_to admin_dashboard_path
+    else
+      render 'edit'
     end
   end
 
   def destroy
     @location.destroy
-    respond_to do |format|
-      format.html { redirect_to admin_dashboard_path }
-      format.json { head :no_content }
+      redirect_to admin_dashboard_path
     end
-  end
 
   private
 

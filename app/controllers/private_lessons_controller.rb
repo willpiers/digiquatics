@@ -27,23 +27,11 @@ class PrivateLessonsController < ApplicationController
   def manage_private_lessons
     @private_lesson = PrivateLesson.new(private_lesson_params)
 
-    respond_to do |format|
-      if @private_lesson.save
-        format.html { redirect_to @private_lesson,
-          notice: 'Private lesson was successfully created.' }
-        format.json do
-          render action: 'show',
-                 status: :created,
-                 location: @private_lesson
-        end
-
-      else
-        format.html { render action: 'new' }
-        format.json do
-          render json: @private_lesson.errors,
-                 status: :unprocessable_entity
-        end
-      end
+    if @private_lesson.save
+      flash[:success] = 'Private lesson was successfully created.'
+      redirect_to @private_lesson
+    else
+      render 'new'
     end
   end
 
@@ -60,53 +48,28 @@ class PrivateLessonsController < ApplicationController
   def create
     @private_lesson = PrivateLesson.new(private_lesson_params)
 
-    respond_to do |format|
-      if @private_lesson.save
-        format.html do
-          redirect_to @private_lesson,
-            notice: 'Private lesson was successfully created.'
-        end
-
-        format.json do
-          render action: 'show',
-                 status: :created,
-                 location: @private_lesson
-        end
-
-      else
-        format.html { render action: 'new' }
-        format.json do
-          render json: @private_lesson.errors,
-                 status: :unprocessable_entity
-        end
-      end
+    if @private_lesson.save
+      flash[:success] = 'Private lesson was successfully created.'
+      redirect_to @private_lesson
+    else
+      render 'new'
     end
   end
 
   def update
     @private_lesson.user_id = params[:user_id]
 
-    respond_to do |format|
-      if @private_lesson.update(private_lesson_params)
-        format.html { redirect_to @private_lesson,
-          notice: 'Private lesson was successfully updated.' }
-        format.js
-        format.json { head :no_content }
-      else
-        format.html { render action: 'edit' }
-        format.json { render json: @private_lesson.errors,
-                             status: :unprocessable_entity }
-      end
+    if @private_lesson.update(private_lesson_params)
+      flash[:success] = 'Private lesson was successfully updated.'
+      redirect_to @private_lesson
+    else
+      render 'edit'
     end
   end
 
   def destroy
     @private_lesson.destroy
-
-    respond_to do |format|
-      format.html { redirect_to private_lessons_url }
-      format.json { head :no_content }
-    end
+    redirect_to private_lessons_url
   end
 
   private

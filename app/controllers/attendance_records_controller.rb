@@ -26,28 +26,22 @@ class AttendanceRecordsController < ApplicationController
   def create
     @attendance_record = AttendanceRecord.new(attendance_record_params)
 
-    respond_to do |format|
-      if @attendance_record.save
-        format.html { redirect_to @attendance_record, notice: 'Attendance record was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @attendance_record }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @attendance_record.errors, status: :unprocessable_entity }
-      end
+    if @attendance_record.save
+      flash[:success] = 'Attendance record was successfully created.'
+      redirect_to @attendance_record
+    else
+      render 'new'
     end
   end
 
   # PATCH/PUT /attendance_records/1
   # PATCH/PUT /attendance_records/1.json
   def update
-    respond_to do |format|
-      if @attendance_record.update(attendance_record_params)
-        format.html { redirect_to @attendance_record, notice: 'Attendance record was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: 'edit' }
-        format.json { render json: @attendance_record.errors, status: :unprocessable_entity }
-      end
+    if @attendance_record.update(attendance_record_params)
+      flash[:success] = 'Attendance record was successfully updated.'
+      redirect_to @attendance_record
+    else
+      render 'edit'
     end
   end
 
@@ -55,10 +49,7 @@ class AttendanceRecordsController < ApplicationController
   # DELETE /attendance_records/1.json
   def destroy
     @attendance_record.destroy
-    respond_to do |format|
-      format.html { redirect_to attendance_records_url }
-      format.json { head :no_content }
-    end
+    redirect_to attendance_records_url
   end
 
   private
