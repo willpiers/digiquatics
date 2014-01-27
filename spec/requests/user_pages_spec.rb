@@ -4,27 +4,41 @@ describe 'User pages' do
   let!(:account) { FactoryGirl.create(:account) }
   let!(:another_account) { FactoryGirl.create(:account) }
   let!(:location) { FactoryGirl.create(:location, account_id: account.id) }
-  let!(:another_location) { FactoryGirl.create(:location,
-                                               name: 'Another Location',
-                                               account_id: another_account.id) }
-  let!(:position) { FactoryGirl.create(:position, account_id: account.id) }
-  let!(:another_position) { FactoryGirl.create(:position,
-                                               name: 'Another position',
-                                               account_id: another_account.id) }
-  let!(:user) { FactoryGirl.create(:user,
-                                   location_id: location.id,
-                                   position_id: position.id,
-                                   account_id: account.id) }
-  let!(:admin) { FactoryGirl.create(:admin,
-                                    location_id: location.id,
-                                    position_id: position.id,
-                                    account_id: account.id) }
+  let!(:another_location) do
+    FactoryGirl.create(:location, name: 'Another Location',
+                       account_id: another_account.id)
+  end
 
-  let!(:cert1) { FactoryGirl.create(:certification_name,
-                                    account_id: account.id, name: 'CPR/AED1') }
-  let!(:cert2) { FactoryGirl.create(:certification_name,
-                                    account_id: another_account.id,
-                                    name: 'CPR/AED2') }
+  let!(:position) { FactoryGirl.create(:position, account_id: account.id) }
+  let!(:another_position) do
+    FactoryGirl.create(:position, name: 'Another position',
+                       account_id: another_account.id)
+  end
+
+  let!(:user) do
+    FactoryGirl.create(:user,
+                       location_id: location.id,
+                       position_id: position.id,
+                       account_id: account.id)
+  end
+
+  let!(:admin) do
+    FactoryGirl.create(:admin,
+                       location_id: location.id,
+                       position_id: position.id,
+                       account_id: account.id)
+  end
+
+  let!(:cert1) do
+    FactoryGirl.create(:certification_name,
+                       account_id: account.id, name: 'CPR/AED1')
+  end
+
+  let!(:cert2) do
+    FactoryGirl.create(:certification_name,
+                       account_id: another_account.id,
+                       name: 'CPR/AED2')
+  end
 
   subject { page }
 

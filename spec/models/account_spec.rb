@@ -1,8 +1,10 @@
 require 'spec_helper'
 
 describe Account do
-  before { @account = Account.new(name: 'City of Lakewood',
-    time_zone: 'Mountain Time (US & Canada)') }
+  before do
+    @account = Account.new(name: 'City of Lakewood',
+                           time_zone: 'Mountain Time (US & Canada)')
+  end
 
   subject { @account }
 

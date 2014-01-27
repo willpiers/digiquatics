@@ -6,9 +6,10 @@ describe 'locations' do
   let(:location) { FactoryGirl.create(:location, account_id: account.id) }
 
   let!(:user) do
-    FactoryGirl.create(:user, account_id: account.id,
-                              position_id: position.id,
-                              location_id: location.id)
+    FactoryGirl.create(:user,
+                       account_id: account.id,
+                       position_id: position.id,
+                       location_id: location.id)
   end
 
   before do
@@ -20,8 +21,8 @@ describe 'locations' do
     let(:actual) { JSON.parse(response.body) }
 
     it 'should have user\'s locations data' do
-      actual.count.should == 1
-      actual.first['name'].should == location.name
+      actual.count.should eq 1
+      actual.first['name'].should eq location.name
     end
   end
 end

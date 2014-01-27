@@ -6,9 +6,10 @@ describe 'certification expirations' do
   let(:location) { FactoryGirl.create(:location) }
 
   let!(:user) do
-    FactoryGirl.create(:user, account_id: account.id,
-                              position_id: position.id,
-                              location_id: location.id)
+    FactoryGirl.create(:user,
+                       account_id: account.id,
+                       position_id: position.id,
+                       location_id: location.id)
   end
 
   let(:certification_name) do
@@ -19,7 +20,7 @@ describe 'certification expirations' do
   let!(:certification) do
     FactoryGirl.create(:certification,
                        user_id: user.id,
-                       certification_name_id: certification_name.id )
+                       certification_name_id: certification_name.id)
   end
 
   before do
@@ -32,7 +33,7 @@ describe 'certification expirations' do
     let(:actual_cert_name) { actual['certification_names'].first }
 
     it 'should have users data' do
-      actual['users'].should == [
+      actual['users'].should eq [
         {
           'lastName'                        => user.last_name,
           'firstName'                       => user.first_name,
@@ -44,10 +45,10 @@ describe 'certification expirations' do
     end
 
     it 'should have certification names data' do
-      actual['certification_names'].count.should == 1
-      actual_cert_name['id'].should == certification_name.id
-      actual_cert_name['account_id'].should == certification_name.account_id
-      actual_cert_name['name'].should == certification_name.name
+      actual['certification_names'].count.should eq 1
+      actual_cert_name['id'].should eq certification_name.id
+      actual_cert_name['account_id'].should eq certification_name.account_id
+      actual_cert_name['name'].should eq certification_name.name
     end
   end
 end

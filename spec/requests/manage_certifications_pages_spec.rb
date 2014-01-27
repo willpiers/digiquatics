@@ -8,16 +8,24 @@ describe 'Manage Certifications' do
     let(:account) { FactoryGirl.create(:account) }
     let(:location) { FactoryGirl.create(:location) }
     let(:position) { FactoryGirl.create(:position) }
-    let(:user) { FactoryGirl.create(:admin,
-                                    account_id: account.id,
-                                    location_id: location.id,
-                                    position_id: position.id) }
-    let!(:cert_name1) { FactoryGirl.create(:certification_name,
-                                           name: 'CPR/AED',
-                                           account_id: account.id) }
-    let!(:cert_name2) { FactoryGirl.create(:certification_name,
-                                           name: 'Lifeguard',
-                                           account_id: account.id) }
+    let(:user) do
+      FactoryGirl.create(:admin,
+                         account_id: account.id,
+                         location_id: location.id,
+                         position_id: position.id)
+    end
+
+    let!(:cert_name1) do
+      FactoryGirl.create(:certification_name,
+                         name: 'CPR/AED',
+                         account_id: account.id)
+    end
+
+    let!(:cert_name2) do
+      FactoryGirl.create(:certification_name,
+                         name: 'Lifeguard',
+                         account_id: account.id)
+    end
 
     before do
       sign_in user
@@ -31,10 +39,14 @@ describe 'Manage Certifications' do
       CertificationName.all.each do |cert_name|
         cert_name.account_id.should eq(user.account_id)
         it { should have_content(cert_name.name) }
-        it { should have_link('Edit',
-          href: edit_certification_name_path(certification_name)) }
-        it { should have_link('Delete',
-          href: certification_name_path(certification_name)) }
+        it do
+          should have_link('Edit',
+                           href: edit_certification_name_path(cert_name))
+        end
+        it do
+          should have_link('Delete',
+                           href: certification_name_path(cert_name))
+        end
       end
     end
 
@@ -45,7 +57,7 @@ describe 'Manage Certifications' do
       end
 
       it 'should create a new cert name and redirect to admin dashboard' do
-        expect { click_button 'Create Certification name'}
+        expect { click_button 'Create Certification name' }
         .to change(CertificationName, :count).by(1)
 
         current_path.should == admin_dashboard_path

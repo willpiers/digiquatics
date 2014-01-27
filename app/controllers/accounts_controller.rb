@@ -1,5 +1,6 @@
 class AccountsController < ApplicationController
   include ApplicationHelper
+  include SessionsHelper
 
   before_action :set_account, only: [:show, :edit, :update, :destroy]
   before_action :admin_user, only: [:admin_dashboard]
@@ -13,7 +14,7 @@ class AccountsController < ApplicationController
 
   def new
     @account = Account.new
-    1.times { @account.users.build }
+    @account.users.build(admin: true)
   end
 
   def edit
@@ -32,8 +33,11 @@ class AccountsController < ApplicationController
     @account = Account.new(account_params)
     respond_to do |format|
       if @account.save
-        format.html { redirect_to admin_dashboard_path,
-          notice: 'Account was successfully created.' }
+        @user = User.find(@account.users)
+        @user.admin = true
+        sign_in(@user)
+        flash[:success] = 'Account was successfully created.'
+        format.html { redirect_to admin_dashboard_path }
         format.json { render action: 'show', status: :created,
           location: @account }
       else

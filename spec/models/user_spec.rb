@@ -58,11 +58,6 @@ describe User do
     it { should be_admin }
   end
 
-  describe 'without account id' do
-    before { @user.account_id = nil }
-    it { should_not be_valid }
-  end
-
   describe 'when first name is not present' do
     before { @user.first_name = ' ' }
     it { should_not be_valid }

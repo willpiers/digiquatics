@@ -8,10 +8,12 @@ describe 'Manage Positions' do
     let(:account) { FactoryGirl.create(:account) }
     let(:location) { FactoryGirl.create(:location) }
     let(:position) { FactoryGirl.create(:position) }
-    let(:user) { FactoryGirl.create(:admin,
-                                    account_id: account.id,
-                                    location_id: location.id,
-                                    position_id: position.id) }
+    let(:user) do
+      FactoryGirl.create(:admin,
+                         account_id: account.id,
+                         location_id: location.id,
+                         position_id: position.id)
+    end
 
     before do
       sign_in user
@@ -47,7 +49,7 @@ describe 'Manage Positions' do
       end
 
       it 'should create a new position and redirect to index' do
-        expect { click_button 'Create Position'}
+        expect { click_button 'Create Position' }
         .to change(Position, :count).by(1)
 
         current_path.should == admin_dashboard_path
@@ -77,7 +79,7 @@ describe 'Manage Positions' do
       end
 
       it 'should update the position and redirect to admin dashboard' do
-        expect { click_button 'Update Position'}
+        expect { click_button 'Update Position' }
         .to_not change(Position, :count).by(1)
 
         expect(position.reload.name).to eq('new position name')

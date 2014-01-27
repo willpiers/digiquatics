@@ -6,14 +6,20 @@ describe 'admin setup' do
   let(:account) { FactoryGirl.create(:account) }
   let(:location) { FactoryGirl.create(:location) }
   let(:position) { FactoryGirl.create(:position) }
-  let(:user) { FactoryGirl.create(:admin,
-                                  account_id: account.id,
-                                  location_id: location.id,
-                                  position_id: position.id) }
-  let(:non_admin) { FactoryGirl.create(:user,
-                                       account_id: account.id,
-                                       location_id: location.id,
-                                       position_id: position.id) }
+  let(:user) do
+    FactoryGirl.create(:admin,
+                       account_id: account.id,
+                       location_id: location.id,
+                       position_id: position.id)
+  end
+
+  let(:non_admin) do
+    FactoryGirl.create(:user,
+                       account_id: account.id,
+                       location_id: location.id,
+                       position_id: position.id)
+  end
+
   before { sign_in user }
 
   describe 'manage' do

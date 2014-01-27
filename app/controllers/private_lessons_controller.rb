@@ -1,7 +1,7 @@
 class PrivateLessonsController < ApplicationController
   helper_method :sort_column, :sort_direction
-  before_action :set_private_lesson, only: [:show, :edit, :update, :destroy,
-    :manage_private_lessons]
+  before_action :set_private_lesson, only:
+    [:show, :edit, :update, :destroy, :manage_private_lessons]
 
   def index
     @private_lessons = PrivateLesson.all
@@ -31,12 +31,18 @@ class PrivateLessonsController < ApplicationController
       if @private_lesson.save
         format.html { redirect_to @private_lesson,
           notice: 'Private lesson was successfully created.' }
-        format.json { render action: 'show', status: :created,
-          location: @private_lesson }
+        format.json do
+          render action: 'show',
+                 status: :created,
+                 location: @private_lesson
+        end
+
       else
         format.html { render action: 'new' }
-        format.json { render json: @private_lesson.errors,
-          status: :unprocessable_entity }
+        format.json do
+          render json: @private_lesson.errors,
+                 status: :unprocessable_entity
+        end
       end
     end
   end
@@ -56,22 +62,29 @@ class PrivateLessonsController < ApplicationController
 
     respond_to do |format|
       if @private_lesson.save
-        format.html { redirect_to @private_lesson,
-          notice: 'Private lesson was successfully created.' }
-        format.json { render action: 'show', status: :created,
-          location: @private_lesson }
+        format.html do
+          redirect_to @private_lesson,
+            notice: 'Private lesson was successfully created.'
+        end
+
+        format.json do
+          render action: 'show',
+                 status: :created,
+                 location: @private_lesson
+        end
+
       else
         format.html { render action: 'new' }
-        format.json { render json: @private_lesson.errors,
-          status: :unprocessable_entity }
+        format.json do
+          render json: @private_lesson.errors,
+                 status: :unprocessable_entity
+        end
       end
     end
   end
 
   def update
-
-      @private_lesson.user_id = params[:user_id]
-
+    @private_lesson.user_id = params[:user_id]
 
     respond_to do |format|
       if @private_lesson.update(private_lesson_params)
@@ -82,7 +95,7 @@ class PrivateLessonsController < ApplicationController
       else
         format.html { render action: 'edit' }
         format.json { render json: @private_lesson.errors,
-          status: :unprocessable_entity }
+                             status: :unprocessable_entity }
       end
     end
   end
@@ -105,14 +118,11 @@ class PrivateLessonsController < ApplicationController
 
   # Only allow the white list through.
   def private_lesson_params
-    params.require(:private_lesson).permit(:first_name, :email, :last_name,
-                                            :phone_number, :parent_first_name,
-                                            :parent_last_name, :contact_method,
-                                            :sex, :age, :instructor_gender,
-                                            :notes, :day, :time,
-                                            :preferred_location, :ability_level,
-                                            :user_id, :attachment,
-                                            :number_lessons )
+    params.require(:private_lesson).permit(
+      :first_name, :email, :last_name, :phone_number, :parent_first_name,
+      :parent_last_name, :contact_method, :sex, :age, :instructor_gender,
+      :notes, :day, :time, :preferred_location, :ability_level,
+      :user_id, :attachment, :number_lessons )
   end
 
   def sort_column

@@ -16,7 +16,6 @@ class ShiftReportsController < ApplicationController
   # GET /shift_reports/new
   def new
     @shift_report = ShiftReport.new
-
   end
 
 
@@ -33,11 +32,23 @@ class ShiftReportsController < ApplicationController
 
     respond_to do |format|
       if @shift_report.save
-        format.html { redirect_to @shift_report, notice: 'Shift report was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @shift_report }
+        format.html do
+          redirect_to @shift_report,
+                      notice: 'Shift report was successfully created.'
+        end
+
+        format.json do
+          render action: 'show',
+                 status: :created,
+                 location: @shift_report
+        end
+
       else
         format.html { render action: 'new' }
-        format.json { render json: @shift_report.errors, status: :unprocessable_entity }
+        format.json do
+          render json: @shift_report.errors,
+                 status: :unprocessable_entity
+        end
       end
     end
   end
@@ -47,11 +58,18 @@ class ShiftReportsController < ApplicationController
   def update
     respond_to do |format|
       if @shift_report.update(shift_report_params)
-        format.html { redirect_to @shift_report, notice: 'Shift report was successfully updated.' }
+        format.html do
+          redirect_to @shift_report,
+                      notice: 'Shift report was successfully updated.'
+        end
+
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
-        format.json { render json: @shift_report.errors, status: :unprocessable_entity }
+        format.json do
+          render json: @shift_report.errors,
+                 status: :unprocessable_entity
+        end
       end
     end
   end

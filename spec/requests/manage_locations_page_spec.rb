@@ -5,12 +5,17 @@ describe 'Manage Locations' do
 
   describe 'page' do
     let(:account) { FactoryGirl.create(:account) }
-    let(:location) { FactoryGirl.create(:location, account_id: account.id) }
+    let(:location) do
+      FactoryGirl.create(:location, account_id: account.id)
+    end
+
     let(:position) { FactoryGirl.create(:position) }
-    let(:user) { FactoryGirl.create(:admin,
-                                    account_id: account.id,
-                                    location_id: location.id,
-                                    position_id: position.id) }
+    let(:user) do
+      FactoryGirl.create(:admin,
+                         account_id: account.id,
+                         location_id: location.id,
+                         position_id: position.id)
+    end
 
     before do
       sign_in user
@@ -43,14 +48,14 @@ describe 'Manage Locations' do
         expect { click_button 'Create Location' }
         .to change(Location, :count).by(1)
 
-        current_path.should == admin_dashboard_path
+        current_path.should eq admin_dashboard_path
       end
 
       describe 'clicking the back button' do
         before { click_link 'Back' }
 
         it 'should redirect to admin dash' do
-          current_path.should == admin_dashboard_path
+          current_path.should eq admin_dashboard_path
         end
       end
     end
@@ -65,7 +70,7 @@ describe 'Manage Locations' do
         before { click_link 'Back' }
 
         it 'should redirect to admin dash' do
-          current_path.should == admin_dashboard_path
+          current_path.should eq admin_dashboard_path
         end
       end
 
@@ -73,8 +78,8 @@ describe 'Manage Locations' do
         expect { click_button 'Update Location' }
         .to_not change(Location, :count)
 
-        location.reload.name.should == 'new location name'
-        current_path.should == admin_dashboard_path
+        location.reload.name.should eq 'new location name'
+        current_path.should eq admin_dashboard_path
       end
     end
 
@@ -89,7 +94,7 @@ describe 'Manage Locations' do
         expect { click_link('Delete', match: :first) }
         .to change(Location, :count).by(-1)
 
-        current_path.should == admin_dashboard_path
+        current_path.should eq admin_dashboard_path
       end
     end
   end
