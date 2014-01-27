@@ -32,33 +32,22 @@ class ChemicalRecordsController < ApplicationController
   def create
     @chemical_record = ChemicalRecord.new(chemical_record_params)
 
-    respond_to do |format|
-      if @chemical_record.save
-        format.html { redirect_to chemical_records_path,
-          notice: 'Chemical record was successfully created.' }
-        format.json { render action: 'show', status: :created,
-          location: @chemical_record }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @chemical_record.errors,
-          status: :unprocessable_entity }
-      end
+    if @chemical_record.save
+      flash[:success] = 'Chemical record was successfully created.'
+      redirect_to chemical_records_path
+    else
+      render 'new'
     end
   end
 
   # PATCH/PUT /chemical_records/1
   # PATCH/PUT /chemical_records/1.json
   def update
-    respond_to do |format|
-      if @chemical_record.update(chemical_record_params)
-        format.html { redirect_to @chemical_record,
-          notice: 'Chemical record was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: 'edit' }
-        format.json { render json: @chemical_record.errors,
-          status: :unprocessable_entity }
-      end
+    if @chemical_record.update(chemical_record_params)
+      flash[:success] = 'Chemical record was successfully updated.'
+      redirect_to @chemical_record
+    else
+      render 'edit'
     end
   end
 
@@ -66,10 +55,7 @@ class ChemicalRecordsController < ApplicationController
   # DELETE /chemical_records/1.json
   def destroy
     @chemical_record.destroy
-    respond_to do |format|
-      format.html { redirect_to chemical_records_url }
-      format.json { head :no_content }
-    end
+    redirect_to chemical_records_url
   end
 
   private

@@ -6,9 +6,10 @@ describe 'users' do
   let(:location) { FactoryGirl.create(:location) }
 
   let!(:user) do
-    FactoryGirl.create(:admin, account_id: account.id,
-                              position_id: position.id,
-                              location_id: location.id)
+    FactoryGirl.create(:admin,
+                       account_id: account.id,
+                       position_id: position.id,
+                       location_id: location.id)
   end
 
   before do
@@ -20,8 +21,8 @@ describe 'users' do
     let(:actual) { JSON.parse(response.body) }
 
     it 'should have current user\'s account\'s users' do
-      actual.count.should == 1
-      actual.first['first_name'].should == user.first_name
+      actual.count.should eq 1
+      actual.first['first_name'].should eq user.first_name
     end
 
     it 'should include location data' do

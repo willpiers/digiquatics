@@ -2,8 +2,12 @@ require 'spec_helper'
 
 describe Certification do
 
-  before { @certfication = Certification.new(user_id: 1,
-    certification_name_id: 1, expiration_date: '2012-02-03') }
+  before do
+    @certfication = Certification.new(user_id: 1,
+                                      certification_name_id: 1,
+                                      expiration_date: '2012-02-03')
+  end
+
   subject { @certfication }
 
   it { should respond_to(:user_id) }

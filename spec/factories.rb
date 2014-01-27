@@ -34,7 +34,7 @@ FactoryGirl.define do
     employee_id          1313
   end
 
-    factory :admin, class: User do
+  factory :admin, class: User do
     first_name            'Michael'
     last_name             'Pierce'
     email                 'newadmin@example.com'
@@ -52,7 +52,6 @@ FactoryGirl.define do
     location_id           1
     position_id           1
   end
-
 
   factory :certification do
     certification_name_id 1

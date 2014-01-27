@@ -4,8 +4,12 @@ describe 'Certifications' do
   let(:account) { FactoryGirl.create(:account) }
   let(:location) { FactoryGirl.create(:location, account_id: account.id) }
   let(:position) { FactoryGirl.create(:position) }
-  let(:user) { FactoryGirl.create(:user, location_id: location.id,
-    position_id: position.id, account_id: account.id) }
+  let(:user) do
+    FactoryGirl.create(:user,
+                       location_id: location.id,
+                       position_id: position.id,
+                       account_id: account.id)
+  end
 
   subject { page }
 
@@ -25,8 +29,12 @@ describe 'Certifications' do
       sign_in user
       FactoryGirl.create(:certification_name, account_id: 1, name: 'CPR/AED1')
       FactoryGirl.create(:certification_name, account_id: 2, name: 'CPR/AED2')
-      FactoryGirl.create(:certification, certification_name_id: 1, user_id: user.id)
-      FactoryGirl.create(:certification, certification_name_id: 2, user_id: user.id)
+      FactoryGirl.create(:certification,
+                         certification_name_id: 1,
+                         user_id: user.id)
+      FactoryGirl.create(:certification,
+                         certification_name_id: 2,
+                         user_id: user.id)
       visit certifications_path
     end
 
@@ -54,7 +62,7 @@ describe 'Certifications' do
 
     it 'should not list certifications from another account' do
       Certification.joins(:certification_name)
-      .where(certification_names: {account_id: 2}).each do |cert|
+      .where(certification_names: { account_id: 2 }).each do |cert|
         page.should_not have_content(cert.certification_name.name)
       end
     end

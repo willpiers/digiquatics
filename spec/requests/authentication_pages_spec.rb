@@ -4,8 +4,12 @@ describe 'Authentication' do
   let(:account) { FactoryGirl.create(:account) }
   let(:location) { FactoryGirl.create(:location, account_id: account.id) }
   let(:position) { FactoryGirl.create(:position) }
-  let(:user) { FactoryGirl.create(:user, location_id: location.id,
-    position_id: position.id, account_id: account.id) }
+  let(:user) do
+    FactoryGirl.create(:user,
+                       location_id: location.id,
+                       position_id: position.id,
+                       account_id: account.id)
+  end
 
   subject { page }
 
@@ -41,7 +45,7 @@ describe 'Authentication' do
       describe 'followed by signout' do
         before { click_link 'Sign out' }
 
-        it { should have_link('Sign in') }
+        it { should have_selector('legend', text: 'Sign in') }
       end
     end
 
@@ -85,8 +89,9 @@ describe 'Authentication' do
   end
 
   describe 'as wrong user' do
-    let(:wrong_user) { FactoryGirl.create(:user,
-      email: 'wrong@example.com') }
+    let(:wrong_user) do
+      FactoryGirl.create(:user, email: 'wrong@example.com')
+    end
 
     before { sign_in user, no_capybara: true }
 

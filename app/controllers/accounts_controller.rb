@@ -1,5 +1,6 @@
 class AccountsController < ApplicationController
   include ApplicationHelper
+  include SessionsHelper
 
   before_action :set_account, only: [:show, :edit, :update, :destroy]
   before_action :admin_user, only: [:admin_dashboard]
@@ -13,6 +14,7 @@ class AccountsController < ApplicationController
 
   def new
     @account = Account.new
+    @account.users.build(admin: true)
   end
 
   def edit
@@ -30,40 +32,30 @@ class AccountsController < ApplicationController
   def create
     @account = Account.new(account_params)
 
-    respond_to do |format|
-      if @account.save
-        format.html { redirect_to admin_dashboard_path,
-          notice: 'Account was successfully created.' }
-        format.json { render action: 'show', status: :created,
-          location: @account }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @account.errors,
-          status: :unprocessable_entity }
-      end
+    if @account.save
+      @user = User.find(@account.users)
+      @user.admin = true
+      sign_in(@user)
+      flash[:success] = 'Account was successfully created.'
+      redirect_to admin_dashboard_path
+    else
+      render 'new'
     end
   end
 
   def update
-    respond_to do |format|
-      if @account.update(account_params)
-        format.html { redirect_to admin_dashboard_path,
-          notice: 'Account was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: 'edit' }
-        format.json { render json: @account.errors,
-          status: :unprocessable_entity }
-      end
+    if @account.update(account_params)
+      flash[:success] = 'Account was successfully updated.'
+      redirect_to admin_dashboard_path
+    else
+      render 'edit'
     end
   end
 
   def destroy
     @account.destroy
-    respond_to do |format|
-      format.html { redirect_to admin_dashboard_path }
-      format.json { head :no_content }
-    end
+
+    redirect_to admin_dashboard_path
   end
 
   private
@@ -75,7 +67,17 @@ class AccountsController < ApplicationController
 
   # Only allow the white list through.
   def account_params
-    params.require(:account).permit(:name, :time_zone,
-                                     private_lessons_attributes: [:id])
+    params.require(:account).permit(:name,
+                                    :time_zone,
+                                    private_lessons_attributes: [:id],
+                                    users_attributes: [:id,
+                                                       :first_name,
+                                                       :nickname,
+                                                       :last_name,
+                                                       :email,
+                                                       :account_id,
+                                                       :password,
+                                                       :password_confirmation,
+                                                       :phone_number])
   end
 end

@@ -4,17 +4,19 @@ describe 'Private Lessons' do
   let(:account) { FactoryGirl.create(:account) }
   let(:location) { FactoryGirl.create(:location) }
   let(:position) { FactoryGirl.create(:position) }
-  let(:user) { FactoryGirl.create(:user,
-                                  location_id: location.id,
-                                  position_id: position.id,
-                                  account_id: account.id) }
+  let(:user) do
+    FactoryGirl.create(:user,
+                       location_id: location.id,
+                       position_id: position.id,
+                       account_id: account.id)
+  end
 
   before do
     sign_in user
     FactoryGirl.create(:private_lesson,
                        first_name: 'my_lesson',
                        user_id: user.id,
-                       preferred_location: location.id )
+                       preferred_location: location.id)
     FactoryGirl.create(:private_lesson,
                        first_name: 'other_user_lesson',
                        user_id: user.id - 1,

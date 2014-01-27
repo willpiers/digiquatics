@@ -1,69 +1,47 @@
 class ShiftReportsController < ApplicationController
   before_action :set_shift_report, only: [:show, :edit, :update, :destroy]
 
-  # GET /shift_reports
-  # GET /shift_reports.json
   def index
     @shift_reports = ShiftReport.all
 
   end
 
-  # GET /shift_reports/1
-  # GET /shift_reports/1.json
   def show
   end
 
-  # GET /shift_reports/new
   def new
     @shift_report = ShiftReport.new
-
   end
 
-
-  # GET /shift_reports/1/edit
   def edit
   end
 
-  # POST /shift_reports
-  # POST /shift_reports.json
   def create
     @shift_report = ShiftReport.new(shift_report_params)
     @shift_report.user_id = current_user.id
     @shift_report.location_id = current_user.location_id
 
-    respond_to do |format|
-      if @shift_report.save
-        format.html { redirect_to @shift_report, notice: 'Shift report was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @shift_report }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @shift_report.errors, status: :unprocessable_entity }
-      end
+    if @shift_report.save
+      flash[:success] = 'Shift report was successfully created.'
+      redirect_to @shift_report
+    else
+      render 'new'
     end
   end
 
-  # PATCH/PUT /shift_reports/1
-  # PATCH/PUT /shift_reports/1.json
   def update
-    respond_to do |format|
-      if @shift_report.update(shift_report_params)
-        format.html { redirect_to @shift_report, notice: 'Shift report was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: 'edit' }
-        format.json { render json: @shift_report.errors, status: :unprocessable_entity }
-      end
+    if @shift_report.update(shift_report_params)
+      flash[:success] = 'Shift report was successfully updated.'
+      redirect_to @shift_report
+    else
+      render 'edit'
     end
   end
 
-  # DELETE /shift_reports/1
-  # DELETE /shift_reports/1.json
   def destroy
     @shift_report.destroy
-    respond_to do |format|
-      format.html { redirect_to shift_reports_url }
-      format.json { head :no_content }
-    end
+
+    redirect_to shift_reports_url
   end
 
   private

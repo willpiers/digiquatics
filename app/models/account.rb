@@ -2,6 +2,7 @@ class Account < ActiveRecord::Base
   extend ScopeHelper
   include_scopes
 
+  validates_presence_of :name
   validates_inclusion_of :time_zone,
                          in: ActiveSupport::TimeZone.zones_map(&:name)
 
@@ -13,4 +14,6 @@ class Account < ActiveRecord::Base
   has_many :private_lessons
   has_many :shift_reports
   has_many :help_desks
+
+  accepts_nested_attributes_for :users
 end

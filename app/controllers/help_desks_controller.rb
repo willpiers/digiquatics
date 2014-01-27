@@ -1,14 +1,10 @@
 class HelpDesksController < ApplicationController
   before_action :set_help_desk, only: [:show, :edit, :update, :destroy]
 
-  # GET /help_desks
-  # GET /help_desks.json
   def index
     @help_desks = HelpDesk.order(sort_column + " " + sort_direction)
   end
 
-  # GET /help_desks/1
-  # GET /help_desks/1.json
   def show
   end
 
@@ -16,60 +12,39 @@ class HelpDesksController < ApplicationController
     @helpdesk = HelpDesk.all
   end
 
-  # GET /help_desks/new
   def new
     @help_desk = HelpDesk.new
   end
 
-  # GET /help_desks/1/edit
   def edit
   end
 
-  # POST /help_desks
-  # POST /help_desks.json
   def create
     @help_desk = HelpDesk.new(help_desk_params)
     @help_desk.user_id = current_user.id
     @help_desk.location_id = current_user.location_id
 
-    respond_to do |format|
-      if @help_desk.save
-        format.html { redirect_to help_desks_path,
-          notice: 'Help desk was successfully created.' }
-        format.json { render action: 'show',
-          status: :created, location: @help_desk }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @help_desk.errors,
-          status: :unprocessable_entity }
-      end
+    if @help_desk.save
+      flash[:success] = 'Help desk was successfully created.'
+      redirect_to help_desks_path
+    else
+      render 'new'
     end
   end
 
-  # PATCH/PUT /help_desks/1
-  # PATCH/PUT /help_desks/1.json
   def update
-    respond_to do |format|
-      if @help_desk.update(help_desk_params)
-        format.html { redirect_to @help_desk,
-          notice: 'Help desk was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: 'edit' }
-        format.json { render json: @help_desk.errors,
-          status: :unprocessable_entity }
-      end
+    if @help_desk.update(help_desk_params)
+      flash[:success] = 'Help desk was successfully updated.'
+      redirect_to @help_desk
+    else
+      render 'edit'
     end
   end
 
-  # DELETE /help_desks/1
-  # DELETE /help_desks/1.json
   def destroy
     @help_desk.destroy
-    respond_to do |format|
-      format.html { redirect_to help_desks_url }
-      format.json { head :no_content }
-    end
+
+    redirect_to help_desks_url
   end
 
   private

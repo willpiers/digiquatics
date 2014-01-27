@@ -2,20 +2,22 @@ require 'spec_helper'
 
 describe PrivateLesson do
 
-  before { @private_lesson = PrivateLesson.new(
-    first_name: 'Michael',
-    email: 'michael@affektive.com',
-    last_name: 'Pierce',
-    phone_number:'720-387-9691',
-    parent_first_name:'Trent',
-    parent_last_name: 'Allen',
-    sex: 'M',
-    age: '12',
-    instructor_gender: 'F',
-    notes: 'No Jake',
-    day: 'Mon',
-    time: 'AM',
-    ability_level: '6') }
+  before do
+    @private_lesson = PrivateLesson.new(
+      first_name:         'Michael',
+      email:              'michael@affektive.com',
+      last_name:          'Pierce',
+      phone_number:       '720-387-9691',
+      parent_first_name:  'Trent',
+      parent_last_name:   'Allen',
+      sex:                'M',
+      age:                '12',
+      instructor_gender:  'F',
+      notes:              'No Jake',
+      day:                'Mon',
+      time:               'AM',
+      ability_level:      '6')
+  end
 
   subject { @private_lesson }
 

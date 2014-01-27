@@ -2,7 +2,11 @@ require 'spec_helper'
 
 describe CertificationName do
 
-  before { @certfication_name = CertificationName.new(account_id: '1', name: 'CPR/AED') }
+  before do
+    @certfication_name = CertificationName.new(account_id: '1',
+                                               name: 'CPR/AED')
+  end
+
   subject { @certfication_name }
 
   it { should respond_to(:name) }
