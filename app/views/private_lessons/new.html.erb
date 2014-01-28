@@ -1,11 +1,6 @@
-<% provide(:title, 'Create New Lesson') %>
+<% provide(:title, 'New Private Lesson') %>
 <center><h1>City of Lakewood</h1></center>
-<center><h3>Private Swimming Lessons </h3></center>
-<center> <h4>Online Enrollment Form</h4> </center>
+<%= render partial: 'form', locals: {legend: 'New Private Lesson'} %>
 
-<div id='accountform'>
-  <br>
-  <%= render 'form' %>
-  <%= link_to 'Back', private_lesson_details_path %>
-</div>
+
 
