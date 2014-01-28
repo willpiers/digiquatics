@@ -304,3 +304,62 @@ Make Unicorn run properly when Nginx starts:
 ```
 sudo update-rc.d unicorn_blog defaults
 ```
+
+After rebuild by Josh Duffy 1/26/2014:
+Ubuntu 10.04.4 LTS
+apt-get update
+apt-get -y install curl git-core python-software-properties
+add-apt-repository ppa:nginx/stable
+apt-get update
+apt-get -y install nginx
+service nginx start
+
+Install MySQL:
+apt-get -y install mysql-server mysql-client libmysqlclient-dev
+
+MySQL root user: Password: @ffektive!
+
+mysql -u root -p
+# create database digiquatics_production;
+# grant all on digiquatics_production.* to digiquatics@localhost identified by '@ffektive!';
+# exit
+
+Node.JS
+add-apt-repository ppa:chris-lea/node.js
+apt-get -y update
+apt-get -y install nodejs
+
+Add another user: deployer
+adduser deployer --ingroup sudo
+Password: @ffektive!
+
+su deployer
+cd ~
+curl -L https://raw.github.com/fesplugas/rbenv-installer/master/bin/rbenv-installer | bash
+
+Add to .bashrc file using vi:
+
+```
+if [ -d $HOME/.rbenv ]; then
+  export PATH="$HOME/.rbenv/bin:$PATH"
+  eval "$(rbenv init -)"
+fi
+```
+above:
+
+```
+# If not running interactively, don't do anything
+[ -z "$PS1" ] && return
+```
+Reload .bashrc
+. ~/.bashrc
+
+rbenv install 2.0.0-p247
+rbenv global 2.0.0-p247
+ruby -v
+
+gem install bundler --no-ri --no-rdoc
+rbenv rehash
+bundle -v
+
+ssh git@github.com
