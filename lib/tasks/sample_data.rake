@@ -57,7 +57,7 @@ namespace :db do
                    date_of_hire: "2008-07-01",
                    active: [true, false].sample,
                    account_id: 1,
-                   location_id: rand(3) + 1,
+                   location_id: rand(2) + 1,
                    position_id: rand(3) + 1,
                    employee_id: rand(1000)
                    )
