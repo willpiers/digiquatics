@@ -11,7 +11,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr ng-repeat='userData in users | orderBy:sorter.value'>
+      <tr ng-repeat='userData in users | orderBy:sorter.value | filter:locationFilter | filter:search'>
         <td>{{userData.lastName}}</td>
         <td>{{userData.firstName}}</td>
         <td>{{userData.location}}</td>

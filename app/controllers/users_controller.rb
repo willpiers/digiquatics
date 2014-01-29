@@ -8,6 +8,7 @@ class UsersController < ApplicationController
 
   def index
     @users = User.joins(:account).same_account_as(current_user).active
+      .order("#{sort_column} #{sort_direction}")
 
     respond_to do |format|
       format.html
