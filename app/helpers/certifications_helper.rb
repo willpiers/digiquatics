@@ -21,9 +21,20 @@ module CertificationsHelper
 
   def user_data(user)
     {
+      id: user.id,
       lastName: user.last_name,
       firstName: user.first_name,
-      location: user.location.name
+      location: user.location.name,
+
+      # Added for users index page, need to move elsewhere
+      employee_id: user.employee_id,
+      date_of_birth: user.date_of_birth,
+      position: user.position.name,
+      email: user.email,
+      phone_number: user.phone_number,
+      admin: user.admin,
+      active: user.active
+      # End
     }
   end
 
