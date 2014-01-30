@@ -25,10 +25,10 @@ Username: `root`
 Password: `@ffektive!`
 
 log into root user:
-`ssh root@198.199.105.193` password is: `@ffektive!`
+`ssh root@digiquatics.com` password is: `@ffektive!`
 
 log into your own user account:
-`ssh deployer@198.199.105.193` password is: `@ffektive!`
+`ssh deployer@digiquatics.com` password is: `@ffektive!`
 
 add new user:
 `adduser deployer`
@@ -44,7 +44,7 @@ Doing anything new, restart servers:
 
 Use `ssh-copy-id` instead of passwords, more secure:
 `brew install ssh-copy-id`
-`ssh-copy-id deployer@198.199.105.193`
+`ssh-copy-id deployer@digiquatics.com`
 
 Install Git:
 `sudo apt-get install`
