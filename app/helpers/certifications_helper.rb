@@ -21,6 +21,7 @@ module CertificationsHelper
 
   def user_data(user)
     {
+      id: user.id,
       lastName: user.last_name,
       firstName: user.first_name,
       location: user.location.name
