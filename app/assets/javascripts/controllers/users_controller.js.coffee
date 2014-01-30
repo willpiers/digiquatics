@@ -1,5 +1,7 @@
 @digiquatics.controller 'UsersCtrl', ['$scope', 'Users',
   @UsersCtrl = ($scope, Users) ->
     $scope.sorter =
-      value: 'firstName'
+      value: 'last_name'
+
+    $scope.users = Users.index()
 ]

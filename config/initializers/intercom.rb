@@ -20,7 +20,7 @@ IntercomRails.config do |config|
   # == Enabled Environments
   # Which environments is auto inclusion of the Javascript enabled for
   #
-  config.enabled_environments = ['development', 'production']
+  config.enabled_environments = %w['development', 'production']
 
   #rubocop: disable all
 
@@ -92,6 +92,6 @@ IntercomRails.config do |config|
   # config.inbox.style = :default
   # config.inbox.style = :custom
 
-  #rubocop: enable all
+  # rubocop: enable all
 
 end
