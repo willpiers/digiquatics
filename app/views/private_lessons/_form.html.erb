@@ -1,30 +1,33 @@
-<% provide(:title, 'Edit Lesson') %>
-  <%= bootstrap_form_for(@private_lesson,
-  style: :horizontal, left: 'col-sm-4', right: 'col-sm-8') do |f| %>
+<div class='userform well'>
+  <% provide(:title, 'Edit Lesson') %>
+    <%= bootstrap_form_for(@private_lesson,
+    style: :horizontal, left: 'col-sm-4', right: 'col-sm-8') do |f| %>
 
-  <h4> Parent Information </h4>
-  <br>
-    <%= f.text_field :parent_first_name %>
-    <%= f.text_field :parent_last_name %>
-    <%= f.telephone_field :phone_number %>
-    <%= f.text_field :email %>
-    <%= f.select :contact_method, options_for_select(%w[Call Email Text]) %>
+    <%= content_tag(:legend, legend) unless !legend %>
+    <h4> Parent Information </h4>
+    <br>
+      <%= f.text_field :parent_first_name %>
+      <%= f.text_field :parent_last_name %>
+      <%= f.telephone_field :phone_number %>
+      <%= f.text_field :email %>
+      <%= f.select :contact_method, options_for_select(%w[Call Email Text]) %>
 
-  <h4> Student Information </h4>
-    <%= f.text_field :first_name %>
-    <%= f.text_field :last_name %>
-    <%= f.select :sex, options_for_select(%w[M F]) %>
-    <%= f.text_field :age %>
+    <h4> Student Information </h4>
+      <%= f.text_field :first_name %>
+      <%= f.text_field :last_name %>
+      <%= f.select :sex, options_for_select(%w[M F]) %>
+      <%= f.text_field :age %>
 
-  <h4> Preferences </h4>
-    <%= f.select :instructor_gender, options_for_select(%w[M F]) %>
-    <%= f.text_area :notes, size: '2x' %>
-  <br>
-  <h4> Lesson Request </h4>
-    <%= f.select :number_lessons,
-      options_for_select(%w[1 2 3 4 5 6 7 8 9 10]) %>
-  <br>
-    <%= f.form_group do %>
-      <%= f.submit 'Save Changes', class: 'btn btn-default btn-primary' %>
-    <% end %>
-<% end %>
+    <h4> Preferences </h4>
+      <%= f.select :instructor_gender, options_for_select(%w[M F]) %>
+      <%= f.text_area :notes, size: '2x' %>
+
+    <h4> Lesson Request </h4>
+      <%= f.select :number_lessons,
+        options_for_select(%w[1 2 3 4 5 6 7 8 9 10]) %>
+    <%= f.primary ( f.object.new_record? ?  'Submit' :
+    'Save Changes' ) %>
+  <% end %>
+</div>
+</div>
+
