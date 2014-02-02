@@ -13,9 +13,9 @@ class PrivateLesson < ActiveRecord::Base
                     path: ':rails_root/public/system/:attachment/:id/:style/:filename',
                     url: '/system/:attachment/:id/:style/:filename'
   # rubocop:enable LineLength, StringLiterals
-  validates_presence_of :first_name, :email, :last_name, :phone_number,
-                        :parent_first_name, :parent_last_name, :sex, :age,
-                        :instructor_gender, :notes, :day, :time, :ability_level
+  validates_presence_of :parent_first_name, :parent_last_name, :phone_number,
+                        :email, :contact_method, :first_name, :last_name,
+                        :sex, :age, :instructor_gender, :notes, :number_lessons
 
   comma do
     last_name 'Student Last'
