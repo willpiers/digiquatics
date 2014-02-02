@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140202152529) do
+ActiveRecord::Schema.define(version: 20140202183436) do
 
   create_table "accounts", force: true do |t|
     t.string   "name"
@@ -85,6 +85,7 @@ ActiveRecord::Schema.define(version: 20140202152529) do
     t.datetime "help_desk_attachment_updated_at"
     t.text     "description"
     t.boolean  "issue_status",                      default: true
+    t.text     "issue_resolution_description"
   end
 
   create_table "locations", force: true do |t|

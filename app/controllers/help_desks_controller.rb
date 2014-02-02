@@ -63,6 +63,7 @@ class HelpDesksController < ApplicationController
     def help_desk_params
       params.require(:help_desk).permit(:name, :description, :urgency, :user_id,
                                         :location_id, :issue_status,
+                                        :issue_resolution_description,
                                         :help_desk_attachment)
     end
 
