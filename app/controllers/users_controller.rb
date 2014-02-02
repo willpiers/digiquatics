@@ -18,22 +18,8 @@ class UsersController < ApplicationController
     end
   end
 
-  def all_users
-    @all_users = User.joins(:account).same_account_as(current_user)
-    .includes(:location, :position).search(params[:search])
-    .order(sort_column + " " + sort_direction)
-
-    respond_to do |format|
-      format.html
-      format.csv { render csv: @all_users, filename: 'all_users' }
-    end
-  end
-
   def inactive_index
-    @inactive_users = User.joins(:account).same_account_as(current_user)
-    .inactive.includes(:location, :position).search(params[:search])
-    .order(sort_column + " " + sort_direction)
-
+    @inactive_users = User.joins(:account).same_account_as(current_user).where(active: false)
     respond_to do |format|
       format.html
       format.csv { render csv: @inactive_users, filename: 'inactive_users' }
