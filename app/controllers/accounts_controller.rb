@@ -69,6 +69,7 @@ class AccountsController < ApplicationController
   def account_params
     params.require(:account).permit(:name,
                                     :time_zone,
+                                    :logo,
                                     private_lessons_attributes: [:id],
                                     users_attributes: [:id,
                                                        :first_name,

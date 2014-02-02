@@ -12,5 +12,15 @@
         class: 'glyphicon glyphicon-pencil' %>
       </td>
     </tr>
+    <tr>
+      <td class='fixtablewidthadmin'>
+        <div style = "margin-left:0px;">
+          <%= image_tag @account.logo.url, height: '100' %>
+        </div>
+      </td>
+      <td> <%= link_to ' Edit', edit_account_path(current_user.account_id),
+        class: 'glyphicon glyphicon-pencil' %>
+      </td>
+    </tr>
   </tbody>
 </table>

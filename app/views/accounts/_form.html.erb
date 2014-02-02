@@ -3,6 +3,10 @@
 
     <%= content_tag(:legend, legend) unless !legend %>
 
+    <div class="field">
+      <%= f.file_field :logo %>
+    </div>
+
     <%= f.text_field :name, label: 'Organization Name' %>
     <%= f.label :time_zone %><br>
     <%= f.time_zone_select :time_zone, ActiveSupport::TimeZone.us_zones %>
