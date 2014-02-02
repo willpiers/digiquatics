@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140202183436) do
+ActiveRecord::Schema.define(version: 20140202220840) do
 
   create_table "accounts", force: true do |t|
     t.string   "name"
@@ -116,19 +116,6 @@ ActiveRecord::Schema.define(version: 20140202183436) do
     t.datetime "updated_at"
   end
 
-  create_table "private_lesson_details", force: true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "first_name"
-    t.string   "last_name"
-    t.string   "email"
-    t.integer  "phone_number"
-    t.string   "logo_file_name"
-    t.string   "logo_content_type"
-    t.integer  "logo_file_size"
-    t.datetime "logo_updated_at"
-  end
-
   create_table "private_lessons", force: true do |t|
     t.string   "first_name"
     t.string   "email"
@@ -147,8 +134,6 @@ ActiveRecord::Schema.define(version: 20140202183436) do
     t.string   "day"
     t.string   "time"
     t.string   "preferred_location"
-    t.integer  "ability_level"
-    t.integer  "facility_level"
     t.integer  "user_id"
     t.string   "attachment_file_name"
     t.string   "attachment_content_type"
