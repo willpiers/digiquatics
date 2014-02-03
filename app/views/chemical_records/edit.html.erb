@@ -1,5 +1,4 @@
-<div class='row'>
-  <div class='userform'>
-    <%= render partial: 'form', locals: {legend: 'Edit Chemical Record'} %>
-  </div>
-</div>
+<% provide(:title, 'Chemical Records') %>
+
+<%= render partial: 'form', locals: {legend: 'Edit Chemical Record'} %>
+

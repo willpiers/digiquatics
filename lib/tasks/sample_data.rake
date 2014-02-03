@@ -16,50 +16,85 @@ namespace :db do
     Position.create(name: "WSI", account_id: 1)
 
     User.create!(first_name: "First",
+                 nickname: "Dubs",
                  last_name: "Last",
+                 phone_number: '303-123-4567',
                  email: "example@affektive.com",
                  password: "foobar",
                  password_confirmation: "foobar",
-                 phone_number: '303-123-4567',
+                 date_of_birth: "1992-09-15",
+                 sex: "F",
+                 address1: "14277 E Warren Dr.",
+                 address2: "Unit B",
+                 city: 'Lakewood',
+                 state: 'CO',
+                 zipcode: '80228',
                  shirt_size: "M",
                  suit_size: "M",
-                 sex: "F",
-                 date_of_birth: "1992-09-15",
-                 date_of_hire: "2008-07-01",
-                 admin: true,
-                 active: true,
-                 account_id: 1,
+                 femalesuit: '30',
+                 emergency_first: 'Lydia',
+                 emergency_last: 'Campbell',
+                 emergency_phone: '303-222-1313',
                  location_id: 1,
                  position_id: 2,
-                 employee_id: 1313)
+                 employee_id: 1313,
+                 grouping: 'West',
+                 date_of_hire: "2008-07-01",
+                 payrate: '9.50',
+                 admin: true,
+                 active: true,
+                 account_id: 1)
 
     100.times do |n|
       first_name  = Faker::Name.first_name
+      nickname  = Faker::Name.name
       last_name = Faker::Name.last_name
       phone_number = Faker::PhoneNumber.phone_number
       email = Faker::Internet.email
-      sex = ["M","F"]
-      suit_size = ["XS", "S", "M", "L", "XL"]
-      shirt_size = ["XS", "S", "M", "L", "XL"]
       password  = "password"
       sex = ["M","F"]
+      address1 = Faker::Address.street_address(include_secondary = false)
+      address2 = Faker::Address.secondary_address
+      city = Faker::Address.city
+      state_abbr = Faker::Address.state_abbr
+      zip_code = Faker::Address.zip_code
+      shirt_size = ["XS", "S", "M", "L", "XL"]
+      suit_size = ["XS", "S", "M", "L", "XL"]
+      emergency_first  = Faker::Name.first_name
+      emergency_last = Faker::Name.last_name
+      emergency_phone = Faker::PhoneNumber.phone_number
+      grouping = ["North", "West", "East", "South"]
+      payrate = [8.00, 8.50, 9.00, 9.50, 10.00, 10.50, 11.00]
 
-      User.create!(first_name: first_name, last_name: last_name,
+      User.create!(first_name: first_name,
+                   nickname: nickname,
+                   last_name: last_name,
+                   phone_number: phone_number,
                    email: email,
                    password: password,
                    password_confirmation: password,
-                   phone_number: phone_number,
-                   suit_size: suit_size.sample,
-                   shirt_size: shirt_size.sample,
-                   femalesuit: [28, 30, 32, 34, 36, 38, 40].sample,
-                   sex: sex.sample,
                    date_of_birth: "1992-09-15",
-                   date_of_hire: "2008-07-01",
-                   active: [true, false].sample,
-                   account_id: 1,
+                   sex: sex.sample,
+                   address1: address1,
+                   address2: address2,
+                   city: city,
+                   state: state_abbr,
+                   zipcode: zip_code,
+                   shirt_size: shirt_size.sample,
+                   suit_size: suit_size.sample,
+                   femalesuit: [28, 30, 32, 34, 36, 38, 40].sample,
                    location_id: rand(2) + 1,
+                   emergency_first: emergency_first,
+                   emergency_last: emergency_last,
+                   emergency_phone: emergency_phone,
                    position_id: rand(3) + 1,
-                   employee_id: rand(1000)
+                   employee_id: rand(1000),
+                   grouping: grouping.sample,
+                   date_of_hire: "2008-07-01",
+                   payrate: payrate,
+                   admin: false,
+                   active: [true, false].sample,
+                   account_id: 1
                    )
     end
 
@@ -122,6 +157,15 @@ namespace :db do
                            date_stamp: "2014-01-01",
                            time_stamp: "10:00pm"
       )
+    end
+
+    25.times do |n|
+      HelpDesk.create!(name: ["A", "B", "C", "D"].sample,
+                       urgency: ["Low", "Medium", "High"].sample,
+                       issue_status: true,
+                       location_id: 1,
+                       user_id: n+1
+                       )
     end
 
     Rake.application['db:test:prepare'].invoke
