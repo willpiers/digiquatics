@@ -20,7 +20,7 @@ class PoolsController < ApplicationController
 
     if @pool.save
       flash[:sucess] = 'Pool was successfully created.'
-      redirect_to @pool,
+      redirect_to @pool
     else
       render action: 'new'
     end

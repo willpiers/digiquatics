@@ -18,6 +18,11 @@ to your `.zshrc` or `.bashrc` file
 - run `rake db:populate`
 - run `rake db:test:prepare`
 
+# Upgrading BinStubs
+bundle config --delete bin    # Turn off Bundler's stub generator
+rake rails:update:bin         # Use the new Rails 4 executables
+git add bin                   # Add bin/ to source control
+
 # Virtual Server Setup
 
 IP Address: `198.199.105.193`
