@@ -1,6 +1,4 @@
 <% provide(:title, 'Issues') %>
-<h1> New Issue</h1>
 
-<div id='accountform'>
-  <%= render 'form' %>
-</div>
+<%= render partial: 'form', locals: {legend: 'New Issue'} %>
+

@@ -10,7 +10,8 @@ class Certification < ActiveRecord::Base
                     path: ':rails_root/public/system/:attachment/:id/:style/:filename',
                     url: '/system/:attachment/:id/:style/:filename'
   # rubocop:enable LineLength, StringLiterals
-  validates_presence_of :certification_name_id, :expiration_date, :user_id
+  validates_presence_of :certification_name_id, :expiration_date, :issue_date,
+                        :user_id
 
   comma do
     user last_name: 'Last'

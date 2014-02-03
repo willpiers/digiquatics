@@ -24,9 +24,7 @@ describe 'admin setup' do
 
   describe 'manage' do
     describe 'users' do
-      before { click_link('Manage Users') }
-
-      it { should have_title(full_title('Users')) }
+      it { should have_title('Users') }
     end
 
     describe 'users' do
@@ -45,7 +43,7 @@ describe 'admin setup' do
 
       describe 'as admin' do
         before do
-          click_link('Manage Users')
+          click_link('Users')
         end
 
         it 'should go to users index' do

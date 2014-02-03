@@ -64,15 +64,24 @@
 					<td> <%= @user.account.name %> </td>
 				</tr>
 				<tr>
-				<th> Location </th>
-					<td> <%= @user.location.name %> </td>
+					<th> Location </th>
+					<% if @user.location = nil %>
+						<td> <%= @user.location.name %> </td>
+					<% elsif %>
+						<td> Please update location information on user edit page </td>
+					<% end %>
 				</tr>
 				<tr>
 				<th> Grouping </th>
 					<td> <%= @user.grouping%> </td>
 				</tr>
 				<tr>
-					<th> Position </th> <td> <%= @user.position.name %>  </td>
+					<th> Position </th>
+					<% if @user.position = nil %>
+						<td> <%= @user.position.name %> </td>
+					<% elsif %>
+						<td> Please update position information on user edit page </td>
+					<% end %>
 				</tr>
 				<tr>
 					<th> Address 1 </th> <td> <%= @user.address1 %>  </td>

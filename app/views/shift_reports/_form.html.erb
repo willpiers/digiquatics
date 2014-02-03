@@ -1,19 +1,20 @@
-<%= bootstrap_form_for(@shift_report,
-  style: :horizontal, left: 'col-sm-4', right: 'col-sm-8') do |f| %>
+<div class='userform well'>
+  <%= bootstrap_form_for(@shift_report,
+    style: :horizontal, left: 'col-sm-4', right: 'col-sm-8') do |f| %>
 
-  <%= f.text_field :post_title %>
-  <%= f.text_area :post_content %>
+    <%= content_tag(:legend, legend) unless !legend %>
 
-  <div class='date-select'>
-    <%= f.date_select :date_stamp, {}, label: 'Date'  %>
-    <%= f.time_select :time_stamp, { ampm: true },
-      label: 'Time' %>
-  </div>
+    <%= f.text_field :post_title %>
+    <%= f.text_area :post_content %>
 
-  <%= f.form_group do %>
-    <%= f.submit %>
+    <div class='date-select'>
+      <%= f.date_select :date_stamp, {}, label: 'Date'  %>
+      <%= f.time_select :time_stamp, { ampm: true },
+        label: 'Time' %>
+    </div>
+
+    <%= f.primary ( f.object.new_record? ?  'Submit' :
+    'Save Changes' ) %>
   <% end %>
-<% end %>
-
-<br>
-<br>
+</div>
+</div>

@@ -15,10 +15,14 @@ describe 'Private Lessons' do
     sign_in user
     FactoryGirl.create(:private_lesson,
                        first_name: 'my_lesson',
+                       contact_method: 'Call',
+                       number_lessons: '5',
                        user_id: user.id,
                        preferred_location: location.id)
     FactoryGirl.create(:private_lesson,
                        first_name: 'other_user_lesson',
+                       contact_method: 'Text',
+                       number_lessons: '3',
                        user_id: user.id - 1,
                        preferred_location: location.id)
   end

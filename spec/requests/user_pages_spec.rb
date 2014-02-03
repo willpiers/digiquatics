@@ -4,14 +4,16 @@ describe 'User pages' do
   let!(:account) { FactoryGirl.create(:account) }
   let!(:another_account) { FactoryGirl.create(:account) }
   let!(:location) { FactoryGirl.create(:location, account_id: account.id) }
-  let!(:another_location) do
-    FactoryGirl.create(:location, name: 'Another Location',
+  let!(:location_too) do
+    FactoryGirl.create(:location,
+                       name: 'Another Location',
                        account_id: another_account.id)
   end
 
   let!(:position) { FactoryGirl.create(:position, account_id: account.id) }
-  let!(:another_position) do
-    FactoryGirl.create(:position, name: 'Another position',
+  let!(:position_too) do
+    FactoryGirl.create(:position,
+                       name: 'Another position',
                        account_id: another_account.id)
   end
 
@@ -143,27 +145,21 @@ describe 'User pages' do
 
         describe 'should not see certifications' do
           it { should_not have_selector('h4', text: 'Certifications') }
-          it { should have_no_field('user_certifications_attributes_0_issue_date_1i') }
-          it { should have_no_field('user_certifications_attributes_0_issue_date_2i') }
-          it { should have_no_field('user_certifications_attributes_0_issue_date_3i') }
+          it { should have_no_selector('label', text: 'Issue Date') }
 
-          it { should have_no_field('user_certifications_attributes_0_expiration_date_1i') }
-          it { should have_no_field('user_certifications_attributes_0_expiration_date_2i') }
-          it { should have_no_field('user_certifications_attributes_0_expiration_date_3i') }
+          it { should have_no_selector('label', text: 'Expiration Date') }
 
-          it { should have_no_field('user_certifications_attributes_0_attachment') }
+          it { should have_no_selector('label', text: 'Attachment') }
         end
 
         describe 'should not see other admin fields' do
-          it { should have_no_field('user_location_id') }
-          it { should have_no_field('user_position_id') }
-          it { should have_no_field('user_employee_id') }
-          it { should have_no_field('user_grouping') }
-          it { should have_no_field('user_payrate') }
-          it { should have_no_field('user_date_of_hire_1i') }
-          it { should have_no_field('user_date_of_hire_2i') }
-          it { should have_no_field('user_date_of_hire_3i') }
-          it { should have_no_field('Notes') }
+          it { should have_no_selector('label', text: 'Location') }
+          it { should have_no_selector('label', text: 'Position') }
+          it { should have_no_selector('label', text: 'Employee ID') }
+          it { should have_no_selector('label', text: 'Grouping') }
+          it { should have_no_selector('label', text: 'Pay Rate') }
+          it { should have_no_selector('label', text: 'Date of Hire') }
+          it { should have_no_selector('label', text: 'Notes') }
         end
 
         describe 'with invalid information' do
@@ -238,27 +234,20 @@ describe 'User pages' do
 
         describe 'should see certs' do
           it { should have_selector('h4', text: 'Certifications') }
-          it { should have_field('user_certifications_attributes_0_issue_date_1i') }
-          it { should have_field('user_certifications_attributes_0_issue_date_2i') }
-          it { should have_field('user_certifications_attributes_0_issue_date_3i') }
+          it { should have_selector('label', text: 'Issue Date') }
+          it { should have_selector('label', text: 'Expiration Date') }
 
-          it { should have_field('user_certifications_attributes_0_expiration_date_1i') }
-          it { should have_field('user_certifications_attributes_0_expiration_date_2i') }
-          it { should have_field('user_certifications_attributes_0_expiration_date_3i') }
-
-          it { should have_field('user_certifications_attributes_0_attachment') }
+          it { should have_selector('label', text: 'Attachment') }
         end
 
         describe 'should see other admin fields' do
-          it { should have_field('user_location_id') }
-          it { should have_field('user_position_id') }
-          it { should have_field('user_employee_id') }
-          it { should have_field('user_grouping') }
-          it { should have_field('user_payrate') }
-          it { should have_field('user_date_of_hire_1i') }
-          it { should have_field('user_date_of_hire_2i') }
-          it { should have_field('user_date_of_hire_3i') }
-          it { should have_field('Notes') }
+          it { should have_selector('label', text: 'Location') }
+          it { should have_selector('label', text: 'Position') }
+          it { should have_selector('label', text: 'Employee ID') }
+          it { should have_selector('label', text: 'Grouping') }
+          it { should have_selector('label', text: 'Pay Rate') }
+          it { should have_selector('label', text: 'Date of Hire') }
+          it { should have_selector('label', text: 'Notes') }
         end
 
         describe 'should have certification names for current users account' do
@@ -268,12 +257,12 @@ describe 'User pages' do
 
         describe 'should only have locations for current users account' do
           it { should have_selector('option', text: location.name) }
-          it { should_not have_selector('option', text: another_location.name) }
+          it { should_not have_selector('option', text: location_too.name) }
         end
 
         describe 'should only have positions for current users account' do
           it { should have_selector('option', text: position.name) }
-          it { should_not have_selector('option', text: another_position.name) }
+          it { should_not have_selector('option', text: position_too.name) }
         end
 
         describe 'with invalid information' do

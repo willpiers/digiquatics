@@ -1,7 +1,7 @@
 describe 'CertificationsCtrl', ->
   scope = $httpBackend = undefined
 
-  certificationNames = ['CPR', 'LGI']
+  certNames = ['CPR', 'LGI']
   users = [
     lastName: 'Last'
     firstName: 'First'
@@ -18,7 +18,7 @@ describe 'CertificationsCtrl', ->
     $httpBackend = _$httpBackend_
 
     $httpBackend.expectGET('/certification_expirations.json').respond
-      certification_names: certificationNames
+      certification_names: certNames
       users: users
 
     scope = $rootScope.$new()
@@ -27,10 +27,10 @@ describe 'CertificationsCtrl', ->
   )
 
   it 'should set the certification names and users on scope', ->
-    expect(scope.certificationNames).toEqualData undefined
+    expect(scope.certNames).toEqualData undefined
     expect(scope.users).toEqualData undefined
 
     $httpBackend.flush()
 
-    expect(scope.certificationNames).toEqual certificationNames
+    expect(scope.certNames).toEqual certNames
     expect(scope.users).toEqual users

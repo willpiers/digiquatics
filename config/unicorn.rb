@@ -1,8 +1,13 @@
-listen '198.199.105.193:8080'
-worker_processes 2
-user 'rails'
-working_directory '/home/rails'
-pid '/home/unicorn/pids/unicorn.pid'
-stderr_path '/home/unicorn/log/unicorn.log'
-stdout_path '/home/unicorn/log/unicorn.log'
-timeout 30
+root = '/var/www/digiquatics/current'
+working_directory root
+pid "#{root}/tmp/pids/unicorn.pid"
+stderr_path "#{root}/log/unicorn.log"
+stdout_path "#{root}/log/unicorn.log"
+
+listen '/tmp/unicorn.digiquatics.sock'
+
+# Force the bundler gemfile environment variable to
+# reference the capistrano "current" symlink
+before_exec do |_|
+  ENV['BUNDLE_GEMFILE'] = File.join(root, 'Gemfile')
+end
