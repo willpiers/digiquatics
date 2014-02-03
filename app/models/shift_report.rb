@@ -8,4 +8,13 @@ class ShiftReport < ActiveRecord::Base
 
   accepts_nested_attributes_for :users
 
+  comma do
+    post_title
+    post_content
+    user_id
+    location_id
+    time_stamp
+    date_stamp
+  end
 end
+

@@ -10,6 +10,7 @@ describe Account do
 
   it { should respond_to :name }
   it { should respond_to :time_zone }
+  it { should respond_to(:logo) }
 
   it { should be_valid }
 

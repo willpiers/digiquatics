@@ -5,7 +5,8 @@ describe Certification do
   before do
     @certfication = Certification.new(user_id: 1,
                                       certification_name_id: 1,
-                                      expiration_date: '2012-02-03')
+                                      expiration_date: '2012-02-03',
+                                      issue_date: '2010-02-03')
   end
 
   subject { @certfication }
@@ -13,9 +14,15 @@ describe Certification do
   it { should respond_to(:user_id) }
   it { should respond_to(:certification_name_id) }
   it { should respond_to(:expiration_date) }
+  it { should respond_to(:issue_date) }
 
   describe 'when expiration_date is not present' do
     before { @certfication.expiration_date = nil }
+    it { should_not be_valid }
+  end
+
+  describe 'when issue_date is not present' do
+    before { @certfication.issue_date = nil }
     it { should_not be_valid }
   end
 

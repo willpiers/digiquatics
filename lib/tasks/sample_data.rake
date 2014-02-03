@@ -136,9 +136,9 @@ namespace :db do
                             age: age.sample,
                             sex: sex.sample,
                             instructor_gender: ["M", "F"].sample,
-                            ability_level: skill.sample,
                             day: day.sample,
                             time: time.sample,
+                            contact_method: ["Call", "Email", "Text"].sample,
                             notes: "Nothing to say now",
                             preferred_location: rand(3) + 1,
                             number_lessons: rand(5) + 1 )

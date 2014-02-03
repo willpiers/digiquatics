@@ -3,6 +3,11 @@ class HelpDesksController < ApplicationController
 
   def index
     @help_desks = HelpDesk.order(sort_column + " " + sort_direction)
+      respond_to do |format|
+        format.html # index.html.erb
+        format.xml  { render :xml => @help_desks}
+        format.csv { render :csv => @help_desks, filename: 'issues'}
+      end
   end
 
   def show
@@ -58,6 +63,7 @@ class HelpDesksController < ApplicationController
     def help_desk_params
       params.require(:help_desk).permit(:name, :description, :urgency, :user_id,
                                         :location_id, :issue_status,
+                                        :issue_resolution_description,
                                         :help_desk_attachment)
     end
 

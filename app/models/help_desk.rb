@@ -8,4 +8,15 @@ class HelpDesk < ActiveRecord::Base
                     path: ':rails_root/public/system/:attachment/:id/:style/:filename',
                     url: '/system/:attachment/:id/:style/:filename'
   # rubocop:enable LineLength, StringLiterals
+
+  comma do
+    name
+    urgency
+    user_id
+    location_id
+    description
+    issue_status
+    created_at
+    updated_at
+  end
 end
