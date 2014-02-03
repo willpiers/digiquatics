@@ -1,6 +1,6 @@
 module ApplicationHelper
 
-  def full_title(page_title) base_title = 'Aquatics App'
+  def full_title(page_title) base_title = 'DigiQuatics'
     if page_title.empty?
       base_title
     else
