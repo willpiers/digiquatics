@@ -1,12 +1,4 @@
-# Simple Role Syntax
-# ==================
-# Supports bulk-adding hosts to roles, the primary
-# server in each group is considered to be the first
-# unless any hosts have the primary property set.
-# Don't declare `role :all`, it's a meta role
-# role :app, %w{198.199.105.193}
-# role :web, %w{198.199.105.193}
-# role :db,  %w{198.199.105.193}
+set :stage, :production
 
 # Extended Server Syntax
 # ======================
@@ -14,7 +6,7 @@
 # definition into the server list. The second argument
 # something that quacks like a hash can be used to set
 # extended properties on the server.
-server 'digiquatics.com', user: 'josh', roles: %w{web app db}, my_property: :my_value
+server 'digiquatics.com', user: 'deployer', roles: %w{web app}
 
 # you can set custom ssh options
 # it's possible to pass any option but you need to keep in mind that net/ssh understand limited list of options

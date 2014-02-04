@@ -18,22 +18,50 @@ to your `.zshrc` or `.bashrc` file
 - run `rake db:populate`
 - run `rake db:test:prepare`
 
+# Upgrading BinStubs
+bundle config --delete bin    # Turn off Bundler's stub generator
+rake rails:update:bin         # Use the new Rails 4 executables
+git add bin                   # Add bin/ to source control
+
 # Virtual Server Setup
 
-IP Address: 198.199.105.193
-Username: root
-Password: aqejxrjbkica
+IP Address: `198.199.105.193`
+Username: `root`
+Password: `@ffektive!`
 
 log into root user:
-`ssh root@198.199.105.193` password is: `aqejxrjbkica`
+`ssh root@digiquatics.com` password is: `@ffektive!`
 
 log into your own user account:
-`ssh <username>@198.199.105.193`
+`ssh deployer@digiquatics.com` password is: `@ffektive!`
 
 add new user:
-`adduser <username>`
+`adduser deployer`
 fill in info
-`adduser <username> sudo`
+`adduser deployer sudo`
+
+Use the following command to continuously monitor the log output:
+`tail -f /home/unicorn/log/unicorn.log`
+
+Doing anything new, restart servers:
+`service unicorn restart`
+`service nginx restart`
+
+Use `ssh-copy-id` instead of passwords, more secure:
+`brew install ssh-copy-id`
+`ssh-copy-id deployer@digiquatics.com`
+
+Install Git:
+`sudo apt-get install`
+
+Install MySQL:
+`sudo apt-get install mysql-server mysql-client libmysqlclient-dev`
+
+Kill nginx process:
+`sudo fuser -k 80/tcp`
+
+
+
 
 Update packages on Ubuntu OS
 `sudo apt-get update`
@@ -41,6 +69,7 @@ Update packages on Ubuntu OS
 Install packages for use later:
 `sudo apt-get -y install curl git-core python-software-properties`
 
+Refer to Ubuntu PPA [http://wiki.nginx.org/Install#Ubuntu_PPA](http://wiki.nginx.org/Install#Ubuntu_PP)
 Create apt repo for Nginx:
 `sudo add-apt-repository ppa:nginx/stable`
 
