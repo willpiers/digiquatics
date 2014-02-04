@@ -75,7 +75,6 @@ FactoryGirl.define do
     age                   12
     sex                   'M'
     instructor_gender     'F'
-    ability_level          6
     day                    'Mon'
     time                   'AM'
     notes                  'None at this moment'

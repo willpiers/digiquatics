@@ -35,6 +35,7 @@ describe 'certification expirations' do
     it 'should have users data' do
       actual['users'].should eq [
         {
+          'id'                              => user.id,
           'lastName'                        => user.last_name,
           'firstName'                       => user.first_name,
           'location'                        => location.name,

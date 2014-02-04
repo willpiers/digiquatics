@@ -10,7 +10,6 @@
       <th><%= sortable 'first_name' %></th>
       <th><%= sortable 'age' %></th>
       <th><%= sortable 'sex' %></th>
-      <th><%= sortable 'ability_level', 'Level' %></th>
       <th><%= sortable 'day' %></th>
       <th><%= sortable 'time' %></th>
       <th><%= sortable 'preferred_location', 'Location' %></th>
@@ -24,7 +23,6 @@
         <td><%= link_to private_lesson.first_name, private_lesson %></td>
         <td><%= private_lesson.age           %></td>
         <td><%= private_lesson.sex           %></td>
-        <td><%= private_lesson.ability_level %></td>
         <td><%= private_lesson.day           %></td>
         <td><%= private_lesson.time          %></td>
         <td><%= Location.find_by_id(private_lesson.preferred_location).name %>

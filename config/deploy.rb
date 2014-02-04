@@ -3,7 +3,7 @@ lock '3.1.0'
 
 # require 'capistrano-unicorn'
 
-set :application, 'digiquatics'
+set :Fication, 'digiquatics'
 set :repo_url, 'git@github.com:duffcodester/digiquatics.git'
 
 # Default branch is :master
