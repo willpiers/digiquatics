@@ -1,6 +1,8 @@
 namespace :db do
   desc "Fill database with sample data"
   task populate: :environment do
+    puts rails.environment
+    exit
     Rake.application['db:reset'].invoke
 
     Account.create(name: "City of Lakewood",
