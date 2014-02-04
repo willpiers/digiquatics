@@ -2,7 +2,6 @@ class PrivateLessonDetail < ActiveRecord::Base
   include PaperclipHelper
 
   has_many :private_lessons
-  # rubocop:disable LineLength, StringLiterals
   has_attached_file :logo,
                     path: PAPERCLIP_PATH,
                     url: '/system/:attachment/:id/:style/:filename',
@@ -12,5 +11,4 @@ class PrivateLessonDetail < ActiveRecord::Base
                       medium: '300x300>'
                     },
                     default_url: '/images/missing.png'
-  # rubocop:enable LineLength, StringLiterals
 end

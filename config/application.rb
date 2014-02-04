@@ -12,7 +12,7 @@ require 'csv'
 # you've limited to :test, :development, or :production.
 Bundler.require(:default, Rails.env)
 
-module Digiquatics
+module DigiQuatics
   class Application < Rails::Application
     system("rubocop #{Rails.root}") if Rails.env.development?
     # rubocop:disable LineLength, StringLiterals

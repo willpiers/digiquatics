@@ -62,7 +62,7 @@ describe 'Authentication' do
 
         describe 'after signing in' do
           it 'should render the desired protected page' do
-            expect(page).to have_title('Aquatics App')
+            expect(page).to have_title('DigiQuatics')
           end
         end
       end
