@@ -19,6 +19,6 @@ describe 'Manage Account' do
       visit edit_account_path(user.account_id)
     end
 
-    it { should have_selector('h1', text: 'Manage Account') }
+    it { should have_selector('legend', text: 'Edit Account') }
   end
 end

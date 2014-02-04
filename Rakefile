@@ -3,4 +3,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-Digiquatics::Application.load_tasks
+DigiQuatics::Application.load_tasks

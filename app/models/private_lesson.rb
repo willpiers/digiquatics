@@ -22,7 +22,6 @@ class PrivateLesson < ActiveRecord::Base
     first_name 'Student First'
     age
     sex
-    ability_level 'Level'
     parent_last_name 'Parent Last'
     parent_first_name 'Parent First'
     phone_number 'Phone#'

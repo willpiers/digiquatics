@@ -2,14 +2,14 @@
 
 # describe 'Static pages' do
  # describe 'Home page' do
-  #  it "should have the content 'Aquatics App'" do # rubocop:disable DoubleQuotes
+  #  it "should have the content 'DigiQuatics'" do # rubocop:disable DoubleQuotes
    #   visit '/'
-    #  expect(page).to have_content('Aquatics App')
+    #  expect(page).to have_content('DigiQuatics')
     # end
 
     # it 'should have the base title' do
      # visit '/'
-      # expect(page).to have_title('Aquatics App')
+      # expect(page).to have_title('DigiQuatics')
     # end
 
     # it 'should not have a custom page title' do

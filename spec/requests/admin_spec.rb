@@ -23,9 +23,6 @@ describe 'admin setup' do
   before { sign_in user }
 
   describe 'manage' do
-    describe 'users' do
-      it { should have_title('Users') }
-    end
 
     describe 'users' do
       describe 'as non-admin' do

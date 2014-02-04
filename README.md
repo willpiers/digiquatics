@@ -1,4 +1,4 @@
-# Digiquatics
+# DigiQuatics
 
 ## Database Setup
 - download MySQL from [http://dev.mysql.com/downloads/mysql/](http://dev.mysql.com/downloads/mysql/)
@@ -188,7 +188,7 @@ ssh josh@198.199.105.193 'hostname; uptime'
 
 And you should get:
 
-AquaticsApp
+Digiquatics
  23:53:17 up 10 days, 11:03,  0 users,  load average: 0.00, 0.01, 0.05
 
 Create the directories in var/www/digiquatics:
