@@ -21,6 +21,7 @@
     <h4> Preferences </h4>
       <%= f.select :instructor_gender, options_for_select(%w[None M F]) %>
       <%= f.text_area :notes, size: '2x' %>
+      <%= f.text_area :lesson_objective, side: '2x' %>
 
     <h4> Lesson Request </h4>
       <%= f.select :number_lessons,

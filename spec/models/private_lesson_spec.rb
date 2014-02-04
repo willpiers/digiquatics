@@ -15,6 +15,7 @@ describe PrivateLesson do
       age:                '12',
       instructor_gender:  'F',
       notes:              'No Jake',
+      lesson_objective:   'Get Better',
       number_lessons:     '5',
       day:                'Mon',
       time:               'AM')
@@ -33,6 +34,7 @@ describe PrivateLesson do
   it { should respond_to(:age) }
   it { should respond_to(:instructor_gender) }
   it { should respond_to(:notes) }
+  it { should respond_to(:lesson_objective) }
   it { should respond_to(:number_lessons) }
   it { should respond_to(:day) }
   it { should respond_to(:time) }
