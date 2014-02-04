@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140202220840) do
+ActiveRecord::Schema.define(version: 20140204032352) do
 
   create_table "accounts", force: true do |t|
     t.string   "name"
@@ -140,6 +140,8 @@ ActiveRecord::Schema.define(version: 20140202220840) do
     t.integer  "attachment_file_size"
     t.datetime "attachment_updated_at"
     t.integer  "number_lessons"
+    t.boolean  "queue_status"
+    t.text     "lesson_objective"
   end
 
   create_table "shift_reports", force: true do |t|

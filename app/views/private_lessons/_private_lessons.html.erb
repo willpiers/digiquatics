@@ -7,6 +7,9 @@
         <th><%= sortable 'first_name' %></th>
         <th><%= sortable 'age' %></th>
         <th><%= sortable 'sex' %></th>
+        <th>
+          <%= sortable 'instructor_gender', '*Instructor Gender' %>
+        </th>
         <th><%= sortable 'day' %></th>
         <th><%= sortable 'time' %></th>
         <th><%= sortable 'preferred_location', 'Location' %></th>
@@ -21,6 +24,7 @@
           <td><%= link_to private_lesson.first_name, private_lesson %></td>
           <td><%= private_lesson.age %></td>
           <td><%= private_lesson.sex %></td>
+          <td><%= private_lesson.instructor_gender %></td>
           <td><%= private_lesson.day %></td>
           <td><%= private_lesson.time %></td>
           <td><%= Location.find_by_id(private_lesson.preferred_location).name %>

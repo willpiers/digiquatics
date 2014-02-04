@@ -135,7 +135,7 @@ namespace :db do
                             phone_number: Faker::PhoneNumber.phone_number,
                             age: age.sample,
                             sex: sex.sample,
-                            instructor_gender: ["M", "F"].sample,
+                            instructor_gender: ["M", "F", "None"].sample,
                             day: day.sample,
                             time: time.sample,
                             contact_method: ["Call", "Email", "Text"].sample,
