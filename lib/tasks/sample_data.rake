@@ -1,7 +1,7 @@
 namespace :db do
   desc "Fill database with sample data"
   task populate: :environment do
-    puts rails.environment
+    puts Rails.env
     exit
     Rake.application['db:reset'].invoke
 
