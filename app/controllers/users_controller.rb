@@ -21,9 +21,13 @@ class UsersController < ApplicationController
 
   def inactive_index
     @inactive_users = User.joins(:account).same_account_as(current_user).where(active: false)
+
     respond_to do |format|
       format.html
       format.csv { render csv: @inactive_users, filename: 'inactive_users' }
+      format.json do
+        render json: @inactive_users.to_json(include: [:location, :position])
+      end
     end
   end
 
