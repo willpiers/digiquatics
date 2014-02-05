@@ -21,7 +21,8 @@ describe 'User pages' do
     FactoryGirl.create(:user,
                        location_id: location.id,
                        position_id: position.id,
-                       account_id: account.id)
+                       account_id: account.id,
+                       notes: 'hello')
   end
 
   let!(:admin) do
@@ -102,6 +103,24 @@ describe 'User pages' do
     it 'should list the certifications in the correct order' do
       user.certifications.first.certification_name_id.should <
       user.certifications.second.certification_name_id
+    end
+
+    describe 'as admin' do
+      before do
+        sign_in admin
+        visit user_path(user)
+      end
+
+      it { should have_selector('h4', text: 'Notes') }
+      it { should have_link('Edit', edit_user_path(user)) }
+
+      describe 'should display notes' do
+        it { should have_content('hello') }
+      end
+    end
+
+    describe 'as non-admin' do
+      it { should_not have_selector('h4', text: 'Notes') }
     end
   end
 
