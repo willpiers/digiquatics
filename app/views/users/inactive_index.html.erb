@@ -1,8 +1,34 @@
-<% provide(:title, 'Inactive users') %>
-<h1>Inactive Users</h1>
+<div ng-app='digiquatics'>
+  <div ng-controller='LocationsCtrl'>
+    <% provide(:title, 'Inactive users') %>
+    <h1>Inactive Users</h1>
 
-<ul class = "pull-right">
-  <%= link_to "Manage Active", users_path , class: "btn btn-danger btn-sm" %>
-</ul>
+    <div class='row'>
+      <div class='col-md-2'>
+        <h4>Search:</h4>
+        <input ng-model='search' type='text' class='form-control'>
+      </div>
 
-<%= render 'inactive_users' %>
+      <div class='col-md-3'>
+        <h4>Filter locations:</h4>
+        <select ng-model='locationFilter' class='form-control'>
+          <option value=''>All</option>
+          <option ng-repeat='location in locations' value='{{location.name}}'>{{location.name}}</option>
+        </select>
+      </div>
+
+      <div class='col-md-4'></div>
+
+      <div class='col-md-3'>
+        <br><br>
+        <div class='btn-group'>
+          <%= link_to 'Manage Active', users_path, class: 'btn btn-danger btn-sm', role: 'button' %>
+        </div>
+      </div>
+
+    </div>
+
+    <br>
+    <%= render 'inactive_users' %>
+  </div>
+</div>
