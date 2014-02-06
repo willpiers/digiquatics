@@ -85,7 +85,7 @@ class PrivateLessonsController < ApplicationController
       :first_name, :email, :last_name, :phone_number, :parent_first_name,
       :parent_last_name, :contact_method, :sex, :age, :instructor_gender,
       :notes, :day, :time, :preferred_location, :ability_level,
-      :user_id, :attachment, :number_lessons )
+      :user_id, :attachment, :number_lessons, :lesson_objective )
   end
 
   def sort_column

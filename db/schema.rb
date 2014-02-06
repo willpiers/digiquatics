@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140202220840) do
+ActiveRecord::Schema.define(version: 20140206062127) do
 
   create_table "accounts", force: true do |t|
     t.string   "name"
@@ -45,18 +45,21 @@ ActiveRecord::Schema.define(version: 20140202220840) do
   end
 
   create_table "chemical_records", force: true do |t|
-    t.decimal  "chlorine_ppm",     precision: 6, scale: 2
-    t.decimal  "chlorine_orp",     precision: 6, scale: 2
-    t.decimal  "ph",               precision: 6, scale: 2
-    t.decimal  "alkalinity",       precision: 6, scale: 2
-    t.decimal  "calcium_hardness", precision: 6, scale: 2
-    t.decimal  "pool_temp",        precision: 6, scale: 2
-    t.decimal  "air_temp",         precision: 6, scale: 2
-    t.decimal  "si_index",         precision: 6, scale: 2
+    t.decimal  "chlorine_ppm",      precision: 6, scale: 2
+    t.decimal  "chlorine_orp",      precision: 6, scale: 2
+    t.decimal  "ph",                precision: 6, scale: 2
+    t.decimal  "alkalinity",        precision: 6, scale: 2
+    t.decimal  "calcium_hardness",  precision: 6, scale: 2
+    t.decimal  "pool_temp",         precision: 6, scale: 2
+    t.decimal  "air_temp",          precision: 6, scale: 2
+    t.decimal  "si_index",          precision: 6, scale: 2
     t.datetime "created_at"
     t.datetime "updated_at"
     t.datetime "date_stamp"
     t.datetime "time_stamp"
+    t.text     "si_status"
+    t.text     "si_recommendation"
+    t.integer  "user_id"
   end
 
   create_table "daily_todos", force: true do |t|
@@ -80,6 +83,8 @@ ActiveRecord::Schema.define(version: 20140202220840) do
     t.text     "description"
     t.boolean  "issue_status",                      default: true
     t.text     "issue_resolution_description"
+    t.integer  "closed_user_id"
+    t.datetime "closed_date_time"
   end
 
   create_table "locations", force: true do |t|
@@ -134,6 +139,8 @@ ActiveRecord::Schema.define(version: 20140202220840) do
     t.integer  "attachment_file_size"
     t.datetime "attachment_updated_at"
     t.integer  "number_lessons"
+    t.boolean  "queue_status"
+    t.text     "lesson_objective"
   end
 
   create_table "shift_reports", force: true do |t|
@@ -145,6 +152,7 @@ ActiveRecord::Schema.define(version: 20140202220840) do
     t.text     "post_content"
     t.integer  "user_id"
     t.integer  "location_id"
+    t.boolean  "report_filed"
   end
 
   create_table "users", force: true do |t|

@@ -2,7 +2,7 @@ module ChemicalRecordsHelper
   include Math
 
   # rubocop : disable all
-  def si_index(ph_reading, pool_temp, calcium_hardness, total_alkalinity)
+  def si_index_calculator(ph_reading, pool_temp, calcium_hardness, total_alkalinity)
     if !ph_reading || !pool_temp || !calcium_hardness || !total_alkalinity
       '?'
     else
@@ -15,7 +15,7 @@ module ChemicalRecordsHelper
     end
   end
 
-  def si_index_description(si_index)
+  def si_status_calc(si_index)
     if !si_index
       '?'
     elsif si_index <= -5
@@ -24,11 +24,7 @@ module ChemicalRecordsHelper
       'Moderate Corrosion'
     elsif si_index > -3 && si_index <= -2
       'Moderate Corrosion'
-    elsif si_index > -2 && si_index <= -1
-      'Mild Corrosion'
-    elsif si_index > -1 && si_index <= -0.5
-      'None-Mild Corrosion'
-    elsif si_index > -0.5 && si_index < -0.3
+    elsif si_index > -2 && si_index < -0.3
       'Mild Corrosion '
     elsif si_index >= -0.3 && si_index <= 0.3
       'Balanced'
@@ -47,7 +43,7 @@ module ChemicalRecordsHelper
     end
   end
 
-  def si_index_recommendation(si_index)
+  def si_recommendation_calc(si_index)
     if !si_index
       '?'
     elsif si_index <= -5

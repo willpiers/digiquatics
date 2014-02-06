@@ -68,6 +68,20 @@
           <th> Issue Notes </th>
           <td> <%= @help_desk.issue_resolution_description %> </td>
         </tr>
+        <tr>
+          <th>Closed By</th>
+            <td>
+              <% if @help_desk.closed_user_id? %>
+              <p> <%= User.find(@help_desk.user_id).first_name %></p>
+              <p> <%= User.find(@help_desk.user_id).last_name %> </p>
+              <% else %>
+              <% end %>
+            </td>
+        </tr>
+        <tr>
+          <th> Date Closed </th>
+          <td> <%= @help_desk.closed_date_time.strftime('%I:%M%p %-m/%-d/%Y') %> </td>
+        </tr>
         <% elsif @help_desk.issue_status == true %>
         <tr>
           <th> Issue Notes </th>

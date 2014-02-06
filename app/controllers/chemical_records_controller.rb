@@ -1,4 +1,6 @@
 class ChemicalRecordsController < ApplicationController
+include Math
+include ChemicalRecordsHelper
   helper_method :sort_column, :sort_direction
   before_action :set_chemical_record, only: [:show, :edit, :update, :destroy]
 
@@ -31,6 +33,15 @@ class ChemicalRecordsController < ApplicationController
   # POST /chemical_records.json
   def create
     @chemical_record = ChemicalRecord.new(chemical_record_params)
+    @chemical_record.si_index =  si_index_calculator(@chemical_record.ph,
+                                                     @chemical_record.pool_temp,
+                                                     @chemical_record.calcium_hardness,
+                                                     @chemical_record.alkalinity).round(2)
+
+    @chemical_record.si_status = si_status_calc(@chemical_record.si_index)
+    @chemical_record.si_recommendation = si_recommendation_calc(@chemical_record.si_index)
+
+    @chemical_record.user_id = current_user.id
 
     if @chemical_record.save
       flash[:success] = 'Chemical record was successfully created.'
@@ -69,7 +80,8 @@ class ChemicalRecordsController < ApplicationController
   def chemical_record_params
     params.require(:chemical_record)
       .permit(:chlorine_ppm, :chlorine_orp, :ph, :alkalinity, :calcium_hardness,
-              :pool_temp, :air_temp, :si_index, :time_stamp, :date_stamp)
+              :pool_temp, :air_temp, :si_index, :time_stamp, :date_stamp.
+              :user_id)
   end
 
   def sort_column
@@ -79,4 +91,6 @@ class ChemicalRecordsController < ApplicationController
   def sort_direction
     params[:direction] || 'desc'
   end
+
 end
+

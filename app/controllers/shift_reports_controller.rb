@@ -60,7 +60,8 @@ class ShiftReportsController < ApplicationController
     def shift_report_params
       params.require(:shift_report)
         .permit(:post_title, :post_content, :date_stamp, :time_stamp, :user_id,
-                :location_id, users_attributes: [:id, :first_name, :last_name])
+                :location_id, :report_filed,
+                users_attributes: [:id, :first_name, :last_name])
     end
 
 end

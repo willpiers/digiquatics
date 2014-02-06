@@ -38,6 +38,8 @@ class HelpDesksController < ApplicationController
   end
 
   def update
+      @help_desk.closed_user_id = current_user.id
+      @help_desk.closed_date_time = Time.now
     if @help_desk.update(help_desk_params)
       flash[:success] = 'Help desk was successfully updated.'
       redirect_to @help_desk
@@ -64,7 +66,8 @@ class HelpDesksController < ApplicationController
       params.require(:help_desk).permit(:name, :description, :urgency, :user_id,
                                         :location_id, :issue_status,
                                         :issue_resolution_description,
-                                        :help_desk_attachment)
+                                        :help_desk_attachment, :closed_user_id,
+                                        :closed_date_time)
     end
 
     def sort_column
