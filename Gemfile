@@ -16,6 +16,7 @@ gem 'intercom-rails', '~> 0.2.21'
 gem 'comma', '~> 3.0'
 gem 'angularjs-rails'
 gem 'jquery-turbolinks'
+gem 'jquery-cookie-rails'
 
 # Using MySQL Database
 gem 'mysql2'
