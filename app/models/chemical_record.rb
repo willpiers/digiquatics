@@ -6,6 +6,7 @@ class ChemicalRecord < ActiveRecord::Base
     calcium_hardness
     pool_temp
     air_temp
+    si_index
     date_stamp
     time_stamp
   end

@@ -155,7 +155,10 @@ namespace :db do
                            pool_temp: [81, 82, 83, 84, 85, 86].sample,
                            air_temp: [75, 76, 77, 78, 79, 80].sample,
                            date_stamp: "2014-01-01",
-                           time_stamp: "10:00pm"
+                           time_stamp: "10:00pm",
+                           si_index: [-1, -0.5, -0.3, 0, 0.3, 0.5, 1].sample,
+                           si_status: "SAMPLE NA",
+                           si_recommendation: "SAMPLE NA"
       )
     end
 
