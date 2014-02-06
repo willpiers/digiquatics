@@ -13,7 +13,8 @@
         <th class='hidden-xs hidden-sm'>
           <%= sortable 'si_index', 'SI index' %>
         </th>
-        <th class='hidden-xs hidden-sm'>Status</th>
+        <th class='hidden-xs hidden-sm'>
+          <%= sortable 'si_status', 'Status' %></th>
         <th><%= sortable 'date_stamp', 'Date' %></th>
         <th> Time</th>
       </tr>
@@ -30,9 +31,19 @@
           <td class='hidden-xs hidden-sm'>
             <%= chemical_record.air_temp %>
           </td>
-          <td><%= chemical_record.si_index %></td>
-          <td><%= chemical_record.si_status %></td>
 
+          <% if chemical_record.si_index >= -0.3 and
+                chemical_record.si_index <=0.3 %>
+            <td class='success'><%= chemical_record.si_index %></td>
+            <td><%= chemical_record.si_status %></td>
+          <% elsif chemical_record.si_index >0.7 or
+                   chemical_record.si_index <-0.7%>
+            <td class='danger'><%= chemical_record.si_index %></td>
+            <td><%= chemical_record.si_status %></td>
+          <% else %>
+            <td class='warning'><%= chemical_record.si_index %></td>
+            <td><%= chemical_record.si_status %></td>
+          <% end %>
 
           <td>
             <%= link_to chemical_record.date_stamp.strftime('%-m/%-d/%Y'),

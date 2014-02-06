@@ -7,6 +7,8 @@ class ChemicalRecord < ActiveRecord::Base
     pool_temp
     air_temp
     si_index
+    si_status
+    si_recommendation
     date_stamp
     time_stamp
   end
