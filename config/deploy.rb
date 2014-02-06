@@ -2,7 +2,7 @@
 lock '3.1.0'
 
 set :application, 'digiquatics'
-set :repo_url, 'git@github.com:duffcodester/digiquatics.git'
+set :repo_url, 'git@github.com:duffcodester/digiquatics.git .'
 
 # Default branch is :master
 # ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }
