@@ -31,7 +31,6 @@
           <td class='hidden-xs hidden-sm'>
             <%= chemical_record.air_temp %>
           </td>
-
           <% if chemical_record.si_index >= -0.3 and
                 chemical_record.si_index <=0.3 %>
             <td class='success'><%= chemical_record.si_index %></td>
@@ -44,12 +43,10 @@
             <td class='warning'><%= chemical_record.si_index %></td>
             <td><%= chemical_record.si_status %></td>
           <% end %>
-
           <td>
             <%= link_to chemical_record.date_stamp.strftime('%-m/%-d/%Y'),
               chemical_record %>
           </td>
-
           <td>
             <%= link_to chemical_record.time_stamp.strftime("%I:%M%p"),
               chemical_record %>

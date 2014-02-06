@@ -62,6 +62,16 @@
       <td><%= @chemical_record.si_recommendation %></td>
     </tr>
     <tr>
+      <th>Submitted By</th>
+        <td>
+          <% if @chemical_record.user_id? %>
+          <p> <%= User.find(@chemical_record.user_id).first_name %> </p>
+          <p> <%= User.find(@chemical_record.user_id).last_name %> </p>
+          <% else %>
+          <% end %>
+        </td>
+    </tr>
+    <tr>
       <th>Date Created</th>
       <td><%= @chemical_record.date_stamp.strftime('%-m/%-d/%Y')%></td>
     </tr>

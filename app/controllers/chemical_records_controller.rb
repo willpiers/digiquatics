@@ -41,7 +41,7 @@ include ChemicalRecordsHelper
     @chemical_record.si_status = si_status_calc(@chemical_record.si_index)
     @chemical_record.si_recommendation = si_recommendation_calc(@chemical_record.si_index)
 
-
+    @chemical_record.user_id = current_user.id
 
     if @chemical_record.save
       flash[:success] = 'Chemical record was successfully created.'
