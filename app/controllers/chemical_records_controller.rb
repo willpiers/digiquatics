@@ -80,7 +80,7 @@ include ChemicalRecordsHelper
   def chemical_record_params
     params.require(:chemical_record)
       .permit(:chlorine_ppm, :chlorine_orp, :ph, :alkalinity, :calcium_hardness,
-              :pool_temp, :air_temp, :si_index, :time_stamp, :date_stamp.
+              :pool_temp, :air_temp, :si_index, :time_stamp, :date_stamp,
               :user_id)
   end
 
