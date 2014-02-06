@@ -10,6 +10,9 @@ set :repo_url, 'git@github.com:duffcodester/digiquatics.git'
 # Default deploy_to directory is /var/www/my_app
 set :deploy_to, 'var/www/digiquatics'
 
+# Update the repo instead of clone (Per Eric L)
+set :deploy_via, :remote_cache
+
 # Default value for :scm is :git
 # set :scm, :git
 
