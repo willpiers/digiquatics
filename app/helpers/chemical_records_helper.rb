@@ -24,11 +24,7 @@ module ChemicalRecordsHelper
       'Moderate Corrosion'
     elsif si_index > -3 && si_index <= -2
       'Moderate Corrosion'
-    elsif si_index > -2 && si_index <= -1
-      'Mild Corrosion'
-    elsif si_index > -1 && si_index <= -0.5
-      'None-Mild Corrosion'
-    elsif si_index > -0.5 && si_index < -0.3
+    elsif si_index > -2 && si_index < -0.3
       'Mild Corrosion '
     elsif si_index >= -0.3 && si_index <= 0.3
       'Balanced'
