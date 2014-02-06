@@ -5,7 +5,7 @@ development:
   encoding: utf8
   password: ~
   pool: 5
-  socket: /tmp/mysql.sock
+  socket: /var/run/mysqld/mysqld.sock
   username: root
 production:
   adapter: mysql2
@@ -23,5 +23,5 @@ test:
   encoding: utf8
   password: ~
   pool: 5
-  socket: /tmp/mysql.sock
+  socket: /var/run/mysqld/mysqld.sock
   username: root
