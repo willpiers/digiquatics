@@ -6,6 +6,14 @@ class ShiftReport < ActiveRecord::Base
   belongs_to :location
   has_many  :users
 
+  has_attached_file :attachment_front,
+                    path: ':rails_root/public/system/:attachment/:id/:style/:filename',
+                    url: '/system/:attachment/:id/:style/:filename'
+
+  has_attached_file :attachment_back,
+                    path: ':rails_root/public/system/:attachment/:id/:style/:filename',
+                    url: '/system/:attachment/:id/:style/:filename'
+
   accepts_nested_attributes_for :users
 
   comma do
