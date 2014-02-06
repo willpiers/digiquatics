@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140206051353) do
+ActiveRecord::Schema.define(version: 20140206054029) do
 
   create_table "accounts", force: true do |t|
     t.string   "name"
@@ -83,6 +83,8 @@ ActiveRecord::Schema.define(version: 20140206051353) do
     t.text     "description"
     t.boolean  "issue_status",                      default: true
     t.text     "issue_resolution_description"
+    t.integer  "closed_user_id"
+    t.datetime "closed_date_time"
   end
 
   create_table "locations", force: true do |t|
