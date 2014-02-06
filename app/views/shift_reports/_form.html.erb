@@ -6,6 +6,10 @@
 
     <%= f.text_field :post_title %>
     <%= f.text_area :post_content %>
+    <%= f.form_group :report_filed, label: { text: "Report Filed" } do %>
+      <%= f.check_box :report_filed, label: "" do %>
+      <% end %>
+    <% end %>
 
     <div class='date-select'>
       <%= f.date_select :date_stamp, {}, label: 'Date'  %>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140206054029) do
+ActiveRecord::Schema.define(version: 20140206062127) do
 
   create_table "accounts", force: true do |t|
     t.string   "name"
@@ -152,6 +152,7 @@ ActiveRecord::Schema.define(version: 20140206054029) do
     t.text     "post_content"
     t.integer  "user_id"
     t.integer  "location_id"
+    t.boolean  "report_filed"
   end
 
   create_table "users", force: true do |t|
