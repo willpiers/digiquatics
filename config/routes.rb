@@ -1,4 +1,5 @@
 DigiQuatics::Application.routes.draw do
+  devise_for :users
   # rubocop:disable LineLength, StringLiterals
 
   resources :private_lesson_details

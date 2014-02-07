@@ -34,7 +34,6 @@ describe User do
   it { should respond_to(:payrate) }
   it { should respond_to(:grouping) }
   it { should respond_to(:shirt_size) }
-  it { should respond_to(:password_digest) }
   it { should respond_to(:password) }
   it { should respond_to(:password_confirmation) }
   it { should respond_to(:authenticate) }

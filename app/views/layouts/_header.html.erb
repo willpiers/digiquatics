@@ -62,22 +62,20 @@
               <li><%= link_to 'Admin Dashboard', admin_dashboard_path %></li>
             <% end %>
             <li class='divider'></li>
-            <li><%= link_to 'Sign out', signout_path,
-              method: 'delete' %></li>
+            <li><%= link_to 'Sign out', destroy_user_session_path,
+              method: :delete %></li>
           </ul>
         </li>
 
         <% else %>
           <li>
             <div>
-            <a class = 'btn btn-primary btn-deafult fixbtn' href='signin'>
-              Sign in</a>
+              <%= link_to 'Sign In', new_user_session_path, class: 'btn btn-primary btn-default fixbtn' %>
           </div>
           </li>
           <li>
             <div>
-            <a class = 'btn btn-success btn-deafult fixbtn' href='signup'>
-              Sign up</a>
+              <%= link_to 'Sign Up', new_user_registration_path, class: 'btn btn-success btn-default fixbtn' %>
           </div>
           </li>
         <% end %>

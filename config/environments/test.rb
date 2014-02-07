@@ -21,6 +21,9 @@ DigiQuatics::Application.configure do
   config.consider_all_requests_local       = true
   config.action_controller.perform_caching = false
 
+  # Devise
+  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+
   # Raise exceptions instead of rendering exception templates.
   config.action_dispatch.show_exceptions = false
 
