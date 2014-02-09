@@ -13,7 +13,6 @@ class User < ActiveRecord::Base
   scope :inactive, -> { where(active: false) }
 
   before_save { self.email = email.downcase }
-  before_create :create_remember_token
 
   belongs_to  :account
   has_many    :certifications
@@ -76,11 +75,5 @@ class User < ActiveRecord::Base
     femalesuit
     admin
     active
-  end
-
-  private
-
-  def create_remember_token
-    self.remember_token = User.encrypt(User.new_remember_token)
   end
 end

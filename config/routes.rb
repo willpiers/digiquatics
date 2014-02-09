@@ -1,5 +1,5 @@
 DigiQuatics::Application.routes.draw do
-  devise_for :users
+  devise_for :users, controllers: {registrations: 'registrations'}
   # rubocop:disable LineLength, StringLiterals
 
   resources :private_lesson_details
@@ -39,14 +39,7 @@ DigiQuatics::Application.routes.draw do
     end
   end
 
-  resources :sessions, only: [:new, :create, :destroy]
-
   root  'static_pages#index'
-
-  match '/signup', to: 'accounts#new', via: 'get'
-  match '/signin', to: 'sessions#new', via: 'get'
-  match '/signin', to: 'sessions#create', via: 'post'
-  match '/signout', to: 'sessions#destroy', via: 'delete'
 
   match '/chemicals', to: 'static_pages#chemicals',    via: 'get'
   match '/manage_chemicals', to: 'static_pages#manage_chemicals', via: 'get'

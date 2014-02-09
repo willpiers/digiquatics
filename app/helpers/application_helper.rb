@@ -45,7 +45,7 @@ module ApplicationHelper
   end
 
   def admin_user
-    redirect_to(signin_path) unless current_user.admin?
+    redirect_to(new_user_session_path) unless current_user.admin?
   end
 
   def us_states

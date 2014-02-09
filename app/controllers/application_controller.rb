@@ -4,6 +4,10 @@ class ApplicationController < ActionController::Base
 
   around_filter :account_time_zone, if: :current_user
 
+  def after_sign_in_path_for(resource)
+   user_path(current_user)
+  end
+
   private
 
   def account_time_zone(&block)

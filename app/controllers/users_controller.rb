@@ -55,17 +55,17 @@ class UsersController < ApplicationController
     end
   end
 
-  def create
-    @user = User.new(user_params)
-    @user.account_id = current_user.account_id
+  # def create
+  #   @user = User.new(user_params)
+  #   @user.account_id = current_user.account_id
 
-    if @user.save
-      flash[:success] = 'This user has been successfully created!'
-      redirect_to users_path
-    else
-      render 'new'
-    end
-  end
+  #   if @user.save
+  #     flash[:success] = 'This user has been successfully created!'
+  #     redirect_to users_path
+  #   else
+  #     render 'new'
+  #   end
+  # end
 
   def certifications
     @certifications = @user.certifications

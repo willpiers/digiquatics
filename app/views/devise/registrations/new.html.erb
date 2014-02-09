@@ -1,25 +1,31 @@
-<h2>Sign up</h2>
-
 <% provide(:title, 'Create New User') %>
 
-<%= bootstrap_form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
+<div class='userform well'>
+  <% resource.build_account %>
+  <%= bootstrap_form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
 
-  <%= f.text_field :first_name, label: 'First Name' %>
+    <%= devise_error_messages! %>
 
-  <%= f.text_field :nickname, label: 'Preferred Name' %>
+    <legend>Sign Up</legend>
 
-  <%= f.text_field :last_name, label: 'Last Name' %>
+    <%= f.select :account_id, options_from_collection_for_select(Account.all, :id, :name) %>
 
-  <%= f.email_field :email, :autofocus => true %>
+    <%= f.text_field :first_name, label: 'First Name' %>
 
-  <%= f.text_field :phone_number, label: 'Phone Number' %>
+    <%= f.text_field :nickname, label: 'Preferred Name' %>
 
-  <%= f.password_field :password %>
+    <%= f.text_field :last_name, label: 'Last Name' %>
 
-  <%= f.password_field :password_confirmation %>
+    <%= f.email_field :email, :autofocus => true %>
 
-  <%= f.primary 'Create Account' %>
-<% end %>
+    <%= f.text_field :phone_number, label: 'Phone Number' %>
 
-<%= render "devise/shared/links" %>
+    <%= f.password_field :password %>
+
+    <%= f.password_field :password_confirmation %>
+
+    <%= f.primary 'Create Account' %>
+  <% end %>
+
+  <%= render "devise/shared/links" %>
+</div>
