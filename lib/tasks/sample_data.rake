@@ -183,7 +183,5 @@ namespace :db do
                        user_id: n+1
                        )
     end
-
-    Rake.application['db:test:prepare'].invoke
   end
 end

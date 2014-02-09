@@ -8,7 +8,6 @@ set :repo_url, 'git@github.com:duffcodester/digiquatics.git'
 # ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }
 
 # Default deploy_to directory is /var/www/my_app
-set :deploy_to, 'var/www/digiquatics'
 
 # Default value for :scm is :git
 # set :scm, :git
@@ -44,7 +43,7 @@ namespace :deploy do
 
   desc "Make symlink for database yaml"
   task :symlink do
-    run "ln -nfs var/www/digiquatics/config/database.yml var/www/digiquatics/releases/current/config/database.yml"
+    run "ln -nfs /home/deployer/var/www/digiquatics/shared/config/database.yml /home/deployer/var/www/digiquatics/current/config/database.yml"
   end
 
   after :finishing, 'deploy:cleanup'
