@@ -1,4 +1,6 @@
 require 'spec_helper'
+include Warden::Test::Helpers
+Warden.test_mode!
 
 describe 'users' do
   let(:account) { FactoryGirl.create(:account) }
@@ -13,7 +15,7 @@ describe 'users' do
   end
 
   before do
-    sign_in user, no_capybara: true
+    login_as(user, scope: :user)
     get '/users.json'
   end
 

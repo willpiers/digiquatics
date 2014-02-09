@@ -17,6 +17,7 @@ gem 'comma', '~> 3.0'
 gem 'angularjs-rails'
 gem 'jquery-turbolinks'
 gem 'devise'
+gem 'activerecord-session_store', github: 'rails/activerecord-session_store'
 
 # Using MySQL Database
 gem 'mysql2'

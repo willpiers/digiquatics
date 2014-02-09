@@ -1,4 +1,6 @@
 require 'spec_helper'
+include Warden::Test::Helpers
+Warden.test_mode!
 
 describe 'Certifications' do
   let(:account) { FactoryGirl.create(:account) }
@@ -26,7 +28,7 @@ describe 'Certifications' do
     it { should have_selector('h1', text: 'Certifications') }
 
     before do
-      sign_in user
+      login_as(user, scope: :user)
       FactoryGirl.create(:certification_name, account_id: 1, name: 'CPR/AED1')
       FactoryGirl.create(:certification_name, account_id: 2, name: 'CPR/AED2')
       FactoryGirl.create(:certification,

@@ -18,8 +18,8 @@ FactoryGirl.define do
     first_name            'Josh'
     last_name             'Duffy'
     email                 'newuser@example.com'
-    password              'foobar'
-    password_confirmation 'foobar'
+    password              'foobar77'
+    password_confirmation 'foobar77'
     admin                 false
     active                true
     suit_size             'M'
@@ -38,8 +38,8 @@ FactoryGirl.define do
     first_name            'Michael'
     last_name             'Pierce'
     email                 'newadmin@example.com'
-    password              'foobar'
-    password_confirmation 'foobar'
+    password              'foobar77'
+    password_confirmation 'foobar77'
     admin                 true
     active                true
     suit_size             'M'

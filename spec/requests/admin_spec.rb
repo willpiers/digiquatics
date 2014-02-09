@@ -1,4 +1,6 @@
 require 'spec_helper'
+include Warden::Test::Helpers
+Warden.test_mode!
 
 describe 'admin setup' do
   subject { page }
@@ -20,21 +22,21 @@ describe 'admin setup' do
                        position_id: position.id)
   end
 
-  before { sign_in user }
+  before { login_as(user, scope: :user) }
 
   describe 'manage' do
 
     describe 'users' do
       describe 'as non-admin' do
         before do
-          sign_in non_admin
+          login_as(user, scope: :non_admin)
           visit users_path
         end
 
         it { should_not have_link('Manage Users', href: users_path) }
 
         it 'should redirect to sign_in' do
-          current_path.should == signin_path
+          current_path.should == new_user_session_path
         end
       end
 
@@ -52,12 +54,12 @@ describe 'admin setup' do
     describe 'admin dashboard' do
       describe 'as non-admin' do
         before do
-          sign_in non_admin
+          login_as(user, scope: :non_admin)
           visit admin_dashboard_path
         end
 
         it 'should redirect to sign_in' do
-          current_path.should == signin_path
+          current_path.should == new_user_session_path
         end
       end
 

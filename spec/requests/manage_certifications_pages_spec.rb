@@ -28,7 +28,7 @@ describe 'Manage Certifications' do
     end
 
     before do
-      sign_in user
+      login_as(user, scope: :user)
       visit admin_dashboard_path
     end
 

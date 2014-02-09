@@ -1,4 +1,6 @@
 require 'spec_helper'
+include Warden::Test::Helpers
+Warden.test_mode!
 
 describe 'Manage Account' do
   let(:account) { FactoryGirl.create(:account) }
@@ -15,7 +17,7 @@ describe 'Manage Account' do
 
   describe 'page' do
     before do
-      sign_in user
+      login_as(user, scope: :user)
       visit edit_account_path(user.account_id)
     end
 

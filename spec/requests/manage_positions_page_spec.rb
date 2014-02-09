@@ -1,4 +1,6 @@
 require 'spec_helper'
+include Warden::Test::Helpers
+Warden.test_mode!
 
 describe 'Manage Positions' do
 
@@ -16,7 +18,7 @@ describe 'Manage Positions' do
     end
 
     before do
-      sign_in user
+      login_as(user, scope: :user)
 
       FactoryGirl.create(:position,
                          name: 'Advanced Lifeguard',

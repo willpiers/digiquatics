@@ -1,4 +1,6 @@
 require 'spec_helper'
+include Warden::Test::Helpers
+Warden.test_mode!
 
 describe 'User pages' do
   let!(:account) { FactoryGirl.create(:account) }
@@ -47,7 +49,7 @@ describe 'User pages' do
 
   describe 'signup' do
     before do
-      sign_in admin
+      login_as(admin, :scope => :user)
       visit new_user_path
     end
 
@@ -90,7 +92,7 @@ describe 'User pages' do
 
   describe 'user profile' do
     before do
-      sign_in user
+      login_as(user, :scope => :user)
       FactoryGirl.create(:certification,
                          certification_name_id: cert1.id,
                          user_id: user.id)
@@ -107,7 +109,7 @@ describe 'User pages' do
 
     describe 'as admin' do
       before do
-        sign_in admin
+        login_as(user, scope: :admin)
         visit user_path(user)
       end
 
@@ -128,7 +130,7 @@ describe 'User pages' do
     let(:bob) { User.find_by_email('bob@example.com') }
 
     before do
-      sign_in admin
+      login_as(user, scope: :admin)
 
       FactoryGirl.create(:user,
                          first_name: 'Bob',
@@ -152,7 +154,7 @@ describe 'User pages' do
 
   describe 'edit' do
     before do
-      sign_in user
+      login_as(user, scope: :user)
       visit edit_user_path(user)
     end
 
@@ -241,7 +243,7 @@ describe 'User pages' do
 
       describe 'as admin' do
         before do
-          sign_in admin
+          login_as(user, scope: :admin)
           FactoryGirl.create(:certification,
                              certification_name_id: cert1.id,
                              user_id: user.id)

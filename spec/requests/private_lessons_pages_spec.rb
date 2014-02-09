@@ -1,4 +1,6 @@
 require 'spec_helper'
+include Warden::Test::Helpers
+Warden.test_mode!
 
 describe 'Private Lessons' do
   let(:account) { FactoryGirl.create(:account) }
@@ -12,7 +14,7 @@ describe 'Private Lessons' do
   end
 
   before do
-    sign_in user
+    login_as(user, :scope => :user)
     FactoryGirl.create(:private_lesson,
                        first_name: 'my_lesson',
                        contact_method: 'Call',

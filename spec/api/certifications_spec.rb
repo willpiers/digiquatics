@@ -24,7 +24,7 @@ describe 'certification expirations' do
   end
 
   before do
-    sign_in user, no_capybara: true
+    login_as(user, scope: :user)
     get '/certification_expirations.json'
   end
 

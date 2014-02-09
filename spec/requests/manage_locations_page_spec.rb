@@ -18,7 +18,7 @@ describe 'Manage Locations' do
     end
 
     before do
-      sign_in user
+      login_as(user, scope: :user)
       FactoryGirl.create(:location, name: 'Carmody Rec Center',
                                     account_id: account.id)
       visit admin_dashboard_path

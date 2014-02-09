@@ -1,4 +1,6 @@
 require 'spec_helper'
+include Warden::Test::Helpers
+Warden.test_mode!
 
 describe 'Authentication' do
   let(:account) { FactoryGirl.create(:account) }
@@ -14,14 +16,14 @@ describe 'Authentication' do
   subject { page }
 
   describe 'signin page' do
-    before { visit signin_path }
+    before { visit new_user_session_path }
 
     it { should have_content('Sign in') }
     it { should have_title('Sign in') }
   end
 
   describe 'signin' do
-    before { visit signin_path }
+    before { visit new_user_session_path }
 
     describe 'with invalid information' do
       before { click_button 'Sign in' }
@@ -40,7 +42,7 @@ describe 'Authentication' do
       it { should have_title(user.first_name) }
       it { should have_link('My Profile', href: user_path(user)) }
       it { should have_link('Sign out', href: signout_path) }
-      it { should_not have_link('Sign in', href: signin_path) }
+      it { should_not have_link('Sign in', href: new_user_session_path) }
 
       describe 'followed by signout' do
         before { click_link 'Sign out' }
@@ -77,7 +79,7 @@ describe 'Authentication' do
         describe 'submitting to the update action' do
           before { patch user_path(user) }
 
-          specify { expect(response).to redirect_to(signin_path) }
+          specify { expect(response).to redirect_to(new_user_session_path) }
         end
       end
     end
@@ -93,7 +95,7 @@ describe 'Authentication' do
       FactoryGirl.create(:user, email: 'wrong@example.com')
     end
 
-    before { sign_in user, no_capybara: true }
+    before { login_as(user, scope: :user) }
 
     describe 'submitting a GET request to the Users#edit action' do
       before { get edit_user_path(wrong_user) }

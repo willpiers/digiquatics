@@ -1,4 +1,6 @@
 require 'spec_helper'
+include Warden::Test::Helpers
+Warden.test_mode!
 
 describe 'Account pages' do
 
@@ -6,7 +8,7 @@ describe 'Account pages' do
 
   describe 'signup' do
     before do
-      visit signup_path
+      visit new_user_registration_path
     end
 
     let(:submit) { 'Create Account' }
