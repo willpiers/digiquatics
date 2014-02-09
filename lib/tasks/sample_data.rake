@@ -169,7 +169,9 @@ namespace :db do
                            time_stamp: "10:00pm",
                            si_index: [-1, -0.5, -0.3, 0, 0.3, 0.5, 1].sample,
                            si_status: si_status.sample,
-                           si_recommendation: si_recommendation.sample
+                           si_recommendation: si_recommendation.sample,
+                           pool_id: Pool.first.id,
+                           user_id: [1, 2, 3, 4, 5].sample
                            )
     end
 

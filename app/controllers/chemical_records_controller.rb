@@ -12,6 +12,9 @@ include ChemicalRecordsHelper
       format.html # index.html.erb
       format.xml  { render :xml => @chemical_records}
       format.csv { render :csv => @chemical_records, filename: 'chemical_records'}
+      format.json do
+        render json: @chemical_records.to_json(include: [:pool])
+      end
     end
   end
 

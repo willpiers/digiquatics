@@ -67,6 +67,7 @@ DigiQuatics::Application.routes.draw do
   match '/dashboard', to: 'static_pages#dashboard', via: 'get'
 
   match '/closed_index', to: 'help_desks#closed_index', via: 'get'
+  match '/user_pools', to: 'pools#user_pools', via: 'get'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

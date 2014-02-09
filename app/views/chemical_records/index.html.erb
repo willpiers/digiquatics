@@ -1,31 +1,36 @@
-<% provide(:title, 'Chemical Records') %>
-<h1>Chemical Records</h1>
-
-<div class='row'>
-
-  <div class='col-md-9'></div>
-
-  <div class='col-md-3'>
-    <br><br>
-    <div class='btn-group'>
-      <%= link_to 'Add Record', new_chemical_record_path,
-        class: 'btn btn-primary btn-sm', role: 'button' %>
-      <%= link_to 'Statistics', chemical_record_stats_path,
-        class: 'btn btn-success btn-sm', role: 'button' %>
+<div ng-app='digiquatics'>
+  <div ng-controller='ChemicalRecordsCtrl'>
+    <% provide(:title, 'Chemical Records') %>
+    <h1>Chemical Records</h1>
+    <div class='row'>
+      <div class='col-md-3'>
+        <h4>Filter Pools:</h4>
+        <select ng-model='poolFilter' class='form-control'>
+          <option value=''>All</option>
+          <option ng-repeat='pool in pools' value='{{pool.name}}'>{{pool.name}}</option>
+        </select>
+      </div>
+      <div class='col-md-6'></div>
+      <div class='col-md-3'>
+        <br><br>
+        <div class='btn-group'>
+          <%= link_to 'Add Record', new_chemical_record_path,
+            class: 'btn btn-primary btn-sm', role: 'button' %>
+          <%= link_to 'Statistics', chemical_record_stats_path,
+            class: 'btn btn-success btn-sm', role: 'button' %>
+        </div>
+      </div>
     </div>
+    <div style="font-size: 100%">
+      <br>
+          <img src="/images/reddot.png" alt="red" height="10px" width="10px" />
+            Danger
+          <img src="/images/yellowdot.png" alt="yellow" height="10px" width="10px" />
+            Warning
+          <img src="/images/greendot.png" alt="green" height="10px" width="10px" />
+            Balanced
+    </div>
+    <br>
+    <%= render 'chemicals' %>
   </div>
 </div>
-
-<div style="font-size: 100%">
-  <br>
-      <img src="/images/reddot.png" alt="red" height="10px" width="10px" />
-        Danger
-      <img src="/images/yellowdot.png" alt="yellow" height="10px" width="10px" />
-        Warning
-      <img src="/images/greendot.png" alt="green" height="10px" width="10px" />
-        Balanced
-</div>
-
-<br>
-
-<%= render 'chemicals' %>
