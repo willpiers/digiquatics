@@ -81,7 +81,7 @@ include ChemicalRecordsHelper
     params.require(:chemical_record)
       .permit(:chlorine_ppm, :chlorine_orp, :ph, :alkalinity, :calcium_hardness,
               :pool_temp, :air_temp, :si_index, :time_stamp, :date_stamp,
-              :user_id)
+              :user_id, :pool_id)
   end
 
   def sort_column

@@ -11,6 +11,9 @@ namespace :db do
     Location.create(name: "The Link Recreation Center", account_id: 1)
     Location.create(name: "Ridge Recreation Center", account_id: 2)
 
+    Pool.create(name: "Big", location_id: Location.first.id)
+    Pool.create(name: "Baby", location_id: Location.first.id)
+
     Position.create(name: "Lifeguard", account_id: 1)
     Position.create(name: "MOD", account_id: 1)
     Position.create(name: "WSI", account_id: 1)
