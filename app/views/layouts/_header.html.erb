@@ -35,19 +35,23 @@
           <%= link_to 'Users', users_path %>
         </li>
 
-        <li class = 'dropdown'>
-          <a href = '#' class = 'dropdown-toggle' data-toggle = 'dropdown'>
-            Maintenance<b class = 'caret'></b></a>
-          <ul class = 'dropdown-menu'>
-            <li><%= link_to 'Daily Checklist', daily_todos_path %></li>
-            <li><%= link_to 'Preventative Maintenance', preventative_lists_path %></li>
-            <li><%= link_to 'Report an Issue', help_desks_path %></li>
-          </ul>
-        </li>
+        <% if FeatureToggleHelper.maintenance? %>
+          <li class = 'dropdown'>
+            <a href = '#' class = 'dropdown-toggle' data-toggle = 'dropdown'>
+              Maintenance<b class = 'caret'></b></a>
+            <ul class = 'dropdown-menu'>
+              <li><%= link_to 'Daily Checklist', daily_todos_path %></li>
+              <li><%= link_to 'Preventative Maintenance', preventative_lists_path %></li>
+              <li><%= link_to 'Report an Issue', help_desks_path %></li>
+            </ul>
+          </li>
+        <% end %>
 
-        <li>
-          <%= link_to 'Shift Reports', shift_reports_path %>
-        </li>
+        <% if FeatureToggleHelper.shift_reports? %>
+          <li>
+            <%= link_to 'Shift Reports', shift_reports_path %>
+          </li>
+        <% end %>
 
         <li class = 'dropdown'>
           <a href = '#' class = 'dropdown-toggle' data-toggle = 'dropdown'>

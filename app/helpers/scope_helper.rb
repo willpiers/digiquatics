@@ -7,5 +7,4 @@ module ScopeHelper
   def pool_scopes
     scope :same_location_as, -> (user) { where(location_id: user.location_id) }
   end
-
 end
