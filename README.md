@@ -6,7 +6,18 @@
 - open `MySQL.prefPane` and start the server
 - add
 
+## Feature Toggles
+create feature toggle file
+``` bash
+subl ~/feature_toggles.yml
 ```
+
+add feature toggles, leave out for false
+``` yaml
+maintenance: true
+private_lessons: true
+```
+
 # Rails MySQL
 MYSQL=/usr/local/mysql/bin
 export PATH=$PATH:$MYSQL
