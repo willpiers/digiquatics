@@ -29,7 +29,7 @@ describe 'Authentication' do
       before { click_button 'Sign in' }
 
       it { should have_title('Sign in') }
-      it { should have_selector('div.alert.alert-danger', text: 'Invalid') }
+      it { should have_selector('div.alert', text: 'Invalid email or password.') }
     end
 
     describe 'with valid information' do
@@ -41,7 +41,7 @@ describe 'Authentication' do
 
       it { should have_title(user.first_name) }
       it { should have_link('My Profile', href: user_path(user)) }
-      it { should have_link('Sign out', href: signout_path) }
+      it { should have_link('Sign out', href: destroy_user_session_path) }
       it { should_not have_link('Sign in', href: new_user_session_path) }
 
       describe 'followed by signout' do
@@ -101,13 +101,13 @@ describe 'Authentication' do
       before { get edit_user_path(wrong_user) }
 
       specify { expect(response.body).not_to match(full_title('Update your profile')) }
-      specify { expect(response).to redirect_to(root_url) }
+      specify { expect(response).to redirect_to(new_user_session_path) }
     end
 
     describe 'submitting a PATCH request to the Users#update action' do
       before { patch user_path(wrong_user) }
 
-      specify { expect(response).to redirect_to(root_url) }
+      specify { expect(response).to redirect_to(new_user_session_path) }
     end
   end
 end

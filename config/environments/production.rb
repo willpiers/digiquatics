@@ -84,5 +84,5 @@ DigiQuatics::Application.configure do
   config.log_formatter = ::Logger::Formatter.new
 
   # Devise
-  config.action_mailer.default_url_options = { :host => 'digiquatics.com' }
+  config.action_mailer.default_url_options = { host: 'digiquatics.com' }
 end

@@ -8,7 +8,7 @@ describe 'admin setup' do
   let(:account) { FactoryGirl.create(:account) }
   let(:location) { FactoryGirl.create(:location) }
   let(:position) { FactoryGirl.create(:position) }
-  let(:user) do
+  let(:admin) do
     FactoryGirl.create(:admin,
                        account_id: account.id,
                        location_id: location.id,
@@ -22,31 +22,27 @@ describe 'admin setup' do
                        position_id: position.id)
   end
 
-  before { login_as(user, scope: :user) }
-
   describe 'manage' do
 
     describe 'users' do
       describe 'as non-admin' do
         before do
-          login_as(user, scope: :non_admin)
-          visit users_path
+          login_as(non_admin, scope: :user)
         end
 
-        it { should_not have_link('Manage Users', href: users_path) }
-
-        it 'should redirect to sign_in' do
-          current_path.should == new_user_session_path
+        it 'should redirect to sign in page' do
+          expect { click_link('Users').to redirect_to(new_user_session_path) }
         end
       end
 
       describe 'as admin' do
         before do
-          click_link('Users')
+          Warden.test_reset!
+          login_as(admin, scope: :user)
         end
 
-        it 'should go to users index' do
-          current_path.should == users_path
+        it 'should redirect to sign in page' do
+          expect { click_link('Users').to redirect_to(users_path) }
         end
       end
     end
@@ -54,20 +50,17 @@ describe 'admin setup' do
     describe 'admin dashboard' do
       describe 'as non-admin' do
         before do
-          login_as(user, scope: :non_admin)
-          visit admin_dashboard_path
+          login_as(non_admin, scope: :user)
         end
 
-        it 'should redirect to sign_in' do
-          current_path.should == new_user_session_path
+        it 'should redirect to sign in page' do
+          expect { click_link('Admin Dashboard').to redirect_to(new_user_session_path) }
         end
       end
 
       describe 'as admin' do
-        before { click_link('Admin Dashboard') }
-
-        it 'should go to admin dash' do
-          current_path.should == admin_dashboard_path
+        it 'should redirect to sign in page' do
+          expect { click_link('Admin Dashboard').to redirect_to(new_user_session_path) }
         end
       end
     end

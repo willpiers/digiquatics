@@ -1,9 +1,10 @@
 require 'spec_helper'
+require 'pp'
 include Warden::Test::Helpers
 Warden.test_mode!
 
 describe 'User pages' do
-  let!(:account) { FactoryGirl.create(:account) }
+  let!(:account) { FactoryGirl.create(:account, name: 'Another Account') }
   let!(:another_account) { FactoryGirl.create(:account) }
   let!(:location) { FactoryGirl.create(:location, account_id: account.id) }
   let!(:location_too) do
@@ -49,8 +50,7 @@ describe 'User pages' do
 
   describe 'signup' do
     before do
-      login_as(admin, :scope => :user)
-      visit new_user_path
+      visit new_user_registration_path
     end
 
     let(:submit) { 'Create Account' }
@@ -63,13 +63,14 @@ describe 'User pages' do
 
     describe 'with valid information' do
       before do
-        fill_in 'First Name',       with: 'First'
-        fill_in 'Preferred Name',   with: 'Dubbs'
-        fill_in 'Last Name',        with: 'Last'
-        fill_in 'Phone Number',     with: '1234'
-        fill_in 'Email',            with: 'user@example.com'
-        fill_in 'Password',         with: 'foobar'
-        fill_in 'Confirm Password', with: 'foobar'
+        select account.name,             from: 'Account'
+        fill_in 'First Name',            with: 'First'
+        fill_in 'Preferred Name',        with: 'Dubbs'
+        fill_in 'Last Name',             with: 'Last'
+        fill_in 'Phone Number',          with: '1234'
+        fill_in 'Email',                 with: 'user@example.com'
+        fill_in 'Password',              with: 'foobar77'
+        fill_in 'Password Confirmation', with: 'foobar77'
       end
 
       it 'should create a user' do
@@ -80,19 +81,15 @@ describe 'User pages' do
         before { click_button submit }
         let(:created_user) { User.find_by_email('user@example.com') }
 
-        it 'should have same account_id as current_user' do
-          created_user.account_id.should eq(user.account_id)
-        end
-
         it { should have_link('Sign out') }
-        it { should have_selector('div.alert.alert-success') }
+        it { should have_selector('div.alert') }
       end
     end
   end
 
   describe 'user profile' do
     before do
-      login_as(user, :scope => :user)
+      login_as(user, scope: :user)
       FactoryGirl.create(:certification,
                          certification_name_id: cert1.id,
                          user_id: user.id)
@@ -109,7 +106,8 @@ describe 'User pages' do
 
     describe 'as admin' do
       before do
-        login_as(user, scope: :admin)
+        Warden.test_reset!
+        login_as(admin, scope: :user)
         visit user_path(user)
       end
 
@@ -130,7 +128,7 @@ describe 'User pages' do
     let(:bob) { User.find_by_email('bob@example.com') }
 
     before do
-      login_as(user, scope: :admin)
+      login_as(admin, scope: :user)
 
       FactoryGirl.create(:user,
                          first_name: 'Bob',
@@ -191,17 +189,17 @@ describe 'User pages' do
 
         describe 'with valid information' do
           let(:new_first_name)  { 'NewFirstName' }
-          let(:new_email) { 'newEmail@example.com' }
+          let(:new_email)       { 'newEmail@example.com' }
 
           before do
             # Basic User Information
-            fill_in 'First Name',         with: new_first_name
-            fill_in 'Preferred Name',     with: 'dubbs'
-            fill_in 'Last Name',          with: 'Last'
-            fill_in 'Phone Number',       with: '720-387-9691'
-            fill_in 'Email',              with: new_email
-            fill_in 'Password',           with: 'foobar'
-            fill_in 'Confirm Password',   with: 'foobar'
+            fill_in 'First Name',            with: new_first_name
+            fill_in 'Preferred Name',        with: 'dubbs'
+            fill_in 'Last Name',             with: 'Last'
+            fill_in 'Phone Number',          with: '720-387-9691'
+            fill_in 'Email',                 with: new_email
+            fill_in 'Password',              with: 'foobar77'
+            fill_in 'Password Confirmation', with: 'foobar77'
 
             # Additional User Information
             select 'September',           from: 'user_date_of_birth_2i'
@@ -232,8 +230,9 @@ describe 'User pages' do
           end
 
           it { should have_title(full_title(new_first_name)) }
-          it { should have_selector('div.alert.alert-success') }
-          it { should have_link('Sign out', href: signout_path) }
+          it { should have_selector('div.alert') }
+          it { should have_link('Sign out', destroy_user_session_path) }
+          specify { expect(current_path).to eq user_path(user) }
           specify { expect(user.reload.first_name).to eq new_first_name }
           specify { expect(user.reload.email).to eq new_email.downcase }
           specify { expect(user.reload.location.id).to eq location.id }
@@ -243,7 +242,7 @@ describe 'User pages' do
 
       describe 'as admin' do
         before do
-          login_as(user, scope: :admin)
+          login_as(admin, scope: :user)
           FactoryGirl.create(:certification,
                              certification_name_id: cert1.id,
                              user_id: user.id)
@@ -298,13 +297,13 @@ describe 'User pages' do
 
           before do
             # Basic User Information
-            fill_in 'First Name',         with: new_first_name
-            fill_in 'Preferred Name',     with: 'dubbs'
-            fill_in 'Last Name',          with: 'Last'
-            fill_in 'Phone Number',       with: '720-387-9691'
-            fill_in 'Email',              with: new_email
-            fill_in 'Password',           with: 'foobar'
-            fill_in 'Confirm Password',   with: 'foobar'
+            fill_in 'First Name',            with: new_first_name
+            fill_in 'Preferred Name',        with: 'dubbs'
+            fill_in 'Last Name',             with: 'Last'
+            fill_in 'Phone Number',          with: '720-387-9691'
+            fill_in 'Email',                 with: new_email
+            fill_in 'Password',              with: 'foobar77'
+            fill_in 'Password Confirmation', with: 'foobar77'
 
             # Additional User Information
             select 'September',           from: 'user_date_of_birth_2i'
@@ -325,26 +324,27 @@ describe 'User pages' do
             select('28',                  from: 'user[femalesuit]')
 
             # Emergency Contact Information
-            fill_in 'Emergency First Name',    with: 'my'
-            fill_in 'Emergency Last Name',     with: 'mom'
+            fill_in 'Emergency First Name', with: 'my'
+            fill_in 'Emergency Last Name',  with: 'mom'
             fill_in 'Emergency Phone #',    with: '303-999-8765'
 
             # Admin User Information
             select location.name,         from: 'user[location_id]'
             select position.name,         from: 'user[position_id]'
-            fill_in 'Employee ID',    with: '1313'
-            fill_in 'Grouping',    with: 'West'
+            fill_in 'Employee ID',        with: '1313'
+            fill_in 'Grouping',           with: 'West'
             select 'September',           from: 'user_date_of_hire_2i'
             select '15',                  from: 'user_date_of_hire_3i'
             select '2013',                from: 'user_date_of_hire_1i'
-            fill_in 'Pay Rate',    with: '9.50'
+            fill_in 'Pay Rate',           with: '9.50'
 
             click_button 'Save Changes'
           end
 
           it { should have_title(full_title(new_first_name)) }
           it { should have_selector('div.alert.alert-success') }
-          it { should have_link('Sign out', href: signout_path) }
+          it { should have_link('Sign out', destroy_user_session_path) }
+          specify { expect(current_path).to eq user_path(user) }
           specify { expect(user.reload.first_name).to eq new_first_name }
           specify { expect(user.reload.email).to eq new_email.downcase }
           specify { expect(user.reload.location.id).to eq location.id }

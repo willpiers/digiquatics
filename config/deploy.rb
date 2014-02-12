@@ -43,7 +43,7 @@ namespace :deploy do
 
   desc "Make symlink for database yaml"
   task :symlink do
-    run "ln -nfs /home/deployer/var/www/digiquatics/shared/config/database.yml /home/deployer/var/www/digiquatics/current/config/database.yml"
+    run 'ln -nfs /home/deployer/var/www/digiquatics/shared/config/database.yml /home/deployer/var/www/digiquatics/current/config/database.yml
   end
 
   after :finishing, 'deploy:cleanup'

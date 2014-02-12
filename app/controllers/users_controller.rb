@@ -20,7 +20,8 @@ class UsersController < ApplicationController
   end
 
   def inactive_index
-    @inactive_users = User.joins(:account).same_account_as(current_user).where(active: false)
+    @inactive_users = User.joins(:account).same_account_as(current_user)
+      .where(active: false)
 
     respond_to do |format|
       format.html
@@ -48,6 +49,7 @@ class UsersController < ApplicationController
 
   def update
     if @user.update_attributes(user_params)
+      sign_in(@user, bypass: true)
       flash[:success] = 'Profile updated'
       redirect_to @user
     else

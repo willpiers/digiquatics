@@ -1,5 +1,5 @@
 DigiQuatics::Application.routes.draw do
-  devise_for :users, controllers: {registrations: 'registrations'}
+  devise_for :users, controllers: { registrations: 'registrations' }
   # rubocop:disable LineLength, StringLiterals
 
   resources :private_lesson_details
@@ -47,17 +47,23 @@ DigiQuatics::Application.routes.draw do
   match '/contact', to: 'static_pages#contact', via: 'get'
 
   match '/support', to: 'users#support', via: 'get'
-  match '/certifications_stats', to: 'static_pages#certifications_stats', via: 'get'
+  match '/certifications_stats',
+        to: 'static_pages#certifications_stats',
+        via: 'get'
   match '/user_stats', to: 'static_pages#user_stats', via: 'get'
 
   match '/admin_index', to: 'private_lessons#admin_index', via: 'get'
   match '/my_lessons', to: 'private_lessons#my_lessons', via: 'get'
-  match '/chemical_record_stats', to: 'static_pages#chemical_record_stats', via: 'get'
+  match '/chemical_record_stats',
+        to: 'static_pages#chemical_record_stats',
+        via: 'get'
 
   match '/inactive_index', to: 'users#inactive_index', via: 'get'
   match '/all_users', to: 'users#all_users', via: 'get'
   match '/admin_dashboard', to: 'accounts#admin_dashboard', via: 'get'
-  match '/certification_expirations', to: 'certifications#expirations', via: 'get'
+  match '/certification_expirations',
+        to: 'certifications#expirations',
+        via: 'get'
   match '/dashboard', to: 'static_pages#dashboard', via: 'get'
 
   match '/closed_index', to: 'help_desks#closed_index', via: 'get'

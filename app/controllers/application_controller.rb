@@ -8,6 +8,10 @@ class ApplicationController < ActionController::Base
    user_path(current_user)
   end
 
+  def after_sign_out_path_for(resource_or_scope)
+    new_user_session_path
+  end
+
   private
 
   def account_time_zone(&block)
