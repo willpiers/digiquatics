@@ -50,7 +50,7 @@ describe 'User pages' do
 
   describe 'signup' do
     before do
-      visit new_user_registration_path
+      visit new_user_path
     end
 
     let(:submit) { 'Create Account' }

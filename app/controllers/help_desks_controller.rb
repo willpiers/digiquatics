@@ -5,7 +5,6 @@ class HelpDesksController < ApplicationController
     @help_desks = HelpDesk.order(sort_column + " " + sort_direction)
       respond_to do |format|
         format.html # index.html.erb
-        format.xml  { render :xml => @help_desks}
         format.csv { render :csv => @help_desks, filename: 'issues'}
       end
   end

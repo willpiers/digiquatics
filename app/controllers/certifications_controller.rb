@@ -11,7 +11,6 @@ class CertificationsController < ApplicationController
 
     respond_to do |format|
       format.html
-      format.xml { render xml: @certifications }
       format.csv { render csv: @users, filename: 'certifications' }
     end
   end

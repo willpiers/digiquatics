@@ -5,7 +5,6 @@ class ShiftReportsController < ApplicationController
     @shift_reports = ShiftReport.all
     respond_to do |format|
       format.html # index.html.erb
-      format.xml  { render xml: @shift_reports}
       format.csv { render csv: @shift_reports, filename: 'shift_reports'}
     end
 

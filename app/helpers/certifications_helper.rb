@@ -20,11 +20,7 @@ module CertificationsHelper
   end
 
   def user_data(user)
-    unless user.location
-      user_location = ''
-    else
-      user_location = user.location.name
-    end
+    user_location = user.location ? user.location.name : ''
 
     {
       id: user.id,

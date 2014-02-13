@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'pp'
 include Warden::Test::Helpers
 Warden.test_mode!
 
@@ -9,7 +10,7 @@ describe 'Account pages' do
 
   describe 'signup' do
     before do
-      visit new_user_registration_path
+      visit new_user_path
     end
 
     let(:submit) { 'Create Account' }
@@ -44,10 +45,6 @@ describe 'Account pages' do
           it { should have_link('Sign out') }
           it { should have_selector('div.alert',
             text: 'Welcome! You have signed up successfully.') }
-        end
-
-        describe 'should have same account id as account created' do
-          specify { expect(created_user.account_id).to eq Account.first.id }
         end
       end
     end

@@ -9,7 +9,6 @@ class PrivateLessonsController < ApplicationController
 
     respond_to do |format|
       format.html
-      format.xml  { render :xml => @private_lessons}
       format.csv { render csv: @private_lessons, filename: 'private_lessons'}
     end
   end

@@ -1,4 +1,5 @@
 <center><h4>Basic User Information</h4></center>
+<%= f.select :account_id, options_from_collection_for_select(Account.all, :id, :name) %>
 <%= f.text_field :first_name, label: 'First Name' %>
 <%= f.text_field :nickname, label: 'Preferred Name' %>
 <%= f.text_field :last_name, label: 'Last Name' %>

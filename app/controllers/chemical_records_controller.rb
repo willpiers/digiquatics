@@ -10,7 +10,6 @@ include ChemicalRecordsHelper
     @chemical_records = ChemicalRecord.order(sort_column + " " + sort_direction)
     respond_to do |format|
       format.html # index.html.erb
-      format.xml  { render :xml => @chemical_records}
       format.csv { render :csv => @chemical_records, filename: 'chemical_records'}
     end
   end

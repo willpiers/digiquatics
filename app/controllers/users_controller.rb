@@ -21,7 +21,7 @@ class UsersController < ApplicationController
 
   def inactive_index
     @inactive_users = User.joins(:account).same_account_as(current_user)
-      .where(active: false)
+      .inactive
 
     respond_to do |format|
       format.html
@@ -57,17 +57,19 @@ class UsersController < ApplicationController
     end
   end
 
-  # def create
-  #   @user = User.new(user_params)
-  #   @user.account_id = current_user.account_id
+  def create
+    @user = User.new(user_params)
 
-  #   if @user.save
-  #     flash[:success] = 'This user has been successfully created!'
-  #     redirect_to users_path
-  #   else
-  #     render 'new'
-  #   end
-  # end
+    if @user.save
+      unless current_user
+        sign_in @user
+      end
+      flash[:success] = 'This user has been successfully created!'
+      redirect_to users_path
+    else
+      render 'new'
+    end
+  end
 
   def certifications
     @certifications = @user.certifications
@@ -89,6 +91,7 @@ class UsersController < ApplicationController
         .permit(:first_name,
                 :nickname,
                 :last_name,
+                :account_id,
                 :email,
                 :password,
                 :password_confirmation,
