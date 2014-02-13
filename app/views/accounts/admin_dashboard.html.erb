@@ -1,28 +1,4 @@
 <% provide(:title, 'Admin Dashboard') %>
-
-<script type="text/javascript">
-
- jQuery(document).ready(function(){
-
-  //target the class 'accordion-body'
-  jQuery('.accordion-body').on('shown', function(e){
-
-   //save the uncollapsed/shown item ID to your cookie:
-   jQuery.cookie('cookie_collapse', jQuery(e.target).attr('id'));
-  });
-
-  var lastCollapse = jQuery.cookie('cookie_collapse');
-
-    //if the cookie exists:-
-    //activate uncollapsed item by adding the class 'in' to the saved ID
-     if (lastCollapse) {
-      var lastCollapse = '#' + lastCollapse
-      jQuery(lastCollapse).addClass('in');
-     }
- } );
-
-</script>
-
 <h1>Admin Dashboard</h1>
 
 <div class='table-responsive'>
@@ -57,35 +33,40 @@
       </div>
     </div>
 
-    <div class='panel panel-default'>
-      <div class='panel-heading'>
-        <h4 class='panel-title'>
-          <a data-toggle='collapse' data-parent="#accordion" href="#collapseThree">
-            Manage Attendance
-          </a>
-        </h4>
-      </div>
-      <div id='collapseThree' class='panel-collapse collapse'>
-        <div class='panel-body'>
-          <%= render 'attendance' %>
+    <% if FeatureToggleHelper.attendance? %>
+      <div class='panel panel-default'>
+        <div class='panel-heading'>
+          <h4 class='panel-title'>
+            <a data-toggle='collapse' data-parent="#accordion" href="#collapseThree">
+              Manage Attendance
+            </a>
+          </h4>
+        </div>
+        <div id='collapseThree' class='panel-collapse collapse'>
+          <div class='panel-body'>
+            <%= render 'attendance' %>
+          </div>
         </div>
       </div>
-    </div>
+    <% end %>
 
-    <div class='panel panel-default'>
-      <div class='panel-heading'>
-        <h4 class='panel-title'>
-          <a data-toggle='collapse' data-parent="#accordion" href="#collapseFour">
-            Manage Chemicals
-          </a>
-        </h4>
-      </div>
-      <div id='collapseFour' class='panel-collapse collapse'>
-        <div class='panel-body'>
-          <%= render 'chemicals' %>
+    <% if FeatureToggleHelper.chemicals? %>
+      <div class='panel panel-default'>
+        <div class='panel-heading'>
+          <h4 class='panel-title'>
+            <a data-toggle='collapse' data-parent="#accordion" href="#collapseFour">
+              Manage Chemicals
+            </a>
+          </h4>
+        </div>
+        <div id='collapseFour' class='panel-collapse collapse'>
+          <div class='panel-body'>
+            <%= render 'chemicals' %>
+          </div>
         </div>
       </div>
-    </div>
+    <% end %>
+
 
     <div class='panel panel-default'>
       <div class='panel-heading'>
@@ -102,19 +83,21 @@
       </div>
     </div>
 
-    <div class='panel panel-default'>
-      <div class='panel-heading'>
-        <h4 class='panel-title'>
-          <a data-toggle='collapse' data-parent="#accordion" href="#collapseSix">
-           Manage Private Lessons Information
-          </a>
-        </h4>
-      </div>
-      <div id='collapseSix' class='panel-collapse collapse'>
-        <div class='panel-body'>
+    <% if FeatureToggleHelper.private_lessons? %>
+      <div class='panel panel-default'>
+        <div class='panel-heading'>
+          <h4 class='panel-title'>
+            <a data-toggle='collapse' data-parent="#accordion" href="#collapseSix">
+             Manage Private Lessons Information
+            </a>
+          </h4>
+        </div>
+        <div id='collapseSix' class='panel-collapse collapse'>
+          <div class='panel-body'>
+          </div>
         </div>
       </div>
-    </div>
+    <% end %>
 
     <div class='panel panel-default'>
       <div class='panel-heading'>
