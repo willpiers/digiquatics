@@ -71,31 +71,6 @@ Install MySQL:
 Kill nginx process:
 `sudo fuser -k 80/tcp`
 
-
-
-
-Update packages on Ubuntu OS
-`sudo apt-get update`
-
-Install packages for use later:
-`sudo apt-get -y install curl git-core python-software-properties`
-
-Refer to Ubuntu PPA [http://wiki.nginx.org/Install#Ubuntu_PPA](http://wiki.nginx.org/Install#Ubuntu_PP)
-Create apt repo for Nginx:
-`sudo add-apt-repository ppa:nginx/stable`
-
-Apt-Update:
-`sudo apt-get update`
-
-Install Nginx:
-`sudo apt-get -y install nginx`
-
-Start Nginx:
-`sudo service nginx start`
-
-Check server in browser:
-[http://198.199.105.193](http://198.199.105.193)
-
 Install MySQL:
 `sudo apt-get -y install mysql-server mysql-client libmysqlclient-dev`
 root password: @ffektive!
