@@ -44,7 +44,7 @@ describe 'Account pages' do
         describe 'should sign the user in' do
           it { should have_link('Sign out') }
           it { should have_selector('div.alert',
-            text: 'Welcome! You have signed up successfully.') }
+            text: 'This user has been successfully created!') }
         end
       end
     end

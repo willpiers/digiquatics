@@ -61,11 +61,14 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
-      unless current_user
-        sign_in @user
+      if @user.account.users.count == 1
+        @user.update_attribute(:admin, true)
+        flash[:success] = 'This user has been successfully created!'
+        sign_in_and_redirect @user
+      else
+        flash[:success] = 'This user has been successfully created!'
+        sign_in_and_redirect @user
       end
-      flash[:success] = 'This user has been successfully created!'
-      redirect_to users_path
     else
       render 'new'
     end
@@ -92,6 +95,7 @@ class UsersController < ApplicationController
                 :nickname,
                 :last_name,
                 :account_id,
+                :admin,
                 :email,
                 :password,
                 :password_confirmation,

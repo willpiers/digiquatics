@@ -6,6 +6,7 @@ Warden.test_mode!
 describe 'User pages' do
   let!(:account) { FactoryGirl.create(:account, name: 'Another Account') }
   let!(:another_account) { FactoryGirl.create(:account) }
+  let!(:blank_account) { FactoryGirl.create(:account, name: 'hi') }
   let!(:location) { FactoryGirl.create(:location, account_id: account.id) }
   let!(:location_too) do
     FactoryGirl.create(:location,
@@ -63,7 +64,7 @@ describe 'User pages' do
 
     describe 'with valid information' do
       before do
-        select account.name,             from: 'Account'
+        select blank_account.name,       from: 'Account'
         fill_in 'First Name',            with: 'First'
         fill_in 'Preferred Name',        with: 'Dubbs'
         fill_in 'Last Name',             with: 'Last'
@@ -81,8 +82,44 @@ describe 'User pages' do
         before { click_button submit }
         let(:created_user) { User.find_by_email('user@example.com') }
 
+        it 'should be an admin' do
+          created_user.admin.should eq true
+        end
+
         it { should have_link('Sign out') }
         it { should have_selector('div.alert') }
+      end
+    end
+
+    describe 'a second user' do
+      before do
+        visit new_user_path
+      end
+
+      describe 'with valid information' do
+        before do
+          select account.name,             from: 'Account'
+          fill_in 'First Name',            with: 'First'
+          fill_in 'Preferred Name',        with: 'Dubbs'
+          fill_in 'Last Name',             with: 'Last'
+          fill_in 'Phone Number',          with: '1234'
+          fill_in 'Email',                 with: 'user2@example.com'
+          fill_in 'Password',              with: 'foobar77'
+          fill_in 'Password Confirmation', with: 'foobar77'
+        end
+
+        it 'should create another user' do
+          expect { click_button submit }.to change(User, :count).by(1)
+        end
+
+        describe 'after saving the user' do
+          before { click_button submit }
+          let(:another_created_user) { User.find_by_email('user2@example.com') }
+
+          it 'should NOT be an admin' do
+            another_created_user.admin.should eq false
+          end
+        end
       end
     end
   end
