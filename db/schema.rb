@@ -28,6 +28,12 @@ ActiveRecord::Schema.define(version: 20140209051238) do
     t.datetime "logo_updated_at"
   end
 
+  create_table "attendance_records", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "certification_names", force: true do |t|
     t.integer  "account_id"
     t.string   "name"
