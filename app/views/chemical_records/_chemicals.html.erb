@@ -1,59 +1,38 @@
-<div class='table-responsive'>
-  <table class='table table-hover table-condensed'>
+<div ng-app='digiquatics' class='table-responsive'>
+  <table ng-controller='ChemicalRecordsCtrl'
+    class='table table-hover table-condensed' >
     <thead>
-      <tr style='word-wrap:break-word;'>
-        <th><%= sortable 'chlorine_ppm', 'Cl' %></th>
-        <th><%= sortable 'ph', 'Ph' %></th>
-        <th><%= sortable 'alkalinity', 'Alk' %></th>
-        <th><%= sortable 'calcium_hardness', 'CH' %></th>
-        <th><%= sortable 'pool_temp', 'Pool(F)' %></th>
-        <th class='hidden-xs hidden-sm'>
-          <%= sortable 'air_temp', 'Air(F)' %>
-        </th>
-        <th class='hidden-xs hidden-sm'>
-          <%= sortable 'si_index', 'SI index' %>
-        </th>
-        <th class='hidden-xs hidden-sm'>
-          <%= sortable 'si_status', 'Status' %></th>
-        <th><%= sortable 'date_stamp', 'Date' %></th>
-        <th> Time</th>
+      <tr>
+        <th>Cl</th>
+        <th>PH</th>
+        <th>Alk</th>
+        <th>CH</th>
+        <th>Pool(F)</th>
+        <th class='hidden-xs hidden-sm'>Air(F)</th>
+        <th class='hidden-xs hidden-sm'>SI Index</th>
+        <th class='hidden-xs hidden-sm'>SI Status</th>
+        <th>Date</th>
+        <th>Time</th>
       </tr>
     </thead>
 
     <tbody>
-      <% @chemical_records.each do |chemical_record| %>
-        <tr>
-          <td><%= chemical_record.chlorine_ppm %></td>
-          <td><%= chemical_record.ph %></td>
-          <td><%= chemical_record.alkalinity %></td>
-          <td><%= chemical_record.calcium_hardness %></td>
-          <td><%= chemical_record.pool_temp %></td>
-          <td class='hidden-xs hidden-sm'>
-            <%= chemical_record.air_temp %>
-          </td>
-          <% if chemical_record.si_index >= -0.3 and
-                chemical_record.si_index <=0.3 %>
-            <td class='success'><%= chemical_record.si_index %></td>
-            <td><%= chemical_record.si_status %></td>
-          <% elsif chemical_record.si_index >0.7 or
-                   chemical_record.si_index <-0.7%>
-            <td class='danger'><%= chemical_record.si_index %></td>
-            <td><%= chemical_record.si_status %></td>
-          <% else %>
-            <td class='warning'><%= chemical_record.si_index %></td>
-            <td><%= chemical_record.si_status %></td>
-          <% end %>
-          <td>
-            <%= link_to chemical_record.date_stamp.strftime('%-m/%-d/%Y'),
-              chemical_record %>
-          </td>
-          <td>
-            <%= link_to chemical_record.time_stamp.strftime('%I:%M%p'),
-              chemical_record %>
-          </td>
-        </tr>
-      <% end %>
+      <tr ng-repeat='record in chemical_records | orderBy:sorter.value | filter:poolFilter'>
+        <td>{{record.chlorine_ppm}}</td>
+        <td>{{record.ph}}</td>
+        <td>{{record.alkalinity}}</td>
+        <td>{{record.calcium_hardness}}</td>
+        <td>{{record.pool_temp}}</td>
+        <td>{{record.air_temp}}</td>
+        <td>{{record.si_index}}</td>
+        <td>{{record.si_status}}</td>
+        <td>
+          <a ng-href='/chemical_records/{{record.id}}'>
+            {{record.date_stamp}}
+          </a>
+        </td>
+        <td>{{record.time_stamp}}</td>
+      </tr>
     </tbody>
   </table>
-  <br>
 </div>

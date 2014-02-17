@@ -6,21 +6,23 @@
       label: 'Date of Birth' %>
 </div>
 
-<%= f.select :sex, %w[- M F]%>
+<%= f.select :sex, %w[M F], {include_blank: true}%>
 <%= f.text_field :address1, label: 'Address 1' %>
 <%= f.text_field :address2, label: 'Address 2' %>
 <%= f.text_field :city, label: 'City' %>
-<%= f.select :state, us_states, label: 'State' %>
+<%= f.select :state, us_states, {include_blank: true}, label: 'State' %>
 <%= f.text_field :zipcode, label: 'Zipcode' %>
 
 <%= f.file_field :avatar, label: 'User Avatar' %>
 
 <center><h4>Sizing Information</h4></center>
 
-<%= f.select :shirt_size, %w[- XS S M L XL XXL], {}, label: 'Shirt Size' %>
-<%= f.select :suit_size, %w[- XS S M L XL XXL],  {}, label: 'Shorts Size' %>
-<%= f.select :femalesuit, %w[- 28 30 32 34 36 38 40], {},
-  label: 'One Piece Size (F)' if f.object.new_record? || user.sex == 'F' %>
+<%= f.select :shirt_size, %w[XS S M L XL XXL], {include_blank: true},
+  label: 'Shirt Size' %>
+<%= f.select :suit_size, %w[XS S M L XL XXL],  {include_blank: true},
+  label: 'Shorts Size' %>
+<%= f.select :femalesuit, %w[28 30 32 34 36 38 40], {include_blank: true},
+  label: 'One Piece Suit Size (F)' if f.object.new_record? || user.sex == 'F' %>
 
 <center><h4>Emergency Contact Information</h4></center>
 

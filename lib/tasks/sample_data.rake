@@ -12,6 +12,9 @@ namespace :db do
     Location.create(name: "The Link Recreation Center", account_id: 1)
     Location.create(name: "Ridge Recreation Center", account_id: 2)
 
+    Pool.create(name: "Big", location_id: Location.first.id)
+    Pool.create(name: "Baby", location_id: Location.first.id)
+
     Position.create(name: "Lifeguard", account_id: 1)
     Position.create(name: "MOD", account_id: 1)
     Position.create(name: "WSI", account_id: 1)
@@ -146,6 +149,14 @@ namespace :db do
     end
 
     250.times do |n|
+      si_status = ["Severe Corrosion", "Moderate Corrosion", "Mild Corrosion",
+                   "Balanced", "Some Faint Coating", "Mild Scale Coating",
+                   "Mild to Moderate Coatings", "Moderate Scale Forming",
+                   "Severe Scale Forming" ]
+      si_recommendation = ["Treatment Recommended", "Treatment May Be Needed",
+                           "Probably No Treatment", "No Treatment",
+                           "Treatment May Be Needed", "Treatment Recommended" ]
+
       ChemicalRecord.create!(chlorine_ppm: rand(5) + 1,
                            ph: [6.8, 6.9, 7.0, 7.1, 7.2, 7.3, 7.4, 7.5, 7.6,
                             7.7, 7.8, 7.9, 8.0].sample,
@@ -158,9 +169,11 @@ namespace :db do
                            date_stamp: "2014-01-01",
                            time_stamp: "10:00pm",
                            si_index: [-1, -0.5, -0.3, 0, 0.3, 0.5, 1].sample,
-                           si_status: "SAMPLE NA",
-                           si_recommendation: "SAMPLE NA"
-      )
+                           si_status: si_status.sample,
+                           si_recommendation: si_recommendation.sample,
+                           pool_id: Pool.first.id,
+                           user_id: [1, 2, 3, 4, 5].sample
+                           )
     end
 
     25.times do |n|

@@ -11,7 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20140209051121) do
+=======
+ActiveRecord::Schema.define(version: 20140209051238) do
+>>>>>>> master
 
   create_table "accounts", force: true do |t|
     t.string   "name"
@@ -60,6 +64,7 @@ ActiveRecord::Schema.define(version: 20140209051121) do
     t.text     "si_status"
     t.text     "si_recommendation"
     t.integer  "user_id"
+    t.integer  "pool_id"
   end
 
   create_table "daily_todos", force: true do |t|
@@ -163,6 +168,14 @@ ActiveRecord::Schema.define(version: 20140209051121) do
     t.integer  "user_id"
     t.integer  "location_id"
     t.boolean  "report_filed"
+    t.string   "attachment_front_file_name"
+    t.string   "attachment_front_content_type"
+    t.integer  "attachment_front_file_size"
+    t.datetime "attachment_front_updated_at"
+    t.string   "attachment_back_file_name"
+    t.string   "attachment_back_content_type"
+    t.integer  "attachment_back_file_size"
+    t.datetime "attachment_back_updated_at"
   end
 
   create_table "users", force: true do |t|

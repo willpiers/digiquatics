@@ -18,6 +18,8 @@ gem 'angularjs-rails'
 gem 'jquery-turbolinks'
 gem 'devise'
 gem 'activerecord-session_store', github: 'rails/activerecord-session_store'
+gem 'jquery-cookie-rails'
+>>>>>>> master
 
 # Using MySQL Database
 gem 'mysql2'

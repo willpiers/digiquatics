@@ -10,6 +10,8 @@
       <%= f.check_box :report_filed, label: "" do %>
       <% end %>
     <% end %>
+    <%= f.file_field :attachment_front %>
+    <%= f.file_field :attachment_back %>
 
     <div class='date-select'>
       <%= f.date_select :date_stamp, {}, label: 'Date'  %>

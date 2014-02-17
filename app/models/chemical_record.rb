@@ -1,4 +1,9 @@
 class ChemicalRecord < ActiveRecord::Base
+  extend ScopeHelper
+  pool_scopes
+
+  belongs_to :pool
+
   comma do
     chlorine_ppm
     ph

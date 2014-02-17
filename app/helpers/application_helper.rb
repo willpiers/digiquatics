@@ -50,7 +50,6 @@ module ApplicationHelper
 
   def us_states
     [
-      %w(- -),
       %w(AK AK),
       %w(AL AL),
       %w(AR AR),

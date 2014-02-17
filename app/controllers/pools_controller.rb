@@ -5,6 +5,15 @@ class PoolsController < ApplicationController
     @pools = Pool.all
   end
 
+  def user_pools
+    @pools = Pool.where(location_id = current_user.location_id)
+    respond_to do |format|
+      format.json do
+        render json: @pools.to_json
+      end
+    end
+  end
+
   def show
   end
 
