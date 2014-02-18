@@ -1,4 +1,4 @@
-root = '/var/www/digiquatics/current'
+root = '/home/deployer/var/www/digiquatics/current'
 working_directory root
 pid "#{root}/tmp/pids/unicorn.pid"
 stderr_path "#{root}/log/unicorn.log"
