@@ -25,7 +25,8 @@ set :repo_url, 'git@github.com:duffcodester/digiquatics.git'
 set :linked_files, %w{config/database.yml}
 
 # Default value for linked_dirs is []
-set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
+set :linked_dirs,
+    %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
 
 # Default value for default_env is {}
 # set :default_env, { path: '/opt/ruby/bin:$PATH' }
@@ -41,9 +42,10 @@ namespace :deploy do
     end
   end
 
-  desc "Make symlink for database yaml"
+  desc 'Make symlink for database yaml'
   task :symlink do
-    run 'ln -nfs /home/deployer/var/www/digiquatics/shared/config/database.yml /home/deployer/var/www/digiquatics/current/config/database.yml
+    run 'ln -nfs /home/deployer/var/www/digiquatics/shared/config/database.yml
+      /home/deployer/var/www/digiquatics/current/config/database.yml'
   end
 
   after :finishing, 'deploy:cleanup'
