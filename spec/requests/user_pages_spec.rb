@@ -66,7 +66,6 @@ describe 'User pages' do
       before do
         select blank_account.name,       from: 'Account'
         fill_in 'First Name',            with: 'First'
-        fill_in 'Preferred Name',        with: 'Dubbs'
         fill_in 'Last Name',             with: 'Last'
         fill_in 'Phone Number',          with: '1234'
         fill_in 'Email',                 with: 'user@example.com'
@@ -93,14 +92,15 @@ describe 'User pages' do
 
     describe 'a second user' do
       before do
+        login_as(admin, scope: :user)
         visit new_user_path
       end
 
+      it { should_not have_selector('label', text: 'Account') }
+
       describe 'with valid information' do
         before do
-          select account.name,             from: 'Account'
           fill_in 'First Name',            with: 'First'
-          fill_in 'Preferred Name',        with: 'Dubbs'
           fill_in 'Last Name',             with: 'Last'
           fill_in 'Phone Number',          with: '1234'
           fill_in 'Email',                 with: 'user2@example.com'
@@ -231,7 +231,6 @@ describe 'User pages' do
           before do
             # Basic User Information
             fill_in 'First Name',            with: new_first_name
-            fill_in 'Preferred Name',        with: 'dubbs'
             fill_in 'Last Name',             with: 'Last'
             fill_in 'Phone Number',          with: '720-387-9691'
             fill_in 'Email',                 with: new_email
@@ -335,7 +334,6 @@ describe 'User pages' do
           before do
             # Basic User Information
             fill_in 'First Name',            with: new_first_name
-            fill_in 'Preferred Name',        with: 'dubbs'
             fill_in 'Last Name',             with: 'Last'
             fill_in 'Phone Number',          with: '720-387-9691'
             fill_in 'Email',                 with: new_email

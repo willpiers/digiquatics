@@ -58,17 +58,24 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
 
-    if @user.save
-      if @user.account.users.count == 1
-        @user.update_attribute(:admin, true)
+    if signed_in?
+      @user.account_id = current_user.account_id
+      if @user.save
         flash[:success] = 'This user has been successfully created!'
-        sign_in_and_redirect @user
-      else
-        flash[:success] = 'This user has been successfully created!'
-        sign_in_and_redirect @user
+        redirect_to @user
       end
     else
-      render 'new'
+      if @user.save
+        flash[:success] = 'This user has been successfully created!'
+        if @user.account.users.count == 1
+          @user.update_attribute(:admin, true)
+          sign_in_and_redirect @user
+        else
+          sign_in_and_redirect @user
+        end
+      else
+        render 'new'
+      end
     end
   end
 

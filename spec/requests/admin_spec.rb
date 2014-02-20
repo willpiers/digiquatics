@@ -27,11 +27,13 @@ describe 'admin setup' do
     describe 'users' do
       describe 'as non-admin' do
         before do
+          Warden.test_reset!
           login_as(non_admin, scope: :user)
+          visit users_path
         end
 
-        it 'should redirect to sign in page' do
-          expect { click_link('Users').to redirect_to(new_user_session_path) }
+        it 'should redirect to user profile and flash error' do
+          current_path.should eq user_path(non_admin)
         end
       end
 
@@ -39,10 +41,11 @@ describe 'admin setup' do
         before do
           Warden.test_reset!
           login_as(admin, scope: :user)
+          visit users_path
         end
 
-        it 'should redirect to sign in page' do
-          expect { click_link('Users').to redirect_to(users_path) }
+        it 'should redirect to users index' do
+          current_path.should eq users_path
         end
       end
     end
@@ -50,17 +53,25 @@ describe 'admin setup' do
     describe 'admin dashboard' do
       describe 'as non-admin' do
         before do
+          Warden.test_reset!
           login_as(non_admin, scope: :user)
+          visit admin_dashboard_path
         end
 
         it 'should redirect to sign in page' do
-          expect { click_link('Admin Dashboard').to redirect_to(new_user_session_path) }
+          current_path.should eq(user_path(non_admin))
         end
       end
 
       describe 'as admin' do
-        it 'should redirect to sign in page' do
-          expect { click_link('Admin Dashboard').to redirect_to(new_user_session_path) }
+        before do
+          Warden.test_reset!
+          login_as(admin, scope: :user)
+          visit admin_dashboard_path
+        end
+
+        it 'should redirect to admin dash' do
+          current_path.should eq admin_dashboard_path
         end
       end
     end
