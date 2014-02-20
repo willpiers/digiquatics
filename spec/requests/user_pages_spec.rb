@@ -148,6 +148,7 @@ describe 'User pages' do
         visit user_path(user)
       end
 
+      it { should have_link('Users', users_path) }
       it { should have_selector('h4', text: 'Notes') }
       it { should have_link('Edit', edit_user_path(user)) }
 
@@ -157,7 +158,14 @@ describe 'User pages' do
     end
 
     describe 'as non-admin' do
+      before do
+        Warden.test_reset!
+        login_as(user, scope: :user)
+        visit user_path(user)
+      end
+
       it { should_not have_selector('h4', text: 'Notes') }
+      it { should_not have_link('Users', users_path) }
     end
   end
 
