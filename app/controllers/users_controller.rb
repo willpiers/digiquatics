@@ -1,6 +1,5 @@
 class UsersController < ApplicationController
   include ApplicationHelper
-  helper_method :sort_column, :sort_direction
   before_action :signed_in_user, only: [:index, :edit, :update]
   before_action :correct_user,   only: [:edit, :update]
   before_action :set_user, only: [:edit, :show, :certifications]
@@ -8,7 +7,6 @@ class UsersController < ApplicationController
 
   def index
     @users = User.joins(:account).same_account_as(current_user).active
-      .order("#{sort_column} #{sort_direction}")
 
     respond_to do |format|
       format.html
@@ -138,14 +136,9 @@ class UsersController < ApplicationController
 
   def correct_user
     @user = User.find(params[:id])
-    redirect_to(new_user_session_path) unless current_user?(@user) || current_user.admin?
-  end
 
-  def sort_column
-    params[:sort] || 'first_name'
-  end
-
-  def sort_direction
-    params[:direction] || 'asc'
+    unless current_user?(@user) || current_user.admin?
+      redirect_to(new_user_session_path)
+    end
   end
 end

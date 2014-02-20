@@ -3,17 +3,15 @@
   <table class='table table-hover table-condensed'>
     <thead>
       <tr>
-        <th><%= sortable 'last_name' %></th>
-        <th><%= sortable 'first_name' %></th>
-        <th><%= sortable 'age' %></th>
-        <th><%= sortable 'sex' %></th>
-        <th>
-          <%= sortable 'instructor_gender', '*Instructor Gender' %>
-        </th>
-        <th><%= sortable 'day' %></th>
-        <th><%= sortable 'time' %></th>
-        <th><%= sortable 'preferred_location', 'Location' %></th>
-        <th><%= sortable 'created_at', 'Date' %></th>
+        <th>Last Name</th>
+        <th>First Name</th>
+        <th>Age</th>
+        <th>Sex</th>
+        <th>Instructor Gender</th>
+        <th>Day</th>
+        <th>Time</th>
+        <th>Location</th>
+        <th>Date</th>
       </tr>
     </thead>
 
@@ -27,8 +25,9 @@
           <td><%= private_lesson.instructor_gender %></td>
           <td><%= private_lesson.day %></td>
           <td><%= private_lesson.time %></td>
-          <td><%= Location.find_by_id(private_lesson.preferred_location).name %>
-            </td>
+          <td>
+            <%= Location.find_by_id(private_lesson.preferred_location).name %>
+          </td>
           <td><%= private_lesson.created_at.strftime('%-m/%-d/%Y') %></td>
         </tr>
       <% end %>

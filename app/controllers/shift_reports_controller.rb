@@ -5,9 +5,8 @@ class ShiftReportsController < ApplicationController
     @shift_reports = ShiftReport.all
     respond_to do |format|
       format.html # index.html.erb
-      format.csv { render csv: @shift_reports, filename: 'shift_reports'}
+      format.csv { render csv: @shift_reports, filename: 'shift_reports' }
     end
-
   end
 
   def show
@@ -50,17 +49,14 @@ class ShiftReportsController < ApplicationController
 
   private
 
-    # Use callbacks to share common setup or constraints between actions.
-    def set_shift_report
-      @shift_report = ShiftReport.find(params[:id])
-    end
+  def set_shift_report
+    @shift_report = ShiftReport.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet
-    def shift_report_params
-      params.require(:shift_report)
-        .permit(:post_title, :post_content, :date_stamp, :time_stamp, :user_id,
-                :location_id, :report_filed, :attachment_front, :attachment_back,
-                users_attributes: [:id, :first_name, :last_name])
-    end
-
+  def shift_report_params
+    params.require(:shift_report)
+      .permit(:post_title, :post_content, :date_stamp, :time_stamp, :user_id,
+              :location_id, :report_filed, :attachment_front, :attachment_back,
+              users_attributes: [:id, :first_name, :last_name])
+  end
 end
