@@ -17,8 +17,8 @@ class PrivateLessonDetailsController < ApplicationController
   end
 
   def create
-    @private_lesson_detail = PrivateLessonDetail.new(
-      private_lesson_detail_params)
+    @private_lesson_detail = PrivateLessonDetail
+      .new(private_lesson_detail_params)
 
     if @private_lesson_detail.save
       redirect_to admin_dashboard_path,

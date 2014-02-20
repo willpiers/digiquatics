@@ -6,9 +6,7 @@ class PoolsController < ApplicationController
   end
 
   def user_pools
-    @pools = Pool.where(location_id: current_user.location_id)
-
-    render json: @pools.to_json
+    render json: Pool.where(location_id: current_user.location_id).to_json
   end
 
   def show
@@ -48,13 +46,11 @@ class PoolsController < ApplicationController
 
   private
 
-    # Use callbacks to share common setup or constraints between actions.
-    def set_pool
-      @pool = Pool.find(params[:id])
-    end
+  def set_pool
+    @pool = Pool.find(params[:id])
+  end
 
-    # Only allow the white list through.
-    def pool_params
-      params.require(:pool).permit(:name, :location_id)
-    end
+  def pool_params
+    params.require(:pool).permit(:name, :location_id)
+  end
 end
