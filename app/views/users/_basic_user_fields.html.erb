@@ -3,8 +3,12 @@
 <% unless signed_in? %>
   <%= f.select :account_id, options_from_collection_for_select(Account.all, :id, :name) %>
 <% end %>
-
 <%= f.text_field :first_name, label: 'First Name' %>
+
+<% unless f.object.new_record? %>
+  <%= f.text_field :nickname, label: 'Peferred Name' %>
+<% end %>
+
 <%= f.text_field :last_name, label: 'Last Name' %>
 <%= f.text_field :phone_number, label: 'Phone Number' %>
 <%= f.text_field :email %>

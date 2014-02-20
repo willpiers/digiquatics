@@ -239,6 +239,7 @@ describe 'User pages' do
           before do
             # Basic User Information
             fill_in 'First Name',            with: new_first_name
+            fill_in 'user_nickname',         with: 'Bobs'
             fill_in 'Last Name',             with: 'Last'
             fill_in 'Phone Number',          with: '720-387-9691'
             fill_in 'Email',                 with: new_email
@@ -342,6 +343,7 @@ describe 'User pages' do
           before do
             # Basic User Information
             fill_in 'First Name',            with: new_first_name
+            fill_in 'user_nickname',         with: 'Bobs'
             fill_in 'Last Name',             with: 'Last'
             fill_in 'Phone Number',          with: '720-387-9691'
             fill_in 'Email',                 with: new_email
