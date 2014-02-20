@@ -3,10 +3,12 @@ AllCops:
     - Rakefile
     - config.ru
     - Gemfile
+    - Capfile
   Excludes:
     - spec/spec_helper.rb
     - db/**
     - config/application.rb
+    - bin/**
 
 Documentation:
   Enabled: false

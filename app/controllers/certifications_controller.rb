@@ -1,5 +1,4 @@
 class CertificationsController < ApplicationController
-  helper_method :sort_column, :sort_direction
   before_action :set_certification, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -7,7 +6,7 @@ class CertificationsController < ApplicationController
       .same_account_as(current_user)
 
     @users = User.joins(:account).same_account_as(current_user).active
-      .includes(:certifications).order("#{sort_column} #{sort_direction}")
+      .includes(:certifications)
 
     respond_to do |format|
       format.html
@@ -75,24 +74,13 @@ class CertificationsController < ApplicationController
 
   include CertificationsHelper
 
-  # Use callbacks to share common setup or constraints between actions.
   def set_certification
     @certification = Certification.find(params[:id])
   end
 
-  # Only allow the white list through.
   def certification_params
     params.require(:certification).permit(:certification_name_id, :user_id,
                                           :issue_date, :expiration_date,
                                           :attachment)
-  end
-
-  #Sorting
-  def sort_column
-    params[:sort] || 'last_name'
-  end
-
-  def sort_direction
-    params[:direction] || 'asc'
   end
 end
