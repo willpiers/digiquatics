@@ -1,9 +1,7 @@
 IntercomRails.config do |config|
   # == Intercom app_id
-
-  # rubocop:disable LineLength, StringLiterals
-  config.app_id = ENV['INTERCOM_APP_ID'] || 'd41562edd070e34d1f970f80381798645196bfc3'
-  # rubocop:enable LineLength, StringLiterals
+  config.app_id = ENV['INTERCOM_APP_ID'] ||
+    'd41562edd070e34d1f970f80381798645196bfc3'
 
   # == Intercom secret key
   # This is required to enable secure mode, you can find it on your Intercom
@@ -20,9 +18,7 @@ IntercomRails.config do |config|
   # == Enabled Environments
   # Which environments is auto inclusion of the Javascript enabled for
   #
-  config.enabled_environments = %w['production']
-
-  #rubocop: disable all
+  config.enabled_environments = %w{'development', 'production'}
 
   # == Current user method/variable
   # The method/variable that contains the logged in user in your controllers.
@@ -69,17 +65,24 @@ IntercomRails.config do |config|
   # }
 
   # == Company Plan name
-  # This is the name of the plan a company is currently paying (or not paying) for.
+  # This is the name of the plan a company is currently paying (or not paying)
+  # for.
   # e.g. Messaging, Free, Pro, etc.
   #
-  # config.company.plan = Proc.new { |current_company| current_company.plan.name }
+  # config.company.plan =
+  #   Proc.new { |current_company| current_company.plan.name }
 
   # == Company Monthly Spend
-  # This is the amount the company spends each month on your app. If your company
-  # has a plan, it will set the 'total value' of that plan appropriately.
+  # This is the amount the company spends each month on your app. If your
+  # company has a plan, it will set the 'total value' of that plan
+  # appropriately.
   #
-  # config.company.monthly_spend = Proc.new { |current_company| current_company.plan.price }
-  # config.company.monthly_spend = Proc.new { |current_company| (current_company.plan.price - current_company.subscription.discount) }
+  # config.company.monthly_spend =
+  #   Proc.new { |current_company| current_company.plan.price }
+  # config.company.monthly_spend =
+  #   Proc.new do |current_company|
+  #     (current_company.plan.price - current_company.subscription.discount)
+  #   end
 
   # == Inbox Style
   # This enables the Intercom inbox which allows your users to read their
@@ -91,7 +94,4 @@ IntercomRails.config do |config|
   #
   # config.inbox.style = :default
   # config.inbox.style = :custom
-
-  # rubocop: enable all
-
 end
