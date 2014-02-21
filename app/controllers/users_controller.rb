@@ -61,18 +61,16 @@ class UsersController < ApplicationController
     if signed_in?
       @user.account_id = current_user.account_id
       if @user.save
-        flash[:success] = 'This user has been successfully created!'
+        flash[:success] = 'You have successfully created a user account!'
         redirect_to @user
       end
     else
       if @user.save
-        flash[:success] = 'This user has been successfully created!'
+        flash[:success] = 'You have successfully created a user account!'
         if @user.account.users.count == 1
           @user.update_attribute(:admin, true)
-          sign_in_and_redirect @user
-        else
-          sign_in_and_redirect @user
         end
+        sign_in_and_redirect @user
       else
         render 'new'
       end
