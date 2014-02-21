@@ -49,7 +49,10 @@ module ApplicationHelper
   end
 
   def admin_user
-    redirect_to(new_user_session_path) unless current_user.admin?
+    unless current_user.admin?
+      flash[:notice] = 'You must have admin rights to access this page.'
+      redirect_to current_user
+    end
   end
 
   def us_states
