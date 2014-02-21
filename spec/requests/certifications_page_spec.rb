@@ -13,6 +13,13 @@ describe 'Certifications' do
                        account_id: account.id)
   end
 
+  let!(:admin) do
+    FactoryGirl.create(:admin,
+                       location_id: location.id,
+                       position_id: position.id,
+                       account_id: account.id)
+  end
+
   subject { page }
 
   describe 'page' do
@@ -68,5 +75,34 @@ describe 'Certifications' do
         page.should_not have_content(cert.certification_name.name)
       end
     end
+  end
+
+  describe 'on user edit page' do
+    let!(:old_cert_name) do
+      FactoryGirl.create(:certification_name,
+                         account_id: account.id,
+                         name: 'old')
+    end
+
+    let!(:new_cert_name) do
+      FactoryGirl.create(:certification_name,
+                         account_id: account.id,
+                         name: 'new_cert_name')
+    end
+
+    before do
+      Warden.test_reset!
+      login_as(admin, scope: :user)
+      FactoryGirl.create(:certification,
+                         certification_name_id: old_cert_name.id,
+                         user_id: user.id)
+
+      visit edit_user_path(user)
+      select new_cert_name.name,
+        from: 'user_certifications_attributes_0_certification_name_id'
+      click_button 'Save Changes'
+    end
+
+    it { should have_content('new_cert_name') }
   end
 end
