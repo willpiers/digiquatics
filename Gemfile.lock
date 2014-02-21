@@ -7,6 +7,13 @@ GIT
       sshkit (~> 1.2)
 
 GIT
+  remote: git://github.com/kmanzana/intercom-rails.git
+  revision: 7c29737a7a53f6b1fae691c1f870c9d5323fdd42
+  specs:
+    intercom-rails (0.2.24)
+      activesupport (> 3.0)
+
+GIT
   remote: git://github.com/potenza/bootstrap_form.git
   revision: 85ce2b52b13ae03c0099fd1df985a3b70bca55f4
   specs:
@@ -134,8 +141,6 @@ GEM
       spork (>= 0.8.4)
     hike (1.2.3)
     i18n (0.6.9)
-    intercom-rails (0.2.24)
-      activesupport (> 3.0)
     jbuilder (1.5.3)
       activesupport (>= 3.0.0)
       multi_json (>= 1.2.0)
@@ -315,7 +320,7 @@ DEPENDENCIES
   guard-bundler
   guard-rspec
   guard-spork (= 1.5.0)
-  intercom-rails (~> 0.2.21)
+  intercom-rails!
   jbuilder (~> 1.2)
   jquery-cookie-rails
   jquery-rails
