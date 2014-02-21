@@ -2,7 +2,7 @@ class HelpDesksController < ApplicationController
   before_action :set_help_desk, only: [:show, :edit, :update, :destroy]
 
   def index
-    @help_desks = HelpDesk.order(sort_column + " " + sort_direction)
+    @help_desks = HelpDesk
       respond_to do |format|
         format.html # index.html.erb
         format.csv { render :csv => @help_desks, filename: 'issues'}
@@ -55,26 +55,15 @@ class HelpDesksController < ApplicationController
 
   private
 
-    # Use callbacks to share common setup or constraints between actions.
-    def set_help_desk
-      @help_desk = HelpDesk.find(params[:id])
-    end
+  def set_help_desk
+    @help_desk = HelpDesk.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet
-    def help_desk_params
-      params.require(:help_desk).permit(:name, :description, :urgency, :user_id,
-                                        :location_id, :issue_status,
-                                        :issue_resolution_description,
-                                        :help_desk_attachment, :closed_user_id,
-                                        :closed_date_time)
-    end
-
-    def sort_column
-      params[:sort] || 'name'
-    end
-
-    def sort_direction
-      params[:direction] || 'asc'
-    end
-
+  def help_desk_params
+    params.require(:help_desk).permit(:name, :description, :urgency, :user_id,
+                                      :location_id, :issue_status,
+                                      :issue_resolution_description,
+                                      :help_desk_attachment, :closed_user_id,
+                                      :closed_date_time)
+  end
 end

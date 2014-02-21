@@ -1,13 +1,10 @@
 class ChemicalRecordsController < ApplicationController
 include Math
 include ChemicalRecordsHelper
-  helper_method :sort_column, :sort_direction
   before_action :set_chemical_record, only: [:show, :edit, :update, :destroy]
 
-  # GET /chemical_records
-  # GET /chemical_records.json
   def index
-    @chemical_records = ChemicalRecord.order(sort_column + " " + sort_direction)
+    @chemical_records = ChemicalRecord
     respond_to do |format|
       format.html # index.html.erb
       format.csv { render :csv => @chemical_records, filename: 'chemical_records'}
@@ -17,22 +14,16 @@ include ChemicalRecordsHelper
     end
   end
 
-  # GET /chemical_records/1
-  # GET /chemical_records/1.json
   def show
   end
 
-  # GET /chemical_records/new
   def new
     @chemical_record = ChemicalRecord.new
   end
 
-  # GET /chemical_records/1/edit
   def edit
   end
 
-  # POST /chemical_records
-  # POST /chemical_records.json
   def create
     @chemical_record = ChemicalRecord.new(chemical_record_params)
     @chemical_record.si_index =  si_index_calculator(@chemical_record.ph,
@@ -53,8 +44,6 @@ include ChemicalRecordsHelper
     end
   end
 
-  # PATCH/PUT /chemical_records/1
-  # PATCH/PUT /chemical_records/1.json
   def update
     if @chemical_record.update(chemical_record_params)
       flash[:success] = 'Chemical record was successfully updated.'
@@ -64,8 +53,6 @@ include ChemicalRecordsHelper
     end
   end
 
-  # DELETE /chemical_records/1
-  # DELETE /chemical_records/1.json
   def destroy
     @chemical_record.destroy
     redirect_to chemical_records_url
@@ -73,26 +60,14 @@ include ChemicalRecordsHelper
 
   private
 
-  # Use callbacks to share common setup or constraints between actions.
   def set_chemical_record
     @chemical_record = ChemicalRecord.find(params[:id])
   end
 
-  # Only allow the white list through.
   def chemical_record_params
     params.require(:chemical_record)
       .permit(:chlorine_ppm, :chlorine_orp, :ph, :alkalinity, :calcium_hardness,
               :pool_temp, :air_temp, :si_index, :time_stamp, :date_stamp,
               :user_id, :pool_id)
   end
-
-  def sort_column
-    params[:sort] || 'created_at'
-  end
-
-  def sort_direction
-    params[:direction] || 'desc'
-  end
-
 end
-

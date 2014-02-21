@@ -10,6 +10,7 @@ describe 'Account pages' do
 
   describe 'signup' do
     before do
+      Warden.test_reset!
       visit new_user_path
     end
 
@@ -25,7 +26,6 @@ describe 'Account pages' do
       before do
         select account.name,        from: 'Account'
         fill_in 'First Name',       with: 'First'
-        fill_in 'Preferred Name',   with: 'Dubbs'
         fill_in 'Last Name',        with: 'Last'
         fill_in 'Phone Number',     with: '1234'
         fill_in 'Email',            with: 'new@account.com'
@@ -44,7 +44,7 @@ describe 'Account pages' do
         describe 'should sign the user in' do
           it { should have_link('Sign out') }
           it { should have_selector('div.alert',
-            text: 'This user has been successfully created!') }
+            text: 'You have successfully created a user account!') }
         end
       end
     end

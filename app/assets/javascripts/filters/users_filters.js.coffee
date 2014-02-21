@@ -1,5 +1,7 @@
 @digiquaticsFilters.filter 'age', ->
   (input) ->
+    return '' unless input
+
     today = new Date()
     birthDate = new Date(input)
 

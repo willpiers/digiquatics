@@ -25,7 +25,9 @@
           <% if FeatureToggleHelper.private_lessons? %>
             <li><%= link_to 'Private Lessons', private_lessons_path %></li>
           <% end %>
-          <li><%= link_to 'Users', users_path %></li>
+          <% if current_user.admin? %>
+            <li><%= link_to 'Users', users_path %></li>
+          <% end %>
         <% if FeatureToggleHelper.maintenance? %>
           <li class = 'dropdown'>
             <a href = '#' class = 'dropdown-toggle' data-toggle = 'dropdown'>

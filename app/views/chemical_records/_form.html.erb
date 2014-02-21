@@ -16,7 +16,7 @@
 
   <%= content_tag(:legend, legend) unless !legend %>
   <%= f.select :pool_id,
-    options_from_collection_for_select(Pool.where(location_id = current_user.location_id) , :id, :name ) %>
+    options_from_collection_for_select(Pool.where(location_id: current_user.location_id) , :id, :name ) %>
   <%= f.select :chlorine_ppm, %w[0 0.5 1 2 3 4 5 6],
     {include_blank: true}, label: 'Chlorine (ppm)' %>
   <%= f.select :ph,
