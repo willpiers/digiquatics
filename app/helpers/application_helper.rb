@@ -6,31 +6,30 @@ module ApplicationHelper
     notice: 'alert-info'
   }
 
-  def full_title(page_title) base_title = 'DigiQuatics'
+  BASE_TITLE = 'DigiQuatics'
+
+  US_STATES = [
+    %w(AK AK), %w(AL AL), %w(AR AR), %w(AZ AZ), %w(CA CA), %w(CO CO),
+    %w(CT CT), %w(DC DC), %w(DE DE), %w(FL FL), %w(GA GA), %w(HI HI),
+    %w(IA IA), %w(ID ID), %w(IL IL), %w(IN IN), %w(KS KS), %w(KY KY),
+    %w(LA LA), %w(MA MA), %w(MD MD), %w(ME ME), %w(MI MI), %w(MN MN),
+    %w(MO MO), %w(MS MS), %w(MT MT), %w(NC NC), %w(ND ND), %w(NE NE),
+    %w(NH NH), %w(NJ NJ), %w(NM NM), %w(NV NV), %w(NY NY), %w(OH OH),
+    %w(OK OK), %w(OR OR), %w(PA PA), %w(RI RI), %w(SC SC), %w(SD SD),
+    %w(TN TN), %w(TX TX), %w(UT UT), %w(VA VA), %w(VT VT), %w(WA WA),
+    %w(WI WI), %w(WV WV), %w(WY WY)
+  ]
+
+  def full_title(page_title)
     if page_title.empty?
-      base_title
+      BASE_TITLE
     else
-      "#{base_title} | #{page_title}"
+      "#{BASE_TITLE} | #{page_title}"
     end
   end
 
   def boolean_to_words(value)
     value ? 'Y' : 'N'
-  end
-
-  def bootstrap_class_for(flash_type)
-    BOOTSTRAP_ALERT_CLASSES[flash_type] || flash_type.to_s
-  end
-
-  def flash_messages(opts = {})
-    content_tag :div, class: 'row' do
-      content_tag :div, class: 'col-md-8 col-md-offset-2' do
-        flash.map do |msg_type, message|
-          content_tag :div, message,
-            class: "alert #{bootstrap_class_for(msg_type)}"
-        end.join.html_safe
-      end
-    end
   end
 
   def link_to_add_fields(name, f, association)
@@ -41,11 +40,12 @@ module ApplicationHelper
       render(association.to_s.singularize + '_fields', f: b)
     end
 
-    link_to(name, '#', class: 'add_fields',
+    link_to name, '#',
+            class: 'add_fields',
             data: {
               id: id,
               fields: fields.gsub("\n", '')
-            })
+            }
   end
 
   def admin_user
@@ -55,59 +55,22 @@ module ApplicationHelper
     end
   end
 
-  def us_states
-    [
-      %w(AK AK),
-      %w(AL AL),
-      %w(AR AR),
-      %w(AZ AZ),
-      %w(CA CA),
-      %w(CO CO),
-      %w(CT CT),
-      %w(DC DC),
-      %w(DE DE),
-      %w(FL FL),
-      %w(GA GA),
-      %w(HI HI),
-      %w(IA IA),
-      %w(ID ID),
-      %w(IL IL),
-      %w(IN IN),
-      %w(KS KS),
-      %w(KY KY),
-      %w(LA LA),
-      %w(MA MA),
-      %w(MD MD),
-      %w(ME ME),
-      %w(MI MI),
-      %w(MN MN),
-      %w(MO MO),
-      %w(MS MS),
-      %w(MT MT),
-      %w(NC NC),
-      %w(ND ND),
-      %w(NE NE),
-      %w(NH NH),
-      %w(NJ NJ),
-      %w(NM NM),
-      %w(NV NV),
-      %w(NY NY),
-      %w(OH OH),
-      %w(OK OK),
-      %w(OR OR),
-      %w(PA PA),
-      %w(RI RI),
-      %w(SC SC),
-      %w(SD SD),
-      %w(TN TN),
-      %w(TX TX),
-      %w(UT UT),
-      %w(VA VA),
-      %w(VT VT),
-      %w(WA WA),
-      %w(WI WI),
-      %w(WV WV),
-      %w(WY WY)
-    ]
+  def flash_messages(opts = {})
+    content_tag   :div, class: 'row' do
+      content_tag :div, class: 'col-md-8 col-md-offset-2' do
+        flash_html.join.html_safe
+      end
+    end
+  end
+
+  def flash_html
+    flash.map do |msg_type, message|
+      content_tag :div, message,
+                  class: "alert #{bootstrap_class_for(msg_type)}"
+    end
+  end
+
+  def bootstrap_class_for(flash_type)
+    BOOTSTRAP_ALERT_CLASSES[flash_type] || flash_type.to_s
   end
 end
