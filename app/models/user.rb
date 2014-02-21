@@ -19,6 +19,9 @@ class User < ActiveRecord::Base
 
   belongs_to  :account
   has_many    :certifications
+
+  accepts_nested_attributes_for :certifications
+
   has_many    :private_lessons
   has_many    :shift_reports
   belongs_to  :location
@@ -34,9 +37,6 @@ class User < ActiveRecord::Base
                       medium: '300x300>'
                     },
                     default_url: '/images/missing.png'
-
-  accepts_nested_attributes_for :certifications,
-                                reject_if: proc { |a| a[:attachment].blank? }
 
   validates :first_name, presence: true, length: { maximum: 15 }
   validates :last_name, presence: true, length: { maximum: 15 }

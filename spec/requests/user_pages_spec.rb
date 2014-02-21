@@ -66,7 +66,6 @@ describe 'User pages' do
       before do
         select blank_account.name,       from: 'Account'
         fill_in 'First Name',            with: 'First'
-        fill_in 'Preferred Name',        with: 'Dubbs'
         fill_in 'Last Name',             with: 'Last'
         fill_in 'Phone Number',          with: '1234'
         fill_in 'Email',                 with: 'user@example.com'
@@ -93,14 +92,15 @@ describe 'User pages' do
 
     describe 'a second user' do
       before do
+        login_as(admin, scope: :user)
         visit new_user_path
       end
 
+      it { should_not have_selector('label', text: 'Account') }
+
       describe 'with valid information' do
         before do
-          select account.name,             from: 'Account'
           fill_in 'First Name',            with: 'First'
-          fill_in 'Preferred Name',        with: 'Dubbs'
           fill_in 'Last Name',             with: 'Last'
           fill_in 'Phone Number',          with: '1234'
           fill_in 'Email',                 with: 'user2@example.com'
@@ -148,6 +148,7 @@ describe 'User pages' do
         visit user_path(user)
       end
 
+      it { should have_link('Users', users_path) }
       it { should have_selector('h4', text: 'Notes') }
       it { should have_link('Edit', edit_user_path(user)) }
 
@@ -157,7 +158,14 @@ describe 'User pages' do
     end
 
     describe 'as non-admin' do
+      before do
+        Warden.test_reset!
+        login_as(user, scope: :user)
+        visit user_path(user)
+      end
+
       it { should_not have_selector('h4', text: 'Notes') }
+      it { should_not have_link('Users', users_path) }
     end
   end
 
@@ -231,7 +239,7 @@ describe 'User pages' do
           before do
             # Basic User Information
             fill_in 'First Name',            with: new_first_name
-            fill_in 'Preferred Name',        with: 'dubbs'
+            fill_in 'user_nickname',         with: 'Bobs'
             fill_in 'Last Name',             with: 'Last'
             fill_in 'Phone Number',          with: '720-387-9691'
             fill_in 'Email',                 with: new_email
@@ -335,7 +343,7 @@ describe 'User pages' do
           before do
             # Basic User Information
             fill_in 'First Name',            with: new_first_name
-            fill_in 'Preferred Name',        with: 'dubbs'
+            fill_in 'user_nickname',         with: 'Bobs'
             fill_in 'Last Name',             with: 'Last'
             fill_in 'Phone Number',          with: '720-387-9691'
             fill_in 'Email',                 with: new_email
