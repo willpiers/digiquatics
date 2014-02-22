@@ -73,4 +73,8 @@ module ApplicationHelper
   def bootstrap_class_for(flash_type)
     BOOTSTRAP_ALERT_CLASSES[flash_type] || flash_type.to_s
   end
+
+  def us_states
+    US_STATES
+  end
 end
