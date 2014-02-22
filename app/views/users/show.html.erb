@@ -75,10 +75,10 @@
 				</tr>
 				<tr>
 					<th> Location </th>
-					<% if @user.location = nil %>
-						<td> <%= @user.location.name %> </td>
-					<% elsif %>
+					<% if @user.location == nil %>
 						<td> Please update location information on user edit page </td>
+					<% elsif %>
+						<td> <%= @user.location.name %> </td>
 					<% end %>
 				</tr>
 				<tr>
@@ -87,10 +87,10 @@
 				</tr>
 				<tr>
 					<th> Position </th>
-					<% if @user.position = nil %>
-						<td> <%= @user.position.name %> </td>
-					<% elsif %>
+					<% if @user.position == nil %>
 						<td> Please update position information on user edit page </td>
+					<% elsif %>
+						<td> <%= @user.position.name %> </td>
 					<% end %>
 				</tr>
 				<tr>
