@@ -12,10 +12,13 @@ create feature toggle file
 subl ~/feature_toggles.yml
 ```
 
-add feature toggles, leave out for false
+add feature toggles, leave out or set to false for false
 ``` yaml
 maintenance: true
 private_lessons: true
+chemicals: false
+attendance: false
+shift_reports: false
 ```
 
 # Rails MySQL

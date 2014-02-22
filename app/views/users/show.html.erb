@@ -1,6 +1,16 @@
 <% provide(:title, @user.first_name) %>
 
-<h1><%= @user.first_name +  " " + @user.last_name %></h1>
+<%= link_to 'link', @article unless @article.nil? %>
+
+<% if @user.nickname == nil %>
+
+	<h1><%= @user.first_name + " " + @user.last_name %></h1>
+
+<% else %>
+	<h1>
+		<%= @user.first_name + " (" + @user.nickname + ") " + @user.last_name %>
+	</h1>
+<% end %>
 
 <ul class = "pull-right">
   <%= link_to "Edit", edit_user_path(@user),
