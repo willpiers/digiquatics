@@ -12,11 +12,11 @@ describe ApplicationHelper do
       flash[:error]   = 'Boo..'
 
       flash_messages.should ==
-        '<div class="row">' +
-          '<div class="col-md-8 col-md-offset-2">' +
-            '<div class="alert alert-success">Yay!</div>' +
-            '<div class="alert alert-danger">Boo..</div>' +
-          '</div>' +
+        '<div class="row">' \
+          '<div class="col-md-8 col-md-offset-2">' \
+            '<div class="alert alert-success">Yay!</div>' \
+            '<div class="alert alert-danger">Boo..</div>' \
+          '</div>' \
         '</div>'
     end
   end

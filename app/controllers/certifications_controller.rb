@@ -3,10 +3,10 @@ class CertificationsController < ApplicationController
 
   def index
     @certification_names = CertificationName.joins(:account)
-      .same_account_as(current_user)
+    .same_account_as(current_user)
 
     @users = User.joins(:account).same_account_as(current_user).active
-      .includes(:certifications)
+    .includes(:certifications)
 
     respond_to do |format|
       format.html
@@ -16,7 +16,7 @@ class CertificationsController < ApplicationController
 
   def expirations
     render json: {
-      users: users_certification_expiration_data,
+      users:               users_certification_expiration_data,
       certification_names: CertificationName.same_account_as(current_user)
     }
   end
@@ -34,40 +34,26 @@ class CertificationsController < ApplicationController
   def create
     @certification = Certification.new(certification_params)
 
-    respond_to do |format|
-      if @certification.save
-        format.html { redirect_to @certification,
-          notice: 'Certification was successfully created.' }
-        format.json { render action: 'show', status: :created,
-          location: @certification }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @certification.errors,
-          status: :unprocessable_entity }
-      end
+    if @certification.save
+      redirect_to @certification,
+                  notice: 'Certification was successfully created.'
+    else
+      render action: 'new'
     end
   end
 
   def update
-    respond_to do |format|
-      if @certification.update(certification_params)
-        format.html { redirect_to @certification,
-          notice: 'Certification was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: 'edit' }
-        format.json { render json: @certification.errors,
-          status: :unprocessable_entity }
-      end
+    if @certification.update(certification_params)
+      redirect_to @certification,
+                  notice: 'Certification was successfully updated.'
+    else
+      render action: 'edit'
     end
   end
 
   def destroy
     @certification.destroy
-    respond_to do |format|
-      format.html { redirect_to certifications_url }
-      format.json { head :no_content }
-    end
+    redirect_to certifications_url
   end
 
   private
@@ -79,8 +65,8 @@ class CertificationsController < ApplicationController
   end
 
   def certification_params
-    params.require(:certification).permit(:certification_name_id, :user_id,
-                                          :issue_date, :expiration_date,
-                                          :attachment)
+    params.require(:certification)
+    .permit(:certification_name_id, :user_id, :issue_date, :expiration_date,
+              :attachment)
   end
 end

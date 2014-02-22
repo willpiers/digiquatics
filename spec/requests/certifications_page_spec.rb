@@ -99,7 +99,7 @@ describe 'Certifications' do
 
       visit edit_user_path(user)
       select new_cert_name.name,
-        from: 'user_certifications_attributes_0_certification_name_id'
+             from: 'user_certifications_attributes_0_certification_name_id'
       click_button 'Save Changes'
     end
 

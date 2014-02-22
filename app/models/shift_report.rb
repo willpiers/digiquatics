@@ -2,16 +2,18 @@ class ShiftReport < ActiveRecord::Base
   extend ScopeHelper
   include_scopes
 
+  ATTACHED_PATH = ':rails_root/public/system/:attachment/:id/:style/:filename'
+
   belongs_to :account
   belongs_to :location
-  has_many  :users
+  has_many   :users
 
   has_attached_file :attachment_front,
-                    path: ':rails_root/public/system/:attachment/:id/:style/:filename',
+                    path: ATTACHED_PATH,
                     url: '/system/:attachment/:id/:style/:filename'
 
   has_attached_file :attachment_back,
-                    path: ':rails_root/public/system/:attachment/:id/:style/:filename',
+                    path: ATTACHED_PATH,
                     url: '/system/:attachment/:id/:style/:filename'
 
   accepts_nested_attributes_for :users
@@ -25,4 +27,3 @@ class ShiftReport < ActiveRecord::Base
     date_stamp
   end
 end
-
