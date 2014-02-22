@@ -8,6 +8,8 @@ class HelpDesk < ActiveRecord::Base
                     path: ATTACHED_PATH,
                     url: '/system/:attachment/:id/:style/:filename'
 
+  validates_presence_of :name, :urgency, :user_id, :location_id
+
   comma do
     name
     urgency
