@@ -4,6 +4,8 @@ class ChemicalRecord < ActiveRecord::Base
 
   belongs_to :pool
 
+  validates_presence_of :date_stamp, :time_stamp, :user_id, :pool_id
+
   comma do
     chlorine_ppm
     ph

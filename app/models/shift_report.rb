@@ -18,6 +18,9 @@ class ShiftReport < ActiveRecord::Base
 
   accepts_nested_attributes_for :users
 
+  validates_presence_of :date_stamp, :time_stamp, :post_content, :user_id,
+                        :location_id
+
   comma do
     post_title
     post_content
