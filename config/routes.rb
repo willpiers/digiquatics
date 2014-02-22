@@ -2,15 +2,10 @@ DigiQuatics::Application.routes.draw do
   devise_for :users
 
   resources :private_lesson_details
-
   resources :shift_reports
-
   resources :attendance_records
-
   resources :help_desks
-
   resources :preventative_lists
-
   resources :daily_todos
 
   resources :pools
@@ -125,6 +120,4 @@ DigiQuatics::Application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
-
-  # rubocop:enable LineLength, StringLiterals
 end
