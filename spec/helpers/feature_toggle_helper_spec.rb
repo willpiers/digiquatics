@@ -3,7 +3,7 @@ require 'spec_helper'
 describe FeatureToggleHelper do
   before do
     FeatureToggleHelper.stub(:load_feature_toggles)
-      .and_return({'private_lessons' => true})
+    .and_return('private_lessons' => true)
   end
 
   it 'should return true for features that are toggled on' do

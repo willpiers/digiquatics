@@ -1,20 +1,19 @@
-# require 'spec_helper'
+require 'spec_helper'
 
-# describe 'Static pages' do
- # describe 'Home page' do
-  #  it "should have the content 'DigiQuatics'" do # rubocop:disable DoubleQuotes
-   #   visit '/'
-    #  expect(page).to have_content('DigiQuatics')
-    # end
+describe 'Static pages' do
+  describe 'Home page' do
+    before { visit '/' }
 
-    # it 'should have the base title' do
-     # visit '/'
-      # expect(page).to have_title('DigiQuatics')
-    # end
+    it 'should have the content \'DigiQuatics\'' do
+      expect(page).to have_content('DigiQuatics')
+    end
 
-    # it 'should not have a custom page title' do
-     # visit '/'
-      # expect(page).not_to have_title('| Home')
-    # end
-  # end
-# end
+    it 'should have the base title' do
+      expect(page).to have_title('DigiQuatics')
+    end
+
+    it 'should not have a custom page title' do
+      expect(page).not_to have_title('| Home')
+    end
+  end
+end

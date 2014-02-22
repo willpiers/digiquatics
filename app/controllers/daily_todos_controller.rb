@@ -17,6 +17,7 @@ class DailyTodosController < ApplicationController
 
   def create
     @daily_todo = DailyTodo.new(daily_todo_params)
+
     if @daily_todo.save
       flash[:success] = 'Daily todo was successfully created.'
       redirect_to @daily_todo
@@ -41,13 +42,11 @@ class DailyTodosController < ApplicationController
 
   private
 
-    # Use callbacks to share common setup or constraints between actions.
-    def set_daily_todo
-      @daily_todo = DailyTodo.find(params[:id])
-    end
+  def set_daily_todo
+    @daily_todo = DailyTodo.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def daily_todo_params
-      params.require(:daily_todo).permit(:name, :type, :status)
-    end
+  def daily_todo_params
+    params.require(:daily_todo).permit(:name, :type, :status)
+  end
 end

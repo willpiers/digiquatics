@@ -18,6 +18,7 @@ class PositionsController < ApplicationController
   def create
     @position = Position.new(position_params)
     @position.account_id = current_user.account_id
+
     if @position.save
       flash[:success] = 'Position was successfully created.'
       redirect_to admin_dashboard_path
@@ -41,13 +42,12 @@ class PositionsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_position
-      @position = Position.find(params[:id])
-    end
 
-    # Only allow the white list through.
-    def position_params
-      params.require(:position).permit(:name)
-    end
+  def set_position
+    @position = Position.find(params[:id])
+  end
+
+  def position_params
+    params.require(:position).permit(:name)
+  end
 end
