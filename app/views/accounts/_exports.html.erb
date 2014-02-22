@@ -1,41 +1,56 @@
 <div class ='row'>
-  <div class='col-md-3'>
-    <%= link_to 'Attendance', private_lessons_path(format: 'csv'),
-      class: 'btn btn-danger btn-sm disabled' %>
-  </div>
-  <div class='col-md-3'>
-    <%= link_to 'Chemical Records', chemical_records_path(format: 'csv'),
-      class: 'btn btn-danger btn-sm' %>
-  </div>
-  <div class='col-md-3'>
-    <%= link_to 'Open and Closed Issues', help_desks_path(format: 'csv'),
-      class: 'btn btn-danger btn-sm' %>
-  </div>
-  <div class='col-md-3'>
-    <%= link_to 'Private Lessons Queue', private_lessons_path(format: 'csv'),
-      class: 'btn btn-danger btn-sm' %>
-  </div>
+  <% if FeatureToggleHelper.attendance? %>
+    <div class='col-md-3'>
+      <%= link_to 'Attendance', private_lessons_path(format: 'csv'),
+        class: 'btn btn-danger btn-sm disabled' %>
+    </div>
+  <% end %>
+  <% if FeatureToggleHelper.chemicals? %>
+    <div class='col-md-3'>
+      <%= link_to 'Chemical Records', chemical_records_path(format: 'csv'),
+        class: 'btn btn-danger btn-sm' %>
+    </div>
+  <% end %>
+  <% if FeatureToggleHelper.maintenance? %>
+    <div class='col-md-3'>
+      <%= link_to 'Open and Closed Issues', help_desks_path(format: 'csv'),
+        class: 'btn btn-danger btn-sm' %>
+    </div>
+  <% end %>
+  <% if FeatureToggleHelper.private_lessons? %>
+    <div class='col-md-3'>
+      <%= link_to 'Private Lessons Queue', private_lessons_path(format: 'csv'),
+        class: 'btn btn-danger btn-sm' %>
+    </div>
+  <% end %>
 </div>
 
 <br>
 
 <div class ='row'>
-  <div class='col-md-3'>
-    <%= link_to 'Scheduling', private_lessons_path(format: 'csv'),
-      class: 'btn btn-danger btn-sm disabled' %>
-  </div>
-  <div class='col-md-3'>
-    <%= link_to 'Shift Reports', shift_reports_path(format: 'csv'),
-      class: 'btn btn-danger btn-sm' %>
-  </div>
+  <% if FeatureToggleHelper.scheduling? %>
+    <div class='col-md-3'>
+      <%= link_to 'Scheduling', private_lessons_path(format: 'csv'),
+        class: 'btn btn-danger btn-sm disabled' %>
+    </div>
+  <% end %>
+  <% if FeatureToggleHelper.shift_reports? %>
+    <div class='col-md-3'>
+      <%= link_to 'Shift Reports', shift_reports_path(format: 'csv'),
+        class: 'btn btn-danger btn-sm' %>
+    </div>
+  <% end %>
   <div class='col-md-3'>
     <%= link_to 'User Certifications', certifications_path(format: 'csv'),
       class: 'btn btn-danger btn-sm' %>
   </div>
   <div class='col-md-3'>
     <div class="btn-group">
-      <button type="button" class="btn btn-danger btn-sm dropdown-toggle" data-toggle="dropdown">
-        User Information <span class="caret"></span>
+      <button type="button"
+              class="btn btn-danger btn-sm dropdown-toggle"
+              data-toggle="dropdown">
+              User Information
+              <span class="caret"></span>
       </button>
         <ul class="dropdown-menu" role="menu">
           <li>
@@ -48,7 +63,5 @@
       </div>
   </div>
 </div>
-<br>
-<br>
-<br>
-<br>
+
+<br><br><br><br>
