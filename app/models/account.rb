@@ -19,6 +19,7 @@ class Account < ActiveRecord::Base
   has_many :help_desks
   has_many :attendance_records
   has_many :daily_todos
+  has_many :preventative_list
 
   has_attached_file :logo,
                     path: ATTACHED_PATH,
