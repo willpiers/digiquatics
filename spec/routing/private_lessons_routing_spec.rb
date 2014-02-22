@@ -11,13 +11,13 @@ describe PrivateLessonsController do
     end
 
     it 'routes to #show' do
-      get('/private_lessons/1').should
-        route_to('private_lessons#show', id: '1')
+      get('/private_lessons/1')
+      .should route_to('private_lessons#show', id: '1')
     end
 
     it 'routes to #edit' do
-      get('/private_lessons/1/edit').should
-        route_to('private_lessons#edit', id: '1')
+      get('/private_lessons/1/edit')
+      .should route_to('private_lessons#edit', id: '1')
     end
 
     it 'routes to #create' do
@@ -25,13 +25,13 @@ describe PrivateLessonsController do
     end
 
     it 'routes to #update' do
-      put('/private_lessons/1').should
-        route_to('private_lessons#update', id: '1')
+      put('/private_lessons/1')
+      .should route_to('private_lessons#update', id: '1')
     end
 
     it 'routes to #destroy' do
-      delete('/private_lessons/1').should
-        route_to('private_lessons#destroy', id: '1')
+      delete('/private_lessons/1')
+      .should route_to('private_lessons#destroy', id: '1')
     end
   end
 end

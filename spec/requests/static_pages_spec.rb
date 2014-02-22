@@ -13,7 +13,7 @@ describe 'Static pages' do
     end
 
     it 'should not have a custom page title' do
-        expect(page).not_to have_title('| Home')
+      expect(page).not_to have_title('| Home')
     end
   end
 end
