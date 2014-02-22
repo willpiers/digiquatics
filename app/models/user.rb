@@ -20,7 +20,7 @@ class User < ActiveRecord::Base
   belongs_to  :account
   has_many    :certifications
 
-  accepts_nested_attributes_for :certifications
+  accepts_nested_attributes_for :certifications, allow_destroy: true
 
   has_many    :private_lessons
   has_many    :shift_reports
