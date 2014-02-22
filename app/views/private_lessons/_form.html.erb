@@ -1,9 +1,10 @@
 <div class='userform well'>
   <% provide(:title, 'Edit Lesson') %>
-    <%= bootstrap_form_for(@private_lesson,
-    style: :horizontal, left: 'col-sm-4', right: 'col-sm-8') do |f| %>
+    <%= bootstrap_form_for [@account, @private_lesson],
+    style: :horizontal, left: 'col-sm-4', right: 'col-sm-8' do |f| %>
 
     <%= content_tag(:legend, legend) unless !legend %>
+
     <h4> Parent Information </h4>
     <br>
       <%= f.text_field :parent_first_name %>

@@ -132,7 +132,8 @@ namespace :db do
       day = ["M", "T", "W","Th","F","S","Sn"]
       time =["AM", "PM"]
 
-      PrivateLesson.create!(first_name: first_name, last_name: last_name,
+      PrivateLesson.create!(account_id: rand(2) + 1,
+                            first_name: first_name, last_name: last_name,
                             parent_first_name: Faker::Name.first_name,
                             parent_last_name: Faker::Name.last_name,
                             email: Faker::Internet.email,

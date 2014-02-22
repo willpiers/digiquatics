@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140209051238) do
+ActiveRecord::Schema.define(version: 20140222173512) do
 
   create_table "accounts", force: true do |t|
     t.string   "name"
@@ -22,12 +22,6 @@ ActiveRecord::Schema.define(version: 20140209051238) do
     t.string   "logo_content_type"
     t.integer  "logo_file_size"
     t.datetime "logo_updated_at"
-  end
-
-  create_table "attendance_records", force: true do |t|
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
   create_table "certification_names", force: true do |t|
@@ -148,6 +142,7 @@ ActiveRecord::Schema.define(version: 20140209051238) do
     t.integer  "number_lessons"
     t.boolean  "queue_status"
     t.text     "lesson_objective"
+    t.integer  "account_id"
   end
 
   create_table "sessions", force: true do |t|

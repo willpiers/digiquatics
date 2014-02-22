@@ -6,6 +6,7 @@ class PrivateLesson < ActiveRecord::Base
   ATTACHED_URL  = '/system/:attachment/:id/:style/:filename'
 
   scope :claimed_by, -> (user) { where(user_id: user.id) }
+  scope :claimed,    -> { where.not(user_id: nil) }
   scope :unclaimed,  -> { where(user_id: nil) }
 
   belongs_to :account
@@ -16,9 +17,10 @@ class PrivateLesson < ActiveRecord::Base
                     path: ATTACHED_PATH,
                     url:  ATTACHED_URL
 
-  validates_presence_of :parent_first_name, :parent_last_name, :phone_number,
-                        :email, :contact_method, :first_name, :last_name,
-                        :sex, :age, :instructor_gender, :notes, :number_lessons
+  validates_presence_of :account_id, :parent_first_name, :parent_last_name,
+                        :phone_number, :email, :contact_method, :first_name,
+                        :last_name, :sex, :age, :instructor_gender, :notes,
+                        :number_lessons
 
   comma do
     last_name 'Student Last'

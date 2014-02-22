@@ -10,15 +10,13 @@ DigiQuatics::Application.routes.draw do
 
   resources :pools
   resources :chemical_records
-  resources :private_lessons
+
   resources :positions
   resources :certifications
   resources :certification_names
 
   resources :accounts do
-    member do
-      get 'private_lessons'
-    end
+    resources :private_lessons, shallow: true
   end
 
   resources :locations do

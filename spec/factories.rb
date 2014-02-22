@@ -66,6 +66,7 @@ FactoryGirl.define do
   end
 
   factory :private_lesson do
+    account_id            1
     first_name            'Michael'
     last_name             'Pierce'
     parent_first_name     'Trent'

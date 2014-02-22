@@ -23,7 +23,7 @@
           <% end %>
           <li><%= link_to 'Certifications', certifications_path %></li>
           <% if FeatureToggleHelper.private_lessons? %>
-            <li><%= link_to 'Private Lessons', private_lessons_path %></li>
+            <li><%= link_to 'Private Lessons', account_private_lessons_path(account_id: current_user.account_id) %></li>
           <% end %>
           <% if current_user.admin? %>
             <li><%= link_to 'Users', users_path %></li>
