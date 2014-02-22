@@ -1,7 +1,6 @@
 module ChemicalRecordsHelper
   include Math
 
-  # rubocop : disable all
   def si_index_calculator(ph_reading, pool_temp, calcium_hardness, total_alkalinity)
     if !ph_reading || !pool_temp || !calcium_hardness || !total_alkalinity
       '?'
@@ -74,7 +73,4 @@ module ChemicalRecordsHelper
       'Error'
     end
   end
-
-  # rubocop : enable all
-
 end

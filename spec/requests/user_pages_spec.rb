@@ -114,7 +114,10 @@ describe 'User pages' do
 
         describe 'after saving the user' do
           before { click_button submit }
-          let(:another_created_user) { User.find_by_email('user2@example.com') }
+
+          let(:another_created_user) do
+            User.find_by_email('user2@example.com')
+          end
 
           it 'should NOT be an admin' do
             another_created_user.admin.should eq false

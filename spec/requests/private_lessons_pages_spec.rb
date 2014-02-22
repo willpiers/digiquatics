@@ -14,7 +14,7 @@ describe 'Private Lessons' do
   end
 
   before do
-    login_as(user, :scope => :user)
+    login_as(user, scope: :user)
     FactoryGirl.create(:private_lesson,
                        first_name: 'my_lesson',
                        contact_method: 'Call',

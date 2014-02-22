@@ -3,5 +3,4 @@ class Pool < ActiveRecord::Base
 
   belongs_to :location
   has_many :chemical_records
-
 end

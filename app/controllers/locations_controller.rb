@@ -10,7 +10,7 @@ class LocationsController < ApplicationController
 
   def new
     @location = Location.new
-    1.times { @location.pools.build }
+    @location.pools.build
   end
 
   def edit
@@ -39,19 +39,17 @@ class LocationsController < ApplicationController
 
   def destroy
     @location.destroy
-      redirect_to admin_dashboard_path
-    end
+    redirect_to admin_dashboard_path
+  end
 
   private
 
-  # Use callbacks to share common setup or constraints between actions.
   def set_location
     @location = Location.find(params[:id])
   end
 
-  # Only allow the white list through.
   def location_params
     params.require(:location)
-      .permit(:name, pools_attributes: [:id, :location_id, :name, :_destroy])
+    .permit(:name, pools_attributes: [:id, :location_id, :name, :_destroy])
   end
 end

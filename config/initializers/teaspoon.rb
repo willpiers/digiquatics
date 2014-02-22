@@ -68,7 +68,7 @@ Teaspoon.setup do |config|
       %r{/lib/ruby/gems/},
       %r{/vendor/assets/},
       %r{/support/},
-      %r{/(.+)_helper.} # rubocop:disable RegexpLiteral
+      /\/(.+)_helper./
     ]
 
     # suite.no_coverage << "jquery.min.js" # excludes jquery from coverage

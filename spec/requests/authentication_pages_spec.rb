@@ -3,9 +3,10 @@ include Warden::Test::Helpers
 Warden.test_mode!
 
 describe 'Authentication' do
-  let(:account) { FactoryGirl.create(:account) }
+  let(:account)  { FactoryGirl.create(:account) }
   let(:location) { FactoryGirl.create(:location, account_id: account.id) }
   let(:position) { FactoryGirl.create(:position) }
+
   let(:user) do
     FactoryGirl.create(:user,
                        location_id: location.id,
@@ -29,7 +30,7 @@ describe 'Authentication' do
       before { click_button 'Sign in' }
 
       it { should have_title('Sign in') }
-      it { should have_selector('div.alert', text: 'Invalid email or password.') }
+      it { should have_selector('div.alert') }
     end
 
     describe 'with valid information' do
@@ -91,23 +92,21 @@ describe 'Authentication' do
   end
 
   describe 'as wrong user' do
-    let(:wrong_user) do
-      FactoryGirl.create(:user, email: 'wrong@example.com')
-    end
+    let(:wrong_user) { FactoryGirl.create(:user, email: 'wrong@example.com') }
 
     before { login_as(user, scope: :user) }
 
     describe 'submitting a GET request to the Users#edit action' do
       before { get edit_user_path(wrong_user) }
 
-      specify { expect(response.body).not_to match(full_title('Update your profile')) }
-      specify { expect(response).to redirect_to(new_user_session_path) }
+      it { response.body.should_not match(full_title('Update your profile')) }
+      it { response.should redirect_to(new_user_session_path) }
     end
 
     describe 'submitting a PATCH request to the Users#update action' do
       before { patch user_path(wrong_user) }
 
-      specify { expect(response).to redirect_to(new_user_session_path) }
+      specify { response.should redirect_to(new_user_session_path) }
     end
   end
 end
