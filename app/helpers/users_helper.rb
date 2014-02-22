@@ -1,8 +1,12 @@
 module UsersHelper
   def age(dob)
-    return '?' if !dob
+    return '?' unless dob
+
     now = Time.now.utc.to_date
-    now.year - dob.year - ((now.month > dob.month ||
-      (now.month == dob.month && now.day >= dob.day)) ? 0 : 1)
+
+    extra_year = now.month > dob.month ||
+      (now.month == dob.month && now.day >= dob.day)
+
+    now.year - dob.year - (extra_year ? 0 : 1)
   end
 end

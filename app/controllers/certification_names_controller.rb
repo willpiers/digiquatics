@@ -1,5 +1,6 @@
 class CertificationNamesController < ApplicationController
-  before_action :set_certification_name, only: [:show, :edit, :update, :destroy]
+  before_action :set_certification_name,
+                only: [:show, :edit, :update, :destroy]
 
   def index
     @certification_names = CertificationName.joins(:account)
