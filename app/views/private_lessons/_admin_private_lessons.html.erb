@@ -19,8 +19,11 @@
   <tbody>
     <% @admin_index.each do |private_lesson| %>
       <tr>
-        <td><%= link_to User.find(private_lesson.user_id).last_name, User %></td>
-        <td><%= link_to User.find(private_lesson.user_id).first_name, User %></td>
+        <td>
+          <%= link_to User.find(private_lesson.user_id).last_name,
+                        User.find(private_lesson.user_id) %>
+        </td>
+        <td><%= User.find(private_lesson.user_id).first_name %></td>
         <td><%= User.find(private_lesson.user_id).phone_number %></td>
         <td><%= private_lesson.parent_first_name %></td>
         <td><%= private_lesson.parent_last_name %></td>
