@@ -176,7 +176,9 @@
 			<tbody>
 				<tr><th> Issue Date </th>
 					<% @user.certifications.each do |cert| %>
-					<td><%= cert.issue_date.strftime('%-m/%-d/%Y') %></td>
+						<td>
+							<%= cert.issue_date.strftime('%-m/%-d/%Y') if cert.issue_date %>
+						</td>
 					<% end %>
 				</tr>
 

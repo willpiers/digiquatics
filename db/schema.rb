@@ -148,7 +148,6 @@ ActiveRecord::Schema.define(version: 20140225185150) do
     t.integer  "number_lessons"
     t.boolean  "queue_status"
     t.text     "lesson_objective"
-    t.integer  "account_id"
   end
 
   create_table "sessions", force: true do |t|
