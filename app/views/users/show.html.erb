@@ -8,7 +8,11 @@
 
 <% else %>
 	<h1>
-		<%= @user.first_name + " (" + @user.nickname + ") " + @user.last_name %>
+		<% if @user.nickname == " " %>
+			<%= @user.first_name + " (" + @user.nickname + ") " + @user.last_name %>
+		<% else %>
+			<%= @user.first_name + " " + @user.last_name %>
+		<% end %>
 	</h1>
 <% end %>
 
