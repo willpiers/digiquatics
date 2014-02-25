@@ -22,11 +22,6 @@ describe Certification do
     it { should_not be_valid }
   end
 
-  describe 'when issue_date is not present' do
-    before { @certfication.issue_date = nil }
-    it { should_not be_valid }
-  end
-
   describe 'when user id is not present' do
     before { @certfication.user_id = nil }
     it { should_not be_valid }

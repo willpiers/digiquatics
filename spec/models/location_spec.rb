@@ -23,4 +23,9 @@ describe Location do
     before { @location.name = nil }
     it { should_not be_valid }
   end
+
+  describe 'when account_id is not present' do
+    before { @location.account_id = nil }
+    it { should_not be_valid }
+  end
 end

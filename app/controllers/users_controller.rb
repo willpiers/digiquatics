@@ -49,7 +49,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
 
-    @user.update_attribute(*updated_access) if @user.valid?
+    @user.update_attribute(*updated_access) if should_update?
     @user.save ? redirect_to_created_user : render('new')
   end
 
@@ -74,6 +74,10 @@ class UsersController < ApplicationController
     else
       [:admin, first_account_user?]
     end
+  end
+
+  def should_update?
+    @user.valid? || @user.account_id.nil?
   end
 
   def with_users_data(format, filename: 'users')
