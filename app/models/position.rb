@@ -5,5 +5,5 @@ class Position < ActiveRecord::Base
   belongs_to :account
   has_many :users
 
-  validates :name, presence: true
+  validates_presence_of :name, :account_id
 end

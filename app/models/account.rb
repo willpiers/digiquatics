@@ -23,7 +23,8 @@ class Account < ActiveRecord::Base
 
   has_attached_file :logo,
                     path: ATTACHED_PATH,
-                    url:  ATTACHED_URL
+                    url:  ATTACHED_URL,
+                    default_url: '/images/missing.png'
 
   accepts_nested_attributes_for :users
 end
