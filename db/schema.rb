@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140225185150) do
+ActiveRecord::Schema.define(version: 20140227170504) do
 
   create_table "accounts", force: true do |t|
     t.string   "name"
@@ -61,7 +61,6 @@ ActiveRecord::Schema.define(version: 20140225185150) do
     t.decimal  "si_index",          precision: 6, scale: 2
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.datetime "date_stamp"
     t.datetime "time_stamp"
     t.text     "si_status"
     t.text     "si_recommendation"

@@ -88,7 +88,6 @@ FactoryGirl.define do
   end
 
   factory :chemical_record do
-    date_stamp        DateTime.now
     time_stamp        DateTime.now
     user_id           1
     pool_id           1
