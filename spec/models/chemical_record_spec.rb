@@ -12,7 +12,6 @@ describe ChemicalRecord do
       pool_temp:         98,
       air_temp:          95,
       si_index:          -2.5,
-      date_stamp:        '2010-10-10 16:19:00 UTC',
       time_stamp:        '2010-10-10 16:19:00 UTC',
       si_status:         'Balanced',
       si_recommendation: 'Nothing needed',
@@ -30,7 +29,6 @@ describe ChemicalRecord do
   it { should respond_to(:pool_temp) }
   it { should respond_to(:air_temp) }
   it { should respond_to(:si_index) }
-  it { should respond_to(:date_stamp) }
   it { should respond_to(:time_stamp) }
   it { should respond_to(:si_status) }
   it { should respond_to(:si_recommendation) }
@@ -38,11 +36,6 @@ describe ChemicalRecord do
   it { should respond_to(:pool_id) }
 
   it { should be_valid }
-
-  describe 'when date_stamp is not present' do
-    before { @chemical_record.date_stamp = nil }
-    it { should_not be_valid }
-  end
 
   describe 'when time_stamp is not present' do
     before { @chemical_record.time_stamp = nil }

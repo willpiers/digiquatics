@@ -1,14 +1,20 @@
 class ChemicalRecordsController < ApplicationController
-  include Math
   include ChemicalRecordsHelper
   before_action :set_chemical_record, only: [:show, :edit, :update, :destroy]
 
   def index
-    @chemical_records = ChemicalRecord
+    @chemical_records = ChemicalRecord.same_account_as(current_user)
 
     respond_to do |format|
       format.html
-      format.json { render json: @chemical_records.to_json(include: :pool) }
+      format.json do
+        render json:
+          @chemical_records.to_json(include: {
+            pool: {
+              include: :location
+            }
+          })
+      end
 
       format.csv do
         render csv: @chemical_records, filename: 'chemical_records'
@@ -73,7 +79,6 @@ class ChemicalRecordsController < ApplicationController
   def chemical_record_params
     params.require(:chemical_record)
     .permit(:chlorine_ppm, :chlorine_orp, :ph, :alkalinity, :calcium_hardness,
-            :pool_temp, :air_temp, :si_index, :time_stamp, :date_stamp,
-            :user_id, :pool_id)
+            :pool_temp, :air_temp, :si_index, :time_stamp, :user_id, :pool_id)
   end
 end

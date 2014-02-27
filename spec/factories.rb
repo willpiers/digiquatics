@@ -9,6 +9,11 @@ FactoryGirl.define do
     account_id 1
   end
 
+  factory :pool do
+    name        'Baby'
+    location_id 1
+  end
+
   factory :position do
     name       'Lifeguard'
     account_id 1
@@ -80,5 +85,11 @@ FactoryGirl.define do
     notes                  'None at this moment'
     preferred_location     1
     user_id                1
+  end
+
+  factory :chemical_record do
+    time_stamp        DateTime.now
+    user_id           1
+    pool_id           1
   end
 end
