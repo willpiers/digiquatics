@@ -6,7 +6,6 @@ Spork.prefork do
   require File.expand_path("../../config/environment", __FILE__)
   require 'rspec/rails'
   require 'rspec/autorun'
-  require 'pp'
 
   include Warden::Test::Helpers
   Warden.test_mode!
@@ -51,7 +50,7 @@ Spork.prefork do
 end
 
 Spork.each_run do
-  system("rubocop -D #{Rails.root}")
+  # system("rubocop -D #{Rails.root}")
 end
 
 # --- Instructions ---
