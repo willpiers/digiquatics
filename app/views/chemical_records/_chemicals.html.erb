@@ -27,7 +27,7 @@
         <td>{{record.si_status}}</td>
         <td>
           <a ng-href='/chemical_records/{{record.id}}'>
-            {{record.time_stamp}}
+            {{record.time_stamp | formatTime}}
           </a>
         </td>
       </tr>
