@@ -1,7 +1,4 @@
 class ChemicalRecord < ActiveRecord::Base
-  extend ScopeHelper
-  pool_scopes
-
   belongs_to :pool
 
   validates_presence_of :date_stamp, :time_stamp, :user_id, :pool_id
@@ -18,5 +15,10 @@ class ChemicalRecord < ActiveRecord::Base
     si_recommendation
     date_stamp
     time_stamp
+  end
+
+  def self.same_account_as(user)
+    where(pool_id:
+      user.account.locations.map(&:pools).reject(&:empty?).flatten.map(&:id))
   end
 end

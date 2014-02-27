@@ -3,8 +3,4 @@ module ScopeHelper
     scope :same_account_as, -> (user) { where(account_id: user.account_id) }
     scope :inactive, -> (user) { where(active: false) }
   end
-
-  def pool_scopes
-    scope :same_location_as, -> (user) { where(location_id: user.location_id) }
-  end
 end
