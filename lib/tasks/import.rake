@@ -3,7 +3,8 @@ require 'csv'
 namespace :db do
   desc 'Import customer data to database'
   task import: :environment do
-    DATA_FILE = Rails.root.join('db/data/City_&_County_of_Denver_user_data.csv')
+    DATE_FILE_NAME = 'db/data/City_&_County_of_Denver_user_data.csv'
+    DATA_FILE = Rails.root.join(DATE_FILE_NAME)
 
     puts "Importing data from #{DATA_FILE}"
 
@@ -28,13 +29,13 @@ namespace :db do
         user_row['email']
       end
 
-      user = account.users.build(last_name:             user_row['last_name'],
-                                 first_name:            user_row['first_name'],
-                                 nickname:              user_row['nickname'],
-                                 phone_number:          user_row['phone_number'],
-                                 email:                 email,
-                                 notes:                 user_row['notes'],
-                                 password:              'denverpools',
+      user = account.users.build(last_name:           user_row['last_name'],
+                                 first_name:          user_row['first_name'],
+                                 nickname:            user_row['nickname'],
+                                 phone_number:        user_row['phone_number'],
+                                 email:               email,
+                                 notes:               user_row['notes'],
+                                 password:            'denverpools',
                                  password_confirmation: 'denverpools')
       user.save!
 
