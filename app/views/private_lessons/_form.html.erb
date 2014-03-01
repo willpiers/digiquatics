@@ -32,7 +32,7 @@
 
     <h4> Lesson Request </h4>
       <%= f.select :number_lessons,
-                   options_for_select(%w[1 2 3 4 5 6 7 8 9 10]),
+                   options_for_select((1..10).to_a),
                    label: 'Number of Lessons' %>
     <%= f.primary ( f.object.new_record? ?  'Submit' :
     'Save Changes' ) %>

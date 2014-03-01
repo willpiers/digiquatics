@@ -26,7 +26,7 @@
           <td><%= private_lesson.day %></td>
           <td><%= private_lesson.time %></td>
           <td>
-            <% if private_lesson.preferred_location %>
+            <% if Location.find_by_id(private_lesson.preferred_location) %>
               <%= Location.find_by_id(private_lesson.preferred_location).name %>
             <% end %>
           </td>
