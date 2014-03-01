@@ -3,11 +3,11 @@
 <%= link_to 'link', @article unless @article.nil? %>
 
 <h1>
-	<% if @user.nickname.to_s.blank? %>
-		<%= "#{@user.first_name} #{@user.last_name}" %>
-	<% else %>
-		<%= "#{@user.first_name} (#{@user.nickname}) #{@user.last_name}" %>
-	<% end %>
+  <% if @user.nickname.to_s.blank? %>
+    <%= "#{@user.first_name} #{@user.last_name}" %>
+  <% else %>
+    <%= "#{@user.first_name} (#{@user.nickname}) #{@user.last_name}" %>
+  <% end %>
 </h1>
 
 <ul class='pull-right'>
@@ -16,221 +16,221 @@
 </ul>
 
 <% if @user.admin? %>
-	<ul class='pull-right'>
-	  <% if @user.active? %>
-	    <%= bootstrap_form_for @user do |f| %>
-	      <%= f.hidden_field :active, value: false %>
-	      <%= f.submit 'Deactivate' %>
-	  	<% end %>
-	  <% else %>
-	    <%= bootstrap_form_for @user do |f| %>
-	      <%= f.hidden_field :active, value: true %>
-	      <%= f.submit 'Activate'  %>
-	    <% end %>
-	  <% end %>
-	</ul>
-	<ul class='pull-right'>
-	  <% if @user.admin? %>
-	    <%= bootstrap_form_for @user do |f| %>
-	      <%= f.hidden_field :admin, value: false %>
-	      <%= f.submit 'Remove Admin', onclick:
-					'return confirm("Are you sure you want to remove admin rights?")'  %>
-	  	<% end %>
-	  <% else %>
-	    <%= bootstrap_form_for @user do |f| %>
-	      <%= f.hidden_field :admin, value: true %>
-	      <%= f.submit 'Add Admin' %>
-	    <% end %>
-	  <% end %>
-	</ul>
+  <ul class='pull-right'>
+    <% if @user.active? %>
+      <%= bootstrap_form_for @user do |f| %>
+        <%= f.hidden_field :active, value: false %>
+        <%= f.submit 'Deactivate' %>
+      <% end %>
+    <% else %>
+      <%= bootstrap_form_for @user do |f| %>
+        <%= f.hidden_field :active, value: true %>
+        <%= f.submit 'Activate'  %>
+      <% end %>
+    <% end %>
+  </ul>
+  <ul class='pull-right'>
+    <% if @user.admin? %>
+      <%= bootstrap_form_for @user do |f| %>
+        <%= f.hidden_field :admin, value: false %>
+        <%= f.submit 'Remove Admin', onclick:
+          'return confirm("Are you sure you want to remove admin rights?")'  %>
+      <% end %>
+    <% else %>
+      <%= bootstrap_form_for @user do |f| %>
+        <%= f.hidden_field :admin, value: true %>
+        <%= f.submit 'Add Admin' %>
+      <% end %>
+    <% end %>
+  </ul>
 <% end %>
 
 <br>
 
 <div style='margin-left:0px;'>
-	<%= image_tag @user.avatar.url, size: '100x100' %>
+  <%= image_tag @user.avatar.url, size: '100x100' %>
 </div>
 
 <div class='table-responsive'>
 
-	<h4> User Information </h4>
+  <h4> User Information </h4>
 
-		<table class='table table-bordered table-condensed' >
-			<tr>
-			<th style='width:25%'> Employee ID </th>
-				<td> <%= @user.employee_id %> </td>
-			</tr>
-			<th> Admin </th>
-				<td> <%= boolean_to_words(@user.admin) %> </td>
-			</tr>
-			<tr>
-				<tr>
-				<th> Active </th>
-					<td> <%= boolean_to_words(@user.active) %> </td>
-				</tr>
-				<tr>
-				<tr>
-				<th> Account </th>
-					<td> <%= @user.account.name %> </td>
-				</tr>
-				<tr>
-					<th> Location </th>
-					<td>
-						<% if @user.location %>
-							<%= @user.location.name %>
-						<% else %>
-							Please update location information on user edit page
-						<% end %>
-					</td>
-				</tr>
-				<tr>
-				<th> Grouping </th>
-					<td> <%= @user.grouping%> </td>
-				</tr>
-				<tr>
-					<th> Position </th>
-					<td>
-						<% if @user.position %>
-							<%= @user.position.name %>
-						<% else %>
-							Please update position information on user edit page
-						<% end %>
-					</td>
-				</tr>
-				<tr>
-					<th> Address 1 </th> <td> <%= @user.address1 %>  </td>
-				</tr>
-				<tr>
-					<th> Address 2 </th> <td> <%= @user.address2 %>  </td>
-				</tr>
-				<tr>
-					<th> City </th> <td> <%= @user.city %>  </td>
-				</tr>
-				<tr>
-					<th> State </th> <td> <%= @user.state %>  </td>
-				</tr>
-				<tr>
-					<th> Zip Code </th> <td> <%= @user.zipcode %>  </td>
-				</tr>
-				<tr>
-					<th> Email </th> <td> <%= @user.email %>  </td>
-				</tr>
-				<tr>
-					<th> Phone# </th> <td> <%= @user.phone_number %>  </td>
-				</tr>
-				<tr>
-					<th> DOB </th> <td> <%= @user.date_of_birth ?
-						@user.date_of_birth.strftime('%-m/%-d/%Y') : '-' %>  </td>
-				</tr>
-				<tr>
-					<th> DOH </th> <td> <%= @user.date_of_hire ?
-						@user.date_of_hire.strftime('%-m/%-d/%Y') : '-' %>  </td>
-				</tr>
-				<tr>
-					<th> Sex </th> <td> <%= @user.sex %>  </td>
-				</tr>
-				<tr>
-					<th> Shirt Size </th> <td> <%= @user.shirt_size %>  </td>
-				</tr>
-				<tr>
-					<th> Suit Size </th> <td> <%= @user.suit_size %>  </td>
-				</tr>
-				<% if @user.sex == 'F' %>
-					<tr>
-						<th> One Piece Size </th> <td> <%= @user.femalesuit %>  </td>
-					</tr>
-				<% end %>
-				<tr>
-					<th> Emergency First Name </th> <td> <%= @user.emergency_first %>  </td>
-				</tr>
-				<tr>
-					<th>  Emergency Last Name </th> <td> <%= @user.emergency_last %>  </td>
-				</tr>
-				<tr>
-					<th>  Emergency Phone Number </th> <td> <%= @user.emergency_phone %>  </td>
-				</tr>
+    <table class='table table-bordered table-condensed' >
+      <tr>
+      <th style='width:25%'> Employee ID </th>
+        <td> <%= @user.employee_id %> </td>
+      </tr>
+      <th> Admin </th>
+        <td> <%= boolean_to_words(@user.admin) %> </td>
+      </tr>
+      <tr>
+        <tr>
+        <th> Active </th>
+          <td> <%= boolean_to_words(@user.active) %> </td>
+        </tr>
+        <tr>
+        <tr>
+        <th> Account </th>
+          <td> <%= @user.account.name %> </td>
+        </tr>
+        <tr>
+          <th> Location </th>
+          <td>
+            <% if @user.location %>
+              <%= @user.location.name %>
+            <% else %>
+              Please update location information on user edit page
+            <% end %>
+          </td>
+        </tr>
+        <tr>
+        <th> Grouping </th>
+          <td> <%= @user.grouping%> </td>
+        </tr>
+        <tr>
+          <th> Position </th>
+          <td>
+            <% if @user.position %>
+              <%= @user.position.name %>
+            <% else %>
+              Please update position information on user edit page
+            <% end %>
+          </td>
+        </tr>
+        <tr>
+          <th> Address 1 </th> <td> <%= @user.address1 %>  </td>
+        </tr>
+        <tr>
+          <th> Address 2 </th> <td> <%= @user.address2 %>  </td>
+        </tr>
+        <tr>
+          <th> City </th> <td> <%= @user.city %>  </td>
+        </tr>
+        <tr>
+          <th> State </th> <td> <%= @user.state %>  </td>
+        </tr>
+        <tr>
+          <th> Zip Code </th> <td> <%= @user.zipcode %>  </td>
+        </tr>
+        <tr>
+          <th> Email </th> <td> <%= @user.email %>  </td>
+        </tr>
+        <tr>
+          <th> Phone# </th> <td> <%= @user.phone_number %>  </td>
+        </tr>
+        <tr>
+          <th> DOB </th> <td> <%= @user.date_of_birth ?
+            @user.date_of_birth.strftime('%-m/%-d/%Y') : '-' %>  </td>
+        </tr>
+        <tr>
+          <th> DOH </th> <td> <%= @user.date_of_hire ?
+            @user.date_of_hire.strftime('%-m/%-d/%Y') : '-' %>  </td>
+        </tr>
+        <tr>
+          <th> Sex </th> <td> <%= @user.sex %>  </td>
+        </tr>
+        <tr>
+          <th> Shirt Size </th> <td> <%= @user.shirt_size %>  </td>
+        </tr>
+        <tr>
+          <th> Suit Size </th> <td> <%= @user.suit_size %>  </td>
+        </tr>
+        <% if @user.sex == 'F' %>
+          <tr>
+            <th> One Piece Size </th> <td> <%= @user.femalesuit %>  </td>
+          </tr>
+        <% end %>
+        <tr>
+          <th> Emergency First Name </th> <td> <%= @user.emergency_first %>  </td>
+        </tr>
+        <tr>
+          <th>  Emergency Last Name </th> <td> <%= @user.emergency_last %>  </td>
+        </tr>
+        <tr>
+          <th>  Emergency Phone Number </th> <td> <%= @user.emergency_phone %>  </td>
+        </tr>
 
-		</table>
-	</div>
+    </table>
+  </div>
 
-	<% @account = @user.account %>
+  <% @account = @user.account %>
 
-	<div class='table-responsive'>
+  <div class='table-responsive'>
 
-		<h4> Certification Information </h4>
+    <h4> Certification Information </h4>
 
-		<div style='font-size: 60%'>
-			<br>
-				<p >
-					<img src='/images/reddot.png' alt='red' height='10px' width='10px' /> = Expired
-					<img src='/images/yellowdot.png' alt='yellow' height='10px' width='10px' /> = Expires within 90 days
-			 		<img src='/images/greendot.png' alt='green' height='10px' width='10px' /> = Normal
-			 </p>
-		</div>
+    <div style='font-size: 60%'>
+      <br>
+        <p >
+          <img src='/images/reddot.png' alt='red' height='10px' width='10px' /> = Expired
+          <img src='/images/yellowdot.png' alt='yellow' height='10px' width='10px' /> = Expires within 90 days
+          <img src='/images/greendot.png' alt='green' height='10px' width='10px' /> = Normal
+       </p>
+    </div>
 
-		<table class='table table-bordered table-condensed' >
-			<thead>
-				<tr>
-					<th class='fixtablewidth'> Certification Name </th>
-					<% @user.certifications.each do |cert| %>
-					<th><%= cert.certification_name.name %></th>
-					<% end %>
-				</tr>
-			</thead>
-			<tbody>
-				<tr><th> Issue Date </th>
-					<% @user.certifications.each do |cert| %>
-						<td>
-							<%= cert.issue_date.strftime('%-m/%-d/%Y') if cert.issue_date %>
-						</td>
-					<% end %>
-				</tr>
+    <table class='table table-bordered table-condensed' >
+      <thead>
+        <tr>
+          <th class='fixtablewidth'> Certification Name </th>
+          <% @user.certifications.each do |cert| %>
+          <th><%= cert.certification_name.name %></th>
+          <% end %>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><th> Issue Date </th>
+          <% @user.certifications.each do |cert| %>
+            <td>
+              <%= cert.issue_date.strftime('%-m/%-d/%Y') if cert.issue_date %>
+            </td>
+          <% end %>
+        </tr>
 
-				<tr><th> Expiration Date </th>
-					<% @user.certifications.each do |cert| %>
-						<% if cert.expiration_date <= ( Date.today) %>
-							<td class='danger'>
-								<%= cert.expiration_date.strftime('%-m/%-d/%Y') %>
-							</td>
-						<% elsif cert.expiration_date > ( Date.today ) &&
-							cert.expiration_date <= ( Date.today + 90.days ) %>
-			        <td class='warning'>
-			          <%= cert.expiration_date.strftime('%-m/%-d/%Y') %>
-			        </td>
-			      <% elsif cert.expiration_date > ( Date.today + 90.days ) %>
-			        <td class='success'>
-			        <%= cert.expiration_date.strftime('%-m/%-d/%Y') %>
-			        </td>
-			      <% end %>
-					<% end %>
-				</tr>
-				<tr>
-					<th> Attached File (PDF) </th>
-					<% @user.certifications.each do |cert| %>
-					<th>
-						<!-- Only render if attachment exists -->
-						<% if cert.attachment? %>
-							<%= link_to '', cert.attachment.url, class: 'glyphicon glyphicon-download-alt' %>
-						<% else %>
-						<% end %>
-					</th>
+        <tr><th> Expiration Date </th>
+          <% @user.certifications.each do |cert| %>
+            <% if cert.expiration_date <= ( Date.today) %>
+              <td class='danger'>
+                <%= cert.expiration_date.strftime('%-m/%-d/%Y') %>
+              </td>
+            <% elsif cert.expiration_date > ( Date.today ) &&
+              cert.expiration_date <= ( Date.today + 90.days ) %>
+              <td class='warning'>
+                <%= cert.expiration_date.strftime('%-m/%-d/%Y') %>
+              </td>
+            <% elsif cert.expiration_date > ( Date.today + 90.days ) %>
+              <td class='success'>
+              <%= cert.expiration_date.strftime('%-m/%-d/%Y') %>
+              </td>
+            <% end %>
+          <% end %>
+        </tr>
+        <tr>
+          <th> Attached File (PDF) </th>
+          <% @user.certifications.each do |cert| %>
+          <th>
+            <!-- Only render if attachment exists -->
+            <% if cert.attachment? %>
+              <%= link_to '', cert.attachment.url, class: 'glyphicon glyphicon-download-alt' %>
+            <% else %>
+            <% end %>
+          </th>
 
-					<% end %>
-				</tr>
-			</tbody>
-		</table>
+          <% end %>
+        </tr>
+      </tbody>
+    </table>
 
 
-		<% if signed_in? && current_user.admin? %>
-			<div class='row'>
-				<div class='col-md-1'>
-					<h4>Notes</h4>
-				</div>
-				<div class='col-md-1'>
-					<%= link_to ' Edit', edit_user_path(@user),
-          	class: 'glyphicon glyphicon-pencil' %>
+    <% if signed_in? && current_user.admin? %>
+      <div class='row'>
+        <div class='col-md-1'>
+          <h4>Notes</h4>
+        </div>
+        <div class='col-md-1'>
+          <%= link_to ' Edit', edit_user_path(@user),
+            class: 'glyphicon glyphicon-pencil' %>
         </div>
       </div>
-			<%= @user.notes %>
-		<% end %>
+      <%= @user.notes %>
+    <% end %>
 </div>
