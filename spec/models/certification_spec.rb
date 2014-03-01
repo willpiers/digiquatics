@@ -15,14 +15,10 @@ describe Certification do
   it { should respond_to(:certification_name_id) }
   it { should respond_to(:expiration_date) }
   it { should respond_to(:issue_date) }
+  it { should respond_to(:attachment) }
 
   describe 'when expiration_date is not present' do
     before { @certfication.expiration_date = nil }
-    it { should_not be_valid }
-  end
-
-  describe 'when issue_date is not present' do
-    before { @certfication.issue_date = nil }
     it { should_not be_valid }
   end
 

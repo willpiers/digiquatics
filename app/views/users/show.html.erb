@@ -8,7 +8,11 @@
 
 <% else %>
 	<h1>
-		<%= @user.first_name + " (" + @user.nickname + ") " + @user.last_name %>
+		<% if @user.nickname == " " %>
+			<%= @user.first_name + " (" + @user.nickname + ") " + @user.last_name %>
+		<% else %>
+			<%= @user.first_name + " " + @user.last_name %>
+		<% end %>
 	</h1>
 <% end %>
 
@@ -75,10 +79,10 @@
 				</tr>
 				<tr>
 					<th> Location </th>
-					<% if @user.location = nil %>
-						<td> <%= @user.location.name %> </td>
-					<% elsif %>
+					<% if @user.location == nil %>
 						<td> Please update location information on user edit page </td>
+					<% elsif %>
+						<td> <%= @user.location.name %> </td>
 					<% end %>
 				</tr>
 				<tr>
@@ -87,10 +91,10 @@
 				</tr>
 				<tr>
 					<th> Position </th>
-					<% if @user.position = nil %>
-						<td> <%= @user.position.name %> </td>
-					<% elsif %>
+					<% if @user.position == nil %>
 						<td> Please update position information on user edit page </td>
+					<% elsif %>
+						<td> <%= @user.position.name %> </td>
 					<% end %>
 				</tr>
 				<tr>
@@ -176,7 +180,9 @@
 			<tbody>
 				<tr><th> Issue Date </th>
 					<% @user.certifications.each do |cert| %>
-					<td><%= cert.issue_date.strftime('%-m/%-d/%Y') %></td>
+						<td>
+							<%= cert.issue_date.strftime('%-m/%-d/%Y') if cert.issue_date %>
+						</td>
 					<% end %>
 				</tr>
 

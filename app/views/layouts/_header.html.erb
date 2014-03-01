@@ -34,7 +34,8 @@
               Maintenance<b class = 'caret'></b></a>
             <ul class = 'dropdown-menu'>
               <li><%= link_to 'Daily Checklist', daily_todos_path %></li>
-              <li><%= link_to 'Preventative Maintenance', preventative_lists_path %></li>
+              <li><%= link_to 'Preventative Maintenance',
+                              preventative_lists_path %></li>
               <li><%= link_to 'Report an Issue', help_desks_path %></li>
             </ul>
           </li>
@@ -54,7 +55,8 @@
               <li class='divider'></li>
               <!--<li><%= link_to 'Manage Users', users_path %></li>-->
               <% if FeatureToggleHelper.private_lessons? %>
-                <li><%= link_to 'Manage Private Lessons', admin_index_path %></li>
+                <li><%= link_to 'Manage Private Lessons',
+                                admin_index_path %></li>
               <% end %>
               <li><%= link_to 'Admin Dashboard', admin_dashboard_path %></li>
             <% end %>
@@ -66,12 +68,16 @@
         <% else #!signed_in? %>
           <li>
             <div>
-              <%= link_to 'Sign In', new_user_session_path, class: 'btn btn-primary btn-default fixbtn' %>
+              <%= link_to 'Sign In',
+                          new_user_session_path,
+                          class: 'btn btn-primary btn-default fixbtn' %>
           </div>
           </li>
           <li>
             <div>
-              <%= link_to 'Sign Up', new_user_path, class: 'btn btn-success btn-default fixbtn' %>
+              <%= link_to 'Sign Up',
+                          new_user_path,
+                          class: 'btn btn-success btn-default fixbtn' %>
           </div>
           </li>
         <% end %>

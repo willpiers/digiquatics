@@ -38,13 +38,12 @@ class User < ActiveRecord::Base
                     },
                     default_url: '/images/missing.png'
 
+  validates_presence_of :account_id
   validates :first_name, presence: true, length: { maximum: 15 }
-  validates :last_name, presence: true, length: { maximum: 15 }
+  validates :last_name,  presence: true, length: { maximum: 25 }
   validates :email, presence: true,
                     format: { with: VALID_EMAIL_REGEX },
                     uniqueness: { case_sensitive: false }
-
-  validates_length_of :password, minimum: 6
 
   def self.new_remember_token
     SecureRandom.urlsafe_base64

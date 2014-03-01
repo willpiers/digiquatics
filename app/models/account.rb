@@ -17,10 +17,14 @@ class Account < ActiveRecord::Base
   has_many :private_lessons
   has_many :shift_reports
   has_many :help_desks
+  has_many :attendance_records
+  has_many :daily_todos
+  has_many :preventative_list
 
   has_attached_file :logo,
                     path: ATTACHED_PATH,
-                    url:  ATTACHED_URL
+                    url:  ATTACHED_URL,
+                    default_url: '/images/missing.png'
 
   accepts_nested_attributes_for :users
 end

@@ -13,8 +13,7 @@ class Certification < ActiveRecord::Base
                     path: ATTACHED_PATH,
                     url: ATTACHED_URL
 
-  validates_presence_of :certification_name_id, :expiration_date, :issue_date,
-                        :user_id
+  validates_presence_of :certification_name_id, :expiration_date, :user_id
 
   comma do
     user last_name: 'Last'

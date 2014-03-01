@@ -4,6 +4,9 @@ AllCops:
     - config.ru
     - Gemfile
     - Capfile
+    - db/seeds.rb
+    - lib/**/*.rake
+    - lib/**/*.cap
   Excludes:
     - spec/spec_helper.rb
     - db/**

@@ -92,7 +92,7 @@ describe User do
   end
 
   describe 'when last name is too long' do
-    before { @user.last_name = 'a' * 16 }
+    before { @user.last_name = 'a' * 26 }
     it { should_not be_valid }
   end
 
@@ -109,6 +109,11 @@ describe User do
   describe 'with a password that\'s too short' do
     before { @user.password = @user.password_confirmation = 'a' * 5 }
     it { should be_invalid }
+  end
+
+  describe 'when account id is not present' do
+    before { @user.account_id = ' ' }
+    it { should_not be_valid }
   end
 
   describe 'user avatar' do

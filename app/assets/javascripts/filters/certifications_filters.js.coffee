@@ -1,5 +1,7 @@
 @digiquaticsFilters.filter 'formatDate', ->
   (input) ->
+    return '' unless input
+
     d = new Date(input)
 
     curr_month = d.getMonth() + 1

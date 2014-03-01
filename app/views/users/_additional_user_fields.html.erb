@@ -22,7 +22,7 @@
 <%= f.select :suit_size, %w[XS S M L XL XXL],  {include_blank: true},
   label: 'Shorts Size' %>
 <%= f.select :femalesuit, %w[28 30 32 34 36 38 40], {include_blank: true},
-  label: 'One Piece Suit Size (F)' if f.object.new_record? || user.sex == 'F' %>
+  label: 'One Piece Suit Size (F)' %>
 
 <center><h4>Emergency Contact Information</h4></center>
 

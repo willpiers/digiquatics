@@ -1,7 +1,4 @@
 require 'spec_helper'
-require 'pp'
-include Warden::Test::Helpers
-Warden.test_mode!
 
 describe 'Account pages' do
   let!(:account) { FactoryGirl.create(:account) }
