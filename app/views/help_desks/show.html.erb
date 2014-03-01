@@ -63,7 +63,7 @@
         <th> Issue Status </th>
         <td> <%= @help_desk.issue_status %> </td>
       </tr>
-      <% if !@help_desk.issue_status? %>
+      <% unless @help_desk.issue_status? %>
         <tr>
           <th> Issue Notes </th>
           <td> <%= @help_desk.issue_resolution_description %> </td>
