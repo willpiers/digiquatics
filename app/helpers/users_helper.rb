@@ -5,6 +5,7 @@ module UsersHelper
     :shirt_size, :suit_size, :location_id, :position_id, :femalesuit, :avatar,
     :employee_id, :emergency_first, :emergency_last, :emergency_phone, :notes,
     :payrate, :grouping, :address1, :address2, :city, :state, :zipcode,
+    :active,
     certifications_attributes: [
       :_destroy, :id, :certification_name_id, :user_id, :issue_date,
       :expiration_date, :attachment
@@ -28,6 +29,12 @@ module UsersHelper
     unless current_user?(@user) || current_user.admin?
       redirect_to(new_user_session_path)
     end
+  end
+
+  def full_name(user)
+    nickname = user.nickname.to_s.blank? ? ' ' : " (#{user.nickname}) "
+
+    "#{user.first_name}#{nickname}#{user.last_name}"
   end
 
   def age(dob)

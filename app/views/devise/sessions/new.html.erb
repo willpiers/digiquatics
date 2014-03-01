@@ -3,14 +3,13 @@
 
 <div class='row well'>
   <div class='userform'>
-
     <center>
-    <img src='/images/water.png' alt='red' height='100px' width='100px'/>
-    <h4> DigiQuatics &trade; </h4>
+      <img src='/images/water.png' alt='red' height='100px' width='100px'/>
+      <h4> DigiQuatics &trade; </h4>
     </center>
 
-    <%= bootstrap_form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
-
+    <%= bootstrap_form_for(resource, :as => resource_name,
+                           :url => session_path(resource_name)) do |f| %>
       <legend>Sign in</legend>
       <%= f.email_field :email, :autofocus => true %>
 
@@ -24,6 +23,6 @@
     <% end %>
 
     <%= render "devise/shared/links" %>
-
+    <div> Don't have an account? <%= link_to(' Sign up', new_user_path) %></div>
   </div>
 </div>

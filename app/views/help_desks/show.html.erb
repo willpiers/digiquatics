@@ -63,7 +63,7 @@
         <th> Issue Status </th>
         <td> <%= @help_desk.issue_status %> </td>
       </tr>
-      <% if @help_desk.issue_status == false %>
+      <% unless @help_desk.issue_status? %>
         <tr>
           <th> Issue Notes </th>
           <td> <%= @help_desk.issue_resolution_description %> </td>
@@ -82,12 +82,12 @@
           <th> Date Closed </th>
           <td> <%= @help_desk.closed_date_time.strftime('%I:%M%p %-m/%-d/%Y') %> </td>
         </tr>
-        <% elsif @help_desk.issue_status == true %>
+      <% else %>
         <tr>
           <th> Issue Notes </th>
           <td> Add notes below </td>
         </tr>
-        <% end %>
+      <% end %>
     </table>
 </div>
 
@@ -100,18 +100,18 @@
 
 <div class='userform'>
 
-<% if @help_desk.issue_status == true %>
+<% if @help_desk.issue_status? %>
   <h4> Actions taken to resolve this issue </h4>
   <%= bootstrap_form_for @help_desk do |f| %>
     <%= f.hidden_field :issue_status, value: false %>
     <%= f.text_area :issue_resolution_description, hide_label: true, size: '2x' %>
     <%= f.submit 'Close Issue'  %>
-    <% end %>
-<% elsif @help_desk.issue_status == false %>
+  <% end %>
+<% else %>
   <%= bootstrap_form_for @help_desk do |f| %>
     <%= f.hidden_field :issue_status, value: true %>
     <%= f.submit 'Open Issue'  %>
-    <% end %>
+  <% end %>
 <% end %>
 
 </div>
