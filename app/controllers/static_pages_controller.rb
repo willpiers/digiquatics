@@ -6,7 +6,7 @@ class StaticPagesController < ApplicationController
   end
 
   def index
-    render file: 'public/index.html'
+    render :index, layout: false
   end
 
   def chemical_record_stats

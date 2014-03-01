@@ -16,42 +16,43 @@
 	</h1>
 <% end %>
 
-<ul class = "pull-right">
+<ul class="pull-right">
   <%= link_to "Edit", edit_user_path(@user),
     class: "btn btn-default btn-primary" %>
 </ul>
 
-<ul class = "pull-right">
-  <% if @user.active == true %>
-    <%= bootstrap_form_for @user do |f| %>
-      <%= f.hidden_field :active, value: false %>
-      <%= f.submit "Inactivate"  %>
-      <% end %>
-  <% elsif @user.active == false %>
-    <%= bootstrap_form_for @user do |f| %>
-      <%= f.hidden_field :active, value: true %>
-      <%= f.submit "Activate"  %>
-      <% end %>
-  <% end %>
-</ul>
-
-<ul class = "pull-right">
-  <% if @user.admin == true %>
-    <%= bootstrap_form_for @user do |f| %>
-      <%= f.hidden_field :admin, value: false %>
-      <%= f.submit "Remove Admin"  %>
-      <% end %>
-  <% elsif @user.admin == false %>
-    <%= bootstrap_form_for @user do |f| %>
-      <%= f.hidden_field :admin, value: true %>
-      <%= f.submit "Add Admin"  %>
-      <% end %>
-  <% end %>
-</ul>
+<% if @user.admin? %>
+	<ul class="pull-right">
+	  <% if @user.active? %>
+	    <%= bootstrap_form_for @user do |f| %>
+	      <%= f.hidden_field :active, value: false %>
+	      <%= f.submit "Deactivate"  %>
+	  	<% end %>
+	  <% else %>
+	    <%= bootstrap_form_for @user do |f| %>
+	      <%= f.hidden_field :active, value: true %>
+	      <%= f.submit "Activate"  %>
+	    <% end %>
+	  <% end %>
+	</ul>
+	<ul class="pull-right">
+	  <% if @user.admin? %>
+	    <%= bootstrap_form_for @user do |f| %>
+	      <%= f.hidden_field :admin, value: false %>
+	      <%= f.submit "Remove Admin"  %>
+	  	<% end %>
+	  <% else %>
+	    <%= bootstrap_form_for @user do |f| %>
+	      <%= f.hidden_field :admin, value: true %>
+	      <%= f.submit "Add Admin"  %>
+	    <% end %>
+	  <% end %>
+	</ul>
+<% end %>
 
 <br>
 
-<div style = "margin-left:0px;">
+<div style="margin-left:0px;">
 	<%= image_tag @user.avatar.url, size: '100x100' %>
 </div>
 

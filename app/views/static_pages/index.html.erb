@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>DigiQuatics</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+    <!-- Bootstrap -->
+    <link href='//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css'
+    rel='stylesheet'>
+
+      <style>
+
+        #fixed-div {
+        position: fixed;
+        top: 1em;
+        right: 1em;
+        }
+
+        /* http://css-tricks.com/perfect-full-page-background-image/ */
+        html {
+            background: url(images/swiming_lap_pool.jpg) no-repeat center center fixed;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+        }
+
+        body {
+            padding-top: 8%;
+            font-size: 16px;
+            background: transparent;
+        }
+
+        h1 {
+            font-weight: 400;
+            font-size: 40px;
+        }
+
+        /* Override B3 .panel adding a subtly transparent background */
+        .panel {
+            background-color: rgba(255, 255, 255, 0.8);
+        }
+
+        .margin-base-vertical {
+            margin: 40px 0;
+        }
+
+        .adjust-info {
+          margin-left: 80px;
+        }
+
+      </style>
+
+  </head>
+  <body>
+
+    <div class='hidden-xs'>
+      <div id='fixed-div'>
+        <%= link_to(' Sign Up', new_user_path,
+                    class: 'btn btn-primary btn-default') %>
+        <%= link_to(' Sign In', new_user_session_path,
+                    class: 'btn btn-primary btn-danger') %>
+      </div>
+
+      <br><br>
+
+      <div class='container'>
+          <div class='row'>
+            <div class='col-md-6 col-md-offset-3 panel panel-default'>
+              <center>
+                <h1 class='margin-base-vertical'>  DigiQuatics</h1>
+                <h4> All-in-One Solution for Aquatics Management </h4>
+              </center>
+              <p class='adjust-info'>
+                <span class='glyphicon glyphicon-cloud'></span>
+                Cloud-based Data Management
+              </p>
+              <p class='adjust-info'>
+                <span class='glyphicon glyphicon-phone'></span>
+                Cross-Platform Access 24/7: Desktop, Phone, Tablet
+              </p>
+              <p class='adjust-info'>
+                <span class='glyphicon glyphicon-user'></span>
+                Organize Employee Information
+              </p>
+              <p class='adjust-info'>
+                <span class='glyphicon glyphicon-th-list'></span>
+                Manage Employee Certifications
+              </p>
+              <p class='adjust-info'>
+                <span class='glyphicon glyphicon-list-alt'></span>
+                Data Management: Attendance, Chemical, and Maintenance
+              </p>
+              <p class='adjust-info'>
+                <span class='glyphicon glyphicon-globe'></span>
+                Online Private Lessons Portal
+              </p>
+              <p class='adjust-info'>
+                <span class='glyphicon glyphicon-th'></span>
+                Simple and Dynamic Staff Scheduling Platform
+              </p>
+              <center>
+                <br>
+                <h4>
+                  For more information please email us:
+                  <a href='mailto:mipierce@mines.edu?Subject=More%20Information%20Needed'target='_top'>here</a>
+                </h4>
+              </center>
+              <div class='margin-base-vertical'>
+                  <center>
+                  <small class='text-muted'>Copyright &#169;
+                    2013-2014 Affektive Software Limited. All Rights Reserved.
+                  </small>
+              </center>
+              </div>
+            </div><!-- //main content -->
+          </div><!-- //row -->
+      </div> <!-- //container -->
+    </div>
+
+    <div class='visible-xs'>
+      <div class='container'>
+          <div class='row'>
+            <div class='col-md-6 col-md-offset-3 panel panel-default'>
+
+              <center>
+                <h1 class='margin-base-vertical'>  DigiQuatics</h1>
+                <h4> All-in-One Solution for Aquatics Management </h4>
+                <a class = 'btn btn-primary btn-default' href='/users/sign_in'> Sign In</a>
+              </center>
+
+              <div class='margin-base-vertical'>
+                  <center>
+                  <small class='text-muted'>Copyright &#169;
+                    2013-2014 Affektive Software Limited. All Rights Reserved.
+                  </small>
+              </center>
+              </div>
+            </div><!-- //main content -->
+          </div><!-- //row -->
+      </div> <!-- //container -->
+    </div>
+  </body>
+</html>
