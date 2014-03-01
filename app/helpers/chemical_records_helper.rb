@@ -1,76 +1,59 @@
 module ChemicalRecordsHelper
   include Math
 
-  def si_index_calculator(ph_reading, pool_temp, calcium_hardness, total_alkalinity)
-    if !ph_reading || !pool_temp || !calcium_hardness || !total_alkalinity
-      '?'
-    else
-      ph = ph_reading
-      temp = ((0.7571 * log(pool_temp)) - 2.6639)
-      ch = ((0.4341 * log(calcium_hardness)) - 0.3926)
-      ta = ((0.4341 * log(total_alkalinity)) + 0.0074)
-      tds = 12.1
-      @si = (ph + temp + ch + ta - tds)
-    end
+  SI_CALC_RANGES = {
+    [-100, -5] => {
+      status: 'Severe Corrosion',
+      recommendation: 'Treatment Recommended'
+    },
+    [-4.99, -2] => {
+      status: 'Moderate Corrosion',
+      recommendation: 'Treatment May Be Needed'
+    },
+    [-1.99, -0.5] => {
+      status: 'Mild Corrosion',
+      recommendation: 'Treatment May Be Needed'
+    },
+    [-0.49, -0.31] => {
+      status: 'Possible Mild Corrosion',
+      recommendation: 'Probably No Treatment'
+    },
+    [-0.3, 0.3] => {
+      status: 'Balanced',
+      recommendation: 'No Treatment'
+    },
+    [0.31, 0.5] => {
+      status: 'Some Faint Coating',
+      recommendation: 'Probably No Treatment'
+    },
+    [0.51, 1] => {
+      status: 'Mild Scale Coating',
+      recommendation: 'Treatment May Be Needed'
+    },
+    [1.01, 2] => {
+      status: 'Mild to Moderate Coatings',
+      recommendation: 'Treatment May Be Needed'
+    },
+    [2.01, 3] => {
+      status: 'Moderate Scale Forming',
+      recommendation: 'Treatment Recommended'
+    },
+    [3.01, 100] => {
+      status: 'Severe Scale Forming',
+      recommendation: 'Treatment Recommended'
+    }
+  }
+
+  def si_index_calculator(ph_reading, pool_temp, calcium_hardness, alkalinity)
+    temp = 0.7571 * log(pool_temp) - 2.6639
+    ch   = 0.4341 * log(calcium_hardness) - 0.3926
+    ta   = 0.4341 * log(alkalinity) + 0.0074
+    @si  = ph_reading + temp + ch + ta - 12.1
   end
 
-  def si_status_calc(si_index)
-    if !si_index
-      '?'
-    elsif si_index <= -5
-      'Severe Corrosion'
-    elsif si_index > -5 && si_index <= -3
-      'Moderate Corrosion'
-    elsif si_index > -3 && si_index <= -2
-      'Moderate Corrosion'
-    elsif si_index > -2 && si_index < -0.3
-      'Mild Corrosion '
-    elsif si_index >= -0.3 && si_index <= 0.3
-      'Balanced'
-    elsif si_index > 0.3 && si_index <= 0.5
-      'Some Faint Coating'
-    elsif si_index > 0.5 && si_index <= 1
-      'Mild Scale Coating'
-    elsif si_index > 1 && si_index <= 2
-      'Mild to Moderate Coatings'
-    elsif si_index > 2 && si_index <= 3
-      'Moderate Scale Forming'
-    elsif si_index > 3
-      'Severe Scale Forming'
-    else
-      'Error'
-    end
-  end
-
-  def si_recommendation_calc(si_index)
-    if !si_index
-      '?'
-    elsif si_index <= -5
-      'Treatment Recommended'
-    elsif si_index > -5 && si_index <= -3
-      'Treatment Recommended'
-    elsif si_index > -3 && si_index <= -2
-      'Treatment May Be Needed'
-    elsif si_index > -2 && si_index <= -1
-      'Treatment May Be Needed'
-    elsif si_index > -1 && si_index <= -0.5
-      'Probably No Treatment'
-    elsif si_index > -0.5 && si_index < -0.3
-      'Probably No Treatment '
-    elsif si_index >= -0.3 && si_index <= 0.3
-      'No Treatment'
-    elsif si_index > 0.3 && si_index <= 0.5
-      'Probably No Treatment'
-    elsif si_index > 0.5 && si_index <= 1
-      'Treatment May Be Needed'
-    elsif si_index > 1 && si_index <= 2
-      'Treatment May Be Needed'
-    elsif si_index > 2 && si_index <= 3
-      'Treatment Recommended'
-    elsif si_index > 3
-      'Treatment Recommended'
-    else
-      'Error'
+  def si_calc(si_index, option)
+    SI_CALC_RANGES.each do |range, message|
+      return message[option] if si_index.between?(*range)
     end
   end
 end

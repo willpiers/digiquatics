@@ -41,10 +41,10 @@ class ChemicalRecordsController < ApplicationController
                           @chemical_record.calcium_hardness,
                           @chemical_record.alkalinity).round(2)
 
-    @chemical_record.si_status = si_status_calc(@chemical_record.si_index)
+    @chemical_record.si_status = si_calc(@chemical_record.si_index, :status)
 
     @chemical_record.si_recommendation =
-      si_recommendation_calc(@chemical_record.si_index)
+      si_calc(@chemical_record.si_index, :recommendation)
 
     @chemical_record.user_id = current_user.id
 
