@@ -5,6 +5,7 @@ module UsersHelper
     :shirt_size, :suit_size, :location_id, :position_id, :femalesuit, :avatar,
     :employee_id, :emergency_first, :emergency_last, :emergency_phone, :notes,
     :payrate, :grouping, :address1, :address2, :city, :state, :zipcode,
+    :active,
     certifications_attributes: [
       :_destroy, :id, :certification_name_id, :user_id, :issue_date,
       :expiration_date, :attachment
