@@ -4,6 +4,7 @@ describe PrivateLesson do
 
   before do
     @private_lesson = PrivateLesson.new(
+      account_id:         1,
       parent_first_name:  'Lydia',
       parent_last_name:   'Pierce',
       phone_number:       '720-387-9691',
@@ -23,6 +24,7 @@ describe PrivateLesson do
 
   subject { @private_lesson }
 
+  it { should respond_to(:account_id) }
   it { should respond_to(:parent_first_name) }
   it { should respond_to(:parent_last_name) }
   it { should respond_to(:phone_number) }
@@ -40,6 +42,11 @@ describe PrivateLesson do
   it { should respond_to(:time) }
 
   it { should be_valid }
+
+  describe 'when account_id is not present' do
+    before { @private_lesson.account_id = ' ' }
+    it { should_not be_valid }
+  end
 
   describe 'when parent first name is not present' do
     before { @private_lesson.parent_first_name = ' ' }

@@ -1,6 +1,6 @@
-<% provide(:title, @private_lesson.first_name) %>
+<% provide(:title, full_name(@private_lesson)) %>
 
-<h1><%= @private_lesson.first_name + " " + @private_lesson.last_name %></h1>
+<h1><%= full_name(@private_lesson) %></h1>
 
 <ul class = 'pull-right'>
 <%= bootstrap_form_for @private_lesson do |f| %>
@@ -12,6 +12,44 @@
 <br> <br>
 
 <div class='table-responsive'>
+  <% if current_user.admin? %>
+    <table class='table table-bordered table-condensed' >
+
+      <h4> Instructor Information </h4>
+      <tr>
+         <th id='fixtablewidth'> Instructor Name </th>
+        <td>
+          <% if @private_lesson.user %>
+            <%= full_name(@private_lesson.user) %>
+          <% end %>
+        </td>
+      </tr>
+      <tr>
+        <th> Instructor Phone Number </th>
+        <td>
+          <% if @private_lesson.user %>
+            <%= @private_lesson.user.phone_number %>
+          <% end %>
+        </td>
+      </tr>
+      <tr>
+        <th> Instructor Email </th>
+        <td>
+          <% if @private_lesson.user %>
+            <%= @private_lesson.user.email %>
+          <% end %>
+        </td>
+      </tr>
+      <tr>
+        <th> Instructor Location </th>
+        <td>
+          <% if @private_lesson.user %>
+            <%= @private_lesson.user.location.name %>
+          <% end %>
+        </td>
+      </tr>
+    </table>
+  <% end %>
     <table class='table table-bordered table-condensed' >
       <h4> Parent Information </h4>
         <tr>
@@ -55,7 +93,6 @@
           <td> <%= @private_lesson.age %> </td>
         </tr>
     </table>
-
   <table class='table table-bordered' >
     <h4> Preferences </h4>
       <tr>
