@@ -1,5 +1,8 @@
 # DigiQuatics
 
+## Line Count
+`find . -name '*.rb' | xargs wc -l`
+
 ## Database Setup
 - download MySQL from [http://dev.mysql.com/downloads/mysql/](http://dev.mysql.com/downloads/mysql/)
 - install both `.pkg` files from the `.dmg` file
