@@ -1,6 +1,6 @@
-<% provide(:title, full_name(@private_lesson)) %>
+<% provide(:title, lessons_full_name(@private_lesson)) %>
 
-<h1><%= full_name(@private_lesson) %></h1>
+<h1><%= lessons_full_name(@private_lesson) %></h1>
 
 <ul class = 'pull-right'>
 <%= bootstrap_form_for @private_lesson do |f| %>
@@ -20,7 +20,7 @@
          <th id='fixtablewidth'> Instructor Name </th>
         <td>
           <% if @private_lesson.user %>
-            <%= full_name(@private_lesson.user) %>
+            <%= lessons_full_name(@private_lesson.user) %>
           <% end %>
         </td>
       </tr>
