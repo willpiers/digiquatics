@@ -3,11 +3,13 @@ require 'spec_helper'
 describe PrivateLessonsController do
   describe 'routing' do
     it 'routes to #index' do
-      get('/private_lessons').should route_to('private_lessons#index')
+      get('/accounts/1/private_lessons')
+        .should route_to('private_lessons#index', account_id: '1')
     end
 
     it 'routes to #new' do
-      get('/private_lessons/new').should route_to('private_lessons#new')
+      get('/accounts/1/private_lessons/new')
+        .should route_to('private_lessons#new', account_id: '1')
     end
 
     it 'routes to #show' do
@@ -21,7 +23,8 @@ describe PrivateLessonsController do
     end
 
     it 'routes to #create' do
-      post('/private_lessons').should route_to('private_lessons#create')
+      post('/accounts/1/private_lessons')
+        .should route_to('private_lessons#create', account_id: '1')
     end
 
     it 'routes to #update' do

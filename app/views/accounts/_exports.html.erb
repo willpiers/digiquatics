@@ -1,8 +1,9 @@
 <div class ='row'>
   <% if FeatureToggleHelper.attendance? %>
     <div class='col-md-3'>
-      <%= link_to 'Attendance', private_lessons_path(format: 'csv'),
-        class: 'btn btn-danger btn-sm disabled' %>
+      <%= link_to 'Attendance',
+                  '#',
+                  class: 'btn btn-danger btn-sm disabled' %>
     </div>
   <% end %>
   <% if FeatureToggleHelper.chemicals? %>
@@ -19,7 +20,7 @@
   <% end %>
   <% if FeatureToggleHelper.private_lessons? %>
     <div class='col-md-3'>
-      <%= link_to 'Private Lessons Queue', private_lessons_path(format: 'csv'),
+      <%= link_to 'Private Lessons Queue', account_private_lessons_path(format: 'csv', account_id: current_account.id),
         class: 'btn btn-danger btn-sm' %>
     </div>
   <% end %>
@@ -30,8 +31,9 @@
 <div class ='row'>
   <% if FeatureToggleHelper.scheduling? %>
     <div class='col-md-3'>
-      <%= link_to 'Scheduling', private_lessons_path(format: 'csv'),
-        class: 'btn btn-danger btn-sm disabled' %>
+      <%= link_to 'Scheduling',
+                  '#',
+                  class: 'btn btn-danger btn-sm disabled' %>
     </div>
   <% end %>
   <% if FeatureToggleHelper.shift_reports? %>

@@ -1,6 +1,6 @@
-<% provide(:title, @private_lesson.first_name) %>
+<% provide(:title, student_full_name(@private_lesson)) %>
 
-<h1><%= @private_lesson.first_name + " " + @private_lesson.last_name %></h1>
+<h1><%= student_full_name(@private_lesson) %></h1>
 
 <ul class = 'pull-right'>
 <%= bootstrap_form_for @private_lesson do |f| %>
@@ -12,49 +12,88 @@
 <br> <br>
 
 <div class='table-responsive'>
+	<% if current_user.admin %>
 		<table class='table table-bordered table-condensed' >
-			<h4> Parent Information </h4>
-				<tr>
-					 <th id='fixtablewidth'> First Name </th>
-					<td> <%= @private_lesson.parent_first_name %> </td>
-				</tr>
-				<tr>
-					<th> Last Name </th>
-					<td> <%= @private_lesson.parent_last_name %> </td>
-				</tr>
-				<tr>
-					<th> Phone Number</th>
-					<td> <%= @private_lesson.phone_number %> </td>
-				</tr>
-				<tr>
-					<th> Email </th>
-					<td> <%= @private_lesson.email %> </td>
-				</tr>
-				<tr>
-					<th> Preferred Contact Method </th>
-					<td> <%= @private_lesson.contact_method %> </td>
-				</tr>
-		</table>
 
-		<table class='table table-bordered' >
-			<h4> Student Information </h4>
-				<tr>
-					 <th id='fixtablewidth'> First Name </th>
-					<td> <%= @private_lesson.first_name %> </td>
-				</tr>
-				<tr>
-					<th> Last Name </th>
-					<td> <%= @private_lesson.last_name %> </td>
-				</tr>
-				<tr>
-					<th> Gender</th>
-					<td> <%= @private_lesson.sex %> </td>
-				</tr>
-				<tr>
-					<th> Age </th>
-					<td> <%= @private_lesson.age %> </td>
-				</tr>
+			<h4> Instructor Information </h4>
+			<tr>
+				 <th id='fixtablewidth'> Instructor Name </th>
+				<td>
+					<% if @private_lesson.user %>
+						<%= instructor_full_name(@private_lesson.user) %>
+					<% end %>
+				</td>
+			</tr>
+			<tr>
+				<th> Instructor Phone Number </th>
+				<td>
+					<% if @private_lesson.user %>
+						<%= @private_lesson.user.phone_number %>
+					<% end %>
+				</td>
+			</tr>
+			<tr>
+				<th> Instructor Email </th>
+				<td>
+					<% if @private_lesson.user %>
+						<%= @private_lesson.user.email %>
+					<% end %>
+				</td>
+			</tr>
+			<tr>
+				<th> Instructor Location </th>
+				<td>
+					<% if @private_lesson.user %>
+						<%= @private_lesson.user.location.name %>
+					<% end %>
+				</td>
+			</tr>
 		</table>
+	<% end %>
+
+	<table class='table table-bordered table-condensed' >
+		<h4> Parent Information </h4>
+			<tr>
+				 <th id='fixtablewidth'> First Name </th>
+				<td> <%= @private_lesson.parent_first_name %> </td>
+			</tr>
+			<tr>
+				<th> Last Name </th>
+				<td> <%= @private_lesson.parent_last_name %> </td>
+			</tr>
+			<tr>
+				<th> Phone Number</th>
+				<td> <%= @private_lesson.phone_number %> </td>
+			</tr>
+			<tr>
+				<th> Email </th>
+				<td> <%= @private_lesson.email %> </td>
+			</tr>
+			<tr>
+				<th> Preferred Contact Method </th>
+				<td> <%= @private_lesson.contact_method %> </td>
+			</tr>
+	</table>
+
+	<table class='table table-bordered' >
+		<h4> Student Information </h4>
+			<tr>
+				 <th id='fixtablewidth'> First Name </th>
+				<td> <%= @private_lesson.first_name %> </td>
+			</tr>
+			<tr>
+				<th> Last Name </th>
+				<td> <%= @private_lesson.last_name %> </td>
+			</tr>
+			<tr>
+				<th> Gender</th>
+				<td> <%= @private_lesson.sex %> </td>
+			</tr>
+			<tr>
+				<th> Age </th>
+				<td> <%= @private_lesson.age %> </td>
+			</tr>
+	</table>
 
 	<table class='table table-bordered' >
 		<h4> Preferences </h4>

@@ -3,10 +3,8 @@ class PrivateLessonsController < ApplicationController
     [:show, :edit, :update, :destroy]
 
   def index
-    @account = Account.find(params[:account_id])
     @private_lessons = PrivateLesson.joins(:account)
                        .same_account_as(current_user).unclaimed
-
     respond_to do |format|
       with_private_lessons_data(format, filename: 'private_lessons')
     end
@@ -25,33 +23,26 @@ class PrivateLessonsController < ApplicationController
   end
 
   def new
-    @account = Account.find(params[:account_id])
-    @private_lesson = @account.private_lessons.build
+    @private_lesson = Account.find(params[:account_id]).private_lessons.build
   end
 
   def edit
   end
 
   def create
-    @account = Account.find(params[:account_id])
-    @private_lesson = @account.private_lessons.build(private_lesson_params)
+    @private_lesson = Account.find(params[:account_id]).private_lessons
+    .build(private_lesson_params)
 
-    if @private_lesson.save
-      flash[:success] = 'Private lesson was successfully created.'
-      redirect_to @private_lesson
-    else
-      render 'new'
-    end
+    message = 'Private lesson was successfully created.'
+
+    handle_action(@private_lesson, message, :new, &:save)
   end
 
   def update
-    @private_lesson.user_id = params[:user_id]
+    message = 'Private lesson was successfully updated.'
 
-    if @private_lesson.update(private_lesson_params)
-      flash[:success] = 'Private lesson was successfully updated.'
-      redirect_to @private_lesson
-    else
-      render 'edit'
+    handle_action(@private_lesson, message, :edit) do |resource|
+      resource.update(private_lesson_params)
     end
   end
 
@@ -61,6 +52,15 @@ class PrivateLessonsController < ApplicationController
   end
 
   private
+
+  def handle_action(resource, message, page)
+    if yield(resource)
+      flash[:success] = message
+      redirect_to resource
+    else
+      render page
+    end
+  end
 
   def with_private_lessons_data(format, filename: 'private_lessons')
     format.html

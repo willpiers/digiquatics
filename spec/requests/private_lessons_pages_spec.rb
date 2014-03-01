@@ -12,6 +12,13 @@ describe 'Private Lessons' do
                        account_id: account.id)
   end
 
+  let!(:admin) do
+    FactoryGirl.create(:admin,
+                       location_id: location.id,
+                       position_id: position.id,
+                       account_id: account.id)
+  end
+
   before do
     login_as(user, scope: :user)
     FactoryGirl.create(:private_lesson,
@@ -46,7 +53,7 @@ describe 'Private Lessons' do
   subject { page }
 
   describe 'Queue' do
-    before { visit private_lessons_path }
+    before { visit account_private_lessons_path(account_id: user.account_id) }
 
     describe 'should not list lessons from another account' do
       it { should_not have_content('other_account_lesson') }
@@ -99,42 +106,182 @@ describe 'Private Lessons' do
 
   describe 'signup' do
     before do
-      visit new_account_private_lesson_path
+      Warden.test_reset!
+      login_as(user, scope: :user)
+      visit new_account_private_lesson_path(account_id: user.account_id)
     end
 
-    let(:submit) { }
+    let(:submit) { 'Submit' }
 
     describe 'with invalid information' do
       it 'should not create a private lesson' do
-        expect { click_button submit }.not_to change(User, :count)
+        expect { click_button submit }.not_to change(PrivateLesson, :count)
       end
     end
 
     describe 'with valid information' do
       before do
-        select blank_account.name,       from: 'Account'
-        fill_in 'First Name',            with: 'First'
-        fill_in 'Last Name',             with: 'Last'
-        fill_in 'Phone Number',          with: '1234'
-        fill_in 'Email',                 with: 'user@example.com'
-        fill_in 'Password',              with: 'foobar77'
-        fill_in 'Password Confirmation', with: 'foobar77'
+        # Parent information
+        fill_in 'Parent First Name', with: 'Parent First'
+        fill_in 'Parent Last Name',  with: 'Parent Last'
+        fill_in 'Phone Number',      with: '1234'
+        fill_in 'Email',             with: 'lesson@example.com'
+        select  'Call',              from: 'Preferred Contact Method'
+
+        # Student Information
+        fill_in 'Student First Name', with: 'student first'
+        fill_in 'Student Last Name',  with: 'student last'
+        select 'M',           from: 'Gender'
+        fill_in 'Age',        with: 14
+
+        # Preferences
+        select 'None',              from: 'Instructor Gender Preference'
+        fill_in 'Notes',            with: 'I want Joey'
+        fill_in 'Lesson Objectives', with: 'Starts and turns'
+
+        # Lesson Request
+        select 1, from: 'Number of Lessons'
       end
 
-      it 'should create a user' do
-        expect { click_button submit }.to change(User, :count).by(1)
+      it 'should create a private lesson' do
+        expect { click_button submit }.to change(PrivateLesson, :count).by(1)
       end
 
-      describe 'after saving the user' do
+      describe 'after saving the lesson' do
         before { click_button submit }
-        let(:created_user) { User.find_by_email('user@example.com') }
-
-        it 'should be an admin' do
-          created_user.admin.should eq true
+        let(:created_lesson) do
+          PrivateLesson.find_by_email('lesson@example.com')
         end
 
-        it { should have_link('Sign out') }
+        it 'should redirect to confirmation page' do
+          # insert confirmation page
+        end
+      end
+    end
+  end
+
+  describe 'show' do
+    let(:created_lesson) do
+      PrivateLesson.first
+    end
+
+    describe 'as admin' do
+      before do
+        Warden.test_reset!
+        login_as(admin, scope: :user)
+        visit private_lesson_path(created_lesson)
+      end
+
+      it { should have_content('Instructor Information') }
+    end
+
+    describe 'as non-admin' do
+      before do
+        Warden.test_reset!
+        login_as(user, scope: :user)
+        visit private_lesson_path(created_lesson)
+      end
+
+      it { should_not have_content('Instructor Information') }
+    end
+  end
+
+  describe 'edit' do
+    let(:created_lesson) do
+      PrivateLesson.first
+    end
+
+    before do
+      Warden.test_reset!
+      login_as(user, scope: :user)
+      visit edit_private_lesson_path(created_lesson)
+    end
+
+    describe 'page' do
+      it { should have_selector('legend', text: 'Edit Private Lesson') }
+      it { should have_title(full_title('Edit Private Lesson')) }
+
+      describe 'with invalid information' do
+        before do
+          fill_in 'Parent First Name', with: ' '
+          click_button 'Save Changes'
+        end
+
+        it { should have_content('can\'t be blank') }
+      end
+
+      describe 'with valid information' do
+
+        let(:student_first_name) { 'Johnny' }
+
+        before do
+          # Parent information
+          fill_in 'Parent First Name', with: 'Parent First'
+          fill_in 'Parent Last Name',  with: 'Parent Last'
+          fill_in 'Phone Number',      with: '1234'
+          fill_in 'Email',             with: 'lesson@example.com'
+          select  'Call',              from: 'Preferred Contact Method'
+
+          # Student Information
+          fill_in 'Student First Name', with: student_first_name
+          fill_in 'Student Last Name',  with: 'student last'
+          select 'M',           from: 'Gender'
+          fill_in 'Age',        with: 14
+
+          # Preferences
+          select 'None',              from: 'Instructor Gender Preference'
+          fill_in 'Notes',            with: 'I want Joey'
+          fill_in 'Lesson Objectives', with: 'Starts and turns'
+
+          # Lesson Request
+          select 1, from: 'Number of Lessons'
+
+          click_button 'Save Changes'
+        end
+
+        it { should have_title(full_title(student_first_name)) }
         it { should have_selector('div.alert') }
+        specify { current_path.should eq private_lesson_path(created_lesson) }
+      end
+    end
+
+    describe 'claim' do
+      let(:lesson) do
+        PrivateLesson.first
+      end
+
+      let(:full_name) do
+        "#{lesson.first_name} #{lesson.last_name}"
+      end
+
+      before do
+        Warden.test_reset!
+        login_as(user, scope: :user)
+        visit private_lesson_path(lesson)
+      end
+
+      describe 'page' do
+        it { should have_selector('h1', text: full_name) }
+        it { should have_title(full_title(full_name)) }
+
+        describe 'action' do
+          before { click_button 'Claim Lesson' }
+
+          specify { current_path.should eq private_lesson_path(lesson) }
+          it { should have_selector('div.alert') }
+
+          describe 'from admin view' do
+            before do
+              Warden.test_reset!
+              login_as(admin, scope: :user)
+              visit private_lesson_path(lesson)
+            end
+
+            describe 'should display Instructor info' do
+              it { should have_content(user.first_name) }
+            end
+          end
+        end
       end
     end
   end

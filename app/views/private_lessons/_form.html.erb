@@ -1,32 +1,39 @@
 <div class='userform well'>
   <% provide(:title, 'Edit Lesson') %>
-    <%= bootstrap_form_for [@account, @private_lesson],
+    <%= bootstrap_form_for resources,
     style: :horizontal, left: 'col-sm-4', right: 'col-sm-8' do |f| %>
 
-    <%= content_tag(:legend, legend) unless !legend %>
+    <%= content_tag(:legend, legend) if legend %>
 
     <h4> Parent Information </h4>
     <br>
-      <%= f.text_field :parent_first_name %>
-      <%= f.text_field :parent_last_name %>
-      <%= f.telephone_field :phone_number %>
+      <%= f.text_field :parent_first_name, label: 'Parent First Name' %>
+      <%= f.text_field :parent_last_name, label: 'Parent Last Name' %>
+      <%= f.telephone_field :phone_number, label: 'Phone Number' %>
       <%= f.text_field :email %>
-      <%= f.select :contact_method, options_for_select(%w[Call Email Text]) %>
+      <%= f.select :contact_method,
+                   options_for_select(%w[Call Email Text]),
+                   label: 'Preferred Contact Method' %>
 
     <h4> Student Information </h4>
-      <%= f.text_field :first_name %>
-      <%= f.text_field :last_name %>
-      <%= f.select :sex, options_for_select(%w[M F]) %>
+      <%= f.text_field :first_name, label: 'Student First Name' %>
+      <%= f.text_field :last_name, label: 'Student Last Name' %>
+      <%= f.select :sex, options_for_select(%w[M F]), label: 'Gender' %>
       <%= f.text_field :age %>
 
     <h4> Preferences </h4>
-      <%= f.select :instructor_gender, options_for_select(%w[None M F]) %>
+      <%= f.select :instructor_gender,
+                   options_for_select(%w[None M F]),
+                   label: 'Instructor Gender Preference' %>
       <%= f.text_area :notes, size: '2x' %>
-      <%= f.text_area :lesson_objective, side: '2x' %>
+      <%= f.text_area :lesson_objective,
+                      side: '2x',
+                      label: 'Lesson Objectives' %>
 
     <h4> Lesson Request </h4>
       <%= f.select :number_lessons,
-        options_for_select(%w[1 2 3 4 5 6 7 8 9 10]) %>
+                   options_for_select(%w[1 2 3 4 5 6 7 8 9 10]),
+                   label: 'Number of Lessons' %>
     <%= f.primary ( f.object.new_record? ?  'Submit' :
     'Save Changes' ) %>
   <% end %>

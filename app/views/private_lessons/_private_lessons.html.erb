@@ -26,7 +26,9 @@
           <td><%= private_lesson.day %></td>
           <td><%= private_lesson.time %></td>
           <td>
-            <%= Location.find_by_id(private_lesson.preferred_location).name %>
+            <% if private_lesson.preferred_location %>
+              <%= Location.find_by_id(private_lesson.preferred_location).name %>
+            <% end %>
           </td>
           <td><%= private_lesson.created_at.strftime('%-m/%-d/%Y') %></td>
         </tr>

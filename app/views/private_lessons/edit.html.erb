@@ -1,4 +1,7 @@
 <% provide(:title, 'Edit Private Lesson') %>
 
-<%= render partial: 'form', locals: {legend: 'Edit Private Lesson'} %>
+<%= render partial: 'form', locals: {
+  legend: 'Edit Private Lesson',
+  resources: @private_lesson
+} %>
 
