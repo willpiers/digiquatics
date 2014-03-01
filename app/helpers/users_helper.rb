@@ -31,6 +31,12 @@ module UsersHelper
     end
   end
 
+  def full_name(user)
+    nickname = user.nickname.to_s.blank? ? ' ' : " (#{user.nickname}) "
+
+    "#{user.first_name}#{nickname}#{user.last_name}"
+  end
+
   def age(dob)
     return '?' unless dob
 
