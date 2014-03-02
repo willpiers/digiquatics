@@ -1,4 +1,6 @@
 module ApplicationHelper
+
+
   BOOTSTRAP_ALERT_CLASSES = {
     success: 'alert-success',
     error: 'alert-danger',
@@ -76,5 +78,12 @@ module ApplicationHelper
 
   def us_states
     US_STATES
+  end
+
+  def browser_check
+     if browser.ie6? || browser.ie7? || browser.ie8? || browser.chrome?
+       flash[:error] = 'We have detected you are using an outdated browser.
+                        Please update.'
+     end
   end
 end

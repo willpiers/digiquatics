@@ -7,6 +7,12 @@ GIT
       sshkit (~> 1.2)
 
 GIT
+  remote: git://github.com/fnando/browser.git
+  revision: f863b635466a8fcc8c6f9f171372efa1f9053e20
+  specs:
+    browser (0.4.0)
+
+GIT
   remote: git://github.com/kmanzana/intercom-rails.git
   revision: 7c29737a7a53f6b1fae691c1f870c9d5323fdd42
   specs:
@@ -306,6 +312,7 @@ DEPENDENCIES
   bootstrap-sass (= 3.0.3.0)
   bootstrap-will_paginate
   bootstrap_form!
+  browser!
   capistrano-bundler (~> 1.0.0)
   capistrano-rails (~> 1.0.0)
   capistrano-rvm!
