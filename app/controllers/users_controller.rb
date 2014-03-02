@@ -1,12 +1,10 @@
 class UsersController < ApplicationController
-
   before_action :signed_in_user, only: [:index, :edit, :update]
   before_action :correct_user,   only: [:edit, :update]
   before_action :set_user, only: [:edit, :show, :certifications]
   before_action :admin_user, only: [:index]
 
   def index
-
     @users = User.joins(:account).same_account_as(current_user).active
 
     respond_to do |format|

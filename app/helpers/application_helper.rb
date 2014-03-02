@@ -1,6 +1,4 @@
 module ApplicationHelper
-
-
   BOOTSTRAP_ALERT_CLASSES = {
     success: 'alert-success',
     error: 'alert-danger',
