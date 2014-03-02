@@ -14,6 +14,7 @@ AllCops:
     - bin/**
     - app/controllers/attendance_records_controller.rb
     - app/controllers/daily_todos_controller.rb
+    - app/controllers/preventative_lists_controller.rb
 
 Documentation:
   Enabled: false
