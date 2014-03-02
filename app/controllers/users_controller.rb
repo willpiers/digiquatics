@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :signed_in_user, only: [:index, :edit, :update]
-  before_action :correct_user,   only: [:edit, :update]
+  before_action :correct_user,   only: [:show, :edit, :update]
   before_action :set_user, only: [:edit, :show, :certifications]
   before_action :admin_user, only: [:index]
 
@@ -38,9 +38,10 @@ class UsersController < ApplicationController
 
   def update
     if @user.update_attributes(user_params)
-      sign_in(@user, bypass: true)
+      sign_in(@user, bypass: true) if @user == current_user
       flash[:success] = 'Profile updated'
       redirect_to @user
+
     else
       render 'edit'
     end
