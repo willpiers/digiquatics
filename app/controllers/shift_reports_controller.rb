@@ -64,5 +64,4 @@ class ShiftReportsController < ApplicationController
       render page
     end
   end
-
 end

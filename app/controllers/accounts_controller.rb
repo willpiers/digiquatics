@@ -26,7 +26,6 @@ class AccountsController < ApplicationController
     @certification_names = CertificationName.joins(:account)
       .same_account_as(current_user)
     @account = Account.find(current_user.account_id)
-    @private_lesson_details = PrivateLessonDetail.all
   end
 
   def create
@@ -60,25 +59,10 @@ class AccountsController < ApplicationController
 
   private
 
+  include AccountsHelper
+
   # Use callbacks to share common setup or constraints between actions.
   def set_account
     @account = Account.find(params[:id])
-  end
-
-  # Only allow the white list through.
-  def account_params
-    params.require(:account).permit(:name,
-                                    :time_zone,
-                                    :logo,
-                                    private_lessons_attributes: [:id],
-                                    users_attributes: [:id,
-                                                       :first_name,
-                                                       :nickname,
-                                                       :last_name,
-                                                       :email,
-                                                       :account_id,
-                                                       :password,
-                                                       :password_confirmation,
-                                                       :phone_number])
   end
 end
