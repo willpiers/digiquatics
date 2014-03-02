@@ -3,4 +3,6 @@ class Pool < ActiveRecord::Base
 
   belongs_to :location
   has_many :chemical_records
+
+  scope :same_location_as, -> (user) { where(location_id: user.location_id) }
 end

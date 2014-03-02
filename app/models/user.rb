@@ -8,11 +8,9 @@ class User < ActiveRecord::Base
   include PaperclipHelper
   extend ScopeHelper
   include_scopes
+  include_user_scopes
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
-
-  scope :active, -> { where(active: true) }
-  scope :inactive, -> { where(active: false) }
 
   before_save { self.email = email.downcase }
 

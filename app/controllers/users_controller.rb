@@ -41,7 +41,6 @@ class UsersController < ApplicationController
       sign_in(@user, bypass: true) if @user == current_user
       flash[:success] = 'Profile updated'
       redirect_to @user
-
     else
       render 'edit'
     end

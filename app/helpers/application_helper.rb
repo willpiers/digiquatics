@@ -79,9 +79,9 @@ module ApplicationHelper
   end
 
   def browser_check
-     if browser.ie6? || browser.ie7? || browser.ie8?
-       flash[:error] = 'We have detected you are using an outdated browser.
-                        Please update.'
-     end
+    unless browser.modern?
+      flash[:error] = "You are not using a browser that we support. " \
+        'Please use IE9+, Chrome, Firefox, Safari, or another modern browser.'
+    end
   end
 end

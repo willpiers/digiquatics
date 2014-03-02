@@ -6,7 +6,7 @@ class PoolsController < ApplicationController
   end
 
   def user_pools
-    render json: Pool.where(location_id: current_user.location_id).to_json
+    render json: Pool.same_location_as(current_user).to_json
   end
 
   def show
