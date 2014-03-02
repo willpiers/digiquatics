@@ -1,57 +1,17 @@
 <!DOCTYPE html>
-<html>
+<html id='html_landing'>
   <head>
     <title>DigiQuatics</title>
     <meta name='viewport' content='width=device-width, initial-scale=1.0' />
     <!-- Bootstrap -->
     <link href='//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css'
     rel='stylesheet'>
-
-      <style>
-
-        #fixed-div {
-        position: fixed;
-        top: 1em;
-        right: 1em;
-        }
-
-        /* http://css-tricks.com/perfect-full-page-background-image/ */
-        html {
-            background: url(images/swiming_lap_pool.jpg) no-repeat center center fixed;
-            -webkit-background-size: cover;
-            -moz-background-size: cover;
-            -o-background-size: cover;
-            background-size: cover;
-        }
-
-        body {
-            padding-top: 8%;
-            font-size: 16px;
-            background: transparent;
-        }
-
-        h1 {
-            font-weight: 400;
-            font-size: 40px;
-        }
-
-        /* Override B3 .panel adding a subtly transparent background */
-        .panel {
-            background-color: rgba(255, 255, 255, 0.8);
-        }
-
-        .margin-base-vertical {
-            margin: 40px 0;
-        }
-
-        .adjust-info {
-          margin-left: 80px;
-        }
-
-      </style>
-
+    <%= stylesheet_link_tag "landing_page" %>
+    <style>
+      html {background: url(images/swiming_lap_pool.jpg) no-repeat center center fixed; }
+    </style>
   </head>
-  <body>
+  <body id='body_landing'>
 
     <div class='hidden-xs'>
       <div id='fixed-div'>
@@ -67,7 +27,7 @@
           <div class='row'>
             <div class='col-md-6 col-md-offset-3 panel panel-default'>
               <center>
-                <h1 class='margin-base-vertical'>  DigiQuatics</h1>
+                <h1 class='margin-base-vertical' id='h1_landing'>  DigiQuatics</h1>
                 <h4> All-in-One Solution for Aquatics Management </h4>
               </center>
               <p class='adjust-info'>
