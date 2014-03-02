@@ -132,7 +132,8 @@ namespace :db do
                             contact_method: %w(Call Email Text).sample,
                             notes: 'Nothing to say now',
                             preferred_location: rand(3) + 1,
-                            number_lessons: rand(5) + 1)
+                            number_lessons: rand(5) + 1,
+                            account_id: 1)
     end
 
     250.times do |n|
