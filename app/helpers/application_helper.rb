@@ -81,7 +81,7 @@ module ApplicationHelper
   end
 
   def browser_check
-     if browser.ie6? || browser.ie7? || browser.ie8? || browser.chrome?
+     if browser.ie6? || browser.ie7? || browser.ie8?
        flash[:error] = 'We have detected you are using an outdated browser.
                         Please update.'
      end
