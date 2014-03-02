@@ -54,6 +54,8 @@ describe 'User pages' do
     let(:submit) { 'Create Account' }
 
     describe 'with invalid information' do
+      before { fill_in 'Password', with: 'foo' }
+
       it 'should not create a user' do
         expect { click_button submit }.not_to change(User, :count)
       end
@@ -166,6 +168,14 @@ describe 'User pages' do
 
       it { should_not have_selector('h4', text: 'Notes') }
       it { should_not have_link('Users', users_path) }
+
+      describe 'should not be able to visit another users profile' do
+        before { visit user_path(admin) }
+
+        describe 'and redirect to sign in page or current user profile' do
+          specify { current_path.should eq user_path(user) }
+        end
+      end
     end
   end
 
@@ -227,7 +237,10 @@ describe 'User pages' do
         end
 
         describe 'with invalid information' do
-          before { click_button 'Save Changes' }
+          before do
+            fill_in 'Password', with: 'foo'
+            click_button 'Save Changes'
+          end
 
           it { should have_content('error') }
         end
@@ -331,7 +344,10 @@ describe 'User pages' do
         end
 
         describe 'with invalid information' do
-          before { click_button 'Save Changes' }
+          before do
+            fill_in 'Password', with: 'foo'
+            click_button 'Save Changes'
+          end
 
           it { should have_content('error') }
         end

@@ -7,7 +7,7 @@
               class: 'btn btn-default btn-primary' %>
 </ul>
 
-<% if @user.admin? %>
+<% if current_user.admin? %>
   <ul class='pull-right'>
     <% if @user.active? %>
       <%= bootstrap_form_for @user do |f| %>

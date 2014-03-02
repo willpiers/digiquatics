@@ -56,6 +56,11 @@ describe User do
     it { should be_admin }
   end
 
+  describe 'when password is too short' do
+    before { @user.password = 'foo' }
+    it { should_not be_valid }
+  end
+
   describe 'when first name is not present' do
     before { @user.first_name = ' ' }
     it { should_not be_valid }
@@ -102,13 +107,16 @@ describe User do
   end
 
   describe 'when password doesn\'t match confirmation' do
-    before { @user.password_confirmation = 'mismatch' }
+    before do
+      @user.password = 'hellomynameis'
+      @user.password_confirmation = 'mismatch'
+    end
     it { should_not be_valid }
   end
 
   describe 'with a password that\'s too short' do
     before { @user.password = @user.password_confirmation = 'a' * 5 }
-    it { should be_invalid }
+    it { should_not be_valid }
   end
 
   describe 'when account id is not present' do

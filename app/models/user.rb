@@ -4,8 +4,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable,
          :recoverable,
          :rememberable,
-         :trackable,
-         :validatable
+         :trackable
   include PaperclipHelper
   extend ScopeHelper
   include_scopes
@@ -44,7 +43,17 @@ class User < ActiveRecord::Base
   validates :email, presence: true,
                     format: { with: VALID_EMAIL_REGEX },
                     uniqueness: { case_sensitive: false }
-
+  validates :password,
+            confirmation: true,
+            presence: true,
+            length: { minimum: 6 },
+            on: :create
+  validates :password,
+            confirmation: true,
+            presence: true,
+            length: { minimum: 6 },
+            on: :update,
+            allow_blank: true
   def self.new_remember_token
     SecureRandom.urlsafe_base64
   end
