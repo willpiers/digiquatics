@@ -5,35 +5,59 @@
   <h4> Basic Information </h4>
     <table class='table table-bordered table-condensed'>
       <tr><th>Metric</th><th>Count</td></tr>
-      <tr><td>Users </td><td><%= @users.count %></td></tr>
-      <tr><td>Male </td><td><%= @male_users.count %></td></tr>
-      <tr><td>Female </td><td><%= @female_users.count %></td></tr>
+      <tr><td>Users </td>
+        <td><%= @users.count %>
+        </td></tr>
+      <tr><td>Male </td><td>
+        <%= @users.where(sex: 'M').count %>
+      </td></tr>
+      <tr><td>Female </td><td>
+        <%= @users.where(sex: 'F').count %>
+      </td></tr>
     </table>
 
   <h4> Classification </h4>
     <table class='table table-bordered table-condensed'>
       <tr><th>Metric</th><th>Count</td></tr>
-      <tr><td>Admin </td><td><%= @admin_true.count %></td></tr>
-      <tr><td>Active </td><td><%= @active.count %></td></tr>
-      <tr><td>Inactive </td><td><%= @inactive.count %></td></tr>
+      <tr><td>Admin </td><td>
+        <%= @users.where(admin: true).count %>
+      </td></tr>
+      <tr><td>Active </td><td>
+        <%= @users.where(active: true).count %>
+      </td></tr>
+      <tr><td>Inactive </td><td>
+        <%= @users.where(active: false).count %>
+      </td></tr>
     </table>
 
   <h4> Inventory </h4>
     <table class='table table-bordered table-condensed'>
       <tr><th>Metric</th><th>Count</td></tr>
-      <tr><td>Shirts </td><td><%= @users.group(:shirt_size).count %></td></tr>
-      <tr><td>Male Suit </td><td><%= @male_users.group(:suit_size).count %></td>
-        </tr>
-      <tr>
-        <td>Female One-Peice </td>
-        <td><%= @female_users.group(:femalesuit).count %></td>
-      </tr>
-      <tr><td>Female Top</td><td><%= @female_users.group(:shirt_size).count %>
-        </td></tr>
-      <tr>
-        <td>Female Bottom </td>
-        <td><%= @female_users.group(:suit_size).count %></td>
-      </tr>
+      <tr><td>Shirts </td><td>
+        <% User.group(:shirt_size).count.each do |key, value| %>
+          <%= "#{key}:#{value} "%>
+        <% end %>
+      </td></tr>
+      <tr><td>Male Suit </td><td>
+        <% User.where(sex: 'M').group(:suit_size).count.each do |key, value| %>
+          <%= "#{key}:#{value} "%>
+        <% end %>
+      </td></tr>
+      <tr><td>Female One-Peice </td><td>
+        <% User.where(sex: 'F').group(:femalesuit).count.each do |key, value| %>
+          <%= "Size(#{key}): #{value} "%>
+        <% end %>
+      </td></tr>
+      <tr><td>Female Top </td><td>
+        <% User.where(sex: 'F').group(:shirt_size).count.each do |key, value| %>
+          <%= "#{key}:#{value} "%>
+        <% end %>
+      </td></tr>
+      <tr><td>Female Bottom </td><td>
+        <% User.where(sex: 'F').group(:suit_size).count.each do |key, value| %>
+          <%= "#{key}:#{value} "%>
+        <% end %>
+      </td></tr>
     </table>
 
   <h4> Location </h4>
