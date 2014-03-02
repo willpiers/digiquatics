@@ -2,7 +2,7 @@ class HelpDesksController < ApplicationController
   before_action :set_help_desk, only: [:show, :edit, :update, :destroy]
 
   def index
-    @help_desks = HelpDesk
+    @help_desks = HelpDesk.all
 
     respond_to do |format|
       format.html

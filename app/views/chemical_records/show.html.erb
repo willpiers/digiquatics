@@ -11,7 +11,6 @@
 <br> <br>
 
 <div class='table-responsive'>
-
   <table class='table table-bordered table-condensed'>
       <tr>
         <th id='fixtablewidth'>Location</th>
@@ -65,9 +64,8 @@
       <th>Submitted By</th>
         <td>
           <% if @chemical_record.user_id? %>
-          <p> <%= User.find(@chemical_record.user_id).first_name %> </p>
-          <p> <%= User.find(@chemical_record.user_id).last_name %> </p>
-          <% else %>
+            <%= User.find(@chemical_record.user_id).first_name %>
+            <%= User.find(@chemical_record.user_id).last_name %>
           <% end %>
         </td>
     </tr>
@@ -77,3 +75,5 @@
     </tr>
   </table>
 </div>
+
+

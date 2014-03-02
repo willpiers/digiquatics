@@ -72,9 +72,8 @@
           <th>Closed By</th>
             <td>
               <% if @help_desk.closed_user_id? %>
-              <p> <%= User.find(@help_desk.user_id).first_name %></p>
-              <p> <%= User.find(@help_desk.user_id).last_name %> </p>
-              <% else %>
+                <%= User.find(@help_desk.user_id).first_name %>
+                <%= User.find(@help_desk.user_id).last_name %>
               <% end %>
             </td>
         </tr>
