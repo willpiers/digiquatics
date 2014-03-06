@@ -272,9 +272,9 @@ describe 'User pages' do
             # skip avatar
 
             # Sizing Information
-            select('M',                   from: 'Shirt Size')
-            select('M',                   from: 'Shorts Size')
-            select('28',                  from: 'user[femalesuit]')
+            select('M',                   from: 'user_shirt_size')
+            select('M',                   from: 'user_suit_size')
+            select('28',                  from: 'user_femalesuit')
 
             # Emergency Contact Information
             fill_in 'Emergency First Name',    with: 'my'
@@ -312,9 +312,8 @@ describe 'User pages' do
 
         describe 'should see certs' do
           it { should have_selector('h4', text: 'Certifications') }
-          it { should have_selector('label', text: 'Issue Date') }
-          it { should have_selector('label', text: 'Expiration Date') }
-
+          it { should have_selector('label', text: 'Issue date') }
+          it { should have_selector('label', text: 'Expiration date') }
           it { should have_selector('label', text: 'Attachment') }
         end
 
@@ -324,7 +323,7 @@ describe 'User pages' do
           it { should have_selector('label', text: 'Employee ID') }
           it { should have_selector('label', text: 'Grouping') }
           it { should have_selector('label', text: 'Pay Rate') }
-          it { should have_selector('label', text: 'Date of Hire') }
+          it { should have_selector('label', text: 'Date of hire') }
           it { should have_selector('label', text: 'Notes') }
         end
 
@@ -380,9 +379,9 @@ describe 'User pages' do
             # skip avatar
 
             # Sizing Information
-            select('M',                   from: 'Shirt Size')
-            select('M',                   from: 'Shorts Size')
-            select('28',                  from: 'user[femalesuit]')
+            select('M',                   from: 'user_shirt_size')
+            select('M',                   from: 'user_suit_size')
+            select('28',                  from: 'user_femalesuit')
 
             # Emergency Contact Information
             fill_in 'Emergency First Name', with: 'my'
@@ -390,8 +389,8 @@ describe 'User pages' do
             fill_in 'Emergency Phone #',    with: '303-999-8765'
 
             # Admin User Information
-            select location.name,         from: 'user[location_id]'
-            select position.name,         from: 'user[position_id]'
+            select location.name,         from: 'user_location_id'
+            select position.name,         from: 'user_position_id'
             fill_in 'Employee ID',        with: '1313'
             fill_in 'Grouping',           with: 'West'
             select 'September',           from: 'user_date_of_hire_2i'

@@ -3,6 +3,8 @@
     class='table table-hover table-condensed' >
     <thead>
       <tr>
+        <th>Location</th>
+        <th>Pool</th>
         <th>Cl</th>
         <th>PH</th>
         <th>Alk</th>
@@ -16,7 +18,11 @@
     </thead>
 
     <tbody>
-      <tr ng-repeat='record in chemical_records | orderBy:sorter.value | filter:poolFilter'>
+      <tr ng-repeat='record in chemicalRecords | orderBy:sorter.value
+        | filter:{pool_id: poolFilter}
+        | filter:{pool: {location_id: locationFilter}}'>
+        <td>{{record.pool.location.name}}</td>
+        <td>{{record.pool.name}}</td>
         <td>{{record.chlorine_ppm}}</td>
         <td>{{record.ph}}</td>
         <td>{{record.alkalinity}}</td>
