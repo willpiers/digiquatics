@@ -2,11 +2,7 @@ class PoolsController < ApplicationController
   before_action :set_pool, only: [:show, :edit, :update, :destroy]
 
   def index
-    @pools = Pool.all
-  end
-
-  def user_pools
-    render json: Pool.same_location_as(current_user).to_json
+    @pools = Pool.same_location_as(current_user)
   end
 
   def show

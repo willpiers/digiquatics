@@ -1,9 +1,14 @@
 @digiquatics.controller 'ChemicalRecordsCtrl', ['$scope', 'ChemicalRecords',
-                                                'Pools'
-  @ChemicalRecordsCtrl = ($scope, ChemicalRecords, Pools) ->
+                                                'Locations', 'Pools',
+  @ChemicalRecordsCtrl = ($scope, ChemicalRecords, Locations, Pools) ->
     $scope.sorter =
       value: 'time_stamp'
 
-    $scope.chemical_records = ChemicalRecords.index()
-    $scope.pools = Pools.user_pools()
+    $scope.locationFilter = ''
+
+    ChemicalRecords.index (data) ->
+      $scope.chemicalRecords = data
+
+    $scope.pools           = Pools.index()
+    $scope.locations       = Locations.index()
 ]

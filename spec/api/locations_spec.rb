@@ -2,13 +2,11 @@ require 'spec_helper'
 
 describe 'locations' do
   let(:account) { FactoryGirl.create(:account) }
-  let(:position) { FactoryGirl.create(:position) }
   let(:location) { FactoryGirl.create(:location, account_id: account.id) }
 
   let!(:user) do
     FactoryGirl.create(:user,
                        account_id: account.id,
-                       position_id: position.id,
                        location_id: location.id)
   end
 

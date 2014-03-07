@@ -3,26 +3,18 @@
     style: :horizontal, left: 'col-sm-4', right: 'col-sm-8') do |f| %>
 
     <%= render 'shared/error_messages' %>
-
     <legend><%= legend %></legend>
-
     <%= render 'basic_user_fields', f: f %>
 
     <% unless f.object.new_record? %>
-
-    <%= render 'additional_user_fields', { f: f, user: @user } %>
+      <%= render 'additional_user_fields', { f: f, user: @user } %>
 
       <% if signed_in? && current_user.admin? %>
-
         <%= render 'admin_fields', f: f %>
-
       <% end %>
-
     <% end %>
 
-    <%= f.primary ( f.object.new_record? ?  'Create Account' :
-    'Save Changes' ) %>
-
+    <%= f.primary(f.object.new_record? ?  'Create Account' : 'Save Changes') %>
   <% end %>
 </div>
 </div>
