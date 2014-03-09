@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
          :recoverable,
          :rememberable,
          :trackable
+
   include PaperclipHelper
   extend ScopeHelper
   include_scopes
