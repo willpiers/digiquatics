@@ -8,5 +8,5 @@ json.array!(@chemical_records) do |chemical_record|
     json.location    chemical_record.pool.location
   end
 
-  json.url chemical_record_url(chemical_record, format: :json)
+  json.url chemical_record_url(chemical_record)
 end
