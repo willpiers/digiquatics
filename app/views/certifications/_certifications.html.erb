@@ -2,21 +2,31 @@
   <table ng-controller='CertificationsCtrl' class='table table-hover table-condensed'>
     <thead>
       <tr>
-        <th ng-click='sorter.value="lastName"'>Last Name</th>
-        <th ng-click='sorter.value="firstName"'>First Name</th>
-        <th ng-click='sorter.value="location"'>Location</th>
-        <th ng-repeat='certName in certNames' ng-click='sorter.value=certName.name'>
-          {{certName.name}}
+        <th>
+          <a href='' ng-click="predicate.value = 'lastName'; predicate.reverse = !predicate.reverse">
+          Last Name</a>
+        </th>
+        <th class='hidden-xs'>
+          <a href='' ng-click="predicate.value = 'firstName'; predicate.reverse = !predicate.reverse">
+          First Name</a>
+        </th>
+        <th class='hidden-xs'>
+          <a href='' ng-click="predicate.value = 'location'; predicate.reverse = !predicate.reverse">
+          Location</a>
+        </th>
+        <th ng-repeat='certName in certNames'>
+          <a href='' ng-click="predicate.value = certName.name; predicate.reverse = !predicate.reverse">
+          {{certName.name}}</a>
         </th>
       </tr>
     </thead>
     <tbody>
-      <tr ng-repeat='userData in users | orderBy:sorter.value | filter:locationFilter | filter:search'>
+      <tr ng-repeat='userData in users | orderBy:predicate.value:predicate.reverse | filter:locationFilter | filter:search'>
         <td>
           <a ng-href='/users/{{userData.id}}'>{{userData.lastName}}</a>
         </td>
-        <td>{{userData.firstName}}</td>
-        <td>{{userData.location}}</td>
+        <td class='hidden-xs'>{{userData.firstName}}</td>
+        <td class='hidden-xs'>{{userData.location}}</td>
         <td ng-repeat='certName in certNames' class='{{userData[certName.name + "class"]}}'>
           {{userData[certName.name] | formatDate}}
         </td>
