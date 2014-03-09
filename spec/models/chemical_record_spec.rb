@@ -4,25 +4,29 @@ describe ChemicalRecord do
 
   before do
     @chemical_record = ChemicalRecord.new(
-      chlorine_ppm:      5,
-      chlorine_orp:      550,
-      ph:                8.0,
-      alkalinity:        120,
-      calcium_hardness:  200,
-      pool_temp:         98,
-      air_temp:          95,
-      si_index:          -2.5,
-      time_stamp:        '2010-10-10 16:19:00 UTC',
-      si_status:         'Balanced',
-      si_recommendation: 'Nothing needed',
-      user_id:            1,
-      pool_id:            1,
-      water_clarity:     'Clear')
+      free_chlorine_ppm:      2,
+      combined_chlorine_ppm:  3,
+      total_chlorine_ppm:     5,
+      chlorine_orp:           550,
+      ph:                     8.0,
+      alkalinity:             120,
+      calcium_hardness:       200,
+      pool_temp:              98,
+      air_temp:               95,
+      si_index:               -2.5,
+      time_stamp:             '2010-10-10 16:19:00 UTC',
+      si_status:              'Balanced',
+      si_recommendation:      'Nothing needed',
+      user_id:                1,
+      pool_id:                1,
+      water_clarity:          'Clear')
   end
 
   subject { @chemical_record }
 
-  it { should respond_to(:chlorine_ppm) }
+  it { should respond_to(:free_chlorine_ppm) }
+  it { should respond_to(:combined_chlorine_ppm) }
+  it { should respond_to(:total_chlorine_ppm) }
   it { should respond_to(:chlorine_orp) }
   it { should respond_to(:ph) }
   it { should respond_to(:alkalinity) }

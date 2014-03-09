@@ -146,7 +146,7 @@ namespace :db do
                            'Treatment May Be Needed', 'Treatment Recommended']
       water_clarity = %w(Clear Cloudy)
 
-      ChemicalRecord.create!(chlorine_ppm: rand(5) + 1,
+      ChemicalRecord.create!(free_chlorine_ppm: rand(5) + 1,
                              ph: [6.8, 6.9, 7.0, 7.1, 7.2, 7.3, 7.4, 7.5, 7.6,
                                   7.7, 7.8, 7.9, 8.0].sample,
                              alkalinity: [30, 40, 50, 60, 70, 80, 90, 100, 110,

@@ -5,7 +5,9 @@
       <tr>
         <th>Location</th>
         <th>Pool</th>
-        <th>Cl</th>
+        <th>Free Cl</th>
+        <th>Combined Cl</th>
+        <th>Total Cl</th>
         <th>PH</th>
         <th>Alk</th>
         <th>CH</th>
@@ -24,7 +26,9 @@
         | filter:{pool: {location_id: locationFilter}}'>
         <td>{{record.pool.location.name}}</td>
         <td>{{record.pool.name}}</td>
-        <td>{{record.chlorine_ppm}}</td>
+        <td>{{record.free_chlorine_ppm}}</td>
+        <td>{{record.combined_chlorine_ppm}}</td>
+        <td>{{record.total_chlorine_ppm}}</td>
         <td>{{record.ph}}</td>
         <td>{{record.alkalinity}}</td>
         <td>{{record.calcium_hardness}}</td>

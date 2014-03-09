@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140309033923) do
+ActiveRecord::Schema.define(version: 20140309045919) do
 
   create_table "accounts", force: true do |t|
     t.string   "name"
@@ -51,14 +51,14 @@ ActiveRecord::Schema.define(version: 20140309033923) do
   end
 
   create_table "chemical_records", force: true do |t|
-    t.decimal  "chlorine_ppm",      precision: 6, scale: 2
-    t.decimal  "chlorine_orp",      precision: 6, scale: 2
-    t.decimal  "ph",                precision: 6, scale: 2
-    t.decimal  "alkalinity",        precision: 6, scale: 2
-    t.decimal  "calcium_hardness",  precision: 6, scale: 2
-    t.decimal  "pool_temp",         precision: 6, scale: 2
-    t.decimal  "air_temp",          precision: 6, scale: 2
-    t.decimal  "si_index",          precision: 6, scale: 2
+    t.decimal  "free_chlorine_ppm",     precision: 6, scale: 2
+    t.decimal  "chlorine_orp",          precision: 6, scale: 2
+    t.decimal  "ph",                    precision: 6, scale: 2
+    t.decimal  "alkalinity",            precision: 6, scale: 2
+    t.decimal  "calcium_hardness",      precision: 6, scale: 2
+    t.decimal  "pool_temp",             precision: 6, scale: 2
+    t.decimal  "air_temp",              precision: 6, scale: 2
+    t.decimal  "si_index",              precision: 6, scale: 2
     t.datetime "created_at"
     t.datetime "updated_at"
     t.datetime "time_stamp"
@@ -67,6 +67,8 @@ ActiveRecord::Schema.define(version: 20140309033923) do
     t.integer  "user_id"
     t.integer  "pool_id"
     t.string   "water_clarity"
+    t.decimal  "total_chlorine_ppm",    precision: 6, scale: 2
+    t.decimal  "combined_chlorine_ppm", precision: 6, scale: 2
   end
 
   create_table "daily_todos", force: true do |t|
