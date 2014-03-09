@@ -1,10 +1,29 @@
-<% provide(:title, 'Shift Reports') %>
-<h1>Shift Reports</h1>
-
-<ul class = 'pull-right'>
-  <%= link_to 'New Report', new_shift_report_path, class: 'btn btn-primary btn-sm' %>
-</ul>
-
-<br><br><br>
-
-<%= render 'shift_reports' %>
+<div ng-app='digiquatics'>
+  <div ng-controller='ShiftReportsCtrl'>
+    <% provide(:title, 'Shift Reports') %>
+    <h1>Shift Reports</h1>
+    <br><br>
+    <div class='row'>
+      <div class='col-md-2'>
+        <div class="input-group">
+          <input class="form-control" ng-model="search" type='text'placeholder="Search"/>
+          <span class="input-group-addon">
+            <span class="glyphicon glyphicon-search"></span>
+          </span>
+        </div>
+      </div>
+      <div class='col-md-3'>
+        <select ng-model='locationFilter' class='form-control'>
+          <option value=''>All Locations</option>
+          <option ng-repeat='location in locations' value='{{location.name}}'>{{location.name}}</option>
+        </select>
+      </div>
+      <div class='col-md-4'></div>
+      <div class='col-md-3'>
+        <%= link_to 'New Report', new_shift_report_path, class: 'btn btn-primary btn-sm' %>
+      </div>
+    </div>
+    <br>
+    <%= render 'shift_reports' %>
+  </div>
+</div>

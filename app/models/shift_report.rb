@@ -6,7 +6,7 @@ class ShiftReport < ActiveRecord::Base
 
   belongs_to :account
   belongs_to :location
-  has_many   :users
+  belongs_to :user
 
   has_attached_file :attachment_front,
                     path: ATTACHED_PATH,
@@ -15,8 +15,6 @@ class ShiftReport < ActiveRecord::Base
   has_attached_file :attachment_back,
                     path: ATTACHED_PATH,
                     url: '/system/:attachment/:id/:style/:filename'
-
-  accepts_nested_attributes_for :users
 
   validates_presence_of :date_stamp, :time_stamp, :post_content, :user_id,
                         :location_id
