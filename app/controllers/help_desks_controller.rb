@@ -6,7 +6,11 @@ class HelpDesksController < ApplicationController
 
     respond_to do |format|
       format.html
-      format.csv { render csv: @help_desks, filename: 'issues' }
+      format.json
+
+      format.csv do
+        render csv: @help_desks, filename: 'issues'
+      end
     end
   end
 

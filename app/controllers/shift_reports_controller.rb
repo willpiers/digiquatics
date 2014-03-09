@@ -3,9 +3,14 @@ class ShiftReportsController < ApplicationController
 
   def index
     @shift_reports = ShiftReport.all
+
     respond_to do |format|
-      format.html # index.html.erb
-      format.csv { render csv: @shift_reports, filename: 'shift_reports' }
+      format.html
+      format.json
+
+      format.csv do
+        render csv: @shift_reports, filename: 'shift_reports'
+      end
     end
   end
 
