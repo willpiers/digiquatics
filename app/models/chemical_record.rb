@@ -1,5 +1,6 @@
 class ChemicalRecord < ActiveRecord::Base
   belongs_to :pool
+  belongs_to :user
 
   validates_presence_of :time_stamp, :user_id, :pool_id
 

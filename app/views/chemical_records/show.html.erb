@@ -64,8 +64,8 @@
       <th>Submitted By</th>
         <td>
           <% if @chemical_record.user_id? %>
-            <%= User.find(@chemical_record.user_id).first_name %>
-            <%= User.find(@chemical_record.user_id).last_name %>
+            <%= @chemical_record.user.first_name %>
+            <%= @chemical_record.user.last_name %>
           <% end %>
         </td>
     </tr>

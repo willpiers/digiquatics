@@ -51,8 +51,8 @@
       <tr>
         <th> Submitted By </th>
         <td>
-          <%= User.find(@help_desk.user_id).first_name %>
-          <%= User.find(@help_desk.user_id).last_name %>
+          <%= @help_desk.user.first_name %>
+          <%= @help_desk.user.last_name %>
         </td>
       </tr>
       <tr>
