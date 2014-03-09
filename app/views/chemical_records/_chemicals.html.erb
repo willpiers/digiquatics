@@ -3,11 +3,19 @@
     class='table table-hover table-condensed' >
     <thead>
       <tr>
-        <th>Location</th>
-        <th>Pool</th>
+        <!-- <th>Location</th>
+        <th>Pool</th> -->
         <th>
-          <a href="" ng-click="predicate.value = 'chlorine_ppm'; reverse=!reverse">
-          Cl</a>
+          <a href="" ng-click="predicate.value = 'free_chlorine_ppm'; reverse=!reverse">
+          Free Cl</a>
+        </th>
+        <th>
+          <a href="" ng-click="predicate.value = 'combined_chlorine_ppm'; reverse=!reverse">
+          Combined Cl</a>
+        </th>
+        <th>
+          <a href="" ng-click="predicate.value = 'total_chlorine_ppm'; reverse=!reverse">
+          Total Cl</a>
         </th>
         <th>
           <a href="" ng-click="predicate.value = 'ph'; reverse=!reverse">
@@ -52,9 +60,11 @@
       <tr ng-repeat='record in chemicalRecords | orderBy:predicate.value:reverse
         | filter:{pool_id: poolFilter}
         | filter:{pool: {location_id: locationFilter}}'>
-        <td>{{record.pool.location.name}}</td>
-        <td>{{record.pool.name}}</td>
-        <td>{{record.chlorine_ppm}}</td>
+        <!-- <td>{{record.pool.location.name}}</td>
+        <td>{{record.pool.name}}</td> -->
+        <td>{{record.free_chlorine_ppm}}</td>
+        <td>{{record.combined_chlorine_ppm}}</td>
+        <td>{{record.total_chlorine_ppm}}</td>
         <td>{{record.ph}}</td>
         <td>{{record.alkalinity}}</td>
         <td>{{record.calcium_hardness}}</td>

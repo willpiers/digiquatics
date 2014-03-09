@@ -56,4 +56,8 @@ module ChemicalRecordsHelper
       return message[option] if si_index.between?(*range)
     end
   end
+
+  def combined_calculator(total_chlorine, free_chlorine)
+    total_chlorine - free_chlorine
+  end
 end
