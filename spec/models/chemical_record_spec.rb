@@ -16,7 +16,8 @@ describe ChemicalRecord do
       si_status:         'Balanced',
       si_recommendation: 'Nothing needed',
       user_id:            1,
-      pool_id:            1)
+      pool_id:            1,
+      water_clarity:     'Clear')
   end
 
   subject { @chemical_record }
@@ -32,6 +33,7 @@ describe ChemicalRecord do
   it { should respond_to(:time_stamp) }
   it { should respond_to(:si_status) }
   it { should respond_to(:si_recommendation) }
+  it { should respond_to(:water_clarity) }
   it { should respond_to(:user_id) }
   it { should respond_to(:pool_id) }
 
