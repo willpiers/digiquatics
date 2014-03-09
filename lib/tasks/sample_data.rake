@@ -169,7 +169,8 @@ namespace :db do
                        urgency: %w(Low Medium High).sample,
                        issue_status: true,
                        location_id: 1,
-                       user_id: n + 1
+                       user_id: n + 1,
+                       closed_user_id: n + 2
                        )
     end
   end

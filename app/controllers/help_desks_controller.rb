@@ -11,10 +11,11 @@ class HelpDesksController < ApplicationController
   end
 
   def show
+    @facade = HelpDeskFacade.new(@help_desk)
   end
 
   def closed_index
-    @helpdesk = HelpDesk.all
+    @help_desk = HelpDesk.all
   end
 
   def new
