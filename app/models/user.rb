@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
          :recoverable,
          :rememberable,
          :trackable
+
   include PaperclipHelper
   extend ScopeHelper
   include_scopes
@@ -24,6 +25,7 @@ class User < ActiveRecord::Base
   belongs_to  :location
   belongs_to  :position
   has_many    :help_desks
+  has_many    :chemical_records
 
   has_attached_file :avatar,
                     path: PAPERCLIP_PATH,
