@@ -144,6 +144,7 @@ namespace :db do
       si_recommendation = ['Treatment Recommended', 'Treatment May Be Needed',
                            'Probably No Treatment', 'No Treatment',
                            'Treatment May Be Needed', 'Treatment Recommended']
+      water_clarity = %w(Clear Cloudy)
 
       ChemicalRecord.create!(chlorine_ppm: rand(5) + 1,
                              ph: [6.8, 6.9, 7.0, 7.1, 7.2, 7.3, 7.4, 7.5, 7.6,
@@ -154,6 +155,7 @@ namespace :db do
                                                 180, 200].sample,
                              pool_temp: [81, 82, 83, 84, 85, 86].sample,
                              air_temp: [75, 76, 77, 78, 79, 80].sample,
+                             water_clarity: water_clarity.sample,
                              time_stamp: '10:00pm',
                              si_index: [-1, -0.5, -0.3, 0, 0.3, 0.5, 1].sample,
                              si_status: si_status.sample,
