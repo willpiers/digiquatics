@@ -1,7 +1,7 @@
 @digiquatics.controller 'ChemicalRecordsCtrl', ['$scope', 'ChemicalRecords',
                                                 'Locations', 'Pools',
   @ChemicalRecordsCtrl = ($scope, ChemicalRecords, Locations, Pools) ->
-    $scope.sorter =
+    $scope.predicate =
       value: 'time_stamp'
 
     $scope.locationFilter = ''

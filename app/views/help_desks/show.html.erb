@@ -51,8 +51,8 @@
       <tr>
         <th> Submitted By </th>
         <td>
-          <%= @help_desk.user.first_name %>
-          <%= @help_desk.user.last_name %>
+          <%= @facade.submitter.first_name %>
+          <%= @facade.submitter.last_name %>
         </td>
       </tr>
       <tr>
@@ -72,8 +72,8 @@
           <th>Closed By</th>
             <td>
               <% if @help_desk.closed_user_id? %>
-                <%= User.find(@help_desk.user_id).first_name %>
-                <%= User.find(@help_desk.user_id).last_name %>
+                <%= @facade.closer.first_name %>
+                <%= @facade.closer.last_name %>
               <% end %>
             </td>
         </tr>

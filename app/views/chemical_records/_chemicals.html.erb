@@ -5,23 +5,59 @@
       <tr>
         <th>Location</th>
         <th>Pool</th>
-        <th>Free Cl</th>
-        <th>Combined Cl</th>
-        <th>Total Cl</th>
-        <th>PH</th>
-        <th>Alk</th>
-        <th>CH</th>
-        <th>Pool(F)</th>
-        <th class='hidden-xs hidden-sm'>Air(F)</th>
-        <th class='hidden-xs hidden-sm'>Water Clarity</th>
-        <th class='hidden-xs hidden-sm'>SI Index</th>
-        <th class='hidden-xs hidden-sm'>SI Status</th>
-        <th>Time</th>
+        <th>
+          <a href="" ng-click="predicate.value = 'free_chlorine_ppm'; reverse=!reverse">
+          Free Cl</a>
+        </th>
+        <th>
+          <a href="" ng-click="predicate.value = 'combined_chlorine_ppm'; reverse=!reverse">
+          Combined Cl</a>
+        </th>
+        <th>
+          <a href="" ng-click="predicate.value = 'total_chlorine_ppm'; reverse=!reverse">
+          Total Cl</a>
+        </th>
+        <th>
+          <a href="" ng-click="predicate.value = 'ph'; reverse=!reverse">
+          PH</a>
+        </th>
+        <th>
+          <a href="" ng-click="predicate.value = 'alkalinity'; reverse=!reverse">
+          Alk</a>
+        </th>
+        <th>
+          <a href="" ng-click="predicate.value = 'calcium_hardness'; reverse=!reverse">
+          CH</a>
+        </th>
+        <th>
+          <a href="" ng-click="predicate.value = 'pool_temp'; reverse=!reverse">
+          Pool(F)</a>
+        </th>
+        <th>
+          <a href="" ng-click="predicate.value = 'air_temp'; reverse=!reverse">
+          Air(F)</a>
+        </th>
+        <th>
+          <a href="" ng-click="predicate.value = 'water_clarity'; reverse=!reverse">
+          Water Clarity</a>
+        </th>
+        <th>
+          <a href="" ng-click="predicate.value = 'si_index'; reverse=!reverse">
+          SI Index</a>
+        </th>
+        <th>
+          <a href="" ng-click="predicate.value = 'si_status'; reverse=!reverse">
+          SI Status</a>
+        </th>
+        <th>
+          <a href="" ng-click="predicate.value = 'time_stamp'; reverse=!reverse">
+          Date</a>
+        </th>
       </tr>
     </thead>
 
     <tbody>
-      <tr ng-repeat='record in chemicalRecords | orderBy:sorter.value
+      <tr ng-repeat='record in chemicalRecords | orderBy:predicate.value:reverse
         | filter:{pool_id: poolFilter}
         | filter:{pool: {location_id: locationFilter}}'>
         <td>{{record.pool.location.name}}</td>

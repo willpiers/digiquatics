@@ -1,6 +1,6 @@
 @digiquatics.controller 'CertificationsCtrl', ['$scope', 'Certifications',
   @CertificationsCtrl = ($scope, Certifications) ->
-    $scope.sorter =
+    $scope.predicate =
       value: 'firstName'
 
     Certifications.get (data) ->
