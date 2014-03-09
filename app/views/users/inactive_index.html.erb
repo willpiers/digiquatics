@@ -2,30 +2,30 @@
   <div ng-controller='LocationsCtrl'>
     <% provide(:title, 'Inactive users') %>
     <h1>Inactive Users</h1>
-
+    <br><br>
     <div class='row'>
       <div class='col-md-2'>
-        <h4>Search:</h4>
-        <input ng-model='search' type='text' class='form-control'>
+        <div class="input-group">
+          <input class="form-control" ng-model="search" type='text'placeholder="Search"/>
+          <span class="input-group-addon">
+            <span class="glyphicon glyphicon-search"></span>
+          </span>
+        </div>
       </div>
-
       <div class='col-md-3'>
-        <h4>Filter locations:</h4>
         <select ng-model='locationFilter' class='form-control'>
-          <option value=''>All</option>
+          <option value=''>All Locations</option>
           <option ng-repeat='location in locations' value='{{location.name}}'>{{location.name}}</option>
         </select>
       </div>
-
-      <div class='col-md-5'></div>
-
-      <div class='col-md-2'>
-        <br><br>
+      <div class='col-md-4'></div>
+      <div class='col-md-3'>
         <div class='btn-group'>
-          <%= link_to 'Manage Active', users_path, class: 'btn btn-danger btn-sm', role: 'button' %>
+          <%= link_to 'Manage Inactive', inactive_index_path, class: 'btn btn-danger btn-sm', role: 'button' %>
+          <%= link_to 'Add User', new_user_path, class: 'btn btn-primary btn-sm', role: 'button' %>
+          <%= link_to 'Statistics', user_stats_path, class: 'btn btn-success btn-sm', role: 'button' %>
         </div>
       </div>
-
     </div>
 
     <br>
