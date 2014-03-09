@@ -7,14 +7,7 @@ class ChemicalRecordsController < ApplicationController
 
     respond_to do |format|
       format.html
-      format.json do
-        render json:
-          @chemical_records.to_json(include: {
-            pool: {
-              include: :location
-            }
-          })
-      end
+      format.json
 
       format.csv do
         render csv: @chemical_records, filename: 'chemical_records'
