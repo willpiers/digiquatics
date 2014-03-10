@@ -36,5 +36,6 @@ describe 'ChemicalRecordsCtrl', ->
 
     expect(scope.chemicalRecords).toEqualData chemicalRecords
 
-  it 'should set locationFilter to empty string', ->
-    expect(scope.locationFilter).toEqual ''
+  it 'should set filters to empty string', ->
+    expect(scope.filters.location_id).toEqual ''
+    expect(scope.filters.pool_id).toEqual ''

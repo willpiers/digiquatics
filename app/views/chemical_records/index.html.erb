@@ -2,21 +2,23 @@
   <div ng-controller='ChemicalRecordsCtrl'>
     <% provide(:title, 'Chemical Records') %>
     <h1>Chemical Records</h1>
+    <p>l{{filters.location_id}}</p>
+    <p>p{{filters.pool_id}}</p>
     <div class='row'>
       <div class='col-md-3'>
         <h4>Filter Locations:</h4>
-        <select ng-model='locationFilter' class='form-control'>
+        <select ng-model='filters.location_id' class='form-control'>
           <option value=''>All</option>
-          <option ng-repeat='location in locations' value='{{location.id}}'>
+          <option ng-repeat='location in locations' value='{{location.name}}'>
             {{location.name}}
           </option>
         </select>
       </div>
       <div class='col-md-3'>
         <h4>Filter Pools:</h4>
-        <select ng-model='poolFilter' class='form-control'>
+        <select ng-model='filters.pool_id' class='form-control'>
           <option value=''>All</option>
-          <option ng-repeat='pool in pools | filter:{location_id: locationFilter}' value='{{pool.id}}'>
+          <option ng-repeat='pool in pools | filter:filters.location_id' value='{{pool.id}}'>
             {{pool.name}}
           </option>
         </select>
