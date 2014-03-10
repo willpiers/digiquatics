@@ -6,6 +6,8 @@ class PrivateLessonsController < ApplicationController
     @private_lessons = PrivateLesson.joins(:account)
                        .same_account_as(current_user).unclaimed
     respond_to do |format|
+      format.html
+      format.json
       with_private_lessons_data(format, filename: 'private_lessons')
     end
   end

@@ -2,29 +2,32 @@
   <div ng-controller='LocationsCtrl'>
     <% provide(:title, 'Certifications') %>
     <h1>Certifications</h1>
-
+    <br><br>
     <div class='row'>
       <div class='col-md-2'>
-        <h4>Search:</h4>
-        <input ng-model='search' type='text' class='form-control'>
+        <div class="input-group">
+          <input class="form-control" ng-model="search" type='text'placeholder="Search"/>
+          <span class="input-group-addon">
+            <span class="glyphicon glyphicon-search"></span>
+          </span>
+        </div>
       </div>
-
       <div class='col-md-3'>
-        <h4>Filter locations:</h4>
         <select ng-model='locationFilter' class='form-control'>
-          <option value=''>All</option>
+          <option value=''>All Locations</option>
           <option ng-repeat='location in locations' value='{{location.name}}'>{{location.name}}</option>
         </select>
       </div>
+      <div class='col-md-7'></div>
     </div>
 
-      <div style="font-size: 60%">
-        <br>
-          <p >
-            <img src="/images/reddot.png" alt="red" height="10px" width="10px" /> = Expired
-            <img src="/images/yellowdot.png" alt="yellow" height="10px" width="10px" /> = Expires within 90 days
-            <img src="/images/greendot.png" alt="green" height="10px" width="10px" /> = Normal
-         </p>
+    <div style="font-size: 60%">
+      <br>
+        <p >
+          <img src="/images/reddot.png" alt="red" height="10px" width="10px" /> = Expired
+          <img src="/images/yellowdot.png" alt="yellow" height="10px" width="10px" /> = Expires within 90 days
+          <img src="/images/greendot.png" alt="green" height="10px" width="10px" /> = Normal
+       </p>
       </div>
 
     <%= render 'certifications' %>
