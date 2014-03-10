@@ -3,8 +3,6 @@
     style: :horizontal, left: 'col-sm-4', right: 'col-sm-8') do |f| %>
 
     <%= content_tag(:legend, legend) unless !legend %>
-
-    <%= f.text_field :post_title %>
     <%= f.text_area :post_content %>
     <%= f.form_group :report_filed, label: { text: "Report Filed" } do %>
       <%= f.check_box :report_filed, label: "" do %>

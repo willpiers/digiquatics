@@ -4,9 +4,9 @@ describe 'Chemicals' do
   let!(:account) { FactoryGirl.create(:account) }
   let!(:location) { FactoryGirl.create(:location, account_id: account.id) }
   let!(:pool) { FactoryGirl.create(:pool, location_id: location.id) }
-  let!(:user) { FactoryGirl.create(:user,
-                                   account_id: account.id,
-                                   location_id: location.id) }
+  let!(:user) do
+    FactoryGirl.create(:user, account_id: account.id, location_id: location.id)
+  end
 
   subject { page }
 

@@ -1,42 +1,39 @@
-<% @shift_reports.each do |shift_report| %>
-
-  <div class='panel panel-primary'>
-    <div class='panel-heading'>
-      <%= shift_report.date_stamp.strftime('%-m/%-d/%Y') %>
-      <%= shift_report.time_stamp.strftime('%I:%M%p') %>
-      -
-      <%= Location.find(shift_report.location_id).name %>
-    </div>
-
-    <table class='table table-bordered table-condensed'  >
+<div ng-app='digiquatics' class='table-responsive'>
+  <table ng-controller='ShiftReportsCtrl' class='table table-hover table-condensed' >
+    <thead>
       <tr>
-        <td width='150' align='center'>
-          <div style = 'margin-left:5px; margin-top:5px;'>
-            <%= image_tag User.find(shift_report.user_id).avatar.url,
-              size: '100x100' %>
-            <p> <%= User.find(shift_report.user_id).first_name %> </p>
-            <p> <%= User.find(shift_report.user_id).last_name %> </p>
-          </div>
-        </td>
-        <td>
-          <div class='panel-body'><%= shift_report.post_content %></div>
-        </td>
-      </tr>
-    </table>
-    <div class="panel-footer">
-      Report Filed: <%= boolean_to_words(shift_report.report_filed) %>
-      <% if shift_report.attachment_front? %>
-        <%= link_to '', shift_report.attachment_front.url,
-        class: 'glyphicon glyphicon-list-alt' %>
-      <% else %>
-      <% end %>
-      <% if shift_report.attachment_back? %>
-        <%= link_to '', shift_report.attachment_back.url,
-        class: 'glyphicon glyphicon-list-alt' %>
-      <% else %>
-      <% end %>
-    </div>
-  </div>
-<% end %>
+        <th>Location</th>
+        <th>
+          <a href="" ng-click="predicate.value = 'date_stamp'; reverse=!reverse">
+          Date</a>
+        </th>
+        <th>
+          <a href="" ng-click="predicate.value = 'user.last_name'; reverse=!reverse">
+          Last Name</a>
+        </th>
+        <th>
+          <a href="" ng-click="predicate.value = 'user.first_name'; reverse=!reverse">
+          First Name</a>
+        </th>
 
-<br>
+        <th>
+          <a href="" ng-click="predicate.value = 'report_filed'; reverse=!reverse">
+          Report Filed</a>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat='report in shiftReports | orderBy:predicate.value:reverse | filter:locationFilter | filter:search'>
+        <td>{{report.location.name}}</td>
+        <td>
+          <a ng-href='/shift_reports/{{report.id}}'>
+            {{report.date_stamp}}
+          </a>
+        </td>
+        <td>{{report.user.last_name}}</td>
+        <td>{{report.user.first_name}}</td>
+        <td>{{report.report_filed | booleanToWords}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

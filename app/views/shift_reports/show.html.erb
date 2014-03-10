@@ -1,9 +1,54 @@
-<p id='notice'><%= notice %></p>
+<% provide(:title, 'Shift Report') %>
+<h1>Shift Report</h1>
+<ul class='pull-right'>
+  <%= link_to 'Edit', edit_shift_report_path(@shift_report),
+              class: 'btn btn-default btn-primary' %>
+</ul>
 
-<p>
-  <strong>Post title:</strong>
-  <%= @shift_report.post_title %>
-</p>
+<div style='margin-left:0px;'>
+  <%= image_tag @shift_report.user.avatar.url, size: '100x100' %>
+</div>
+<br>
 
-<%= link_to 'Edit', edit_shift_report_path(@shift_report) %> |
-<%= link_to 'Back', shift_reports_path %>
+<div class='table-responsive'>
+  <table class='table table-bordered table-condensed' >
+    <tr>
+      <th style='width:25%'> Location </th>
+        <td><%= @shift_report.location.name %></td>
+    </tr>
+    <tr>
+      <th> Date Submitted </th>
+        <td><%= @shift_report.date_stamp.strftime('%-m/%-d/%Y') %></td>
+    </tr>
+    <tr>
+      <th> Submitted By </th>
+        <td>
+          <%= @shift_report.user.first_name %>
+          <%= @shift_report.user.last_name %>
+        </td>
+    </tr>
+    <tr>
+      <th> Report Filed? </th>
+        <td><%= boolean_to_words(@shift_report.report_filed) %></td>
+    </tr>
+    <tr>
+      <th> Report Attachment </th>
+        <td>
+          <% if @shift_report.attachment_front? %>
+            <%= link_to '', @shift_report.attachment_front.url,
+            class: 'glyphicon glyphicon-list-alt' %>
+          <% else %>
+          <% end %>
+          <% if @shift_report.attachment_back? %>
+            <%= link_to '', @shift_report.attachment_back.url,
+            class: 'glyphicon glyphicon-list-alt' %>
+          <% else %>
+          <% end %>
+        </td>
+    </tr>
+    <tr>
+      <th> Shift Report </th>
+        <td><%= @shift_report.post_content %></td>
+    </tr>
+  </table>
+</div>

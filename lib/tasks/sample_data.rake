@@ -177,5 +177,15 @@ namespace :db do
                        closed_user_id: n + 2
                        )
     end
+
+    100.times do |n|
+      ShiftReport.create!(date_stamp: Date.today - rand(365).day,
+                          time_stamp: '10:00pm',
+                          user_id: n + 1,
+                          location_id: [1, 2].sample,
+                          report_filed: [true, false].sample,
+                          post_content: 'Blah blah blah'
+                        )
+    end
   end
 end

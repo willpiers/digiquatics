@@ -10,8 +10,6 @@ class PrivateLessonsController < ApplicationController
       format.json
       with_private_lessons_data(format, filename: 'private_lessons')
     end
-
-
   end
 
   def admin_index

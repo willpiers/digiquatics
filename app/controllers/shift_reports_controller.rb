@@ -7,7 +7,6 @@ class ShiftReportsController < ApplicationController
     respond_to do |format|
       format.html
       format.json
-
       format.csv do
         render csv: @shift_reports, filename: 'shift_reports'
       end
