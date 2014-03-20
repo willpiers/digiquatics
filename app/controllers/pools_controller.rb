@@ -2,7 +2,7 @@ class PoolsController < ApplicationController
   before_action :set_pool, only: [:show, :edit, :update, :destroy]
 
   def index
-    @pools = Pool.same_location_as(current_user)
+    @pools = Pool.same_account_as(current_user)
   end
 
   def show

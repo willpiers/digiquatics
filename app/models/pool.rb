@@ -4,5 +4,9 @@ class Pool < ActiveRecord::Base
   belongs_to :location
   has_many :chemical_records
 
+  scope :same_account_as, (lambda do |user|
+    where(location_id: user.account.locations.map(&:id))
+  end)
+
   scope :same_location_as, -> (user) { where(location_id: user.location_id) }
 end

@@ -17,10 +17,9 @@ namespace :db do
     Location.create(name: 'Ridge Recreation Center',
                     account_id: 2)
 
-    Pool.create(name: 'Big',
-                location_id: Location.first.id)
-    Pool.create(name: 'Baby',
-                location_id: Location.first.id)
+    Pool.create(name: 'Big',  location_id: Location.first.id)
+    Pool.create(name: 'Baby', location_id: Location.first.id)
+    Pool.create(name: 'Link', location_id: Location.find(2).id)
 
     Position.create(name: 'Lifeguard',
                     account_id: 1)
@@ -164,7 +163,7 @@ namespace :db do
                              si_index: [-1, -0.5, -0.3, 0, 0.3, 0.5, 1].sample,
                              si_status: si_status.sample,
                              si_recommendation: si_recommendation.sample,
-                             pool_id: Pool.take(2).map(&:id).sample,
+                             pool_id: Pool.take(3).map(&:id).sample,
                              user_id: [1, 2, 3, 4, 5].sample)
     end
 
