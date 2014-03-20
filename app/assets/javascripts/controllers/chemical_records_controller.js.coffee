@@ -4,7 +4,9 @@
     $scope.predicate =
       value: 'time_stamp'
 
-    $scope.locationFilter = ''
+    $scope.filters =
+      location_id: ''
+      pool_id: ''
 
     ChemicalRecords.index (data) ->
       $scope.chemicalRecords = data

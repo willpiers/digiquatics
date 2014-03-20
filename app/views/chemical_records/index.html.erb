@@ -5,15 +5,19 @@
     <br><br>
     <div class='row'>
       <div class='col-md-3'>
-        <select ng-model='locationFilter' class='form-control'>
-          <option value=''>All Locations</option>
-          <option ng-repeat='location in locations' value='{{location.name}}'>{{location.name}}</option>
+        <h4>Filter Locations:</h4>
+        <select ng-model='filters.location_id' class='form-control'>
+          <option value=''>All</option>
+          <option ng-repeat='location in locations' value='{{location.id}}'>
+            {{location.name}}
+          </option>
         </select>
       </div>
       <div class='col-md-3'>
-        <select ng-model='poolFilter' class='form-control'>
-          <option value=''>All Pools</option>
-          <option ng-repeat='pool in pools | filter:{location_id: locationFilter}' value='{{pool.id}}'>
+        <h4>Filter Pools:</h4>
+        <select ng-model='filters.pool_id' class='form-control'>
+          <option value=''>All</option>
+          <option ng-repeat='pool in pools | filter:{location_id: filters.location_id}' value='{{pool.id}}'>
             {{pool.name}}
           </option>
         </select>
