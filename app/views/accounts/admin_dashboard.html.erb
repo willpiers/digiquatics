@@ -1,132 +1,35 @@
 <% provide(:title, 'Admin Dashboard') %>
 <h1>Admin Dashboard</h1>
 
-<div class='table-responsive'>
-  <div class='panel-group' id='accordion'>
-    <div class='panel panel-default'>
-      <div class='panel-heading'>
-        <h4 class='panel-title'>
-          <a data-toggle='collapse' data-parent="#accordion" href="#collapseOne">
-            Manage Account
-          </a>
-        </h4>
-      </div>
-      <div id='collapseOne' class='panel-collapse collapse in'>
-        <div class='panel-body'>
-          <%= render 'account' %>
-        </div>
-      </div>
-    </div>
-
-    <div class='panel panel-default'>
-      <div class='panel-heading'>
-        <h4 class='panel-title'>
-          <a data-toggle='collapse' data-parent="#accordion" href="#collapseTwo">
-            Manage Locations
-          </a>
-        </h4>
-      </div>
-      <div id='collapseTwo' class='panel-collapse collapse'>
-        <div class='panel-body'>
-          <%= render 'locations' %>
-        </div>
-      </div>
-    </div>
-
+<div ng-app="digiquatics" ng-controller="AdminDashboardCtrl">
+  <accordion close-others="oneAtATime">
+    <accordion-group heading="Manage Account">
+     <%= render 'account' %>
+    </accordion-group>
+    <accordion-group heading="Manage Locations">
+      <%= render 'locations' %>
+    </accordion-group>
     <% if FeatureToggleHelper.attendance? %>
-      <div class='panel panel-default'>
-        <div class='panel-heading'>
-          <h4 class='panel-title'>
-            <a data-toggle='collapse' data-parent="#accordion" href="#collapseThree">
-              Manage Attendance
-            </a>
-          </h4>
-        </div>
-        <div id='collapseThree' class='panel-collapse collapse'>
-          <div class='panel-body'>
-            <%= render 'attendance' %>
-          </div>
-        </div>
-      </div>
+      <accordion-group heading="Manage Attendance">
+        <%= render 'attendance' %>
+      </accordion-group>
     <% end %>
-
     <% if FeatureToggleHelper.chemicals? %>
-      <div class='panel panel-default'>
-        <div class='panel-heading'>
-          <h4 class='panel-title'>
-            <a data-toggle='collapse' data-parent="#accordion" href="#collapseFour">
-              Manage Chemicals
-            </a>
-          </h4>
-        </div>
-        <div id='collapseFour' class='panel-collapse collapse'>
-          <div class='panel-body'>
-            <%= render 'chemicals' %>
-          </div>
-        </div>
-      </div>
+      <accordion-group heading="Manage Chemicals">
+      </accordion-group>
     <% end %>
-
-
-    <div class='panel panel-default'>
-      <div class='panel-heading'>
-        <h4 class='panel-title'>
-          <a data-toggle='collapse' data-parent="#accordion" href="#collapseFive">
-           Manage Positions
-          </a>
-        </h4>
-      </div>
-      <div id='collapseFive' class='panel-collapse collapse'>
-        <div class='panel-body'>
-          <%= render 'positions' %>
-        </div>
-      </div>
-    </div>
-
+    <accordion-group heading="Manage Positions">
+      <%= render 'positions' %>
+    </accordion-group>
     <% if FeatureToggleHelper.private_lessons? %>
-      <div class='panel panel-default'>
-        <div class='panel-heading'>
-          <h4 class='panel-title'>
-            <a data-toggle='collapse' data-parent="#accordion" href="#collapseSix">
-             Manage Private Lessons Information
-            </a>
-          </h4>
-        </div>
-        <div id='collapseSix' class='panel-collapse collapse'>
-          <div class='panel-body'>
-          </div>
-        </div>
-      </div>
+      <accordion-group heading="Manage Private Lessons Information">
+      </accordion-group>
     <% end %>
-
-    <div class='panel panel-default'>
-      <div class='panel-heading'>
-        <h4 class='panel-title'>
-          <a data-toggle='collapse' data-parent="#accordion" href="#collapseSeven">
-           Manage Certifications
-          </a>
-        </h4>
-      </div>
-      <div id='collapseSeven' class='panel-collapse collapse'>
-        <div class='panel-body'>
-          <%= render 'certifications' %>
-        </div>
-      </div>
-    </div>
-
-    <div class='panel panel-default'>
-      <div class='panel-heading'>
-        <h4 class='panel-title'>
-          <a data-toggle='collapse' data-parent="#accordion" href="#collapseEight">
-           Export Data
-          </a>
-        </h4>
-      </div>
-      <div id='collapseEight' class='panel-collapse collapse'>
-        <div class='panel-body'>
-          <%= render 'exports' %>
-        </div>
-      </div>
-    </div>
-  </div>
+    <accordion-group heading="Manage Certifications">
+      <%= render 'certifications' %>
+    </accordion-group>
+    <accordion-group heading="Export Data">
+      <%= render 'exports' %>
+    </accordion-group>
+  </accordion>
 </div>
