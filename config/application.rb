@@ -16,6 +16,11 @@ module DigiQuatics
   class Application < Rails::Application
     system("rubocop -D #{Rails.root}") if Rails.env.development?
 
+    config.generators do |g|
+      g.stylesheets false
+      g.test_framework false
+    end
+
     # Settings in config/environments/* take precedence over those specified
     # here.
     # Application configuration should go into files in config/initializers
