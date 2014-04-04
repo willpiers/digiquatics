@@ -4,14 +4,14 @@
       options_from_collection_for_select(CertificationName.same_account_as(current_user), :id, :name, f.object.certification_name_id) %>
 
     <div class="date-select">
-     <%= f.date_select :issue_date, { start_year: Time.now.year,
-      end_year: Time.now.year-30, order: [:month, :day, :year], prompt: true},
+     <%= f.date_select :issue_date, { start_year: Time.now.year+3,
+      end_year: Time.now.year-3, order: [:month, :day, :year], prompt: true},
         label: 'Issue Date'  %>
     </div>
 
     <div class="date-select">
-     <%= f.date_select :expiration_date, { start_year: Time.now.year,
-      end_year: Time.now.year-30, order: [:month, :day, :year], prompt: true},
+     <%= f.date_select :expiration_date, { start_year: Time.now.year+3,
+      end_year: Time.now.year-3, order: [:month, :day, :year], prompt: true},
         label: 'Expiration Date'  %>
     </div>
 
