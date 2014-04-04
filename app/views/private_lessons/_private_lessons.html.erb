@@ -7,7 +7,7 @@
         <th>First Name</th>
         <th>Age</th>
         <th>Sex</th>
-        <th>Instructor Gender</th>
+        <th>Instructor Gender Preference</th>
         <th>Day</th>
         <th>Time</th>
         <th>Location</th>
@@ -18,11 +18,21 @@
     <tbody>
       <% @private_lessons.each do |private_lesson| %>
         <tr>
-          <td><%= link_to private_lesson.last_name, private_lesson %></td>
-          <td><%= link_to private_lesson.first_name, private_lesson %></td>
-          <td><%= private_lesson.age %></td>
-          <td><%= private_lesson.sex %></td>
-          <td><%= private_lesson.instructor_gender %></td>
+          <td><%= private_lesson.participants.each do |participant|
+                    link_to participant.last_name, private_lesson
+                  end %></td>
+          <td><%= private_lesson.participants.each do |participant|
+                    link_to participant.first_name, private_lesson
+                  end %></td>
+          <td><%= private_lesson.participants.each do |participant|
+                    participant.age
+                  end %></td>
+          <td><%= private_lesson.participants.each do |participant|
+                    participant.sex
+                  end %></td>
+          <td><%= private_lesson.participants.each do |participant|
+                    participant.instructor_gender
+                  end %></td>
           <td><%= private_lesson.day %></td>
           <td><%= private_lesson.time %></td>
           <td>

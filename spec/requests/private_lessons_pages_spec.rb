@@ -18,32 +18,33 @@ describe 'Private Lessons' do
                        position_id: position.id,
                        account_id: account.id)
   end
+  let!(:private_lesson) { FactoryGirl.create(:private_lesson, account_id: account.id) }
 
   before do
     login_as(user, scope: :user)
     FactoryGirl.create(:private_lesson,
                        account_id:          account.id,
-                       first_name:          'unassigned_lesson',
+                       parent_first_name:   'unassigned_lesson',
                        contact_method:      'Call',
                        number_lessons:      '5',
                        user_id:             nil,
                        preferred_location:  location.id)
     FactoryGirl.create(:private_lesson,
                        account_id:          account.id,
-                       first_name:          'my_lesson',
+                       parent_first_name:   'my_lesson',
                        contact_method:      'Call',
                        number_lessons:      '5',
                        user_id:             user.id,
                        preferred_location:  location.id)
     FactoryGirl.create(:private_lesson,
                        account_id:          another_account.id,
-                       first_name:          'other_account_lesson',
+                       parent_first_name:   'other_account_lesson',
                        contact_method:      'Text',
                        number_lessons:      '3',
                        user_id:             user.id - 1,
                        preferred_location:  location.id)
     FactoryGirl.create(:private_lesson,
-                       first_name:          'other_user_lesson',
+                       parent_first_name:   'other_user_lesson',
                        contact_method:      'Text',
                        number_lessons:      '3',
                        user_id:             user.id - 1,
@@ -108,12 +109,15 @@ describe 'Private Lessons' do
     before do
       Warden.test_reset!
       login_as(user, scope: :user)
-      visit new_account_private_lesson_path(account_id: user.account_id)
+      FactoryGirl.create(:participant, private_lesson_id: private_lesson.id)
+      visit edit_account_private_lesson_path(private_lesson)
     end
 
     let(:submit) { 'Submit' }
 
     describe 'with invalid information' do
+      before { fill_in 'Parent First Name', with: ' ' }
+
       it 'should not create a private lesson' do
         expect { click_button submit }.not_to change(PrivateLesson, :count)
       end
@@ -121,6 +125,7 @@ describe 'Private Lessons' do
 
     describe 'with valid information' do
       before do
+        FactoryGirl.create(:participant, private_lesson_id: private_lesson.id)
         # Parent information
         fill_in 'Parent First Name', with: 'Parent First'
         fill_in 'Parent Last Name',  with: 'Parent Last'

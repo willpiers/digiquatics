@@ -11,15 +11,14 @@ class PrivateLesson < ActiveRecord::Base
 
   belongs_to :account
   belongs_to :user
-  has_many :private_lesson_details
+  has_many :participants
 
   has_attached_file :attachment,
                     path: ATTACHED_PATH,
                     url:  ATTACHED_URL
 
   validates_presence_of :account_id, :parent_first_name, :parent_last_name,
-                        :phone_number, :email, :contact_method, :first_name,
-                        :last_name, :sex, :age, :instructor_gender, :notes,
+                        :phone_number, :email, :contact_method,
                         :number_lessons
 
   comma do

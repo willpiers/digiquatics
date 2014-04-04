@@ -117,22 +117,26 @@ namespace :db do
     end
 
     50.times do |n|
-      PrivateLesson.create!(first_name: Faker::Name.first_name,
-                            last_name: Faker::Name.last_name,
-                            parent_first_name: Faker::Name.first_name,
+      PrivateLesson.create!(parent_first_name: Faker::Name.first_name,
                             parent_last_name: Faker::Name.last_name,
                             email: Faker::Internet.email,
                             phone_number: Faker::PhoneNumber.phone_number,
-                            age: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11].sample,
-                            sex: %w(M F).sample,
-                            instructor_gender: %w(M F None).sample,
                             day: %w(M T W Th F S Sn).sample,
                             time: %w(AM PM).sample,
                             contact_method: %w(Call Email Text).sample,
-                            notes: 'Nothing to say now',
                             preferred_location: rand(3) + 1,
                             number_lessons: rand(5) + 1,
                             account_id: 1)
+    end
+
+    50.times do |n|
+      PrivateLesson.create!(private_lesson_id: rand(49) + 1,
+                            first_name: Faker::Name.first_name,
+                            last_name: Faker::Name.last_name,
+                            age: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11].sample,
+                            sex: %w(M F).sample,
+                            instructor_gender: %w(M F None).sample,
+                            notes: 'Nothing to say now')
     end
 
     250.times do |n|

@@ -72,20 +72,24 @@ FactoryGirl.define do
 
   factory :private_lesson do
     account_id            1
-    first_name            'Michael'
-    last_name             'Pierce'
     parent_first_name     'Trent'
     parent_last_name      'Allen'
     email                 'michael@affektive.com'
     phone_number          1234
+    day                   'Mon'
+    time                  'AM'
+    preferred_location    1
+    user_id               1
+  end
+
+  factory :participant do
+    private_lesson_id     1
+    first_name            'Michael'
+    last_name             'Pierce'
     age                   12
     sex                   'M'
     instructor_gender     'F'
-    day                    'Mon'
-    time                   'AM'
-    notes                  'None at this moment'
-    preferred_location     1
-    user_id                1
+    notes                 'None at this moment'
   end
 
   factory :chemical_record do
