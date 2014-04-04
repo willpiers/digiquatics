@@ -6,6 +6,9 @@ require 'action_controller/railtie'
 require 'action_mailer/railtie'
 require 'sprockets/railtie'
 require 'csv'
+require 'mixpanel-ruby'
+
+Tracker = Mixpanel::Tracker.new(ENV['MIXPANEL_TOKEN'])
 # require 'rails/test_unit/railtie'
 
 # Require the gems listed in Gemfile, including any gems

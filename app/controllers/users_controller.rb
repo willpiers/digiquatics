@@ -37,6 +37,8 @@ class UsersController < ApplicationController
   end
 
   def update
+    Tracker.people.set(@user.id, @user.attributes)
+
     if @user.update_attributes(user_params)
       sign_in(@user, bypass: true) if @user == current_user
       flash[:success] = 'Profile updated'
@@ -81,7 +83,7 @@ class UsersController < ApplicationController
   end
 
   def with_users_data(format, filename: 'users')
-    format.html
+    format.html { debugger; Tracker.track(current_user.id, 'View User\'s Index') }
     format.csv { render csv: @users, filename: filename }
 
     format.json do
