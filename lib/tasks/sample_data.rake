@@ -130,13 +130,11 @@ namespace :db do
     end
 
     50.times do |n|
-      PrivateLesson.create!(private_lesson_id: rand(49) + 1,
-                            first_name: Faker::Name.first_name,
-                            last_name: Faker::Name.last_name,
-                            age: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11].sample,
-                            sex: %w(M F).sample,
-                            instructor_gender: %w(M F None).sample,
-                            notes: 'Nothing to say now')
+      Participant.create!(private_lesson_id: n,
+                          first_name: Faker::Name.first_name,
+                          last_name: Faker::Name.last_name,
+                          age: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11].sample,
+                          sex: %w(M F).sample)
     end
 
     250.times do |n|

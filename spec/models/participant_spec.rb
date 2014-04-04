@@ -8,10 +8,7 @@ describe Participant do
       first_name:         'Lydia',
       last_name:          'Pierce',
       sex:                'M',
-      age:                '12',
-      instructor_gender:  'F',
-      notes:              'No Jake',
-      lesson_objective:   'Get Better')
+      age:                '12')
   end
 
   subject { @participant }
@@ -21,9 +18,6 @@ describe Participant do
   it { should respond_to(:last_name) }
   it { should respond_to(:sex) }
   it { should respond_to(:age) }
-  it { should respond_to(:instructor_gender) }
-  it { should respond_to(:notes) }
-  it { should respond_to(:lesson_objective) }
 
   it { should be_valid }
 

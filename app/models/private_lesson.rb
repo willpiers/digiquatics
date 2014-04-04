@@ -13,6 +13,8 @@ class PrivateLesson < ActiveRecord::Base
   belongs_to :user
   has_many :participants
 
+  accepts_nested_attributes_for :participants, allow_destroy: true
+
   has_attached_file :attachment,
                     path: ATTACHED_PATH,
                     url:  ATTACHED_URL

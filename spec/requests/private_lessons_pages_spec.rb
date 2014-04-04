@@ -18,37 +18,48 @@ describe 'Private Lessons' do
                        position_id: position.id,
                        account_id: account.id)
   end
-  let!(:private_lesson) { FactoryGirl.create(:private_lesson, account_id: account.id) }
+
+  let!(:unassigned_lesson) do
+    FactoryGirl.create(:private_lesson,
+                       account_id: account.id,
+                       user_id: nil,
+                       preferred_location: location.id)
+  end
+
+  let!(:private_lesson) do
+    FactoryGirl.create(:private_lesson,
+                       account_id: account.id,
+                       user_id: user.id,
+                       preferred_location: location.id)
+  end
+
+  let!(:other_account_lesson) do
+    FactoryGirl.create(:private_lesson,
+                       account_id: another_account.id,
+                       preferred_location: location.id)
+  end
+
+  let!(:other_user_lesson) do
+    FactoryGirl.create(:private_lesson,
+                       account_id: account.id,
+                       user_id: user.id - 1,
+                       preferred_location: location.id)
+  end
 
   before do
     login_as(user, scope: :user)
-    FactoryGirl.create(:private_lesson,
-                       account_id:          account.id,
-                       parent_first_name:   'unassigned_lesson',
-                       contact_method:      'Call',
-                       number_lessons:      '5',
-                       user_id:             nil,
-                       preferred_location:  location.id)
-    FactoryGirl.create(:private_lesson,
-                       account_id:          account.id,
-                       parent_first_name:   'my_lesson',
-                       contact_method:      'Call',
-                       number_lessons:      '5',
-                       user_id:             user.id,
-                       preferred_location:  location.id)
-    FactoryGirl.create(:private_lesson,
-                       account_id:          another_account.id,
-                       parent_first_name:   'other_account_lesson',
-                       contact_method:      'Text',
-                       number_lessons:      '3',
-                       user_id:             user.id - 1,
-                       preferred_location:  location.id)
-    FactoryGirl.create(:private_lesson,
-                       parent_first_name:   'other_user_lesson',
-                       contact_method:      'Text',
-                       number_lessons:      '3',
-                       user_id:             user.id - 1,
-                       preferred_location:  location.id)
+    FactoryGirl.create(:participant,
+                       private_lesson_id:   unassigned_lesson.id,
+                       first_name:          'unassigned_lesson')
+    FactoryGirl.create(:participant,
+                       private_lesson_id:   private_lesson.id,
+                       first_name:          'my_lesson')
+    FactoryGirl.create(:participant,
+                       private_lesson_id:   other_account_lesson.id,
+                       first_name:          'other_account_lesson')
+    FactoryGirl.create(:participant,
+                       private_lesson_id:   private_lesson.id,
+                       first_name:          'other_user_lesson')
   end
 
   subject { page }
@@ -109,9 +120,14 @@ describe 'Private Lessons' do
     before do
       Warden.test_reset!
       login_as(user, scope: :user)
-      FactoryGirl.create(:participant, private_lesson_id: private_lesson.id)
-      visit edit_account_private_lesson_path(private_lesson)
+      visit new_account_private_lesson_path(account_id: user.account_id)
     end
+
+    it { should have_title(full_title('New Private Lesson')) }
+    it { should have_selector('h1', text: 'New Private Lesson') }
+    it { should have_selector('h4', text: 'Parent Information') }
+    it { should have_selector('h4', text: 'Student Information') }
+    it { should have_selector('h4', text: 'Lesson Request') }
 
     let(:submit) { 'Submit' }
 
@@ -120,47 +136,6 @@ describe 'Private Lessons' do
 
       it 'should not create a private lesson' do
         expect { click_button submit }.not_to change(PrivateLesson, :count)
-      end
-    end
-
-    describe 'with valid information' do
-      before do
-        FactoryGirl.create(:participant, private_lesson_id: private_lesson.id)
-        # Parent information
-        fill_in 'Parent First Name', with: 'Parent First'
-        fill_in 'Parent Last Name',  with: 'Parent Last'
-        fill_in 'Phone Number',      with: '1234'
-        fill_in 'Email',             with: 'lesson@example.com'
-        select  'Call',              from: 'Preferred Contact Method'
-
-        # Student Information
-        fill_in 'Student First Name', with: 'student first'
-        fill_in 'Student Last Name',  with: 'student last'
-        select 'M',           from: 'Gender'
-        fill_in 'Age',        with: 14
-
-        # Preferences
-        select 'None',              from: 'Instructor Gender Preference'
-        fill_in 'Notes',            with: 'I want Joey'
-        fill_in 'Lesson Objectives', with: 'Starts and turns'
-
-        # Lesson Request
-        select 1, from: 'Number of Lessons'
-      end
-
-      it 'should create a private lesson' do
-        expect { click_button submit }.to change(PrivateLesson, :count).by(1)
-      end
-
-      describe 'after saving the lesson' do
-        before { click_button submit }
-        let(:created_lesson) do
-          PrivateLesson.find_by_email('lesson@example.com')
-        end
-
-        it 'should redirect to confirmation page' do
-          # insert confirmation page
-        end
       end
     end
   end
@@ -177,6 +152,8 @@ describe 'Private Lessons' do
         visit private_lesson_path(created_lesson)
       end
 
+      it { should have_title(full_title('Lesson Request')) }
+      it { should have_selector('h1', text: 'Lesson Request') }
       it { should have_content('Instructor Information') }
     end
 
@@ -244,7 +221,7 @@ describe 'Private Lessons' do
           click_button 'Save Changes'
         end
 
-        it { should have_title(full_title(student_first_name)) }
+        it { should have_title('Lesson Request') }
         it { should have_selector('div.alert') }
         specify { current_path.should eq private_lesson_path(created_lesson) }
       end
@@ -266,8 +243,8 @@ describe 'Private Lessons' do
       end
 
       describe 'page' do
-        it { should have_selector('h1', text: full_name) }
-        it { should have_title(full_title(full_name)) }
+        it { should have_selector('h1', text: 'Lesson Request') }
+        it { should have_title(full_title('Lesson Request')) }
 
         describe 'action' do
           before { click_button 'Claim Lesson' }

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140404032013) do
+ActiveRecord::Schema.define(version: 20140404192938) do
 
   create_table "accounts", force: true do |t|
     t.string   "name"
@@ -109,9 +109,6 @@ ActiveRecord::Schema.define(version: 20140404032013) do
     t.string  "last_name"
     t.string  "sex"
     t.integer "age"
-    t.string  "instructor_gender"
-    t.text    "notes"
-    t.text    "lesson_objective"
   end
 
   create_table "pools", force: true do |t|
@@ -154,6 +151,9 @@ ActiveRecord::Schema.define(version: 20140404032013) do
     t.integer  "number_lessons"
     t.boolean  "queue_status"
     t.integer  "account_id"
+    t.string   "instructor_gender"
+    t.text     "notes"
+    t.text     "lesson_objective"
   end
 
   create_table "sessions", force: true do |t|

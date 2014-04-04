@@ -34,7 +34,7 @@ class PrivateLessonsController < ApplicationController
   def create
     @private_lesson = Account.find(params[:account_id]).private_lessons
     .build(private_lesson_params)
-
+    debugger
     message = 'Private lesson was successfully created.'
 
     handle_action(@private_lesson, message, :new, &:save)
@@ -55,6 +55,9 @@ class PrivateLessonsController < ApplicationController
 
   private
 
+  include ApplicationHelper
+  include PrivateLessonsHelper
+
   def handle_action(resource, message, page)
     if yield(resource)
       flash[:success] = message
@@ -71,13 +74,5 @@ class PrivateLessonsController < ApplicationController
 
   def set_private_lesson
     @private_lesson = PrivateLesson.find(params[:id])
-  end
-
-  def private_lesson_params
-    params.require(:private_lesson).permit(
-      :first_name, :email, :last_name, :phone_number, :parent_first_name,
-      :parent_last_name, :contact_method, :sex, :age, :instructor_gender,
-      :notes, :day, :time, :preferred_location, :ability_level,
-      :user_id, :attachment, :number_lessons, :lesson_objective, :account_id)
   end
 end

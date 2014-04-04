@@ -12,7 +12,10 @@ describe PrivateLesson do
       contact_method:     'Call',
       number_lessons:     '5',
       day:                'Mon',
-      time:               'AM')
+      time:               'AM',
+      instructor_gender:  'F',
+      notes:              'No Jake',
+      lesson_objective:   'Get Better')
   end
 
   subject { @private_lesson }
@@ -26,6 +29,9 @@ describe PrivateLesson do
   it { should respond_to(:number_lessons) }
   it { should respond_to(:day) }
   it { should respond_to(:time) }
+  it { should respond_to(:instructor_gender) }
+  it { should respond_to(:notes) }
+  it { should respond_to(:lesson_objective) }
 
   it { should be_valid }
 

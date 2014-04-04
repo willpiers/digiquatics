@@ -19,14 +19,23 @@
   <tbody>
     <% @my_lessons.each do |private_lesson| %>
       <tr>
-        <td><%= link_to private_lesson.last_name, private_lesson %></td>
-        <td><%= link_to private_lesson.first_name, private_lesson %></td>
-        <td><%= private_lesson.age           %></td>
-        <td><%= private_lesson.sex           %></td>
-        <td><%= private_lesson.day           %></td>
-        <td><%= private_lesson.time          %></td>
-        <td><%= Location.find_by_id(private_lesson.preferred_location).name %>
+        <% if private_lesson.participants.first %>
+          <td>
+            <%= link_to private_lesson.participants.first.last_name, private_lesson %>
           </td>
+          <td>
+            <%= link_to private_lesson.participants.first.first_name, private_lesson %>
+          </td>
+          <td><%= private_lesson.participants.first.age %></td>
+          <td><%= private_lesson.participants.first.sex %></td>
+        <% end %>
+        <td><%= private_lesson.day %></td>
+        <td><%= private_lesson.time %></td>
+        <td>
+          <% if private_lesson.preferred_location %>
+            <%= Location.find_by_id(private_lesson.preferred_location).name %>
+          <% end %>
+        </td>
         <td><%= private_lesson.created_at.strftime('%-m/%-d/%Y') %></td>
         <td></td>
       </tr>

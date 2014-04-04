@@ -80,6 +80,11 @@ FactoryGirl.define do
     time                  'AM'
     preferred_location    1
     user_id               1
+    contact_method        'Call'
+    number_lessons        3
+    instructor_gender     'F'
+    notes                 'None at this moment'
+    lesson_objective     'Starts & Turns'
   end
 
   factory :participant do
@@ -88,8 +93,6 @@ FactoryGirl.define do
     last_name             'Pierce'
     age                   12
     sex                   'M'
-    instructor_gender     'F'
-    notes                 'None at this moment'
   end
 
   factory :chemical_record do

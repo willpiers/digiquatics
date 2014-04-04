@@ -8,9 +8,6 @@
       <th>Parent First Name</th>
       <th>Phone</th>
       <th>Student</th>
-      <th>Day</th>
-      <th>Time</th>
-      <th>Location</th>
       <th>Submitted</th>
       <th>Claimed</th>
       <th>Completed</th>
@@ -19,20 +16,20 @@
   <tbody>
     <% @admin_index.each do |private_lesson| %>
       <tr>
-        <td>
-          <%= link_to User.find(private_lesson.user_id).last_name,
-                      User.find(private_lesson.user_id) %>
-        </td>
-        <td><%= User.find(private_lesson.user_id).first_name %></td>
-        <td><%= User.find(private_lesson.user_id).phone_number %></td>
+        <% if private_lesson.user %>
+          <td>
+            <%= link_to private_lesson.user.last_name, private_lesson.user %>
+          </td>
+          <td><%= private_lesson.user.first_name %></td>
+          <td><%= private_lesson.user.phone_number %></td>
+        <% end %>
         <td><%= private_lesson.parent_first_name %></td>
         <td><%= private_lesson.parent_last_name %></td>
         <td><%= private_lesson.phone_number %></td>
-        <td><%= link_to private_lesson.first_name, private_lesson  %></td>
-        <td><%= private_lesson.day %></td>
-        <td><%= private_lesson.time %></td>
         <td>
-          <%= Location.find_by_id(private_lesson.preferred_location).name %>
+          <% if private_lesson.participants.first %>
+            <%= link_to private_lesson.participants.first.first_name, private_lesson %>
+          <% end %>
         </td>
         <td><%= private_lesson.created_at.strftime('%-m/%-d/%Y') %></td>
         <td><%= private_lesson.updated_at.strftime('%-m/%-d/%Y') %></td>

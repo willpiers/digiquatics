@@ -16,10 +16,14 @@
                    label: 'Preferred Contact Method' %>
 
     <h4> Student Information </h4>
-      <%= f.text_field :first_name, label: 'Student First Name' %>
-      <%= f.text_field :last_name, label: 'Student Last Name' %>
-      <%= f.select :sex, options_for_select(%w[M F]), label: 'Gender' %>
-      <%= f.text_field :age %>
+
+      <%= f.fields_for :participants do |builder| %>
+        <%= render 'participant_fields', f: builder %>
+      <% end %>
+
+    <%= link_to_add_fields(
+      raw('<i class="glyphicon glyphicon-plus-sign glyphicon-2x"></i>'),
+      f, :participants) %>
 
     <h4> Preferences </h4>
       <%= f.select :instructor_gender,
