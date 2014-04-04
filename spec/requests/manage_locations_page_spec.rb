@@ -24,7 +24,6 @@ describe 'Manage Locations' do
       visit admin_dashboard_path
     end
 
-    it { should have_content('Manage Locations') }
     it { should have_link('New', href: new_location_path) }
 
     describe 'admin dashboard' do
