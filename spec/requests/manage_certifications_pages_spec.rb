@@ -32,6 +32,7 @@ describe 'Manage Certifications' do
       visit admin_dashboard_path
     end
 
+    # it { should have_content('Manage Certifications') }
     it { should have_link('New', href: new_certification_name_path) }
 
     describe 'should list each certification_name' do

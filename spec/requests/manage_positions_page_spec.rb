@@ -29,6 +29,7 @@ describe 'Manage Positions' do
       visit admin_dashboard_path
     end
 
+    # it { should have_content('Manage Positions') }
     it { should have_link('New', href: new_position_path) }
 
     describe 'should list each position' do
