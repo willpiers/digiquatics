@@ -1,11 +1,16 @@
 class StaticPagesController < ApplicationController
   def dashboard
+    Tracker.track(current_user.id, 'View Dashboard') unless Rails.env.test?
   end
 
   def about
   end
 
   def index
+    if !Rails.env.test? && current_user
+      Tracker.track(current_user.id, 'View Index')
+    end
+
     render :index, layout: false
   end
 

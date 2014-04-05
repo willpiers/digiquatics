@@ -9,7 +9,11 @@ class CertificationsController < ApplicationController
     .includes(:certifications)
 
     respond_to do |format|
-      format.html
+      format.html do
+        unless Rails.env.test?
+          Tracker.track(current_user.id, 'View Certification\'s Index')
+        end
+      end
       format.csv { render csv: @users, filename: 'certifications' }
     end
   end
