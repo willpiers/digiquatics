@@ -129,7 +129,7 @@ namespace :db do
                             account_id: 1)
     end
 
-    50.times do |n|
+    51.times do |n|
       Participant.create!(private_lesson_id: n,
                           first_name: Faker::Name.first_name,
                           last_name: Faker::Name.last_name,

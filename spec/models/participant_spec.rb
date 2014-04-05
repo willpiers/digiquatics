@@ -21,11 +21,6 @@ describe Participant do
 
   it { should be_valid }
 
-  describe 'when private_lesson_id is not present' do
-    before { @participant.private_lesson_id = ' ' }
-    it { should_not be_valid }
-  end
-
   describe 'when first name is not present' do
     before { @participant.first_name = ' ' }
     it { should_not be_valid }

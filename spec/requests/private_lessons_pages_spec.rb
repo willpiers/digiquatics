@@ -123,8 +123,8 @@ describe 'Private Lessons' do
       visit new_account_private_lesson_path(account_id: user.account_id)
     end
 
-    it { should have_title(full_title('New Private Lesson')) }
-    it { should have_selector('h1', text: 'New Private Lesson') }
+    it { should have_title(full_title('Lesson Request')) }
+    it { should have_selector('legend', text: 'Lesson Request') }
     it { should have_selector('h4', text: 'Parent Information') }
     it { should have_selector('h4', text: 'Student Information') }
     it { should have_selector('h4', text: 'Lesson Request') }

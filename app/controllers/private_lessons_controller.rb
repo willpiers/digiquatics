@@ -34,7 +34,7 @@ class PrivateLessonsController < ApplicationController
   def create
     @private_lesson = Account.find(params[:account_id]).private_lessons
     .build(private_lesson_params)
-    debugger
+
     message = 'Private lesson was successfully created.'
 
     handle_action(@private_lesson, message, :new, &:save)

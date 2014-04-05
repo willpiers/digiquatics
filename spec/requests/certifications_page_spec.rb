@@ -103,4 +103,24 @@ describe 'Certifications' do
 
     it { should have_content('new_cert_name') }
   end
+
+  describe 'user edit page' do
+    let!(:new_cert_name) do
+      FactoryGirl.create(:certification_name,
+                         account_id: account.id,
+                         name: 'new_cert_name')
+    end
+    before do
+      Warden.test_reset!
+      login_as(admin, scope: :user)
+      FactoryGirl.create(:certification,
+                         certification_name_id: new_cert_name.id,
+                         user_id: user.id)
+      visit edit_user_path(user)
+    end
+
+    describe 'should be able to set cert year three years out' do
+      it { should have_content('2017') }
+    end
+  end
 end
