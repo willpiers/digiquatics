@@ -38,7 +38,9 @@ class UsersController < ApplicationController
 
   def update
     if @user.update_attributes(user_params)
-      mixpanel_track_people
+      if Rails.env.development?
+        mixpanel_track_people
+      end
       sign_in(@user, bypass: true) if @user == current_user
       flash[:success] = 'Profile updated'
       redirect_to @user
@@ -63,11 +65,15 @@ class UsersController < ApplicationController
   include UsersHelper
 
   def mixpanel_track_people
-    Tracker.people.set(@user.id, @user.attributes)
+    if Rails.env.development?
+      Tracker.people.set(@user.id, @user.attributes)
+    end
   end
 
   def redirect_to_created_user
-    mixpanel_track_people
+    if Rails.env.development?
+      mixpanel_track_people
+    end
     flash[:success] = 'You have successfully created a user account!'
     signed_in? ? redirect_to(@user) : sign_in_and_redirect(@user)
 
@@ -86,7 +92,11 @@ class UsersController < ApplicationController
   end
 
   def with_users_data(format, filename: 'users')
-    format.html { Tracker.track(current_user.id, 'View User\'s Index') }
+    format.html do
+      if Rails.env.development?
+        Tracker.track(current_user.id, 'View User\'s Index')
+      end
+    end
     format.csv { render csv: @users, filename: filename }
 
     format.json do
