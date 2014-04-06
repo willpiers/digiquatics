@@ -35,10 +35,6 @@
           <a href="" ng-click="predicate.value = 'admin'; reverse=!reverse">
           Admin</a>
         </th>
-        <th>
-          <a href="" ng-click="predicate.value = 'active'; reverse=!reverse">
-          Active</a>
-        </th>
       </tr>
     </thead>
     <tbody>
@@ -56,7 +52,6 @@
         <td>{{user.email}}</td>
         <td>{{user.phone_number}}</td>
         <td>{{user.admin | booleanToWords}}</td>
-        <td>{{user.active | booleanToWords}}</td>
       </tr>
     </tbody>
   </table>
