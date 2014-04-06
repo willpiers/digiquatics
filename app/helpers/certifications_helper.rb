@@ -33,10 +33,13 @@ module CertificationsHelper
   def css_class(date)
     if date <= Date.today
       'danger'
-    elsif date > Date.today && date <= (Date.today + 90.days)
+    elsif date > Date.today && date < (Date.today + 90.days)
       'warning'
-    elsif date > (Date.today + 90.days)
+    elsif date > Data.today && date <= (Data.today + 180.days) && date >= (Data.today + 90.days)
+      'info'
+    elsif date > (Date.today + 180.days)
       'success'
     end
   end
 end
+
