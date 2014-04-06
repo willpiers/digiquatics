@@ -21,8 +21,9 @@
           <% if FeatureToggleHelper.chemicals? %>
             <li><%= link_to 'Chemicals', chemical_records_path %></li>
           <% end %>
-          <li><%= link_to 'Certifications', certifications_path %></li>
-
+          <% if current_user && current_user.admin? %>
+            <li><%= link_to 'Certifications', certifications_path %></li>
+          <% end %>
           <% if FeatureToggleHelper.private_lessons? %>
             <li class = 'dropdown'>
               <a href = '#' class = 'dropdown-toggle' data-toggle = 'dropdown'>
@@ -38,7 +39,7 @@
                   <li><%= link_to 'New Private Lesson',
                           new_account_private_lesson_path(account_id: current_account.id) %>
                   </li>
-                  <li><%= link_to 'Admin Private Lessons Queue', admin_index_path %></li>
+                  <li><%= link_to 'Private Lessons Management', admin_index_path %></li>
                 <% end %>
               </ul>
           <% end %>
