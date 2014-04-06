@@ -110,6 +110,9 @@
           <th> Phone# </th><td><%= @user.phone_number %></td>
         </tr>
         <tr>
+          <th> Age </th><td><%= age(@user.date_of_birth) %></td>
+        </tr>
+        <tr>
           <th> DOB </th><td><%= @user.date_of_birth ?
             @user.date_of_birth.strftime('%-m/%-d/%Y') : '-' %></td>
         </tr>
