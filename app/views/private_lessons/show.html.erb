@@ -36,7 +36,9 @@
         <th> Instructor Email </th>
         <td>
           <% if @private_lesson.user %>
-            <%= @private_lesson.user.email %>
+            <%= mail_to "{@private_lesson.user.email}" do %>
+              <span><%= @private_lesson.user.email %></span>
+            <% end %>
           <% end %>
         </td>
       </tr>
@@ -67,7 +69,11 @@
       </tr>
       <tr>
         <th> Email </th>
-        <td> <%= @private_lesson.email %> </td>
+        <td>
+          <%= mail_to "#{@private_lesson.email}" do %>
+            <span> <%= @private_lesson.email %> </span>
+          <% end %>
+        </td>
       </tr>
       <tr>
         <th> Preferred Contact Method </th>

@@ -104,7 +104,12 @@
           <th> Zip Code </th><td><%= @user.zipcode %></td>
         </tr>
         <tr>
-          <th> Email </th><td><%= @user.email %></td>
+          <th> Email </th>
+          <td>
+          <%= mail_to "#{ @user.email}" do %>
+            <span> <%=  @user.email %> </span>
+          <% end %>
+          </td>
         </tr>
         <tr>
           <th> Phone# </th><td><%= phone_number_link(@user.phone_number) %></td>
@@ -141,7 +146,7 @@
           <th>  Emergency Last Name </th><td><%= @user.emergency_last %></td>
         </tr>
         <tr>
-          <th>  Emergency Phone Number </th><td><%= @user.emergency_phone %></td>
+          <th>  Emergency Phone Number </th><td><%= phone_number_link(@user.emergency_phone) %></td>
         </tr>
 
     </table>
