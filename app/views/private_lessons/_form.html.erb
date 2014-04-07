@@ -29,8 +29,11 @@
       <%= f.select :instructor_gender,
                    options_for_select(%w[None M F]),
                    label: 'Instructor Gender Preference' %>
-      <%= f.text_area :notes, size: '2x' %>
+      <%= f.text_area :notes,
+                      placeholder: 'Instructor Gender Preference, Specific Instructor, etc...',
+                      size: '2x' %>
       <%= f.text_area :lesson_objective,
+                      placeholder: 'Learn to dive, perfect butterfly stroke, etc...',
                       side: '2x',
                       label: 'Lesson Objectives' %>
 
