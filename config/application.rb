@@ -14,8 +14,8 @@ require 'mixpanel-ruby'
 Bundler.require(:default, Rails.env)
 
 unless ENV['MIXPANEL_TOKEN']
-  puts "WARN: missing env variable: MIXPANEL_TOKEN\n" \
-    'Put `export MIXPANEL_TOKEN=<dev token>` in your `~/.zshrc file'
+  puts "WARN: missing env variable \"MIXPANEL_TOKEN\"\n" \
+    'Put `export MIXPANEL_TOKEN=<dev token>` in your `~/.zshrc` file'
 end
 
 Tracker = Mixpanel::Tracker.new(ENV['MIXPANEL_TOKEN'] || '1')
