@@ -24,7 +24,7 @@
           </td>
           <td>
             <% if private_lesson.participants.first %>
-              <%= link_to private_lesson.participants.first.first_name, private_lesson %>
+              <%= private_lesson.participants.first.first_name %>
             <% end %>
           </td>
           <td>
