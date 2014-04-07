@@ -62,7 +62,7 @@
         .maximum('si_index') %>
       </td>
       <td><%= @chemical_records
-        .average('si_index') %>
+        .average('si_index').round(1) %>
       <td><%= 'N/A' %></td>
     </tr>
   </table>
