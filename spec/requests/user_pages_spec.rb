@@ -150,7 +150,7 @@ describe 'User pages' do
         visit user_path(user)
       end
 
-      it { should have_link('Users', users_path) }
+      it { should have_link('Employees', users_path) }
       it { should have_selector('h4', text: 'Notes') }
       it { should have_link('Edit', edit_user_path(user)) }
 
@@ -195,14 +195,16 @@ describe 'User pages' do
       visit users_path
     end
 
-    it { should have_title('Users') }
+    it { should have_title('Employees') }
   end
 
-  describe 'add user account' do
-    before { visit new_user_path }
-
-    it { should have_content('Create New User') }
-    it { should have_title('Create New User') }
+  describe 'new' do
+    before do
+      login_as(user, scope: :user)
+      visit new_user_path
+      it { should have_content('Create New Employee') }
+      it { should have_title('Create New Employee') }
+    end
   end
 
   describe 'edit' do
@@ -213,7 +215,7 @@ describe 'User pages' do
 
     describe 'page' do
       it { should have_content('Update My Profile') }
-      it { should have_title('Edit user') }
+      it { should have_title('Edit Employee') }
 
       describe 'as non-admin' do
 

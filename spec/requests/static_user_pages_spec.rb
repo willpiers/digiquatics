@@ -20,6 +20,6 @@ describe 'Statistics' do
       visit user_stats_path
     end
 
-    it { should have_selector('h1', text: 'User Statistics') }
+    it { should have_selector('h1', text: 'Employee Statistics') }
   end
 end

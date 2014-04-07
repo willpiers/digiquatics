@@ -56,14 +56,14 @@ describe 'Chemicals' do
 
       before do
         select pool.name, from: 'chemical_record_pool_id'
-        select 2,         from: 'chemical_record_free_chlorine_ppm'
-        select 3,         from: 'chemical_record_total_chlorine_ppm'
-        select 6.8,       from: 'chemical_record_ph'
-        select 100,       from: 'chemical_record_alkalinity'
-        select 100,       from: 'chemical_record_calcium_hardness'
+        fill_in 'chemical_record_free_chlorine_ppm', with: 2
+        fill_in 'chemical_record_total_chlorine_ppm', with: 3
+        fill_in 'chemical_record_ph', with: 6.8
+        fill_in 'chemical_record_alkalinity', with: 100
+        fill_in 'chemical_record_calcium_hardness', with: 100
         fill_in 'chemical_record_pool_temp', with: 89.1
         fill_in 'chemical_record_air_temp', with: 85.6
-        select 'Clear',   from: 'chemical_record_water_clarity'
+        select  'Clear',   from: 'chemical_record_water_clarity'
       end
 
       it 'should create a chemical record' do
