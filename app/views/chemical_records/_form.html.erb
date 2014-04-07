@@ -26,9 +26,8 @@
     <%= f.text_field :air_temp %>
     <%= f.select :water_clarity, %w[Clear Cloudy], { include_blank: true } %>
 
-    <div class='date-select hidden-xs hidden-sm'>
-      <%= f.time_select :time_stamp, { ampm: true},
-        label: 'Time' %>
+    <div class='hidden-xs hidden-sm'>
+      <%= f.datetime_select :time_stamp, { label: 'Date and Time', ampm: true} %>
     </div>
 
     <%= f.primary ( f.object.new_record? ?  'Submit' : 'Save Changes' ) %>
