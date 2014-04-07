@@ -48,6 +48,7 @@ namespace :db do
         info = notes_header.gsub('_', ' ')
         info.slice! 'notes '
 
+        # this is not including the newlines...
         notes_string << "#{info}: #{user_row[notes_header]}\n"
       end
 
