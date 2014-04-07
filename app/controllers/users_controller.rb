@@ -95,12 +95,11 @@ class UsersController < ApplicationController
   end
 
   def with_users_data(format, filename: 'users')
-    format.html
-    # do
-    #   unless Rails.env.test?
-    #     Tracker.track(current_user.id, 'View User\'s Index')
-    #   end
-    # end
+    format.html do
+      unless Rails.env.test?
+        Tracker.track(current_user.id, 'View User\'s Index')
+      end
+    end
 
     format.csv { render csv: @users, filename: filename }
 

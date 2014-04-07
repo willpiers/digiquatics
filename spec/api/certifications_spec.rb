@@ -20,7 +20,8 @@ describe 'certification expirations' do
   let!(:certification) do
     FactoryGirl.create(:certification,
                        user_id: user.id,
-                       certification_name_id: certification_name.id)
+                       certification_name_id: certification_name.id,
+                       expiration_date: Date.today + 135.days)
   end
 
   before do
