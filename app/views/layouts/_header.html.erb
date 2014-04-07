@@ -30,7 +30,6 @@
               Private Lessons <b class = 'caret'></b></a>
               <ul class = 'dropdown-menu'>
                 <li>
-                  <li><%= link_to 'My Private Lessons', my_lessons_path %></li>
                   <li><%= link_to 'Private Lessons Queue',
                       account_private_lessons_path(account_id: current_user.account_id) %>
                 </li>
@@ -67,6 +66,7 @@
             Account<b class = 'caret'></b></a>
           <ul class = 'dropdown-menu'>
             <li><%= link_to 'My Profile', current_user %></li>
+            <li><%= link_to 'My Private Lessons', my_lessons_path %></li>
             <% if current_user && current_user.admin? %>
               <li class='divider'></li>
               <!--<li><%= link_to 'Manage Users', users_path %></li>-->
