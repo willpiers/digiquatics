@@ -38,7 +38,7 @@ class UsersController < ApplicationController
 
   def update
     if @user.update_attributes(user_params)
-      mixpanel_track_people
+      # mixpanel_track_people
       sign_in(@user, bypass: true) if @user == current_user
 
       flash[:success] = 'Profile updated'
@@ -63,15 +63,15 @@ class UsersController < ApplicationController
   include ApplicationHelper
   include UsersHelper
 
-  def mixpanel_track_people
-    Tracker.people.set(@user.id, @user.attributes) unless Rails.env.test?
-  end
+  # def mixpanel_track_people
+  #   Tracker.people.set(@user.id, @user.attributes) unless Rails.env.test?
+  # end
 
   def redirect_to_created_user
-    mixpanel_track_people
+    # mixpanel_track_people
 
-    Tracker.track(current_user.id, 'Create New User',
-                  created_user_id: @user.id) unless Rails.env.test?
+    # Tracker.track(current_user.id, 'Create New User',
+    #               created_user_id: @user.id) unless Rails.env.test?
 
     flash[:success] = 'You have successfully created a user account!'
 
