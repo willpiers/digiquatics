@@ -45,7 +45,7 @@
         <td>{{user.location.name}}</td>
         <td>{{user.position.name}}</td>
         <td>{{user.email}}</td>
-        <td>{{user.phone_number}}</td>
+        <td><a ng-href='tel:{{user.phone_number}}'>{{user.phone_number}}</td>
         <td>{{user.admin | booleanToWords}}</td>
       </tr>
     </tbody>

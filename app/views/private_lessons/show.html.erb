@@ -28,7 +28,7 @@
         <th> Instructor Phone Number </th>
         <td>
           <% if @private_lesson.user %>
-            <%= @private_lesson.user.phone_number %>
+            <%= phone_number_link(@private_lesson.user.phone_number) %>
           <% end %>
         </td>
       </tr>
@@ -63,7 +63,7 @@
       </tr>
       <tr>
         <th> Phone Number</th>
-        <td> <%= @private_lesson.phone_number %> </td>
+        <td> <%= phone_number_link(@private_lesson.phone_number) %> </td>
       </tr>
       <tr>
         <th> Email </th>
