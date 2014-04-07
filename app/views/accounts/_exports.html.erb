@@ -23,7 +23,7 @@
     </div>
   <% end %>
   <div class='col-md-3'>
-    <%= link_to 'Active Users', users_path(format: 'csv'),
+    <%= link_to 'Active Employees', users_path(format: 'csv'),
       class: 'btn btn-danger btn-sm' %>
   </div>
 </div>
@@ -32,7 +32,7 @@
 
 <div class ='row'>
     <div class='col-md-3'>
-    <%= link_to 'Inactive Users', inactive_index_path(format: 'csv'),
+    <%= link_to 'Inactive Employees', inactive_index_path(format: 'csv'),
       class: 'btn btn-danger btn-sm' %>
   </div>
   <% if FeatureToggleHelper.maintenance? %>

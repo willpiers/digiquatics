@@ -1,6 +1,6 @@
 <% if current_user %>
-  <% provide(:title, 'Create New User') %>
-  <%= render 'form', :legend => 'Create New User', :user => @user %>
+  <% provide(:title, 'Create New Employee') %>
+  <%= render 'form', :legend => 'Create New Employee', :user => @user %>
 <% else %>
   <% provide(:title, 'Sign Up') %>
   <%= render 'form', :legend => 'Sign Up', :user => @user %>

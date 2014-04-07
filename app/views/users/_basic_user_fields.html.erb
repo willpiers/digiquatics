@@ -1,4 +1,4 @@
-<center><h4>Basic User Information</h4></center>
+<center><h4>Basic Employee Information</h4></center>
 
 <% unless signed_in? %>
   <%= f.select :account_id, options_from_collection_for_select(Account.all, :id, :name) %>
