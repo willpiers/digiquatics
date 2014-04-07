@@ -24,11 +24,15 @@ class UsersController < ApplicationController
   end
 
   def new
-    @user      = User.new
-    @locations = Location.all
-    @positions = Position.all
-
-    @user.certifications.build
+    if current_user
+      @user      = User.new
+      @locations = Location.all
+      @positions = Position.all
+      @user.certifications.build
+    else
+      @user = User.new
+      render layout: 'devise'
+    end
   end
 
   def edit

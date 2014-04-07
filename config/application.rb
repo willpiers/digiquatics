@@ -40,6 +40,18 @@ module DigiQuatics
     # config.i18n.load_path +=
     #   Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
+
+    SESSIONS = proc { |controller| user_signed_in? ? 'application' : 'devise' }
+
+    config.to_prepare do
+      Devise::SessionsController.layout SESSIONS
+      Devise::RegistrationsController.layout SESSIONS
+      Devise::ConfirmationsController.layout SESSIONS
+      Devise::UnlocksController.layout SESSIONS
+      Devise::PasswordsController.layout SESSIONS
+
+    end
+
     I18n.enforce_available_locales = true
     config.assets.precompile += %w(*.png *.jpg *.jpeg *.gif)
   end
