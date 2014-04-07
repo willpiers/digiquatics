@@ -17,7 +17,7 @@ Bundler.require(:default, Rails.env)
 
 module DigiQuatics
   class Application < Rails::Application
-    system("rubocop -D #{Rails.root}") if Rails.env.development?
+    # system("rubocop -D #{Rails.root}") if Rails.env.development?
 
     config.generators do |g|
       g.stylesheets false
