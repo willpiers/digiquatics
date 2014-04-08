@@ -13,6 +13,9 @@ AllCops:
     - config/application.rb
     - bin/**
 
+Void:
+  Enabled: false
+
 Documentation:
   Enabled: false
 

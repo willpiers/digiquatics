@@ -1,2 +1,2 @@
 account_name,account_time_zone,first_name,last_name,nickname,email,phone_number,secondary_phone_number,date_of_birth,date_of_hire,employee_id,position_name,location_name,notes,address1,address2,city,state,zipcode,emergency_first,emergency_last,emergency_phone,sex,shirt_size,suit_size,femalesuit,payrate,grouping,active
-DigiQuatics,Foo,Bar,Quz,foo@bar.quz,1234567890,123-456-7890,09/12/1993,09/12/1993,C312,Lifeguard,La Alma,blah,,,,,,,,,,,,,,,
+DigiQuatics,Mountain Time (US & Canada),Foo,Bar,Quz,foo@bar.quz,1234567890,123-456-7890,09/12/1993,09/13/1993,C312,Lifeguard,La Alma,blah,,,,,,,,,,,,,,,false
