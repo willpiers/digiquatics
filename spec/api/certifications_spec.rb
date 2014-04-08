@@ -40,8 +40,8 @@ describe 'certification expirations' do
           'lastName'                        => user.last_name,
           'firstName'                       => user.first_name,
           'location'                        => location.name,
-          certification_name.name           => '2012-09-14T18:00:00.000-06:00',
-          "#{certification_name.name}class" => 'danger'
+          certification_name.name           => '2014-10-24T18:00:00.000-06:00',
+          "#{certification_name.name}class" => 'success'
         }
       ]
     end
