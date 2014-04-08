@@ -31,14 +31,16 @@ module CertificationsHelper
   end
 
   def css_class(date)
-    if date <= Date.today
-      'danger'
-    elsif date > Date.today && date < (Date.today + 90.days)
-      'warning'
-    elsif date > Data.today && date <= (Data.today + 180.days) && date >= (Data.today + 90.days)
-      'info'
-    elsif date > (Date.today + 180.days)
-      'success'
-    end
+    case date
+      when (Date.today - 1000.days)..(Date.today)
+        'danger'
+      when (Date.today)..(Date.today + 90.days)
+        'warning'
+      when (Date.today + 90.days)..(Date.today + 180.days)
+        'cert_blue'
+      else
+        'success'
+      end
   end
 end
+
