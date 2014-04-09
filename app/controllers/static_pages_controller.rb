@@ -7,9 +7,9 @@ class StaticPagesController < ApplicationController
   end
 
   def index
-    # if !Rails.env.test? && current_user
-    #   Tracker.track(current_user.id, 'View Index')
-    # end
+    if !Rails.env.test? && current_user
+      Tracker.track(current_user.id, 'View Index')
+    end
 
     render :index, layout: false
   end
