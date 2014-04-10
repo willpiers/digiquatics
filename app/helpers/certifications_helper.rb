@@ -11,11 +11,13 @@ module CertificationsHelper
 
   def certification_data(user)
     user.certifications.each_with_object({}) do |cert, hash|
-      cert_name = cert.certification_name.name
-      cert_date = cert.expiration_date
+      cert_name             = cert.certification_name.name
+      cert_name_searchable  = cert.certification_name
+      cert_date             = cert.expiration_date
 
-      hash[cert_name]           = cert_date
-      hash["#{cert_name}class"] = css_class(cert_date)
+      hash[cert_name]            = cert_date
+      hash[cert_name_searchable] = cert_name
+      hash["#{cert_name}class"]  = css_class(cert_date)
     end
   end
 
