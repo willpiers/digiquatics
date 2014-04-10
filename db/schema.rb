@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140407035102) do
+ActiveRecord::Schema.define(version: 20140410145126) do
 
   create_table "accounts", force: true do |t|
     t.string   "name"
@@ -170,8 +170,6 @@ ActiveRecord::Schema.define(version: 20140407035102) do
     t.string   "post_title"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.date     "date_stamp"
-    t.time     "time_stamp"
     t.text     "post_content"
     t.integer  "user_id"
     t.integer  "location_id"
@@ -184,6 +182,7 @@ ActiveRecord::Schema.define(version: 20140407035102) do
     t.string   "attachment_back_content_type"
     t.integer  "attachment_back_file_size"
     t.datetime "attachment_back_updated_at"
+    t.datetime "time_stamp"
   end
 
   create_table "users", force: true do |t|
