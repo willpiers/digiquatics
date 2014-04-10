@@ -51,8 +51,9 @@
       <tr>
         <th> Submitted By </th>
         <td>
-          <%= @facade.submitter.first_name %>
-          <%= @facade.submitter.last_name %>
+          <%= link_to "#{@facade.submitter.first_name}
+                       #{ @facade.submitter.last_name}",
+                       user_path(id: @help_desk.user.id) %>
         </td>
       </tr>
       <tr>
@@ -72,8 +73,9 @@
           <th>Closed By</th>
             <td>
               <% if @help_desk.closed_user_id? %>
-                <%= @facade.closer.first_name %>
-                <%= @facade.closer.last_name %>
+                <%= link_to "#{@facade.closer.first_name}
+                             #{ @facade.closer.last_name}",
+                             user_path(id: @help_desk.user.id) %>
               <% end %>
             </td>
         </tr>

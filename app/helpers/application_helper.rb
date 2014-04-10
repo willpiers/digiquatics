@@ -29,7 +29,7 @@ module ApplicationHelper
   end
 
   def boolean_to_words(value)
-    value ? 'Yes' : 'N0'
+    value ? 'Yes' : 'No'
   end
 
   def link_to_add_fields(name, f, association)

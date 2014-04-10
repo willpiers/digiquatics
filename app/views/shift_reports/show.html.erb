@@ -23,8 +23,9 @@
     <tr>
       <th> Submitted By </th>
         <td>
-          <%= @shift_report.user.first_name %>
-          <%= @shift_report.user.last_name %>
+          <%= link_to "#{@shift_report.user.first_name}
+                       #{@shift_report.user.last_name}",
+                       user_path(id: @shift_report.user.id) %>
         </td>
     </tr>
     <tr>

@@ -64,8 +64,9 @@
       <th>Submitted By</th>
         <td>
           <% if @chemical_record.user_id? %>
-            <%= @chemical_record.user.first_name %>
-            <%= @chemical_record.user.last_name %>
+            <%= link_to "#{@chemical_record.user.first_name}
+                         #{@chemical_record.user.last_name}",
+                         user_path(id: @chemical_record.user.id) %>
           <% end %>
         </td>
     </tr>

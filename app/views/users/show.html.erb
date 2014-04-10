@@ -89,10 +89,8 @@
           </td>
         </tr>
         <tr>
-          <th> Address 1 </th><td><%= @user.address1 %></td>
-        </tr>
-        <tr>
-          <th> Address 2 </th><td><%= @user.address2 %></td>
+          <th> Address </th>
+          <td><%= "#{@user.address1} #{@user.address2}" %></td>
         </tr>
         <tr>
           <th> City </th><td><%= @user.city %></td>
@@ -120,11 +118,8 @@
           <td><%= phone_number_link(@user.secondary_phone_number) %></td>
         </tr>
         <tr>
-          <th> Age </th><td><%= age(@user.date_of_birth) %></td>
-        </tr>
-        <tr>
           <th> DOB </th><td><%= @user.date_of_birth ?
-            @user.date_of_birth.strftime('%-m/%-d/%Y') : '-' %></td>
+            "#{@user.date_of_birth.strftime('%-m/%-d/%Y')} (#{age(@user.date_of_birth)} Years Old)" : '-' %></td>
         </tr>
         <tr>
           <th> DOH </th><td><%= @user.date_of_hire ?
@@ -145,10 +140,8 @@
           </tr>
         <% end %>
         <tr>
-          <th> Emergency First Name </th><td><%= @user.emergency_first %></td>
-        </tr>
-        <tr>
-          <th>  Emergency Last Name </th><td><%= @user.emergency_last %></td>
+          <th> Emergency Contact </th>
+          <td><%= "#{@user.emergency_first} #{@user.emergency_last}" %></td>
         </tr>
         <tr>
           <th>  Emergency Phone Number </th><td><%= phone_number_link(@user.emergency_phone) %></td>

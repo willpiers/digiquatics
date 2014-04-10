@@ -20,7 +20,8 @@
          <th id='fixtablewidth'> Instructor Name </th>
         <td>
           <% if @private_lesson.user %>
-            <%= lessons_full_name(@private_lesson.user) %>
+            <%= link_to lessons_full_name(@private_lesson.user),
+                user_path(id: @private_lesson.user.id)%>
           <% end %>
         </td>
       </tr>
@@ -56,12 +57,8 @@
   <table class='table table-bordered table-condensed' >
     <h4> Parent Information </h4>
       <tr>
-         <th id='fixtablewidth'> First Name </th>
-        <td> <%= @private_lesson.parent_first_name %> </td>
-      </tr>
-      <tr>
-        <th> Last Name </th>
-        <td> <%= @private_lesson.parent_last_name %> </td>
+         <th id='fixtablewidth'> Name </th>
+         <td> <%= "#{@private_lesson.parent_first_name} #{@private_lesson.parent_last_name}" %> </td>
       </tr>
       <tr>
         <th> Phone Number</th>
@@ -86,11 +83,7 @@
       <h4> Student Information </h4>
       <tr>
          <th id='fixtablewidth'> First Name </th>
-        <td> <%= participant.first_name %> </td>
-      </tr>
-      <tr>
-        <th> Last Name </th>
-        <td> <%= participant.last_name %> </td>
+        <td> <%= "#{participant.first_name} #{participant.last_name}" %> </td>
       </tr>
       <tr>
         <th> Gender</th>
