@@ -1,4 +1,4 @@
-<% provide(:title, @user.first_name) %>
+<% provide(:title, "#{@user.first_name} #{@user.last_name.each_char.first}.") %>
 <%= link_to 'link', @article unless @article.nil? %>
 <h1><%= full_name(@user) %></h1>
 
