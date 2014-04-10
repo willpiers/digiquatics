@@ -1,53 +1,56 @@
 <div class='table-responsive'>
-
-  <table class='table table-hover table-condensed'>
+  <table class='table table-hover table-condensed' >
     <thead>
       <tr>
-        <th>Last Name</th>
-        <th>First Name</th>
-        <th>Age</th>
-        <th>Sex</th>
-        <th>Day</th>
-        <th>Time</th>
-        <th>Location</th>
-        <th>Date</th>
+        <th>
+          <a href="" ng-click="predicate.value = 'participants.last_name'; reverse=!reverse">
+          Last Name</a>
+        </th>
+        <th>
+          <a href="" ng-click="predicate.value = 'participantsfirst_name'; reverse=!reverse">
+          First Name</a>
+        </th>
+        <th>
+          <a href="" ng-click="predicate.value = 'participants.age'; reverse=!reverse">
+          Age</a>
+        </th>
+        <th>
+          <a href="" ng-click="predicate.value = 'participants.sex'; reverse=!reverse">
+          Sex</a>
+        </th>
+        <th>
+          <a href="" ng-click="predicate.value = 'day'; reverse=!reverse">
+          Day</a>
+        </th>
+        <th>
+          <a href="" ng-click="predicate.value = 'time'; reverse=!reverse">
+          Time</a>
+        </th>
+        <th>
+          <a href="" ng-click="predicate.value = ''; reverse=!reverse">
+          Location</a>
+        </th>
+        <th>
+          <a href="" ng-click="predicate.value = 'created_at'; reverse=!reverse">
+          Date</a>
+        </th>
       </tr>
     </thead>
-
     <tbody>
-      <% @private_lessons.each do |private_lesson| %>
-        <tr>
-          <td>
-            <% if private_lesson.participants.first %>
-              <%= link_to private_lesson.participants.first.last_name, private_lesson %>
-            <% end %>
-          </td>
-          <td>
-            <% if private_lesson.participants.first %>
-              <%= private_lesson.participants.first.first_name %>
-            <% end %>
-          </td>
-          <td>
-            <% if private_lesson.participants.first %>
-              <%= private_lesson.participants.first.age %>
-            <% end %>
-          </td>
-          <td>
-            <% if private_lesson.participants.first %>
-              <%= private_lesson.participants.first.sex %>
-            <% end %>
-          </td>
-          <td><%= private_lesson.day %></td>
-          <td><%= private_lesson.time %></td>
-          <td>
-            <% if Location.find_by_id(private_lesson.preferred_location) %>
-              <%= Location.find_by_id(private_lesson.preferred_location).name %>
-            <% end %>
-          </td>
-          <td><%= private_lesson.created_at.strftime('%-m/%-d/%Y') %></td>
-        </tr>
-      <% end %>
+      <tr ng-repeat='lesson in lessons | orderBy:predicate.value:reverse | filter:locationFilter | filter:search'>
+        <td>
+          <a ng-href='#'>
+            {{lesson.participants.last_name}}
+          </a>
+        </td>
+        <td>{{lesson.participants.first_name}}</td>
+        <td>{{lesson.participants.age}}</td>
+        <td>{{lesson.participants.sex}}</td>
+        <td>{{lesson.day}}</td>
+        <td>{{lesson.time}}</td>
+        <td></td>
+        <td>{{lesson.created_at}}</td>
+      </tr>
     </tbody>
   </table>
-  <br>
 </div>
