@@ -1,21 +1,34 @@
-<% provide(:title, 'Open Issues') %>
-<h1>Open Issues</h1>
-
-<div class='row'>
-
-  <div class='col-md-9'></div>
-
-  <div class='col-md-3'>
+<div ng-app='digiquatics'>
+  <div ng-controller='HelpDesksCtrl'>
+    <% provide(:title, 'Open Issues') %>
+    <h1>Open Issues</h1>
     <br><br>
-    <div class='btn-group'>
-      <%= link_to 'Add Issue', new_help_desk_path,
-        class: 'btn btn-primary btn-sm', role: 'button' %>
-      <%= link_to 'View Closed', closed_index_path,
-        class: 'btn btn-danger btn-sm', role: 'button' %>
+    <div class='row'>
+      <div class='col-md-2'>
+        <div class="input-group">
+          <input class="form-control" ng-model="search" type='text'placeholder="Search"/>
+          <span class="input-group-addon">
+            <span class="glyphicon glyphicon-search"></span>
+          </span>
+        </div>
+      </div>
+      <div class='col-md-3'>
+        <select ng-model='locationFilter' class='form-control'>
+          <option value=''>All Locations</option>
+          <option ng-repeat='location in locations' value='{{location.name}}'>{{location.name}}</option>
+        </select>
+      </div>
+      <div class='col-md-4'></div>
+      <div class='col-md-3'>
+       <div class='btn-group'>
+         <%= link_to 'Add Issue', new_help_desk_path,
+           class: 'btn btn-primary btn-sm', role: 'button' %>
+         <%= link_to 'View Closed', closed_index_path,
+           class: 'btn btn-danger btn-sm', role: 'button' %>
+       </div>
+      </div>
     </div>
+    <br>
+    <%= render 'help_desks' %>
   </div>
 </div>
-
-<br>
-
-<%= render 'help_desks' %>

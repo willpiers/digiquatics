@@ -1,49 +1,48 @@
 <div class='table-responsive'>
-  <table class='table table-hover table-condensed'>
+  <table class='table table-hover table-condensed' >
     <thead>
       <tr>
-        <th> </th>
-        <th>Problem</th>
-        <th>Urgency</th>
+        <th></th>
         <th>Location</th>
-        <th>Submitted By</th>
-        <th>Date Submitted</th>
-        <th>Status</th>
+        <th>
+          <a href="" ng-click="predicate.value = 'created_at'; reverse=!reverse">
+          Date</a>
+        </th>
+        <th>
+          <a href="" ng-click="predicate.value = 'name'; reverse=!reverse">
+          Problem</a>
+        </th>
+        <th>
+          <a href="" ng-click="predicate.value = 'urgency'; reverse=!reverse">
+          Urgency</a>
+        </th>
+        <th>
+          <a href="" ng-click="predicate.value = 'user.first_name'; reverse=!reverse">
+          Submitted By</a>
+        </th>
       </tr>
-  </thead>
-
-  <tbody>
-    <% @help_desks.each do |help_desk| %>
-      <tr>
-
+    </thead>
+    <tbody>
+      <tr ng-repeat='item in helpDesks | orderBy:predicate.value:reverse | filter:locationFilter | filter:search'>
         <td>
-          <% if help_desk.help_desk_attachment? %>
-            <%= link_to '', help_desk.help_desk_attachment.url,
-            class: 'glyphicon glyphicon-picture' %>
-          <% else %>
-          <% end %>
+          <div ng-show={{item.help_desk_attachment_file_name}} %>
+            <span class='glyphicon glyphicon-picture'></span>
+          </div>
         </td>
-        <td><%= link_to help_desk.name, help_desk %></td>
-
-        <% if help_desk.urgency == 'Low'  %>
-          <td class='success'><%= help_desk.urgency %></td>
-        <% elsif help_desk.urgency == 'Medium'  %>
-          <td class='warning'><%= help_desk.urgency %></td>
-        <% elsif help_desk.urgency == 'High'  %>
-          <td class='danger'><%= help_desk.urgency %></td>
-        <% else %>
-           <td><%= help_desk.urgency %></td>
-        <% end %>
-
-        <td><%= Location.find(help_desk.location_id).name %></td>
-
-        <td><%= User.find(help_desk.user_id).first_name %>
-          <%= User.find(help_desk.user_id).last_name %>
+        <td>{{item.location.name}}</td>
+        <td>{{item.created_at | date:'M/d/yy h:mm a'}}</td>
+        <td>
+          <a ng-href='/help_desks/{{item.id}}'>
+            {{item.name}}
+          </a>
         </td>
-
-        <td><%= help_desk.created_at.strftime('%-m/%-d/%Y') %></td>
-        <td><%= help_desk.issue_status %> </td>
+        <td>{{item.urgency}}</td>
+        <td>
+          <a ng-href='/users/{{item.user.id}}'>
+            {{item.user.last_name}}, {{item.user.first_name}}
+          </a>
+        </td>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </tbody>
+  </table>
+</div>
