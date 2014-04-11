@@ -219,7 +219,7 @@
       </tbody>
     </table>
 
-    <% if signed_in? && current_user.admin? %>
+    <% if signed_in? && current_user.admin? && @user.notes? %> %>
       <div class='row'>
         <div class='col-md-1'>
           <h4>Notes</h4>
