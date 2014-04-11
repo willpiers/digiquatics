@@ -5,4 +5,5 @@
         method: 'GET'
         isArray: true
       )
+    $
 ]
