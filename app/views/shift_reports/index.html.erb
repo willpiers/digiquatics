@@ -18,9 +18,11 @@
           <option ng-repeat='location in locations' value='{{location.name}}'>{{location.name}}</option>
         </select>
       </div>
-      <div class='col-md-4'></div>
-      <div class='col-md-3'>
-        <%= link_to 'New Report', new_shift_report_path, class: 'btn btn-primary btn-sm' %>
+      <div class='col-md-5'></div>
+      <div class='col-md-2'>
+        <div class='btn-group'>
+          <%= link_to 'New Report', new_shift_report_path, class: 'btn btn-primary btn-sm' %>
+        </div>
       </div>
     </div>
     <br>
