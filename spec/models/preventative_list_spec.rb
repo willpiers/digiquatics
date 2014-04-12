@@ -2,8 +2,9 @@ require 'spec_helper'
 
 describe PreventativeList do
 
-  before { @prev_list = PreventativeList.new(name: 'Item1',
-                                             task_type: 'Chore') }
+  before do @prev_list = PreventativeList.new(name: 'Item1',
+                                              task_type: 'Chore')
+  end
 
   subject { @prev_list }
 
