@@ -1,0 +1,7 @@
+<p>
+  The unique URL below for private lessons allows patrons to access the private
+  lessons portal without needing an account or any additional information
+</p>
+
+Unique URL: <%= link_to "http://www.digiquatics.com/account/#{@account.id}/private_lessons/new",
+                new_account_private_lesson_path(account_id: current_account.id) %>

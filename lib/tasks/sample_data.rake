@@ -12,7 +12,11 @@ namespace :db do
 
     Location.create(name: 'Green Mountain Recreation Center',
                     account_id: 1)
-    Location.create(name: 'The Link Recreation Center',
+    Location.create(name: 'Link Recreation Center',
+                    account_id: 1)
+    Location.create(name: 'Carmody Recreation Center',
+                    account_id: 1)
+    Location.create(name: 'Whitlock Recreation Center',
                     account_id: 1)
     Location.create(name: 'Ridge Recreation Center',
                     account_id: 2)
@@ -171,11 +175,14 @@ namespace :db do
                              user_id: [1, 2, 3, 4, 5].sample)
     end
 
-    25.times do |n|
-      HelpDesk.create!(name: %w(A B C D).sample,
+    100.times do |n|
+      name = ['Broken Pipe', 'Loose Door', 'Leak in Sink',
+              'Stiff Diving Board', 'Broken Phone', 'Unorganized Chemicals',
+              'Clean Pumproom', 'Rewrap Lane Lines']
+      HelpDesk.create!(name: name.sample,
                        urgency: %w(Low Medium High).sample,
-                       issue_status: true,
-                       location_id: 1,
+                       issue_status: [true, false].sample,
+                       location_id: [1, 2, 3, 4].sample,
                        user_id: n + 1,
                        closed_user_id: n + 2
                        )

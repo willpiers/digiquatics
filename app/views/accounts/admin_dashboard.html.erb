@@ -23,6 +23,7 @@
     </accordion-group>
     <% if FeatureToggleHelper.private_lessons? %>
       <accordion-group heading="Manage Private Lessons Information">
+        <%= render 'private_lessons' %>
       </accordion-group>
     <% end %>
     <accordion-group heading="Manage Certifications">
