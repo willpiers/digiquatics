@@ -51,13 +51,13 @@ describe 'Manage Locations' do
         current_path.should eq admin_dashboard_path
       end
 
-      describe 'clicking the back button' do
-        before { click_link 'Back' }
+      # describe 'clicking the back button' do
+      #   before { click_link 'Back' }
 
-        it 'should redirect to admin dash' do
-          current_path.should eq admin_dashboard_path
-        end
-      end
+      #   it 'should redirect to admin dash' do
+      #     current_path.should eq admin_dashboard_path
+      #   end
+      # end
     end
 
     describe 'editing an existing location' do
@@ -66,13 +66,13 @@ describe 'Manage Locations' do
         fill_in 'Name', with: 'new location name'
       end
 
-      describe 'clicking the back button' do
-        before { click_link 'Back' }
+      # describe 'clicking the back button' do
+      #   before { click_link 'Back' }
 
-        it 'should redirect to admin dash' do
-          current_path.should eq admin_dashboard_path
-        end
-      end
+      #   it 'should redirect to admin dash' do
+      #     current_path.should eq admin_dashboard_path
+      #   end
+      # end
 
       it 'should update the location and redirect to admin dashboard' do
         expect { click_button 'Update Location' }

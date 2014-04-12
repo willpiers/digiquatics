@@ -17,7 +17,7 @@ describe ChemicalRecordsHelper do
 
   describe 'si_index_calculator' do
     it 'should calculate the correct si index' do
-      si_index_calculator(8, 88, 120, 90).should == 0.27230924567350634
+      si_index_calculator(8, 88, 120, 90).should == 0.27 # 0.27230924567350634
     end
   end
 end

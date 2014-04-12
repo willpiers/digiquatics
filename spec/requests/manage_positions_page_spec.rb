@@ -55,13 +55,13 @@ describe 'Manage Positions' do
         current_path.should == admin_dashboard_path
       end
 
-      describe 'clicking the back button' do
-        before { click_link 'Back' }
+      # describe 'clicking the back button' do
+      #   before { click_link 'Back' }
 
-        it 'should redirect to admin dash' do
-          current_path.should == admin_dashboard_path
-        end
-      end
+      #   it 'should redirect to admin dash' do
+      #     current_path.should == admin_dashboard_path
+      #   end
+      # end
     end
 
     describe 'editing an existing position' do
@@ -70,13 +70,13 @@ describe 'Manage Positions' do
         fill_in 'Name', with: 'new position name'
       end
 
-      describe 'clicking the back button' do
-        before { click_link 'Back' }
+      # describe 'clicking the back button' do
+      #   before { click_link 'Back' }
 
-        it 'should redirect to admin dash' do
-          current_path.should == admin_dashboard_path
-        end
-      end
+      #   it 'should redirect to admin dash' do
+      #     current_path.should == admin_dashboard_path
+      #   end
+      # end
 
       it 'should update the position and redirect to admin dashboard' do
         expect { click_button 'Update Position' }

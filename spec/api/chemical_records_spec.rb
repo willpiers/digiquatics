@@ -6,7 +6,10 @@ describe 'chemical records' do
   let!(:pool) { FactoryGirl.create(:pool, location_id: location.id) }
 
   let!(:chemical_record) do
-    FactoryGirl.create(:chemical_record, pool_id: pool.id)
+    FactoryGirl.create(:chemical_record,
+                       pool_id: pool.id,
+                       ph: 7.5,
+                       total_chlorine_ppm: 7.5)
   end
 
   let!(:user) do

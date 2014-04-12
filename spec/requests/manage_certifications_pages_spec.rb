@@ -63,13 +63,13 @@ describe 'Manage Certifications' do
         current_path.should == admin_dashboard_path
       end
 
-      describe 'clicking the back button' do
-        before { click_link 'Back' }
+      # describe 'clicking the back button' do
+      #   before { click_link 'Back' }
 
-        it 'should redirect to admin dash' do
-          current_path.should == admin_dashboard_path
-        end
-      end
+      #   it 'should redirect to admin dash' do
+      #     current_path.should == admin_dashboard_path
+      #   end
+      # end
     end
 
     describe 'editing an existing certification_name' do
@@ -78,13 +78,13 @@ describe 'Manage Certifications' do
         fill_in 'Name', with: 'new certification_name name'
       end
 
-      describe 'clicking the back button' do
-        before { click_link 'Back' }
+      # describe 'clicking the back button' do
+      #   before { click_link 'Back' }
 
-        it 'should redirect to admin dash' do
-          current_path.should == admin_dashboard_path
-        end
-      end
+      #   it 'should redirect to admin dash' do
+      #     current_path.should == admin_dashboard_path
+      #   end
+      # end
 
       it 'should update the cert_name and redirect to admin dashboard' do
         expect { click_button 'Update Certification name' }

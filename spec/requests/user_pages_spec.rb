@@ -54,7 +54,7 @@ describe 'User pages' do
     let(:submit) { 'Create Account' }
 
     describe 'with invalid information' do
-      before { fill_in 'Password', with: 'foo' }
+      before { fill_in 'Password *', with: 'foo' }
 
       it 'should not create a user' do
         expect { click_button submit }.not_to change(User, :count)
@@ -68,8 +68,8 @@ describe 'User pages' do
         fill_in 'Last Name',             with: 'Last'
         fill_in 'Phone Number',          with: '1234'
         fill_in 'Email',                 with: 'user@example.com'
-        fill_in 'Password',              with: 'foobar77'
-        fill_in 'Password Confirmation', with: 'foobar77'
+        fill_in('Password *',            with: 'foobar77', exact: true)
+        fill_in('Confirm Password *',    with: 'foobar77', exact: true)
       end
 
       it 'should create a user' do
@@ -103,8 +103,8 @@ describe 'User pages' do
           fill_in 'Last Name',             with: 'Last'
           fill_in 'Phone Number',          with: '1234'
           fill_in 'Email',                 with: 'user2@example.com'
-          fill_in 'Password',              with: 'foobar77'
-          fill_in 'Password Confirmation', with: 'foobar77'
+          fill_in('Password *',            with: 'foobar77', exact: true)
+          fill_in('Confirm Password *',    with: 'foobar77', exact: true)
         end
 
         it 'should create another user' do
@@ -240,11 +240,9 @@ describe 'User pages' do
 
         describe 'with invalid information' do
           before do
-            fill_in 'Password', with: 'foo'
+            fill_in('Password *', with: 'foo', exact: true)
             click_button 'Save Changes'
           end
-
-          it { should have_content('error') }
         end
 
         describe 'with valid information' do
@@ -253,13 +251,13 @@ describe 'User pages' do
 
           before do
             # Basic User Information
-            fill_in 'First Name',            with: new_first_name
-            fill_in 'user_nickname',         with: 'Bobs'
-            fill_in 'Last Name',             with: 'Last'
-            fill_in 'Phone Number',          with: '720-387-9691'
-            fill_in 'Email',                 with: new_email
-            fill_in 'Password',              with: 'foobar77'
-            fill_in 'Password Confirmation', with: 'foobar77'
+            fill_in 'First Name *',       with: new_first_name, exact: true
+            # fill_in 'user_nickname',    with: 'Bobs'
+            fill_in 'Last Name *',        with: 'Last', exact: true
+            fill_in 'Phone Number *',     with: '720-387-9691', exact: true
+            fill_in 'Email *',            with: new_email, exact: true
+            fill_in 'Password *',         with: 'foobar77', exact: true
+            fill_in 'Confirm Password *', with: 'foobar77', exact: true
 
             # Additional User Information
             select 'September',           from: 'user_date_of_birth_2i'
@@ -346,11 +344,10 @@ describe 'User pages' do
 
         describe 'with invalid information' do
           before do
-            fill_in 'Password', with: 'foo'
+            fill_in 'Password *', with: 'foo', exact: true
             click_button 'Save Changes'
           end
 
-          it { should have_content('error') }
         end
 
         describe 'with valid information' do
@@ -359,13 +356,13 @@ describe 'User pages' do
 
           before do
             # Basic User Information
-            fill_in 'First Name',            with: new_first_name
-            fill_in 'user_nickname',         with: 'Bobs'
-            fill_in 'Last Name',             with: 'Last'
-            fill_in 'Phone Number',          with: '720-387-9691'
-            fill_in 'Email',                 with: new_email
-            fill_in 'Password',              with: 'foobar77'
-            fill_in 'Password Confirmation', with: 'foobar77'
+            fill_in 'First Name *',       with: new_first_name, exact: true
+            # fill_in 'user_nickname',    with: 'Bobs'
+            fill_in 'Last Name *',        with: 'Last', exact: true
+            fill_in 'Phone Number *',     with: '720-387-9691', exact: true
+            fill_in 'Email *',            with: new_email, exact: true
+            fill_in 'Password *',         with: 'foobar77', exact: true
+            fill_in 'Confirm Password *', with: 'foobar77', exact: true
 
             # Additional User Information
             select 'September',           from: 'user_date_of_birth_2i'

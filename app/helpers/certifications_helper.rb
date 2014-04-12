@@ -45,4 +45,3 @@ module CertificationsHelper
       end
   end
 end
-

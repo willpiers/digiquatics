@@ -57,4 +57,14 @@ describe ChemicalRecord do
     before { @chemical_record.pool_id = nil }
     it { should_not be_valid }
   end
+
+  describe 'when total_chlorine_ppm is not present' do
+    before { @chemical_record.total_chlorine_ppm = nil }
+    it { should_not be_valid }
+  end
+
+  describe 'when ph is not present' do
+    before { @chemical_record.ph = nil }
+    it { should_not be_valid }
+  end
 end
