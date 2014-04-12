@@ -15,7 +15,7 @@
 
 <%= f.file_field :avatar, label: 'User Avatar' %>
 
-<center><h4>Sizing Information</h4></center>
+<div id='sizing'><center><h4>Sizing Information</h4></center></div>
 
 <%= f.select :shirt_size, %w[XS S M L XL XXL], {include_blank: true},
   label: 'Shirt Size' %>
@@ -24,7 +24,7 @@
 <%= f.select :femalesuit, %w[28 30 32 34 36 38 40], {include_blank: true},
   label: 'One Piece Suit Size (F)' %>
 
-<center><h4>Emergency Contact Information</h4></center>
+<div id='emergency'><center><h4>Emergency Contact Information</h4></center></div>
 
 <%= f.text_field :emergency_first, label: 'Emergency First Name' %>
 <%= f.text_field :emergency_last, label: 'Emergency Last Name' %>

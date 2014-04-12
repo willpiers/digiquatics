@@ -3,13 +3,13 @@
     style: :horizontal, left: 'col-sm-4', right: 'col-sm-8') do |f| %>
     <legend><%= legend %></legend>
     <p> * Indicates required field </p>
-    <div><%= render 'basic_user_fields', f: f %></div>
+    <div id='basic'><%= render 'basic_user_fields', f: f %></div>
 
     <% unless f.object.new_record? %>
-      <div><%= render 'additional_user_fields', { f: f, user: @user } %></div>
+      <div id='additional'><%= render 'additional_user_fields', { f: f, user: @user } %></div>
 
       <% if signed_in? && current_user.admin? %>
-        <div><%= render 'admin_fields', f: f %></div>
+        <div id='admin'><%= render 'admin_fields', f: f %></div>
       <% end %>
     <% end %>
 

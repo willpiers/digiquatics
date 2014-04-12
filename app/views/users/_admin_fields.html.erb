@@ -18,7 +18,7 @@
 
 <center><h4>Certifications</h4></center>
 <%= f.fields_for :certifications do |builder| %>
-  <%= render 'certification_fields', f: builder %>
+<div id='certifications'><%= render 'certification_fields', f: builder %></div>
 <% end %>
 
 <%= link_to_add_fields(
@@ -27,5 +27,7 @@
 
 <br><br>
 
-<%= f.text_area :notes, size: '2x',
-  placeholder: 'Leave a comment...' %>
+<div id='notes'>
+  <%= f.text_area :notes, size: '2x',
+    placeholder: 'Leave a comment...' %>
+</div>

@@ -44,7 +44,12 @@
 </div>
 
 <div class='table-responsive'>
-  <h4>Basic Employee Information </h4>
+  <h4>
+    Basic Employee Information
+    <%= link_to ' Edit', "http://localhost:3000/users/#{@user.id}/edit#basic",
+        class: 'glyphicon glyphicon-pencil pull-right',
+        style: 'font-size: 80%' %>
+  </h4>
 
     <table class='table table-bordered table-condensed' >
       <tr>
@@ -61,7 +66,12 @@
       </tr>
     </table>
 
-  <h4>Additional Employee Information </h4>
+  <h4>
+    Additional Employee Information
+    <%= link_to ' Edit', "http://localhost:3000/users/#{@user.id}/edit#additional",
+        class: 'glyphicon glyphicon-pencil pull-right',
+        style: 'font-size: 80%' %>
+  </h4>
 
     <table class='table table-bordered table-condensed' >
       <tr>
@@ -90,7 +100,12 @@
       </tr>
     </table>
 
-    <h4>Sizing Information </h4>
+    <h4>
+      Sizing Information
+      <%= link_to ' Edit', "http://localhost:3000/users/#{@user.id}/edit#sizing",
+          class: 'glyphicon glyphicon-pencil pull-right',
+          style: 'font-size: 80%' %>
+    </h4>
 
       <table class='table table-bordered table-condensed' >
         <tr>
@@ -107,7 +122,12 @@
         <% end %>
       </table>
 
-    <h4>Emergency Contact Information </h4>
+    <h4>
+      Emergency Contact Information
+      <%= link_to ' Edit', "http://localhost:3000/users/#{@user.id}/edit#emergency",
+          class: 'glyphicon glyphicon-pencil pull-right',
+          style: 'font-size: 80%' %>
+    </h4>
 
       <table class='table table-bordered table-condensed' >
         <tr>
@@ -119,7 +139,12 @@
         </tr>
       </table>
 
-      <h4>Admin </h4>
+      <h4>
+        Admin
+        <%= link_to ' Edit', "http://localhost:3000/users/#{@user.id}/edit#admin",
+            class: 'glyphicon glyphicon-pencil pull-right',
+            style: 'font-size: 80%' %>
+      </h4>
 
         <table class='table table-bordered table-condensed' >
           <tr>
@@ -169,7 +194,12 @@
 
   <div class='table-responsive'>
 
-    <h4> Certification Information </h4>
+    <h4>
+      Certification Information
+      <%= link_to ' Edit', "http://localhost:3000/users/#{@user.id}/edit#certifications",
+          class: 'glyphicon glyphicon-pencil pull-right',
+          style: 'font-size: 80%' %>
+    </h4>
 
     <div class='pull-left' style='font-size: 60%'>
       <br>
@@ -179,11 +209,6 @@
           <img src='/images/greendot.png' alt='green' height='10px' width='10px' /> = Normal
        </p>
     </div>
-
-    <ul class='pull-right'>
-      <%= link_to 'Edit', edit_user_path(@user),
-                  class: 'btn btn-default btn-primary' %>
-    </ul>
 
     <table class='table table-bordered table-condensed' >
       <thead>
@@ -222,12 +247,16 @@
       </tbody>
     </table>
 
-    <% if signed_in? && current_user.admin? && @user.notes? %> %>
-      <div class='row'>
-        <div class='col-md-1'>
-          <h4>Notes</h4>
-        </div>
-      </div>
+    <% if signed_in? && current_user.admin? %>
+      <h4>
+        Notes
+        <%= link_to ' Edit', "http://localhost:3000/users/#{@user.id}/edit#notes",
+            class: 'glyphicon glyphicon-pencil pull-right',
+            style: 'font-size: 80%' %>
+      </h4>
+      <% if !@user.notes? %>
+        <p> Please click the pencil to add notes </p>
+      <% end %>
       <%= @user.notes %>
     <% end %>
 </div>
