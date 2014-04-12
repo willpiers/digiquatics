@@ -1,6 +1,2 @@
-<h1>New Preventative Task</h1>
-
-<div id='accountform'>
-  <%= render 'form' %>
-  <%= link_to 'Back', preventative_lists_path %>
-</div>
+<% provide(:title, 'New Preventative Task') %>
+<%= render partial: 'form', locals: {legend: 'New Preventative Task'} %>

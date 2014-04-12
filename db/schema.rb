@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140410145126) do
+ActiveRecord::Schema.define(version: 20140412162403) do
 
   create_table "accounts", force: true do |t|
     t.string   "name"
@@ -127,9 +127,9 @@ ActiveRecord::Schema.define(version: 20140410145126) do
 
   create_table "preventative_lists", force: true do |t|
     t.string   "name"
-    t.string   "type"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "task_type"
   end
 
   create_table "private_lessons", force: true do |t|

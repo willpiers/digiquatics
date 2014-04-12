@@ -48,6 +48,6 @@ class PreventativeListsController < ApplicationController
   end
 
   def preventative_list_params
-    params.require(:preventative_list).permit(:name, :type)
+    params.require(:preventative_list).permit(:name, :task_type)
   end
 end
