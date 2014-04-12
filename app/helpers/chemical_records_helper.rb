@@ -45,10 +45,14 @@ module ChemicalRecordsHelper
   }
 
   def si_index_calculator(ph_reading, pool_temp, calcium_hardness, alkalinity)
-    temp = 0.7571 * log(pool_temp) - 2.6639
-    ch   = 0.4341 * log(calcium_hardness) - 0.3926
-    ta   = 0.4341 * log(alkalinity) + 0.0074
-    @si  = ph_reading + temp + ch + ta - 12.1
+    if pool_temp && calcium_hardness && alkalinity
+      temp = 0.7571 * log(pool_temp) - 2.6639
+      ch   = 0.4341 * log(calcium_hardness) - 0.3926
+      ta   = 0.4341 * log(alkalinity) + 0.0074
+      @si  = (ph_reading + temp + ch + ta - 12.1).round(2)
+    else
+      'no data'
+    end
   end
 
   def si_calc(si_index, option)
@@ -58,6 +62,10 @@ module ChemicalRecordsHelper
   end
 
   def combined_calculator(total_chlorine, free_chlorine)
-    total_chlorine - free_chlorine
+    if total_chlorine && free_chlorine
+      total_chlorine - free_chlorine
+    else
+      total_chlorine
+    end
   end
 end

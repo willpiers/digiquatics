@@ -32,7 +32,7 @@ class ChemicalRecordsController < ApplicationController
       si_index_calculator(@chemical_record.ph,
                           @chemical_record.pool_temp,
                           @chemical_record.calcium_hardness,
-                          @chemical_record.alkalinity).round(2)
+                          @chemical_record.alkalinity)
 
     @chemical_record.si_status = si_calc(@chemical_record.si_index, :status)
 

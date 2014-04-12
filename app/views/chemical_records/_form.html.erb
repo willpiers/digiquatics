@@ -15,19 +15,21 @@
     <% end %>
 
     <%= content_tag(:legend, legend) unless !legend %>
+    <p> * Indicates required field </p>
     <%= f.select :pool_id,
       options_from_collection_for_select(Pool.same_location_as(current_user) , :id, :name ) %>
-    <%= f.text_field :free_chlorine_ppm %>
-    <%= f.text_field :total_chlorine_ppm %>
-    <%= f.text_field :ph %>
+    <%= f.text_field :free_chlorine_ppm, label: 'Free Chlorine ppm' %>
+    <%= f.text_field :total_chlorine_ppm, label: 'Total Chlorine ppm *' %>
+    <%= f.text_field :ph, label: 'PH *' %>
     <%= f.text_field :alkalinity %>
-    <%= f.text_field :calcium_hardness %>
-    <%= f.text_field :pool_temp %>
-    <%= f.text_field :air_temp %>
-    <%= f.select :water_clarity, %w[Clear Cloudy], { include_blank: true } %>
+    <%= f.text_field :calcium_hardness, label: 'Calcium Hardness' %>
+    <%= f.text_field :pool_temp, label: 'Pool Temp' %>
+    <%= f.text_field :air_temp, label: 'Air Temp' %>
+    <%= f.select :water_clarity, %w[Clear Cloudy],
+                { include_blank: true, label: 'Water Clarity' } %>
 
     <div class='hidden-xs hidden-sm'>
-      <%= f.datetime_select :time_stamp, { label: 'Date and Time', ampm: true} %>
+      <%= f.datetime_select :time_stamp, { label: 'Date', ampm: true} %>
     </div>
 
     <%= f.primary ( f.object.new_record? ?  'Submit' : 'Save Changes' ) %>
@@ -35,3 +37,4 @@
   <% end %>
 </div>
 </div>
+

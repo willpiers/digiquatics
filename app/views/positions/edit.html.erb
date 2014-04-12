@@ -1,5 +1,2 @@
-<h1>Edit Position</h1>
-<div id='accountform'>
-  <%= render 'form' %>
-  <%= link_to 'Back', admin_dashboard_path %>
-</div>
+<% provide(:title, 'Edit Position') %>
+<%= render partial: 'form', locals: {legend: 'Edit Position'} %>

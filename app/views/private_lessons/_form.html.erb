@@ -4,16 +4,16 @@
     style: :horizontal, left: 'col-sm-4', right: 'col-sm-8' do |f| %>
 
     <%= content_tag(:legend, legend) if legend %>
-
+    <p> * Indicates required field </p>
     <h4> Parent Information </h4>
     <br>
-      <%= f.text_field :parent_first_name, label: 'Parent First Name' %>
-      <%= f.text_field :parent_last_name, label: 'Parent Last Name' %>
-      <%= f.telephone_field :phone_number, label: 'Phone Number' %>
-      <%= f.text_field :email %>
+      <%= f.text_field :parent_first_name, label: 'Parent First Name *' %>
+      <%= f.text_field :parent_last_name, label: 'Parent Last Name *' %>
+      <%= f.telephone_field :phone_number, label: 'Phone Number *' %>
+      <%= f.text_field :email, label: 'Email *' %>
       <%= f.select :contact_method,
                    options_for_select(%w[Call Email Text]),
-                   label: 'Preferred Contact Method' %>
+                    { include_blank: true, label: 'Preferred Contact Method'} %>
 
     <h4> Student Information </h4>
 

@@ -1,7 +1,12 @@
-<%= bootstrap_form_for(@position,
-  style: :horizontal, left: 'col-sm-4', right: 'col-sm-8') do |f| %>
-    <%= f.text_field :name %>
-    <%= f.form_group do %>
-      <%= f.submit %>
-    <% end %>
-<% end %>
+<div class='userform well'>
+  <%= bootstrap_form_for(@position,
+    style: :horizontal, left: 'col-sm-4', right: 'col-sm-8') do |f| %>
+      <%= content_tag(:legend, legend) unless !legend %>
+      <p> * Indicates required field </p>
+      <%= f.text_field :name %>
+      <%= f.form_group do %>
+        <%= f.primary %>
+      <% end %>
+  <% end %>
+</div>
+</div>

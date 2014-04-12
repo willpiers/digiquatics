@@ -3,8 +3,8 @@
     style: :horizontal, left: 'col-sm-4', right: 'col-sm-8') do |f| %>
 
     <%= content_tag(:legend, legend) unless !legend %>
-
-    <%= f.text_field :name, label: 'Problem' %>
+    <p> * Indicates required field </p>
+    <%= f.text_field :name, label: 'Problem *' %>
     <%= f.text_area :description, label: 'Description' %>
     <%= f.select :urgency, %w[Low Medium High], label: 'Urgency' %>
     <%= f.file_field :help_desk_attachment, label: 'Attachment' %>

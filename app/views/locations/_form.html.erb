@@ -1,15 +1,17 @@
-<%= bootstrap_form_for(@location,
-  style: :horizontal, left: 'col-sm-4', right: 'col-sm-8') do |f| %>
-
-    <%= f.text_field :name, label: 'Location Name' %>
-
-    <%= f.fields_for :pools do |builder| %>
-      <%= render 'pool_fields', f: builder %>
-    <% end %>
-
-    <%= link_to_add_fields raw('<i class="glyphicon glyphicon-plus-sign glyphicon-2x"></i>'), f, :pools %>
-
-    <%= f.form_group do %>
-      <%= f.submit %>
-    <% end %>
-<% end %>
+<div class='userform well'>
+  <%= bootstrap_form_for(@location,
+    style: :horizontal, left: 'col-sm-4', right: 'col-sm-8') do |f| %>
+      <%= content_tag(:legend, legend) unless !legend %>
+      <p> * Indicates required field </p>
+      <%= f.text_field :name, label: 'Location Name *' %>
+      <%= f.fields_for :pools do |builder| %>
+        <%= render 'pool_fields', f: builder %>
+      <% end %>
+      <%= link_to_add_fields raw('<i class="glyphicon glyphicon-plus-sign glyphicon-2x"></i>'), f, :pools %>
+      <br>
+      <%= f.form_group do %>
+        <%= f.primary %>
+      <% end %>
+  <% end %>
+</div>
+</div>

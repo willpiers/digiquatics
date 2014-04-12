@@ -1,9 +1,9 @@
 <div class='userform well'>
   <%= bootstrap_form_for(@user,
     style: :horizontal, left: 'col-sm-4', right: 'col-sm-8') do |f| %>
-
     <%= render 'shared/error_messages' %>
     <legend><%= legend %></legend>
+    <p> * Indicates required field </p>
     <%= render 'basic_user_fields', f: f %>
 
     <% unless f.object.new_record? %>
