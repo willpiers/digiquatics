@@ -2,7 +2,7 @@ class HelpDesksController < ApplicationController
   before_action :set_help_desk, only: [:show, :edit, :update, :destroy]
 
   def index
-    @help_desks = HelpDesk.all
+    @help_desks = HelpDesk.where(issue_status: true)
 
     respond_to do |format|
       format.html
@@ -19,7 +19,11 @@ class HelpDesksController < ApplicationController
   end
 
   def closed_index
-    @help_desk = HelpDesk.all
+    @closed_index = HelpDesk.where(issue_status: false)
+    respond_to do |format|
+      format.html
+      format.json
+    end
   end
 
   def new
