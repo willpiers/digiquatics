@@ -25,7 +25,7 @@
     <tbody>
       <tr ng-repeat='item in helpDesks | orderBy:predicate.value:reverse | filter:locationFilter | filter:search'>
         <td>
-          <div ng-show={{item.help_desk_attachment_file_name}} %>
+          <div ng-show='showPic(item)' %>
             <span class='glyphicon glyphicon-picture'></span>
           </div>
         </td>
@@ -36,7 +36,7 @@
             {{item.name}}
           </a>
         </td>
-        <td>{{item.urgency}}</td>
+        <td ng-class='cssClass(item)'>{{item.urgency}}</td>
         <td>
           <a ng-href='/users/{{item.user.id}}'>
             {{item.user.last_name}}, {{item.user.first_name}}

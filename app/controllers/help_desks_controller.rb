@@ -62,6 +62,9 @@ class HelpDesksController < ApplicationController
 
   private
 
+  include ApplicationHelper
+  include HelpDesksHelper
+
   def set_help_desk
     @help_desk = HelpDesk.find(params[:id])
   end
