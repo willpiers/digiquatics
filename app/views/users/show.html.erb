@@ -44,92 +44,58 @@
 </div>
 
 <div class='table-responsive'>
-  <h4> Employee Information </h4>
+  <h4>Basic Employee Information </h4>
 
     <table class='table table-bordered table-condensed' >
       <tr>
-      <th style='width:25%'> Employee ID </th>
-        <td><%= @user.employee_id %></td>
-      </tr>
-      <th> Admin </th>
-        <td><%= boolean_to_words(@user.admin) %></td>
+        <th style='width:25%'>Phone Number</th>
+        <td><%= phone_number_link(@user.phone_number) %></td>
       </tr>
       <tr>
+        <th> Email </th>
+        <td>
+        <%= mail_to "#{ @user.email}" do %>
+          <span> <%=  @user.email %> </span>
+        <% end %>
+        </td>
+      </tr>
+    </table>
+
+  <h4>Additional Employee Information </h4>
+
+    <table class='table table-bordered table-condensed' >
+      <tr>
+        <th style='width:25%'> DOB </th><td><%= @user.date_of_birth ?
+          "#{@user.date_of_birth.strftime('%-m/%-d/%Y')} (#{age(@user.date_of_birth)} Years Old)" : '-' %></td>
+      </tr>
+      <tr>
+        <th> Sex </th><td><%= @user.sex %></td>
+      </tr>
+      <tr>
+        <th> Secondary Phone# </th>
+        <td><%= phone_number_link(@user.secondary_phone_number) %></td>
+      </tr>
+      <tr>
+        <th> Address </th>
+        <td><%= "#{@user.address1} #{@user.address2}" %></td>
+      </tr>
+      <tr>
+        <th> City </th><td><%= @user.city %></td>
+      </tr>
+      <tr>
+        <th> State </th><td><%= @user.state %></td>
+      </tr>
+      <tr>
+        <th> Zip Code </th><td><%= @user.zipcode %></td>
+      </tr>
+    </table>
+
+    <h4>Sizing Information </h4>
+
+      <table class='table table-bordered table-condensed' >
         <tr>
-        <th> Active </th>
-          <td><%= boolean_to_words(@user.active) %></td>
-        </tr>
-        <tr>
-        <tr>
-        <th> Account </th>
-          <td><%= @user.account.name %></td>
-        </tr>
-        <tr>
-          <th> Location </th>
-          <td>
-            <% if @user.location %>
-              <%= @user.location.name %>
-            <% else %>
-              Please update location information on user edit page
-            <% end %>
-          </td>
-        </tr>
-        <tr>
-        <th> Grouping </th>
-          <td><%= @user.grouping%></td>
-        </tr>
-        <tr>
-          <th> Position </th>
-          <td>
-            <% if @user.position %>
-              <%= @user.position.name %>
-            <% else %>
-              Please update position information on user edit page
-            <% end %>
-          </td>
-        </tr>
-        <tr>
-          <th> Address </th>
-          <td><%= "#{@user.address1} #{@user.address2}" %></td>
-        </tr>
-        <tr>
-          <th> City </th><td><%= @user.city %></td>
-        </tr>
-        <tr>
-          <th> State </th><td><%= @user.state %></td>
-        </tr>
-        <tr>
-          <th> Zip Code </th><td><%= @user.zipcode %></td>
-        </tr>
-        <tr>
-          <th> Email </th>
-          <td>
-          <%= mail_to "#{ @user.email}" do %>
-            <span> <%=  @user.email %> </span>
-          <% end %>
-          </td>
-        </tr>
-        <tr>
-          <th> Primary Phone# </th>
-          <td><%= phone_number_link(@user.phone_number) %></td>
-        </tr>
-        <tr>
-          <th> Secondary Phone# </th>
-          <td><%= phone_number_link(@user.secondary_phone_number) %></td>
-        </tr>
-        <tr>
-          <th> DOB </th><td><%= @user.date_of_birth ?
-            "#{@user.date_of_birth.strftime('%-m/%-d/%Y')} (#{age(@user.date_of_birth)} Years Old)" : '-' %></td>
-        </tr>
-        <tr>
-          <th> DOH </th><td><%= @user.date_of_hire ?
-            @user.date_of_hire.strftime('%-m/%-d/%Y') : '-' %></td>
-        </tr>
-        <tr>
-          <th> Sex </th><td><%= @user.sex %></td>
-        </tr>
-        <tr>
-          <th> Shirt Size </th><td><%= @user.shirt_size %></td>
+          <th style='width:25%'>Shirt Size </th>
+          <td><%= @user.shirt_size %></td>
         </tr>
         <tr>
           <th> Suit Size </th><td><%= @user.suit_size %></td>
@@ -139,14 +105,64 @@
             <th> One Piece Size </th><td><%= @user.femalesuit %></td>
           </tr>
         <% end %>
+      </table>
+
+    <h4>Emergency Contact Information </h4>
+
+      <table class='table table-bordered table-condensed' >
         <tr>
-          <th> Emergency Contact </th>
+          <th style='width:25%'> Emergency Contact </th>
           <td><%= "#{@user.emergency_first} #{@user.emergency_last}" %></td>
         </tr>
         <tr>
           <th>  Emergency Phone Number </th><td><%= phone_number_link(@user.emergency_phone) %></td>
         </tr>
-    </table>
+      </table>
+
+      <h4>Admin </h4>
+
+        <table class='table table-bordered table-condensed' >
+          <tr>
+            <th style='width:25%'>Location </th>
+            <td>
+              <% if @user.location %>
+                <%= @user.location.name %>
+              <% else %>
+                Please update location information on user edit page
+              <% end %>
+            </td>
+          </tr>
+          <tr>
+            <th> Position </th>
+            <td>
+              <% if @user.position %>
+                <%= @user.position.name %>
+              <% else %>
+                Please update position information on user edit page
+              <% end %>
+            </td>
+          </tr>
+          <tr>
+          <th> Employee ID </th>
+            <td><%= @user.employee_id %></td>
+          </tr>
+          <tr>
+          <th> Grouping </th>
+            <td><%= @user.grouping%></td>
+          </tr>
+          <tr>
+            <th> DOH </th><td><%= @user.date_of_hire ?
+              @user.date_of_hire.strftime('%-m/%-d/%Y') : '-' %></td>
+          </tr>
+          <tr>
+          <th> Admin </th>
+            <td><%= boolean_to_words(@user.admin) %></td>
+          </tr>
+          <tr>
+          <th> Active </th>
+            <td><%= boolean_to_words(@user.active) %></td>
+          </tr>
+        </table>
   </div>
 
   <% @account = @user.account %>
