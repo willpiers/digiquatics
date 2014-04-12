@@ -7,9 +7,9 @@
         data.help_desk_attachment_file_name?
 
       $scope.cssClass = (item) ->
-        if item.urgency == 'Low' then 'success'
+        if      item.urgency == 'Low'    then 'success'
         else if item.urgency == 'Medium' then 'warning'
-        else 'danger'
+        else    'danger'
 
       $scope.locations = Locations.index()
 ]

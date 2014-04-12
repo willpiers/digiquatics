@@ -12,5 +12,6 @@ json.array!(@help_desks) do |help_desk|
     json.last_name   help_desk.user.last_name
   end
 
+  json.attachment_url help_desk.help_desk_attachment
   json.url help_desk_url(help_desk)
 end

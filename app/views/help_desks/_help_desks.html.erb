@@ -26,6 +26,7 @@
       <tr ng-repeat='item in helpDesks | orderBy:predicate.value:reverse | filter:locationFilter | filter:search'>
         <td>
           <div ng-show='showPic(item)' %>
+            <a ng-href='{{item.attachment_url}}'>
             <span class='glyphicon glyphicon-picture'></span>
           </div>
         </td>
