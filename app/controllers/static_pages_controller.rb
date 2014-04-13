@@ -15,14 +15,14 @@ class StaticPagesController < ApplicationController
   end
 
   def chemical_record_stats
-    @chemical_records = ChemicalRecord.where(created_at: '2010-01-01'..'2014-07-13')
-
-
-
+    @start_date = "#{params[:start_year]}-#{params[:start_month]}-#{params[:start_day]}"
+    @end_date = "#{params[:end_year]}-#{params[:end_month]}-#{params[:end_day]}"
+    @chemical_records = ChemicalRecord.where(created_at: @start_date..@end_date)
   end
 
   def user_stats
     @users = User.joins(:account).same_account_as(current_user)
     @location  = Location.all
   end
+
 end

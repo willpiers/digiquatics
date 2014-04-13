@@ -4,21 +4,14 @@
 
 <div class='row'>
   <div class='col-md-6 well'>
-    <%= bootstrap_form_for(ChemicalRecord.find(1)) do |f| %>
-       <%= f.date_select :start_date, { start_year: Time.now.year,
-        end_year: Time.now.year-30, order: [:month, :day, :year], prompt: true,
-          label: 'Start Date' } %>
-       <%= f.date_select :end_date, { start_year: Time.now.year,
-        end_year: Time.now.year-30, order: [:month, :day, :year], prompt: true,
-          label: 'End Date' } %>
-      <%= f.primary ( f.object.new_record? ?  'Setup Query' :
-      'Query Database' ) %>
-    <% end %>
-
-
-    <%= form_tag(users_path, :method => "get", id: "query-form") do %>
-      <%= date_field_tag :start_date, params[:start_date] %>
-      <%= submit_tag "Search", :name => nil %>
+    <%= bootstrap_form_tag(url: '/chemical_record_stats', method: "post") do |f| %>
+      <%= f.select :start_year,  options_for_select((2013..2020).to_a), label: 'Start Date' %>
+      <%= f.select :start_month, [['March', 03], ['April', 04]], hide_label: :true %>
+      <%= f.select :start_day,   options_for_select((1..31).to_a), hide_label: :true %>
+      <%= f.select :end_year,    options_for_select((2013..2020).to_a), label: 'End Date' %>
+      <%= f.select :end_month, [['March', 03], ['April', 04]], hide_label: :true %>
+      <%= f.select :end_day,     options_for_select((1..31).to_a), hide_label: :true %>
+      <%= f.primary 'Query Database' %>
     <% end %>
 
   </div>
