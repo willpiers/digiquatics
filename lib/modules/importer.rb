@@ -64,7 +64,7 @@ module Importer
   end
 
   def self.password
-    "foothills"
+    'foothills'
   end
 
   def self.parse_date(date_string)
