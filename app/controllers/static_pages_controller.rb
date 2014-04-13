@@ -15,7 +15,10 @@ class StaticPagesController < ApplicationController
   end
 
   def chemical_record_stats
-    @chemical_records = ChemicalRecord.all
+    @chemical_records = ChemicalRecord.where(created_at: '2010-01-01'..'2014-07-13')
+
+
+
   end
 
   def user_stats
