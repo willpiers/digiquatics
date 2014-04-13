@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140407035102) do
+ActiveRecord::Schema.define(version: 20140413175036) do
 
   create_table "accounts", force: true do |t|
     t.string   "name"
@@ -191,14 +191,14 @@ ActiveRecord::Schema.define(version: 20140407035102) do
     t.string   "last_name"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "active",                 default: true
+    t.boolean  "active",                                         default: true
     t.string   "suit_size"
     t.string   "shirt_size"
     t.string   "sex"
     t.datetime "date_of_birth"
     t.datetime "date_of_hire"
     t.string   "phone_number"
-    t.boolean  "admin",                  default: false
+    t.boolean  "admin",                                          default: false
     t.integer  "account_id"
     t.integer  "location_id"
     t.integer  "position_id"
@@ -213,24 +213,24 @@ ActiveRecord::Schema.define(version: 20140407035102) do
     t.string   "emergency_last"
     t.string   "emergency_phone"
     t.string   "nickname"
-    t.integer  "payrate"
     t.string   "grouping"
     t.string   "address1"
     t.string   "address2"
     t.string   "city"
     t.string   "state"
     t.string   "zipcode"
-    t.string   "email",                  default: "",    null: false
-    t.string   "encrypted_password",     default: "",    null: false
+    t.string   "email",                                          default: "",    null: false
+    t.string   "encrypted_password",                             default: "",    null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,     null: false
+    t.integer  "sign_in_count",                                  default: 0,     null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
     t.string   "secondary_phone_number"
+    t.decimal  "payrate",                precision: 4, scale: 2
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

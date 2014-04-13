@@ -16,6 +16,7 @@ module Importer
     CSV.foreach(user_data_file, headers: true) do |user_row|
       @user_row = user_row
       @account ||= create_account
+      puts @account.users.build(user_hash).attributes
       @account.users.build(user_hash).save!
     end
   end
@@ -63,11 +64,11 @@ module Importer
   end
 
   def self.password
-    "#{@account.name.downcase}pools"
+    "foothills"
   end
 
   def self.parse_date(date_string)
-    Date.strptime(date_string, '%m/%d/%Y')
+    Date.strptime(date_string, '%m/%d/%Y') if date_string
   end
 
   def self.to_boolean(boolean_string)
