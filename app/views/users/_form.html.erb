@@ -10,7 +10,7 @@
       <%= render 'additional_user_fields', { f: f, user: @user } %>
 
       <% if signed_in? && current_user.admin? %>
-        <%= render 'admin_fields', f: f %>
+        <%= render 'admin_fields', f: f, user: @user %>
       <% end %>
     <% end %>
 
