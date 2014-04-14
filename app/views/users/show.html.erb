@@ -68,7 +68,7 @@
 
   <h4>
     Additional Employee Information
-    <%= link_to ' Edit', "http://localhost:3000/users/#{@user.id}/edit#additional",
+    <%= link_to ' Edit', "/users/#{@user.id}/edit#additional",
         class: 'glyphicon glyphicon-pencil pull-right',
         style: 'font-size: 80%' %>
   </h4>
@@ -102,7 +102,7 @@
 
     <h4>
       Sizing Information
-      <%= link_to ' Edit', "http://localhost:3000/users/#{@user.id}/edit#sizing",
+      <%= link_to ' Edit', "/users/#{@user.id}/edit#sizing",
           class: 'glyphicon glyphicon-pencil pull-right',
           style: 'font-size: 80%' %>
     </h4>
@@ -124,7 +124,7 @@
 
     <h4>
       Emergency Contact Information
-      <%= link_to ' Edit', "http://localhost:3000/users/#{@user.id}/edit#emergency",
+      <%= link_to ' Edit', "/users/#{@user.id}/edit#emergency",
           class: 'glyphicon glyphicon-pencil pull-right',
           style: 'font-size: 80%' %>
     </h4>
@@ -141,7 +141,7 @@
 
       <h4>
         Admin
-        <%= link_to ' Edit', "http://localhost:3000/users/#{@user.id}/edit#admin",
+        <%= link_to ' Edit', "/users/#{@user.id}/edit#admin",
             class: 'glyphicon glyphicon-pencil pull-right',
             style: 'font-size: 80%' %>
       </h4>
@@ -196,7 +196,7 @@
 
     <h4>
       Certification Information
-      <%= link_to ' Edit', "http://localhost:3000/users/#{@user.id}/edit#certifications",
+      <%= link_to ' Edit', "/users/#{@user.id}/edit#certifications",
           class: 'glyphicon glyphicon-pencil pull-right',
           style: 'font-size: 80%' %>
     </h4>
@@ -250,7 +250,7 @@
     <% if signed_in? && current_user.admin? %>
       <h4>
         Notes
-        <%= link_to ' Edit', "http://localhost:3000/users/#{@user.id}/edit#notes",
+        <%= link_to ' Edit', "/users/#{@user.id}/edit#notes",
             class: 'glyphicon glyphicon-pencil pull-right',
             style: 'font-size: 80%' %>
       </h4>
