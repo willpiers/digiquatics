@@ -8,6 +8,11 @@
       location_id: ''
       pool_id: ''
 
+    $scope.totalDisplayed = 20
+
+    $scope.loadMore = ->
+      $scope.totalDisplayed += 100
+
     ChemicalRecords.index (data) ->
       $scope.chemicalRecords = data
 

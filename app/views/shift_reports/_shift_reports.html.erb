@@ -1,5 +1,5 @@
-<div ng-app='digiquatics' class='table-responsive'>
-  <table ng-controller='ShiftReportsCtrl' class='table table-hover table-condensed' >
+<div class='table-responsive'>
+  <table class='table table-hover table-condensed' >
     <thead>
       <tr>
         <th>Location</th>
@@ -23,7 +23,10 @@
       </tr>
     </thead>
     <tbody>
-      <tr ng-repeat='report in shiftReports | orderBy:predicate.value:reverse | filter:locationFilter | filter:search'>
+      <tr ng-repeat='report in shiftReports | orderBy:predicate.value:reverse
+        | filter:locationFilter
+        | filter:search
+        | limitTo:totalDisplayed'>
         <td>{{report.location.name}}</td>
         <td>
           <a ng-href='/shift_reports/{{report.id}}'>
@@ -36,4 +39,7 @@
       </tr>
     </tbody>
   </table>
+    <center>
+      <btn class="btn btn-default" ng-click="loadMore()">Load Additional Records</btn>
+    </center>
 </div>

@@ -70,7 +70,8 @@
     <tbody>
       <tr ng-repeat='record in chemicalRecords | orderBy:predicate.value:reverse
         | filter:{pool_id: filters.pool_id}
-        | filter:{pool: {location_id: filters.location_id}}'>
+        | filter:{pool: {location_id: filters.location_id}}
+        | limitTo:totalDisplayed'>
         <td>{{record.pool.location.name}}</td>
         <td>{{record.pool.name}}</td>
         <td>{{record.free_chlorine_ppm}}</td>
@@ -92,4 +93,7 @@
       </tr>
     </tbody>
   </table>
+    <center>
+      <btn class="btn btn-default" ng-click="loadMore()">Load Additional Records</btn>
+    </center>
 </div>
