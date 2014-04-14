@@ -1,6 +1,6 @@
 require Rails.root.join('lib/modules/importer')
 
-USER_DATA_FILE = 'db/data/foothills/foothills_user_data.csv'
+USER_DATA_FILE = 'db/data/foothills/foothills_user_data_no_admin.csv'
 CERT_DATA_FILE = 'db/data/foothills/foothills_certification_data.csv'
 
 namespace :db do
