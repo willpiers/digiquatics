@@ -32,6 +32,7 @@ module Importer
   def self.import_cert_data(cert_data_file)
     puts 'starting certs'
     sleep(1)
+    @account = Account.find_by(name: 'Foothills Parks & Recreation')
     CSV.foreach(cert_data_file, headers: true) do |cert_row|
       @cert_row = cert_row
       @user ||= find_user
