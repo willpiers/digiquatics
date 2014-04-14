@@ -13,7 +13,7 @@ module Importer
   }
 
   def self.import(user_data_file: '', cert_data_file: '')
-    # import_user_data(user_data_file)
+    import_user_data(user_data_file)
     import_cert_data(cert_data_file)
   end
 
