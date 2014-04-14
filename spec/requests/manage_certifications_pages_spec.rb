@@ -32,20 +32,15 @@ describe 'Manage Certifications' do
       visit admin_dashboard_path
     end
 
-    # it { should have_content('Manage Certifications') }
     it { should have_link('New', href: new_certification_name_path) }
 
-    describe 'should list each certification_name' do
-      CertificationName.all.each do |cert_name|
-        cert_name.account_id.should eq(user.account_id)
-        it { should have_content(cert_name.name) }
-        it do
-          should have_link('Edit',
-                           href: edit_certification_name_path(cert_name))
-        end
-        it do
-          should have_link('Delete',
-                           href: certification_name_path(cert_name))
+    describe 'list' do
+      it 'should display cert names' do
+        CertificationName.same_account_as(user).each do |cert_name|
+          cert_name.account_id.should eq(user.account_id)
+          should have_content(cert_name.name)
+          should have_link('Edit', href: edit_certification_name_path(cert_name))
+          should have_link('Delete', href: certification_name_path(cert_name))
         end
       end
     end
