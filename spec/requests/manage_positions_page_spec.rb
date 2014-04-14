@@ -29,16 +29,16 @@ describe 'Manage Positions' do
       visit admin_dashboard_path
     end
 
-    # it { should have_content('Manage Positions') }
     it { should have_link('New', href: new_position_path) }
 
-    describe 'should list each position' do
-      Position.all.each do |position|
-        position.account_id.should eq(user.account_id)
-        it { should have_content(position.name) }
-        it { should have_link('Edit', href: edit_position_path(position)) }
-        it { should have_link('Delete', href: position_path(position)) }
-
+    describe 'admin dashboard' do
+      it 'should list each position' do
+        Position.same_account_as(user).each do |position|
+          position.account_id.should eq(user.account_id)
+          should have_content(position.name)
+          should have_link('Edit', href: edit_position_path(position))
+          should have_link('Delete', href: position_path(position))
+        end
       end
     end
 
