@@ -8,17 +8,37 @@ module Importer
     grouping
   }
 
+  CERT_HEADERS = %w{
+    expiration_date issue_date
+  }
+
   def self.import(user_data_file: '', cert_data_file: '')
     import_user_data(user_data_file)
+    import_cert_data(cert_data_file)
   end
 
   def self.import_user_data(user_data_file)
+    puts 'starting users'
+    sleep(1)
     CSV.foreach(user_data_file, headers: true) do |user_row|
       @user_row = user_row
       @account ||= create_account
-      puts @account.users.build(user_hash).attributes
       @account.users.build(user_hash).save!
     end
+    puts 'done with users'
+    sleep(1)
+  end
+
+  def self.import_cert_data(cert_data_file)
+    puts 'starting certs'
+    sleep(1)
+    CSV.foreach(cert_data_file, headers: true) do |cert_row|
+      @cert_row = cert_row
+      @user ||= find_user
+      @user.certifications.build(cert_hash).save!
+    end
+    puts 'finished certs'
+    sleep(1)
   end
 
   def self.create_account
@@ -28,6 +48,10 @@ module Importer
 
   def self.user_hash
     headers_user_hash.merge(specialty_user_hash).merge(associations_user_hash)
+  end
+
+  def self.cert_hash
+    headers_cert_hash.merge(associations_cert_hash)
   end
 
   def self.specialty_user_hash
@@ -47,9 +71,21 @@ module Importer
     }
   end
 
+  def self.associations_cert_hash
+    {
+      certification_name_id: create_or_find_cert_name.id
+    }
+  end
+
   def self.headers_user_hash
     USER_HEADERS.each_with_object({}) do |header, hash|
       hash[header] = @user_row[header]
+    end
+  end
+
+  def self.headers_cert_hash
+    CERT_HEADERS.each_with_object({}) do |header, hash|
+      hash[header] = @cert_row[header]
     end
   end
 
@@ -61,6 +97,15 @@ module Importer
   def self.create_or_find_location
     Location.find_or_create_by(name: @user_row['location_name'],
                                account_id: @account.id)
+  end
+
+  def self.create_or_find_cert_name
+    CertificationName.find_or_create_by(name: @cert_row['certification_name'],
+                                        account_id: @account.id)
+  end
+
+  def self.find_user
+    User.find_by(email: @cert_row['email'])
   end
 
   def self.password

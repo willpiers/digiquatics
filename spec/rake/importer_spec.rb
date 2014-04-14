@@ -14,6 +14,8 @@ describe Importer do
 
     after(:all) do
       User.last.delete
+      Certification.last.delete
+      Certification.last.delete
     end
 
     describe 'for the account' do
@@ -73,6 +75,17 @@ describe Importer do
     end
 
     describe 'for certifications' do
+      it 'should have created the right number of certification names' do
+        CertificationName.count.should == 2
+      end
+
+      it 'should have the right name' do
+        CertificationName.last.name.should == 'WSI'
+      end
+
+      it 'should have created the right number of certifications' do
+        Certification.all.count.should == 2
+      end
     end
   end
 end

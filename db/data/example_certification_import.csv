@@ -1,2 +1,3 @@
-certification_name,user_email,expiration_date,issue_date
+certification_name,email,expiration_date,issue_date
 LGI,foo@bar.quz,04/05/2014,04/05/2013
+WSI,foo@bar.quz,05/06/2014,05/06/2013
