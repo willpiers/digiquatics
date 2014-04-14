@@ -87,7 +87,7 @@
         <td>{{record.si_status}}</td>
         <td>
           <a ng-href='{{record.url}}'>
-            {{record.time_stamp | formatTime}}
+            {{record.time_stamp | date:'M/d/yy h:mm a'}}
           </a>
         </td>
       </tr>
