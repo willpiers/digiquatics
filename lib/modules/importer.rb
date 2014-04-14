@@ -23,7 +23,7 @@ module Importer
     CSV.foreach(user_data_file, headers: true) do |user_row|
       @user_row = user_row
       @account ||= create_account
-      @account.users.build(user_hash).save!
+      next unless @account.users.build(user_hash).save!
     end
     puts 'done with users'
     sleep(1)
