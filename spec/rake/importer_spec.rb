@@ -14,8 +14,9 @@ describe Importer do
 
     after(:all) do
       User.last.delete
-      Certification.last.delete
-      Certification.last.delete
+      4.times do
+        Certification.last.delete
+      end
     end
 
     describe 'for the account' do
@@ -32,7 +33,7 @@ describe Importer do
       let(:user) { User.first }
 
       it 'should have created the right number of users' do
-        User.count.should == 1
+        User.count.should == 2
       end
 
       it 'should have the right required info' do
@@ -84,7 +85,7 @@ describe Importer do
       end
 
       it 'should have created the right number of certifications' do
-        Certification.all.count.should == 2
+        Certification.all.count.should == 4
       end
     end
   end

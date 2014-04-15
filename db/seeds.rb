@@ -1,1 +1,1 @@
-puts 'No seeds specified'
+puts 'no seeds specified'
