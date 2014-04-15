@@ -19,31 +19,22 @@ module Importer
 
   def self.import_user_data(user_data_file)
     puts 'starting users'
-    sleep(1)
     CSV.foreach(user_data_file, headers: true) do |user_row|
       @user_row = user_row
       @account ||= create_account
       @account.users.build(user_hash).save!
     end
     puts 'done with users'
-    sleep(1)
   end
 
   def self.import_cert_data(cert_data_file)
     puts 'starting certs'
-    sleep(1)
     @account = Account.find_by_name('Foothills Parks & Recreation')
     CSV.foreach(cert_data_file, headers: true) do |cert_row|
       @cert_row = cert_row
-      @user = find_user
-      if @user
-        @user.certifications.build(cert_hash).save!
-      else
-        puts "could not find #{@cert_row['email']} in database"
-      end
+      find_user_and_create_certification
     end
     puts 'finished certs'
-    sleep(1)
   end
 
   def self.create_account
@@ -109,8 +100,13 @@ module Importer
                                         account_id: @account.id)
   end
 
-  def self.find_user
-    User.find_by(email: @cert_row['email'])
+  def self.find_user_and_create_certification
+    @user = User.find_by(email: @cert_row['email'])
+    if @user
+      @user.certifications.build(cert_hash).save!
+    else
+      puts "could not find #{@cert_row['email']} in database"
+    end
   end
 
   def self.password
