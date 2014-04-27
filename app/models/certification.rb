@@ -15,7 +15,7 @@ class Certification < ActiveRecord::Base
 
   validates_presence_of :certification_name_id, :expiration_date, :user_id
 
-  # after_save :track
+  after_save :track
 
   comma do
     certification_name :name
@@ -25,9 +25,9 @@ class Certification < ActiveRecord::Base
 
   private
 
-  # def track
-  #   Tracker.track(nil, 'Create New Certification',
-  #                 certification_name: certification_name.name,
-  #                 user_id: user_id) unless Rails.env.test?
-  # end
+  def track
+    Tracker.track(nil, 'Create New Certification',
+                  certification_name: certification_name.name,
+                  user_id: user_id) unless Rails.env.test?
+  end
 end

@@ -1,6 +1,6 @@
 class StaticPagesController < ApplicationController
   def dashboard
-    # Tracker.track(current_user.id, 'View Dashboard') unless Rails.env.test?
+    Tracker.track(current_user.id, 'View Dashboard') unless Rails.env.test?
   end
 
   def about
