@@ -1,6 +1,6 @@
-<div ng-app='digiquatics' class='table-responsive'>
+<div ng-app='digiquatics'>
   <table ng-controller='CertificationsCtrl'
-         class='table table-hover table-condensed'>
+         class='table table-hover'>
     <thead>
       <tr>
         <th>
@@ -28,7 +28,7 @@
         </td>
         <td class='hidden-xs'>{{userData.firstName}}</td>
         <td class='hidden-xs'>{{userData.location}}</td>
-        <td ng-repeat='certName in certNames' class='{{userData[certName.name + "class"]}}'>
+        <td ng-repeat='certName in certNames' class='{{userData[certName.name + "class"]}} cert-width-fix'>
           {{userData[certName.name] | formatDate}}
         </td>
         </td>
