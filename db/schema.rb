@@ -229,10 +229,7 @@ ActiveRecord::Schema.define(version: 20140413175036) do
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
     t.string   "secondary_phone_number"
-<<<<<<< HEAD
-=======
     t.decimal  "payrate",                precision: 4, scale: 2
->>>>>>> master
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
