@@ -1,0 +1,7 @@
+<%= bootstrap_form_tag(url: '/chemical_record_stats', method: "post") do |f| %>
+  <%= f.hidden_field :start_date, value: "{{dt1 | date:'yyyy-MM-dd'}}" %>
+  <%= f.hidden_field :end_date, value: "{{dt2 | date:'yyyy-MM-dd'}}" %>
+  <%= f.select :pool_id, options_from_collection_for_select(Pool.all, :id, :full_name ), label: 'Location - Pool' %>
+  <%= f.primary 'Query Database', :onclick => "alert('Please see results numberics results tab to view results')" %>
+<% end %>
+

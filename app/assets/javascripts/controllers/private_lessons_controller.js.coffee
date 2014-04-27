@@ -1,5 +1,5 @@
 @digiquatics.controller 'PrivateLessonsCtrl', ['$scope', 'Lessons',
-  @UsersCtrl = ($scope, Lessons) ->
+  @PrivateLessonsCtrl = ($scope, Lessons) ->
     $scope.predicate =
       value: 'last_name'
 

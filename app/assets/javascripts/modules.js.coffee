@@ -2,3 +2,4 @@
   ['ngResource', 'digiquaticsFilters', 'ui.bootstrap']
 
 @digiquaticsFilters = angular.module 'digiquaticsFilters', []
+

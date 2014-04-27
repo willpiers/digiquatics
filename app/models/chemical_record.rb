@@ -6,7 +6,10 @@ class ChemicalRecord < ActiveRecord::Base
                         :ph
 
   comma do
-    chlorine_ppm
+    chlorine_orp
+    free_chlorine_ppm
+    combined_chlorine_ppm
+    total_chlorine_ppm
     ph
     alkalinity
     calcium_hardness
@@ -15,6 +18,7 @@ class ChemicalRecord < ActiveRecord::Base
     si_index
     si_status
     si_recommendation
+    water_clarity
     time_stamp
   end
 

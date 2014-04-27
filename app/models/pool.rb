@@ -9,4 +9,8 @@ class Pool < ActiveRecord::Base
   end)
 
   scope :same_location_as, -> (user) { where(location_id: user.location_id) }
+
+  def full_name
+   "#{location_id} - #{name}"
+  end
 end

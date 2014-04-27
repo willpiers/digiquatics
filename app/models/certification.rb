@@ -18,11 +18,6 @@ class Certification < ActiveRecord::Base
   # after_save :track
 
   comma do
-    user last_name: 'Last'
-    user first_name: 'First'
-    user employee_id: 'ID'
-    user phone_number: 'Phone#'
-    user :email
     certification_name :name
     issue_date
     expiration_date

@@ -8,9 +8,15 @@ class CertificationsController < ApplicationController
     @users = User.joins(:account).same_account_as(current_user).active
     .includes(:certifications)
 
+    certs_hash = {}
+
+    @certification_names.each do |cert_name|
+      cert_name.certifications.merge(certs_hash)
+    end
+
     respond_to do |format|
       format.html
-      format.csv { render csv: @users, filename: 'certifications' }
+      format.csv { render csv: @certifications, filename: 'certifications' }
     end
   end
 
