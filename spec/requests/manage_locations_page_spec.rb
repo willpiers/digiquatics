@@ -19,17 +19,14 @@ describe 'Manage Locations' do
 
     before do
       login_as(user, scope: :user)
-      FactoryGirl.create(:location, name: 'Carmody Rec Center',
-                                    account_id: account.id)
       visit admin_dashboard_path
     end
 
-    # it { should have_content('Manage Locations') }
     it { should have_link('New', href: new_location_path) }
 
     describe 'admin dashboard' do
       it 'should list each location' do
-        Location.all.each do |location|
+        Location.same_account_as(user).each do |location|
           location.account_id.should eq(user.account_id)
           should have_content(location.name)
           should have_link('Edit', href: edit_location_path(location))

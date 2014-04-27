@@ -2,11 +2,12 @@
 <%= f.select :location_id,
   options_from_collection_for_select(Location.same_account_as(current_user),
                                      :id,
-                                     :name) %>
+                                     :name, @user.location_id) %>
 <%= f.select :position_id,
   options_from_collection_for_select(Position.same_account_as(current_user),
                                      :id,
-                                     :name) %>
+                                     :name, @user.position_id) %>
+<%= f.text_field :employee_id, label: 'Employee ID' %>
 <%= f.text_field :grouping, label: 'Grouping' %>
 <%= f.text_field :employee_id, label: 'Employee ID' %>
 <%= f.text_field :payrate,prepend: "$", label: 'Pay Rate' %>

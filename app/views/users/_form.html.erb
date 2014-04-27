@@ -9,7 +9,7 @@
       <div id='additional'><%= render 'additional_user_fields', { f: f, user: @user } %></div>
 
       <% if signed_in? && current_user.admin? %>
-        <div id='admin'><%= render 'admin_fields', f: f %></div>
+        <%= render 'admin_fields', f: f, user: @user %>
       <% end %>
     <% end %>
 
