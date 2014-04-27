@@ -168,12 +168,20 @@
             </td>
           </tr>
           <tr>
+          <th> Grouping </th>
+            <td><%= @user.grouping%></td>
+          </tr>
+          <tr>
           <th> Employee ID </th>
             <td><%= @user.employee_id %></td>
           </tr>
           <tr>
-          <th> Grouping </th>
-            <td><%= @user.grouping%></td>
+          <th> Pay Rate</th>
+            <td>
+              <% if @user.payrate? %>
+              <%= number_to_currency(@user.payrate) %>/hr
+              <% end %>
+            </td>
           </tr>
           <tr>
             <th> DOH </th><td><%= @user.date_of_hire ?
