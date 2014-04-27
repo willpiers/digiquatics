@@ -12,10 +12,10 @@
         class: 'btn btn-danger btn-sm' %>
     </div>
   <% end %>
-  <div class='col-md-3'>
+  <!-- <div class='col-md-3'>
     <%= link_to 'Certifications', certifications_path(format: 'csv'),
       class: 'btn btn-danger btn-sm' %>
-  </div>
+  </div> -->
   <% if FeatureToggleHelper.private_lessons? %>
     <div class='col-md-3'>
       <%= link_to 'Private Lessons Queue', account_private_lessons_path(format: 'csv', account_id: current_account.id),
