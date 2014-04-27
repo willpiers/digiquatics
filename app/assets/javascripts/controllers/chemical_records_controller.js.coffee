@@ -11,7 +11,7 @@
     $scope.totalDisplayed = 20
 
     $scope.loadMore = ->
-      $scope.totalDisplayed += 100
+      $scope.totalDisplayed += 50
 
     ChemicalRecords.index (data) ->
       $scope.chemicalRecords = data

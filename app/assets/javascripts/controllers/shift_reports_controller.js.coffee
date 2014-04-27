@@ -5,7 +5,7 @@
     $scope.totalDisplayed = 20
 
     $scope.loadMore = ->
-      $scope.totalDisplayed += 100
+      $scope.totalDisplayed += 50
 
     $scope.shiftReports = ShiftReports.index()
 
