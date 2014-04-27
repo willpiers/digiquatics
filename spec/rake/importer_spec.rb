@@ -4,6 +4,7 @@ require Rails.root.join('lib/modules/importer')
 describe Importer do
   describe 'import' do
     before(:all) do
+      User.destroy_all
       user_data_file = Rails.root.join('db/data/example_user_import.csv')
       cert_data_file =
         Rails.root.join('db/data/example_certification_import.csv')

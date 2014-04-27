@@ -13,7 +13,7 @@ module Importer
   }
 
   def self.import(user_data_file: '', cert_data_file: '')
-    # import_user_data(user_data_file)
+    import_user_data(user_data_file)
     import_cert_data(cert_data_file)
   end
 
@@ -29,7 +29,7 @@ module Importer
 
   def self.import_cert_data(cert_data_file)
     puts 'starting certs'
-    @account = Account.find_by_name('Foothills Parks & Recreation')
+    # @account = Account.find_by_name('Foothills Parks & Recreation')
     CSV.foreach(cert_data_file, headers: true) do |cert_row|
       @cert_row = cert_row
       find_user_and_create_certification
