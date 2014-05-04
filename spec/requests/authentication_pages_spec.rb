@@ -17,17 +17,17 @@ describe 'Authentication' do
   describe 'signin page' do
     before { visit new_user_session_path }
 
-    it { should have_content('Sign in') }
-    it { should have_title('Sign in') }
+    it { should have_content('Welcome to DigiQuatics') }
+    it { should have_title('Sign In') }
   end
 
   describe 'signin' do
     before { visit new_user_session_path }
 
     describe 'with invalid information' do
-      before { click_button 'Sign in' }
+      before { click_button 'Sign in to your account' }
 
-      it { should have_title('Sign in') }
+      it { should have_title('Sign In') }
       it { should have_selector('div.alert') }
     end
 
@@ -46,7 +46,7 @@ describe 'Authentication' do
       describe 'followed by signout' do
         before { click_link 'Sign out' }
 
-        it { should have_selector('legend', text: 'Sign in') }
+        it { should have_content('Welcome to DigiQuatics') }
       end
     end
 
@@ -72,7 +72,7 @@ describe 'Authentication' do
         describe 'visiting the edit page' do
           before { visit edit_user_path(user) }
 
-          it { should have_title('Sign in') }
+          it { should have_title('Sign In') }
         end
 
         describe 'submitting to the update action' do
@@ -85,7 +85,7 @@ describe 'Authentication' do
 
     describe 'visiting the user index' do
       before { visit users_path }
-      it { should have_title('Sign in') }
+      it { should have_title('Sign In') }
     end
   end
 

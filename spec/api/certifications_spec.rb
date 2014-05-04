@@ -42,7 +42,7 @@ describe 'certification expirations' do
           'location'                        => location.name,
           certification_name.name           => '2014-10-24T18:00:00.000-06:00',
           "#{certification_name.id}"        => 'CPR/AED',
-          "#{certification_name.name}class" => 'success'
+          "#{certification_name.name}class" => 'cert_blue'
         }
       ]
     end
