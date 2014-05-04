@@ -14,9 +14,12 @@ class CertificationsController < ApplicationController
       cert_name.certifications.merge(certs_hash)
     end
 
-    respond_to do |format|
-      format.html
-      format.csv { render csv: @certifications, filename: 'certifications' }
+    if stale?(@certification_names) && stale?(@users)
+      respond_to do |format|
+        format.html
+        format.csv { render csv: @certifications, filename: 'certifications' }
+        format.json { expirations }
+      end
     end
   end
 

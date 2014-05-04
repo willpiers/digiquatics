@@ -55,7 +55,7 @@ DigiQuatics::Application.routes.draw do
   match '/all_users', to: 'users#all_users', via: 'get'
   match '/admin_dashboard', to: 'accounts#admin_dashboard', via: 'get'
   match '/certification_expirations',
-        to: 'certifications#expirations',
+        to: 'certifications#index',
         via: 'get'
   match '/dashboard', to: 'static_pages#dashboard', via: 'get'
 

@@ -20,6 +20,7 @@ gem 'devise'
 gem 'activerecord-session_store', github: 'rails/activerecord-session_store'
 gem 'browser', github: 'fnando/browser'
 gem 'mixpanel-ruby'
+gem 'oj'
 
 gem 'mysql2'
 gem 'sass-rails', '~> 4.0.0'
