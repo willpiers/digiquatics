@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140413175036) do
+ActiveRecord::Schema.define(version: 20140506220217) do
 
   create_table "accounts", force: true do |t|
     t.string   "name"
@@ -183,6 +183,13 @@ ActiveRecord::Schema.define(version: 20140413175036) do
     t.integer  "attachment_back_file_size"
     t.datetime "attachment_back_updated_at"
     t.datetime "time_stamp"
+  end
+
+  create_table "slides", force: true do |t|
+    t.integer  "location_id"
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "users", force: true do |t|
