@@ -65,7 +65,7 @@ namespace :db do
 
     puts "\nUsers"
 
-    10.times do |n|
+    100.times do |n|
       print '.'
 
       User.create!(first_name: Faker::Name.first_name,
@@ -111,7 +111,7 @@ namespace :db do
     puts "\n\nCertifications"
 
     10.times do |n|
-      print '.'
+      print '...'
 
       Certification.create!(certification_name_id: 1,
                             user_id: n + 1,
