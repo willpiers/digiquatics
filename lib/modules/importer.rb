@@ -18,23 +18,26 @@ module Importer
   end
 
   def self.import_user_data(user_data_file)
-    puts 'starting users'
+    puts 'starting users' unless Rails.env.test?
+
     CSV.foreach(user_data_file, headers: true) do |user_row|
       @user_row = user_row
       @account ||= create_account
       @account.users.build(user_hash).save!
     end
-    puts 'done with users'
+
+    puts 'done with users' unless Rails.env.test?
   end
 
   def self.import_cert_data(cert_data_file)
-    puts 'starting certs'
-    # @account = Account.find_by_name('Foothills Parks & Recreation')
+    puts 'starting certs' unless Rails.env.test?
+
     CSV.foreach(cert_data_file, headers: true) do |cert_row|
       @cert_row = cert_row
       find_user_and_create_certification
     end
-    puts 'finished certs'
+
+    puts 'finished certs' unless Rails.env.test?
   end
 
   def self.create_account
