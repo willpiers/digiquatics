@@ -25,6 +25,9 @@ namespace :db do
     Pool.create(name: 'Baby', location_id: Location.first.id)
     Pool.create(name: 'Link', location_id: Location.find(2).id)
 
+    Slide.create(name: 'Yellow', location_id: Location.first.id)
+    Slide.create(name: 'Red',    location_id: Location.first.id)
+
     Position.create(name: 'Lifeguard',
                     account_id: 1)
     Position.create(name: 'MOD',

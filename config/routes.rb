@@ -12,6 +12,7 @@ DigiQuatics::Application.routes.draw do
   resources :positions
   resources :certifications
   resources :certification_names
+  resources :slide_inspections
 
   resources :accounts do
     resources :private_lessons, shallow: true
