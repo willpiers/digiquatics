@@ -20,5 +20,8 @@
 #= require angular-resource
 #= require angular-ui-bootstrap-tpls
 
+#= require angular-rails-templates
+#= require_tree ../templates
+
 #= require modules
 #= require_tree .
