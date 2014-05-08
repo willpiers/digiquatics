@@ -63,7 +63,10 @@ namespace :db do
                  active:                 true,
                  account_id:             1)
 
-    100.times do |n|
+    puts "\nUsers"
+
+    10.times do |n|
+      print '.'
 
       User.create!(first_name: Faker::Name.first_name,
                    nickname: Faker::Name.name,
@@ -105,7 +108,11 @@ namespace :db do
     CertificationName.create!(name: 'WSI',
                               account_id: 1)
 
-    99.times do |n|
+    puts "\n\nCertifications"
+
+    10.times do |n|
+      print '.'
+
       Certification.create!(certification_name_id: 1,
                             user_id: n + 1,
                             expiration_date: Date.today + rand(365).day,
@@ -122,7 +129,10 @@ namespace :db do
                             issue_date: Date.today + rand(365).day)
     end
 
-    50.times do |n|
+    puts "\n\nPrivateLessons"
+
+    5.times do |n|
+      print '.'
       PrivateLesson.create!(parent_first_name: Faker::Name.first_name,
                             parent_last_name: Faker::Name.last_name,
                             email: Faker::Internet.email,
@@ -135,7 +145,10 @@ namespace :db do
                             account_id: 1)
     end
 
-    51.times do |n|
+    puts "\n\nParticipant"
+
+    5.times do |n|
+      print '.'
       Participant.create!(private_lesson_id: n,
                           first_name: Faker::Name.first_name,
                           last_name: Faker::Name.last_name,
@@ -143,7 +156,10 @@ namespace :db do
                           sex: %w(M F).sample)
     end
 
-    250.times do |n|
+    puts "\n\nChemicalRecord"
+
+    25.times do |n|
+      print '.'
       si_status = ['Severe Corrosion', 'Moderate Corrosion', 'Mild Corrosion',
                    'Balanced', 'Some Faint Coating', 'Mild Scale Coating',
                    'Mild to Moderate Coatings', 'Moderate Scale Forming',
@@ -175,7 +191,10 @@ namespace :db do
                              user_id: [1, 2, 3, 4, 5].sample)
     end
 
-    100.times do |n|
+    puts "\n\nHelpDesk"
+
+    10.times do |n|
+      print '.'
       name = ['Broken Pipe', 'Loose Door', 'Leak in Sink',
               'Stiff Diving Board', 'Broken Phone', 'Unorganized Chemicals',
               'Clean Pumproom', 'Rewrap Lane Lines']
@@ -188,7 +207,8 @@ namespace :db do
                        )
     end
 
-    100.times do |n|
+    10.times do |n|
+      print '.'
       ShiftReport.create!(time_stamp: Date.today - rand(365).day,
                           user_id: n + 1,
                           location_id: [1, 2].sample,
@@ -196,5 +216,7 @@ namespace :db do
                           post_content: 'Blah blah blah'
                         )
     end
+
+    puts
   end
 end
