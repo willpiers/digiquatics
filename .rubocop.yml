@@ -1,5 +1,5 @@
 AllCops:
-  Includes:
+  Include:
     - Rakefile
     - config.ru
     - Gemfile
@@ -7,7 +7,7 @@ AllCops:
     - db/seeds.rb
     - lib/**/*.rake
     - lib/**/*.cap
-  Excludes:
+  Exclude:
     - spec/spec_helper.rb
     - db/**
     - config/application.rb
