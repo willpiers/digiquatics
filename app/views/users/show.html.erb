@@ -142,6 +142,8 @@
       </tr>
     </table>
 
+  <% if signed_in? && current_user.admin? %>
+
     <h4>
       Admin
       <%= link_to ' Edit', "/users/#{@user.id}/edit#admin",
@@ -149,56 +151,58 @@
           style: 'font-size: 80%' %>
     </h4>
 
-  <table class='table table-bordered table-condensed' >
-    <tr>
-      <th style='width:25%'>Location </th>
-      <td>
-        <% if @user.location %>
-          <%= @user.location.name %>
-        <% else %>
-          Please update location information on user edit page
-        <% end %>
-      </td>
-    </tr>
-    <tr>
-      <th> Position </th>
-      <td>
-        <% if @user.position %>
-          <%= @user.position.name %>
-        <% else %>
-          Please update position information on user edit page
-        <% end %>
-      </td>
-    </tr>
-    <tr>
-    <th> Grouping </th>
-      <td><%= @user.grouping%></td>
-    </tr>
-    <tr>
-    <th> Employee ID </th>
-      <td><%= @user.employee_id %></td>
-    </tr>
-    <tr>
-    <th> Pay Rate</th>
-      <td>
-        <% if @user.payrate? %>
-        <%= number_to_currency(@user.payrate) %>/hr
-        <% end %>
-      </td>
-    </tr>
-    <tr>
-      <th> DOH </th><td><%= @user.date_of_hire ?
-        @user.date_of_hire.strftime('%-m/%-d/%Y') : '-' %></td>
-    </tr>
-    <tr>
-    <th> Admin </th>
-      <td><%= boolean_to_words(@user.admin) %></td>
-    </tr>
-    <tr>
-    <th> Active </th>
-      <td><%= boolean_to_words(@user.active) %></td>
-    </tr>
-  </table>
+    <table class='table table-bordered table-condensed' >
+      <tr>
+        <th style='width:25%'>Location </th>
+        <td>
+          <% if @user.location %>
+            <%= @user.location.name %>
+          <% else %>
+            Please update location information on user edit page
+          <% end %>
+        </td>
+      </tr>
+      <tr>
+        <th> Position </th>
+        <td>
+          <% if @user.position %>
+            <%= @user.position.name %>
+          <% else %>
+            Please update position information on user edit page
+          <% end %>
+        </td>
+      </tr>
+      <tr>
+      <th> Grouping </th>
+        <td><%= @user.grouping%></td>
+      </tr>
+      <tr>
+      <th> Employee ID </th>
+        <td><%= @user.employee_id %></td>
+      </tr>
+      <tr>
+      <th> Pay Rate</th>
+        <td>
+          <% if @user.payrate? %>
+          <%= number_to_currency(@user.payrate) %>/hr
+          <% end %>
+        </td>
+      </tr>
+      <tr>
+        <th> DOH </th><td><%= @user.date_of_hire ?
+          @user.date_of_hire.strftime('%-m/%-d/%Y') : '-' %></td>
+      </tr>
+      <tr>
+      <th> Admin </th>
+        <td><%= boolean_to_words(@user.admin) %></td>
+      </tr>
+      <tr>
+      <th> Active </th>
+        <td><%= boolean_to_words(@user.active) %></td>
+      </tr>
+    </table>
+
+  <% end %>
 
   <h4>
     Certification Information
