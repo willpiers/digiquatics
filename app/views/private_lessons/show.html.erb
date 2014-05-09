@@ -2,123 +2,126 @@
 
 <h1>Lesson Request</h1>
 
-<ul class = 'pull-right'>
-<%= bootstrap_form_for @private_lesson do |f| %>
-  <%= f.hidden_field :user_id, value: current_user.id %>
-  <%= f.submit 'Claim Lesson'  %>
-<% end %>
-</ul>
+<div class='table-width-desktop'>
 
-<br>
+  <ul class = 'pull-right'>
+  <%= bootstrap_form_for @private_lesson do |f| %>
+    <%= f.hidden_field :user_id, value: current_user.id %>
+    <%= f.submit 'Claim Lesson'  %>
+  <% end %>
+  </ul>
 
-<%= link_to 'Back', account_private_lessons_path(account_id: current_user.account_id) %>
+  <br>
 
-<div class='table-responsive'>
-  <% if current_user.admin? %>
-    <table class='table table-bordered table-condensed' >
+  <%= link_to 'Back', account_private_lessons_path(account_id: current_user.account_id) %>
 
-      <h4> Instructor Information </h4>
-      <tr>
-         <th id='fixtablewidth'> Instructor Name </th>
-        <td>
-          <% if @private_lesson.user %>
-            <%= link_to lessons_full_name(@private_lesson.user),
-                user_path(id: @private_lesson.user.id)%>
-          <% end %>
-        </td>
-      </tr>
-      <tr>
-        <th> Instructor Phone Number </th>
-        <td>
-          <% if @private_lesson.user %>
-            <%= phone_number_link(@private_lesson.user.phone_number) %>
-          <% end %>
-        </td>
-      </tr>
-      <tr>
-        <th> Instructor Email </th>
-        <td>
-          <% if @private_lesson.user %>
-            <%= mail_to "{@private_lesson.user.email}" do %>
-              <span><%= @private_lesson.user.email %></span>
+  <div class='table-responsive'>
+    <% if current_user.admin? %>
+      <table class='table table-bordered table-condensed' >
+
+        <h4> Instructor Information </h4>
+        <tr>
+           <th id='fixtablewidth'> Instructor Name </th>
+          <td>
+            <% if @private_lesson.user %>
+              <%= link_to lessons_full_name(@private_lesson.user),
+                  user_path(id: @private_lesson.user.id)%>
             <% end %>
-          <% end %>
-        </td>
-      </tr>
-      <tr>
-        <th> Instructor Location </th>
-        <td>
-          <% if @private_lesson.user %>
-            <%= @private_lesson.user.location.name %>
-          <% end %>
-        </td>
-      </tr>
+          </td>
+        </tr>
+        <tr>
+          <th> Instructor Phone Number </th>
+          <td>
+            <% if @private_lesson.user %>
+              <%= phone_number_link(@private_lesson.user.phone_number) %>
+            <% end %>
+          </td>
+        </tr>
+        <tr>
+          <th> Instructor Email </th>
+          <td>
+            <% if @private_lesson.user %>
+              <%= mail_to "{@private_lesson.user.email}" do %>
+                <span><%= @private_lesson.user.email %></span>
+              <% end %>
+            <% end %>
+          </td>
+        </tr>
+        <tr>
+          <th> Instructor Location </th>
+          <td>
+            <% if @private_lesson.user %>
+              <%= @private_lesson.user.location.name %>
+            <% end %>
+          </td>
+        </tr>
+      </table>
+    <% end %>
+
+    <table class='table table-bordered table-condensed' >
+      <h4> Parent Information </h4>
+        <tr>
+           <th id='fixtablewidth'> Name </th>
+           <td> <%= "#{@private_lesson.parent_first_name} #{@private_lesson.parent_last_name}" %> </td>
+        </tr>
+        <tr>
+          <th> Phone Number</th>
+          <td> <%= phone_number_link(@private_lesson.phone_number) %> </td>
+        </tr>
+        <tr>
+          <th> Email </th>
+          <td>
+            <%= mail_to "#{@private_lesson.email}" do %>
+              <span> <%= @private_lesson.email %> </span>
+            <% end %>
+          </td>
+        </tr>
+        <tr>
+          <th> Preferred Contact Method </th>
+          <td> <%= @private_lesson.contact_method %> </td>
+        </tr>
     </table>
-  <% end %>
 
-  <table class='table table-bordered table-condensed' >
-    <h4> Parent Information </h4>
-      <tr>
-         <th id='fixtablewidth'> Name </th>
-         <td> <%= "#{@private_lesson.parent_first_name} #{@private_lesson.parent_last_name}" %> </td>
-      </tr>
-      <tr>
-        <th> Phone Number</th>
-        <td> <%= phone_number_link(@private_lesson.phone_number) %> </td>
-      </tr>
-      <tr>
-        <th> Email </th>
-        <td>
-          <%= mail_to "#{@private_lesson.email}" do %>
-            <span> <%= @private_lesson.email %> </span>
-          <% end %>
-        </td>
-      </tr>
-      <tr>
-        <th> Preferred Contact Method </th>
-        <td> <%= @private_lesson.contact_method %> </td>
-      </tr>
-  </table>
+    <% @private_lesson.participants.each do |participant| %>
+      <table class='table table-bordered' >
+        <h4> Student Information </h4>
+        <tr>
+           <th id='fixtablewidth'> First Name </th>
+          <td> <%= "#{participant.first_name} #{participant.last_name}" %> </td>
+        </tr>
+        <tr>
+          <th> Gender</th>
+          <td> <%= participant.sex %> </td>
+        </tr>
+        <tr>
+          <th> Age </th>
+          <td> <%= participant.age %> </td>
+        </tr>
+      </table>
+    <% end %>
 
-  <% @private_lesson.participants.each do |participant| %>
     <table class='table table-bordered' >
-      <h4> Student Information </h4>
-      <tr>
-         <th id='fixtablewidth'> First Name </th>
-        <td> <%= "#{participant.first_name} #{participant.last_name}" %> </td>
-      </tr>
-      <tr>
-        <th> Gender</th>
-        <td> <%= participant.sex %> </td>
-      </tr>
-      <tr>
-        <th> Age </th>
-        <td> <%= participant.age %> </td>
-      </tr>
+      <h4> Preferences </h4>
+        <tr>
+          <th id='fixtablewidth'> Special Requests </th>
+          <td> <%= @private_lesson.notes %> </td>
+        </tr>
+        <tr>
+          <th> Lesson Objectives </th>
+          <td> <%= @private_lesson.lesson_objective %> </td>
+        </tr>
     </table>
-  <% end %>
 
-  <table class='table table-bordered' >
-    <h4> Preferences </h4>
-      <tr>
-        <th id='fixtablewidth'> Special Requests </th>
-        <td> <%= @private_lesson.notes %> </td>
-      </tr>
-      <tr>
-        <th> Lesson Objectives </th>
-        <td> <%= @private_lesson.lesson_objective %> </td>
-      </tr>
-  </table>
+    <table class='table table-bordered' >
+      <h4> Lesson Request </h4>
+        <tr>
+          <th id='fixtablewidth'> Number Lessons </th>
+          <td> <%= @private_lesson.number_lessons %> </td>
+        </tr>
+    </table>
 
-  <table class='table table-bordered' >
-    <h4> Lesson Request </h4>
-      <tr>
-        <th id='fixtablewidth'> Number Lessons </th>
-        <td> <%= @private_lesson.number_lessons %> </td>
-      </tr>
-  </table>
-
-  <%if current_user.admin? %>
-    <%= link_to 'Edit', edit_private_lesson_path(@private_lesson) %>
-  <% end %>
-</div>
+    <%if current_user.admin? %>
+      <%= link_to 'Edit', edit_private_lesson_path(@private_lesson) %>
+    <% end %>
+  </div>
+<div>

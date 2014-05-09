@@ -3,82 +3,83 @@
 
 <h1><%='Chemical Record'%></h1>
 
-<div id='userformbutton'>
-<%=link_to 'Edit Record', edit_chemical_record_path(@chemical_record),
-    class: 'btn btn-primary btn-sm'%>
+<div class='table-width-desktop'>
+  <div id='userformbutton'>
+  <%=link_to 'Edit Record', edit_chemical_record_path(@chemical_record),
+      class: 'btn btn-primary btn-sm'%>
+  </div>
+
+  <br>
+
+  <%= link_to 'Back', chemical_records_path %>
+
+  <div class='table-responsive'>
+    <table class='table table-bordered table-condensed'>
+        <tr>
+          <th id='fixtablewidth'>Location</th>
+          <td><%=%></td>
+        </tr>
+        <tr>
+          <th>Pool</th>
+          <td><%=%></td>
+        </tr>
+        <tr>
+          <th>Chlorine(ppm)</th>
+          <td><%= @chemical_record.total_chlorine_ppm%></td>
+        </tr>
+        <tr>
+          <th> Chlorine(orp)</th>
+          <td><%= @chemical_record.chlorine_orp%></td>
+        </tr>
+        <tr>
+          <th>PH</th>
+          <td><%= @chemical_record.ph%> </td>
+        </tr>
+        <tr>
+          <th>Alkalinity</th>
+          <td><%= @chemical_record.alkalinity%></td>
+        </tr>
+        <tr>
+          <th>Calcium Hardness</th>
+          <td><%= @chemical_record.calcium_hardness%></td>
+        </tr>
+      <tr>
+        <th>Pool Temp</th>
+        <td><%= @chemical_record.pool_temp%></td>
+      </tr>
+      <tr>
+        <th>Air Temp</th>
+        <td><%= @chemical_record.air_temp%></td>
+      </tr>
+      <tr>
+        <th>SI Index</th>
+        <td><%= @chemical_record.si_index%></td>
+      </tr>
+      <tr>
+        <th>SI Status</th>
+        <td><%= @chemical_record.si_status %></td>
+      </tr>
+      <tr>
+        <th>SI Recommendation</th>
+        <td><%= @chemical_record.si_recommendation %></td>
+      </tr>
+      <tr>
+        <th>Submitted By</th>
+          <td>
+            <% if @chemical_record.user_id? %>
+              <%= link_to "#{@chemical_record.user.first_name}
+                           #{@chemical_record.user.last_name}",
+                           user_path(id: @chemical_record.user.id) %>
+            <% end %>
+          </td>
+      </tr>
+      <tr>
+        <th> Phone Number </th>
+        <td> <%= phone_number_link(@chemical_record.user.phone_number) %> </td>
+      <tr>
+        <th>Time Created</th>
+        <td><%= @chemical_record.time_stamp.strftime("%I:%M%p")%></td>
+      </tr>
+    </table>
+  </div>
 </div>
-
-<br>
-
-<%= link_to 'Back', chemical_records_path %>
-
-<div class='table-responsive'>
-  <table class='table table-bordered table-condensed'>
-      <tr>
-        <th id='fixtablewidth'>Location</th>
-        <td><%=%></td>
-      </tr>
-      <tr>
-        <th>Pool</th>
-        <td><%=%></td>
-      </tr>
-      <tr>
-        <th>Chlorine(ppm)</th>
-        <td><%= @chemical_record.total_chlorine_ppm%></td>
-      </tr>
-      <tr>
-        <th> Chlorine(orp)</th>
-        <td><%= @chemical_record.chlorine_orp%></td>
-      </tr>
-      <tr>
-        <th>PH</th>
-        <td><%= @chemical_record.ph%> </td>
-      </tr>
-      <tr>
-        <th>Alkalinity</th>
-        <td><%= @chemical_record.alkalinity%></td>
-      </tr>
-      <tr>
-        <th>Calcium Hardness</th>
-        <td><%= @chemical_record.calcium_hardness%></td>
-      </tr>
-    <tr>
-      <th>Pool Temp</th>
-      <td><%= @chemical_record.pool_temp%></td>
-    </tr>
-    <tr>
-      <th>Air Temp</th>
-      <td><%= @chemical_record.air_temp%></td>
-    </tr>
-    <tr>
-      <th>SI Index</th>
-      <td><%= @chemical_record.si_index%></td>
-    </tr>
-    <tr>
-      <th>SI Status</th>
-      <td><%= @chemical_record.si_status %></td>
-    </tr>
-    <tr>
-      <th>SI Recommendation</th>
-      <td><%= @chemical_record.si_recommendation %></td>
-    </tr>
-    <tr>
-      <th>Submitted By</th>
-        <td>
-          <% if @chemical_record.user_id? %>
-            <%= link_to "#{@chemical_record.user.first_name}
-                         #{@chemical_record.user.last_name}",
-                         user_path(id: @chemical_record.user.id) %>
-          <% end %>
-        </td>
-    </tr>
-    <tr>
-      <th> Phone Number </th>
-      <td> <%= phone_number_link(@chemical_record.user.phone_number) %> </td>
-    <tr>
-      <th>Time Created</th>
-      <td><%= @chemical_record.time_stamp.strftime("%I:%M%p")%></td>
-    </tr>
-  </table>
-</div>
-
