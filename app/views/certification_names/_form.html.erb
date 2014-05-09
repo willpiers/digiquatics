@@ -3,7 +3,7 @@
     style: :horizontal, left: 'col-sm-4', right: 'col-sm-8') do |f| %>
     <%= content_tag(:legend, legend) unless !legend %>
     <p> * Indicates required field </p>
-    <%= f.text_field :name %>
+    <%= f.text_field :name, label: 'Name *' %>
       <%= f.form_group do %>
         <%= f.primary %>
       <% end %>
