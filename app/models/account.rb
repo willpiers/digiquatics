@@ -5,7 +5,7 @@ class Account < ActiveRecord::Base
   ATTACHED_PATH = ':rails_root/public/system/:attachment/:id/:style/:filename'
   ATTACHED_URL  = '/system/:attachment/:id/:style/:filename'
 
-  validates_presence_of  :name
+  validates_presence_of :name
   validates_inclusion_of :time_zone,
                          in: ActiveSupport::TimeZone.zones_map(&:name)
 

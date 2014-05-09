@@ -56,7 +56,7 @@ module ApplicationHelper
   end
 
   def flash_messages(opts = {})
-    content_tag   :div, class: 'row' do
+    content_tag :div, class: 'row' do
       content_tag :div, class: 'col-md-8 col-md-offset-2' do
         flash_html.join.html_safe
       end

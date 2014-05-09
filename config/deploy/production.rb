@@ -7,7 +7,7 @@ set :stage, :production
 # something that quacks like a hash can be used to set
 # extended properties on the server.
 server 'digiquatics.com', user: 'deployer',
-                          roles: %w{web app db},
+                          roles: %w(web app db),
                           primary: true
 
 set :deploy_to, '/home/deployer/var/www/digiquatics'
