@@ -73,6 +73,9 @@
         </td>
     </tr>
     <tr>
+      <th> Phone Number </th>
+      <td> <%= phone_number_link(@chemical_record.user.phone_number) %> </td>
+    <tr>
       <th>Time Created</th>
       <td><%= @chemical_record.time_stamp.strftime("%I:%M%p")%></td>
     </tr>
