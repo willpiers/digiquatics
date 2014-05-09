@@ -15,8 +15,8 @@ class User < ActiveRecord::Base
 
   before_save { self.email = email.downcase }
 
-  belongs_to  :account
-  has_many    :certifications
+  belongs_to :account
+  has_many :certifications
 
   accepts_nested_attributes_for :certifications, allow_destroy: true
 

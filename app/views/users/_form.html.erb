@@ -2,7 +2,7 @@
   <%= bootstrap_form_for(@user,
     style: :horizontal, left: 'col-sm-4', right: 'col-sm-8') do |f| %>
     <legend><%= legend %></legend>
-    <p> * Indicates required field </p>
+    <%= render 'shared/required' %>
     <div id='basic'><%= render 'basic_user_fields', f: f %></div>
 
     <% unless f.object.new_record? %>

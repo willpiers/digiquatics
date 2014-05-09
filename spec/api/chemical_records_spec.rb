@@ -29,12 +29,12 @@ describe 'chemical records' do
     end
 
     it 'should have a pool' do
-      actual.first['pool_id'].should    eq pool.id
+      actual.first['pool_id'].should eq pool.id
       actual.first['pool']['id'].should eq pool.id
     end
 
     it 'should have a location' do
-      actual.first['pool']['location_id'].should    eq location.id
+      actual.first['pool']['location_id'].should eq location.id
       actual.first['pool']['location']['id'].should eq location.id
     end
   end
