@@ -200,11 +200,18 @@ namespace :db do
                         )
     end
 
-    10.times do |n|
+    8.times do |n|
+      SlideInspection.create!(slide_id: Slide.first.id,
+                              user_id: rand(80) + 1,
+                              notes: 'all is good',
+                              all_ok: true)
+    end
+
+    2.times do |n|
       SlideInspection.create!(slide_id: Slide.first.id,
                               user_id: rand(80) + 1,
                               notes: 'broken bolts',
-                              all_ok: true)
+                              all_ok: false)
     end
   end
 end
