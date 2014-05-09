@@ -3,6 +3,15 @@ class SlideInspectionsController < ApplicationController
 
   def index
     @slide_inspections = SlideInspection.all
+
+    respond_to do |format|
+      format.html
+      format.json
+
+      format.csv do
+        render csv: @slide_inspections, filename: 'slide_inspections'
+      end
+    end
   end
 
   def show

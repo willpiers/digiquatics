@@ -16,18 +16,19 @@
     </tr>
   </thead>
   <tbody>
-    <tr ng-repeat='inspection in inspections | orderBy:predicate'>
+    <tr ng-repeat='inspection in slideInspections | orderBy:predicate.value:reverse'>
       <td>{{inspection.slide.name}}</td>
       <td>
-        <a ng-href='/users/{{user.id}}'>
+        <a ng-href='/users/{{inspection.user.id}}'>
           {{inspection.user.last_name}}, {{inspection.user.first_name}}
         </a>
       </td>
-      <td>{{inspection.created_at}}</td>
-      <td>{{user.position.name}}</td>
-      <td><%= mail_to '{{user.email}}' %></td>
-      <td><a ng-href='tel:{{user.phone_number}}'>{{user.phone_number}}</td>
-      <td>{{user.admin | booleanToWords}}</td>
+      <td>
+        <a ng-href='/slide_inspections/{{inspection.id}}'>
+          {{inspection.created_at | date:'M/d/yy h:mm a'}}
+        </a>
+      </td>
+      <td>{{inspection.all_ok | booleanToWords}}</td>
     </tr>
   </tbody>
 </table>

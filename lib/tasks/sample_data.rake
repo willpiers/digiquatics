@@ -199,5 +199,12 @@ namespace :db do
                           post_content: 'Blah blah blah'
                         )
     end
+
+    10.times do |n|
+      SlideInspection.create!(slide_id: Slide.first.id,
+                              user_id: rand(80) + 1,
+                              notes: 'broken bolts',
+                              all_ok: true)
+    end
   end
 end
