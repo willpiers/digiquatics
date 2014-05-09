@@ -2,7 +2,7 @@
   <%= bootstrap_form_for(@preventative_list,
     style: :horizontal, left: 'col-sm-4', right: 'col-sm-8') do |f| %>
       <%= content_tag(:legend, legend) unless !legend %>
-      <p> * Indicates required field </p>
+      <%= render 'shared/required' %>
       <%= f.text_field :name, label:'Name *' %>
       <%= f.text_field :task_type, label:'Type *' %>
 

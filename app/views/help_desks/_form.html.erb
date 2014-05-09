@@ -3,7 +3,7 @@
     style: :horizontal, left: 'col-sm-4', right: 'col-sm-8') do |f| %>
 
     <%= content_tag(:legend, legend) unless !legend %>
-    <p> * Indicates required field </p>
+    <%= render 'shared/required' %>
     <%= f.text_field :name, label: 'Problem *' %>
     <%= f.text_area :description, label: 'Description' %>
     <%= f.select :urgency, %w[Low Medium High], label: 'Urgency' %>
