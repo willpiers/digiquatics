@@ -21,11 +21,11 @@
     </tr>
     <tr>
       <th>Date</th>
-      <td><%= @slide_inspection.created_at.strftime("%m/%-d/%Y")%></td>
+      <td><%= @slide_inspection.created_at.strftime("%m/%-d/%Y") %></td>
     </tr>
     <tr>
       <th>All OK?</th>
-      <td><%= @all_ok %></td>
+      <td><%= @slide_inspection.all_ok ? 'Yes' : 'No' %></td>
     </tr>
     <% unless @all_ok == 'Yes' %>
       <tr>

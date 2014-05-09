@@ -6,12 +6,6 @@ class SlideInspectionsController < ApplicationController
   end
 
   def show
-    if @slide_inspection.slide_inspection_tasks.where(completed: true).count == 24
-      @all_ok = 'Yes'
-    else
-      @all_ok = 'No'
-    end
-
     @errors = @slide_inspection.slide_inspection_tasks.where(completed: false)
   end
 
@@ -26,6 +20,8 @@ class SlideInspectionsController < ApplicationController
   def create
     @slide_inspection = SlideInspection.new(slide_inspection_params)
     @slide_inspection.user_id = current_user.id
+
+    @slide_inspection.all_ok = true if count_completed(slide_inspection_params) == 24
 
     if @slide_inspection.save
       flash[:sucess] = 'Slide Inspection was successfully created.'
