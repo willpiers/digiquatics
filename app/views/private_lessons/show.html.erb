@@ -11,7 +11,7 @@
 
 <br>
 
-<%= link_to 'Back', private_lessons_path %>
+<%= link_to 'Back', account_private_lessons_path(account_id: current_user.account_id) %>
 
 <div class='table-responsive'>
   <% if current_user.admin? %>

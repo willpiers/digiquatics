@@ -15,6 +15,10 @@
                 class: 'btn btn-default btn-primary' %>
   </ul>
 
+  <br>
+
+  <%= link_to 'Back', users_path %>
+
   <% if @user != current_user && current_user.admin? %>
     <ul class='pull-right'>
       <% if @user.active? %>
