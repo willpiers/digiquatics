@@ -1,10 +1,10 @@
 <% provide(:title, 'Employee Statistics') %>
 <h1>Employee Statistics</h1>
 
-<div class='table-responsive'>
+<div class='table-width-desktop'>
   <h4> Basic Information </h4>
-    <table class='table table-bordered table-condensed'>
-      <tr><th>Metric</th><th>Count</td></tr>
+    <table class='table table-bordered'>
+      <tr><th style='width:25%'>Metric</th><th>Count</td></tr>
       <tr><td>Users </td>
         <td><%= @users.count %>
         </td></tr>
@@ -17,8 +17,8 @@
     </table>
 
   <h4> Classification </h4>
-    <table class='table table-bordered table-condensed'>
-      <tr><th>Metric</th><th>Count</td></tr>
+    <table class='table table-bordered'>
+      <tr><th style='width:25%'>Metric</th><th>Count</td></tr>
       <tr><td>Admin </td><td>
         <%= @users.admin.count %>
       </td></tr>
@@ -31,38 +31,32 @@
     </table>
 
   <h4> Inventory </h4>
-    <table class='table table-bordered table-condensed'>
-      <tr><th>Metric</th><th>Count</td></tr>
+    <table class='table table-bordered'>
+      <tr><th style='width:25%'>Metric</th><th>Count</td></tr>
       <tr><td>Shirts </td><td>
         <% User.group(:shirt_size).count.each do |key, value| %>
-          <%= "#{key}:#{value} "%>
+          <%= "#{key}:#{value} "%></br>
         <% end %>
       </td></tr>
       <tr><td>Male Suit </td><td>
         <% User.male.group(:suit_size).count.each do |key, value| %>
-          <%= "#{key}:#{value} "%>
+          <%= "#{key}:#{value} "%></br>
         <% end %>
       </td></tr>
       <tr><td>Female One-Peice </td><td>
         <% User.female.group(:femalesuit).count.each do |key, value| %>
-          <%= "Size(#{key}): #{value} "%>
+          <%= "Size(#{key}): #{value} "%></br>
         <% end %>
       </td></tr>
       <tr><td>Female Top </td><td>
         <% User.female.group(:shirt_size).count.each do |key, value| %>
-          <%= "#{key}:#{value} "%>
+          <%= "#{key}:#{value} "%></br>
         <% end %>
       </td></tr>
       <tr><td>Female Bottom </td><td>
         <% User.female.group(:suit_size).count.each do |key, value| %>
-          <%= "#{key}:#{value} "%>
+          <%= "#{key}:#{value} "%></br>
         <% end %>
       </td></tr>
-    </table>
-
-  <h4> Location </h4>
-    <table class='table table-bordered table-condensed'>
-      <tr><th>Metric</th><th>Count</td></tr>
-      <tr><td>Locations</td><td> <% @users.group(:location).count %></td></tr>
     </table>
 </div>
