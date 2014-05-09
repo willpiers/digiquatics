@@ -6,16 +6,19 @@
     <accordion-group heading="Manage Account">
      <%= render 'account' %>
     </accordion-group>
+    <accordion-group heading="Manage Certifications">
+      <%= render 'certifications' %>
+    </accordion-group>
+    <% if FeatureToggleHelper.chemicals? %>
+      <accordion-group heading="Manage Chemicals">
+      </accordion-group>
+    <% end %>
     <accordion-group heading="Manage Locations">
       <%= render 'locations' %>
     </accordion-group>
     <% if FeatureToggleHelper.attendance? %>
       <accordion-group heading="Manage Attendance">
         <%= render 'attendance' %>
-      </accordion-group>
-    <% end %>
-    <% if FeatureToggleHelper.chemicals? %>
-      <accordion-group heading="Manage Chemicals">
       </accordion-group>
     <% end %>
     <accordion-group heading="Manage Positions">
@@ -26,9 +29,6 @@
         <%= render 'private_lessons' %>
       </accordion-group>
     <% end %>
-    <accordion-group heading="Manage Certifications">
-      <%= render 'certifications' %>
-    </accordion-group>
     <accordion-group heading="Export Data">
       <%= render 'exports' %>
     </accordion-group>
