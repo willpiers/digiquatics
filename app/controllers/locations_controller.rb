@@ -11,6 +11,7 @@ class LocationsController < ApplicationController
   def new
     @location = Location.new
     @location.pools.build
+    @location.slides.build
   end
 
   def edit
@@ -21,7 +22,7 @@ class LocationsController < ApplicationController
     @location.account_id = current_user.account_id
 
     if @location.save
-      flash[:success] = 'Certification name was successfully created.'
+      flash[:success] = 'Location was successfully created.'
       redirect_to admin_dashboard_path
     else
       render 'new'
@@ -50,6 +51,7 @@ class LocationsController < ApplicationController
 
   def location_params
     params.require(:location)
-    .permit(:name, pools_attributes: [:id, :location_id, :name, :_destroy])
+    .permit(:name, pools_attributes: [:id, :location_id, :name, :_destroy],
+      slides_attributes: [:id, :location_id, :name, :_destroy])
   end
 end

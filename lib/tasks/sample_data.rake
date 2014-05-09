@@ -25,6 +25,9 @@ namespace :db do
     Pool.create(name: 'Baby', location_id: Location.first.id)
     Pool.create(name: 'Link', location_id: Location.find(2).id)
 
+    Slide.create(name: 'Yellow', location_id: Location.first.id)
+    Slide.create(name: 'Red',    location_id: Location.first.id)
+
     Position.create(name: 'Lifeguard',
                     account_id: 1)
     Position.create(name: 'MOD',
@@ -195,6 +198,13 @@ namespace :db do
                           report_filed: [true, false].sample,
                           post_content: 'Blah blah blah'
                         )
+    end
+
+    10.times do |n|
+      SlideInspection.create!(slide_id: Slide.first.id,
+                              user_id: rand(80) + 1,
+                              notes: 'broken bolts',
+                              all_ok: true)
     end
   end
 end
