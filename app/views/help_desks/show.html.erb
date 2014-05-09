@@ -2,119 +2,123 @@
 
 <h1> Issue # <%= @help_desk.id %></h1>
 
-<ul class = 'pull-right'>
-  <%= link_to 'Edit', edit_help_desk_path(@help_desk),
-    class: 'btn btn-default btn-primary' %>
-</ul>
+<div class='table-width-desktop'>
+  <ul class = 'pull-right'>
+    <%= link_to 'Edit Issue', edit_help_desk_path(@help_desk),
+      class: 'btn btn-default btn-primary' %>
+  </ul>
 
-<br>
+  <br>
 
-<div class='table-responsive'>
+  <%= link_to 'Back', help_desks_path %>
 
-  <h4> Issue Description </h4>
+  <div class='table-responsive'>
 
-    <table class='table table-bordered table-condensed' >
-      <tr>
-        <th id='fixtablewidth'> Problem </th>
-        <td> <%= @help_desk.name %> </td>
-      </tr>
-      <tr>
-        <th> Description </th>
-        <td> <%= @help_desk.description %> </td>
-      </tr>
-      <tr>
-        <th> Original Picture </th>
-        <td>
-          <% if @help_desk.help_desk_attachment? %>
-            <%= link_to '', @help_desk.help_desk_attachment.url,
-            class: 'glyphicon glyphicon-picture' %>
+    <h4> Issue Description </h4>
+
+      <table class='table table-bordered table-condensed' >
+        <tr>
+          <th id='fixtablewidth'> Problem </th>
+          <td> <%= @help_desk.name %> </td>
+        </tr>
+        <tr>
+          <th> Description </th>
+          <td> <%= @help_desk.description %> </td>
+        </tr>
+        <tr>
+          <th> Original Picture </th>
+          <td>
+            <% if @help_desk.help_desk_attachment? %>
+              <%= link_to '', @help_desk.help_desk_attachment.url,
+              class: 'glyphicon glyphicon-picture' %>
+            <% else %>
+            <% end %>
+          </td>
+        </tr>
+        <tr>
+          <th> Urgency </th>
+          <% if @help_desk.urgency == 'Low'  %>
+            <td class='success'><%= @help_desk.urgency %></td>
+          <% elsif @help_desk.urgency == 'Medium'  %>
+            <td class='warning'><%= @help_desk.urgency %></td>
+          <% elsif @help_desk.urgency == 'High'  %>
+            <td class='danger'><%= @help_desk.urgency %></td>
           <% else %>
+             <td><%= @help_desk.urgency %></td>
           <% end %>
-        </td>
-      </tr>
-      <tr>
-        <th> Urgency </th>
-        <% if @help_desk.urgency == 'Low'  %>
-          <td class='success'><%= @help_desk.urgency %></td>
-        <% elsif @help_desk.urgency == 'Medium'  %>
-          <td class='warning'><%= @help_desk.urgency %></td>
-        <% elsif @help_desk.urgency == 'High'  %>
-          <td class='danger'><%= @help_desk.urgency %></td>
+        </tr>
+        <tr>
+          <th> Location </th>
+          <td> <%= Location.find(@help_desk.location_id).name %> </td>
+        </tr>
+        <tr>
+          <th> Submitted By </th>
+          <td>
+            <%= link_to "#{@facade.submitter.first_name}
+                         #{ @facade.submitter.last_name}",
+                         user_path(id: @help_desk.user.id) %>
+          </td>
+        </tr>
+        <tr>
+          <th> Submitted </th>
+          <td> <%= @help_desk.created_at.strftime('%-m/%-d/%Y') %> </td>
+        </tr>
+        <tr>
+          <th> Issue Status </th>
+          <td> <%= @help_desk.issue_status %> </td>
+        </tr>
+        <% unless @help_desk.issue_status? %>
+          <tr>
+            <th> Issue Notes </th>
+            <td> <%= @help_desk.issue_resolution_description %> </td>
+          </tr>
+          <tr>
+            <th>Closed By</th>
+              <td>
+                <% if @help_desk.closed_user_id? %>
+                  <%= link_to "#{@facade.closer.first_name}
+                               #{ @facade.closer.last_name}",
+                               user_path(id: @help_desk.user.id) %>
+                <% end %>
+              </td>
+          </tr>
+          <tr>
+            <th> Date Closed </th>
+            <td> <%= @help_desk.closed_date_time.strftime('%I:%M%p %-m/%-d/%Y') %> </td>
+          </tr>
         <% else %>
-           <td><%= @help_desk.urgency %></td>
+          <tr>
+            <th> Issue Notes </th>
+            <td> Add notes below </td>
+          </tr>
         <% end %>
-      </tr>
-      <tr>
-        <th> Location </th>
-        <td> <%= Location.find(@help_desk.location_id).name %> </td>
-      </tr>
-      <tr>
-        <th> Submitted By </th>
-        <td>
-          <%= link_to "#{@facade.submitter.first_name}
-                       #{ @facade.submitter.last_name}",
-                       user_path(id: @help_desk.user.id) %>
-        </td>
-      </tr>
-      <tr>
-        <th> Submitted </th>
-        <td> <%= @help_desk.created_at.strftime('%-m/%-d/%Y') %> </td>
-      </tr>
-      <tr>
-        <th> Issue Status </th>
-        <td> <%= @help_desk.issue_status %> </td>
-      </tr>
-      <% unless @help_desk.issue_status? %>
-        <tr>
-          <th> Issue Notes </th>
-          <td> <%= @help_desk.issue_resolution_description %> </td>
-        </tr>
-        <tr>
-          <th>Closed By</th>
-            <td>
-              <% if @help_desk.closed_user_id? %>
-                <%= link_to "#{@facade.closer.first_name}
-                             #{ @facade.closer.last_name}",
-                             user_path(id: @help_desk.user.id) %>
-              <% end %>
-            </td>
-        </tr>
-        <tr>
-          <th> Date Closed </th>
-          <td> <%= @help_desk.closed_date_time.strftime('%I:%M%p %-m/%-d/%Y') %> </td>
-        </tr>
-      <% else %>
-        <tr>
-          <th> Issue Notes </th>
-          <td> Add notes below </td>
-        </tr>
-      <% end %>
-    </table>
-</div>
+      </table>
+  </div>
 
-<center>
-<% if @help_desk.help_desk_attachment? %>
-  <h4> Attached Picture </h4>
-  <%= image_tag @help_desk.help_desk_attachment.url, height: '300px'%>
-<% end %>
-</center>
-
-<div class='userform'>
-
-<% if @help_desk.issue_status? %>
-  <h4> Actions taken to resolve this issue </h4>
-  <%= bootstrap_form_for @help_desk do |f| %>
-    <%= f.hidden_field :issue_status, value: false %>
-    <%= f.text_area :issue_resolution_description, hide_label: true, size: '2x' %>
-    <%= f.submit 'Close Issue'  %>
+  <center>
+  <% if @help_desk.help_desk_attachment? %>
+    <h4> Attached Picture </h4>
+    <%= image_tag @help_desk.help_desk_attachment.url, height: '300px'%>
   <% end %>
-<% else %>
-  <%= bootstrap_form_for @help_desk do |f| %>
-    <%= f.hidden_field :issue_status, value: true %>
-    <%= f.submit 'Open Issue'  %>
-  <% end %>
-<% end %>
+  </center>
 
+  <div class='userform'>
+
+  <% if @help_desk.issue_status? %>
+    <h4> Actions taken to resolve this issue </h4>
+    <%= bootstrap_form_for @help_desk do |f| %>
+      <%= f.hidden_field :issue_status, value: false %>
+      <%= f.text_area :issue_resolution_description, hide_label: true, size: '2x' %>
+      <%= f.submit 'Close Issue'  %>
+    <% end %>
+  <% else %>
+    <%= bootstrap_form_for @help_desk do |f| %>
+      <%= f.hidden_field :issue_status, value: true %>
+      <%= f.submit 'Reopen Issue'  %>
+    <% end %>
+  <% end %>
+
+  </div>
 </div>
 
 <br><br><br><br><br><br><br><br>

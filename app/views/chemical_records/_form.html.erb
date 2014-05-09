@@ -15,7 +15,7 @@
     <% end %>
 
     <%= content_tag(:legend, legend) unless !legend %>
-    <p> * Indicates required field </p>
+    <%= render 'shared/required' %>
     <%= f.select :pool_id,
       options_from_collection_for_select(Pool.same_location_as(current_user) , :id, :name ) %>
     <%= f.text_field :free_chlorine_ppm, label: 'Free Chlorine ppm' %>

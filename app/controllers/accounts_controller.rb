@@ -6,7 +6,7 @@ class AccountsController < ApplicationController
   before_action :admin_user, only: [:admin_dashboard]
 
   def index
-    @accounts = Account.all
+    redirect_to dashboard_path
   end
 
   def show

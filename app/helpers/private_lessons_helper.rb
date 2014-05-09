@@ -5,8 +5,8 @@ module PrivateLessonsHelper
     :notes, :day, :time, :preferred_location, :user_id, :attachment,
     :number_lessons, :lesson_objective, :account_id,
     participants_attributes: [
-        :_destroy, :id, :private_lesson_id, :first_name, :last_name,
-        :sex, :age
+      :_destroy, :id, :private_lesson_id, :first_name, :last_name,
+      :sex, :age
     ]
   ]
 

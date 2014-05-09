@@ -18,7 +18,7 @@ module FeatureToggleHelper
   end
 
   def self.load_feature_toggles
-    if File.exists?(FEATURE_TOGGLE_PATH)
+    if File.exist?(FEATURE_TOGGLE_PATH)
       YAML.load_file(FEATURE_TOGGLE_PATH)
     else
       Rails.logger.warn("WARN: missing file: #{FEATURE_TOGGLE_PATH}")

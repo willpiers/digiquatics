@@ -6,7 +6,7 @@ class StaticPagesController < ApplicationController
   def about
   end
 
-  def index
+  def landing
     if !Rails.env.test? && current_user
       Tracker.track(current_user.id, 'View Index')
     end
@@ -25,5 +25,4 @@ class StaticPagesController < ApplicationController
     @users = User.joins(:account).same_account_as(current_user)
     @location  = Location.all
   end
-
 end

@@ -2,7 +2,7 @@
 <%= bootstrap_form_for @account do |f| %>
 
     <%= content_tag(:legend, legend) unless !legend %>
-    <p> * Indicates required field </p>
+    <%= render 'shared/required' %>
     <%= f.text_field :name, label: 'Organization Name *' %>
     <%= f.file_field :logo %>
     <%= f.label :time_zone %><br>

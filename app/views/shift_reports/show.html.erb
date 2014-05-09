@@ -1,16 +1,22 @@
 <% provide(:title, 'Shift Report') %>
-<h1>Shift Report</h1>
-<ul class='pull-right'>
-  <%= link_to 'Edit', edit_shift_report_path(@shift_report),
-              class: 'btn btn-default btn-primary' %>
-</ul>
 
 <div style='margin-left:0px;'>
-  <%= image_tag @shift_report.user.avatar.url, size: '100x100' %>
+<h1>
+  <%= image_tag @shift_report.user.avatar.url, size: '100x100', class: 'img-circle' %>
+  Shift Report
+</h1>
 </div>
-<br>
 
-<div class='table-responsive'>
+<div class='table-width-desktop'>
+  <ul class='pull-right'>
+    <%= link_to 'Edit Shift Report', edit_shift_report_path(@shift_report),
+                class: 'btn btn-default btn-primary' %>
+  </ul>
+
+  <br>
+
+  <%= link_to 'Back', shift_reports_path %>
+
   <table class='table table-bordered table-condensed' >
     <tr>
       <th style='width:25%'> Location </th>
