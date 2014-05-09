@@ -25,7 +25,22 @@
     </tr>
     <tr>
       <th>All OK?</th>
-      <td>Yes</td>
+      <td><%= @all_ok %></td>
+    </tr>
+    <% unless @all_ok == 'Yes' %>
+      <tr>
+        <th>Errors</th>
+        <td>
+          <% @errors.each do |error| %>
+            <%= error.task_name %>
+            <br>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+    <tr>
+      <th>Notes</th>
+      <td><%= @slide_inspection.notes %></td>
     </tr>
   </table>
 </div>

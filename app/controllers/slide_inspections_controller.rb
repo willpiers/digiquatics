@@ -6,10 +6,18 @@ class SlideInspectionsController < ApplicationController
   end
 
   def show
+    if @slide_inspection.slide_inspection_tasks.where(completed: true).count == 24
+      @all_ok = 'Yes'
+    else
+      @all_ok = 'No'
+    end
+
+    @errors = @slide_inspection.slide_inspection_tasks.where(completed: false)
   end
 
   def new
     @slide_inspection = SlideInspection.new
+    @slide_inspection.slide_inspection_tasks.build
   end
 
   def edit
@@ -17,6 +25,7 @@ class SlideInspectionsController < ApplicationController
 
   def create
     @slide_inspection = SlideInspection.new(slide_inspection_params)
+    @slide_inspection.user_id = current_user.id
 
     if @slide_inspection.save
       flash[:sucess] = 'Slide Inspection was successfully created.'
@@ -42,11 +51,13 @@ class SlideInspectionsController < ApplicationController
 
   private
 
+  include SlideInspectionsHelper
+
   def set_slide_inspection
     @slide_inspection = SlideInspection.find(params[:id])
   end
 
   def slide_inspection_params
-    params.require(:slide_inspection).permit(:slide_id, :user_id)
+    params.require(:slide_inspection).permit(SLIDE_INSPECTION_PARAMS)
   end
 end

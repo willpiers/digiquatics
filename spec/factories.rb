@@ -110,4 +110,10 @@ FactoryGirl.define do
     slide_id          1
     user_id           1
   end
+
+  factory :slide_inspection_task do
+    slide_inspection_id 1
+    task_name           'bolts tight'
+    completed           true
+  end
 end

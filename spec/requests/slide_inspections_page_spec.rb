@@ -14,7 +14,17 @@ describe 'Slide Inspection pages' do
   let!(:slide) { FactoryGirl.create(:slide) }
 
   let!(:slide_inspection) do
-    FactoryGirl.create(:slide_inspection, slide_id: slide.id, user_id: user.id)
+    FactoryGirl.create(:slide_inspection,
+                       slide_id: slide.id,
+                       user_id: user.id,
+                       notes: 'bad bolts')
+  end
+
+  let!(:slide_inspection_with_error) do
+    FactoryGirl.create(:slide_inspection,
+                       slide_id: slide.id,
+                       user_id: user.id,
+                       notes: 'bad bolts')
   end
 
   subject { page }
@@ -47,18 +57,22 @@ describe 'Slide Inspection pages' do
     describe 'slide inspection' do
       it { should have_content('New Slide Inspection') }
       it { should have_title('New Slide Inspection') }
-
+      it { should have_content('Notes') }
 
       describe 'with valid information' do
         let(:submit) { 'Create Slide inspection' }
 
         before do
           select slide.name, from: 'slide_inspection_slide_id'
-          # fill_in 'chemical_record_free_chlorine_ppm', with: 2
+          # check all are completed by default
         end
 
         it 'should create a slide inspection record' do
           expect { click_button submit }.to change(SlideInspection, :count).by(1)
+        end
+
+        it 'should also create a slide inspection task records' do
+          expect { click_button submit }.to change(SlideInspectionTask, :count).by(24)
         end
       end
     end
@@ -67,6 +81,10 @@ describe 'Slide Inspection pages' do
   describe 'show' do
     before do
       login_as(user, scope: :user)
+      24.times do
+        FactoryGirl.create(:slide_inspection_task,
+                           slide_inspection_id: slide_inspection.id)
+      end
       visit slide_inspection_path(slide_inspection)
     end
 
@@ -79,12 +97,39 @@ describe 'Slide Inspection pages' do
         it { should have_selector('th', text: 'Completed By') }
         it { should have_selector('th', text: 'Date') }
         it { should have_selector('th', text: 'All OK?') }
+        it { should have_selector('th', text: 'Notes') }
         it { should have_selector('td', text: slide.name) }
         it { should have_selector('td',
                                   text: slide_inspection.user.first_name) }
         it { should have_selector('td',
                                   text: slide_inspection.user.last_name) }
+        it { should have_selector('td', text: 'Yes') }
+        it { should have_selector('td',
+                                  text: slide_inspection.notes) }
       end
+    end
+  end
+
+  describe 'show inspection with an error' do
+    let(:error) { 'Pool Depth Markers (Legible)' }
+
+    before do
+      login_as(user, scope: :user)
+      23.times do
+        FactoryGirl.create(:slide_inspection_task,
+                           slide_inspection_id: slide_inspection_with_error.id)
+      end
+      FactoryGirl.create(:slide_inspection_task,
+                         slide_inspection_id: slide_inspection_with_error.id,
+                         task_name: 'Pool Depth Markers (Legible)',
+                         completed: false)
+      visit slide_inspection_path(slide_inspection_with_error)
+    end
+
+    describe 'attributes' do
+      it { should have_selector('th', text: 'Errors') }
+      it { should have_selector('td', text: 'No') }
+      it { should have_content(error) }
     end
   end
 
