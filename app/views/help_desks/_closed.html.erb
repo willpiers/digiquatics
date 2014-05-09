@@ -1,54 +1,53 @@
-<div class='table-responsive'>
-  <table class='table table-hover table-condensed' >
-    <thead>
-      <tr>
-        <th></th>
-        <th>Location</th>
-        <th>
-          <a href="" ng-click="predicate.value = 'created_at'; reverse=!reverse">
-          Date Open</a>
-        </th>
-        <th>
-          <a href="" ng-click="predicate.value = 'closed_date_time'; reverse=!reverse">
-          Date Closed</a>
-        </th>
-        <th>
-          <a href="" ng-click="predicate.value = 'name'; reverse=!reverse">
-          Problem</a>
-        </th>
-        <th>
-          <a href="" ng-click="predicate.value = 'urgency'; reverse=!reverse">
-          Urgency</a>
-        </th>
-        <th>
-          <a href="" ng-click="predicate.value = 'user.last_name'; reverse=!reverse">
-          Submitted By</a>
-        </th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr ng-repeat='item in closedHelpDesks | orderBy:predicate.value:reverse | filter:locationFilter | filter:search'>
-        <td>
-          <div ng-show='showPic(item)' %>
-            <a ng-href='{{item.attachment_url}}'>
-            <span class='glyphicon glyphicon-picture'></span>
-          </div>
-        </td>
-        <td>{{item.location.name}}</td>
-        <td>{{item.created_at | date:'M/d/yy h:mm a'}}</td>
-        <td>{{item.closed_date_time | date:'M/d/yy h:mm a'}}</td>
-        <td>
-          <a ng-href='/help_desks/{{item.id}}'>
-            {{item.name}}
-          </a>
-        </td>
-        <td ng-class='cssClass(item)'>{{item.urgency}}</td>
-        <td>
-          <a ng-href='/users/{{item.user.id}}'>
-            {{item.user.last_name}}, {{item.user.first_name}}
-          </a>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+<table class='table table-hover table-condensed' >
+  <thead>
+    <tr>
+      <th></th>
+      <th>Location</th>
+      <th>
+        <a href="" ng-click="predicate.value = 'created_at'; reverse=!reverse">
+        Date Open</a>
+      </th>
+      <th>
+        <a href="" ng-click="predicate.value = 'closed_date_time'; reverse=!reverse">
+        Date Closed</a>
+      </th>
+      <th>
+        <a href="" ng-click="predicate.value = 'name'; reverse=!reverse">
+        Problem</a>
+      </th>
+      <th>
+        <a href="" ng-click="predicate.value = 'urgency'; reverse=!reverse">
+        Urgency</a>
+      </th>
+      <th>
+        <a href="" ng-click="predicate.value = 'user.last_name'; reverse=!reverse">
+        Submitted By</a>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat='item in closedHelpDesks | orderBy:predicate.value:reverse | filter:locationFilter | filter:search'>
+      <td>
+        <div ng-show='showPic(item)' %>
+          <a ng-href='{{item.attachment_url}}'>
+          <span class='glyphicon glyphicon-picture'></span>
+        </div>
+      </td>
+      <td>{{item.location.name}}</td>
+      <td>{{item.created_at | date:'M/d/yy h:mm a'}}</td>
+      <td>{{item.closed_date_time | date:'M/d/yy h:mm a'}}</td>
+      <td>
+        <a ng-href='/help_desks/{{item.id}}'>
+          {{item.name}}
+        </a>
+      </td>
+      <td ng-class='cssClass(item)'>{{item.urgency}}</td>
+      <td>
+        <a ng-href='/users/{{item.user.id}}'>
+          {{item.user.last_name}}, {{item.user.first_name}}
+        </a>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
