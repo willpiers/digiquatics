@@ -102,18 +102,18 @@ FactoryGirl.define do
   end
 
   factory :slide do
-    location_id       1
-    name              'Big Yellow'
+    location_id 1
+    name 'Big Yellow'
   end
 
   factory :slide_inspection do
-    slide_id          1
-    user_id           1
+    slide_id 1
+    user_id 1
   end
 
   factory :slide_inspection_task do
     slide_inspection_id 1
-    task_name           'bolts tight'
-    completed           true
+    task_name 'bolts tight'
+    completed true
   end
 end

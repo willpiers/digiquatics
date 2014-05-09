@@ -52,6 +52,6 @@ class LocationsController < ApplicationController
   def location_params
     params.require(:location)
     .permit(:name, pools_attributes: [:id, :location_id, :name, :_destroy],
-      slides_attributes: [:id, :location_id, :name, :_destroy])
+                   slides_attributes: [:id, :location_id, :name, :_destroy])
   end
 end

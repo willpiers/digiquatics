@@ -104,13 +104,13 @@ describe 'Slide Inspection pages' do
         it { should have_selector('th', text: 'All OK?') }
         it { should have_selector('th', text: 'Notes') }
         it { should have_selector('td', text: slide.name) }
-        it { should have_selector('td',
-                                  text: slide_inspection.user.first_name) }
-        it { should have_selector('td',
-                                  text: slide_inspection.user.last_name) }
+        it do should have_selector('td',
+                                   text: slide_inspection.user.first_name) end
+        it do should have_selector('td',
+                                   text: slide_inspection.user.last_name) end
         # it { should have_selector('td', text: 'Yes') }
-        it { should have_selector('td',
-                                  text: slide_inspection.notes) }
+        it do should have_selector('td',
+                                   text: slide_inspection.notes) end
       end
     end
   end

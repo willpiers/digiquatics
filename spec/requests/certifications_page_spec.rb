@@ -61,16 +61,9 @@ describe 'Certifications' do
     it 'should list each certification belonging to an account' do
       Certification.joins(:certification_name)
       .where(certification_names: { account_id: 1 }).each do |cert|
-        # page.should have_content(cert.certification_name.name)
-        page.should have_content(cert.user.first_name)
-        page.should have_content(cert.expiration_date.strftime('%-m/%-d/%Y'))
-      end
-    end
-
-    it 'should not list certifications from another account' do
-      Certification.joins(:certification_name)
-      .where(certification_names: { account_id: 2 }).each do |cert|
-        page.should_not have_content(cert.certification_name.name)
+        page.should have_content('userData.lastName')
+        page.should have_content('userData.firstName')
+        page.should have_content('userData[certName.name] | formatDate')
       end
     end
   end
