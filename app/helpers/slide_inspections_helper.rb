@@ -12,6 +12,6 @@ module SlideInspectionsHelper
         count += 1
       end
     end
-    return count
+    count
   end
 end
