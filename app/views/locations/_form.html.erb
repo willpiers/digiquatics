@@ -9,6 +9,10 @@
       <% end %>
       <%= link_to_add_fields raw('<i class="glyphicon glyphicon-plus-sign glyphicon-2x"></i>'), f, :pools %>
       <br>
+      <%= f.fields_for :slides do |builder| %>
+        <%= render 'slide_fields', f: builder %>
+      <% end %>
+      <%= link_to_add_fields raw('<i class="glyphicon glyphicon-plus-sign glyphicon-2x"></i>'), f, :slides %>
       <%= f.form_group do %>
         <%= f.primary %>
       <% end %>

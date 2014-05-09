@@ -4,13 +4,31 @@
       <tr>
         <td class='fixtablewidthadmin'> <%= location.name %>
           <br>
-          <% location.pools.each do |pool| %>
-            <ul>
-              <li>
-                <%= pool.name %>
-              </li>
-            </ul>
-          <% end %>
+          <table class='table table-bordered table-condensed'>
+            <tr>
+              <th style='width:25%'>Pools</th>
+
+            </tr>
+            <% location.pools.each do |pool| %>
+              <tr>
+                <td>
+                  <%= pool.name %>
+                </td>
+              </tr>
+            <% end %>
+          </table>
+          <table class='table table-bordered table-condensed'>
+            <tr>
+              <th style='width:25%'>Slides</th>
+            </tr>
+            <% location.slides.each do |slide| %>
+              <tr>
+                <td>
+                  <%= slide.name %>
+                </td>
+              </tr>
+            <% end %>
+          </table>
         </td>
         <td>
           <%= link_to ' Edit', edit_location_path(location),

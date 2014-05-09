@@ -1,0 +1,46 @@
+<% provide(:title, 'Slide Inspection') %>
+<p id='notice'><%= notice %></p>
+
+<h1>Slide Inspection</h1>
+
+<div class='table-responsive'>
+  <table class='table table-bordered table-condensed'>
+    <tr>
+      <th id='fixtablewidth'>Slide</th>
+      <td><%= @slide_inspection.slide.name %></td>
+    </tr>
+    <tr>
+      <th>Completed By</th>
+      <td>
+        <% if @slide_inspection.user_id? %>
+          <%= link_to "#{@slide_inspection.user.first_name}
+                       #{@slide_inspection.user.last_name}",
+                       user_path(id: @slide_inspection.user.id) %>
+        <% end %>
+      </td>
+    </tr>
+    <tr>
+      <th>Date</th>
+      <td><%= @slide_inspection.created_at.strftime("%m/%-d/%Y") %></td>
+    </tr>
+    <tr>
+      <th>All OK?</th>
+      <td><%= @slide_inspection.all_ok ? 'Yes' : 'No' %></td>
+    </tr>
+    <% unless @all_ok == 'Yes' %>
+      <tr>
+        <th>Errors</th>
+        <td>
+          <% @errors.each do |error| %>
+            <%= error.task_name %>
+            <br>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+    <tr>
+      <th>Notes</th>
+      <td><%= @slide_inspection.notes %></td>
+    </tr>
+  </table>
+</div>
