@@ -51,7 +51,7 @@ describe 'User pages' do
       visit new_user_path
     end
 
-    let(:submit) { 'Create Account' }
+    let(:submit) { 'Create Your Account' }
 
     describe 'with invalid information' do
       before { fill_in 'Password *', with: 'foo' }

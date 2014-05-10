@@ -6,14 +6,5 @@
       <li><%= link_to 'Sign out', destroy_user_session_path,
               method: :delete %></li>
     </ul>
-
-   <% else #!signed_in? %>
-    <li>
-      <div>
-        <%= link_to 'Sign In',
-            new_user_session_path,
-            class: 'btn btn-primary btn-default fixbtn' %>
-      </div>
-    </li>
   <% end %>
 </div>

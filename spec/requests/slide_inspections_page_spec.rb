@@ -39,8 +39,8 @@ describe 'Slide Inspection pages' do
       visit slide_inspections_path
     end
 
-    it { should have_selector('h1', text: 'Slide Inspections') }
-    it { should have_title(full_title('Slide Inspections')) }
+    it { should have_selector('h1', text: 'New Slide Inspections') }
+    it { should have_title(full_title('New Slide Inspections')) }
     it { should have_link('New Slide Inspection', new_slide_inspection_path) }
 
     it { should have_selector('th', text: 'Slide') }
@@ -65,7 +65,7 @@ describe 'Slide Inspection pages' do
       it { should have_content('Notes') }
 
       describe 'with valid information' do
-        let(:submit) { 'Create Slide inspection' }
+        let(:submit) { 'Submit' }
 
         before do
           select slide.name, from: 'slide_inspection_slide_id'
@@ -104,13 +104,13 @@ describe 'Slide Inspection pages' do
         it { should have_selector('th', text: 'All OK?') }
         it { should have_selector('th', text: 'Notes') }
         it { should have_selector('td', text: slide.name) }
-        it { should have_selector('td',
-                                  text: slide_inspection.user.first_name) }
-        it { should have_selector('td',
-                                  text: slide_inspection.user.last_name) }
+        it do should have_selector('td',
+                                   text: slide_inspection.user.first_name) end
+        it do should have_selector('td',
+                                   text: slide_inspection.user.last_name) end
         # it { should have_selector('td', text: 'Yes') }
-        it { should have_selector('td',
-                                  text: slide_inspection.notes) }
+        it do should have_selector('td',
+                                   text: slide_inspection.notes) end
       end
     end
   end

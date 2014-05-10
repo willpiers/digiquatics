@@ -7,7 +7,7 @@
       <span class = 'icon-bar'></span>
     </button>
     <%= render 'layouts/partials/logo' %>
-    <%= render 'layouts/partials/desktop_links' %>
-    <%= render 'layouts/partials/mobile_links' %>
+    <div class='hidden-xs'><%= render 'layouts/partials/desktop_links' %></div>
+    <div class='visible-xs'><%= render 'layouts/partials/mobile_links' %></div>
   </div>
 </div>

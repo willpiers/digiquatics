@@ -7,11 +7,9 @@ class UsersController < ApplicationController
   def index
     @users = User.joins(:account).same_account_as(current_user).active
 
-
-      respond_to do |format|
-        with_users_data(format, filename: 'active_users')
-      end
-
+    respond_to do |format|
+      with_users_data(format, filename: 'active_users')
+    end
   end
 
   def inactive_index

@@ -5,7 +5,6 @@ class SlideInspectionTasksController < ApplicationController
     @slide_inspection_task = SlideInspectionTask.new
   end
 
-
   def create
     @slide_inspection_task = SlideInspectionTask.new(slide_inspection_task_params)
 

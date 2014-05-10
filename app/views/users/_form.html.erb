@@ -1,5 +1,3 @@
-<% if signed_in? %>
-
 <div class='userform well'>
   <%= bootstrap_form_for(@user,
     style: :horizontal, left: 'col-sm-4', right: 'col-sm-8') do |f| %>
@@ -16,56 +14,10 @@
       <% end %>
     <% end %>
 
-    <%= f.primary(f.object.new_record? ?  'Create your account' : 'Save Changes') %>
+    <%= f.primary(f.object.new_record? ?  'Create Your Account' : 'Save Changes') %>
   <% end %>
 </div>
 </div>
 
-<% end %>
-
-<div class='box-position'>
-  <center>
-    <p class='header-font'>DigiQuatics</p>
-    <br>
-  </center>
-  <div class='fixwidth box'>
-    <%= bootstrap_form_for(@user,
-      style: :horizontal, left: 'col-sm-4', right: 'col-sm-8') do |f| %>
-      <center><h4>Create your Digiquatics account</h4></center><hr>
-      <%= f.email_field :email, :autofocus => true, hide_label: :true,  placeholder: 'Email' %>
-      <%= f.password_field :password, hide_label: :true, placeholder: 'Password' %>
-      <p> * Indicates required field </p>
-      <div id='basic'><%= render 'basic_user_fields', f: f %></div>
-
-      <% unless f.object.new_record? %>
-        <div id='additional'><%= render 'additional_user_fields', { f: f, user: @user } %></div>
-
-        <% if signed_in? && current_user.admin? %>
-          <%= render 'admin_fields', f: f, user: @user %>
-        <% end %>
-      <% end %>
 
 
-
-
-
-
-
-
-
-      <center>
-        <%= f.submit 'Create your account', class: 'devise-button' %>
-      </center>
-    <% end %>
-    <div class='hidden-xs'>
-      <hr>
-      <div> Have an account? <%= link_to(' Sign In', new_user_session_path) %></div>
-    </div>
-    <div class='visible-xs'>
-      <br>
-      <center>
-        <p style='color: #C0C0C0'>&#169;2013-2014 Affektive Limited</p>
-      </center>
-    </div>
-  </div>
-</div>
