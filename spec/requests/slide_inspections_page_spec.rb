@@ -108,7 +108,6 @@ describe 'Slide Inspection pages' do
                                    text: slide_inspection.user.first_name) end
         it do should have_selector('td',
                                    text: slide_inspection.user.last_name) end
-        # it { should have_selector('td', text: 'Yes') }
         it do should have_selector('td',
                                    text: slide_inspection.notes) end
       end

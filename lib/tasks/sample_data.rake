@@ -26,7 +26,7 @@ namespace :db do
     Pool.create(name: 'Link', location_id: Location.find(2).id)
 
     Slide.create(name: 'Yellow', location_id: Location.first.id)
-    Slide.create(name: 'Red',    location_id: Location.first.id)
+    Slide.create(name: 'Red',    location_id: Account.find(2).locations.first.id)
 
     Position.create(name: 'Lifeguard',
                     account_id: 1)
@@ -202,6 +202,13 @@ namespace :db do
 
     8.times do |n|
       SlideInspection.create!(slide_id: Slide.first.id,
+                              user_id: rand(80) + 1,
+                              notes: 'all is good',
+                              all_ok: true)
+    end
+
+    8.times do |n|
+      SlideInspection.create!(slide_id: Slide.find(2).id,
                               user_id: rand(80) + 1,
                               notes: 'all is good',
                               all_ok: true)

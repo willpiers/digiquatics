@@ -2,7 +2,8 @@ class SlideInspectionsController < ApplicationController
   before_action :set_slide_inspection, only: [:show, :edit, :update, :destroy]
 
   def index
-    @slide_inspections = SlideInspection.all
+    @slide_inspections = SlideInspection.joins(slide: :location)
+    .where(locations: { account_id: current_user.account_id })
 
     respond_to do |format|
       format.html
