@@ -37,7 +37,7 @@ group :development, :test do
   gem 'rubocop'
   gem 'teaspoon'
   gem 'phantomjs'
-  gem 'guard-brakeman'
+  gem 'brakeman'
 end
 
 group :test do
