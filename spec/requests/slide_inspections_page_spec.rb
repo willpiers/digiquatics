@@ -80,6 +80,10 @@ describe 'Slide Inspection pages' do
         it 'should also create a slide inspection task records' do
           expect { click_button submit }.to change(SlideInspectionTask, :count).by(24)
         end
+
+        it 'should not create a help desk ticket' do
+          expect { click_button submit }.to change(HelpDesk, :count).by(0)
+        end
       end
 
       describe 'with an error' do
