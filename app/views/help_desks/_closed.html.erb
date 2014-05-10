@@ -2,7 +2,7 @@
   <thead>
     <tr>
       <th></th>
-      <th>Location</th>
+      <th class='hidden-xs'>Location</th>
       <th>
         <a href="" ng-click="predicate.value = 'created_at'; reverse=!reverse">
         Date Open</a>
@@ -19,7 +19,7 @@
         <a href="" ng-click="predicate.value = 'urgency'; reverse=!reverse">
         Urgency</a>
       </th>
-      <th>
+      <th class='hidden-xs'>
         <a href="" ng-click="predicate.value = 'user.last_name'; reverse=!reverse">
         Submitted By</a>
       </th>
@@ -33,7 +33,7 @@
           <span class='glyphicon glyphicon-picture'></span>
         </div>
       </td>
-      <td>{{item.location.name}}</td>
+      <td class='hidden-xs'>{{item.location.name}}</td>
       <td>{{item.created_at | date:'M/d/yy h:mm a'}}</td>
       <td>{{item.closed_date_time | date:'M/d/yy h:mm a'}}</td>
       <td>
@@ -42,7 +42,7 @@
         </a>
       </td>
       <td ng-class='cssClass(item)'>{{item.urgency}}</td>
-      <td>
+      <td class='hidden-xs'>
         <a ng-href='/users/{{item.user.id}}'>
           {{item.user.last_name}}, {{item.user.first_name}}
         </a>
