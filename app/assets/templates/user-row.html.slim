@@ -1,0 +1,11 @@
+td
+  a ng-href='/users/{{user.id}}' {{user.last_name}}
+td {{user.first_name}}
+td {{user.date_of_birth | age}}
+td {{user.location.name}}
+td {{user.position.name}}
+td
+  a ng-href='mailto:{{user.email}}' {{user.email}}
+td
+  a ng-href='tel:{{user.phone_number}}' {{user.phone_number}}
+td {{user.admin | booleanToWords}}

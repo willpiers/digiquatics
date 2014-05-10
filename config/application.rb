@@ -54,10 +54,12 @@ module DigiQuatics
       Devise::ConfirmationsController.layout SESSIONS
       Devise::UnlocksController.layout SESSIONS
       Devise::PasswordsController.layout SESSIONS
-
     end
 
     I18n.enforce_available_locales = true
     config.assets.precompile += %w(*.png *.jpg *.jpeg *.gif)
+
+    # exclude '{' => '}' to avoid conflict with AngularJS
+    Slim::Engine.set_default_options attr_delims: { '(' => ')', '[' => ']' }
   end
 end

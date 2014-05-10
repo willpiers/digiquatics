@@ -1,8 +1,7 @@
 <div ng-app='digiquatics'>
-  <div ng-controller='LocationsCtrl'>
+  <div ng-controller='UsersCtrl'>
     <% provide(:title, 'Active Employees') %>
     <h1>Active Employees</h1>
-    <dq-hi></dq-hi>
     <br><br>
     <div class='row'>
       <div class='col-md-2'>
@@ -29,6 +28,53 @@
       </div>
     </div>
     <br>
-    <%= render 'users' %>
+    <div class='table-responsive'>
+      <table class='table table-hover table-condensed' >
+        <thead>
+          <tr>
+            <th>
+              <a href='' ng-click="predicate.value = 'last_name'; reverse=!reverse">
+                Last Name
+              </a>
+            </th>
+            <th>
+              <a href='' ng-click="predicate.value = 'first_name'; reverse=!reverse">
+                First Name
+              </a>
+            </th>
+            <th>
+              <a href='' ng-click="predicate.value = 'date_of_birth'; reverse=!reverse">
+                Age
+              </a>
+            </th>
+            <th>Location</th>
+            <th>
+              <a href='' ng-click="predicate.value = 'position.name'; reverse=!reverse">
+                Position
+              </a>
+            </th>
+            <th>
+              <a href='' ng-click="predicate.value = 'email'; reverse=!reverse">
+                Email
+              </a>
+            </th>
+            <th>
+              <a href='' ng-click="predicate.value = 'phone_number'; reverse=!reverse">
+                Phone
+              </a>
+            </th>
+            <th>
+              <a href='' ng-click="predicate.value = 'admin'; reverse=!reverse">
+                Admin
+              </a>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat='user in users | orderBy:predicate.value:reverse | filter:locationFilter | filter:search' dq-user-row='user'>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>
