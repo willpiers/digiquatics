@@ -1,5 +1,24 @@
 <% provide(:title, 'Dashboard') %>
-<div class='jumbotron well'>
+<div class='jumbotron well hidden-xs'>
 <h1>DigiQuatics Dashboard</h1>
+</div>
+<div class='visible-xs'>
+  <center><h4>DigiQuatics Dashboard</h4></center>
+
+  <br>
+
+  <%= link_to 'New Chemical Record', new_chemical_record_path,
+      class: 'btn btn-primary btn-block', role: 'button' %>
+
+  <br>
+
+  <%= link_to 'New Issue', new_help_desk_path,
+      class: 'btn btn-primary btn-block', role: 'button' %>
+
+  <br>
+
+  <%= link_to 'New Slide Inspection', new_slide_inspection_path,
+      class: 'btn btn-primary btn-block', role: 'button' %>
+
 </div>
 

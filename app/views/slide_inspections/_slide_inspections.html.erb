@@ -28,7 +28,9 @@
           {{inspection.created_at | date:'M/d/yy h:mm a'}}
         </a>
       </td>
-      <td>{{inspection.all_ok | booleanToWords}}</td>
+      <td style='width:70px;' ng-class='cssClass(inspection)'>
+          {{inspection.all_ok | booleanToWords}}
+      </td>
     </tr>
   </tbody>
 </table>
