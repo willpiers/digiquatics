@@ -1,8 +1,8 @@
 <div ng-app='digiquatics'>
   <div ng-controller='LocationsCtrl'>
     <% provide(:title, 'Active Employees') %>
-    <h1>Active Employees</h1>
-    <br><br>
+    <div class='hidden-xs'><h1>Active Employees</h1> <br><br></div>
+    <div class='visible-xs'><center><h4>Contact List</h4></center></div>
     <div class='row'>
       <div class='col-md-2'>
         <div class="input-group">
@@ -12,6 +12,7 @@
           </span>
         </div>
       </div>
+      <div class='visible-xs'></br></div>
       <div class='col-md-3'>
         <select ng-model='locationFilter' class='form-control'>
           <option value=''>All Locations</option>
@@ -21,7 +22,7 @@
       <div class='col-md-3'></div>
       <div class='col-md-4'>
         <% if signed_in? && current_user.admin? %>
-          <div class='btn-group'>
+          <div class='btn-group hidden-xs'>
             <%= link_to 'Manage Inactive', inactive_index_path,
                         class: 'btn btn-danger btn-sm', role: 'button' %>
             <%= link_to 'Add Employee', new_user_path,
@@ -32,7 +33,7 @@
         <% end %>
       </div>
     </div>
-    <br>
+    <div class='hidden-xs'><br></div>
     <%= render 'users' %>
   </div>
 </div>

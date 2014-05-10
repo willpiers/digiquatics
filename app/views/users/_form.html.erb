@@ -1,7 +1,8 @@
 <div class='userform well'>
   <%= bootstrap_form_for(@user,
     style: :horizontal, left: 'col-sm-4', right: 'col-sm-8') do |f| %>
-    <legend><%= legend %></legend>
+    <div class='hidden-xs'><legend><%= legend %></legend></div>
+    <div class='visible-xs'><center><h4><%= legend %></h4></center></div>
     <%= render 'shared/required' %>
     <div id='basic'><%= render 'basic_user_fields', f: f %></div>
 
