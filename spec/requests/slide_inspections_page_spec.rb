@@ -2,6 +2,7 @@ require 'spec_helper'
 
 describe 'Slide Inspection pages' do
   let!(:account) { FactoryGirl.create(:account) }
+  let!(:location) { FactoryGirl.create(:location, account_id: account.id) }
 
   let!(:admin) do
     FactoryGirl.create(:admin, account_id: account.id)
@@ -11,13 +12,13 @@ describe 'Slide Inspection pages' do
     FactoryGirl.create(:user, account_id: account.id)
   end
 
-  let!(:slide) { FactoryGirl.create(:slide) }
+  let!(:slide) { FactoryGirl.create(:slide, location_id: location.id) }
 
   let!(:slide_inspection) do
     FactoryGirl.create(:slide_inspection,
                        slide_id: slide.id,
                        user_id: user.id,
-                       notes: 'bad bolts')
+                       notes: 'all is good')
   end
 
   let!(:slide_inspection_with_error) do
@@ -79,6 +80,48 @@ describe 'Slide Inspection pages' do
         it 'should also create a slide inspection task records' do
           expect { click_button submit }.to change(SlideInspectionTask, :count).by(24)
         end
+      end
+
+      describe 'with an error' do
+        let(:submit) { 'Create Slide inspection' }
+
+        before do
+          select slide.name, from: 'slide_inspection_slide_id'
+          uncheck 'slide_inspection_slide_inspection_tasks_attributes_0_completed'
+        end
+
+        it 'should create a slide inspection record' do
+          expect { click_button submit }.to change(SlideInspection, :count).by(1)
+        end
+
+        it 'should also create a slide inspection task records' do
+          expect { click_button submit }.to change(SlideInspectionTask, :count).by(24)
+        end
+
+        it 'should also create a help desk ticket' do
+          expect { click_button submit }.to change(HelpDesk, :count).by(1)
+        end
+      end
+
+      describe 'with an error should create HelpDesk ticket' do
+        let(:submit) { 'Create Slide inspection' }
+        let(:entered_notes) { 'blah blah blah' }
+
+        before do
+          select slide.name, from: 'slide_inspection_slide_id'
+          uncheck 'slide_inspection_slide_inspection_tasks_attributes_0_completed'
+          fill_in 'Notes', with: entered_notes
+          click_button submit
+          visit help_desk_path(HelpDesk.last)
+        end
+
+        it { should have_content('Issue') }
+        it { should have_content("#{slide.name} Slide Inspection Issue") }
+        it { should have_content('Issues: Dry Slide Inspection') }
+        it { should have_content("Employee Notes: #{entered_notes}") }
+        it { should have_content("#{slide.location.name}") }
+        it { should have_content("#{user.first_name}") }
+        it { should have_content("#{user.last_name}") }
       end
     end
   end
