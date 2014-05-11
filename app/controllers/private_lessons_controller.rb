@@ -37,9 +37,8 @@ class PrivateLessonsController < ApplicationController
   def create
     @private_lesson = Account.find(params[:account_id]).private_lessons
     .build(private_lesson_params)
-
+    thank_you_email(@private_lesson)
     message = 'Private lesson was successfully created.'
-
     handle_action(@private_lesson, message, :new, &:save)
   end
 
@@ -77,5 +76,10 @@ class PrivateLessonsController < ApplicationController
 
   def set_private_lesson
     @private_lesson = PrivateLesson.find(params[:id])
+  end
+
+  def thank_you_email(private_lesson)
+    @account = current_user.account_id
+    PrivateLessonMailer.thank_you(private_lesson, @account).deliver
   end
 end
