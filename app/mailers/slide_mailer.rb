@@ -1,5 +1,5 @@
 class SlideMailer < ActionMailer::Base
-  default from: 'team@digiquatics.com'
+  default from: 'Team@digiquatics.com'
 
   def urgent_slide_inspection(error, slide_inspection, account_id, user_id)
     @recipients = User.where(admin: true, account_id: account_id)
