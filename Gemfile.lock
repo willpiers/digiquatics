@@ -281,6 +281,9 @@ GEM
     sdoc (0.4.0)
       json (~> 1.8)
       rdoc (~> 4.0, < 5.0)
+    sendgrid (1.2.0)
+      json
+      json
     sexp_processor (4.4.3)
     slim (2.0.2)
       temple (~> 0.6.6)
@@ -378,6 +381,7 @@ DEPENDENCIES
   rubocop
   sass-rails (~> 4.0.0)
   sdoc
+  sendgrid
   spork-rails (= 4.0.0)
   teaspoon
   therubyracer (= 0.12.0)

@@ -25,6 +25,7 @@ gem 'mysql2'
 gem 'sass-rails', '~> 4.0.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'tilt', '~> 1.3.0'
+gem 'sendgrid'
 
 group :development, :test do
   gem 'rspec-rails'
