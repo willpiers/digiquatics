@@ -13,8 +13,6 @@
         </ul>
       </div>
     <% end %>
-
-    <%= content_tag(:legend, legend) unless !legend %>
     <%= render 'shared/required' %>
     <%= f.select :pool_id,
       options_from_collection_for_select(Pool.same_location_as(current_user) , :id, :name ) %>

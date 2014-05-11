@@ -47,8 +47,8 @@ describe 'Chemicals' do
     end
 
     describe 'should have the correct title and heading' do
-      it { should have_title(full_title('Add Chemical Record')) }
-      it { should have_selector('legend', text: 'Add Chemical Record') }
+      it { should have_title(full_title('New Chemical Record')) }
+      it { should have_selector('h1', text: 'New Chemical Record') }
     end
 
     describe 'with valid information' do

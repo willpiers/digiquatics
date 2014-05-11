@@ -1,51 +1,46 @@
-<%= bootstrap_form_for(@slide_inspection) do |f| %>
-  <% if @slide_inspection.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@slide_inspection.errors.count, "error") %>
-        prohibited this slide inspection from being saved:</h2>
-      <ul>
-      <% @slide_inspection.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+<div class='table-width-desktop'>
 
-  <div id='accountform'>
-  <%= f.select :slide_id,
-    options_from_collection_for_select(Slide.all, :id, :name ) %>
-  </div>
-
-  <table class='table table-bordered'>
-    <% SlideInspection::TASKS.each do |task| %>
-      <%= f.fields_for :slide_inspection_tasks do |builder| %>
-        <tr>
-          <td width='225px'>
-            <%= builder.check_box :completed, label: 'Completed', checked: true %>
-            <%= builder.hidden_field :task_name, value: task %>
-            <!-- <label class="switch-light well" onclick="">
-              <input type="checkbox" checked>
-              <span>
-                <span>No</span>
-                <span>Yes</span>
-              </span>
-
-              <a class="btn btn-primary"></a>
-            </label> -->
-          </td>
-          <td width='350px'><%= task %></td>
-        </tr>
-      <% end %>
+  <%= bootstrap_form_for(@slide_inspection) do |f| %>
+    <% if @slide_inspection.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@slide_inspection.errors.count, "error") %>
+          prohibited this slide inspection from being saved:</h2>
+        <ul>
+        <% @slide_inspection.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
     <% end %>
-  </table>
 
+    <%= f.select :slide_id,
+      options_from_collection_for_select(Slide.all, :id, :name ) %>
 
+    <table class='table table-bordered'>
+      <% SlideInspection::TASKS.each do |task| %>
+        <%= f.fields_for :slide_inspection_tasks do |builder| %>
+          <tr>
+            <td width='175px'>
+              <%= builder.check_box :completed, label: 'Completed', checked: true %>
+              <%= builder.hidden_field :task_name, value: task %>
+              <!-- <label class="switch-light well" onclick="">
+                <input type="checkbox" checked>
+                <span>
+                  <span>No</span>
+                  <span>Yes</span>
+                </span>
 
-  <div id='accountform'>
+                <a class="btn btn-primary"></a>
+              </label> -->
+            </td>
+            <td width='350px'><%= task %></td>
+          </tr>
+        <% end %>
+      <% end %>
+    </table>
+
     <%= f.text_area :notes %>
-  </div>
+    <%= f.primary 'Submit'%>
 
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+  <% end %>
+</div>

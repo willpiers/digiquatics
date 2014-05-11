@@ -44,7 +44,7 @@ describe 'Authentication' do
       it { should_not have_link('Sign in', href: new_user_session_path) }
 
       describe 'followed by signout' do
-        before { click_link 'Sign out' }
+        before { first(:link, 'Sign out').click }
 
         it { should have_content('Welcome to DigiQuatics') }
       end

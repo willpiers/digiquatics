@@ -9,11 +9,11 @@
         <a href="" ng-click="predicate.value = 'first_name'; reverse=!reverse">
         First Name</a>
       </th>
-      <th>
+      <th class='hidden-xs'>
         <a href="" ng-click="predicate.value = 'date_of_birth'; reverse=!reverse">
         Age</a>
       </th>
-      <th>Location</th>
+      <th class='hidden-xs'>Location</th>
       <th>
         <a href="" ng-click="predicate.value = 'position.name'; reverse=!reverse">
         Position</a>
@@ -23,13 +23,13 @@
         Phone</a>
       </th>
       <% if signed_in? && current_user.admin? %>
-        <th>
+        <th class='hidden-xs'>
           <a href="" ng-click="predicate.value = 'email'; reverse=!reverse">
           Email</a>
         </th>
       <% end %>
       <% if signed_in? && current_user.admin? %>
-        <th>
+        <th class='hidden-xs'>
           <a href="" ng-click="predicate.value = 'admin'; reverse=!reverse">
           Admin</a>
         </th>
@@ -48,15 +48,15 @@
         <% end %>
       </td>
       <td>{{user.first_name}}</td>
-      <td>{{user.date_of_birth | age}}</td>
-      <td>{{user.location.name}}</td>
+      <td class='hidden-xs'>{{user.date_of_birth | age}}</td>
+      <td class='hidden-xs'>{{user.location.name}}</td>
       <td>{{user.position.name}}</td>
       <td><a ng-href='tel:{{user.phone_number}}'>{{user.phone_number}}</td>
       <% if signed_in? && current_user.admin? %>
-      <td>
+      <td class='hidden-xs'>
         <%= mail_to '{{user.email}}' %>
       </td>
-      <td>
+      <td class='hidden-xs'>
         {{user.admin | booleanToWords}}
       </td>
       <% end %>
