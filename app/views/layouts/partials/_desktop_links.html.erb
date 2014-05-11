@@ -30,21 +30,23 @@
       <% end %>
 
       <li><%= link_to 'Employees', users_path %></li>
-      <% if FeatureToggleHelper.slide_inspections? %>
-        <li><%= link_to 'Slide Inspections', slide_inspections_path %></li>
-      <% end %>
-      <% if FeatureToggleHelper.maintenance? %>
-        <li class = 'dropdown'>
-          <a href = '#' class = 'dropdown-toggle' data-toggle = 'dropdown'>
-            Maintenance<b class = 'caret'></b></a>
-          <ul class = 'dropdown-menu'>
+
+      <li class = 'dropdown'>
+        <a href = '#' class = 'dropdown-toggle' data-toggle = 'dropdown'>
+          Maintenance<b class = 'caret'></b></a>
+        <ul class = 'dropdown-menu'>
+          <% if FeatureToggleHelper.slide_inspections? %>
+            <li><%= link_to 'Slide Inspections', slide_inspections_path %></li>
+          <% end %>
+          <% if FeatureToggleHelper.maintenance? %>
             <li><%= link_to 'Daily Checklist', daily_todos_path %></li>
             <li><%= link_to 'Preventative Maintenance',
-                            preventative_lists_path %></li>
-            <li><%= link_to 'Report an Issue', help_desks_path %></li>
-          </ul>
-        </li>
-      <% end %>
+                          preventative_lists_path %></li>
+          <% end %>
+          <li><%= link_to 'Help Desk', help_desks_path %></li>
+        </ul>
+      </li>
+
       <% if FeatureToggleHelper.shift_reports? %>
         <li><%= link_to 'Shift Reports', shift_reports_path %></li>
       <% end %>
