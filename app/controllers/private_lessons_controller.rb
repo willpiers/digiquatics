@@ -37,7 +37,6 @@ class PrivateLessonsController < ApplicationController
   def create
     @private_lesson = Account.find(params[:account_id]).private_lessons
     .build(private_lesson_params)
-    thank_you_email(@private_lesson)
     message = 'Private lesson was successfully created.'
     handle_action(@private_lesson, message, :new, &:save)
   end
@@ -62,6 +61,7 @@ class PrivateLessonsController < ApplicationController
 
   def handle_action(resource, message, page)
     if yield(resource)
+      thank_you_email(resource)
       flash[:success] = message
       redirect_to resource
     else
