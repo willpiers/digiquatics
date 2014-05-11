@@ -387,3 +387,11 @@ rbenv rehash
 bundle -v
 
 ssh git@github.com
+
+## Working in the server
+
+1) `ssh deployer@digiquatics.com`
+2) `cd var/www/digiquatics/current`
+3) `rails console production` (Use `--sandbox` for testing first)
+
+
