@@ -1,4 +1,7 @@
 class SlideInspection < ActiveRecord::Base
+  extend ScopeHelper
+  include_scopes
+
   belongs_to :user
   belongs_to :slide
   has_many :slide_inspection_tasks

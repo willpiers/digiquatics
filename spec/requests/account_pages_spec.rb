@@ -39,7 +39,7 @@ describe 'Account pages' do
         let(:created_user) { User.find_by_email('new@account.com') }
 
         describe 'should sign the user in' do
-          it { should have_link('Sign out') }
+          it { should have_link('Sign Out') }
           it { should have_selector('div.alert') }
         end
       end

@@ -23,15 +23,6 @@
             <td width='175px'>
               <%= builder.check_box :completed, label: 'Completed', checked: true %>
               <%= builder.hidden_field :task_name, value: task %>
-              <!-- <label class="switch-light well" onclick="">
-                <input type="checkbox" checked>
-                <span>
-                  <span>No</span>
-                  <span>Yes</span>
-                </span>
-
-                <a class="btn btn-primary"></a>
-              </label> -->
             </td>
             <td width='350px'><%= task %></td>
           </tr>
@@ -39,7 +30,7 @@
       <% end %>
     </table>
 
-    <%= f.text_area :notes %>
+    <%= f.text_area :notes, placeholder: 'Please leave a detailed description...' %>
     <%= f.primary 'Submit'%>
 
   <% end %>

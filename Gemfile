@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 ruby '2.0.0'
 
-gem 'rails', '4.0.2'
+gem 'rails', '4.0.3'
 gem 'bootstrap-sass', '3.0.3.0'
 gem 'bcrypt-ruby', '3.1.2'
 gem 'faker', '1.1.2'
@@ -21,10 +21,10 @@ gem 'activerecord-session_store', github: 'rails/activerecord-session_store'
 gem 'browser', github: 'fnando/browser'
 gem 'mixpanel-ruby'
 gem 'oj'
-
 gem 'mysql2'
 gem 'sass-rails', '~> 4.0.0'
 gem 'uglifier', '>= 1.3.0'
+gem 'tilt', '~> 1.3.0'
 
 group :development, :test do
   gem 'rspec-rails'
@@ -37,6 +37,7 @@ group :development, :test do
   gem 'rubocop'
   gem 'teaspoon'
   gem 'phantomjs'
+  gem 'brakeman'
 end
 
 group :test do
