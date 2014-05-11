@@ -1,13 +1,16 @@
-<div class = 'navbar navbar-inverse navbar-static-top'>
-  <div class = 'container'>
-    <button class = 'navbar-toggle' data-toggle = 'collapse'
-    data-target = '.navHeaderCollapse'>
-      <span class = 'icon-bar'></span>
-      <span class = 'icon-bar'></span>
-      <span class = 'icon-bar'></span>
+<div class='navbar navbar-inverse navbar-static-top'>
+  <div class='container'>
+    <button class='navbar-toggle' data-toggle='collapse'
+    data-target='.navHeaderCollapse'>
+      <span class='icon-bar'></span>
+      <span class='icon-bar'></span>
+      <span class='icon-bar'></span>
     </button>
     <%= render 'layouts/partials/logo' %>
     <div class='hidden-xs'><%= render 'layouts/partials/desktop_links' %></div>
-    <div class='visible-xs'><%= render 'layouts/partials/mobile_links' %></div>
+    <% if signed_in? %>
+      <div class='visible-xs'><%= render 'layouts/partials/mobile_links' %></div>
+    <% end %>
   </div>
 </div>
+
