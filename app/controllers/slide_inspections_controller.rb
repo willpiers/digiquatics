@@ -51,8 +51,6 @@ class SlideInspectionsController < ApplicationController
     redirect_to slide_inspections_url
   end
 
-
-
   private
 
   include SlideInspectionsHelper
@@ -73,13 +71,14 @@ class SlideInspectionsController < ApplicationController
   def create_help_desk(slide_inspection)
     create_error_string(slide_inspection)
     create_ticket(@error_string, slide_inspection)
+    slide_email_alert(@error_string, slide_inspection, current_user.id)
   end
 
   def create_error_string(slide_inspection)
     @errors = slide_inspection.slide_inspection_tasks.where(completed: false)
     @error_string = "Issues: "
     @errors.each do |inspection|
-      @error_string << "#{inspection.task_name}; "
+    @error_string << "#{inspection.task_name}; "
     end
   end
 
@@ -90,4 +89,10 @@ class SlideInspectionsController < ApplicationController
                     description: "#{error}Employee Notes: #{slide_inspection.notes}",
                     urgency: 'High')
   end
+
+  def slide_email_alert(error, slide_inspection, user)
+    @account = current_user.account_id
+    SlideMailer.urgent_slide_inspection(error, slide_inspection, @account, user).deliver
+  end
+
 end
