@@ -84,7 +84,7 @@ describe 'User pages' do
           created_user.admin.should eq true
         end
 
-        it { should have_link('Sign out') }
+        it { should have_link('Sign Out') }
         it { should have_selector('div.alert') }
       end
     end
@@ -289,7 +289,7 @@ describe 'User pages' do
 
           it { should have_title(full_title(new_first_name)) }
           it { should have_selector('div.alert') }
-          it { should have_link('Sign out', destroy_user_session_path) }
+          it { should have_link('Sign Out', destroy_user_session_path) }
           specify { expect(current_path).to eq user_path(user) }
           specify { expect(user.reload.first_name).to eq new_first_name }
           specify { expect(user.reload.email).to eq new_email.downcase }
@@ -402,7 +402,7 @@ describe 'User pages' do
 
           it { should have_title(full_title(new_first_name)) }
           it { should have_selector('div.alert.alert-success') }
-          it { should have_link('Sign out', destroy_user_session_path) }
+          it { should have_link('Sign Out', destroy_user_session_path) }
           specify { expect(current_path).to eq user_path(user) }
           specify { expect(user.reload.first_name).to eq new_first_name }
           specify { expect(user.reload.email).to eq new_email.downcase }

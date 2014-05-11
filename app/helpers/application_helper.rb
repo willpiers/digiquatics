@@ -88,4 +88,13 @@ module ApplicationHelper
   def phone_number_link(text)
     link_to text, "tel:#{text}"
   end
+
+  def new_record_star(date)
+    if date <= (Data.today - 7.days) then
+      true
+    else
+      false
+    end
+  end
+
 end

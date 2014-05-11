@@ -1,4 +1,4 @@
-<div class = 'collapse navbar-collapse navHeaderCollapse'>
+<div class='hidden-xs'>
   <ul class = 'nav navbar-nav navbar-right' >
     <% if signed_in? %>
       <% if FeatureToggleHelper.attendance? %>
@@ -58,14 +58,14 @@
           <li><%= link_to 'My Private Lessons', my_lessons_path %></li>
           <% if current_user && current_user.admin? %>
             <li class='divider'></li>
-            <!--<li><%= link_to 'Manage Users', users_path %></li>-->
             <li><%= link_to 'Preferences', admin_dashboard_path %></li>
           <% end %>
           <li class='divider'></li>
-          <li><%= link_to 'Sign out', destroy_user_session_path,
+          <li><%= link_to 'Sign Out', destroy_user_session_path,
             method: :delete %></li>
         </ul>
       </li>
+
     <% else #!signed_in? %>
       <li>
         <div>
@@ -84,4 +84,3 @@
     <% end %>
   </ul>
 </div>
-
