@@ -46,7 +46,7 @@ class ChemicalRecordsController < ApplicationController
                           @chemical_record.free_chlorine_ppm)
     if @chemical_record.save
       flash[:success] = 'Chemical record was successfully created.'
-      redirect_to chemical_records_path
+      redirect_to @chemical_record
     else
       render 'new'
     end

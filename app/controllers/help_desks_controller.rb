@@ -42,7 +42,7 @@ class HelpDesksController < ApplicationController
 
     if @help_desk.save
       flash[:success] = 'Help desk was successfully created.'
-      redirect_to help_desks_path
+      redirect_to @help_desk
     else
       render 'new'
     end
