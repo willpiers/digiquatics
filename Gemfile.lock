@@ -65,6 +65,9 @@ GEM
     angularjs-rails (1.2.16)
     arel (4.0.2)
     ast (2.0.0)
+    aws-sdk (1.39.0)
+      json (~> 1.4)
+      nokogiri (>= 1.4.4)
     bcrypt (3.1.7)
     bcrypt-ruby (3.1.2)
     bootstrap-sass (3.0.3.0)
@@ -346,6 +349,7 @@ DEPENDENCIES
   activerecord-session_store!
   angular-ui-bootstrap-rails
   angularjs-rails (~> 1.2.14)
+  aws-sdk
   bcrypt-ruby (= 3.1.2)
   bootstrap-sass (= 3.0.3.0)
   bootstrap-will_paginate

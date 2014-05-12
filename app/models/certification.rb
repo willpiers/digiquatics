@@ -13,6 +13,8 @@ class Certification < ActiveRecord::Base
                     path: ATTACHED_PATH,
                     url: ATTACHED_URL
 
+  validates :attachment, :attachment_presence => true
+
   validates_presence_of :certification_name_id, :expiration_date, :user_id
 
   after_save :track

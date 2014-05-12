@@ -38,6 +38,8 @@ class User < ActiveRecord::Base
                     },
                     default_url: '/images/missing.png'
 
+  validates_attachment :avatar, content_type: { content_type: ["image/jpg", "image/jpeg", "image/png"] }
+
   validates_presence_of :account_id
   validates :first_name, presence: true, length: { maximum: 15 }
   validates :last_name,  presence: true, length: { maximum: 25 }
