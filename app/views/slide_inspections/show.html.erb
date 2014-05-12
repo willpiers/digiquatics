@@ -42,7 +42,7 @@
       <th>All OK?</th>
       <td><%= @slide_inspection.all_ok ? 'Yes' : 'No' %></td>
     </tr>
-    <% unless @all_ok == 'Yes' %>
+    <% if @slide_inspection.all_ok == false %>
       <tr>
         <th>Errors</th>
         <td>
