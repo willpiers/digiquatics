@@ -67,13 +67,17 @@
   <table class='table table-bordered table-condensed' >
     <tr>
       <th style='width:25%'>Phone Number</th>
-      <td><%= phone_number_link(@user.phone_number) %></td>
+      <td>
+        <% if @user.phone_number? %>
+          <%= phone_number_link(@user.phone_number) %>
+        <% end %>
+      </td>
     </tr>
     <tr>
       <th> Email </th>
       <td>
       <%= mail_to "#{ @user.email}" do %>
-        <span> <%=  @user.email %> </span>
+        <span> <%= @user.email %> </span>
       <% end %>
       </td>
     </tr>
@@ -96,7 +100,11 @@
     </tr>
     <tr>
       <th> Secondary Phone# </th>
-      <td><%= phone_number_link(@user.secondary_phone_number) %></td>
+      <td>
+        <% if @user.secondary_phone_number? %>
+          <%= phone_number_link(@user.secondary_phone_number) %>
+          <% end %>
+      </td>
     </tr>
     <tr>
       <th> Address </th>
@@ -148,7 +156,12 @@
         <td><%= "#{@user.emergency_first} #{@user.emergency_last}" %></td>
       </tr>
       <tr>
-        <th>  Emergency Phone Number </th><td><%= phone_number_link(@user.emergency_phone) %></td>
+        <th>Emergency Phone Number </th>
+        <td>
+          <% if @user.emergency_phone? %>
+            <%= phone_number_link(@user.emergency_phone) %>
+            <% end %>
+          </td>
       </tr>
     </table>
 
