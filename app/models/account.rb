@@ -27,7 +27,5 @@ class Account < ActiveRecord::Base
                     url:  ATTACHED_URL,
                     default_url: '/images/missing.png'
 
-  validates_attachment :logo, content_type: { content_type: ["image/jpg", "image/jpeg", "image/png"] }
-
   accepts_nested_attributes_for :users
 end

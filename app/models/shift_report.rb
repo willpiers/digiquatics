@@ -19,9 +19,6 @@ class ShiftReport < ActiveRecord::Base
   validates_presence_of :time_stamp, :post_content, :user_id,
                         :location_id
 
-  validates_attachment :attachment_front, content_type: { content_type: ["image/jpg", "image/jpeg", "image/png"] }
-  validates_attachment :attachment_back, content_type: { content_type: ["image/jpg", "image/jpeg", "image/png"] }
-
   comma do
     post_title
     post_content

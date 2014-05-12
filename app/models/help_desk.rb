@@ -10,8 +10,6 @@ class HelpDesk < ActiveRecord::Base
 
   validates_presence_of :name, :urgency, :user_id, :location_id
 
-  validates_attachment :help_desk_attachment, content_type: { content_type: ["image/jpg", "image/jpeg", "image/png"] }
-
   comma do
     name
     urgency
