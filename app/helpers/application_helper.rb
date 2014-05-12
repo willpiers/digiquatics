@@ -80,7 +80,7 @@ module ApplicationHelper
 
   def browser_check
     unless browser.modern?
-      flash[:error] = "You are not using a browser that we support. " \
+      flash[:error] = 'You are not using a browser that we support. ' \
         'Please use IE9+, Chrome, Firefox, Safari, or another modern browser.'
     end
   end
@@ -96,5 +96,4 @@ module ApplicationHelper
       false
     end
   end
-
 end

@@ -69,7 +69,6 @@ describe 'Slide Inspection pages' do
 
       describe 'with valid information' do
 
-
         before do
           select slide.name, from: 'slide_inspection_slide_id'
           # check all are completed by default

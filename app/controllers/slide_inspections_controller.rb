@@ -76,23 +76,22 @@ class SlideInspectionsController < ApplicationController
 
   def create_error_string(slide_inspection)
     @errors = slide_inspection.slide_inspection_tasks.where(completed: false)
-    @error_string = "Issues: "
+    @error_string = 'Issues: '
     @errors.each do |inspection|
-    @error_string << "#{inspection.task_name}; "
+      @error_string << "#{inspection.task_name}; "
     end
   end
 
   def create_ticket(error, slide_inspection)
     HelpDesk.create!(name: "#{slide_inspection.slide.name} Slide Inspection Issue",
-                    user_id: current_user.id,
-                    location_id: @slide_inspection.slide.location.id,
-                    description: "#{error}Employee Notes: #{slide_inspection.notes}",
-                    urgency: 'High')
+                     user_id: current_user.id,
+                     location_id: @slide_inspection.slide.location.id,
+                     description: "#{error}Employee Notes: #{slide_inspection.notes}",
+                     urgency: 'High')
   end
 
   def slide_email_alert(error, slide_inspection, user)
     @account = current_user.account_id
     SlideMailer.urgent_slide_inspection(error, slide_inspection, @account, user).deliver
   end
-
 end

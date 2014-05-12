@@ -21,6 +21,10 @@ class PrivateLessonsController < ApplicationController
     @my_lessons = PrivateLesson.joins(:user).claimed_by(current_user)
   end
 
+  def thank_you
+    render layout: 'devise'
+  end
+
   def show
   end
 
@@ -38,7 +42,10 @@ class PrivateLessonsController < ApplicationController
     @private_lesson = Account.find(params[:account_id]).private_lessons
     .build(private_lesson_params)
     message = 'Private lesson was successfully created.'
-    handle_action(@private_lesson, message, :new, &:save)
+    @account = Account.scoped
+    @account = @account.find(params[:account_id]) if params[:account_id]
+
+    handle_action(@private_lesson, message, :new, @account, &:save)
   end
 
   def update
@@ -59,14 +66,18 @@ class PrivateLessonsController < ApplicationController
   include ApplicationHelper
   include PrivateLessonsHelper
 
-  def handle_action(resource, message, page)
-    if yield(resource)
-      thank_you_email(resource)
-      flash[:success] = message
-      redirect_to resource
+  def handle_action(resource, message, page, account)
+    if signed_in?
+      if yield(resource)
+        flash[:success] = message
+        redirect_to resource
+      else
+        render page
+      end
     else
-      render page
+      redirect_to thank_you_path
     end
+    thank_you_email(resource, account)
   end
 
   def with_private_lessons_data(format, filename: 'private_lessons')
@@ -78,8 +89,7 @@ class PrivateLessonsController < ApplicationController
     @private_lesson = PrivateLesson.find(params[:id])
   end
 
-  def thank_you_email(private_lesson)
-    @account = current_user.account_id
-    PrivateLessonMailer.thank_you(private_lesson, @account).deliver
+  def thank_you_email(private_lesson, account)
+    PrivateLessonMailer.thank_you(private_lesson, account).deliver
   end
 end
