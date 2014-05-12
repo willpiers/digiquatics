@@ -65,7 +65,7 @@
         </tr>
         <tr>
           <th> Issue Status </th>
-          <td> <%= @help_desk.issue_status %> </td>
+          <td> <%= boolean_to_words(@help_desk.issue_status) %> </td>
         </tr>
         <% unless @help_desk.issue_status? %>
           <tr>
