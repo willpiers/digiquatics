@@ -55,7 +55,9 @@
           Account<b class = 'caret'></b></a>
         <ul class = 'dropdown-menu'>
           <li><%= link_to 'My Profile', current_user %></li>
-          <li><%= link_to 'My Private Lessons', my_lessons_path %></li>
+          <% if FeatureToggleHelper.private_lessons? %>
+            <li><%= link_to 'My Private Lessons', my_lessons_path %></li>
+          <% end %>
           <% if current_user && current_user.admin? %>
             <li class='divider'></li>
             <li><%= link_to 'Preferences', admin_dashboard_path %></li>
