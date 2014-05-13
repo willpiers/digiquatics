@@ -16,15 +16,12 @@ class ShiftReport < ActiveRecord::Base
                     path: ATTACHED_PATH,
                     url: '/system/:attachment/:id/:style/:filename'
 
-  validates_presence_of :time_stamp, :post_content, :user_id,
+  validates_presence_of :content, :user_id,
                         :location_id
 
   comma do
-    post_title
-    post_content
+    content
     user_id
     location_id
-    time_stamp
-    date_stamp
   end
 end

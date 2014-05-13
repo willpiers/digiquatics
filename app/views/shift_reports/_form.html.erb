@@ -3,17 +3,13 @@
     style: :horizontal, left: 'col-sm-4', right: 'col-sm-8') do |f| %>
 
     <%= render 'shared/required' %>
-    <%= f.text_area :post_content, label: 'Post Content *' %>
-    <%= f.form_group :report_filed, label: { text: 'Incident Report Filed' } do %>
+    <%= f.text_area :content, label: 'Report *' %>
+    <%= f.form_group :report_filed, label: { text: 'Incident / Accident Report Filed' } do %>
       <%= f.check_box :report_filed, label: "" do %>
       <% end %>
     <% end %>
     <%= f.file_field :attachment_front, label: 'Attachment #1' %>
     <%= f.file_field :attachment_back, label: 'Attachment #2' %>
-
-    <div class='hidden-xs hidden-sm'>
-      <%= f.datetime_select :time_stamp, { label: 'Date', ampm: true} %>
-    </div>
 
     <%= f.primary ( f.object.new_record? ?  'Submit' :
     'Save Changes' ) %>

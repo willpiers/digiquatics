@@ -125,4 +125,11 @@ FactoryGirl.define do
     user_id 1
     closed_user_id 2
   end
+
+  factory :shift_report do
+    content 'All was good during my shift at the pool'
+    report_filed true
+    user_id 1
+    location_id 1
+  end
 end

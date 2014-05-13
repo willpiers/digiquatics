@@ -4,9 +4,7 @@ describe ShiftReport do
 
   before do
     @shift_report = ShiftReport.new(
-      post_title:   'Day 1',
-      time_stamp:   '2010-10-10 16:19:00 UTC',
-      post_content: 'sandlflasdfn',
+      content: 'sandlflasdfn',
       user_id:      1,
       location_id:  1,
       report_filed: true)
@@ -14,9 +12,7 @@ describe ShiftReport do
 
   subject { @shift_report }
 
-  it { should respond_to(:post_title) }
-  it { should respond_to(:time_stamp) }
-  it { should respond_to(:post_content) }
+  it { should respond_to(:content) }
   it { should respond_to(:user_id) }
   it { should respond_to(:location_id) }
   it { should respond_to(:report_filed) }
@@ -25,13 +21,8 @@ describe ShiftReport do
 
   it { should be_valid }
 
-  describe 'when time_stamp is not present' do
-    before { @shift_report.time_stamp = nil }
-    it { should_not be_valid }
-  end
-
-  describe 'when post_content is not present' do
-    before { @shift_report.post_content = nil }
+  describe 'when content is not present' do
+    before { @shift_report.content = nil }
     it { should_not be_valid }
   end
 
