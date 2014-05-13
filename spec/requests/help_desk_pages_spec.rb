@@ -5,11 +5,11 @@ describe 'Help Desk pages' do
   let!(:location) { FactoryGirl.create(:location, account_id: account.id) }
 
   let!(:admin) do
-    FactoryGirl.create(:admin, account_id: account.id)
+    FactoryGirl.create(:admin, account_id: account.id, location_id: location.id)
   end
 
   let!(:user) do
-    FactoryGirl.create(:user, account_id: account.id)
+    FactoryGirl.create(:user, account_id: account.id, location_id: location.id)
   end
 
   subject { page }
@@ -94,7 +94,7 @@ describe 'Help Desk pages' do
 
         describe 'redirect to index' do
           before { click_button submit }
-          it { current_path.should eq help_desks_path }
+          it { current_path.should eq help_desk_path(HelpDesk.last) }
         end
       end
 
@@ -122,7 +122,7 @@ describe 'Help Desk pages' do
     end
 
     describe 'help desk' do
-      it { should have_selector('h1', text: "Issue # #{HelpDesk.last.id}") }
+      it { should have_selector('h1', text: 'Help Desk') }
       it { should have_title(full_title('Help Desk Issue')) }
 
       describe 'attributes' do

@@ -48,14 +48,13 @@ describe 'Shift Report pages' do
 
       it { should have_selector('h1', text: 'New Shift Report') }
       it { should have_title(full_title('New Shift Report')) }
-      it { should have_content('Incident Report Filed') }
+      it { should have_content('Incident / Accident Report Filed') }
       it { should have_content('Attachment #1') }
       it { should have_content('Attachment #2') }
-      it { should have_content('Date') }
 
       describe 'with valid information' do
         before do
-          fill_in 'Content', with: content
+          fill_in 'Report', with: content
           check 'Incident / Accident Report Filed'
         end
 
@@ -65,19 +64,73 @@ describe 'Shift Report pages' do
 
         describe 'redirect to index' do
           before { click_button submit }
-          it { current_path.should eq shift_reports_path }
-          it { should have_content('Shift Report successfully submitted.')}
+          it { current_path.should eq shift_report_path(ShiftReport.last) }
+          it { should have_content('Shift Report was successfully created.')}
         end
       end
 
       describe 'with invalid information' do
         before do
-          check 'Incident Report Filed'
+          check 'Incident / Accident Report Filed'
         end
 
         it 'should not create a help desk record' do
           expect { click_button submit }.to_not change(ShiftReport, :count).by(1)
         end
+      end
+    end
+  end
+
+  describe 'edit' do
+    before do
+      login_as(user, scope: :user)
+      FactoryGirl.create(:shift_report,
+                         location_id: location.id,
+                         user_id: user.id)
+      visit edit_shift_report_path(ShiftReport.last)
+    end
+
+    describe 'shift report' do
+      let(:edited_content) { 'edit content' }
+      let(:submit) { 'Save Changes' }
+
+      it { should have_selector('h1', text: 'Edit Shift Report') }
+      it { should have_title(full_title('Edit Shift Report')) }
+      it { should have_content('Incident / Accident Report Filed') }
+      it { should have_content('Attachment #1') }
+      it { should have_content('Attachment #2') }
+
+      describe 'with valid information' do
+        before do
+          fill_in 'Report', with: edited_content
+          check 'Incident / Accident Report Filed'
+        end
+
+        it 'should update the shift report' do
+          expect { click_button submit }.to_not change(ShiftReport, :count).by(1)
+        end
+
+        describe 'redirect to show page' do
+          before { click_button submit }
+          it { current_path.should eq shift_report_path(ShiftReport.last) }
+          it { should have_content('Shift Report was successfully updated.')}
+        end
+      end
+
+      describe 'with invalid information' do
+        before do
+          fill_in 'Report', with: ''
+        end
+
+        it 'should not update a help desk record' do
+          expect { click_button submit }.to_not change(ShiftReport, :count).by(1)
+        end
+
+        # describe 'redirect to edit page' do
+        #   before { click_button submit }
+        #   it { current_path.should eq edit_shift_report_path(ShiftReport.last) }
+        #   it { should have_content("can't be blank")}
+        # end
       end
     end
   end
@@ -92,28 +145,23 @@ describe 'Shift Report pages' do
       visit shift_report_path(ShiftReport.last)
     end
 
-    describe 'help desk' do
-      it { should have_selector('h1', text: "Issue # #{HelpDesk.last.id}") }
-      it { should have_title(full_title('Help Desk Issue')) }
+    describe 'shift report' do
+      it { should have_selector('h1', text: 'Shift Report') }
+      it { should have_title(full_title('Shift Report')) }
       it { should have_link('Back', shift_reports_path) }
 
       describe 'attributes' do
-        it { should have_selector('th', text: 'Problem') }
-        it { should have_selector('th', text: 'Description') }
-        it { should have_selector('th', text: 'Original Picture') }
-        it { should have_selector('th', text: 'Urgency') }
         it { should have_selector('th', text: 'Location') }
-        it { should have_selector('th', text: 'Submitted By') }
         it { should have_selector('th', text: 'Date Submitted') }
-        it { should have_selector('th', text: 'Issue Status') }
-        it { should have_selector('th', text: 'Issue Notes') }
+        it { should have_selector('th', text: 'Submitted By') }
+        it { should have_selector('th', text: 'Report Filed?') }
+        it { should have_selector('th', text: 'Report Attachment') }
+        it { should have_selector('th', text: 'Shift Report') }
         it { should have_selector('td', text: location.name) }
         it do should have_selector('td',
                                    text: user.first_name) end
         it do should have_selector('td',
                                    text: user.last_name) end
-        it do should have_selector('td',
-                                   text: 'Add notes below') end
       end
     end
   end

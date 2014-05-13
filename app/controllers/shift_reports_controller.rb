@@ -28,13 +28,13 @@ class ShiftReportsController < ApplicationController
     @shift_report.user_id = current_user.id
     @shift_report.location_id = current_user.location_id
 
-    message = 'Shift report was successfully created.'
+    message = 'Shift Report was successfully created.'
 
     handle_action(@shift_report, message, :new, &:save)
   end
 
   def update
-    message = 'Shift report was successfully updated.'
+    message = 'Shift Report was successfully updated.'
 
     handle_action(@shift_report, message, :edit) do |resource|
       resource.update(shift_report_params)
