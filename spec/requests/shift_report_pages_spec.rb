@@ -65,7 +65,7 @@ describe 'Shift Report pages' do
         describe 'redirect to index' do
           before { click_button submit }
           it { current_path.should eq shift_report_path(ShiftReport.last) }
-          it { should have_content('Shift Report was successfully created.')}
+          it { should have_content('Shift Report was successfully created.') }
         end
       end
 
@@ -113,7 +113,7 @@ describe 'Shift Report pages' do
         describe 'redirect to show page' do
           before { click_button submit }
           it { current_path.should eq shift_report_path(ShiftReport.last) }
-          it { should have_content('Shift Report was successfully updated.')}
+          it { should have_content('Shift Report was successfully updated.') }
         end
       end
 

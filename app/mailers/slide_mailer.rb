@@ -7,7 +7,7 @@ class SlideMailer < ActionMailer::Base
     @slide_inspection = slide_inspection
     @user = User.find_by_id(user_id)
     @error = error
-    mail(to:  emails, from: 'team@digiquatics.com',
+    mail(to:  emails, from: 'Team@digiquatics.com',
          subject: "#{slide_inspection.slide.name} Slide Inspection Issue at #{Location.find(@slide_inspection.slide.location.id).name}")
   end
 end

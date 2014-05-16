@@ -49,8 +49,8 @@ class PrivateLessonsController < ApplicationController
 
   def update
     message = 'Private lesson was successfully updated.'
-
-    handle_action(@private_lesson, message, :edit) do |resource|
+    @account = @private_lesson.account
+    handle_action(@private_lesson, message, :edit, @account) do |resource|
       resource.update(private_lesson_params)
     end
   end
