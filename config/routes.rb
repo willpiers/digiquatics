@@ -63,4 +63,7 @@ DigiQuatics::Application.routes.draw do
 
   match '/closed_index', to: 'help_desks#closed_index', via: 'get'
 
+  match '/privacy', to: 'static_pages#privacy', via: 'get'
+  match '/tos', to: 'static_pages#tos', via: 'get'
+
 end

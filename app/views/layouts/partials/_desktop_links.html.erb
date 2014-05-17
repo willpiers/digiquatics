@@ -69,18 +69,16 @@
       </li>
 
     <% else #!signed_in? %>
+      <li><%= link_to 'Features', '/#features' %> </li>
+      <li><%= link_to 'Benefits', '/#benefits' %> </li>
+      <li><%= link_to 'Testimonials', '/#testimonials' %> </li>
+      <li><%= link_to 'Pricing', '/#pricing' %> </li>
+      <li><%= link_to 'Sign Up', '/#signup' %> </li>
       <li>
         <div>
           <%= link_to 'Sign In',
                       new_user_session_path,
                       class: 'btn btn-primary btn-default fixbtn' %>
-      </div>
-      </li>
-      <li>
-        <div>
-          <%= link_to 'Sign Up',
-                      new_user_path,
-                      class: 'btn btn-success btn-default fixbtn' %>
       </div>
       </li>
     <% end %>
