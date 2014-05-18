@@ -6,6 +6,13 @@
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
   </head>
 
+  <!-- Has to be included on the page for background to work -->
+  <style>
+  #header {
+    background: url(images/swiming_lap_pool.jpg) no-repeat center center fixed;
+  }
+  </style>
+
   <div class = 'navbar navbar-inverse navbar-fixed-top' id='landing-fix'>
     <div class = 'container'>
       <button class = 'navbar-toggle' data-toggle = 'collapse'
@@ -23,167 +30,6 @@
       </div>
     </div>
   </div>
-
-  <style>
-
-    #header {
-      height: 1080px;
-      vertical-align: middle;
-      color: white;
-      background: url(images/swiming_lap_pool.jpg) no-repeat center center fixed;
-      margin-top: 0px;
-      text-align: center;
-    }
-
-    #features {
-      height: 800px;
-      vertical-align: middle;
-      color: black;
-      margin-top: 0px;
-      text-align: center;
-      background-color: #F2F7FA;
-      border-top:1px solid;
-    }
-
-    #info-header {
-      font-size: 25px;
-      color: #065BA0;
-    }
-
-    #benefits {
-      height: 550px;
-      vertical-align: middle;
-      color: black;
-      margin-top: 0px;
-      text-align: center;
-      background-color: white;
-      border-top:1px solid;
-    }
-
-    #feature-header {
-      font-size: 15px;
-      color: black;
-    }
-
-    #testimonials {
-      height: 450px;
-      vertical-align: middle;
-      color: black;
-      margin-top: 0px;
-      text-align: center;
-      background-color: #F2F7FA;
-      border-top:1px solid;
-    }
-
-    #pricing {
-      height: 325px;
-      vertical-align: middle;
-      color: black;
-      margin-top: 0px;
-      text-align: center;
-      background-color: white;
-      border-top:1px solid;
-    }
-
-    #signup {
-      height: 325px;
-      vertical-align: middle;
-      color: black;
-      margin-top: 0px;
-      text-align: center;
-      background-color: #F2F7FA;
-      border-top:1px solid;
-    }
-
-    #footer {
-      height: 100px;
-      vertical-align: middle;
-      color: grey;
-      margin-top: 0px;
-      text-align: center;
-      background-color: black;
-      border-top:1px solid;
-    }
-
-    #main-heading {
-      font-size: 40px;
-      position:relative;
-      top:150px;
-    }
-
-    #sub-heading {
-      font-size: 25px;
-      position:relative;
-      top:160px;
-    }
-
-    #sub-heading2 {
-      font-size: 16px;
-      position:relative;
-      top:185px;
-    }
-
-    #sub-heading3 {
-      position:relative;
-      top:500px;
-      font-size: 40px;
-      color: white;
-    }
-
-    #landing-fix {
-      margin-bottom: 0px;
-
-    }
-
-    #header-btn {
-      display: inline;
-    }
-
-    #arrow-color-fix {
-      color: white;
-    }
-
-    .big-icon {
-      font-size: 30px;
-    }
-
-    .square {
-      background-color: white;
-      color: black;
-      height: 150px;
-      width: 150px;
-      background: #ddd;
-      border:2px solid #065BA0;
-      font-size: 20px;
-      margin: 20px;
-      box-shadow: 0 0 10px #9ecaed;
-    }
-
-    /* Hide original text */
-    .square:hover {
-      font-size: 0;
-      background-color: #065BA0;
-      color: white;
-      text-align: left;
-      padding-top: 10px;
-      padding-left: 10px;
-    }
-
-    /* Replace original text with value in data-hover */
-    .square:hover:before {
-      font-size: 16px;
-      content: attr(data-hover);
-    }
-
-    .position-square-text {
-      position: relative;
-      top: 50%;
-      transform: translateY(-50%);
-      -webkit-transform: translateY(-50%);
-    }
-
-
-  </style>
 
   <div class='hidden-xs'>
     <div id="header">
