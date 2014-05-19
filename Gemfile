@@ -26,6 +26,7 @@ gem 'sass-rails', '~> 4.0.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'tilt', '~> 1.3.0'
 gem 'sendgrid'
+gem 'font-awesome-rails'
 
 group :development, :test do
   gem 'rspec-rails'
