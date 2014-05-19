@@ -12,6 +12,8 @@ DigiQuatics::Application.routes.draw do
   resources :positions
   resources :certifications
   resources :certification_names
+  resources :slide_inspections
+  resources :slide_inspection_tasks
 
   resources :accounts do
     resources :private_lessons, shallow: true
@@ -29,7 +31,7 @@ DigiQuatics::Application.routes.draw do
     end
   end
 
-  root  'static_pages#index'
+  root 'static_pages#landing'
 
   match '/chemicals', to: 'static_pages#chemicals',    via: 'get'
   match '/manage_chemicals', to: 'static_pages#manage_chemicals', via: 'get'

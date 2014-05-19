@@ -23,6 +23,8 @@ describe 'Manage Locations' do
     end
 
     it { should have_link('New', href: new_location_path) }
+    it { should have_content('Pools') }
+    it { should have_content('Slides') }
 
     describe 'admin dashboard' do
       it 'should list each location' do
@@ -39,7 +41,12 @@ describe 'Manage Locations' do
       before do
         visit new_location_path
         fill_in 'Name', with: 'Ridge Rec Center'
+        fill_in 'location[pools_attributes][0][name]', with: 'Big'
+        fill_in 'location[slides_attributes][0][name]', with: 'yellow'
       end
+
+      it { should have_content('Add Pool to Location') }
+      it { should have_content('Add Slide to Location') }
 
       it 'should create a new location and redirect to index' do
         expect { click_button 'Create Location' }
@@ -48,13 +55,21 @@ describe 'Manage Locations' do
         current_path.should eq admin_dashboard_path
       end
 
-      # describe 'clicking the back button' do
-      #   before { click_link 'Back' }
+      describe 'after saving location' do
+        before { click_button 'Create Location' }
 
-      #   it 'should redirect to admin dash' do
-      #     current_path.should eq admin_dashboard_path
-      #   end
-      # end
+        it { should have_content('Location was successfully created.') }
+      end
+
+      it 'should also create the locations pool' do
+        expect { click_button 'Create Location' }
+        .to change(Pool, :count).by(1)
+      end
+
+      it 'should also create the locations slide' do
+        expect { click_button 'Create Location' }
+        .to change(Slide, :count).by(1)
+      end
     end
 
     describe 'editing an existing location' do
@@ -62,14 +77,6 @@ describe 'Manage Locations' do
         visit edit_location_path(location)
         fill_in 'Name', with: 'new location name'
       end
-
-      # describe 'clicking the back button' do
-      #   before { click_link 'Back' }
-
-      #   it 'should redirect to admin dash' do
-      #     current_path.should eq admin_dashboard_path
-      #   end
-      # end
 
       it 'should update the location and redirect to admin dashboard' do
         expect { click_button 'Update Location' }

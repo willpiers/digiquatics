@@ -11,7 +11,7 @@ describe 'Account pages' do
       visit new_user_path
     end
 
-    let(:submit) { 'Create Account' }
+    let(:submit) { 'Create Your Account' }
 
     describe 'with invalid information' do
       it 'should not create a user' do
@@ -39,7 +39,7 @@ describe 'Account pages' do
         let(:created_user) { User.find_by_email('new@account.com') }
 
         describe 'should sign the user in' do
-          it { should have_link('Sign out') }
+          it { should have_link('Sign Out') }
           it { should have_selector('div.alert') }
         end
       end

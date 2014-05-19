@@ -203,7 +203,7 @@ describe 'Private Lessons' do
           fill_in 'Parent Last Name',  with: 'Parent Last'
           fill_in 'Phone Number',      with: '1234'
           fill_in 'Email',             with: 'lesson@example.com'
-          select  'Call',              from: 'Preferred Contact Method'
+          select 'Call',              from: 'Preferred Contact Method'
 
           # Student Information
           fill_in 'Student First Name', with: student_first_name

@@ -1,5 +1,8 @@
 # DigiQuatics
 
+## Breakman (Security Auditing)
+`breakman`
+
 ## Line Count
 `find . -name '*.rb' | xargs wc -l`
 

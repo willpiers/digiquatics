@@ -257,3 +257,28 @@ legend{
 .cert-width-fix {
   width: 100px;
 }
+
+@media (min-width: 500px) {
+  .mobile-btn-fix {
+    width: 150px;
+    display: block;
+
+  }
+
+  .table-width-desktop {
+    width: 75%;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 500px) {
+  .mobile-btn-fix {
+    width: 150px;
+    display: block;
+  }
+
+  .table-width-desktop {
+    width: 100%;
+    margin: 0 auto;
+  }
+}

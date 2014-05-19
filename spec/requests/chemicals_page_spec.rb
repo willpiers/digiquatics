@@ -47,8 +47,8 @@ describe 'Chemicals' do
     end
 
     describe 'should have the correct title and heading' do
-      it { should have_title(full_title('Add Chemical Record')) }
-      it { should have_selector('legend', text: 'Add Chemical Record') }
+      it { should have_title(full_title('New Chemical Record')) }
+      it { should have_selector('h1', text: 'New Chemical Record') }
     end
 
     describe 'with valid information' do
@@ -63,7 +63,7 @@ describe 'Chemicals' do
         fill_in 'chemical_record_calcium_hardness', with: 100
         fill_in 'chemical_record_pool_temp', with: 89.1
         fill_in 'chemical_record_air_temp', with: 85.6
-        select  'Clear',   from: 'chemical_record_water_clarity'
+        select 'Clear',   from: 'chemical_record_water_clarity'
       end
 
       it 'should create a chemical record' do

@@ -23,17 +23,6 @@ describe 'admin setup' do
   describe 'manage' do
 
     describe 'users' do
-      describe 'as non-admin' do
-        before do
-          Warden.test_reset!
-          login_as(non_admin, scope: :user)
-          visit users_path
-        end
-
-        it 'should redirect to user profile and flash error' do
-          current_path.should eq user_path(non_admin)
-        end
-      end
 
       describe 'as admin' do
         before do

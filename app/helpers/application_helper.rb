@@ -56,7 +56,7 @@ module ApplicationHelper
   end
 
   def flash_messages(opts = {})
-    content_tag   :div, class: 'row' do
+    content_tag :div, class: 'row' do
       content_tag :div, class: 'col-md-8 col-md-offset-2' do
         flash_html.join.html_safe
       end
@@ -88,4 +88,13 @@ module ApplicationHelper
   def phone_number_link(text)
     link_to text, "tel:#{text}"
   end
+
+  def new_record_star(date)
+    if date <= (Data.today - 7.days) then
+      true
+    else
+      false
+    end
+  end
+
 end

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <p>
+      A <b><u>high</u></b> urgency <b><u>Help Desk Issue</u></b>
+      has been submitted with the following information:
+    </p>
+
+    <br>
+
+    <legend>
+      <b> Problem: </b>
+      <%= @help_desk.name  %>
+    </legend>
+    <br>
+
+    <legend>
+      <b> Description: </b>
+      <%= @help_desk.description %>
+    </legend>
+    <br>
+
+    <legend>
+      <b> Urgency: </b>
+      <%= @help_desk.urgency %>
+    </legend>
+    <br>
+
+    <legend>
+      <b> Location: </b>
+      <%= Location.find(@help_desk.location_id).name %>
+    </legend>
+    <br>
+
+    <legend>
+      <b> Submitted By: </b>
+      <%= "#{@help_desk.user.first_name} #{@help_desk.user.last_name}" %>
+    </legend>
+    <br>
+
+    <legend>
+      <b> Submitted: </b>
+      <%= Time.now.strftime('%-m/%-d/%Y') %>
+    </legend>
+    <br>
+
+     <legend>
+      <b> Issue Status: </b>
+      Open
+    </legend>
+    <br>
+
+    <br><br>
+
+  </body>
+</html>

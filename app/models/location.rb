@@ -11,8 +11,13 @@ class Location < ActiveRecord::Base
   has_many :shift_reports
   has_many :help_desks
   has_many :pools, dependent: :destroy
+  has_many :slides, dependent: :destroy
 
   accepts_nested_attributes_for :pools,
                                 reject_if: -> (pool) { pool[:name].blank? },
+                                allow_destroy: true
+
+  accepts_nested_attributes_for :slides,
+                                reject_if: -> (slide) { slide[:name].blank? },
                                 allow_destroy: true
 end

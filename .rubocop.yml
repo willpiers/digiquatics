@@ -9,7 +9,7 @@ AllCops:
     - lib/**/*.cap
   Exclude:
     - spec/spec_helper.rb
-    - db/**
+    - db/**/*
     - config/application.rb
     - bin/**
 

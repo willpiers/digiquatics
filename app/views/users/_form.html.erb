@@ -1,8 +1,9 @@
 <div class='userform well'>
   <%= bootstrap_form_for(@user,
     style: :horizontal, left: 'col-sm-4', right: 'col-sm-8') do |f| %>
-    <legend><%= legend %></legend>
-    <p> * Indicates required field </p>
+    <div class='hidden-xs'><legend><%= legend %></legend></div>
+    <div class='visible-xs'><center><h4><%= legend %></h4></center></div>
+    <%= render 'shared/required' %>
     <div id='basic'><%= render 'basic_user_fields', f: f %></div>
 
     <% unless f.object.new_record? %>
@@ -13,7 +14,10 @@
       <% end %>
     <% end %>
 
-    <%= f.primary(f.object.new_record? ?  'Create Account' : 'Save Changes') %>
+    <%= f.primary(f.object.new_record? ?  'Create Your Account' : 'Save Changes') %>
   <% end %>
 </div>
 </div>
+
+
+

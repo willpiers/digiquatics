@@ -4,7 +4,7 @@
     style: :horizontal, left: 'col-sm-4', right: 'col-sm-8' do |f| %>
 
     <%= content_tag(:legend, legend) if legend %>
-    <p> * Indicates required field </p>
+    <%= render 'shared/required' %>
     <h4> Parent Information </h4>
     <br>
       <%= f.text_field :parent_first_name, label: 'Parent First Name *' %>

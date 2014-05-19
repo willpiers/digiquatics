@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <p>
+      A <b><u>high</u></b> urgency <b><u>Slide Inspection</u></b>
+      issue has been submitted with the following information:
+    </p>
+
+    <br>
+
+    <legend>
+      <b> Problem: </b>
+      <%= "#{@slide_inspection.slide.name} Slide Inspection Issue"  %>
+    </legend>
+    <br>
+
+    <legend>
+      <b> Description: </b>
+      <%= "#{@error}Employee Notes: #{@slide_inspection.notes}" %>
+    </legend>
+    <br>
+
+    <legend>
+      <b> Urgency: </b>
+      High
+    </legend>
+    <br>
+
+    <legend>
+      <b> Location: </b>
+      <%= Location.find(@slide_inspection.slide.location.id).name %>
+    </legend>
+    <br>
+
+    <legend>
+      <b> Submitted By: </b>
+      <%= "#{@user.first_name} #{@user.last_name}"%>
+    </legend>
+    <br>
+
+    <legend>
+      <b> Submitted: </b>
+      <%= Time.now.strftime('%-m/%-d/%Y') %>
+    </legend>
+    <br>
+
+     <legend>
+      <b> Issue Status: </b>
+      Open
+    </legend>
+    <br>
+
+    <br><br>
+
+  </body>
+</html>
+
+

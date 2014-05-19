@@ -2,16 +2,30 @@
 
 <h1>Lesson Request</h1>
 
-<ul class = 'pull-right'>
-<%= bootstrap_form_for @private_lesson do |f| %>
-  <%= f.hidden_field :user_id, value: current_user.id %>
-  <%= f.submit 'Claim Lesson'  %>
-<% end %>
-</ul>
+<div class='table-width-desktop'>
 
-<br> <br>
+  <div class='pull-left'>
+    <%= link_to ' Back', account_private_lessons_path(account_id: current_user.account_id) ,
+        class: 'glyphicon glyphicon-arrow-left' %>
+  </div>
 
-<div class='table-responsive'>
+  <ul class = 'pull-right'>
+  <%= bootstrap_form_for @private_lesson do |f| %>
+    <%= f.hidden_field :user_id, value: current_user.id %>
+    <%= f.primary 'Claim Lesson'  %>
+  <% end %>
+  </ul>
+
+
+  <%if current_user.admin? %>
+    <ul class = 'pull-right'>
+      <%= link_to 'Edit Lesson', edit_private_lesson_path(@private_lesson),
+          class: 'btn btn-default btn-primary' %>
+    </ul>
+  <% end %>
+
+  <br><br>
+
   <% if current_user.admin? %>
     <table class='table table-bordered table-condensed' >
 
@@ -115,8 +129,5 @@
         <td> <%= @private_lesson.number_lessons %> </td>
       </tr>
   </table>
-
-  <%if current_user.admin? %>
-    <%= link_to 'Edit', edit_private_lesson_path(@private_lesson) %>
-  <% end %>
 </div>
+
