@@ -1,4 +1,4 @@
-div ng-show='users.length' class='table-responsive'
+div ng-show='(users | orderBy:order.value:order.reverse | filter:locationFilter | filter:search).length' class='table-responsive'
   table class='table table-hover table-condensed'
     thead
       tr
@@ -13,9 +13,9 @@ div ng-show='users.length' class='table-responsive'
     tbody
       tr dq-user-row='user' ng-repeat='user in users | orderBy:order.value:order.reverse | filter:locationFilter | filter:search'
 
-div ng-hide='users.length'
+div ng-hide='(users | orderBy:order.value:order.reverse | filter:locationFilter | filter:search).length'
   hr
   center
     p
-      = 'You have no users yet. '
-      a href='/users/new' Click here to add a user
+      = 'No employees match this search or you have none yet. '
+      a href='/users/new' Click here to add an employee.

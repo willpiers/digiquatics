@@ -1,7 +1,7 @@
 @digiquatics.directive 'dqUserHead', [
   ->
     restrict: 'A' # this is default
-    templateUrl: 'user-head.html'
+    templateUrl: 'users/user-head.html'
     scope:
       text: '@dqUserHead'
       value: '@'
