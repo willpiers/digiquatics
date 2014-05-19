@@ -43,7 +43,7 @@
                      class: 'btn btn-default btn-lg', id: 'header-btn' %>
         <br><br>
         Already have an account?
-        <%= link_to ' Sign in here ', new_user_path, style: 'color: white;' %>
+        <%= link_to ' Sign in here ', new_user_path, id: 'sign_in_link' %>
 
       </div>
       <div id='sub-heading3'>
@@ -221,7 +221,7 @@
        <br><br><br><br><br>
       <strong id='info-header'> Pricing</strong>
       <br><br>
-      <p style='width: 375px;'>
+      <p style='width: 375px;' align='left'>
         At this time we are pricing on a case by case basis. Please contact
         us for a quote. Our contact information can be found below.
       </p>
@@ -231,15 +231,55 @@
     <div id="signup">
       <center>
          <br><br><br><br><br>
-        <strong id='info-header'> Want early access?!</strong>
-        <br/><br>
-         <%= link_to 'Sign up for free', new_user_path,
-                     class: 'btn btn-success btn-lg', id: 'header-btn' %>
+        <strong id='info-header'> Want early access?</strong>
         <br><br>
-        <p> Have a question?
-          <%= link_to '303-921-8628','tel:303-921-8628' %> |
-          <a href="mailto:Team@DiqiQuatics.com">Team@DiqiQuatics.com</a>
-      </p>
+        <p style='width: 375px;' align='left'>
+         Our team is working hard to develop new features. But we have
+         plenty of solid features ready to start using immediately.
+        </p>
+        <br>
+        <%= link_to 'Sign up for free', new_user_path,
+            class: 'btn btn-primary btn-lg', id: 'header-btn' %>
+      </center>
+    </div>
+
+    <div id="contact">
+      <center>
+         <br><br><br><br><br>
+        <strong id='info-header'>
+          <span class='glyphicon glyphicon-comment big-icon'></span>
+          Contact Us
+        </strong>
+        <br><br>
+        <p style='width: 375px;' align='left'>
+          We're headquartered in Lakewood, Colorado but our developers can also be found
+          from time to time at the Colorado School of Mines. You can contact us
+          via email, phone, or Twitter
+          <a style='color: black;' href="https://twitter.com/DigiQuatics">
+            <b> @DigiQuatics</b>.
+          </a>
+        </p>
+
+
+        <div style='width: 375px;'>
+          <div class='rectangle'>
+            <div class='position-square-text'>
+              <span class='glyphicon glyphicon-earphone small-icon'></span>
+              <a style='color: black;' href="tel:303-921-8628">
+                (303)-921-8628
+              </a>
+            </div>
+          </div>
+
+          <div class='rectangle' >
+            <div class='position-square-text'>
+              <span class=' glyphicon glyphicon-envelope small-icon'></span>
+              <a style='color: black;' href="mailto:Team@DiqiQuatics.com">
+                Team@DiqiQuatics.com
+              </a>
+            </div>
+          </div>
+        </div>
       </center>
     </div>
 
@@ -255,7 +295,6 @@
           <br/>
         &#169; 2013-2014
         <a href='http://affektive.herokuapp.com'> Affketive Software LLC </a>
-
       </p>
 
     </center>

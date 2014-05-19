@@ -57,12 +57,22 @@
 }
 
 #signup {
-  height: 325px;
+  height: 400px;
   vertical-align: middle;
   color: black;
   margin-top: 0px;
   text-align: center;
   background-color: #F2F7FA;
+  border-top:1px solid;
+}
+
+#contact {
+  height: 630px;
+  vertical-align: middle;
+  color: black;
+  margin-top: 0px;
+  text-align: center;
+  background-color: white;
   border-top:1px solid;
 }
 
@@ -118,6 +128,10 @@
   font-size: 30px;
 }
 
+.small-icon {
+  font-size: 20px;
+}
+
 .square {
   background-color: white;
   color: black;
@@ -152,3 +166,23 @@
   transform: translateY(-50%);
   -webkit-transform: translateY(-50%);
 }
+
+.rectangle {
+  background-color: white;
+  color: black;
+  height: 100px;
+  width: 325px;
+  background: #ddd;
+  border:2px solid grey;
+  font-size: 20px;
+  margin: 20px;
+  box-shadow: 0 0 10px #9ecaed;
+}
+
+#sign_in_link {
+  color: white;
+  text-decoration:underline;
+  font-weight:bold;
+}
+
+
