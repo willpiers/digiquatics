@@ -6,142 +6,141 @@
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
   </head>
 
-  <!-- Has to be included on the page for background to work -->
-  <style>
-  #header {
-    background: url(images/swiming_lap_pool.jpg) no-repeat center center fixed;
-  }
-  </style>
+  <body>
+    <!-- Has to be included on the page for background to work -->
+    <style>
+      #header {
+        background: url(images/swiming_lap_pool.jpg) no-repeat center center fixed;
+      }
+    </style>
 
-  <div class = 'navbar navbar-inverse navbar-fixed-top' id='landing-fix'>
-    <div class = 'container'>
-      <button class = 'navbar-toggle' data-toggle = 'collapse'
-      data-target = '.navHeaderCollapse'>
-        <span class = 'icon-bar'></span>
-        <span class = 'icon-bar'></span>
-        <span class = 'icon-bar'></span>
-      </button>
+    <div class = 'navbar navbar-inverse navbar-fixed-top' id='landing-fix'>
+      <div class = 'container'>
+        <button class = 'navbar-toggle' data-toggle = 'collapse'
+        data-target = '.navHeaderCollapse'>
+          <span class = 'icon-bar'></span>
+          <span class = 'icon-bar'></span>
+          <span class = 'icon-bar'></span>
+        </button>
 
-      <%= render 'layouts/partials/logo' %>
+        <%= render 'layouts/partials/logo' %>
 
-      <div class = 'collapse navbar-collapse navHeaderCollapse'>
-        <%= render 'layouts/partials/desktop_links' %>
-        <%= render 'layouts/partials/mobile_links' %>
-      </div>
-    </div>
-  </div>
-
-  <div class='hidden-xs'>
-    <div id="header">
-      <strong id='main-heading'> Use DigiQuatics to manage your data and workforce. </strong>
-      <br>
-      <h4 id='sub-heading'>
-         Imagine a paperless pool.
-      </h4>
-      <div id='sub-heading2'>
-        <%= link_to 'Sign up for free', new_user_path,
-                     class: 'btn btn-default btn-lg', id: 'header-btn' %>
-        <br><br>
-        Already have an account?
-        <%= link_to ' Sign in here ', new_user_path, style: 'color: white;' %>
-
-      </div>
-      <div id='sub-heading3'>
-        <%= link_to '', '#features', class: 'glyphicon glyphicon-chevron-down',
-        id: 'arrow-color-fix' %>
+        <div class = 'collapse navbar-collapse navHeaderCollapse'>
+          <%= render 'layouts/partials/desktop_links' %>
+          <%= render 'layouts/partials/mobile_links' %>
+        </div>
       </div>
     </div>
 
-    <div id='features'>
-       <br><br><br><br><br>
-      <strong id='info-header'> Focus on running your pool. Not paperwork. </strong>
-      <center>
-        <p style='width: 375px;'>
-          DigiQuatics provides you with all the tools necessary to eliminate paper
-          and provide a robust platform to manage your data.
-        </p>
-      </center>
-      <br>
-
-      <strong id='info-header'> Features designed by us. Requested by you. </strong>
-      <center>
-        <br>
-        <div style='width: 575px;'>
-          <div class='square pull-left'
-               data-hover='Search, sort, and track employee certifications.
-                           Email notifications for expirations.'>
-            <div class='position-square-text'>
-              Certification <br/> Tracking
-            </div>
-          </div>
-          <div class='square pull-left'
-               data-hover='Coming Soon!'>
-            <div class='position-square-text'>
-              Chemical <br/> Records <br/>
-            </div>
-          </div>
-          <div class='square pull-left'
-               data-hover='Manage employee contact & HR info,
-                           certifications, position, location, and more.'>
-            <div class='position-square-text'>
-              Employee <br/> Management
-            </div>
-          </div>
+    <div class='hidden-xs'>
+      <div id="header">
+        <strong id='main-heading'> Use DigiQuatics to manage your data and workforce. </strong>
+        <br/>
+        <h4 id='sub-heading'>
+          Imagine a paperless pool.
+        </h4>
+        <div id='sub-heading2'>
+          <%= link_to 'Sign up for free', new_user_path,
+                       class: 'btn btn-default btn-lg', id: 'header-btn' %>
+          <br/><br/>
+          Already have an account?
+          <%= link_to ' Sign in here ', new_user_path, style: 'color: white;' %>
         </div>
-        <br>
-        <div style='width: 575px;'>
-          <div class='square pull-left'
-               data-hover='Submit pending maintenance
-                           requests. Email notifications for supervisors.'>
-            <div class='position-square-text'>
-              Maintenance <br/> Help Desk
-            </div>
-          </div>
-          <div class='square pull-left'
-               data-hover='Coming soon!'>
-            <div class='position-square-text'>
-             Scheduling
-            </div>
-          </div>
-          <div class='square pull-left'
-               data-hover='Quick and easy shift reporting for employees. Know
-                           more as a supervisor.'>
-            <div class='position-square-text'>
-              Shift <br/> Reports <br/>
-            </div>
-          </div>
+        <div id='sub-heading3'>
+          <%= link_to '', '#features', class: 'glyphicon glyphicon-chevron-down',
+          id: 'arrow-color-fix' %>
         </div>
+      </div>
 
-        <div style='width: 575px;'>
-          <div class='square pull-left'
-               data-hover='Mobile friendly checklist of mandated slide
-                           inspection items.'>
-            <div class='position-square-text'>
-              Slide <br/> Inspections
+      <div id='features'>
+         <br/><br/><br/><br/><br/>
+        <strong id='info-header'> Focus on running your pool. Not paperwork. </strong>
+        <center>
+          <p style='width: 375px;'>
+            DigiQuatics provides you with all the tools necessary to eliminate paper and provide a robust platform to manage your data.
+          </p>
+        </center>
+        <br/>
+
+        <strong id='info-header'> Features designed by us. Requested by you. </strong>
+        <center>
+          <br/>
+          <div style='width: 575px;'>
+            <div class='square pull-left'
+                 data-hover='Search, sort, and track employee certifications.
+                             Email notifications for expirations.'>
+              <div class='position-square-text'>
+                Certification <br/> Tracking
+              </div>
+            </div>
+            <div class='square pull-left'
+                 data-hover='Coming Soon!'>
+              <div class='position-square-text'>
+                Chemical <br/> Records <br/>
+              </div>
+            </div>
+            <div class='square pull-left'
+                 data-hover='Manage employee contact & HR info,
+                             certifications, position, location, and more.'>
+              <div class='position-square-text'>
+                Employee <br/> Management
+              </div>
             </div>
           </div>
-          <div class='square pull-left'
-               data-hover='Coming Soon!'>
-            <div class='position-square-text'>
-              Private Lessons <br/> Management <br/>
+          <br/>
+          <div style='width: 575px;'>
+            <div class='square pull-left'
+                 data-hover='Submit pending maintenance
+                             requests. Email notifications for supervisors.'>
+              <div class='position-square-text'>
+                Maintenance <br/> Help Desk
+              </div>
+            </div>
+            <div class='square pull-left'
+                 data-hover='Coming soon!'>
+              <div class='position-square-text'>
+               Scheduling
+              </div>
+            </div>
+            <div class='square pull-left'
+                 data-hover='Quick and easy shift reporting for employees. Know
+                             more as a supervisor.'>
+              <div class='position-square-text'>
+                Shift <br/> Reports <br/>
+              </div>
             </div>
           </div>
-          <div class='square pull-left'
-               data-hover='Coming Soon!'>
-            <div class='position-square-text'>
-              To-Do List
+
+          <div style='width: 575px;'>
+            <div class='square pull-left'
+                 data-hover='Mobile friendly checklist of mandated slide
+                             inspection items.'>
+              <div class='position-square-text'>
+                Slide <br/> Inspections
+              </div>
+            </div>
+            <div class='square pull-left'
+                 data-hover='Coming Soon!'>
+              <div class='position-square-text'>
+                Private Lessons <br/> Management <br/>
+              </div>
+            </div>
+            <div class='square pull-left'
+                 data-hover='Coming Soon!'>
+              <div class='position-square-text'>
+                To-Do List
+              </div>
             </div>
           </div>
-        </div>
 
-      </center>
-    </div>
+        </center>
+      </div>
 
-    <div id='benefits'>
-      <center>
-       <br><br><br><br><br>
-      <strong id='info-header'> Benefits </strong>
-      <br><br>
+      <div id='benefits'>
+        <center>
+         <br/><br/><br/><br/><br/>
+        <strong id='info-header'> Benefits </strong>
+        <br/><br/>
 
         <div style='width: 350px;'>
           <div class='row' align='left'>
@@ -155,7 +154,7 @@
             </div>
           </div>
 
-          <br><br>
+          <br/><br/>
 
           <div class='row' align='left'>
             <div class='col-md-2'>
@@ -168,7 +167,7 @@
             </div>
           </div>
 
-          <br><br>
+          <br/><br/>
 
           <div class='row' align='left'>
             <div class='col-md-2'>
@@ -181,7 +180,7 @@
             </div>
           </div>
 
-          <br><br>
+          <br/><br/>
 
           <div class='row' align='left'>
             <div class='col-md-2'>
@@ -194,84 +193,79 @@
             </div>
           </div>
 
+        </center>
+      </div>
+
+      <div id="testimonials">
+        <center>
+        <br/><br/><br/><br/><br/>
+        <strong id='info-header'> What others are saying...</strong>
+        <br/><br/>
+        <p style='width: 375px;' align='left'>
+          "DigiQuatics has changed the way we run our pool on a daily basis."
+          <br/>-Customer A
+        </p>
+
+        <br/>
+
+        <p style='width: 375px;' align='left'>
+          "After implementing the online private lesson sign up feature we increased our
+          lessons revenue by 50%" <br/> -Customer B
+        </p>
+
+      </div>
+
+      <div id="pricing">
+        <center>
+         <br/><br/><br/><br/><br/>
+        <strong id='info-header'> Pricing</strong>
+        <br/><br/>
+        <p style='width: 375px;'>
+          At this time we are pricing on a case by case basis. Please contact
+          us for a quote. Our contact information can be found below.
+        </p>
+        </center>
+      </div>
+
+      <div id="signup">
+        <center>
+           <br/><br/><br/><br/><br/>
+          <strong id='info-header'> Want early access?!</strong>
+          <br/><br/>
+           <%= link_to 'Sign up for free', new_user_path,
+                       class: 'btn btn-success btn-lg', id: 'header-btn' %>
+          <br/><br/>
+          <p> Have a question?
+            <%= link_to '303-921-8628','tel:303-921-8628' %> |
+            <a href="mailto:Team@DiqiQuatics.com">Team@DiqiQuatics.com</a>
+        </p>
+        </center>
+      </div>
+
+      <div id="footer">
+        <center>
+        <br/>
+        <p>
+          <a style= 'color: grey;' href='/tos'> Terms of Service </a> -
+          <a style= 'color: grey;' href='/privacy'> Privacy Policy </a> -
+            <a href="https://twitter.com/DigiQuatics">
+               Tweet us! <%= fa_icon 'twitter-square' %>
+            </a>
+            <br/>
+          &#169; 2013-2014
+          <a href='http://affektive.com'> Affketive Software LLC </a>
+        </p>
+      </center>
+      </div>
+    </div>
+
+    <div class='visible-xs'>
+      <center>
+         <br/><br/><br/><br/><br/>
+         <%= link_to 'Sign In', new_user_session_path,
+                     class: 'btn btn-primary btn-lg', id: 'header-btn' %>
+        <br/><br/>
       </center>
     </div>
-
-    <div id="testimonials">
-      <center>
-      <br><br><br><br><br>
-      <strong id='info-header'> What others are saying...</strong>
-      <br><br>
-      <p style='width: 375px;' align='left'>
-        "DigiQuatics has changed the way we run our pool on a daily basis."
-        <br/>-Customer A
-      </p>
-
-      <br>
-
-      <p style='width: 375px;' align='left'>
-        "After implementing the online private lesson sign up feature we increased our
-        lessons revenue by 50%" <br/> -Customer B
-      </p>
-
-    </div>
-
-    <div id="pricing">
-      <center>
-       <br><br><br><br><br>
-      <strong id='info-header'> Pricing</strong>
-      <br><br>
-      <p style='width: 375px;'>
-        At this time we are pricing on a case by case basis. Please contact
-        us for a quote. Our contact information can be found below.
-      </p>
-      </center>
-    </div>
-
-    <div id="signup">
-      <center>
-         <br><br><br><br><br>
-        <strong id='info-header'> Want early access?!</strong>
-        <br/><br>
-         <%= link_to 'Sign up for free', new_user_path,
-                     class: 'btn btn-success btn-lg', id: 'header-btn' %>
-        <br><br>
-        <p> Have a question?
-          <%= link_to '303-921-8628','tel:303-921-8628' %> |
-          <a href="mailto:Team@DiqiQuatics.com">Team@DiqiQuatics.com</a>
-      </p>
-      </center>
-    </div>
-
-    <div id="footer">
-      <center>
-      <br>
-
-       <p>
-        <a style= 'color: grey;' href='/tos'> Terms of Service </a> -
-        <a style= 'color: grey;' href='/privacy'> Privacy Policy </a> -
-          <a href="https://twitter.com/DigiQuatics">
-             Tweet us! <%= fa_icon 'twitter-square' %>
-          </a>
-          <br/>
-        &#169; 2013-2014
-        <a href='http://affektive.com'> Affketive Software LLC </a>
-
-      </p>
-
-    </center>
-    </div>
-  </div>
-
-  <div class='visible-xs'>
-    <center>
-       <br><br><br><br><br>
-       <%= link_to 'Sign In', new_user_session_path,
-                   class: 'btn btn-primary btn-lg', id: 'header-btn' %>
-      <br><br>
-    </center>
-  </div>
-
+  </body>
 </html>
-
-
