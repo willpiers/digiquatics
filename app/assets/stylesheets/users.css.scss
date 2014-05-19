@@ -1,14 +1,22 @@
 #userform {
-  width:600px;
+  width: 600px;
   margin: auto;
 }
 
 #userformbutton {
-  width:200px;
+  width: 200px;
   margin: auto;
 }
 
 #userprofile {
-  width:650px;
+  width: 650px;
   margin-left: left;
+}
+
+dq-user-table {
+  a:hover, a:active {
+    // cursor: auto;
+    cursor: pointer;
+    cursor: hand;
+  }
 }

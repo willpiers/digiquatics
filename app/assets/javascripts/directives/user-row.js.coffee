@@ -2,6 +2,6 @@
   ->
     restrict: 'A'
     templateUrl: 'user-row.html'
-    # link: (scope, element, attrs) ->
-    #   console.log 'hi'
+    scope:
+      user: '=dqUserRow' # not necessary as user is passed in
 ]
