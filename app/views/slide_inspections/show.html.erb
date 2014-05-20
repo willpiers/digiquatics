@@ -42,9 +42,9 @@
       <th>All OK?</th>
       <td><%= @slide_inspection.all_ok ? 'Yes' : 'No' %></td>
     </tr>
-    <% if @slide_inspection.all_ok == false %>
+    <% unless @slide_inspection.all_ok %>
       <tr>
-        <th>Errors</th>
+        <th>Problems</th>
         <td>
           <% @errors.each do |error| %>
             <%= error.task_name %>

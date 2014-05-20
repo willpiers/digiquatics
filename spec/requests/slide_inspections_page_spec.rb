@@ -176,7 +176,7 @@ describe 'Slide Inspection pages' do
     end
 
     describe 'attributes' do
-      it { should have_selector('th', text: 'Errors') }
+      it { should have_selector('th', text: 'Problems') }
       it { should have_selector('td', text: 'No') }
       it { should have_content(error) }
     end

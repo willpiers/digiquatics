@@ -85,7 +85,7 @@ class SlideInspectionsController < ApplicationController
   def create_ticket(error, slide_inspection)
     HelpDesk.create!(name: "#{slide_inspection.slide.name} Slide Inspection Issue",
                      user_id: current_user.id,
-                     location_id: @slide_inspection.slide.location.id,
+                     location_id: @slide_inspection.slide.location_id,
                      description: "#{error}Employee Notes: #{slide_inspection.notes}",
                      urgency: 'High')
   end

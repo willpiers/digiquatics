@@ -42,8 +42,7 @@ class PrivateLessonsController < ApplicationController
     @private_lesson = Account.find(params[:account_id]).private_lessons
     .build(private_lesson_params)
     message = 'Private lesson was successfully created.'
-    @account = Account.scoped
-    @account = Account.find_by_id(@private_lesson.account_id)
+    @account = Account.find(@private_lesson.account_id)
     handle_action(@private_lesson, message, :new, @account, &:save)
   end
 
