@@ -1,9 +1,8 @@
 <% provide(:title, 'Lesson Request') %>
 <%= render partial: 'form', locals: {
-  legend: 'City of Lakewood Lesson Request',
+  legend: "#{Account.find(@private_lesson.account).name} Lesson Request",
   resources: [@private_lesson.account, @private_lesson]
 } %>
-
 
 
 

@@ -3,6 +3,9 @@
     <%= bootstrap_form_for resources,
     style: :horizontal, left: 'col-sm-4', right: 'col-sm-8' do |f| %>
 
+    <center>
+      <%= image_tag Account.find(@private_lesson.account).logo.url, height: '100' %>
+    </center>
     <%= content_tag(:legend, legend) if legend %>
     <%= render 'shared/required' %>
     <h4> Parent Information </h4>
