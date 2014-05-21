@@ -1,8 +1,10 @@
-@digiquatics.controller 'PrivateLessonsCtrl', ['$scope', 'Lessons',
-  @PrivateLessonsCtrl = ($scope, Lessons) ->
-    $scope.predicate =
-      value: 'last_name'
+@digiquatics.controller 'PrivateLessonsCtrl', ['$scope', 'PrivateLessons',
+                                             'Locations'
+  @PrivateLessonsCtrl = ($scope, PrivateLessons, Locations) ->
+      $scope.privateLessons = PrivateLessons.index()
 
-    Lessons.index (data) ->
-      $scope.lessons = data
+      $scope.locations = Locations.index()
+
+      $scope.predicate =
+        value: 'last_name'
 ]

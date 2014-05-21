@@ -10,6 +10,7 @@ class Location < ActiveRecord::Base
   has_many :users
   has_many :shift_reports
   has_many :help_desks
+  has_many :private_lessons
   has_many :pools, dependent: :destroy
   has_many :slides, dependent: :destroy
 

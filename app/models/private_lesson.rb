@@ -12,6 +12,7 @@ class PrivateLesson < ActiveRecord::Base
   belongs_to :account
   belongs_to :user
   has_many :participants
+  belongs_to :location
 
   accepts_nested_attributes_for :participants, allow_destroy: true
 

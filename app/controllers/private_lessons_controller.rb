@@ -5,9 +5,8 @@ class PrivateLessonsController < ApplicationController
   def index
     @private_lessons = PrivateLesson.joins(:account)
                        .same_account_as(current_user).unclaimed
+    @participants = Participant.all
     respond_to do |format|
-      format.html
-      format.json
       with_private_lessons_data(format, filename: 'private_lessons')
     end
   end
@@ -80,6 +79,7 @@ class PrivateLessonsController < ApplicationController
 
   def with_private_lessons_data(format, filename: 'private_lessons')
     format.html
+    format.json  { render :json => @private_lessons.to_json(:include => [:participants])}
     format.csv { render csv: @private_lessons, filename: filename }
   end
 
