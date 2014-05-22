@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140513171227) do
+ActiveRecord::Schema.define(version: 20140509040431) do
 
   create_table "accounts", force: true do |t|
     t.string   "name"
@@ -167,9 +167,10 @@ ActiveRecord::Schema.define(version: 20140513171227) do
   add_index "sessions", ["updated_at"], name: "index_sessions_on_updated_at", using: :btree
 
   create_table "shift_reports", force: true do |t|
+    t.string   "post_title"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.text     "content"
+    t.text     "post_content"
     t.integer  "user_id"
     t.integer  "location_id"
     t.boolean  "report_filed"
@@ -181,6 +182,7 @@ ActiveRecord::Schema.define(version: 20140513171227) do
     t.string   "attachment_back_content_type"
     t.integer  "attachment_back_file_size"
     t.datetime "attachment_back_updated_at"
+    t.datetime "time_stamp"
   end
 
   create_table "slide_inspection_tasks", force: true do |t|
