@@ -5,19 +5,45 @@ class UsersController < ApplicationController
   before_action :admin_user, only: ['inactive_index']
 
   def index
-    @users = User.joins(:account).same_account_as(current_user).active
-
     respond_to do |format|
-      with_users_data(format, filename: 'active_users')
+      format.html do
+        unless Rails.env.test?
+          Tracker.track(current_user.id, 'View User\'s Index')
+        end
+      end
+
+      format.csv do
+        users = User.joins(:account).same_account_as(current_user).active
+
+        render csv: users, filename: 'active_users'
+      end
+
+      format.json do
+        users = User.same_account_as(current_user).active
+
+        if stale?(users)
+          render json: users.to_json(include: [:location, :position])
+        end
+      end
     end
   end
 
   def inactive_index
-    @users = User.joins(:account).same_account_as(current_user).inactive
+    respond_to do |format|
+      format.html
 
-    if stale?(@users)
-      respond_to do |format|
-        with_users_data(format, filename: 'inactive_users')
+      format.csv do
+        users = User.joins(:account).same_account_as(current_user).inactive
+
+        render csv: users, filename: 'inactive_users'
+      end
+
+      format.json do
+        users = User.same_account_as(current_user).inactive
+
+        if stale?(users)
+          render json: users.to_json(include: [:location, :position])
+        end
       end
     end
   end
@@ -94,20 +120,6 @@ class UsersController < ApplicationController
 
   def should_update?
     @user.valid? || @user.account_id.nil?
-  end
-
-  def with_users_data(format, filename: 'users')
-    format.html do
-      unless Rails.env.test?
-        Tracker.track(current_user.id, 'View User\'s Index')
-      end
-    end
-
-    format.csv { render csv: @users, filename: filename }
-
-    format.json do
-      render json: @users.to_json(include: [:location, :position])
-    end
   end
 
   def first_account_user?

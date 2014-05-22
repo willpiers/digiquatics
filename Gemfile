@@ -13,8 +13,12 @@ gem 'will_paginate', '~>3.0.4'
 gem 'bootstrap-will_paginate'
 gem 'intercom-rails', github: 'kmanzana/intercom-rails'
 gem 'comma', '~> 3.0'
+gem 'slim'
+
 gem 'angularjs-rails', '~> 1.2.14'
 gem 'angular-ui-bootstrap-rails'
+gem 'angular-rails-templates'
+
 gem 'jquery-turbolinks'
 gem 'devise'
 gem 'activerecord-session_store', github: 'rails/activerecord-session_store'
@@ -27,6 +31,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'tilt', '~> 1.3.0'
 gem 'sendgrid'
 gem 'aws-sdk'
+gem 'font-awesome-rails'
 
 group :development, :test do
   gem 'rspec-rails'

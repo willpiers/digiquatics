@@ -1,37 +1,45 @@
-<div ng-app='digiquatics'>
-  <table ng-controller='CertificationsCtrl'
-         class='table table-hover'>
-    <thead>
-      <tr>
-        <th>
-          <a href='' ng-click="predicate.value = 'lastName'; predicate.reverse = !predicate.reverse">
-          Last Name</a>
-        </th>
-        <th class='hidden-xs'>
-          <a href='' ng-click="predicate.value = 'firstName'; predicate.reverse = !predicate.reverse">
-          First Name</a>
-        </th>
-        <th class='hidden-xs'>
-          <a href='' ng-click="predicate.value = 'location'; predicate.reverse = !predicate.reverse">
-          Location</a>
-        </th>
-        <th ng-repeat='certName in certNames'>
-          <a href='' ng-click="predicate.value = certName.name; predicate.reverse = !predicate.reverse">
-          {{certName.name}}</a>
-        </th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr ng-repeat='userData in users | orderBy:predicate.value:predicate.reverse | filter:locationFilter | filter:search'>
-        <td>
-          <a ng-href='/users/{{userData.id}}'>{{userData.lastName}}</a>
-        </td>
-        <td class='hidden-xs'>{{userData.firstName}}</td>
-        <td class='hidden-xs'>{{userData.location}}</td>
-        <td ng-repeat='certName in certNames' class='{{userData[certName.name + "class"]}} cert-width-fix'>
-          {{userData[certName.name] | formatDate}}
-        </td>
-      </tr>
-    </tbody>
-  </table>
+<table ng-show='(users | orderBy:predicate.value:predicate.reverse | filter:locationFilter | filter:search).length' class='table table-hover'>
+  <thead>
+    <tr>
+      <th>
+        <a class='pointer-hand' ng-click="predicate.value = 'lastName'; predicate.reverse = !predicate.reverse">
+        Last Name</a>
+      </th>
+      <th class='hidden-xs'>
+        <a class='pointer-hand' ng-click="predicate.value = 'firstName'; predicate.reverse = !predicate.reverse">
+        First Name</a>
+      </th>
+      <th class='hidden-xs'>
+        <a class='pointer-hand' ng-click="predicate.value = 'location'; predicate.reverse = !predicate.reverse">
+        Location</a>
+      </th>
+      <th ng-repeat='certName in certNames'>
+        <a class='pointer-hand' ng-click="predicate.value = certName.name; predicate.reverse = !predicate.reverse">
+        {{certName.name}}</a>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat='userData in users | orderBy:predicate.value:predicate.reverse | filter:locationFilter | filter:search'>
+      <td>
+        <a ng-href='/users/{{userData.id}}'>{{userData.lastName}}</a>
+      </td>
+      <td class='hidden-xs'>{{userData.firstName}}</td>
+      <td class='hidden-xs'>{{userData.location}}</td>
+      <td ng-repeat='certName in certNames' class='{{userData[certName.name + "class"]}} cert-width-fix'>
+        {{userData[certName.name] | formatDate}}
+      </td>
+    </tr>
+  </tbody>
+</table>
+<div ng-hide='(users | orderBy:predicate.value:predicate.reverse | filter:locationFilter | filter:search).length'>
+  <hr/>
+  <center>
+    <p>
+      No certifications match this search or you have none yet.
+      <a href='/certifications/new'>
+        Click here to add a certification.
+      </a>
+    </p>
+  </center>
 </div>

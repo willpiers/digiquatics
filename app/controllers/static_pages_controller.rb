@@ -6,6 +6,12 @@ class StaticPagesController < ApplicationController
   def about
   end
 
+  def privacy
+  end
+
+  def tos
+  end
+
   def landing
     if !Rails.env.test? && current_user
       Tracker.track(current_user.id, 'View Index')
