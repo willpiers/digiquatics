@@ -51,7 +51,22 @@
     </ul>
   <% end %>
 
-  <br><br>
+  <br/><br/><br/>
+
+  <% if current_user.admin? %>
+    <ul class = 'pull-right'>
+    <%= bootstrap_form_for @private_lesson do |f| %>
+      <%= f.select :user_id,
+        options_from_collection_for_select(User.same_account_as(current_user),
+                                           :id,
+                                           "#{:last_name}", @private_lesson.user_id) %>
+      <%= f.hidden_field :claimed_on, value: Time.now %>
+      <%= f.submit 'Assign', class: 'btn btn-default btn-warning' %>
+    <% end %>
+    </ul>
+  <% end %>
+
+  <br><br><br><br>
 
   <% if current_user.admin? %>
     <table class='table table-bordered table-condensed' >
