@@ -37,30 +37,28 @@
   </thead>
   <tbody>
     <tr ng-repeat='lesson in privateLessons | orderBy:predicate.value:reverse | filter:locationFilter | filter:search'>
-        <td>
-          <div ng-repeat='participant in lesson.participants'>
-            <a ng-href='#'>
-              {{participant.last_name}} <br/>
-            </a>
-          </div>
-        </td>
-        <td>
-          <div ng-repeat='participant in lesson.participants'>
-            {{participant.first_name}} <br/>
-          </div>
-        </td>
-        <td>
-          <div ng-repeat='participant in lesson.participants'>
-            {{participant.age}}
-          </div>
-        </td>
-        <td>
-          <div ng-repeat='participant in lesson.participants'>
-            {{participant.sex}}
-          </div>
-        </td>
-      </div>
-
+      <td>
+        <div ng-repeat='participant in lesson.participants'>
+          <a ng-href='#'>
+            {{participant.last_name}} <br/>
+          </a>
+        </div>
+      </td>
+      <td>
+        <div ng-repeat='participant in lesson.participants'>
+          {{participant.first_name}} <br/>
+        </div>
+      </td>
+      <td>
+        <div ng-repeat='participant in lesson.participants'>
+          {{participant.age}}
+        </div>
+      </td>
+      <td>
+        <div ng-repeat='participant in lesson.participants'>
+          {{participant.sex}}
+        </div>
+      </td>
       <td>{{lesson.day}}</td>
       <td>{{lesson.time}}</td>
       <td class='hidden-xs'>{{lesson.location.name}}</td>

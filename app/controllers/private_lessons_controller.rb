@@ -26,6 +26,12 @@ class PrivateLessonsController < ApplicationController
 
   def my_lessons
     @my_lessons = PrivateLesson.joins(:user).claimed_by(current_user)
+    @participants = Participant.all
+    @location = Location.all
+    respond_to do |format|
+      format.html
+      format.json  { render :json => @my_lessons.to_json(:include => [:participants, :location])}
+    end
   end
 
   def thank_you
