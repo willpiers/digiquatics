@@ -29,6 +29,10 @@
       f, :participants) %>
 
     <h4> Preferences </h4>
+      <%= f.select :location_id,
+        options_from_collection_for_select(Location.same_account_as(current_user),
+                                           :id,
+                                           :name, @private_lesson.location_id) %>
       <%= f.text_area :notes,
                       placeholder: 'Special requests or comments',
                       size: '2x' %>

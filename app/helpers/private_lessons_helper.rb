@@ -3,7 +3,7 @@ module PrivateLessonsHelper
     :email, :phone_number, :parent_first_name,
     :parent_last_name, :contact_method, :instructor_gender,
     :notes, :day, :time, :preferred_location, :user_id, :attachment,
-    :number_lessons, :lesson_objective, :account_id,
+    :number_lessons, :lesson_objective, :account_id, :location_id,
     participants_attributes: [
       :_destroy, :id, :private_lesson_id, :first_name, :last_name,
       :sex, :age

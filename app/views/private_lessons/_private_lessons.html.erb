@@ -38,11 +38,11 @@
   <tbody>
     <tr ng-repeat='lesson in privateLessons | orderBy:predicate.value:reverse | filter:locationFilter | filter:search'>
         <td>
-          <a ng-href='#'>
-            <div ng-repeat='participant in lesson.participants'>
-            {{participant.last_name}} <br/>
-            </div>
-          </a>
+          <div ng-repeat='participant in lesson.participants'>
+            <a ng-href='#'>
+              {{participant.last_name}} <br/>
+            </a>
+          </div>
         </td>
         <td>
           <div ng-repeat='participant in lesson.participants'>
@@ -63,7 +63,7 @@
 
       <td>{{lesson.day}}</td>
       <td>{{lesson.time}}</td>
-      <td class='hidden-xs'>{{lesson.preferred_location}}</td>
+      <td class='hidden-xs'>{{lesson.location.name}}</td>
       <td>{{lesson.created_at | date:'M/d/yy h:mm a'}}</td>
     </tr>
   </tbody>

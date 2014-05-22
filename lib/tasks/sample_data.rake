@@ -133,7 +133,7 @@ namespace :db do
                             day: %w(M T W Th F S Sn).sample,
                             time: %w(AM PM).sample,
                             contact_method: %w(Call Email Text).sample,
-                            preferred_location: rand(3) + 1,
+                            location_id: rand(3) + 1,
                             number_lessons: rand(5) + 1,
                             account_id: 1)
     end
@@ -192,11 +192,11 @@ namespace :db do
     end
 
     100.times do |n|
-      ShiftReport.create!(time_stamp: Date.today - rand(365).day,
+      ShiftReport.create!(created_at: Date.today - rand(365).day,
                           user_id: n + 1,
                           location_id: [1, 2].sample,
+                          content: 'Blah Blah Blah',
                           report_filed: [true, false].sample,
-                          post_content: 'Blah blah blah'
                         )
     end
 

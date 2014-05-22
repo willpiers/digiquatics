@@ -112,14 +112,24 @@
 
   <table class='table table-bordered' >
     <h4> Preferences </h4>
-      <tr>
-        <th id='fixtablewidth'> Special Requests </th>
-        <td> <%= @private_lesson.notes %> </td>
-      </tr>
-      <tr>
-        <th> Lesson Objectives </th>
-        <td> <%= @private_lesson.lesson_objective %> </td>
-      </tr>
+    <tr>
+      <th> Location </th>
+      <td>
+        <% if @private_lesson.location %>
+          <%= @private_lesson.location.name %>
+        <% else %>
+          No Preference
+        <% end %>
+      </td>
+    </tr>
+    <tr>
+      <th id='fixtablewidth'> Special Requests </th>
+      <td> <%= @private_lesson.notes %> </td>
+    </tr>
+    <tr>
+      <th> Lesson Objectives </th>
+      <td> <%= @private_lesson.lesson_objective %> </td>
+    </tr>
   </table>
 
   <table class='table table-bordered' >
