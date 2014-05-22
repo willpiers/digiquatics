@@ -148,6 +148,8 @@ GEM
       i18n (~> 0.5)
     fastercsv (1.5.5)
     ffi (1.9.3)
+    font-awesome-rails (4.1.0.0)
+      railties (>= 3.2, < 5.0)
     formatador (0.2.4)
     guard (2.6.1)
       formatador (>= 0.2.4)
@@ -368,6 +370,7 @@ DEPENDENCIES
   devise
   factory_girl_rails (= 4.2.1)
   faker (= 1.1.2)
+  font-awesome-rails
   guard-bundler
   guard-rspec
   guard-spork (= 1.5.0)
