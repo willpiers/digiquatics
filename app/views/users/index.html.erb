@@ -1,22 +1,16 @@
 <div ng-app='digiquatics'>
-  <div ng-controller='LocationsCtrl'>
+  <div ng-controller='UsersCtrl'>
     <% provide(:title, 'Active Employees') %>
     <div class='hidden-xs'><h1>Active Employees</h1> <br><br></div>
     <div class='visible-xs'><center><h4>Contact List</h4></center></div>
     <div class='row'>
-      <div class='col-md-2'>
-        <div class="input-group">
-          <input class="form-control" ng-model="search" type='text'placeholder="Search"/>
-          <span class="input-group-addon">
-            <span class="glyphicon glyphicon-search"></span>
-          </span>
-        </div>
-      </div>
-      <div class='visible-xs'></br></div>
+      <dq-search></dq-search>
       <div class='col-md-3'>
         <select ng-model='locationFilter' class='form-control'>
           <option value=''>All Locations</option>
-          <option ng-repeat='location in locations' value='{{location.name}}'>{{location.name}}</option>
+          <option ng-repeat='location in locations' value='{{location.name}}'>
+            {{location.name}}
+          </option>
         </select>
       </div>
       <div class='col-md-3'></div>
@@ -33,7 +27,7 @@
         <% end %>
       </div>
     </div>
-    <div class='hidden-xs'><br></div>
-    <%= render 'users' %>
+    <br>
+    <dq-user-table></dq-user-table>
   </div>
 </div>
