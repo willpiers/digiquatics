@@ -15,6 +15,13 @@ class PrivateLessonsController < ApplicationController
   def admin_index
     @admin_index = PrivateLesson.joins(:account)
                    .same_account_as(current_user).claimed
+    @participants = Participant.all
+    @location = Location.all
+    @users = User.all
+    respond_to do |format|
+      format.html
+      format.json  { render :json => @admin_index.to_json(:include => [:participants, :location, :user])}
+    end
   end
 
   def my_lessons

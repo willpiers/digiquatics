@@ -1,5 +1,5 @@
 <div ng-app='digiquatics'>
-  <div ng-controller='PrivateLessonsCtrl'>
+  <div ng-controller='AdminPrivateLessonsCtrl'>
     <% provide(:title, 'Private Lessons Mangement') %>
     <h1> Private Lessons Mangement</h1>
     <br><br>
@@ -26,7 +26,7 @@
               class: 'btn btn-primary btn-sm',
               role: 'button' %>
           <%if current_user.admin? %>
-            <%= link_to 'Private Lessons Mangement', admin_index_path,
+            <%= link_to 'Private Lessons Queue', '#',
               class: 'btn btn-success btn-sm', role: 'button' %>
           <% end %>
         </div>

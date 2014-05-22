@@ -1,46 +1,4 @@
-<table class='table table-hover table-condensed'>
-  <thead>
-    <tr>
-      <th>Instructor Last Name</th>
-      <th>Instructor First Name</th>
-      <th>Phone</th>
-      <th>Parent Last Name</th>
-      <th>Parent First Name</th>
-      <th>Phone</th>
-      <th>Student</th>
-      <th>Submitted</th>
-      <th>Claimed</th>
-      <th>Completed</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @admin_index.each do |private_lesson| %>
-      <tr>
-        <% if private_lesson.user %>
-          <td>
-            <%= link_to private_lesson.user.last_name, private_lesson.user %>
-          </td>
-          <td><%= private_lesson.user.first_name %></td>
-          <td><%= private_lesson.user.phone_number %></td>
-        <% end %>
-        <td><%= private_lesson.parent_first_name %></td>
-        <td><%= private_lesson.parent_last_name %></td>
-        <td><%= private_lesson.phone_number %></td>
-        <td>
-          <% if private_lesson.participants.first %>
-            <%= link_to private_lesson.participants.first.first_name, private_lesson %>
-          <% end %>
-        </td>
-        <td><%= private_lesson.created_at.strftime('%-m/%-d/%Y') %></td>
-        <td><%= private_lesson.updated_at.strftime('%-m/%-d/%Y') %></td>
-        <td></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-
-<table class='table table-hover table-condensed' >
+<table class='table table-hover' >
   <thead>
     <tr>
       <th>
@@ -64,6 +22,10 @@
         Student</a>
       </th>
       <th>
+        <a href="" ng-click="predicate.value = 'preferred_location'; reverse=!reverse">
+        Location</a>
+      </th>
+      <th>
         <a href="" ng-click="predicate.value = 'created_at'; reverse=!reverse">
         Submitted</a>
       </th>
@@ -78,35 +40,42 @@
     </tr>
   </thead>
   <tbody>
-    <tr ng-repeat='lesson in privateLessons | orderBy:predicate.value:reverse | filter:locationFilter | filter:search'>
-        <td>
-          <div ng-repeat='participant in lesson.participants'>
-            <a ng-href='#'>
-              {{participant.last_name}} <br/>
-            </a>
-          </div>
-        </td>
-        <td>
-          <div ng-repeat='participant in lesson.participants'>
-            {{participant.first_name}} <br/>
-          </div>
-        </td>
-        <td>
-          <div ng-repeat='participant in lesson.participants'>
-            {{participant.age}}
-          </div>
-        </td>
-        <td>
-          <div ng-repeat='participant in lesson.participants'>
-            {{participant.sex}}
-          </div>
-        </td>
-      </div>
-
-      <td>{{lesson.day}}</td>
-      <td>{{lesson.time}}</td>
+    <tr ng-repeat='lesson in adminPrivateLessons | orderBy:predicate.value:reverse | filter:locationFilter | filter:search'>
+      <td>
+          <a ng-href='/users/{{lesson.user.id}}'>
+            {{lesson.user.last_name}}, {{lesson.user.first_name}}
+          </a>
+      </td>
+      <td>
+        <a ng-href='tel:{{lesson.user.phone_number}}'>
+          {{lesson.user.phone_number}}
+        </a>
+      </td>
+      <td>
+        {{lesson.parent_last_name}}, {{lesson.parent_first_name}}
+      </td>
+      <td>
+        <a ng-href='tel:{{lesson.phone_number}}'>
+          {{lesson.phone_number}}
+        </a>
+      </td>
+      <td>
+        <div ng-repeat='participant in lesson.participants'>
+          <a ng-href='#'>
+            {{participant.last_name}}, {{participant.first_name}} <br/>
+          </a>
+        </div>
+      </td>
       <td class='hidden-xs'>{{lesson.location.name}}</td>
-      <td>{{lesson.created_at | date:'M/d/yy h:mm a'}}</td>
+      <td>
+        {{lesson.created_at | date:'M/d/yy h:mm a'}}
+      </td>
+      <td>
+        {{lesson.claimed_on | date:'M/d/yy h:mm a'}}
+      </td>
+      <td>
+        {{lesson.completed_on | date:'M/d/yy h:mm a'}}
+      </td>
     </tr>
   </tbody>
 </table>

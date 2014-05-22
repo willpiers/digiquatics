@@ -4,6 +4,7 @@ module PrivateLessonsHelper
     :parent_last_name, :contact_method, :instructor_gender,
     :notes, :day, :time, :preferred_location, :user_id, :attachment,
     :number_lessons, :lesson_objective, :account_id, :location_id,
+    :claimed_on, :completed_on,
     participants_attributes: [
       :_destroy, :id, :private_lesson_id, :first_name, :last_name,
       :sex, :age

@@ -9,15 +9,42 @@
         class: 'glyphicon glyphicon-arrow-left' %>
   </div>
 
-  <ul class = 'pull-right'>
-  <%= bootstrap_form_for @private_lesson do |f| %>
-    <%= f.hidden_field :user_id, value: current_user.id %>
-    <%= f.primary 'Claim Lesson'  %>
+  <% unless @private_lesson.completed_on %>
+    <ul class = 'pull-right'>
+    <%= bootstrap_form_for @private_lesson do |f| %>
+      <%= f.hidden_field :completed_on, value: Time.now %>
+      <%= f.submit 'Mark Completed', class: 'btn btn-default btn-danger'  %>
+    <% end %>
+    </ul>
+  <% else %>
+    <ul class = 'pull-right'>
+    <%= bootstrap_form_for @private_lesson do |f| %>
+      <%= f.hidden_field :completed_on, value: nil %>
+      <%= f.submit 'Mark Open', class: 'btn btn-default btn-danger'  %>
+    <% end %>
+    </ul>
   <% end %>
-  </ul>
 
 
-  <%if current_user.admin? %>
+  <% unless @private_lesson.user_id %>
+    <ul class = 'pull-right'>
+    <%= bootstrap_form_for @private_lesson do |f| %>
+      <%= f.hidden_field :user_id, value: current_user.id %>
+      <%= f.hidden_field :claimed_on, value: Time.now %>
+      <%= f.submit 'Claim Lesson', class: 'btn btn-default btn-success' %>
+    <% end %>
+    </ul>
+  <% else %>
+    <ul class = 'pull-right'>
+    <%= bootstrap_form_for @private_lesson do |f| %>
+      <%= f.hidden_field :user_id, value: nil %>
+      <%= f.hidden_field :claimed_on, value: nil %>
+      <%= f.submit 'Unclaim Lesson', class: 'btn btn-default btn-success' %>
+    <% end %>
+    </ul>
+  <% end %>
+
+  <% if current_user.admin? %>
     <ul class = 'pull-right'>
       <%= link_to 'Edit Lesson', edit_private_lesson_path(@private_lesson),
           class: 'btn btn-default btn-primary' %>
