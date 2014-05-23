@@ -1,8 +1,6 @@
 <table class='table table-hover table-condensed' >
   <thead>
     <tr>
-      <th>Location</th>
-      <th>Pool</th>
       <th>
         <a href='' ng-click="predicate.value = 'free_chlorine_ppm'; reverse=!reverse">
           Free Cl
@@ -71,8 +69,6 @@
       | filter:{pool_id: filters.pool_id}
       | filter:{pool: {location_id: filters.location_id}}
       | limitTo:totalDisplayed'>
-      <td>{{record.pool.location.name}}</td>
-      <td>{{record.pool.name}}</td>
       <td>{{record.free_chlorine_ppm}}</td>
       <td>{{record.combined_chlorine_ppm}}</td>
       <td>{{record.total_chlorine_ppm}}</td>

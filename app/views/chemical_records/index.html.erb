@@ -5,18 +5,16 @@
     <br><br>
     <div class='row'>
       <div class='col-md-3'>
-        <h4>Filter Locations:</h4>
         <select ng-model='filters.location_id' class='form-control'>
-          <option value=''>All</option>
+          <option value=''>All Locations</option>
           <option ng-repeat='location in locations' value='{{location.id}}'>
             {{location.name}}
           </option>
         </select>
       </div>
       <div class='col-md-3'>
-        <h4>Filter Pools:</h4>
         <select ng-model='filters.pool_id' class='form-control'>
-          <option value=''>All</option>
+          <option value=''>All Pools</option>
           <option ng-repeat='pool in pools | filter:{location_id: filters.location_id}' value='{{pool.id}}'>
             {{pool.name}}
           </option>
@@ -41,7 +39,6 @@
       <img src='/images/greendot.png' alt='green' height='10px' width='10px'/>
       Balanced
     </div>
-    <br>
     <%= render 'chemicals' %>
   </div>
 </div>
