@@ -1,14 +1,12 @@
 <table class='table table-hover table-condensed' >
   <thead>
     <tr>
-      <th>Location</th>
-      <th>Pool</th>
-      <th>
+      <th class='hidden-xs'>
         <a href='' ng-click="predicate.value = 'free_chlorine_ppm'; reverse=!reverse">
           Free Cl
         </a>
       </th>
-      <th>
+      <th class='hidden-xs'>
         <a href='' ng-click="predicate.value = 'combined_chlorine_ppm'; reverse=!reverse">
           Combined Cl
         </a>
@@ -38,22 +36,22 @@
           Pool(F)
         </a>
       </th>
-      <th>
+      <th class='hidden-xs'>
         <a href='' ng-click="predicate.value = 'air_temp'; reverse=!reverse">
           Air(F)
         </a>
       </th>
-      <th>
+      <th class='hidden-xs'>
         <a href='' ng-click="predicate.value = 'water_clarity'; reverse=!reverse">
           Water Clarity
         </a>
       </th>
-      <th>
+      <th class='hidden-xs'>
         <a href='' ng-click="predicate.value = 'si_index'; reverse=!reverse">
           SI Index
         </a>
       </th>
-      <th>
+      <th class='hidden-xs'>
         <a href='' ng-click="predicate.value = 'si_status'; reverse=!reverse">
           SI Status
         </a>
@@ -71,19 +69,19 @@
       | filter:{pool_id: filters.pool_id}
       | filter:{pool: {location_id: filters.location_id}}
       | limitTo:totalDisplayed'>
-      <td>{{record.pool.location.name}}</td>
-      <td>{{record.pool.name}}</td>
-      <td>{{record.free_chlorine_ppm}}</td>
-      <td>{{record.combined_chlorine_ppm}}</td>
+      <td class='hidden-xs'>{{record.free_chlorine_ppm}}</td>
+      <td class='hidden-xs'>{{record.combined_chlorine_ppm}}</td>
+      <td class='hidden-xs'>{{record.free_chlorine_ppm}}</td>
+      <td class='hidden-xs'>{{record.combined_chlorine_ppm}}</td>
       <td>{{record.total_chlorine_ppm}}</td>
       <td>{{record.ph}}</td>
       <td>{{record.alkalinity}}</td>
       <td>{{record.calcium_hardness}}</td>
       <td>{{record.pool_temp}}</td>
-      <td>{{record.air_temp}}</td>
-      <td>{{record.water_clarity}}</td>
-      <td>{{record.si_index}}</td>
-      <td>{{record.si_status}}</td>
+      <td class='hidden-xs'>{{record.air_temp}}</td>
+      <td class='hidden-xs'>{{record.water_clarity}}</td>
+      <td class='hidden-xs'>{{record.si_index}}</td>
+      <td class='hidden-xs'>{{record.si_status}}</td>
       <td>
         <a ng-href='{{record.url}}'>
           {{record.time_stamp | date:'M/d/yy h:mm a'}}
