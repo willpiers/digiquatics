@@ -31,4 +31,9 @@ class StaticPagesController < ApplicationController
     @users = User.joins(:account).same_account_as(current_user)
     @location  = Location.all
   end
+
+  def private_lesson_stats
+    @private_lessons = PrivateLesson.joins(:account).same_account_as(current_user)
+    @locations = Location.joins(:account).same_account_as(current_user)
+  end
 end

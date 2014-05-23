@@ -1,0 +1,28 @@
+<% provide(:title, 'Private Lesson Statistics') %>
+<h1>Private Lesson Statistics</h1>
+<br><br>
+
+<div class='table-width-desktop'>
+  <table class='table table-bordered'>
+    <tr>
+      <th style='width:50%'>Location</th>
+      <th>Number <br/>Unclaimed</td>
+      <th>Number <br/>Claimed</td>
+      <th>Total <br/>Lessons</td>
+    </tr>
+    <% @locations.each do |location| %>
+      <tr>
+        <td><%= location.name %></td>
+        <td><%= @private_lessons.where(location_id: location.id, user_id: nil).count %></td>
+        <td><%= @private_lessons.where(location_id: location.id).where.not(user_id: nil).count %></td>
+        <td><%= @private_lessons.where(location_id: location.id).count %></td>
+      </tr>
+    <% end %>
+    <tr>
+      <th> Totals </th>
+      <th><%= @private_lessons.where(user_id: nil).count %></th>
+      <th><%= @private_lessons.where.not(user_id: nil).count %></th>
+      <th><%= @private_lessons.count %></th>
+    </tr>
+  </table>
+</div>

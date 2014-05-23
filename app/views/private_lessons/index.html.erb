@@ -18,6 +18,10 @@
             new_account_private_lesson_path(account_id: current_account.id),
               class: 'btn btn-primary btn-sm',
               role: 'button' %>
+          <%= link_to 'Statistics',
+            private_lesson_stats_path,
+              class: 'btn btn-danger btn-sm',
+              role: 'button' %>
           <%if current_user.admin? %>
             <%= link_to 'Private Lessons Mangement', admin_index_path,
               class: 'btn btn-success btn-sm', role: 'button' %>
