@@ -212,8 +212,7 @@ namespace :db do
 
     10.times do |n|
       print '.'
-      ShiftReport.create!(time_stamp: Date.today - rand(365).day,
-                          user_id: n + 1,
+      ShiftReport.create!(user_id: n + 1,
                           location_id: [1, 2].sample,
                           content: 'Blah Blah Blah',
                           report_filed: [true, false].sample,
