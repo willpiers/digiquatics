@@ -76,6 +76,6 @@ class ChemicalRecordsController < ApplicationController
     params.require(:chemical_record)
     .permit(:free_chlorine_ppm, :total_chlorine_ppm, :chlorine_orp, :ph,
             :alkalinity, :calcium_hardness, :pool_temp, :air_temp, :si_index,
-            :time_stamp, :user_id, :pool_id, :water_clarity)
+            :time_stamp, :user_id, :pool_id, :water_clarity, :location_id)
   end
 end

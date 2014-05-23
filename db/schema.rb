@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140522175155) do
+ActiveRecord::Schema.define(version: 20140523221522) do
 
   create_table "accounts", force: true do |t|
     t.string   "name"
@@ -69,6 +69,7 @@ ActiveRecord::Schema.define(version: 20140522175155) do
     t.string   "water_clarity"
     t.decimal  "total_chlorine_ppm",    precision: 6, scale: 2
     t.decimal  "combined_chlorine_ppm", precision: 6, scale: 2
+    t.integer  "location_id"
   end
 
   create_table "daily_todos", force: true do |t|

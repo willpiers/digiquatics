@@ -17,11 +17,11 @@
   <table class='table table-bordered table-condensed'>
       <tr>
         <th id='fixtablewidth'>Location</th>
-        <td><%=%></td>
+        <td><%= Location.find_by_id(@chemical_record.location_id).name %></td>
       </tr>
       <tr>
         <th>Pool</th>
-        <td><%=%></td>
+        <td><%= Pool.find_by_id(@chemical_record.pool_id).name %></td>
       </tr>
       <tr>
         <th>Chlorine(ppm)</th>

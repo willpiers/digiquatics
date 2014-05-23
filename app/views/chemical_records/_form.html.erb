@@ -14,8 +14,31 @@
       </div>
     <% end %>
     <%= render 'shared/required' %>
-    <%= f.select :pool_id,
-      options_from_collection_for_select(Pool.same_location_as(current_user) , :id, :name ) %>
+
+    <div ng-app='digiquatics'>
+      <div ng-controller='ChemicalRecordsCtrl'>
+
+        <label>Location</label>
+        <select ng-model='selectedLocationId' class='form-control'>
+          <option value=''>Select Location</option>
+          <option ng-repeat='location in locations' value='{{location.id}}'>
+            {{location.name}}
+          </option>
+        </select>
+        <%= f.hidden_field :location_id, value: "{{selectedLocationId}}" %>
+
+        <label>Pool</label>
+        <select ng-model='selectedPoolId' class='form-control'>
+          <option value=''>Select Pool</option>
+          <option ng-repeat='pool in pools | filter:{location_id: filters.location_id}' value='{{pool.id}}'>
+            {{pool.name}}
+          </option>
+        </select>
+        <%= f.hidden_field :pool_id, value: "{{selectedPoolId}}" %>
+
+      </div>
+    </div>
+
     <%= f.text_field :free_chlorine_ppm, label: 'Free Chlorine ppm' %>
     <%= f.text_field :total_chlorine_ppm, label: 'Total Chlorine ppm *' %>
     <%= f.text_field :ph, label: 'PH *' %>
