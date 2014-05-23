@@ -47,7 +47,7 @@
     <%= f.text_field :pool_temp, label: 'Pool Temp' %>
     <%= f.text_field :air_temp, label: 'Air Temp' %>
     <%= f.select :water_clarity, %w[Clear Cloudy],
-                { include_blank: true, label: 'Water Clarity' } %>
+                { label: 'Water Clarity' } %>
 
     <div class='hidden-xs hidden-sm'>
       <%= f.datetime_select :time_stamp, { label: 'Date', ampm: true} %>

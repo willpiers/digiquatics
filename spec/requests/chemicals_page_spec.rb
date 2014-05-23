@@ -38,37 +38,4 @@ describe 'Chemicals' do
       it { should have_content('Time') }
     end
   end
-
-  describe 'submit record' do
-    before do
-      Warden.test_reset!
-      login_as(user, scope: :user)
-      visit new_chemical_record_path
-    end
-
-    describe 'should have the correct title and heading' do
-      it { should have_title(full_title('New Chemical Record')) }
-      it { should have_selector('h1', text: 'New Chemical Record') }
-    end
-
-    describe 'with valid information' do
-      let(:submit) { 'Submit' }
-
-      before do
-        select pool.name, from: 'chemical_record_pool_id'
-        fill_in 'chemical_record_free_chlorine_ppm', with: 2
-        fill_in 'chemical_record_total_chlorine_ppm', with: 3
-        fill_in 'chemical_record_ph', with: 6.8
-        fill_in 'chemical_record_alkalinity', with: 100
-        fill_in 'chemical_record_calcium_hardness', with: 100
-        fill_in 'chemical_record_pool_temp', with: 89.1
-        fill_in 'chemical_record_air_temp', with: 85.6
-        select 'Clear',   from: 'chemical_record_water_clarity'
-      end
-
-      it 'should create a chemical record' do
-        expect { click_button submit }.to change(ChemicalRecord, :count).by(1)
-      end
-    end
-  end
 end
