@@ -1,39 +1,71 @@
 namespace :db do
   desc 'Fill database with sample data'
   task populate: :environment do
+
+    puts "\n\n"
+    puts "--------------------------------------------------------------------"
+    puts "|                       Reset Demo Enviorment                      |"
+    puts "--------------------------------------------------------------------"
+
     Rake.application['db:reset'].invoke
 
+    puts "\n"
+    puts "--------------------------------------------------------------------"
+    puts "|                     Generate Demo Enviorment                     |"
+    puts "--------------------------------------------------------------------"
+
+    puts "Accounts\n"
     Account.create(name: 'City of Lakewood',
                    time_zone: 'Mountain Time (US & Canada)')
+    print '.'
     Account.create(name: 'Foothills',
                    time_zone: 'Mountain Time (US & Canada)')
+    print '.'
     Account.create(name: 'Empty',
                    time_zone: 'Mountain Time (US & Canada)')
+    print '.'
 
+    puts "\nLocations\n"
     Location.create(name: 'Green Mountain Recreation Center',
                     account_id: 1)
+    print '.'
     Location.create(name: 'Link Recreation Center',
                     account_id: 1)
+    print '.'
     Location.create(name: 'Carmody Recreation Center',
                     account_id: 1)
+    print '.'
     Location.create(name: 'Whitlock Recreation Center',
                     account_id: 1)
+    print '.'
     Location.create(name: 'Ridge Recreation Center',
                     account_id: 2)
+    print '.'
 
+    puts "\nPools\n"
     Pool.create(name: 'Big',  location_id: Location.first.id)
+    print '.'
     Pool.create(name: 'Baby', location_id: Location.first.id)
+    print '.'
     Pool.create(name: 'Link', location_id: Location.find(2).id)
+    print '.'
 
+    puts "\nSlides\n"
     Slide.create(name: 'Yellow', location_id: Location.first.id)
+    print '.'
     Slide.create(name: 'Red',    location_id: Account.find(2).locations.first.id)
+    print '.'
 
+    puts "\nPositions\n"
     Position.create(name: 'Lifeguard',
                     account_id: 1)
+    print '.'
     Position.create(name: 'MOD',
                     account_id: 1)
+    print '.'
     Position.create(name: 'WSI',
                     account_id: 1)
+    print '.'
 
     User.create!(first_name:             'First',
                  nickname:               'Dubs',
@@ -104,14 +136,19 @@ namespace :db do
                    )
     end
 
+    puts "\nCertifications\n"
+
     CertificationName.create!(name: 'CPR_AED',
                               account_id: 1)
+    print '.'
     CertificationName.create!(name: 'LGI',
                               account_id: 1)
+    print '.'
     CertificationName.create!(name: 'WSI',
                               account_id: 1)
+    print '.'
 
-    puts "\n\nCertifications\n"
+    puts "\nAssign certifications to users\n"
 
     10.times do |n|
       print '...'
@@ -132,7 +169,7 @@ namespace :db do
                             issue_date: Date.today + rand(365).day)
     end
 
-    puts "\n\nPrivateLessons\n"
+    puts "\nPrivateLessons\n"
 
     5.times do |n|
       print '.'
@@ -148,7 +185,7 @@ namespace :db do
                             account_id: 1)
     end
 
-    puts "\n\nParticipant\n"
+    puts "\nParticipants\n"
 
     5.times do |n|
       print '.'
@@ -159,7 +196,7 @@ namespace :db do
                           sex: %w(M F).sample)
     end
 
-    puts "\n\nChemicalRecord\n"
+    puts "\nChemicalRecords\n"
 
     25.times do |n|
       print '.'
@@ -194,7 +231,7 @@ namespace :db do
                              user_id: [1, 2, 3, 4, 5].sample)
     end
 
-    puts "\n\nHelpDesk\n"
+    puts "\nHelpDesk Issues\n"
 
     10.times do |n|
       print '.'
@@ -247,6 +284,11 @@ namespace :db do
                               all_ok: false)
     end
 
-    puts
+    puts "\n\n"
+    puts "--------------------------------------------------------------------"
+    puts "|   ( D | i | g | i | Q | u | a | t | i | c | s | 2 | 0 | 1 | 4 )  |"
+    puts "--------------------------------------------------------------------"
+    puts "\n\n"
+
   end
 end

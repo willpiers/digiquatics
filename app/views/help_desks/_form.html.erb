@@ -3,6 +3,8 @@
     style: :horizontal, left: 'col-sm-4', right: 'col-sm-8') do |f| %>
 
     <%= render 'shared/required' %>
+    <%= f.select :location_id,
+          options_from_collection_for_select(Location.where(account_id: current_user.account.id), :id, :name, current_user.location_id ) %>
     <%= f.text_field :name, label: 'Problem *' %>
     <%= f.text_area :description, label: 'Description' %>
     <%= f.select :urgency, %w[Low Medium High], label: 'Urgency' %>
