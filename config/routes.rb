@@ -1,7 +1,6 @@
 DigiQuatics::Application.routes.draw do
   devise_for :users
 
-  resources :private_lesson_details
   resources :shift_reports
   resources :attendance_records
   resources :help_desks

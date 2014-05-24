@@ -1,6 +1,4 @@
 class StaticPagesController < ApplicationController
-  include PrivateLessonFacade
-
   def dashboard
     Tracker.track(current_user.id, 'View Dashboard') unless Rails.env.test?
   end
@@ -35,7 +33,6 @@ class StaticPagesController < ApplicationController
   end
 
   def private_lesson_stats
-    @facade = PrivateLessonFacade.new(PrivateLesson.joins(:account).same_account_as(current_user))
-    @locations = Location.joins(:account).same_account_as(current_user)
+    @facade = StaticPagesFacade.new(current_user)
   end
 end

@@ -1,28 +1,28 @@
 <% provide(:title, 'Private Lesson Statistics') %>
 <h1>Private Lesson Statistics</h1>
-<br><br>
+<br/><br/>
 
 <div class='table-width-desktop'>
   <table class='table table-bordered'>
     <tr>
-      <th style='width:50%'>Location</th>
+      <th style='width:50%'>Location</th><!-- TODO: pull this style out-->
       <th>Number <br/>Unclaimed</td>
       <th>Number <br/>Claimed</td>
       <th>Total <br/>Lessons</td>
     </tr>
-    <% @locations.each do |location| %>
+    <% @facade.locations.each do |location| %>
       <tr>
         <td><%= location.name %></td>
-        <td><%= @private_lessons.where(location_id: location.id, user_id: nil).count %></td>
-        <td><%= @private_lessons.where(location_id: location.id).where.not(user_id: nil).count %></td>
-        <td><%= @private_lessons.where(location_id: location.id).count %></td>
+        <td><%= @facade.unclaimed_for(location) %></td>
+        <td><%= @facade.claimed_for(location) %></td>
+        <td><%= @facade.total_for(location) %></td>
       </tr>
     <% end %>
     <tr>
       <th> Totals </th>
-      <th><%= @private_lessons.where(user_id: nil).count %></th>
-      <th><%= @private_lessons.where.not(user_id: nil).count %></th>
-      <th><%= @private_lessons.count %></th>
+      <th><%= @facade.unclaimed_total %></th>
+      <th><%= @facade.claimed_total %></th>
+      <th><%= @facade.total %></th>
     </tr>
   </table>
 </div>
