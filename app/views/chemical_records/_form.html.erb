@@ -1,61 +1,63 @@
-<div class='userform well'>
-  <%= bootstrap_form_for(@chemical_record,
-    style: :horizontal, left: 'col-sm-4', right: 'col-sm-8') do |f| %>
-    <% if @chemical_record.errors.any? %>
+<div ng-app='digiquatics'>
+  <div class='userform well'>
 
-      <div id='error_explanation'>
-        <h2><%= pluralize(@chemical_record.errors.count, 'error') %>
-          prohibited this chemical_record from being saved:</h2>
-        <ul>
-          <% @chemical_record.errors.full_messages.each do |msg| %>
-            <li><%= msg %></li>
-          <% end %>
-        </ul>
-      </div>
-    <% end %>
-    <%= render 'shared/required' %>
+    <%= bootstrap_form_for(@chemical_record) do |f| %>
+      <% if @chemical_record.errors.any? %>
 
-    <div ng-app='digiquatics'>
+        <div id='error_explanation'>
+          <h2><%= pluralize(@chemical_record.errors.count, 'error') %>
+            prohibited this chemical_record from being saved:</h2>
+          <ul>
+            <% @chemical_record.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+      <%= render 'shared/required' %>
+
       <div ng-controller='ChemicalRecordsCtrl'>
-
         <label>Location</label>
         <select ng-model='selected.location_id' class='form-control'>
-          <option value=''>All Locations</option>
+          <option value=''>Select Locations</option>
           <option ng-repeat='location in locations' value='{{location.id}}'>
             {{location.name}}
           </option>
         </select>
         <%= f.hidden_field :location_id, value: "{{selectedLocationId}}" %>
-
         <label>Pool</label>
         <select ng-model='selected.pool_id' class='form-control'>
-          <option value=''>All Pools</option>
+          <option value=''>Select Pools</option>
           <option ng-repeat='pool in pools | filter:{location_id: selected.location_id}' value='{{pool.id}}'>
             {{pool.name}}
           </option>
         </select>
         <%= f.hidden_field :pool_id, value: "{{pool_id}}" %>
-
       </div>
-    </div>
 
-    <%= f.text_field :free_chlorine_ppm, label: 'Free Chlorine ppm' %>
-    <%= f.text_field :total_chlorine_ppm, label: 'Total Chlorine ppm *' %>
-    <%= f.text_field :ph, label: 'PH *' %>
-    <%= f.text_field :alkalinity %>
-    <%= f.text_field :calcium_hardness, label: 'Calcium Hardness' %>
-    <%= f.text_field :pool_temp, label: 'Pool Temp' %>
-    <%= f.text_field :air_temp, label: 'Air Temp' %>
-    <%= f.select :water_clarity, %w[Clear Cloudy],
-                { label: 'Water Clarity' } %>
+      <%= f.text_field :free_chlorine_ppm, label: 'Free Chlorine ppm' %>
+      <%= f.text_field :total_chlorine_ppm, label: 'Total Chlorine ppm *' %>
+      <%= f.text_field :ph, label: 'PH *' %>
+      <%= f.text_field :alkalinity %>
+      <%= f.text_field :calcium_hardness, label: 'Calcium Hardness' %>
+      <%= f.text_field :pool_temp, label: 'Pool Temp' %>
+      <%= f.text_field :air_temp, label: 'Air Temp' %>
+      <%= f.select :water_clarity, %w[Clear Cloudy],
+                  { label: 'Water Clarity' } %>
 
-    <div class='hidden-xs hidden-sm'>
-      <%= f.datetime_select :time_stamp, { label: 'Date', ampm: true} %>
-    </div>
-
-    <%= f.primary ( f.object.new_record? ?  'Submit' : 'Save Changes' ) %>
-
-  <% end %>
+      <div ng-controller="AnalyticsCtrl" class='hidden-xs hidden-sm'>
+      <strong>Date</strong>
+        <div class="input-group">
+          <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="dt1" is-open="opened1" max="'2015-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
+          <span class="input-group-btn">
+            <button class="btn btn-default" ng-click="open1($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+          </span>
+        </div>
+        <%= f.hidden_field :date, value: "{{dt1 | date:'yyyy-MM-dd'}} 00:00:01 -600" %>
+      </div>
+      <br>
+      <%= f.primary ( f.object.new_record? ?  'Submit' : 'Save Changes' ) %>
+    <% end %>
+  </div>
 </div>
 </div>
-
