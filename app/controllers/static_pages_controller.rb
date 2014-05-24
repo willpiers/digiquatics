@@ -24,7 +24,8 @@ class StaticPagesController < ApplicationController
     @start_date = params[:start_date]
     @end_date = params[:end_date]
     @pool = params[:pool_id]
-    @chemical_records = ChemicalRecord.where(pool_id: @pool, created_at: @start_date..@end_date)
+    @chemical_records = ChemicalRecord.where(pool_id: @pool,
+                                             created_at: @start_date..@end_date)
   end
 
   def user_stats

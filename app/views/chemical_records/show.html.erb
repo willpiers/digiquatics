@@ -74,11 +74,11 @@
         </td>
     </tr>
     <tr>
-      <th> Phone Number </th>
+      <th>Phone Number </th>
       <td> <%= phone_number_link(@chemical_record.user.phone_number) %> </td>
     <tr>
-      <th>Time Created</th>
-      <td><%= @chemical_record.time_stamp.strftime("%I:%M%p")%></td>
+      <th>Date Submitted</th>
+      <td><%= @chemical_record.time_stamp.strftime('%-m/%-d/%Y @ %I:%M%p')%></td>
     </tr>
   </table>
 </div>

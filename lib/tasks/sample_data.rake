@@ -66,7 +66,7 @@ namespace :db do
                  active:                 true,
                  account_id:             1)
 
-    puts "\nUsers"
+    puts "\nUsers\n"
 
     100.times do |n|
       print '.'
@@ -111,7 +111,7 @@ namespace :db do
     CertificationName.create!(name: 'WSI',
                               account_id: 1)
 
-    puts "\n\nCertifications"
+    puts "\n\nCertifications\n"
 
     10.times do |n|
       print '...'
@@ -132,7 +132,7 @@ namespace :db do
                             issue_date: Date.today + rand(365).day)
     end
 
-    puts "\n\nPrivateLessons"
+    puts "\n\nPrivateLessons\n"
 
     5.times do |n|
       print '.'
@@ -148,7 +148,7 @@ namespace :db do
                             account_id: 1)
     end
 
-    puts "\n\nParticipant"
+    puts "\n\nParticipant\n"
 
     5.times do |n|
       print '.'
@@ -159,7 +159,7 @@ namespace :db do
                           sex: %w(M F).sample)
     end
 
-    puts "\n\nChemicalRecord"
+    puts "\n\nChemicalRecord\n"
 
     25.times do |n|
       print '.'
@@ -186,7 +186,7 @@ namespace :db do
                              pool_temp: [81, 82, 83, 84, 85, 86].sample,
                              air_temp: [75, 76, 77, 78, 79, 80].sample,
                              water_clarity: water_clarity.sample,
-                             time_stamp: '10:00pm',
+                             time_stamp: Time.now,
                              si_index: [-1, -0.5, -0.3, 0, 0.3, 0.5, 1].sample,
                              si_status: si_status.sample,
                              si_recommendation: si_recommendation.sample,
@@ -194,7 +194,7 @@ namespace :db do
                              user_id: [1, 2, 3, 4, 5].sample)
     end
 
-    puts "\n\nHelpDesk"
+    puts "\n\nHelpDesk\n"
 
     10.times do |n|
       print '.'

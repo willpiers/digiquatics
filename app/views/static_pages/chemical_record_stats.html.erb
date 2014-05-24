@@ -1,103 +1,103 @@
-<div ng-app="digiquatics">
-  <div ng-controller="AnalyticsCtrl">
-    <% provide(:title, 'Chemical Statistics') %>
-    <h1>Chemical Record Statistics</h1>
+<% provide(:title, 'Chemical Statistics') %>
+<h1>Chemical Record Statistics</h1>
 
-    <tabset>
-      <tab heading="Query">
-        <div ng-controller="AnalyticsCtrl">
-        <br><br>
-        <div class='well' style='width: 50%'>
-          <h4> Parameters </h4>
+<div class='row'>
+  <div class='col-md-4'>
+    <div ng-app="digiquatics">
+      <div ng-controller="AnalyticsCtrl">
+        <div class='well'>
+          <center><h3>Parameters</h3></center>
           <strong>Start Date</strong>
           <%= render 'start_date' %>
           <strong>End Date</strong>
           <%= render 'end_date' %>
           <%= render 'form' %>
+          <%= @start_date %> <br>
+          <%= @start_adj %><br>
+          <%= @end_date %><br>
+          <%= @end_adj %><br>
+          <%= Time.now %>
         </div>
       </div>
-      </tab>
-      <tab heading="Numeric Results">
-        <div class='danger'>
-          <center>
-            <h4>
-              <%="" %>
-            </h4>
-            <br>
-          </center>
-        </div>
-        <table class='table table-bordered table-striped'>
-          <tr>
-            <th>Type</th>
-            <th>Min</th>
-            <th>Max</th>
-            <th>Avg</th>
-            <th>Count</th>
-          </tr>
-          <tr>
-            <td>Chlorine (PPM) </td>
-            <td><%= @chemical_records.minimum('total_chlorine_ppm') %></td>
-            <td><%= @chemical_records.maximum('total_chlorine_ppm') %></td>
-            <td><%= @chemical_records.average('total_chlorine_ppm') %></td>
-            <td><%= @chemical_records.count(:total_chlorine_ppm) %></td>
-          </tr>
-          <tr>
-            <td>PH </td>
-            <td><%= @chemical_records.minimum('ph') %></td>
-            <td><%= @chemical_records.maximum('ph') %></td>
-            <td><%= @chemical_records.average('ph') %></td>
-            <td><%= @chemical_records.count(:ph) %></td>
-          </tr>
-          <tr>
-            <td>Alkalinity </td>
-            <td><%= @chemical_records.minimum('alkalinity') %></td>
-            <td><%= @chemical_records.maximum('alkalinity') %></td>
-            <td><%= @chemical_records.average('alkalinity') %></td>
-            <td><%= @chemical_records.count(:alkalinity) %></td>
-          </tr>
-          <tr>
-            <td>Calcium Hardness </td>
-            <td><%= @chemical_records.minimum('calcium_hardness') %></td>
-            <td><%= @chemical_records.maximum('calcium_hardness') %></td>
-            <td><%= @chemical_records.average('calcium_hardness') %></td>
-            <td><%= @chemical_records.count(:calcium_hardness) %></td>
-          </tr>
-          <tr>
-            <td>Air Temp (F) </td>
-            <td><%= @chemical_records.minimum('air_temp') %></td>
-            <td><%= @chemical_records.maximum('air_temp') %></td>
-            <td><%= @chemical_records.average('air_temp') %></td>
-            <td><%= @chemical_records.count(:air_temp) %></td>
-          </tr>
-          <tr>
-            <td>Pool Temp (F) </td>
-            <td><%= @chemical_records.minimum('pool_temp') %></td>
-            <td><%= @chemical_records.maximum('pool_temp') %></td>
-            <td><%= @chemical_records.average('pool_temp') %></td>
-            <td><%= @chemical_records.count(:pool_temp) %></td>
-          </tr>
-          <tr>
-            <td>SI Index</td>
-            <td><%= @chemical_records.minimum('si_index') %>
-            </td>
-            <td><%= @chemical_records
-              .maximum('si_index') %>
-            </td>
-            <td><%= @chemical_records
-              .average('si_index') %>
-            <td><%= 'N/A' %></td>
-          </tr>
-        </table>
-      </tab>
-      <tab heading="Graphical Results">
+    </div>
+  </div>
 
-        <%= content_tag :div, "", id: "chemical_records_chart", data: {chemical_records: ChemicalRecord.chart_data} %>
-        <div id="annual"></div>
-
-      </tab>
-   </tabset>
+  <div class='col-md-8'>
+    <table class='table table-bordered'>
+    <tr>
+      <th>Metric</th>
+      <th>Min</th>
+      <th>Max</th>
+      <th>Avg</th>
+      <th>Count</th>
+    </tr>
+    <tr>
+      <td>Free Chlorine (PPM) </td>
+      <td><%= @chemical_records.minimum('free_chlorine_ppm') %></td>
+      <td><%= @chemical_records.maximum('free_chlorine_ppm') %></td>
+      <td><%= @chemical_records.average('free_chlorine_ppm') %></td>
+      <td><%= @chemical_records.count(:free_chlorine_ppm) %></td>
+    </tr>
+    <tr>
+      <td>Combined Chlorine (PPM) </td>
+      <td><%= @chemical_records.minimum('combined_chlorine_ppm') %></td>
+      <td><%= @chemical_records.maximum('combined_chlorine_ppm') %></td>
+      <td><%= @chemical_records.average('combined_chlorine_ppm') %></td>
+      <td><%= @chemical_records.count(:combined_chlorine_ppm) %></td>
+    </tr>
+    <tr>
+      <td>Total Chlorine (PPM) </td>
+      <td><%= @chemical_records.minimum('total_chlorine_ppm') %></td>
+      <td><%= @chemical_records.maximum('total_chlorine_ppm') %></td>
+      <td><%= @chemical_records.average('total_chlorine_ppm') %></td>
+      <td><%= @chemical_records.count(:total_chlorine_ppm) %></td>
+    </tr>
+    <tr>
+      <td>PH </td>
+      <td><%= @chemical_records.minimum('ph') %></td>
+      <td><%= @chemical_records.maximum('ph') %></td>
+      <td><%= @chemical_records.average('ph') %></td>
+      <td><%= @chemical_records.count(:ph) %></td>
+    </tr>
+    <tr>
+      <td>Alkalinity </td>
+      <td><%= @chemical_records.minimum('alkalinity') %></td>
+      <td><%= @chemical_records.maximum('alkalinity') %></td>
+      <td><%= @chemical_records.average('alkalinity') %></td>
+      <td><%= @chemical_records.count(:alkalinity) %></td>
+    </tr>
+    <tr>
+      <td>Calcium Hardness </td>
+      <td><%= @chemical_records.minimum('calcium_hardness') %></td>
+      <td><%= @chemical_records.maximum('calcium_hardness') %></td>
+      <td><%= @chemical_records.average('calcium_hardness') %></td>
+      <td><%= @chemical_records.count(:calcium_hardness) %></td>
+    </tr>
+    <tr>
+      <td>Air Temp (F) </td>
+      <td><%= @chemical_records.minimum('air_temp') %></td>
+      <td><%= @chemical_records.maximum('air_temp') %></td>
+      <td><%= @chemical_records.average('air_temp') %></td>
+      <td><%= @chemical_records.count(:air_temp) %></td>
+    </tr>
+    <tr>
+      <td>Pool Temp (F) </td>
+      <td><%= @chemical_records.minimum('pool_temp') %></td>
+      <td><%= @chemical_records.maximum('pool_temp') %></td>
+      <td><%= @chemical_records.average('pool_temp') %></td>
+      <td><%= @chemical_records.count(:pool_temp) %></td>
+    </tr>
+    <tr>
+      <td>SI Index</td>
+      <td><%= @chemical_records.minimum('si_index') %>
+      </td>
+      <td><%= @chemical_records
+        .maximum('si_index') %>
+      </td>
+      <td><%= @chemical_records
+        .average('si_index') %>
+      <td><%= 'N/A' %></td>
+    </tr>
+    </table>
   </div>
 </div>
-
-
-
