@@ -1,10 +1,11 @@
 <div ng-app='digiquatics'>
   <div ng-controller='HelpDesksCtrl'>
     <% provide(:title, 'Open Issues') %>
-    <h1>Open Issues</h1>
-    <br><br>
+    <div class='hidden-xs'><h1> Open Issues</h1><br><br></div>
+    <div class='visible-xs'><center><h4> Open Issues </h4></center></div>
     <div class='row'>
       <dq-search></dq-search>
+      <div class='visible-xs'><br></div>
       <div class='col-md-3'>
         <select ng-model='locationFilter' class='form-control'>
           <option value=''>All Locations</option>
@@ -12,7 +13,7 @@
         </select>
       </div>
       <div class='col-md-4'></div>
-      <div class='col-md-3'>
+      <div class='col-md-3 pull-right'>
        <div class='btn-group'>
          <%= link_to 'New Issue', new_help_desk_path,
            class: 'btn btn-primary btn-sm', role: 'button' %>
