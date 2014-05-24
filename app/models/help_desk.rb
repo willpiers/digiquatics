@@ -20,5 +20,4 @@ class HelpDesk < ActiveRecord::Base
     created_at
     updated_at
   end
-
 end
