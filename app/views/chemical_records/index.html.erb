@@ -1,8 +1,8 @@
 <div ng-app='digiquatics'>
   <div ng-controller='ChemicalRecordsCtrl'>
     <% provide(:title, 'Chemical Records') %>
-    <h1>Chemical Records</h1>
-    <br><br>
+    <div class='hidden-xs'><h1>Chemical Records</h1><br><br></div>
+    <div class='visible-xs'><center><h4>Chemical Records</h4></center></div>
     <div class='row'>
       <div class='col-md-3'>
         <select ng-model='filters.location_id' class='form-control'>
@@ -21,7 +21,7 @@
         </select>
       </div>
       <div class='col-md-4'></div>
-      <div class='col-md-2'>
+      <div class='col-md-2 pull-right'>
         <div class='btn-group'>
           <%= link_to 'Add Record', new_chemical_record_path,
             class: 'btn btn-primary btn-sm', role: 'button' %>

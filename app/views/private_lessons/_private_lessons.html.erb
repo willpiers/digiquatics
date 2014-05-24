@@ -2,35 +2,35 @@
   <thead>
     <tr>
       <th>
-        <a href="" ng-click="predicate.value = 'participants.last_name'; reverse=!reverse">
+        <a href="" ng-click="predicate.value = '-last_name'; reverse=!reverse">
         Last Name</a>
       </th>
       <th>
-        <a href="" ng-click="predicate.value = 'participantsfirst_name'; reverse=!reverse">
+        <a href="" ng-click="predicate.value = '-participants.first_name'; reverse=!reverse">
         First Name</a>
       </th>
       <th>
-        <a href="" ng-click="predicate.value = 'participants.age'; reverse=!reverse">
+        <a href="" ng-click="predicate.value = '-participants.age'; reverse=!reverse">
         Age</a>
       </th>
-      <th>
-        <a href="" ng-click="predicate.value = 'participants.sex'; reverse=!reverse">
+      <th class='hidden-xs'>
+        <a href="" ng-click="predicate.value = '-participants.sex'; reverse=!reverse">
         Sex</a>
       </th>
       <th>
-        <a href="" ng-click="predicate.value = 'day'; reverse=!reverse">
+        <a href="" ng-click="predicate.value = '-day'; reverse=!reverse">
         Day</a>
       </th>
       <th>
-        <a href="" ng-click="predicate.value = 'time'; reverse=!reverse">
+        <a href="" ng-click="predicate.value = '-time'; reverse=!reverse">
         Time</a>
       </th>
-      <th>
-        <a href="" ng-click="predicate.value = 'preferred_location'; reverse=!reverse">
+      <th class='hidden-xs'>
+        <a href="" ng-click="predicate.value = '-location.name'; reverse=!reverse">
         Location</a>
       </th>
       <th>
-        <a href="" ng-click="predicate.value = 'created_at'; reverse=!reverse">
+        <a href="" ng-click="predicate.value = '-created_at'; reverse=!reverse">
         Date</a>
       </th>
     </tr>
@@ -54,7 +54,7 @@
           {{participant.age}}
         </div>
       </td>
-      <td>
+      <td class='hidden-xs'>
         <div ng-repeat='participant in lesson.participants'>
           {{participant.sex}}
         </div>
