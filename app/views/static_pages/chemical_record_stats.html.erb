@@ -7,10 +7,12 @@
       <div ng-controller="AnalyticsCtrl">
         <div class='well'>
           <center><h3>Parameters</h3></center>
-          <strong>Start Date</strong>
+          <label>Start Date</label>
           <%= render 'start_date' %>
-          <strong>End Date</strong>
+          <br>
+          <label>End Date</label>
           <%= render 'end_date' %>
+          <br>
           <%= render 'form' %>
           <%= @start_date %> <br>
           <%= @start_adj %><br>
