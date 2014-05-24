@@ -1,15 +1,15 @@
-div ng-show='(users | orderBy:order.value:order.reverse | filter:locationFilter | filter:search).length' class='table-responsive'
+div ng-show='(users | orderBy:order.value:order.reverse | filter:locationFilter | filter:search).length'
   table class='table table-hover table-condensed'
     thead
       tr
         th dq-user-head='Last Name' value='last_name' order='order'
         th dq-user-head='First Name' value='first_name' order='order'
-        th dq-user-head='Age' value='date_of_birth' order='order'
-        th Location
-        th dq-user-head='Position' value='position.name' order='order'
-        th dq-user-head='Email' value='email' order='order'
+        th class='hidden-xs' dq-user-head='Age' value='date_of_birth' order='order'
+        th class='hidden-xs' Location
+        th class='hidden-xs' dq-user-head='Position' value='position.name' order='order'
+        th class='hidden-xs' dq-user-head='Email' value='email' order='order'
         th dq-user-head='Phone' value='phone_number' order='order'
-        th dq-user-head='Admin' value='admin' order='order'
+        th class='hidden-xs' dq-user-head='Admin' value='admin' order='order'
     tbody
       tr dq-user-row='user' ng-repeat='user in users | orderBy:order.value:order.reverse | filter:locationFilter | filter:search'
 
