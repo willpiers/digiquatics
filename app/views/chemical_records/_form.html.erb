@@ -19,8 +19,8 @@
       <div ng-controller='ChemicalRecordsCtrl'>
 
         <label>Location</label>
-        <select ng-model='selectedLocationId' class='form-control'>
-          <option value=''>Select Location</option>
+        <select ng-model='selected.location_id' class='form-control'>
+          <option value=''>All Locations</option>
           <option ng-repeat='location in locations' value='{{location.id}}'>
             {{location.name}}
           </option>
@@ -28,13 +28,13 @@
         <%= f.hidden_field :location_id, value: "{{selectedLocationId}}" %>
 
         <label>Pool</label>
-        <select ng-model='selectedPoolId' class='form-control'>
-          <option value=''>Select Pool</option>
-          <option ng-repeat='pool in pools | filter:{location_id: filters.location_id}' value='{{pool.id}}'>
+        <select ng-model='selected.pool_id' class='form-control'>
+          <option value=''>All Pools</option>
+          <option ng-repeat='pool in pools | filter:{location_id: selected.location_id}' value='{{pool.id}}'>
             {{pool.name}}
           </option>
         </select>
-        <%= f.hidden_field :pool_id, value: "{{selectedPoolId}}" %>
+        <%= f.hidden_field :pool_id, value: "{{pool_id}}" %>
 
       </div>
     </div>
