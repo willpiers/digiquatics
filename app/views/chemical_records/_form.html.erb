@@ -24,7 +24,7 @@
             {{location.name}}
           </option>
         </select>
-        <%= f.hidden_field :location_id, value: "{{selectedLocationId}}" %>
+        <%= f.hidden_field :location_id, value: "{{selected.location_id}}" %>
         <label>Pool</label>
         <select ng-model='selected.pool_id' class='form-control'>
           <option value=''>Select Pools</option>
@@ -32,7 +32,7 @@
             {{pool.name}}
           </option>
         </select>
-        <%= f.hidden_field :pool_id, value: "{{pool_id}}" %>
+        <%= f.hidden_field :pool_id, value: "{{selected.pool_id}}" %>
       </div>
 
       <%= f.text_field :free_chlorine_ppm, label: 'Free Chlorine ppm' %>
@@ -53,7 +53,7 @@
             <button class="btn btn-default" ng-click="open1($event)"><i class="glyphicon glyphicon-calendar"></i></button>
           </span>
         </div>
-        <%= f.hidden_field :date, value: "{{dt1 | date:'yyyy-MM-dd'}} 00:00:01 -600" %>
+        <%= f.hidden_field :time_stamp, value: "{{dt1 | date:'yyyy-MM-dd'}} 00:00:01 -600" %>
       </div>
       <br>
       <%= f.primary ( f.object.new_record? ?  'Submit' : 'Save Changes' ) %>
