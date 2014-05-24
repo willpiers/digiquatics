@@ -2,19 +2,19 @@
   <thead>
     <tr>
       <th>
-        <a class='pointer-hand' ng-click="predicate.value = 'lastName'; predicate.reverse = !predicate.reverse">
+        <a class='pointer-hand' ng-click="predicate.value = '-lastName'; predicate.reverse = !predicate.reverse">
         Last Name</a>
       </th>
       <th class='hidden-xs'>
-        <a class='pointer-hand' ng-click="predicate.value = 'firstName'; predicate.reverse = !predicate.reverse">
+        <a class='pointer-hand' ng-click="predicate.value = '-firstName'; predicate.reverse = !predicate.reverse">
         First Name</a>
       </th>
       <th class='hidden-xs'>
-        <a class='pointer-hand' ng-click="predicate.value = 'location'; predicate.reverse = !predicate.reverse">
+        <a class='pointer-hand' ng-click="predicate.value = '-location'; predicate.reverse = !predicate.reverse">
         Location</a>
       </th>
       <th ng-repeat='certName in certNames'>
-        <a class='pointer-hand' ng-click="predicate.value = certName.name; predicate.reverse = !predicate.reverse">
+        <a class='pointer-hand' ng-click="predicate.value = -certName.name; predicate.reverse = !predicate.reverse">
         {{certName.name}}</a>
       </th>
     </tr>
