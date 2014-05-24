@@ -8,6 +8,7 @@ class PrivateLesson < ActiveRecord::Base
   scope :claimed_by, -> (user) { where(user_id: user.id) }
   scope :claimed,    -> { where.not(user_id: nil) }
   scope :unclaimed,  -> { where(user_id: nil) }
+  scope :for_location, -> (location) { where(location_id: location.id) }
 
   belongs_to :account
   belongs_to :user

@@ -1,0 +1,28 @@
+<% provide(:title, 'Private Lesson Statistics') %>
+<h1>Private Lesson Statistics</h1>
+<br/><br/>
+
+<div class='table-width-desktop'>
+  <table class='table table-bordered'>
+    <tr>
+      <th style='width:50%'>Location</th><!-- TODO: pull this style out-->
+      <th>Number <br/>Unclaimed</td>
+      <th>Number <br/>Claimed</td>
+      <th>Total <br/>Lessons</td>
+    </tr>
+    <% @facade.locations.each do |location| %>
+      <tr>
+        <td><%= location.name %></td>
+        <td><%= @facade.unclaimed_for(location) %></td>
+        <td><%= @facade.claimed_for(location) %></td>
+        <td><%= @facade.total_for(location) %></td>
+      </tr>
+    <% end %>
+    <tr>
+      <th> Totals </th>
+      <th><%= @facade.unclaimed_total %></th>
+      <th><%= @facade.claimed_total %></th>
+      <th><%= @facade.total %></th>
+    </tr>
+  </table>
+</div>

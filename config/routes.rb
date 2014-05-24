@@ -1,7 +1,6 @@
 DigiQuatics::Application.routes.draw do
   devise_for :users
 
-  resources :private_lesson_details
   resources :shift_reports
   resources :attendance_records
   resources :help_desks
@@ -43,6 +42,7 @@ DigiQuatics::Application.routes.draw do
         to: 'static_pages#certifications_stats',
         via: 'get'
   match '/user_stats', to: 'static_pages#user_stats', via: 'get'
+  match '/private_lesson_stats', to: 'static_pages#private_lesson_stats', via: 'get'
 
   match '/admin_index', to: 'private_lessons#admin_index', via: 'get'
   match '/my_lessons', to: 'private_lessons#my_lessons', via: 'get'
