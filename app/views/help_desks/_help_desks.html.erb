@@ -2,21 +2,24 @@
   <thead>
     <tr>
       <th></th>
-      <th class='hidden-xs'>Location</th>
+      <th class='hidden-xs'>
+        <a href="" ng-click="predicate.value = '-location.name'; reverse=!reverse">
+        Location</a>
+      </th>
       <th>
-        <a href="" ng-click="predicate.value = 'created_at'; reverse=!reverse">
+        <a href="" ng-click="predicate.value = '-created_at'; reverse=!reverse">
         Date</a>
       </th>
       <th>
-        <a href="" ng-click="predicate.value = 'name'; reverse=!reverse">
+        <a href="" ng-click="predicate.value = '-name'; reverse=!reverse">
         Problem</a>
       </th>
       <th>
-        <a href="" ng-click="predicate.value = 'urgency'; reverse=!reverse">
+        <a href="" ng-click="predicate.value = '-urgency'; reverse=!reverse">
         Urgency</a>
       </th>
       <th class='hidden-xs'>
-        <a href="" ng-click="predicate.value = 'user.first_name'; reverse=!reverse">
+        <a href="" ng-click="predicate.value = '-user.last_name'; reverse=!reverse">
         Submitted By</a>
       </th>
     </tr>
