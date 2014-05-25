@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140523221522) do
+ActiveRecord::Schema.define(version: 20140525002235) do
 
   create_table "accounts", force: true do |t|
     t.string   "name"
@@ -141,8 +141,6 @@ ActiveRecord::Schema.define(version: 20140523221522) do
     t.string   "parent_first_name"
     t.string   "parent_last_name"
     t.string   "contact_method"
-    t.string   "day"
-    t.string   "time"
     t.string   "preferred_location"
     t.integer  "user_id"
     t.string   "attachment_file_name"
@@ -158,6 +156,27 @@ ActiveRecord::Schema.define(version: 20140523221522) do
     t.integer  "location_id"
     t.datetime "claimed_on"
     t.datetime "completed_on"
+    t.boolean  "sunday_morning"
+    t.boolean  "sunday_afternoon"
+    t.boolean  "sunday_evening"
+    t.boolean  "monday_morning"
+    t.boolean  "monday_afternoon"
+    t.boolean  "monday_evening"
+    t.boolean  "tuesday_morning"
+    t.boolean  "tuesday_afternoon"
+    t.boolean  "tuesday_evening"
+    t.boolean  "wednesday_morning"
+    t.boolean  "wednesday_afternoon"
+    t.boolean  "wednesday_evening"
+    t.boolean  "thursday_morning"
+    t.boolean  "thursday_afternoon"
+    t.boolean  "thursday_evening"
+    t.boolean  "friday_morning"
+    t.boolean  "friday_afternoon"
+    t.boolean  "friday_evening"
+    t.boolean  "saturday_morning"
+    t.boolean  "saturday_afternoon"
+    t.boolean  "saturday_evening"
   end
 
   create_table "sessions", force: true do |t|

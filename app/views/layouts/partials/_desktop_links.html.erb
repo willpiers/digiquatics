@@ -1,70 +1,85 @@
 <div class='hidden-xs'>
   <ul class = 'nav navbar-nav navbar-right' >
-    <% if FeatureToggleHelper.attendance? %>
-      <li><%= link_to 'Attendance', attendance_records_path %></li>
-    <% end %>
-    <% if FeatureToggleHelper.chemicals? %>
-      <li><%= link_to 'Chemicals', chemical_records_path %></li>
-    <% end %>
-    <% if current_user && current_user.admin? %>
-      <li><%= link_to 'Certifications', certifications_path %></li>
-    <% end %>
-    <% if FeatureToggleHelper.private_lessons? %>
+    <% if signed_in? %>
+      <% if FeatureToggleHelper.attendance? %>
+        <li><%= link_to 'Attendance', attendance_records_path %></li>
+      <% end %>
+      <% if FeatureToggleHelper.chemicals? %>
+        <li><%= link_to 'Chemicals', chemical_records_path %></li>
+      <% end %>
+      <% if current_user && current_user.admin? %>
+        <li><%= link_to 'Certifications', certifications_path %></li>
+      <% end %>
+      <% if FeatureToggleHelper.private_lessons? %>
+        <li class = 'dropdown'>
+          <a href = '#' class = 'dropdown-toggle' data-toggle = 'dropdown'>
+          Private Lessons <b class = 'caret'></b></a>
+          <ul class = 'dropdown-menu'>
+            <li>
+              <%= link_to 'Private Lessons Queue',
+                  account_private_lessons_path(account_id: current_user.account_id) %>
+            </li>
+            <li><%= link_to 'My Private Lessons', my_lessons_path %></li>
+            <% if current_user && current_user.admin? %>
+              <li class='divider'></li>
+              <li><%= link_to 'New Private Lesson',
+                      new_account_private_lesson_path(account_id: current_account.id) %>
+              </li>
+              <li><%= link_to 'Private Lessons Management', admin_index_path %></li>
+            <% end %>
+          </ul>
+      <% end %>
+
+      <li><%= link_to 'Employees', users_path %></li>
+
       <li class = 'dropdown'>
         <a href = '#' class = 'dropdown-toggle' data-toggle = 'dropdown'>
-        Private Lessons <b class = 'caret'></b></a>
+          Maintenance<b class = 'caret'></b></a>
         <ul class = 'dropdown-menu'>
-          <li>
-            <li><%= link_to 'Private Lessons Queue',
-                account_private_lessons_path(account_id: current_user.account_id) %>
-          </li>
+          <% if FeatureToggleHelper.slide_inspections? %>
+            <li><%= link_to 'Slide Inspections', slide_inspections_path %></li>
+          <% end %>
+          <% if FeatureToggleHelper.maintenance? %>
+            <li><%= link_to 'Daily Checklist', daily_todos_path %></li>
+            <li><%= link_to 'Preventative Maintenance',
+                          preventative_lists_path %></li>
+          <% end %>
+          <li><%= link_to 'Help Desk', help_desks_path %></li>
+        </ul>
+      </li>
+
+      <% if FeatureToggleHelper.shift_reports? %>
+        <li><%= link_to 'Shift Reports', shift_reports_path %></li>
+      <% end %>
+      <li class = 'dropdown'>
+        <a href = '#' class = 'dropdown-toggle' data-toggle = 'dropdown'>
+          Account<b class = 'caret'></b></a>
+        <ul class = 'dropdown-menu'>
+          <li><%= link_to 'My Profile', current_user %></li>
           <% if current_user && current_user.admin? %>
             <li class='divider'></li>
-            <li><%= link_to 'New Private Lesson',
-                    new_account_private_lesson_path(account_id: current_account.id) %>
-            </li>
-            <li><%= link_to 'Private Lessons Management', admin_index_path %></li>
+            <li><%= link_to 'Preferences', admin_dashboard_path %></li>
           <% end %>
-        </ul>
-    <% end %>
-
-    <li><%= link_to 'Employees', users_path %></li>
-
-    <li class = 'dropdown'>
-      <a href = '#' class = 'dropdown-toggle' data-toggle = 'dropdown'>
-        Maintenance<b class = 'caret'></b></a>
-      <ul class = 'dropdown-menu'>
-        <% if FeatureToggleHelper.slide_inspections? %>
-          <li><%= link_to 'Slide Inspections', slide_inspections_path %></li>
-        <% end %>
-        <% if FeatureToggleHelper.maintenance? %>
-          <li><%= link_to 'Daily Checklist', daily_todos_path %></li>
-          <li><%= link_to 'Preventative Maintenance',
-                        preventative_lists_path %></li>
-        <% end %>
-        <li><%= link_to 'Help Desk', help_desks_path %></li>
-      </ul>
-    </li>
-
-    <% if FeatureToggleHelper.shift_reports? %>
-      <li><%= link_to 'Shift Reports', shift_reports_path %></li>
-    <% end %>
-    <li class = 'dropdown'>
-      <a href = '#' class = 'dropdown-toggle' data-toggle = 'dropdown'>
-        Account<b class = 'caret'></b></a>
-      <ul class = 'dropdown-menu'>
-        <li><%= link_to 'My Profile', current_user %></li>
-        <% if FeatureToggleHelper.private_lessons? %>
-          <li><%= link_to 'My Private Lessons', my_lessons_path %></li>
-        <% end %>
-        <% if current_user && current_user.admin? %>
           <li class='divider'></li>
-          <li><%= link_to 'Preferences', admin_dashboard_path %></li>
-        <% end %>
-        <li class='divider'></li>
-        <li><%= link_to 'Sign Out', destroy_user_session_path,
-          method: :delete %></li>
-      </ul>
-    </li>
+          <li><%= link_to 'Sign Out', destroy_user_session_path,
+            method: :delete %></li>
+        </ul>
+      </li>
+
+    <% else #!signed_in? %>
+      <li><a href='#features'> Features </a> </li>
+      <li><a href='#benefits'> Benefits </a> </li>
+      <li><a href='#testimonials'> Testimonials </a> </li>
+      <li><a href='#pricing'> Pricing </a> </li>
+      <li><a href='#signup'> Sign Up </a> </li>
+      <li><a href='#contact'> Contact Us </a> </li>
+      <li>
+        <div>
+          <%= link_to 'Sign In',
+                      new_user_session_path,
+                      class: 'btn btn-danger btn-default fixbtn' %>
+      </div>
+      </li>
+    <% end %>
   </ul>
 </div>

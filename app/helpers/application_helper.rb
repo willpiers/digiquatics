@@ -32,6 +32,10 @@ module ApplicationHelper
     value ? 'Yes' : 'No'
   end
 
+  def boolean_to_words_lessons(value)
+    value ? 'Y' : 'N'
+  end
+
   def link_to_add_fields(name, f, association)
     new_object = f.object.send(association).klass.new
     id = new_object.object_id

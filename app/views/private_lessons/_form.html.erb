@@ -41,6 +41,30 @@
                       side: '2x',
                       label: 'Lesson Objectives' %>
 
+    <h4>Availability (Please check times you are available):</h4>
+
+    <%= f.check_box :sunday_morning, label: 'Sunday Morning' %>
+    <%= f.check_box :sunday_afternoon, label: 'Sunday Afternoon' %>
+    <%= f.check_box :sunday_evening, label: 'Sunday Evening' %>
+    <%= f.check_box :monday_morning, label: 'Monday Morning' %>
+    <%= f.check_box :monday_afternoon, label: 'Monday Afternoon' %>
+    <%= f.check_box :monday_evening, label: 'Monday Evening' %>
+    <%= f.check_box :tuesday_morning, label: 'Tuesday Morning' %>
+    <%= f.check_box :tuesday_afternoon, label: 'Tuesday Afternoon' %>
+    <%= f.check_box :tuesday_evening, label: 'Tuesday Evening' %>
+    <%= f.check_box :wednesday_morning, label: 'Wednesday Morning' %>
+    <%= f.check_box :wednesday_afternoon, label: 'Wednesday Afternoon' %>
+    <%= f.check_box :wednesday_evening, label: 'Wednesday Evening' %>
+    <%= f.check_box :thursday_morning, label: 'Thursday Morning' %>
+    <%= f.check_box :thursday_afternoon, label: 'Thursday Afternoon' %>
+    <%= f.check_box :thursday_evening, label: 'Thursday Evening' %>
+    <%= f.check_box :friday_morning, label: 'Friday Morning' %>
+    <%= f.check_box :friday_afternoon, label: 'Friday Afternoon' %>
+    <%= f.check_box :friday_evening, label: 'Friday Evening' %>
+    <%= f.check_box :saturday_morning, label: 'Saturday Morning' %>
+    <%= f.check_box :saturday_afternoon, label: 'Saturday Afternoon' %>
+    <%= f.check_box :saturday_evening, label: 'Saturday Evening' %>
+
     <h4> Lesson Request </h4>
       <%= f.select :number_lessons,
                    options_for_select((1..10).to_a),
