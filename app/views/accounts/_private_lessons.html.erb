@@ -3,5 +3,14 @@
   lessons portal without needing an account or any additional information
 </p>
 
-Unique URL: <%= link_to "http://www.digiquatics.com/account/#{@account.id}/private_lessons/new",
-                new_account_private_lesson_path(account_id: current_account.id) %>
+<div class='hidden-xs'>
+  Unique URL:
+  <%= link_to "http://www.digiquatics.com/account/#{@account.id}/private_lessons/new",
+              new_account_private_lesson_path(account_id: current_account.id) %>
+</div>
+
+<div class='visible-xs'>
+  Unique
+  <%= link_to "URL",
+              new_account_private_lesson_path(account_id: current_account.id) %>
+</div>

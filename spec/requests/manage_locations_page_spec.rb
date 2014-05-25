@@ -40,13 +40,13 @@ describe 'Manage Locations' do
     describe 'creating a new location' do
       before do
         visit new_location_path
-        fill_in 'Name', with: 'Ridge Rec Center'
+        fill_in 'Name *', with: 'Ridge Rec Center'
         fill_in 'location[pools_attributes][0][name]', with: 'Big'
         fill_in 'location[slides_attributes][0][name]', with: 'yellow'
       end
 
-      it { should have_content('Add Pool to Location') }
-      it { should have_content('Add Slide to Location') }
+      it { should have_content('Add Pool') }
+      it { should have_content('Add Slid') }
 
       it 'should create a new location and redirect to index' do
         expect { click_button 'Create Location' }
