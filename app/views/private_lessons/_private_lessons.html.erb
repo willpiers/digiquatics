@@ -18,14 +18,6 @@
         Sex</a>
       </th>
       <th>
-        <a href="" ng-click="predicate.value = 'day'; reverse=!reverse">
-        Day</a>
-      </th>
-      <th>
-        <a href="" ng-click="predicate.value = 'time'; reverse=!reverse">
-        Time</a>
-      </th>
-      <th>
         <a href="" ng-click="predicate.value = 'preferred_location'; reverse=!reverse">
         Location</a>
       </th>
@@ -59,8 +51,6 @@
           {{participant.sex}}
         </div>
       </td>
-      <td>{{lesson.day}}</td>
-      <td>{{lesson.time}}</td>
       <td class='hidden-xs'>{{lesson.location.name}}</td>
       <td>{{lesson.created_at | date:'M/d/yy h:mm a'}}</td>
     </tr>

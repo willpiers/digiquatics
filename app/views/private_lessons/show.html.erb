@@ -180,6 +180,50 @@
   </table>
 
   <table class='table table-bordered' >
+    <h4> Availability </h4>
+    <tr>
+      <th></th>
+      <th>Sunday</th>
+      <th>Monday</th>
+      <th>Tuesday</th>
+      <th>Wednesday</th>
+      <th>Thursday</th>
+      <th>Friday</th>
+      <th>Saturday</th>
+    </tr>
+    <tr>
+      <th id='fixtablewidth'> Morning </th>
+      <td><%= boolean_to_words(@private_lesson.sunday_morning) %></td>
+      <td><%= boolean_to_words(@private_lesson.monday_morning) %></td>
+      <td><%= boolean_to_words(@private_lesson.tuesday_morning) %></td>
+      <td><%= boolean_to_words(@private_lesson.wednesday_morning) %></td>
+      <td><%= boolean_to_words(@private_lesson.thursday_morning) %></td>
+      <td><%= boolean_to_words(@private_lesson.friday_morning) %></td>
+      <td><%= boolean_to_words(@private_lesson.saturday_morning) %></td>
+    </tr>
+    <tr>
+      <th id='fixtablewidth'> Afternoon </th>
+      <td><%= boolean_to_words(@private_lesson.sunday_afternoon) %></td>
+      <td><%= boolean_to_words(@private_lesson.monday_afternoon) %></td>
+      <td><%= boolean_to_words(@private_lesson.tuesday_afternoon) %></td>
+      <td><%= boolean_to_words(@private_lesson.wednesday_afternoon) %></td>
+      <td><%= boolean_to_words(@private_lesson.thursday_afternoon) %></td>
+      <td><%= boolean_to_words(@private_lesson.friday_afternoon) %></td>
+      <td><%= boolean_to_words(@private_lesson.saturday_afternoon) %></td>
+    </tr>
+    <tr>
+      <th id='fixtablewidth'> Evening </th>
+      <td><%= boolean_to_words(@private_lesson.sunday_evening) %></td>
+      <td><%= boolean_to_words(@private_lesson.monday_evening) %></td>
+      <td><%= boolean_to_words(@private_lesson.tuesday_evening) %></td>
+      <td><%= boolean_to_words(@private_lesson.wednesday_evening) %></td>
+      <td><%= boolean_to_words(@private_lesson.thursday_evening) %></td>
+      <td><%= boolean_to_words(@private_lesson.friday_evening) %></td>
+      <td><%= boolean_to_words(@private_lesson.saturday_evening) %></td>
+    </tr>
+  </table>
+
+  <table class='table table-bordered' >
     <h4> Lesson Request </h4>
       <tr>
         <th id='fixtablewidth'> Number Lessons </th>
