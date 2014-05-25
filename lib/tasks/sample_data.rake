@@ -177,8 +177,6 @@ namespace :db do
                             parent_last_name: Faker::Name.last_name,
                             email: Faker::Internet.email,
                             phone_number: Faker::PhoneNumber.phone_number,
-                            day: %w(M T W Th F S Sn).sample,
-                            time: %w(AM PM).sample,
                             contact_method: %w(Call Email Text).sample,
                             location_id: rand(3) + 1,
                             number_lessons: rand(5) + 1,

@@ -38,10 +38,9 @@ class HelpDesksController < ApplicationController
     @help_desk.user_id = current_user.id
     @help_desk.location_id = current_user.location_id
 
-    urgent_email(@help_desk)
-
     if @help_desk.save
       flash[:success] = 'Help desk was successfully created.'
+      urgent_email(@help_desk)
       redirect_to @help_desk
     else
       render 'new'

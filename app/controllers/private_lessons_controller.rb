@@ -81,6 +81,7 @@ class PrivateLessonsController < ApplicationController
     if signed_in?
       if yield(resource)
         flash[:success] = message
+        thank_you_email(resource, account)
         redirect_to resource
       else
         render page
@@ -88,7 +89,6 @@ class PrivateLessonsController < ApplicationController
     else
       redirect_to thank_you_path
     end
-    thank_you_email(resource, account)
   end
 
   def with_private_lessons_data(format, filename: 'private_lessons')

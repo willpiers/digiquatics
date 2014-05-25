@@ -4,18 +4,37 @@ describe PrivateLesson do
 
   before do
     @private_lesson = PrivateLesson.new(
-      account_id:         1,
-      parent_first_name:  'Lydia',
-      parent_last_name:   'Pierce',
-      phone_number:       '720-387-9691',
-      email:              'michael@affektive.com',
-      contact_method:     'Call',
-      number_lessons:     '5',
-      day:                'Mon',
-      time:               'AM',
-      instructor_gender:  'F',
-      notes:              'No Jake',
-      lesson_objective:   'Get Better')
+      account_id:            1,
+      parent_first_name:     'Lydia',
+      parent_last_name:      'Pierce',
+      phone_number:          '720-387-9691',
+      email:                 'michael@affektive.com',
+      contact_method:        'Call',
+      number_lessons:        '5',
+      instructor_gender:     'F',
+      notes:                 'No Jake',
+      lesson_objective:      'Get Better',
+      sunday_morning:        true,
+      sunday_afternoon:      true,
+      sunday_evening:        true,
+      monday_morning:        true,
+      monday_afternoon:      true,
+      monday_evening:        true,
+      tuesday_morning:       true,
+      tuesday_afternoon:     true,
+      tuesday_evening:       true,
+      wednesday_morning:     true,
+      wednesday_afternoon:   true,
+      wednesday_evening:     true,
+      thursday_morning:      true,
+      thursday_afternoon:    true,
+      thursday_evening:      true,
+      friday_morning:        true,
+      friday_afternoon:      true,
+      friday_evening:        true,
+      saturday_morning:      true,
+      saturday_afternoon:    true,
+      saturday_evening:      true)
   end
 
   subject { @private_lesson }
@@ -27,11 +46,30 @@ describe PrivateLesson do
   it { should respond_to(:email) }
   it { should respond_to(:contact_method) }
   it { should respond_to(:number_lessons) }
-  it { should respond_to(:day) }
-  it { should respond_to(:time) }
   it { should respond_to(:instructor_gender) }
   it { should respond_to(:notes) }
   it { should respond_to(:lesson_objective) }
+  it { should respond_to(:sunday_morning) }
+  it { should respond_to(:sunday_afternoon) }
+  it { should respond_to(:sunday_evening) }
+  it { should respond_to(:monday_morning) }
+  it { should respond_to(:monday_afternoon) }
+  it { should respond_to(:monday_evening) }
+  it { should respond_to(:tuesday_morning) }
+  it { should respond_to(:tuesday_afternoon) }
+  it { should respond_to(:tuesday_evening) }
+  it { should respond_to(:wednesday_morning) }
+  it { should respond_to(:wednesday_afternoon) }
+  it { should respond_to(:wednesday_evening) }
+  it { should respond_to(:thursday_morning) }
+  it { should respond_to(:thursday_afternoon) }
+  it { should respond_to(:thursday_evening) }
+  it { should respond_to(:friday_morning) }
+  it { should respond_to(:friday_afternoon) }
+  it { should respond_to(:friday_evening) }
+  it { should respond_to(:saturday_morning) }
+  it { should respond_to(:saturday_afternoon) }
+  it { should respond_to(:saturday_evening) }
 
   it { should be_valid }
 
