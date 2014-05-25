@@ -267,6 +267,31 @@ legend{
   text-align: center;
 }
 
+@media (min-width: 500px) {
+  .checkbox_fix {
+    position:relative;
+    left: 45%;
+  }
+
+  .lessons_form_table_cell {
+    width: 150px;
+    text-align: center;
+  }
+}
+
+@media (max-width: 500px) {
+  .checkbox_fix {
+    position:relative;
+    left: 30%;
+  }
+
+  .lessons_form_table_cell {
+    width: 50px;
+    text-align: center;
+  }
+}
+
+
 .new_button {
   margin-left: 12px;
 }
@@ -310,3 +335,5 @@ legend{
     margin: 0 auto;
   }
 }
+
+
