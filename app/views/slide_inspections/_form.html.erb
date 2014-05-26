@@ -14,8 +14,9 @@
     <% end %>
 
     <%= f.select :slide_id,
-      options_from_collection_for_select(Slide.includes(:locations)
-                                               .where(account_id: current_user.account_id),
+      options_from_collection_for_select(Slide.joins(:location)
+                                               .where(locations:
+                                                { account_id: current_user.account_id }),
                                                :id, :name ) %>
 
     <table class='table table-bordered'>

@@ -99,10 +99,10 @@ describe 'Private Lessons' do
 
     describe 'with valid information' do
       before do
-        fill_in 'Parent First Name', with: 'Josh'
-        fill_in 'Parent Last Name',  with: 'Josh'
+        fill_in 'First Name', with: 'Josh'
+        fill_in 'Last Name',  with: 'Josh'
         fill_in 'Phone Number',      with: '303-921-8628'
-        fill_in 'Parent First Name', with: 'Josh'
+        fill_in 'First Name', with: 'Josh'
         fill_in 'Email',             with: 'Josh.m.duffy@gmail.com'
         select 'Call',               from: 'Preferred Contact Method'
         check 'private_lesson_sunday_morning'
@@ -212,15 +212,15 @@ describe 'Private Lessons' do
 
         before do
           # Parent information
-          fill_in 'Parent First Name', with: 'Parent First'
-          fill_in 'Parent Last Name',  with: 'Parent Last'
+          fill_in 'First Name', with: 'Parent First'
+          fill_in 'Last Name',  with: 'Parent Last'
           fill_in 'Phone Number',      with: '1234'
           fill_in 'Email',             with: 'lesson@example.com'
           select 'Call',              from: 'Preferred Contact Method'
 
           # Student Information
-          fill_in 'Student First Name', with: student_first_name
-          fill_in 'Student Last Name',  with: 'student last'
+          fill_in 'First Name', with: student_first_name
+          fill_in 'Last Name',  with: 'student last'
           select 'M',           from: 'Gender'
           fill_in 'Age',        with: 14
 
