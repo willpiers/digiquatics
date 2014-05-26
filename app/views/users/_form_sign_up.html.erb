@@ -1,5 +1,3 @@
-<% provide(:title, 'Sign Up') %>
-
 <div class='box-position'>
   <center>
     <img src='/images/water.png' alt='red' height='100px' width='100px'/>
@@ -10,7 +8,7 @@
       style: :horizontal, left: 'col-sm-4', right: 'col-sm-8') do |f| %>
       <center><h4>Sign Up</h4></center><hr>
       <%= render 'shared/required' %>
-      <div id='basic'><%= render 'basic_user_fields', f: f %></div>
+      <div id='basic'><%= render 'sign_up_user_fields', f: f %></div>
       <center>
         <%= f.submit 'Create Your Account', class: 'devise-button' %>
       </center>

@@ -64,9 +64,9 @@ describe 'User pages' do
     describe 'with valid information' do
       before do
         select blank_account.name,       from: 'Account'
-        fill_in 'First Name',            with: 'First'
-        fill_in 'Last Name',             with: 'Last'
-        fill_in 'Phone Number',          with: '1234'
+        # fill_in 'First Name',            with: 'First'
+        # fill_in 'Last Name',             with: 'Last'
+        # fill_in 'Phone Number',          with: '1234'
         fill_in 'Email',                 with: 'user@example.com'
         fill_in('Password *',            with: 'foobar77', exact: true)
         fill_in('Confirm Password *',    with: 'foobar77', exact: true)

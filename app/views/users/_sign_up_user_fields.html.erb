@@ -1,0 +1,7 @@
+<%= f.select :account_id, options_from_collection_for_select(Account.all, :id, :name) %>
+<%= f.hidden_field :first_name, value: 'First Name', label: 'First Name *' %>
+<%= f.hidden_field :last_name, value: 'Last Name', label: 'Last Name *' %>
+<%= f.hidden_field :phone_number, value: '###-###-####', label: 'Phone Number *' %>
+<%= f.text_field :email, label: 'Email *' %>
+<%= f.password_field :password, label: 'Password *' %>
+<%= f.password_field :password_confirmation, label: 'Confirm Password *' %>

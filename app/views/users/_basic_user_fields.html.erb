@@ -1,24 +1,9 @@
-<% if signed_in? %>
-  <center><h4>Basic Employee Information</h4></center>
-<% end %>
+<center><h4>Basic Employee Information</h4></center>
 
-<% unless signed_in? %>
-  <%= f.select :account_id, options_from_collection_for_select(Account.all, :id, :name) %>
-<% end %>
-
-<% if signed_in? %>
 <%= f.text_field :first_name, label: 'First Name *' %>
-<% end %>
-
-<% unless f.object.new_record? %>
-  <%= f.text_field :nickname, label: 'Peferred Name *' %>
-<% end %>
-
-<% if signed_in? %>
-  <%= f.text_field :last_name, label: 'Last Name *' %>
-  <%= f.text_field :phone_number, label: 'Phone Number *' %>
-<% end %>
-
+<%= f.text_field :nickname, label: 'Peferred Name *' %>
+<%= f.text_field :last_name, label: 'Last Name *' %>
+<%= f.text_field :phone_number, label: 'Phone Number *' %>
 <%= f.text_field :email, label: 'Email *' %>
 <%= f.password_field :password, label: 'Password *' %>
 <%= f.password_field :password_confirmation, label: 'Confirm Password *' %>
