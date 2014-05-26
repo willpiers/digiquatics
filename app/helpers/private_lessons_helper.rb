@@ -27,5 +27,4 @@ module PrivateLessonsHelper
   def lesson_css_class(availability)
     availability ? 'success' : 'danger'
   end
-
 end

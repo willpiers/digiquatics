@@ -20,7 +20,7 @@ class PrivateLessonsController < ApplicationController
     @users = User.all
     respond_to do |format|
       format.html
-      format.json  { render :json => @admin_index.to_json(:include => [:participants, :location, :user])}
+      format.json  { render json: @admin_index.to_json(include: [:participants, :location, :user]) }
     end
   end
 
@@ -30,7 +30,7 @@ class PrivateLessonsController < ApplicationController
     @location = Location.all
     respond_to do |format|
       format.html
-      format.json  { render :json => @my_lessons.to_json(:include => [:participants, :location])}
+      format.json  { render json: @my_lessons.to_json(include: [:participants, :location]) }
     end
   end
 
@@ -93,7 +93,7 @@ class PrivateLessonsController < ApplicationController
 
   def with_private_lessons_data(format, filename: 'private_lessons')
     format.html
-    format.json  { render :json => @private_lessons.to_json(:include => [:participants, :location])}
+    format.json  { render json: @private_lessons.to_json(include: [:participants, :location]) }
     format.csv { render csv: @private_lessons, filename: filename }
   end
 
