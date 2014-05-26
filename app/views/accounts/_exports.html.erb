@@ -24,7 +24,6 @@
     </div>
   <% end %>
   <div class='visible-xs'><br></div>
-
   <div class='col-md-3'>
     <%= link_to 'Active Employees', users_path(format: 'csv'),
       class: 'btn btn-danger btn-sm' %>
@@ -39,8 +38,6 @@
       class: 'btn btn-danger btn-sm' %>
   </div>
   <div class='visible-xs'><br></div>
-
-
   <% if FeatureToggleHelper.maintenance? %>
     <div class='col-md-3'>
       <%= link_to 'Open and Closed Issues', help_desks_path(format: 'csv'),
@@ -48,7 +45,6 @@
     </div>
   <% end %>
   <div class='visible-xs'><br></div>
-
   <% if FeatureToggleHelper.shift_reports? %>
     <div class='col-md-3'>
       <%= link_to 'Shift Reports', shift_reports_path(format: 'csv'),

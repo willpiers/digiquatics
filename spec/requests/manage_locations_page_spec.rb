@@ -46,7 +46,7 @@ describe 'Manage Locations' do
       end
 
       it { should have_content('Add Pool') }
-      it { should have_content('Add Slid') }
+      it { should have_content('Add Slide') }
 
       it 'should create a new location and redirect to index' do
         expect { click_button 'Create Location' }
