@@ -26,8 +26,7 @@ describe 'Shift Report pages' do
 
     it { should have_selector('th', text: 'Location') }
     it { should have_selector('th', text: 'Date') }
-    it { should have_selector('th', text: 'Last Name') }
-    it { should have_selector('th', text: 'First Name') }
+    it { should have_selector('th', text: 'Submitted By') }
     it { should have_selector('th', text: 'Report Filed') }
     it { should have_content('report.location.name') }
     it { should have_content("report.created_at | date:'M/d/yy h:mm a'") }

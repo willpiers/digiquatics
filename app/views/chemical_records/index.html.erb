@@ -1,8 +1,9 @@
 <div ng-app='digiquatics'>
   <div ng-controller='ChemicalRecordsCtrl'>
     <% provide(:title, 'Chemical Records') %>
-    <div class='hidden-xs'><h1>Chemical Records</h1><br><br></div>
-    <div class='visible-xs'><center><h4>Chemical Records</h4></center></div>
+
+    <h1 class='cross_platform_header'>Chemical Records</h1>
+
     <div class='row'>
       <div class='col-md-3'>
         <select ng-model='filters.location_id' class='form-control'>

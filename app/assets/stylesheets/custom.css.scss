@@ -51,6 +51,15 @@ h1 {
   text-align: center;
 }
 
+@media (max-width: 500px) {
+  .cross_platform_header {
+    font-size: 1.5em;
+    letter-spacing: -2px;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+}
+
 h2 {
   font-size: 1.2em;
   letter-spacing: -1px;

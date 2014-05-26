@@ -1,7 +1,6 @@
 <div ng-app='digiquatics'>
 <% provide(:title, 'To-Do List') %>
-  <div class='hidden-xs'><h1>To-Do List</h1><br><br></div>
-  <div class='visible-xs'><center><h4>To-Do List</h4></center></div>
+<h1 class='cross_platform_header'>To-Do List</h1>
   <div ng-controller="TodoCtrl">
     <div class='well' style='width: 350px; margin:auto;'>
       <span>{{remaining()}} of {{todos.length}} remaining</span>
