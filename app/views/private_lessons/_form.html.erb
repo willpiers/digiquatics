@@ -46,25 +46,28 @@
     <table class='table table-bordered' >
       <tr>
         <th class=''></th>
-        <th class='lessons_form_table_cell'> AM </th>
-        <th class='lessons_form_table_cell'> AFTN </th>
-        <th class='lessons_form_table_cell'> PM </th>
+        <th class='lessons_form_table_cell visible-xs'> AM </th>
+        <th class='lessons_form_table_cell visible-xs'> AFTN </th>
+        <th class='lessons_form_table_cell visible-xs'> PM </th>
+        <th class='lessons_form_table_cell hidden-xs'> Morning </th>
+        <th class='lessons_form_table_cell hidden-xs'> Afternoon </th>
+        <th class='lessons_form_table_cell hidden-xs'> Evening </th>
       </tr>
       <tr>
         <th> Sunday </th>
         <td>
           <div class='checkbox_fix'>
-            <%= f.check_box :sunday_morning, name: 'sunday_morning' %>
+            <%= f.check_box :sunday_morning, label: '' %>
           </div>
         </td>
         <td>
           <div class='checkbox_fix'>
-            <%= f.check_box :sunday_afternoon, name: 'sunday_afternoon'  %>
+            <%= f.check_box :sunday_afternoon, label: '' %>
           </div>
         </td>
         <td>
           <div class='checkbox_fix'>
-            <%= f.check_box :sunday_evening, name: 'sunday_evening'  %>
+            <%= f.check_box :sunday_evening, label: '' %>
           </div>
         </td>
       </tr>
@@ -72,17 +75,17 @@
         <th> Monday </th>
         <td>
           <div class='checkbox_fix'>
-          <%= f.check_box :monday_morning, name: 'monday_morning' %>
+          <%= f.check_box :monday_morning, label: '' %>
           </div>
         </td>
         <td>
           <div class='checkbox_fix'>
-        <%= f.check_box :monday_afternoon, name: 'monday_afternoon' %>
+        <%= f.check_box :monday_afternoon, label: '' %>
         </div>
         </td>
         <td>
           <div class='checkbox_fix'>
-          <%= f.check_box :monday_evening, name: 'monday_evening' %>
+          <%= f.check_box :monday_evening, label: '' %>
           </div>
         </td>
       </tr>
@@ -90,17 +93,17 @@
         <th> Tuesday </th>
         <td>
           <div class='checkbox_fix'>
-          <%= f.check_box :tuesday_morning, name: 'tuesday_morning' %>
+          <%= f.check_box :tuesday_morning, label: '' %>
           </div>
         </td>
         <td>
           <div class='checkbox_fix'>
-        <%= f.check_box :tuesday_afternoon, name: 'tuesday_afternoon' %>
+        <%= f.check_box :tuesday_afternoon, label: '' %>
         </td>
         </div>
         <td>
           <div class='checkbox_fix'>
-          <%= f.check_box :tuesday_evening, name: 'tuesday_evening' %>
+          <%= f.check_box :tuesday_evening, label: '' %>
           </div>
         </td>
       </tr>
@@ -108,17 +111,17 @@
         <th> Wednesday </th>
         <td>
           <div class='checkbox_fix'>
-          <%= f.check_box :wednesday_morning, name: 'wednesday_morning' %>
+          <%= f.check_box :wednesday_morning, label: '' %>
           </div>
         </td>
         <td>
           <div class='checkbox_fix'>
-        <%= f.check_box :wednesday_afternoon, name: 'wednesday_afternoon' %>
+        <%= f.check_box :wednesday_afternoon, label: '' %>
         </div>
         </td>
         <td>
           <div class='checkbox_fix'>
-          <%= f.check_box :wednesday_evening, name: 'wednesday_evening' %>
+          <%= f.check_box :wednesday_evening, label: '' %>
           </div>
         </td>
       </tr>
@@ -126,17 +129,17 @@
         <th> Thursday </th>
         <td>
           <div class='checkbox_fix'>
-          <%= f.check_box :thursday_morning, name: 'thursday_morning' %>
+          <%= f.check_box :thursday_morning, label: '' %>
           </div>
         </td>
         <td>
           <div class='checkbox_fix'>
-        <%= f.check_box :thursday_afternoon, name: 'thursday_afternoon' %>
+        <%= f.check_box :thursday_afternoon, label: '' %>
         </div>
         </td>
         <td>
           <div class='checkbox_fix'>
-          <%= f.check_box :thursday_evening, name: 'thursday_evening' %>
+          <%= f.check_box :thursday_evening, label: '' %>
           </div>
         </td>
       </tr>
@@ -144,17 +147,17 @@
         <th> Friday </th>
         <td>
           <div class='checkbox_fix'>
-          <%= f.check_box :friday_morning, name: 'friday_morning' %>
+          <%= f.check_box :friday_morning, label: '' %>
           </div>
         </td>
         <td>
           <div class='checkbox_fix'>
-        <%= f.check_box :friday_afternoon, name: 'friday_afternoon' %>
+        <%= f.check_box :friday_afternoon, label: '' %>
         </div>
         </td>
         <td>
           <div class='checkbox_fix'>
-          <%= f.check_box :friday_evening, name: 'friday_evening' %>
+          <%= f.check_box :friday_evening, label: '' %>
           </div>
         </td>
       </tr>
@@ -162,17 +165,17 @@
         <th> Saturday </th>
         <td>
           <div class='checkbox_fix'>
-          <%= f.check_box :saturday_morning, name: 'saturday_morning' %>
+          <%= f.check_box :saturday_morning, label: '' %>
           </div>
         </td>
         <td>
           <div class='checkbox_fix'>
-        <%= f.check_box :saturday_afternoon, name: 'saturday_afternoon' %>
+        <%= f.check_box :saturday_afternoon, label: '' %>
         </div>
         </td>
         <td>
           <div class='checkbox_fix'>
-          <%= f.check_box :saturday_evening, name: 'saturday_evening' %>
+          <%= f.check_box :saturday_evening, label: '' %>
           </div>
         </td>
       </tr>
