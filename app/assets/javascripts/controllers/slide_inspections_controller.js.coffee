@@ -1,5 +1,6 @@
 @digiquatics.controller 'SlideInspectionsCtrl', ['$scope', 'SlideInspections',
-  @SlideInspectionsCtrl = ($scope, SlideInspections) ->
+                                                 'Locations'
+  @SlideInspectionsCtrl = ($scope, SlideInspections, Locations) ->
     $scope.predicate =
       value: '-created_at'
 
@@ -8,6 +9,8 @@
       else if     inspection.all_ok == true    then 'success'
 
     $scope.slideInspections = SlideInspections.index()
+
+    $scope.locations = Locations.index()
 ]
 
 

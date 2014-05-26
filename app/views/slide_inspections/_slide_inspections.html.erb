@@ -2,6 +2,10 @@
   <thead>
     <tr>
       <th>
+        <a href="" ng-click="predicate.value = '-slide.location.name; reverse=!reverse">
+        Location</a>
+      </th>
+      <th>
         <a href="" ng-click="predicate.value = '-slide.name; reverse=!reverse">
         Slide</a>
       </th>
@@ -20,7 +24,9 @@
     </tr>
   </thead>
   <tbody>
-    <tr ng-repeat='inspection in slideInspections | orderBy:predicate.value:reverse'>
+    <tr ng-repeat='inspection in slideInspections | orderBy:predicate.value:reverse |
+                   filter:locationFilter'>
+      <td>{{inspection.location.name}}</td>
       <td>{{inspection.slide.name}}</td>
       <td>
         <a ng-href='/users/{{inspection.user.id}}'>

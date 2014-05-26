@@ -1,14 +1,16 @@
 <fieldset>
-  <div class="col-md-11">
-  <%= f.text_field :first_name, label: 'Student First Name *' %>
-  <%= f.text_field :last_name, label: 'Student Last Name' %>
-  <%= f.select :sex, options_for_select(%w[M F]), label: 'Gender' %>
-  <%= f.text_field :age, label: 'Age *' %>
-  </div>
+  <div class='row'>
+    <div class="col-md-9 col-xs-7">
+    <%= f.text_field :first_name, label: 'First Name *' %>
+    <%= f.text_field :last_name, label: 'Last Name' %>
+    <%= f.select :sex, options_for_select(%w[M F]), label: 'Gender' %>
+    <%= f.text_field :age, label: 'Age *' %>
+    </div>
 
-  <div class="col-md-1">
-    <%= f.hidden_field :_destroy %>
-    <%= link_to raw('<i class="glyphicon glyphicon-remove glyphicon-2x"></i>'),
-      '#', class: 'remove_fields' %>
+    <div class="col-md-3 col-xs-5 remove">
+      <%= f.hidden_field :_destroy %>
+      <%= link_to raw('<i class="glyphicon glyphicon-remove"></i> Remove Student'),
+        '#', class: 'remove_fields' %>
+    </div>
   </div>
 </fieldset>

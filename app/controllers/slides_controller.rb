@@ -2,7 +2,7 @@ class SlidesController < ApplicationController
   before_action :set_slide, only: [:show, :edit, :update, :destroy]
 
   def index
-    @slides = Slide.all
+    @slides = Slide.joins(:account).same_account_as(current_user)
   end
 
   def show

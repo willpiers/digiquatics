@@ -3,14 +3,7 @@
     <% provide(:title, 'Slide Inspections') %>
     <h1 class='cross_platform_header'>Slide Inspections</h1>
     <div class='row'>
-      <div class='col-md-3'>
-        <select ng-model='slideFilter' class='form-control'>
-          <option value=''>All Slides</option>
-          <option ng-repeat='slide in slideInspections' value='{{slide.name}}'>
-            {{slide.name}}
-          </option>
-        </select>
-      </div>
+      <dq-location></dq-location>
       <div class='col-md-7'></div>
       <div class='col-md-2 pull-right'>
         <div class='btn-group'>
