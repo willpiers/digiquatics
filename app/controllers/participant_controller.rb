@@ -23,11 +23,10 @@ class ParticipantsController < ApplicationController
   end
 
   def update
-    if @participant.update(participant_params)
-      redirect_to @participant,
-                  notice: 'Participant was successfully updated.'
-    else
-      render action: 'edit'
+    message = 'Participant was successfully updated.'
+
+    handle_action(@participant, message, :edit) do |resource|
+      resource.update(participant_params)
     end
   end
 
@@ -45,5 +44,14 @@ class ParticipantsController < ApplicationController
   def participant_params
     params.require(:participant)
     .permit(:private_lesson_id, :first_name, :last_name, :sex, :age)
+  end
+
+  def handle_action(resource, message, page)
+    if yield(resource)
+      flash[:success] = message
+      redirect_to resource
+    else
+      render page
+    end
   end
 end

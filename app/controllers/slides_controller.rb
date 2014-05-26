@@ -28,11 +28,10 @@ class SlidesController < ApplicationController
   end
 
   def update
-    if @slide.update(slide_params)
-      flash[:success] = 'Slide was successfully updated.'
-      redirect_to @slide
-    else
-      render action: 'edit'
+    message = 'Slide was successfully updated.'
+
+    handle_action(@slide, message, :edit) do |resource|
+      resource.update(slide_params)
     end
   end
 
@@ -45,6 +44,15 @@ class SlidesController < ApplicationController
 
   def set_slide
     @slide = slide.find(params[:id])
+  end
+
+  def handle_action(resource, message, page)
+    if yield(resource)
+      flash[:success] = message
+      redirect_to resource
+    else
+      render page
+    end
   end
 
   def slide_params
