@@ -2,7 +2,8 @@ class SlidesController < ApplicationController
   before_action :set_slide, only: [:show, :edit, :update, :destroy]
 
   def index
-    @slides = Slide.all
+    @slides = Slide.joins(:location)
+                    .where(locations: { account_id: current_user.account_id })
   end
 
   def show

@@ -43,6 +43,7 @@ class PrivateLessonsController < ApplicationController
 
   def new
     @private_lesson = Account.find(params[:account_id]).private_lessons.build
+    @private_lesson.participants.build
     unless current_user
       render layout: 'devise'
     end

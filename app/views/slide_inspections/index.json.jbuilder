@@ -12,5 +12,10 @@ json.array!(@slide_inspections) do |slide_inspection|
     json.last_name   slide_inspection.user.last_name
   end
 
+  json.location do
+    json.id slide_inspection.slide.location.id
+    json.name slide_inspection.slide.location.name
+  end
+
   json.url slide_inspection_url(slide_inspection)
 end

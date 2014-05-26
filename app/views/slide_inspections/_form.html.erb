@@ -14,7 +14,10 @@
     <% end %>
 
     <%= f.select :slide_id,
-      options_from_collection_for_select(Slide.all, :id, :name ) %>
+      options_from_collection_for_select(Slide.joins(:location)
+                                               .where(locations:
+                                                { account_id: current_user.account_id }),
+                                               :id, :name ) %>
 
     <table class='table table-bordered'>
       <% SlideInspection::TASKS.each do |task| %>

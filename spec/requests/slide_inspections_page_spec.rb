@@ -44,10 +44,13 @@ describe 'Slide Inspection pages' do
     it { should have_title(full_title('Slide Inspections')) }
     it { should have_link('New Slide Inspection', new_slide_inspection_path) }
 
+    it { should have_selector('th', text: 'Location') }
     it { should have_selector('th', text: 'Slide') }
     it { should have_selector('th', text: 'Completed By') }
     it { should have_selector('th', text: 'Date') }
     it { should have_selector('th', text: 'All OK?') }
+
+    it { should have_content('location.name') }
     it { should have_content('slide.name') }
     it { should have_content("inspection.created_at | date:'M/d/yy h:mm a'") }
     it { should have_content('user.first_name') }
