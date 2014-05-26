@@ -77,7 +77,7 @@
 
       <h4> Instructor Information </h4>
       <tr>
-         <th id='fixtablewidth'> Instructor Name </th>
+         <th id='fixtablewidth'> Full Name </th>
         <td>
           <% if @private_lesson.user %>
             <%= link_to lessons_full_name(@private_lesson.user),
@@ -86,7 +86,7 @@
         </td>
       </tr>
       <tr>
-        <th> Instructor Phone Number </th>
+        <th> Phone Number </th>
         <td>
           <% if @private_lesson.user %>
             <%= phone_number_link(@private_lesson.user.phone_number) %>
@@ -94,7 +94,7 @@
         </td>
       </tr>
       <tr>
-        <th> Instructor Email </th>
+        <th> Email </th>
         <td>
           <% if @private_lesson.user %>
             <%= mail_to "{@private_lesson.user.email}" do %>
@@ -104,7 +104,7 @@
         </td>
       </tr>
       <tr>
-        <th> Instructor Location </th>
+        <th> Location </th>
         <td>
           <% if @private_lesson.user %>
             <%= @private_lesson.user.location.name %>
@@ -117,8 +117,10 @@
   <table class='table table-bordered table-condensed' >
     <h4> Parent Information </h4>
       <tr>
-         <th id='fixtablewidth'> Name </th>
-         <td> <%= "#{@private_lesson.parent_first_name} #{@private_lesson.parent_last_name}" %> </td>
+        <th id='fixtablewidth'> Full Name </th>
+        <td>
+          <%= "#{@private_lesson.parent_last_name}, #{@private_lesson.parent_first_name}" %>
+        </td>
       </tr>
       <tr>
         <th> Phone Number</th>
@@ -142,8 +144,8 @@
     <table class='table table-bordered' >
       <h4> Student Information </h4>
       <tr>
-         <th id='fixtablewidth'> First Name </th>
-        <td> <%= "#{participant.first_name} #{participant.last_name}" %> </td>
+         <th id='fixtablewidth'> Full Name </th>
+        <td> <%= "#{participant.last_name}, #{participant.first_name}" %> </td>
       </tr>
       <tr>
         <th> Gender</th>

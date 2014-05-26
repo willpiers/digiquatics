@@ -1,7 +1,11 @@
 <table ng-show='(users | orderBy:predicate.value:predicate.reverse | filter:locationFilter | filter:search).length' class='table table-hover'>
   <thead>
     <tr>
-      <th>
+      <th class='visible-xs'>
+        <a class='pointer-hand' ng-click="predicate.value = '-lastName'; predicate.reverse = !predicate.reverse">
+        Full Name</a>
+      </th>
+      <th class='hidden-xs'>
         <a class='pointer-hand' ng-click="predicate.value = '-lastName'; predicate.reverse = !predicate.reverse">
         Last Name</a>
       </th>
@@ -21,7 +25,12 @@
   </thead>
   <tbody>
     <tr ng-repeat='userData in users | orderBy:predicate.value:predicate.reverse | filter:locationFilter | filter:search'>
-      <td>
+      <td class='visible-xs'>
+        <a ng-href='/users/{{userData.id}}'>
+          {{userData.lastName}}, {{userData.firstName}}
+        </a>
+      </td>
+      <td class='hidden-xs'>
         <a ng-href='/users/{{userData.id}}'>{{userData.lastName}}</a>
       </td>
       <td class='hidden-xs'>{{userData.firstName}}</td>

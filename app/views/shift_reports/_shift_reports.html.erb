@@ -11,13 +11,8 @@
       </th>
       <th>
         <a href="" ng-click="predicate.value = '-user.last_name'; reverse=!reverse">
-        Last Name</a>
+        Submitted By</a>
       </th>
-      <th>
-        <a href="" ng-click="predicate.value = '-user.first_name'; reverse=!reverse">
-        First Name</a>
-      </th>
-
       <th>
         <a href="" ng-click="predicate.value = '-report_filed'; reverse=!reverse">
         Report Filed</a>
@@ -35,8 +30,7 @@
           {{report.created_at | date:'M/d/yy h:mm a'}}
         </a>
       </td>
-      <td>{{report.user.last_name}}</td>
-      <td>{{report.user.first_name}}</td>
+      <td>{{report.user.last_name}}, {{report.user.first_name}} </td>
       <td>{{report.report_filed | booleanToWords}}</td>
     </tr>
   </tbody>

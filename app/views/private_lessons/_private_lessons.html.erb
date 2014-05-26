@@ -1,11 +1,15 @@
 <table class='table table-hover table-condensed' >
   <thead>
     <tr>
-      <th>
+      <th class='visible-xs'>
+        <a href="" ng-click="predicate.value = '-last_name'; reverse=!reverse">
+        Full Name</a>
+      </th>
+      <th class='hidden-xs'>
         <a href="" ng-click="predicate.value = '-last_name'; reverse=!reverse">
         Last Name</a>
       </th>
-      <th>
+      <th class='hidden-xs'>
         <a href="" ng-click="predicate.value = '-participants.first_name'; reverse=!reverse">
         First Name</a>
       </th>
@@ -37,14 +41,21 @@
   </thead>
   <tbody>
     <tr ng-repeat='lesson in privateLessons | orderBy:predicate.value:reverse | filter:locationFilter | filter:search'>
-      <td>
+      <td class='visible-xs'>
+        <div ng-repeat='participant in lesson.participants'>
+          <a ng-href='/private_lessons/{{lesson.id}}'>
+            {{participant.last_name}}, {{participant.first_name}} <br/>
+          </a>
+        </div>
+      </td>
+      <td class='hidden-xs'>
         <div ng-repeat='participant in lesson.participants'>
           <a ng-href='/private_lessons/{{lesson.id}}'>
             {{participant.last_name}} <br/>
           </a>
         </div>
       </td>
-      <td>
+      <td class='hidden-xs'>
         <div ng-repeat='participant in lesson.participants'>
           {{participant.first_name}} <br/>
         </div>

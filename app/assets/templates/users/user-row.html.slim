@@ -1,6 +1,8 @@
-td
+td class='visible-xs'
+  a ng-href='/users/{{user.id}}' {{user.last_name}}, {{user.first_name}}
+td class='hidden-xs'
   a ng-href='/users/{{user.id}}' {{user.last_name}}
-td {{user.first_name}}
+td class='hidden-xs' {{user.first_name}}
 td class='hidden-xs' {{user.date_of_birth | age}}
 td class='hidden-xs' {{user.location.name}}
 td class='hidden-xs' {{user.position.name}}
