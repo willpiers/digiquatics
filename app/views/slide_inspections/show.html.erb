@@ -1,7 +1,6 @@
 <% provide(:title, 'Slide Inspection') %>
 
-<div class='hidden-xs'><h1> Slide Inspection </h1></div>
-<div class='visible-xs'><center><h4> Slide Inspection </h4></center></div>
+<h1 class='cross_platform_header'>Slide Inspection</h1>
 
 <div class='table-width-desktop'>
 
@@ -28,8 +27,8 @@
       <th>Completed By</th>
       <td>
         <% if @slide_inspection.user_id? %>
-          <%= link_to "#{@slide_inspection.user.first_name}
-                       #{@slide_inspection.user.last_name}",
+          <%= link_to "#{@slide_inspection.user.last_name},
+                       #{@slide_inspection.user.first_name}",
                        user_path(id: @slide_inspection.user.id) %>
         <% end %>
       </td>

@@ -1,32 +1,21 @@
 <div ng-app='digiquatics'>
   <div ng-controller='MyPrivateLessonsCtrl'>
     <% provide(:title, 'My Lessons') %>
-    <h1> My Lessons</h1>
-    <br><br>
+    <h1 class='cross_platform_header'>My Lessons</h1>
     <div class='row'>
-      <div class='col-md-2'>
-        <div class="input-group">
-          <input class="form-control" ng-model="search" type='text'placeholder="Search"/>
-          <span class="input-group-addon">
-            <span class="glyphicon glyphicon-search"></span>
-          </span>
-        </div>
-      </div>
-      <div class='col-md-3'>
-        <select ng-model='locationFilter' class='form-control'>
-          <option value=''>All Locations</option>
-          <option ng-repeat='location in locations' value='{{location.name}}'>{{location.name}}</option>
-        </select>
-      </div>
+      <dq-search></dq-search>
+      <div class='visible-xs'><br></div>
+      <dq-location></dq-location>
       <div class='col-md-3'></div>
-      <div class='col-md-4'>
+      <div class='col-md-4 pull-right'>
         <div class='btn-group'>
           <%= link_to 'New Private Lesson',
             new_account_private_lesson_path(account_id: current_account.id),
               class: 'btn btn-primary btn-sm',
               role: 'button' %>
           <%if current_user.admin? %>
-            <%= link_to 'Private Lessons Queue', '#',
+            <%= link_to 'Queue',
+            account_private_lessons_path(account_id: current_user.account_id),
               class: 'btn btn-success btn-sm', role: 'button' %>
           <% end %>
         </div>

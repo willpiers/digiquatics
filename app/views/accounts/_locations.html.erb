@@ -1,52 +1,39 @@
 <table class='table'>
-  <tbody>
-      <% @locations.each do |location| %>
-      <tr>
-        <td class='fixtablewidthadmin'> <%= location.name %>
-          <br>
-          <table class='table table-bordered table-condensed'>
-            <tr>
-              <th style='width:25%'>Pools</th>
-
-            </tr>
-            <% location.pools.each do |pool| %>
-              <tr>
-                <td>
-                  <%= pool.name %>
-                </td>
-              </tr>
-            <% end %>
-          </table>
-          <table class='table table-bordered table-condensed'>
-            <tr>
-              <th style='width:25%'>Slides</th>
-            </tr>
-            <% location.slides.each do |slide| %>
-              <tr>
-                <td>
-                  <%= slide.name %>
-                </td>
-              </tr>
-            <% end %>
-          </table>
-        </td>
-        <td>
-          <%= link_to ' Edit', edit_location_path(location),
-            class: 'glyphicon glyphicon-pencil' %>
-        </td>
-        <td>
-          <%= link_to ' Delete', location,
-            class: 'glyphicon glyphicon-trash', method: :delete,
-            data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-
+  <tr>
+    <th class='fixtablewidthadmin'>Location</th>
+    <th>Pools</th>
+    <th>Slides</th>
+    <th></th>
+    <th></th>
+  </tr>
+  <% @locations.each do |location| %>
+  <tr>
+    <td> <%= location.name %> </td>
+    <td>
+      <% location.pools.each do |pool| %>
+      <%= pool.name %></br>
       <% end %>
-      <tr>
-        <td>
-          <%= link_to ' New', new_location_path,
-            class: 'glyphicon glyphicon-plus-sign' %>
-        </td>
-      </tr>
-  </tbody>
+    </td>
+    <td>
+      <% location.slides.each do |slide| %>
+      <%= slide.name %></br>
+      <% end %>
+    </td>
+    <td>
+      <%= link_to ' Edit', edit_location_path(location),
+        class: 'glyphicon glyphicon-pencil' %>
+    </td>
+    <td>
+      <%= link_to ' Delete', location,
+        class: 'glyphicon glyphicon-trash', method: :delete,
+        data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+  <% end %>
 </table>
+
+<p class='new_button'>
+  <%= link_to ' New', new_location_path,
+    class: 'glyphicon glyphicon-plus-sign' %>
+</p>
+
 

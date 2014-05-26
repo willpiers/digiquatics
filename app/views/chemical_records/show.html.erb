@@ -1,7 +1,6 @@
 <% provide(:title, 'Chemical Record') %>
 
-<div class='hidden-xs'><h1> Chemical Record </h1></div>
-<div class='visible-xs'><center><h4> Chemical Record </h4></center></div>
+<h1 class='cross_platform_header'>Chemical Record</h1>
 
 <div class='table-width-desktop'>
 
@@ -67,8 +66,8 @@
       <th>Submitted By</th>
         <td>
           <% if @chemical_record.user_id? %>
-            <%= link_to "#{@chemical_record.user.first_name}
-                         #{@chemical_record.user.last_name}",
+            <%= link_to "#{@chemical_record.user.last_name},
+                         #{@chemical_record.user.first_name}",
                          user_path(id: @chemical_record.user.id) %>
           <% end %>
         </td>

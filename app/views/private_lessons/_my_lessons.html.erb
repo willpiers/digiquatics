@@ -2,35 +2,27 @@
   <thead>
     <tr>
       <th>
-        <a href="" ng-click="predicate.value = 'preferred_location'; reverse=!reverse">
+        <a href="" ng-click="predicate.value = ''; reverse=!reverse">
         Student</a>
       </th>
       <th>
-        <a href="" ng-click="predicate.value = 'preferred_location'; reverse=!reverse">
+        <a href="" ng-click="predicate.value = ''; reverse=!reverse">
         Age</a>
       </th>
-      <th>
-        <a href="" ng-click="predicate.value = 'created_at'; reverse=!reverse">
+      <th class='hidden-xs'>
+        <a href="" ng-click="predicate.value = ''; reverse=!reverse">
         Sex</a>
       </th>
       <th>
-        <a href="" ng-click="predicate.value = 'created_at'; reverse=!reverse">
-        Day</a>
-      </th>
-      <th>
-        <a href="" ng-click="predicate.value = 'created_at'; reverse=!reverse">
-        Time</a>
-      </th>
-      <th>
-        <a href="" ng-click="predicate.value = 'created_at'; reverse=!reverse">
+        <a href="" ng-click="predicate.value = '-location.name'; reverse=!reverse">
         Location</a>
       </th>
-      <th>
-        <a href="" ng-click="predicate.value = 'created_at'; reverse=!reverse">
+      <th class='hidden-xs'>
+        <a href="" ng-click="predicate.value = '-claimed_on'; reverse=!reverse">
         Claimed</a>
       </th>
-      <th>
-        <a href="" ng-click="predicate.value = 'created_at'; reverse=!reverse">
+      <th class='hidden-xs'>
+        <a href="" ng-click="predicate.value = '-completed_on'; reverse=!reverse">
         Completed</a>
       </th>
     </tr>
@@ -39,7 +31,7 @@
     <tr ng-repeat='lesson in myPrivateLessons | orderBy:predicate.value:reverse | filter:locationFilter | filter:search'>
       <td>
         <div ng-repeat='participant in lesson.participants'>
-          <a ng-href='#'>
+          <a ng-href='/private_lessons/{{lesson.id}}'>
             {{participant.last_name}}, {{participant.first_name}} <br/>
           </a>
         </div>
@@ -49,22 +41,16 @@
           {{participant.age}}
         </div>
       </td>
-      <td>
+      <td class='hidden-xs'>
         <div ng-repeat='participant in lesson.participants'>
           {{participant.sex}}
         </div>
       </td>
-      <td>
-        {{lesson.day}}
-      </td>
-      <td>
-        {{lesson.time}}
-      </td>
-      <td class='hidden-xs'>{{lesson.location.name}}</td>
-      <td>
+      <td>{{lesson.location.name}}</td>
+      <td class='hidden-xs'>
         {{lesson.claimed_on | date:'M/d/yy h:mm a'}}
       </td>
-      <td>
+      <td class='hidden-xs'>
         {{lesson.completed_on | date:'M/d/yy h:mm a'}}
       </td>
     </tr>

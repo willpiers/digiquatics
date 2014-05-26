@@ -23,4 +23,8 @@ module PrivateLessonsHelper
   def lessons_full_name(person)
     "#{person.first_name} #{person.last_name}"
   end
+
+  def lesson_css_class(availability)
+    availability ? 'success' : 'danger'
+  end
 end

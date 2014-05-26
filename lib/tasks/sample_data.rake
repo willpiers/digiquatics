@@ -226,6 +226,7 @@ namespace :db do
                              si_status: si_status.sample,
                              si_recommendation: si_recommendation.sample,
                              pool_id: Pool.take(3).map(&:id).sample,
+                             location_id: Location.take(2).map(&:id).sample,
                              user_id: [1, 2, 3, 4, 5].sample)
     end
 

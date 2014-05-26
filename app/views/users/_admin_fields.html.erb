@@ -1,5 +1,4 @@
-<div class='hidden-xs'><h1>Admin</h1></div>
-<div class='visible-xs'><center><h4>Admin</h4></center></div>
+<h1 class='cross_platform_header'>Admin</h1>
 <%= f.select :location_id,
   options_from_collection_for_select(Location.same_account_as(current_user),
                                      :id,

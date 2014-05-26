@@ -1,18 +1,13 @@
 <div ng-app='digiquatics'>
   <div ng-controller='ClosedHelpDesksCtrl'>
     <% provide(:title, 'Closed Issues') %>
-    <h1>Closed Issues</h1>
-    <br><br>
+    <h1 class='cross_platform_header'>Closed Issues</h1>
     <div class='row'>
       <dq-search></dq-search>
-      <div class='col-md-3'>
-        <select ng-model='locationFilter' class='form-control'>
-          <option value=''>All Locations</option>
-          <option ng-repeat='location in locations' value='{{location.name}}'>{{location.name}}</option>
-        </select>
-      </div>
+      <div class='visible-xs'><br></div>
+      <dq-location></dq-location>
       <div class='col-md-5'></div>
-      <div class='col-md-2'>
+      <div class='col-md-2 pull-right'>
         <div class='btn-group'>
             <%= link_to 'View Open', help_desks_path,
             class: 'btn btn-danger btn-sm', role: 'button' %>

@@ -1,7 +1,6 @@
 <% provide(:title, 'Help Desk Issue') %>
 
-<div class='hidden-xs'><h1> Help Desk </h1></div>
-<div class='visible-xs'><center><h4> Help Desk </h4></center></div>
+<h1 class='cross_platform_header'>Help Desk</h1>
 
 <div class='table-width-desktop'>
   <ul class = 'pull-right'>
@@ -57,8 +56,8 @@
     <tr>
       <th> Submitted By </th>
       <td>
-        <%= link_to "#{@facade.submitter.first_name}
-                     #{ @facade.submitter.last_name}",
+        <%= link_to "#{@facade.submitter.last_name},
+                     #{ @facade.submitter.first_name}",
                      user_path(id: @help_desk.user.id) %>
       </td>
     </tr>
@@ -79,8 +78,8 @@
         <th>Closed By</th>
           <td>
             <% if @help_desk.closed_user_id? %>
-              <%= link_to "#{@facade.closer.first_name}
-                           #{ @facade.closer.last_name}",
+              <%= link_to "#{@facade.closer.last_name},
+                           #{ @facade.closer.first_name}",
                            user_path(id: @help_desk.user.id) %>
             <% end %>
           </td>

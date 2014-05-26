@@ -1,20 +1,15 @@
 <div ng-app='digiquatics'>
   <div ng-controller='CertificationsCtrl'>
     <% provide(:title, 'Certifications') %>
-    <h1>Certifications</h1>
-    <br><br>
+    <h1 class='cross_platform_header'>Certifications</h1>
     <div class='row'>
       <dq-search></dq-search>
-      <div class='col-md-3'>
-        <select ng-model='locationFilter' class='form-control'>
-          <option value=''>All Locations</option>
-          <option ng-repeat='location in locations' value='{{location.name}}'>{{location.name}}</option>
-        </select>
-      </div>
+      <div class='visible-xs'><br></div>
+      <dq-location></dq-location>
       <div class='col-md-7'></div>
     </div>
 
-    <div style="font-size: 75%">
+    <div style='font-size: 75%' class='hidden-xs'>
       <br>
         <p>
           <img src="/images/reddot.png" alt="red" height="10px" width="10px" /> = Expired

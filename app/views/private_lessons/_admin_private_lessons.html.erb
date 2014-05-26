@@ -5,36 +5,36 @@
         <a href="" ng-click="predicate.value = 'participants.last_name'; reverse=!reverse">
         Instructor</a>
       </th>
-      <th>
+      <th class='hidden-xs'>
         <a href="" ng-click="predicate.value = 'participants.age'; reverse=!reverse">
         Phone</a>
       </th>
-      <th>
-        <a href="" ng-click="predicate.value = 'participants.sex'; reverse=!reverse">
+      <th class='hidden-xs'>
+        <a href="" ng-click="predicate.value = '-parent_last_name'; reverse=!reverse">
         Parent</a>
       </th>
-      <th>
-        <a href="" ng-click="predicate.value = 'time'; reverse=!reverse">
+      <th class='hidden-xs'>
+        <a href="" ng-click="predicate.value = '-phone_number'; reverse=!reverse">
         Phone</a>
       </th>
       <th>
-        <a href="" ng-click="predicate.value = 'preferred_location'; reverse=!reverse">
+        <a href="" ng-click="predicate.value = '-last_name'; reverse=!reverse">
         Student</a>
       </th>
-      <th>
-        <a href="" ng-click="predicate.value = 'preferred_location'; reverse=!reverse">
+      <th class='hidden-xs'>
+        <a href="" ng-click="predicate.value = '-location.name'; reverse=!reverse">
         Location</a>
       </th>
-      <th>
-        <a href="" ng-click="predicate.value = 'created_at'; reverse=!reverse">
+      <th class='hidden-xs'>
+        <a href="" ng-click="predicate.value = '-created_at'; reverse=!reverse">
         Submitted</a>
       </th>
       <th>
-        <a href="" ng-click="predicate.value = 'created_at'; reverse=!reverse">
+        <a href="" ng-click="predicate.value = '-claimed_on'; reverse=!reverse">
         Claimed</a>
       </th>
-      <th>
-        <a href="" ng-click="predicate.value = 'created_at'; reverse=!reverse">
+      <th class='hidden-xs'>
+        <a href="" ng-click="predicate.value = '-completed_on'; reverse=!reverse">
         Completed</a>
       </th>
     </tr>
@@ -46,15 +46,15 @@
             {{lesson.user.last_name}}, {{lesson.user.first_name}}
           </a>
       </td>
-      <td>
+      <td class='hidden-xs'>
         <a ng-href='tel:{{lesson.user.phone_number}}'>
           {{lesson.user.phone_number}}
         </a>
       </td>
-      <td>
+      <td class='hidden-xs'>
         {{lesson.parent_last_name}}, {{lesson.parent_first_name}}
       </td>
-      <td>
+      <td class='hidden-xs'>
         <a ng-href='tel:{{lesson.phone_number}}'>
           {{lesson.phone_number}}
         </a>
@@ -67,13 +67,13 @@
         </div>
       </td>
       <td class='hidden-xs'>{{lesson.location.name}}</td>
-      <td>
+      <td class='hidden-xs'>
         {{lesson.created_at | date:'M/d/yy h:mm a'}}
       </td>
       <td>
         {{lesson.claimed_on | date:'M/d/yy h:mm a'}}
       </td>
-      <td>
+      <td class='hidden-xs'>
         {{lesson.completed_on | date:'M/d/yy h:mm a'}}
       </td>
     </tr>

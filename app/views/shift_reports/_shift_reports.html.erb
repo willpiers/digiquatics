@@ -1,45 +1,41 @@
-<div class='table-responsive'>
-  <table class='table table-hover table-condensed' >
-    <thead>
-      <tr>
-        <th>Location</th>
-        <th>
-          <a href="" ng-click="predicate.value = 'date_stamp'; reverse=!reverse">
-          Date</a>
-        </th>
-        <th>
-          <a href="" ng-click="predicate.value = 'user.last_name'; reverse=!reverse">
-          Last Name</a>
-        </th>
-        <th>
-          <a href="" ng-click="predicate.value = 'user.first_name'; reverse=!reverse">
-          First Name</a>
-        </th>
+<table class='table table-hover table-condensed' >
+  <thead>
+    <tr>
+      <th>
+        <a href="" ng-click="predicate.value = '-location.name'; reverse=!reverse">
+        Location</a>
+      </th>
+      <th>
+        <a href="" ng-click="predicate.value = '-date_stamp'; reverse=!reverse">
+        Date</a>
+      </th>
+      <th>
+        <a href="" ng-click="predicate.value = '-user.last_name'; reverse=!reverse">
+        Submitted By</a>
+      </th>
+      <th>
+        <a href="" ng-click="predicate.value = '-report_filed'; reverse=!reverse">
+        Report Filed</a>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat='report in shiftReports | orderBy:predicate.value:reverse
+      | filter:locationFilter
+      | filter:search
+      | limitTo:totalDisplayed'>
+      <td>{{report.location.name}}</td>
+      <td>
+        <a ng-href='/shift_reports/{{report.id}}'>
+          {{report.created_at | date:'M/d/yy h:mm a'}}
+        </a>
+      </td>
+      <td>{{report.user.last_name}}, {{report.user.first_name}} </td>
+      <td>{{report.report_filed | booleanToWords}}</td>
+    </tr>
+  </tbody>
+</table>
+<center>
+  <btn class="btn btn-default" ng-click="loadMore()">Load Additional Records</btn>
+</center>
 
-        <th>
-          <a href="" ng-click="predicate.value = 'report_filed'; reverse=!reverse">
-          Report Filed</a>
-        </th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr ng-repeat='report in shiftReports | orderBy:predicate.value:reverse
-        | filter:locationFilter
-        | filter:search
-        | limitTo:totalDisplayed'>
-        <td>{{report.location.name}}</td>
-        <td>
-          <a ng-href='/shift_reports/{{report.id}}'>
-            {{report.created_at | date:'M/d/yy h:mm a'}}
-          </a>
-        </td>
-        <td>{{report.user.last_name}}</td>
-        <td>{{report.user.first_name}}</td>
-        <td>{{report.report_filed | booleanToWords}}</td>
-      </tr>
-    </tbody>
-  </table>
-    <center>
-      <btn class="btn btn-default" ng-click="loadMore()">Load Additional Records</btn>
-    </center>
-</div>

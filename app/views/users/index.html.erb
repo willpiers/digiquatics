@@ -1,18 +1,11 @@
 <div ng-app='digiquatics'>
   <div ng-controller='UsersCtrl'>
     <% provide(:title, 'Active Employees') %>
-    <div class='hidden-xs'><h1>Active Employees</h1> <br><br></div>
-    <div class='visible-xs'><center><h4>Contact List</h4></center></div>
+    <h1 class='cross_platform_header'>Active Employees</h1>
     <div class='row'>
       <dq-search></dq-search>
-      <div class='col-md-3'>
-        <select ng-model='locationFilter' class='form-control'>
-          <option value=''>All Locations</option>
-          <option ng-repeat='location in locations' value='{{location.name}}'>
-            {{location.name}}
-          </option>
-        </select>
-      </div>
+      <div class='visible-xs'><br></div>
+      <dq-location></dq-location>
       <div class='col-md-3'></div>
       <div class='col-md-4'>
         <% if signed_in? && current_user.admin? %>

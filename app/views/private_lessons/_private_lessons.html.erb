@@ -1,42 +1,53 @@
 <table class='table table-hover table-condensed' >
   <thead>
     <tr>
-      <th>
-        <a href="" ng-click="predicate.value = 'participants.last_name'; reverse=!reverse">
+      <th class='visible-xs'>
+        <a href="" ng-click="predicate.value = '-last_name'; reverse=!reverse">
+        Name</a>
+      </th>
+      <th class='hidden-xs'>
+        <a href="" ng-click="predicate.value = '-last_name'; reverse=!reverse">
         Last Name</a>
       </th>
-      <th>
-        <a href="" ng-click="predicate.value = 'participantsfirst_name'; reverse=!reverse">
+      <th class='hidden-xs'>
+        <a href="" ng-click="predicate.value = '-participants.first_name'; reverse=!reverse">
         First Name</a>
       </th>
       <th>
-        <a href="" ng-click="predicate.value = 'participants.age'; reverse=!reverse">
+        <a href="" ng-click="predicate.value = '-participants.age'; reverse=!reverse">
         Age</a>
       </th>
-      <th>
-        <a href="" ng-click="predicate.value = 'participants.sex'; reverse=!reverse">
+      <th class='hidden-xs'>
+        <a href="" ng-click="predicate.value = '-participants.sex'; reverse=!reverse">
         Sex</a>
       </th>
       <th>
-        <a href="" ng-click="predicate.value = 'preferred_location'; reverse=!reverse">
+        <a href="" ng-click="predicate.value = '-location.name'; reverse=!reverse">
         Location</a>
       </th>
-      <th>
-        <a href="" ng-click="predicate.value = 'created_at'; reverse=!reverse">
+      <th class='hidden-xs'>
+        <a href="" ng-click="predicate.value = '-created_at'; reverse=!reverse">
         Date</a>
       </th>
     </tr>
   </thead>
   <tbody>
     <tr ng-repeat='lesson in privateLessons | orderBy:predicate.value:reverse | filter:locationFilter | filter:search'>
-      <td>
+      <td class='visible-xs'>
+        <div ng-repeat='participant in lesson.participants'>
+          <a ng-href='/private_lessons/{{lesson.id}}'>
+            {{participant.last_name}}, {{participant.first_name}} <br/>
+          </a>
+        </div>
+      </td>
+      <td class='hidden-xs'>
         <div ng-repeat='participant in lesson.participants'>
           <a ng-href='/private_lessons/{{lesson.id}}'>
             {{participant.last_name}} <br/>
           </a>
         </div>
       </td>
-      <td>
+      <td class='hidden-xs'>
         <div ng-repeat='participant in lesson.participants'>
           {{participant.first_name}} <br/>
         </div>
@@ -46,13 +57,13 @@
           {{participant.age}}
         </div>
       </td>
-      <td>
+      <td class='hidden-xs'>
         <div ng-repeat='participant in lesson.participants'>
           {{participant.sex}}
         </div>
       </td>
-      <td class='hidden-xs'>{{lesson.location.name}}</td>
-      <td>{{lesson.created_at | date:'M/d/yy h:mm a'}}</td>
+      <td>{{lesson.location.name}}</td>
+      <td class='hidden-xs'>{{lesson.created_at | date:'M/d/yy h:mm a'}}</td>
     </tr>
   </tbody>
 </table>

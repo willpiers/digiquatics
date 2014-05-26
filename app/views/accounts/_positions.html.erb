@@ -1,5 +1,10 @@
 <table class='table'>
   <tbody>
+    <tr>
+      <th>Name</th>
+      <th></th>
+      <th></th>
+    </tr>
     <% @positions.each do |position| %>
       <tr>
         <td class='fixtablewidthadmin'> <%= position.name %></td>
@@ -11,10 +16,10 @@
           data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
-    <td>
-      <%= link_to ' New', new_position_path,
-        class: 'glyphicon glyphicon-plus-sign' %>
-    </td>
-
   </tbody>
 </table>
+
+<p class='new_button'>
+  <%= link_to ' New', new_position_path,
+    class: 'glyphicon glyphicon-plus-sign' %>
+</p>

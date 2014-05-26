@@ -1,0 +1,5 @@
+div class='col-md-3'
+  select ng-model='locationFilter' class='form-control'
+    option value='' All Locations
+    option ng-repeat='location in locations' value='{{location.name}}' {{location.name}}
+

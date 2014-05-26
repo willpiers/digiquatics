@@ -1,6 +1,6 @@
 <% provide(:title, 'Lesson Request') %>
 
-<h1>Lesson Request</h1>
+<h1 class='cross_platform_header'>Lesson Request</h1>
 
 <div class='table-width-desktop'>
 
@@ -24,7 +24,6 @@
     <% end %>
     </ul>
   <% end %>
-
 
   <% unless @private_lesson.user_id %>
     <ul class = 'pull-right'>
@@ -78,7 +77,7 @@
 
       <h4> Instructor Information </h4>
       <tr>
-         <th id='fixtablewidth'> Instructor Name </th>
+         <th id='fixtablewidth'>Name</th>
         <td>
           <% if @private_lesson.user %>
             <%= link_to lessons_full_name(@private_lesson.user),
@@ -87,7 +86,7 @@
         </td>
       </tr>
       <tr>
-        <th> Instructor Phone Number </th>
+        <th> Phone Number </th>
         <td>
           <% if @private_lesson.user %>
             <%= phone_number_link(@private_lesson.user.phone_number) %>
@@ -95,7 +94,7 @@
         </td>
       </tr>
       <tr>
-        <th> Instructor Email </th>
+        <th> Email </th>
         <td>
           <% if @private_lesson.user %>
             <%= mail_to "{@private_lesson.user.email}" do %>
@@ -105,7 +104,7 @@
         </td>
       </tr>
       <tr>
-        <th> Instructor Location </th>
+        <th> Location </th>
         <td>
           <% if @private_lesson.user %>
             <%= @private_lesson.user.location.name %>
@@ -118,8 +117,10 @@
   <table class='table table-bordered table-condensed' >
     <h4> Parent Information </h4>
       <tr>
-         <th id='fixtablewidth'> Name </th>
-         <td> <%= "#{@private_lesson.parent_first_name} #{@private_lesson.parent_last_name}" %> </td>
+        <th id='fixtablewidth'> Name </th>
+        <td>
+          <%= "#{@private_lesson.parent_last_name}, #{@private_lesson.parent_first_name}" %>
+        </td>
       </tr>
       <tr>
         <th> Phone Number</th>
@@ -143,8 +144,8 @@
     <table class='table table-bordered' >
       <h4> Student Information </h4>
       <tr>
-         <th id='fixtablewidth'> First Name </th>
-        <td> <%= "#{participant.first_name} #{participant.last_name}" %> </td>
+         <th id='fixtablewidth'> Name </th>
+        <td> <%= "#{participant.last_name}, #{participant.first_name}" %> </td>
       </tr>
       <tr>
         <th> Gender</th>
@@ -179,47 +180,118 @@
     </tr>
   </table>
 
+  <h4> Availability </h4>
   <table class='table table-bordered' >
-    <h4> Availability </h4>
     <tr>
-      <th></th>
-      <th>Sunday</th>
-      <th>Monday</th>
-      <th>Tuesday</th>
-      <th>Wednesday</th>
-      <th>Thursday</th>
-      <th>Friday</th>
-      <th>Saturday</th>
+      <th id='fixtablewidth'></th>
+      <th class='lessons_table_cell'> Morning </th>
+      <th class='lessons_table_cell'> Afternoon </th>
+      <th class='lessons_table_cell'> Evening </th>
     </tr>
     <tr>
-      <th id='fixtablewidth'> Morning </th>
-      <td><%= boolean_to_words(@private_lesson.sunday_morning) %></td>
-      <td><%= boolean_to_words(@private_lesson.monday_morning) %></td>
-      <td><%= boolean_to_words(@private_lesson.tuesday_morning) %></td>
-      <td><%= boolean_to_words(@private_lesson.wednesday_morning) %></td>
-      <td><%= boolean_to_words(@private_lesson.thursday_morning) %></td>
-      <td><%= boolean_to_words(@private_lesson.friday_morning) %></td>
-      <td><%= boolean_to_words(@private_lesson.saturday_morning) %></td>
+      <th> Sunday </th>
+      <td class='lessons_table_cell
+                 <%=lesson_css_class(@private_lesson.sunday_morning)%>'>
+        <%= boolean_to_words_lessons(@private_lesson.sunday_morning) %>
+      </td>
+      <td class='lessons_table_cell
+                 <%=lesson_css_class(@private_lesson.sunday_afternoon)%>'>
+        <%= boolean_to_words_lessons(@private_lesson.sunday_afternoon) %>
+      </td>
+      <td class='lessons_table_cell
+                 <%=lesson_css_class(@private_lesson.sunday_evening)%>'>
+        <%= boolean_to_words_lessons(@private_lesson.sunday_evening) %>
+      </td>
     </tr>
     <tr>
-      <th id='fixtablewidth'> Afternoon </th>
-      <td><%= boolean_to_words(@private_lesson.sunday_afternoon) %></td>
-      <td><%= boolean_to_words(@private_lesson.monday_afternoon) %></td>
-      <td><%= boolean_to_words(@private_lesson.tuesday_afternoon) %></td>
-      <td><%= boolean_to_words(@private_lesson.wednesday_afternoon) %></td>
-      <td><%= boolean_to_words(@private_lesson.thursday_afternoon) %></td>
-      <td><%= boolean_to_words(@private_lesson.friday_afternoon) %></td>
-      <td><%= boolean_to_words(@private_lesson.saturday_afternoon) %></td>
+      <th> Monday </th>
+      <td class='lessons_table_cell
+                 <%=lesson_css_class(@private_lesson.monday_morning)%>'>
+        <%= boolean_to_words_lessons(@private_lesson.monday_morning) %>
+      </td>
+      <td class='lessons_table_cell
+                 <%=lesson_css_class(@private_lesson.monday_afternoon)%>'>
+        <%= boolean_to_words_lessons(@private_lesson.monday_afternoon) %>
+      </td>
+      <td class='lessons_table_cell
+                 <%=lesson_css_class(@private_lesson.monday_evening)%>'>
+        <%= boolean_to_words_lessons(@private_lesson.monday_evening) %>
+      </td>
     </tr>
     <tr>
-      <th id='fixtablewidth'> Evening </th>
-      <td><%= boolean_to_words(@private_lesson.sunday_evening) %></td>
-      <td><%= boolean_to_words(@private_lesson.monday_evening) %></td>
-      <td><%= boolean_to_words(@private_lesson.tuesday_evening) %></td>
-      <td><%= boolean_to_words(@private_lesson.wednesday_evening) %></td>
-      <td><%= boolean_to_words(@private_lesson.thursday_evening) %></td>
-      <td><%= boolean_to_words(@private_lesson.friday_evening) %></td>
-      <td><%= boolean_to_words(@private_lesson.saturday_evening) %></td>
+      <th> Tuesday </th>
+      <td class='lessons_table_cell
+                 <%=lesson_css_class(@private_lesson.tuesday_morning)%>'>
+        <%= boolean_to_words_lessons(@private_lesson.tuesday_morning) %>
+      </td>
+      <td class='lessons_table_cell
+                 <%=lesson_css_class(@private_lesson.tuesday_afternoon)%>'>
+        <%= boolean_to_words_lessons(@private_lesson.tuesday_afternoon) %>
+      </td>
+      <td class='lessons_table_cell
+                 <%=lesson_css_class(@private_lesson.tuesday_evening)%>'>
+        <%= boolean_to_words_lessons(@private_lesson.tuesday_evening) %>
+      </td>
+    </tr>
+    <tr>
+      <th> Wednesday </th>
+      <td class='lessons_table_cell
+                 <%=lesson_css_class(@private_lesson.wednesday_morning)%>'>
+        <%= boolean_to_words_lessons(@private_lesson.wednesday_morning) %>
+      </td>
+      <td class='lessons_table_cell
+                 <%=lesson_css_class(@private_lesson.wednesday_afternoon)%>'>
+        <%= boolean_to_words_lessons(@private_lesson.wednesday_afternoon) %>
+      </td>
+      <td class='lessons_table_cell
+                 <%=lesson_css_class(@private_lesson.wednesday_evening)%>'>
+        <%= boolean_to_words_lessons(@private_lesson.wednesday_evening) %>
+      </td>
+    </tr>
+    <tr>
+      <th> Thursday </th>
+      <td class='lessons_table_cell
+                 <%=lesson_css_class(@private_lesson.thursday_morning)%>'>
+        <%= boolean_to_words_lessons(@private_lesson.thursday_morning) %>
+      </td>
+      <td class='lessons_table_cell
+                 <%=lesson_css_class(@private_lesson.thursday_afternoon)%>'>
+        <%= boolean_to_words_lessons(@private_lesson.thursday_afternoon) %>
+      </td>
+      <td class='lessons_table_cell
+                 <%=lesson_css_class(@private_lesson.thursday_evening)%>'>
+        <%= boolean_to_words_lessons(@private_lesson.thursday_evening) %>
+      </td>
+    </tr>
+    <tr>
+      <th> Friday </th>
+      <td class='lessons_table_cell
+                 <%=lesson_css_class(@private_lesson.friday_morning)%>'>
+        <%= boolean_to_words_lessons(@private_lesson.friday_morning) %>
+      </td>
+      <td class='lessons_table_cell
+                 <%=lesson_css_class(@private_lesson.friday_afternoon)%>'>
+        <%= boolean_to_words_lessons(@private_lesson.friday_afternoon) %>
+      </td>
+      <td class='lessons_table_cell
+                 <%=lesson_css_class(@private_lesson.friday_evening)%>'>
+        <%= boolean_to_words_lessons(@private_lesson.friday_evening) %>
+      </td>
+    </tr>
+    <tr>
+      <th> Saturday </th>
+      <td class='lessons_table_cell
+                 <%=lesson_css_class(@private_lesson.saturday_morning)%>'>
+        <%= boolean_to_words_lessons(@private_lesson.saturday_morning) %>
+      </td>
+      <td class='lessons_table_cell
+                 <%=lesson_css_class(@private_lesson.saturday_afternoon)%>'>
+        <%= boolean_to_words_lessons(@private_lesson.saturday_afternoon) %>
+      </td>
+      <td class='lessons_table_cell
+                 <%=lesson_css_class(@private_lesson.saturday_evening)%>'>
+        <%= boolean_to_words_lessons(@private_lesson.saturday_evening) %>
+      </td>
     </tr>
   </table>
 

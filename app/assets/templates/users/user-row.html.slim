@@ -1,11 +1,13 @@
-td
+td class='visible-xs'
+  a ng-href='/users/{{user.id}}' {{user.last_name}}, {{user.first_name}}
+td class='hidden-xs'
   a ng-href='/users/{{user.id}}' {{user.last_name}}
-td {{user.first_name}}
-td {{user.date_of_birth | age}}
-td {{user.location.name}}
-td {{user.position.name}}
-td
+td class='hidden-xs' {{user.first_name}}
+td class='hidden-xs' {{user.date_of_birth | age}}
+td class='hidden-xs' {{user.location.name}}
+td class='hidden-xs' {{user.position.name}}
+td class='hidden-xs'
   a ng-href='mailto:{{user.email}}' {{user.email}}
 td
   a ng-href='tel:{{user.phone_number}}' {{user.phone_number}}
-td {{user.admin | booleanToWords}}
+td class='hidden-xs' {{user.admin | booleanToWords}}

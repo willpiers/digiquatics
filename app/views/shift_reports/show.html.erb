@@ -1,8 +1,7 @@
 <% provide(:title, 'Shift Report') %>
 
 <div style='margin-left:0px;'>
-<div class='hidden-xs'><h1> Shift Report </h1></div>
-<div class='visible-xs'><center><h4> Shift Report </h4></center></div>
+  <h1 class='cross_platform_header'>Shift Report</h1>
 </div>
 
 <div class='table-width-desktop'>
@@ -30,8 +29,8 @@
     <tr>
       <th> Submitted By </th>
         <td>
-          <%= link_to "#{@shift_report.user.first_name}
-                       #{@shift_report.user.last_name}",
+          <%= link_to "#{@shift_report.user.last_name},
+                       #{@shift_report.user.first_name}",
                        user_path(id: @shift_report.user.id) %>
         </td>
     </tr>
