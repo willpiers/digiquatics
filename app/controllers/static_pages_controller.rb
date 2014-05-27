@@ -30,7 +30,7 @@ class StaticPagesController < ApplicationController
 
   def user_stats
     @users = User.joins(:account).same_account_as(current_user)
-    @location  = Location.all
+    @location  = Location.joins(:account).same_account_as(current_user)
   end
 
   def private_lesson_stats
