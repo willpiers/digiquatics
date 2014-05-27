@@ -3,25 +3,16 @@
     <thead>
       <tr>
         <th>
-          <a href="" ng-click="predicate.value = 'participants.last_name'; reverse=!reverse">
+          <a href="" ng-click="predicate.value = '-user.last_name'; reverse=!reverse">
           Instructor</a>
         </th>
-        <th class='hidden-xs'>
-          <a href="" ng-click="predicate.value = 'participants.age'; reverse=!reverse">
-          Phone</a>
-        </th>
+        <th class='hidden-xs'>Instructor Phone</th>
         <th class='hidden-xs'>
           <a href="" ng-click="predicate.value = '-parent_last_name'; reverse=!reverse">
           Parent</a>
         </th>
-        <th class='hidden-xs'>
-          <a href="" ng-click="predicate.value = '-phone_number'; reverse=!reverse">
-          Phone</a>
-        </th>
-        <th>
-          <a href="" ng-click="predicate.value = '-last_name'; reverse=!reverse">
-          Student</a>
-        </th>
+        <th class='hidden-xs'>Parent Phone</th>
+        <th>Student</th>
         <th class='hidden-xs'>
           <a href="" ng-click="predicate.value = '-location.name'; reverse=!reverse">
           Location</a>
@@ -62,7 +53,7 @@
         </td>
         <td>
           <div ng-repeat='participant in lesson.participants'>
-            <a ng-href='#'>
+            <a ng-href='/private_lessons/{{lesson.id}}'>
               {{participant.last_name}}, {{participant.first_name}} <br/>
             </a>
           </div>

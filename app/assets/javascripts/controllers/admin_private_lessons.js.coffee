@@ -6,5 +6,5 @@
       $scope.locations = Locations.index()
 
       $scope.predicate =
-        value: 'last_name'
+        value: '-created_at'
 ]
