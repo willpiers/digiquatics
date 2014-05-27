@@ -8,9 +8,9 @@ div ng-show='(users | orderBy:order.value:order.reverse | filter:locationFilter 
         th class='hidden-xs' dq-user-head='Age' value='date_of_birth' order='order'
         th class='hidden-xs' Location
         th class='hidden-xs' dq-user-head='Position' value='position.name' order='order'
-        th class='hidden-xs' dq-user-head='Email' value='email' order='order'
-        th dq-user-head='Phone' value='phone_number' order='order'
-        th class='hidden-xs' dq-user-head='Admin' value='admin' order='order'
+        th class='hidden-xs' Email
+        th Phone
+        th class='hidden-xs' Admin
     tbody
       tr dq-user-row='user' ng-repeat='user in users | orderBy:order.value:order.reverse | filter:locationFilter | filter:search'
 
