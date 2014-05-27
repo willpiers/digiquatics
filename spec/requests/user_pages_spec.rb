@@ -92,6 +92,8 @@ describe 'User pages' do
         visit new_user_path
       end
 
+      let(:submit) { 'Create New Employee' }
+
       it { should_not have_selector('label', text: 'Account') }
 
       describe 'with valid information' do
@@ -211,7 +213,7 @@ describe 'User pages' do
     end
 
     describe 'page' do
-      it { should have_content('Update My Profile') }
+      it { should have_selector('legend', text: 'Edit Employee') }
       it { should have_title('Edit Employee') }
 
       describe 'as non-admin' do
