@@ -10,6 +10,6 @@
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
 
-DigiQuatics::Application.config.secret_key_base = '3a1e521c7c894fc612db4ea16' \
-  '0fff7da3d968e56ea95f6ee8dc47dadaed614fb670d56108f20718c67aabc32f83d5a5d1c' \
-  '1de5a0c3cf210f9f2c973613fa90de'
+DigiQuatics::Application.config.secret_key_base = '3a1e521c7c894fc612db4ea160' \
+'fff7da3d968e56ea95f6ee8dc47dadaed614fb670d56108f20718c67aabc32f83d5a5d1c1de5' \
+'a0c3cf210f9f2c973613fa90de'
