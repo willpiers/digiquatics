@@ -2,61 +2,92 @@
 <h1 class='cross_platform_header'>Employee Statistics</h1>
 
 <div class='table-width-desktop'>
-  <h4> Basic Information </h4>
-    <table class='table table-bordered'>
-      <tr><th style='width:25%'>Metric</th><th>Count</td></tr>
-      <tr><td>Users </td>
-        <td><%= @users.count %>
-        </td></tr>
-      <tr><td>Male </td><td>
-        <%= @users.male.count %>
-      </td></tr>
-      <tr><td>Female </td><td>
-        <%= @users.female.count %>
-      </td></tr>
-    </table>
+  <div class='pull-left'>
+    <%= link_to ' Back', users_path,
+        class: 'glyphicon glyphicon-arrow-left' %>
+  </div>
 
-  <h4> Classification </h4>
-    <table class='table table-bordered'>
-      <tr><th style='width:25%'>Metric</th><th>Count</td></tr>
-      <tr><td>Admin </td><td>
-        <%= @users.admin.count %>
-      </td></tr>
-      <tr><td>Active </td><td>
-        <%= @users.active.count %>
-      </td></tr>
-      <tr><td>Inactive </td><td>
-        <%= @users.inactive.count %>
-      </td></tr>
-    </table>
+  <br><br>
 
-  <h4> Inventory </h4>
-    <table class='table table-bordered'>
-      <tr><th style='width:25%'>Metric</th><th>Count</td></tr>
-      <tr><td>Shirts </td><td>
-        <% User.group(:shirt_size).count.each do |key, value| %>
-          <%= "#{key}:#{value} "%></br>
-        <% end %>
-      </td></tr>
-      <tr><td>Male Suit </td><td>
-        <% User.male.group(:suit_size).count.each do |key, value| %>
-          <%= "#{key}:#{value} "%></br>
-        <% end %>
-      </td></tr>
-      <tr><td>Female One-Peice </td><td>
-        <% User.female.group(:femalesuit).count.each do |key, value| %>
-          <%= "Size(#{key}): #{value} "%></br>
-        <% end %>
-      </td></tr>
-      <tr><td>Female Top </td><td>
-        <% User.female.group(:shirt_size).count.each do |key, value| %>
-          <%= "#{key}:#{value} "%></br>
-        <% end %>
-      </td></tr>
-      <tr><td>Female Bottom </td><td>
-        <% User.female.group(:suit_size).count.each do |key, value| %>
-          <%= "#{key}:#{value} "%></br>
-        <% end %>
-      </td></tr>
-    </table>
+  <h4>Basic Information</h4>
+  <table class='table table-bordered'>
+    <tr>
+      <th style='width:50%'>Location</th><!-- TODO: pull this style out-->
+      <th>Number <br/>Male</td>
+      <th>Number <br/>Female</td>
+      <th>Total <br/>Employees</td>
+    </tr>
+    <% @location.each do |location| %>
+      <tr>
+        <td><%= location.name %></td>
+        <td><%= @users.where(location_id: location.id).count %></td>
+        <td><%= @users.male.where(location_id: location.id).count %></td>
+        <td><%= @users.female.where(location_id: location.id).count %></td>
+      </tr>
+    <% end %>
+  </table>
+</div>
+
+<div class='table-width-desktop'>
+  <h4>Classification</h4>
+  <table class='table table-bordered'>
+    <tr>
+      <th style='width:50%'>Location</th><!-- TODO: pull this style out-->
+      <th>Number <br/>Admin</td>
+      <th>Number <br/>Active</td>
+      <th>Number <br/>Inactive</td>
+    </tr>
+    <% @location.each do |location| %>
+      <tr>
+        <td><%= location.name %></td>
+        <td><%= @users.admin.where(location_id: location.id).count %></td>
+        <td><%= @users.active.where(location_id: location.id).count %></td>
+        <td><%= @users.inactive.where(location_id: location.id).count %></td>
+      </tr>
+    <% end %>
+  </table>
+</div>
+
+<div class='table-width-desktop'>
+  <h4>Inventory</h4>
+  <table class='table table-bordered'>
+    <tr>
+      <th style='width:25%'>Location</th><!-- TODO: pull this style out-->
+      <th>Shirts</td>
+      <th>Male <br/>Suit</td>
+      <th>Female <br/>One-Piece</td>
+      <th>Female <br/>Top</td>
+      <th>Female <br/>Bottom</td>
+    </tr>
+    <% @location.each do |location| %>
+      <tr>
+        <td><%= location.name %></td>
+        <td>
+          <% User.group(:shirt_size).count.each do |key, value| %>
+            <%= "#{key}:#{value} "%></br>
+          <% end %>
+        </td>
+        <td>
+          <% User.male.group(:suit_size).count.each do |key, value| %>
+            <%= "#{key}:#{value} "%></br>
+          <% end %>
+        </td>
+        <td>
+          <% User.female.group(:femalesuit).count.each do |key, value| %>
+            <%= "Size(#{key}): #{value} "%></br>
+          <% end %>
+        </td>
+        <td>
+          <% User.female.group(:shirt_size).count.each do |key, value| %>
+            <%= "#{key}:#{value} "%></br>
+          <% end %>
+        </td>
+        <td>
+          <% User.female.group(:suit_size).count.each do |key, value| %>
+            <%= "#{key}:#{value} "%></br>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
 </div>
