@@ -35,7 +35,9 @@ class StaticPagesController < ApplicationController
     @start_date = params[:start_date]
     @end_date = params[:end_date]
     @pool_id = params[:pool_id]
-    @facade = StaticPagesFacade.new(current_user)
+    if @pool_id
+      @facade = StaticPagesFacade.new(current_user)
+    end
   end
 
   def user_stats

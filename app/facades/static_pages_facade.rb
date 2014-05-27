@@ -88,7 +88,7 @@ class StaticPagesFacade
   end
 
   def average(metric, id)
-    @chemical_records.where(pool_id: id).average(metric)
+    @chemical_records.where(pool_id: id).average(metric).round(1)
   end
 
   def total_records(metric, id)
