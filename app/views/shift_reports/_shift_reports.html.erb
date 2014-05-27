@@ -1,41 +1,53 @@
-<table class='table table-hover table-condensed' >
-  <thead>
-    <tr>
-      <th>
-        <a href="" ng-click="predicate.value = '-location.name'; reverse=!reverse">
-        Location</a>
-      </th>
-      <th>
-        <a href="" ng-click="predicate.value = '-date_stamp'; reverse=!reverse">
-        Date</a>
-      </th>
-      <th>
-        <a href="" ng-click="predicate.value = '-user.last_name'; reverse=!reverse">
-        Submitted By</a>
-      </th>
-      <th>
-        <a href="" ng-click="predicate.value = '-report_filed'; reverse=!reverse">
-        Report Filed</a>
-      </th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr ng-repeat='report in shiftReports | orderBy:predicate.value:reverse
-      | filter:locationFilter
-      | filter:search
-      | limitTo:totalDisplayed'>
-      <td>{{report.location.name}}</td>
-      <td>
-        <a ng-href='/shift_reports/{{report.id}}'>
-          {{report.created_at | date:'M/d/yy h:mm a'}}
-        </a>
-      </td>
-      <td>{{report.user.last_name}}, {{report.user.first_name}} </td>
-      <td>{{report.report_filed | booleanToWords}}</td>
-    </tr>
-  </tbody>
-</table>
-<center>
-  <btn class="btn btn-default" ng-click="loadMore()">Load Additional Records</btn>
-</center>
+<div ng-show='(shiftReports | orderBy:order.value:order.reverse | filter:locationFilter | filter:search).length'>
+  <table class='table table-hover'>
+    <thead>
+      <tr>
+        <th>
+          <a href="" ng-click="predicate.value = '-location.name'; reverse=!reverse">
+          Location</a>
+        </th>
+        <th>
+          <a href="" ng-click="predicate.value = '-date_stamp'; reverse=!reverse">
+          Date</a>
+        </th>
+        <th>
+          <a href="" ng-click="predicate.value = '-user.last_name'; reverse=!reverse">
+          Submitted By</a>
+        </th>
+        <th>
+          <a href="" ng-click="predicate.value = '-report_filed'; reverse=!reverse">
+          Report Filed</a>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat='report in shiftReports | orderBy:predicate.value:reverse
+        | filter:locationFilter
+        | filter:search
+        | limitTo:totalDisplayed'>
+        <td>{{report.location.name}}</td>
+        <td>
+          <a ng-href='/shift_reports/{{report.id}}'>
+            {{report.created_at | date:'M/d/yy h:mm a'}}
+          </a>
+        </td>
+        <td>{{report.user.last_name}}, {{report.user.first_name}} </td>
+        <td>{{report.report_filed | booleanToWords}}</td>
+      </tr>
+    </tbody>
+  </table>
+  <center>
+    <btn class="btn btn-default" ng-click="loadMore()">Load Additional Records</btn>
+  </center>
+</div>
 
+<div ng-hide='(shiftReports | orderBy:order.value:order.reverse | filter:locationFilter | filter:search).length'>
+  <hr>
+  <center>
+    <p>
+      No shift reports match this search or you have none yet.
+        <%= link_to 'Click here to add a shift report.',
+            new_shift_report_path %>
+    </p>
+  </center>
+</div>

@@ -1,58 +1,71 @@
-<table class='table table-hover' >
-  <thead>
-    <tr>
-      <th>
-        <a href="" ng-click="predicate.value = ''; reverse=!reverse">
-        Student</a>
-      </th>
-      <th>
-        <a href="" ng-click="predicate.value = ''; reverse=!reverse">
-        Age</a>
-      </th>
-      <th class='hidden-xs'>
-        <a href="" ng-click="predicate.value = ''; reverse=!reverse">
-        Sex</a>
-      </th>
-      <th>
-        <a href="" ng-click="predicate.value = '-location.name'; reverse=!reverse">
-        Location</a>
-      </th>
-      <th class='hidden-xs'>
-        <a href="" ng-click="predicate.value = '-claimed_on'; reverse=!reverse">
-        Claimed</a>
-      </th>
-      <th class='hidden-xs'>
-        <a href="" ng-click="predicate.value = '-completed_on'; reverse=!reverse">
-        Completed</a>
-      </th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr ng-repeat='lesson in myPrivateLessons | orderBy:predicate.value:reverse | filter:locationFilter | filter:search'>
-      <td>
-        <div ng-repeat='participant in lesson.participants'>
-          <a ng-href='/private_lessons/{{lesson.id}}'>
-            {{participant.last_name}}, {{participant.first_name}} <br/>
-          </a>
-        </div>
-      </td>
-      <td>
-        <div ng-repeat='participant in lesson.participants'>
-          {{participant.age}}
-        </div>
-      </td>
-      <td class='hidden-xs'>
-        <div ng-repeat='participant in lesson.participants'>
-          {{participant.sex}}
-        </div>
-      </td>
-      <td>{{lesson.location.name}}</td>
-      <td class='hidden-xs'>
-        {{lesson.claimed_on | date:'M/d/yy h:mm a'}}
-      </td>
-      <td class='hidden-xs'>
-        {{lesson.completed_on | date:'M/d/yy h:mm a'}}
-      </td>
-    </tr>
-  </tbody>
-</table>
+<div ng-show='(myPrivateLessons | orderBy:order.value:order.reverse | filter:locationFilter | filter:search).length'>
+  <table class='table table-hover' >
+    <thead>
+      <tr>
+        <th>
+          <a href="" ng-click="predicate.value = ''; reverse=!reverse">
+          Student</a>
+        </th>
+        <th>
+          <a href="" ng-click="predicate.value = ''; reverse=!reverse">
+          Age</a>
+        </th>
+        <th class='hidden-xs'>
+          <a href="" ng-click="predicate.value = ''; reverse=!reverse">
+          Sex</a>
+        </th>
+        <th>
+          <a href="" ng-click="predicate.value = '-location.name'; reverse=!reverse">
+          Location</a>
+        </th>
+        <th class='hidden-xs'>
+          <a href="" ng-click="predicate.value = '-claimed_on'; reverse=!reverse">
+          Claimed</a>
+        </th>
+        <th class='hidden-xs'>
+          <a href="" ng-click="predicate.value = '-completed_on'; reverse=!reverse">
+          Completed</a>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat='lesson in myPrivateLessons | orderBy:predicate.value:reverse | filter:locationFilter | filter:search'>
+        <td>
+          <div ng-repeat='participant in lesson.participants'>
+            <a ng-href='/private_lessons/{{lesson.id}}'>
+              {{participant.last_name}}, {{participant.first_name}} <br/>
+            </a>
+          </div>
+        </td>
+        <td>
+          <div ng-repeat='participant in lesson.participants'>
+            {{participant.age}}
+          </div>
+        </td>
+        <td class='hidden-xs'>
+          <div ng-repeat='participant in lesson.participants'>
+            {{participant.sex}}
+          </div>
+        </td>
+        <td>{{lesson.location.name}}</td>
+        <td class='hidden-xs'>
+          {{lesson.claimed_on | date:'M/d/yy h:mm a'}}
+        </td>
+        <td class='hidden-xs'>
+          {{lesson.completed_on | date:'M/d/yy h:mm a'}}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div ng-hide='(myPrivateLessons | orderBy:order.value:order.reverse | filter:locationFilter | filter:search).length'>
+  <hr>
+  <center>
+    <p>
+      No private lessons match this search or you have none yet.
+        <%= link_to ' Click here to view the private lesson queue.',
+            account_private_lessons_path(account_id: current_user.account_id) %>
+    </p>
+  </center>
+</div>

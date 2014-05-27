@@ -1,52 +1,66 @@
-<table ng-controller='InactiveUsersCtrl' class='table table-hover table-condensed' >
-  <thead>
-    <tr>
-      <th>
-        <a href="" ng-click="predicate.value = 'last_name'; reverse=!reverse">
-        Last Name</a>
-      </th>
-      <th>
-        <a href="" ng-click="predicate.value = 'first_name'; reverse=!reverse">
-        First Name</a>
-      </th>
-      <th>
-        <a href="" ng-click="predicate.value = 'date_of_birth'; reverse=!reverse">
-        Age</a>
-      </th>
-      <th>Location</th>
-      <th>
-        <a href="" ng-click="predicate.value = 'position.name'; reverse=!reverse">
-        Position</a>
-      </th>
-      <th>
-        <a href="" ng-click="predicate.value = 'email'; reverse=!reverse">
-        Email</a>
-      </th>
-      <th>
-        <a href="" ng-click="predicate.value = 'phone_number'; reverse=!reverse">
-        Phone</a>
-      </th>
-      <th>
-        <a href="" ng-click="predicate.value = 'admin'; reverse=!reverse">
-        Admin</a>
-      </th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr ng-repeat='user in inactive_users | orderBy:predicate.value:reverse | filter:locationFilter | filter:search'>
-      <td>
-        <a ng-href='/users/{{user.id}}'>
-          {{user.last_name}}
-        </a>
-      </td>
-      <td>{{user.first_name}}</td>
-      <td>{{user.date_of_birth | age}}</td>
-      <td>{{user.location.name}}</td>
-      <td>{{user.position.name}}</td>
-      <td><%= mail_to '{{user.email}}' %></td>
-      <td><a ng-href='tel:{{user.phone_number}}'>{{user.phone_number}}</td>
-      <td>{{user.admin | booleanToWords}}</td>
-    </tr>
-  </tbody>
-</table>
+<div ng-controller='InactiveUsersCtrl'>
+  <div ng-show='(inactive_users | orderBy:order.value:order.reverse | filter:locationFilter | filter:search).length'>
+    <table class='table table-hover table-condensed'>
+      <thead>
+        <tr>
+          <th>
+            <a href="" ng-click="predicate.value = 'last_name'; reverse=!reverse">
+            Last Name</a>
+          </th>
+          <th>
+            <a href="" ng-click="predicate.value = 'first_name'; reverse=!reverse">
+            First Name</a>
+          </th>
+          <th>
+            <a href="" ng-click="predicate.value = 'date_of_birth'; reverse=!reverse">
+            Age</a>
+          </th>
+          <th>Location</th>
+          <th>
+            <a href="" ng-click="predicate.value = 'position.name'; reverse=!reverse">
+            Position</a>
+          </th>
+          <th>
+            <a href="" ng-click="predicate.value = 'email'; reverse=!reverse">
+            Email</a>
+          </th>
+          <th>
+            <a href="" ng-click="predicate.value = 'phone_number'; reverse=!reverse">
+            Phone</a>
+          </th>
+          <th>
+            <a href="" ng-click="predicate.value = 'admin'; reverse=!reverse">
+            Admin</a>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat='user in inactive_users | orderBy:predicate.value:reverse | filter:locationFilter | filter:search'>
+          <td>
+            <a ng-href='/users/{{user.id}}'>
+              {{user.last_name}}
+            </a>
+          </td>
+          <td>{{user.first_name}}</td>
+          <td>{{user.date_of_birth | age}}</td>
+          <td>{{user.location.name}}</td>
+          <td>{{user.position.name}}</td>
+          <td><%= mail_to '{{user.email}}' %></td>
+          <td><a ng-href='tel:{{user.phone_number}}'>{{user.phone_number}}</td>
+          <td>{{user.admin | booleanToWords}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 
+  <div ng-hide='(inactive_users | orderBy:order.value:order.reverse | filter:locationFilter | filter:search).length'>
+    <hr>
+    <center>
+      <p>
+        No employees match this search or you have none yet.
+          <%= link_to 'Click here to view the current active employees.',
+              users_path %>
+      </p>
+    </center>
+  </div>
+</div>
