@@ -6,18 +6,7 @@
     <%= render 'shared/required' %>
     <div id='basic'><%= render 'basic_user_fields', f: f %></div>
 
-    <% unless f.object.new_record? %>
-      <div id='additional'><%= render 'additional_user_fields', { f: f, user: @user } %></div>
-
-      <% if signed_in? && current_user.admin? %>
-        <%= render 'admin_fields', f: f, user: @user %>
-      <% end %>
-    <% end %>
-
-    <%= f.primary(f.object.new_record? ?  'Create Your Account' : 'Save Changes') %>
+    <%= f.primary 'Create New Employee' %>
   <% end %>
 </div>
 </div>
-
-
-
