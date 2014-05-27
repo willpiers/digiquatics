@@ -17,12 +17,12 @@
       <th>Number <br/>Female</td>
       <th>Total <br/>Employees</td>
     </tr>
-    <% @location.each do |location| %>
+    <% @facade.locations.each do |location| %>
       <tr>
         <td><%= location.name %></td>
-        <td><%= @users.where(location_id: location.id).count %></td>
-        <td><%= @users.male.where(location_id: location.id).count %></td>
-        <td><%= @users.female.where(location_id: location.id).count %></td>
+        <td><%= @facade.total_male_employees(location) %></td>
+        <td><%= @facade.total_female_employees(location) %></td>
+        <td><%= @facade.total_employees(location) %></td>
       </tr>
     <% end %>
   </table>
@@ -37,12 +37,12 @@
       <th>Number <br/>Active</td>
       <th>Number <br/>Inactive</td>
     </tr>
-    <% @location.each do |location| %>
+    <% @facade.locations.each do |location| %>
       <tr>
         <td><%= location.name %></td>
-        <td><%= @users.admin.where(location_id: location.id).count %></td>
-        <td><%= @users.active.where(location_id: location.id).count %></td>
-        <td><%= @users.inactive.where(location_id: location.id).count %></td>
+        <td><%= @facade.admin(location) %></td>
+        <td><%= @facade.active(location) %></td>
+        <td><%= @facade.inactive(location) %></td>
       </tr>
     <% end %>
   </table>
@@ -59,31 +59,31 @@
       <th>Female <br/>Top</td>
       <th>Female <br/>Bottom</td>
     </tr>
-    <% @location.each do |location| %>
+    <% @facade.locations.each do |location| %>
       <tr>
         <td><%= location.name %></td>
         <td>
-          <% User.group(:shirt_size).count.each do |key, value| %>
+          <% @facade.shirt_sizes(location).each do |key, value| %>
             <%= "#{key}:#{value} "%></br>
           <% end %>
         </td>
         <td>
-          <% User.male.group(:suit_size).count.each do |key, value| %>
+          <% @facade.male_suit_sizes(location).each do |key, value| %>
             <%= "#{key}:#{value} "%></br>
           <% end %>
         </td>
         <td>
-          <% User.female.group(:femalesuit).count.each do |key, value| %>
+          <% @facade.female_one_piece_suit_sizes(location).each do |key, value| %>
             <%= "Size(#{key}): #{value} "%></br>
           <% end %>
         </td>
         <td>
-          <% User.female.group(:shirt_size).count.each do |key, value| %>
+          <% @facade.female_top_sizes(location).each do |key, value| %>
             <%= "#{key}:#{value} "%></br>
           <% end %>
         </td>
         <td>
-          <% User.female.group(:suit_size).count.each do |key, value| %>
+          <% @facade.female_bottom_sizes(location).each do |key, value| %>
             <%= "#{key}:#{value} "%></br>
           <% end %>
         </td>
