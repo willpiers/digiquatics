@@ -14,9 +14,8 @@
       <%= f.text_field :parent_last_name, label: 'Parent Last Name *' %>
       <%= f.telephone_field :phone_number, label: 'Phone Number *' %>
       <%= f.text_field :email, label: 'Email *' %>
-      <%= f.select :contact_method,
-                   options_for_select(%w[Call Email Text]),
-                    { include_blank: true, label: 'Preferred Contact Method'} %>
+      <%= f.select :contact_method, options_for_select(%w[Call Email Text],
+                   @private_lesson.contact_method.to_s) %>
 
     <h4> Student Information </h4>
 
