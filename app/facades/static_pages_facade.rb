@@ -5,6 +5,7 @@ class StaticPagesFacade
     @private_lessons = PrivateLesson.same_account_as(user)
     @locations = Location.same_account_as(user)
     @users = User.same_account_as(user)
+    @chemical_records = ChemicalRecord.same_account_as(user)
   end
 
   # Private Lessons
@@ -33,7 +34,6 @@ class StaticPagesFacade
   end
 
   # Employees
-
   def total_male_employees(location)
     @users.for_location(location).male.count
   end
@@ -76,6 +76,23 @@ class StaticPagesFacade
 
   def female_bottom_sizes(location)
     @users.female.group(:suit_size).count
+  end
+
+  # Chemical Records
+  def minimum(metric, id)
+    @chemical_records.where(pool_id: id).minimum(metric)
+  end
+
+  def maximum(metric, id)
+    @chemical_records.where(pool_id: id).maximum(metric)
+  end
+
+  def average(metric, id)
+    @chemical_records.where(pool_id: id).average(metric)
+  end
+
+  def total_records(metric, id)
+    @chemical_records.where(pool_id: id).count(metric)
   end
 
 end
