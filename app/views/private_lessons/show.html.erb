@@ -110,6 +110,17 @@
           <% end %>
         </td>
       </tr>
+      <tr>
+        <th> Agreed Meeting Time </th>
+        <td>
+          <% if @private_lesson.meeting_time_agreement %>
+            <%= @private_lesson.meeting_time_agreement %>
+          <% else %>
+          <%= link_to 'Please enter agreed meeting time here.',
+              edit_private_lesson_path(@private_lesson) %>
+          <% end %>
+        </td>
+      </tr>
     </table>
   <% end %>
 
