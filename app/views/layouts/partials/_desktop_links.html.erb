@@ -11,7 +11,7 @@
         <li><%= link_to 'Certifications', certifications_path %></li>
       <% end %>
       <% if FeatureToggleHelper.private_lessons? %>
-        <% if current_user.private_lesson_access? %>
+        <% if current_user.private_lesson_access? || current_user.admin? %>
           <li class = 'dropdown'>
             <a href = '#' class = 'dropdown-toggle' data-toggle = 'dropdown'>
             Private Lessons <b class = 'caret'></b></a>
