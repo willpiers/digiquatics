@@ -38,7 +38,7 @@ describe 'Authentication' do
         click_button 'Sign in'
       end
 
-      it { should have_title(user.first_name) }
+      it { should have_title('Dashboard') }
       it { should have_link('My Profile', href: user_path(user)) }
       it { should have_link('Sign Out', href: destroy_user_session_path) }
       it { should_not have_link('Sign In', href: new_user_session_path) }

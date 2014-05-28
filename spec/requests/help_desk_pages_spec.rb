@@ -123,7 +123,7 @@ describe 'Help Desk pages' do
 
     describe 'help desk' do
       it { should have_selector('h1', text: 'Help Desk') }
-      it { should have_title(full_title('Help Desk Issue')) }
+      it { should have_title(full_title('Maintenance Issue')) }
 
       describe 'attributes' do
         it { should have_selector('th', text: 'Problem') }

@@ -172,7 +172,7 @@ describe 'User pages' do
         before { visit user_path(admin) }
 
         describe 'and redirect to sign in page or current user profile' do
-          specify { current_path.should eq user_path(user) }
+          specify { current_path.should eq dashboard_path }
         end
       end
     end
