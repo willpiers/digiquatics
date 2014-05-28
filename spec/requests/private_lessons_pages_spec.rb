@@ -92,7 +92,7 @@ describe 'Private Lessons' do
   end
 
   describe 'Manage as Admin Completed' do
-    before { visit closed_admin_index_path }
+    before { visit completed_admin_index_path }
 
     it { should have_title(full_title('Completed Private Lessons')) }
     it { should have_content('Completed Private Lessons Mangement') }

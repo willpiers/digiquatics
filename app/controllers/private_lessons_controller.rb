@@ -24,7 +24,7 @@ class PrivateLessonsController < ApplicationController
     end
   end
 
-  def closed_admin_index
+  def completed_admin_index
     @admin_index = PrivateLesson.joins(:account)
                    .same_account_as(current_user).where.not(completed_on: nil).claimed
     @participants = Participant.all
