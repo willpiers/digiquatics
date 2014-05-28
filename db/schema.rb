@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140525002235) do
+ActiveRecord::Schema.define(version: 20140528145008) do
 
   create_table "accounts", force: true do |t|
     t.string   "name"
@@ -275,6 +275,7 @@ ActiveRecord::Schema.define(version: 20140525002235) do
     t.string   "last_sign_in_ip"
     t.string   "secondary_phone_number"
     t.decimal  "payrate",                precision: 4, scale: 2
+    t.boolean  "private_lesson_access"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
