@@ -103,7 +103,6 @@ describe 'Private Lessons' do
     it { should have_selector('th', text: 'Submitted') }
     it { should have_selector('th', text: 'Claimed') }
     it { should have_selector('th', text: 'Completed') }
-
   end
 
   describe 'signup while not signed in' do
