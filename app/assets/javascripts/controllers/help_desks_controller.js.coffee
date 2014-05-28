@@ -3,6 +3,9 @@
   @HelpDesksCtrl = ($scope, HelpDesks, Locations) ->
       $scope.helpDesks = HelpDesks.index()
 
+      $scope.predicate =
+        value: 'created_at'
+
       $scope.showPic = (data) ->
         data.help_desk_attachment_file_name?
 
