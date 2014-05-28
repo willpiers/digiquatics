@@ -79,6 +79,7 @@ describe 'Private Lessons' do
   describe 'Manage as Admin Open' do
     before { visit admin_index_path }
 
+    it { should have_title(full_title('Open Private Lessons')) }
     it { should have_content('Open Private Lessons Mangement') }
     it { should have_selector('th', text: 'Instructor') }
     it { should have_selector('th', text: 'Instructor Phone') }
@@ -90,10 +91,11 @@ describe 'Private Lessons' do
     it { should have_selector('th', text: 'Claimed') }
   end
 
-  describe 'Manage as Admin Closed' do
+  describe 'Manage as Admin Completed' do
     before { visit closed_admin_index_path }
 
-    it { should have_content('Closed Private Lessons Mangement') }
+    it { should have_title(full_title('Completed Private Lessons')) }
+    it { should have_content('Completed Private Lessons Mangement') }
     it { should have_selector('th', text: 'Instructor') }
     it { should have_selector('th', text: 'Instructor Phone') }
     it { should have_selector('th', text: 'Parent') }

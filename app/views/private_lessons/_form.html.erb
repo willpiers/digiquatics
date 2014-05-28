@@ -9,10 +9,12 @@
     <%= content_tag(:legend, legend) if legend %>
     <%= render 'shared/required' %>
 
-    <h4> Meeting Arrangement </h4>
-    <%= f.text_area :meeting_time_agreement,
-                    placeholder: 'Please enter agreed meeting time',
-                    size: '2x', hide_label: true %>
+    <% unless @private_lesson.new_record? %>
+      <h4> Meeting Arrangement </h4>
+      <%= f.text_area :meeting_time_agreement,
+                      placeholder: 'Please enter agreed meeting time',
+                      size: '2x', hide_label: true %>
+    <% end %>
 
     <h4>Parent Information</h4>
     <br>
@@ -31,8 +33,7 @@
     <% end %>
 
     <%= link_to_add_fields(
-      raw('<i class="glyphicon glyphicon-plus-sign"></i> Add Student to make
-          this request a semi-private lesson'),
+      raw('<i class="glyphicon glyphicon-plus-sign"></i> Add Semi-Private Lesson Student'),
       f, :participants) %>
 
     <h4>Preferences</h4>
@@ -59,7 +60,8 @@
                     side: '2x',
                     label: 'Lesson Objectives' %>
 
-    <h4>Availability <br/> (Please check times you are available) </h4>
+    <h4>Availability<br/></h4>
+    <h5>Please check times you are available</h5>
 
     <table class='table table-bordered' >
       <tr>
