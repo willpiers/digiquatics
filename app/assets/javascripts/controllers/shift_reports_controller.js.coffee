@@ -2,6 +2,9 @@
                                              'Locations'
   @ShiftReportsCtrl = ($scope, ShiftReports, Locations) ->
 
+    $scope.predicate =
+      value: '-created_at'
+
     $scope.cssClass = (report) ->
       if      report.report_filed == 'Yes'    then 'success'
       else    'danger'
