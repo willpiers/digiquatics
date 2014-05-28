@@ -6,5 +6,5 @@
       $scope.locations = Locations.index()
 
       $scope.predicate =
-        value: '-claimed_on'
+        value: 'claimed_on'
 ]

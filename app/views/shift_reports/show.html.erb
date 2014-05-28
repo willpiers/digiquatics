@@ -35,11 +35,11 @@
         </td>
     </tr>
     <tr>
-      <th> Report Filed? </th>
+      <th>Incident / Accident Report Filed?</th>
         <td><%= boolean_to_words(@shift_report.report_filed) %></td>
     </tr>
     <tr>
-      <th> Report Attachment </th>
+      <th>Attachments</th>
         <td>
           <% if @shift_report.attachment_front? %>
             <%= link_to '', @shift_report.attachment_front.url,
@@ -54,7 +54,7 @@
         </td>
     </tr>
     <tr>
-      <th> Shift Report </th>
+      <th>Shift Report</th>
         <td><%= @shift_report.content %></td>
     </tr>
   </table>

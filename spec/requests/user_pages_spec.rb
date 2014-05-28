@@ -172,7 +172,7 @@ describe 'User pages' do
         before { visit user_path(admin) }
 
         describe 'and redirect to sign in page or current user profile' do
-          specify { current_path.should eq user_path(user) }
+          specify { current_path.should eq dashboard_path }
         end
       end
     end
@@ -233,6 +233,7 @@ describe 'User pages' do
           it { should have_no_selector('label', text: 'Employee ID') }
           it { should have_no_selector('label', text: 'Grouping') }
           it { should have_no_selector('label', text: 'Pay Rate') }
+          it { should have_no_selector('label', text: 'Private lesson access') }
           it { should have_no_selector('label', text: 'Date of Hire') }
           it { should have_no_selector('label', text: 'Notes') }
         end
@@ -322,6 +323,7 @@ describe 'User pages' do
           it { should have_selector('label', text: 'Employee ID') }
           it { should have_selector('label', text: 'Grouping') }
           it { should have_selector('label', text: 'Pay Rate') }
+          it { should have_selector('label', text: 'Private lesson access') }
           it { should have_selector('label', text: 'Date of hire') }
           it { should have_selector('label', text: 'Notes') }
         end
@@ -395,6 +397,7 @@ describe 'User pages' do
             select '15',                  from: 'user_date_of_hire_3i'
             select '2013',                from: 'user_date_of_hire_1i'
             fill_in 'Pay Rate',           with: '9.50'
+            select('Yes',                  from: 'user_private_lesson_access')
 
             click_button 'Save Changes'
           end

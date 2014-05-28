@@ -1,8 +1,9 @@
 <% provide(:title, 'Lesson Request') %>
-<%= render partial: 'form', locals: {
-  legend: "#{Account.find(@private_lesson.account).name} Lesson Request",
-  resources: [@private_lesson.account, @private_lesson]
-} %>
-
+<div id='private_lesson_signed_out'>
+  <%= render partial: 'form', locals: {
+    legend: "#{Account.find(@private_lesson.account).name} Lesson Request",
+    resources: [@private_lesson.account, @private_lesson]
+  } %>
+</div>
 
 

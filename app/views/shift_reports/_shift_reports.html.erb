@@ -16,7 +16,7 @@
         </th>
         <th>
           <a href="" ng-click="predicate.value = '-report_filed'; reverse=!reverse">
-          Report Filed</a>
+          Incident / Accident Report Filed</a>
         </th>
       </tr>
     </thead>
@@ -32,7 +32,7 @@
           </a>
         </td>
         <td>{{report.user.last_name}}, {{report.user.first_name}} </td>
-        <td>{{report.report_filed | booleanToWords}}</td>
+        <td style='width: 150px;' ng-class='cssClass(report)'>{{report.report_filed | booleanToWords}}</td>
       </tr>
     </tbody>
   </table>

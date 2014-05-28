@@ -32,6 +32,7 @@ describe User do
   it { should respond_to(:emergency_last) }
   it { should respond_to(:emergency_phone) }
   it { should respond_to(:payrate) }
+  it { should respond_to(:private_lesson_access) }
   it { should respond_to(:grouping) }
   it { should respond_to(:shirt_size) }
   it { should respond_to(:password) }

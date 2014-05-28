@@ -3,6 +3,9 @@
   @ClosedHelpDesksCtrl = ($scope, ClosedHelpDesks, Locations) ->
       $scope.closedHelpDesks = ClosedHelpDesks.index()
 
+      $scope.predicate =
+        value: 'created_at'
+
       $scope.showPic = (data) ->
         data.help_desk_attachment_file_name?
 

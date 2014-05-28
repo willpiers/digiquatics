@@ -15,6 +15,7 @@
   end_year: Time.now.year-30, order: [:month, :day, :year], prompt: true},
     label: 'Date of Hire'  %>
 </div>
+<%= f.select :private_lesson_access, [['Yes', true], ['No', false]] %>
 
 <center><h4>Certifications</h4></center>
 <%= f.fields_for :certifications do |builder| %>

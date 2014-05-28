@@ -76,10 +76,35 @@ describe 'Private Lessons' do
     it { should have_content('My Lessons') }
   end
 
-  describe 'Manage as Admin' do
+  describe 'Manage as Admin Open' do
     before { visit admin_index_path }
 
-    it { should have_content('Private Lessons Mangement') }
+    it { should have_title(full_title('Open Private Lessons')) }
+    it { should have_content('Open Private Lessons Mangement') }
+    it { should have_selector('th', text: 'Instructor') }
+    it { should have_selector('th', text: 'Instructor Phone') }
+    it { should have_selector('th', text: 'Parent') }
+    it { should have_selector('th', text: 'Parent Phone') }
+    it { should have_selector('th', text: 'Student') }
+    it { should have_selector('th', text: 'Location') }
+    it { should have_selector('th', text: 'Submitted') }
+    it { should have_selector('th', text: 'Claimed') }
+  end
+
+  describe 'Manage as Admin Completed' do
+    before { visit completed_admin_index_path }
+
+    it { should have_title(full_title('Completed Private Lessons')) }
+    it { should have_content('Completed Private Lessons Mangement') }
+    it { should have_selector('th', text: 'Instructor') }
+    it { should have_selector('th', text: 'Instructor Phone') }
+    it { should have_selector('th', text: 'Parent') }
+    it { should have_selector('th', text: 'Parent Phone') }
+    it { should have_selector('th', text: 'Student') }
+    it { should have_selector('th', text: 'Location') }
+    it { should have_selector('th', text: 'Submitted') }
+    it { should have_selector('th', text: 'Claimed') }
+    it { should have_selector('th', text: 'Completed') }
   end
 
   describe 'signup while not signed in' do
@@ -276,6 +301,9 @@ describe 'Private Lessons' do
         let(:student_first_name) { 'Johnny' }
 
         before do
+          # Meeting Arrangement
+          fill_in 'private_lesson_meeting_time_agreement', with: 'Sat 8am'
+
           # Parent information
           fill_in 'Parent First Name', with: 'Parent First'
           fill_in 'Parent Last Name',  with: 'Parent Last'
@@ -345,7 +373,6 @@ describe 'Private Lessons' do
       end
     end
   end
-
 
   describe 'stats' do
     before do

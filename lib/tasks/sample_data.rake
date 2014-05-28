@@ -96,7 +96,8 @@ namespace :db do
                  payrate:                '9.50',
                  admin:                  true,
                  active:                 true,
-                 account_id:             1)
+                 account_id:             1,
+                 private_lesson_access:  true)
 
     puts "\nUsers\n"
 
@@ -132,7 +133,8 @@ namespace :db do
                    payrate: [8.00, 8.50, 9.00, 9.50, 10.00, 10.50].sample,
                    admin: false,
                    active: [true, false].sample,
-                   account_id: 1
+                   account_id: 1,
+                   private_lesson_access:  false
                    )
     end
 

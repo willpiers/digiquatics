@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140525002235) do
+ActiveRecord::Schema.define(version: 20140528151849) do
 
   create_table "accounts", force: true do |t|
     t.string   "name"
@@ -177,6 +177,7 @@ ActiveRecord::Schema.define(version: 20140525002235) do
     t.boolean  "saturday_morning"
     t.boolean  "saturday_afternoon"
     t.boolean  "saturday_evening"
+    t.text     "meeting_time_agreement"
   end
 
   create_table "sessions", force: true do |t|
@@ -275,6 +276,7 @@ ActiveRecord::Schema.define(version: 20140525002235) do
     t.string   "last_sign_in_ip"
     t.string   "secondary_phone_number"
     t.decimal  "payrate",                precision: 4, scale: 2
+    t.boolean  "private_lesson_access"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

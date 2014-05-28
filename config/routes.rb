@@ -45,6 +45,7 @@ DigiQuatics::Application.routes.draw do
   match '/private_lesson_stats', to: 'static_pages#private_lesson_stats', via: 'get'
 
   match '/admin_index', to: 'private_lessons#admin_index', via: 'get'
+  match '/completed_admin_index', to: 'private_lessons#completed_admin_index', via: 'get'
   match '/my_lessons', to: 'private_lessons#my_lessons', via: 'get'
   match '/thank_you', to: 'private_lessons#thank_you', via: 'get'
   match '/chemical_record_stats',
