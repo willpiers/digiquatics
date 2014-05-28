@@ -38,4 +38,16 @@ describe 'Chemicals' do
       it { should have_content('Time') }
     end
   end
+
+  describe 'stats' do
+    before do
+      login_as(user, scope: :user)
+      visit chemical_record_stats_path
+    end
+
+    describe 'should have the correct title and heading' do
+      it { should have_title(full_title('Chemical Statistics')) }
+      it { should have_selector('h1', text: 'Chemical Record Statistics') }
+    end
+  end
 end
