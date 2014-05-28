@@ -9,22 +9,6 @@
         class: 'glyphicon glyphicon-arrow-left' %>
   </div>
 
-  <% unless @private_lesson.completed_on %>
-    <ul class = 'pull-right'>
-    <%= bootstrap_form_for @private_lesson do |f| %>
-      <%= f.hidden_field :completed_on, value: Time.now %>
-      <%= f.submit 'Mark Completed', class: 'btn btn-default btn-danger'  %>
-    <% end %>
-    </ul>
-  <% else %>
-    <ul class = 'pull-right'>
-    <%= bootstrap_form_for @private_lesson do |f| %>
-      <%= f.hidden_field :completed_on, value: nil %>
-      <%= f.submit 'Mark Open', class: 'btn btn-default btn-danger'  %>
-    <% end %>
-    </ul>
-  <% end %>
-
   <% unless @private_lesson.user_id %>
     <ul class = 'pull-right'>
     <%= bootstrap_form_for @private_lesson do |f| %>
@@ -34,6 +18,21 @@
     <% end %>
     </ul>
   <% else %>
+    <% unless @private_lesson.completed_on %>
+      <ul class = 'pull-right'>
+      <%= bootstrap_form_for @private_lesson do |f| %>
+        <%= f.hidden_field :completed_on, value: Time.now %>
+        <%= f.submit 'Mark Completed', class: 'btn btn-default btn-danger'  %>
+      <% end %>
+      </ul>
+    <% else %>
+      <ul class = 'pull-right'>
+      <%= bootstrap_form_for @private_lesson do |f| %>
+        <%= f.hidden_field :completed_on, value: nil %>
+        <%= f.submit 'Mark Open', class: 'btn btn-default btn-danger'  %>
+      <% end %>
+      </ul>
+    <% end %>
     <ul class = 'pull-right'>
     <%= bootstrap_form_for @private_lesson do |f| %>
       <%= f.hidden_field :user_id, value: nil %>
