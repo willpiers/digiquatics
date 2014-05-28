@@ -11,5 +11,7 @@ module ScopeHelper
     scope :female,          ->        { where(sex: 'F') }
 
     scope :admin,           ->        { where(admin: true) }
+
+    scope :for_location, -> (location) { where(location_id: location.id) }
   end
 end

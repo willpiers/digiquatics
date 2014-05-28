@@ -283,4 +283,15 @@ describe 'Private Lessons' do
       end
     end
   end
+
+
+  describe 'stats' do
+    before do
+      login_as(admin, scope: :user)
+      visit private_lesson_stats_path
+    end
+
+    it { should have_title(full_title('Private Lesson Statistics')) }
+    it { should have_selector('h1', text: 'Private Lesson Statistics') }
+  end
 end

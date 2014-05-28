@@ -1,27 +1,24 @@
 <%= bootstrap_form_tag(url: '/chemical_record_stats', method: "post") do |f| %>
   <%= f.hidden_field :start_date, value: "{{dt1 | date:'yyyy-MM-dd'}} 00:00:01 -600" %>
   <%= f.hidden_field :end_date, value: "{{dt2 | date:'yyyy-MM-dd'}} 23:59:59 -600" %>
-
-  <div ng-controller='ChemicalRecordsCtrl'>
-    <label>Location</label>
-    <select ng-model='selected.location_id' class='form-control'>
-      <option value=''>Select Locations</option>
-      <option ng-repeat='location in locations' value='{{location.id}}'>
-        {{location.name}}
-      </option>
-    </select>
-    <%= f.hidden_field :location_id, value: "{{selectedLocationId}}" %>
-
-    <label>Pool</label>
-    <select ng-model='selected.pool_id' class='form-control'>
-      <option value=''>Select Pools</option>
-      <option ng-repeat='pool in pools | filter:{location_id: selected.location_id}' value='{{pool.id}}'>
-        {{pool.name}}
-      </option>
-    </select>
-    <%= f.hidden_field :pool_id, value: "{{selectedPoolId}}" %>
-  </div>
-  <%= f.primary 'Query Database',
-                 :onclick => "alert('Please see results numberics results tab to view results')" %>
+    <div ng-controller='ChemicalRecordsCtrl'>
+      <label>Location</label>
+      <select ng-model='selected.location_id' class='form-control'>
+        <option value=''>Select Locations</option>
+        <option ng-repeat='location in locations' value='{{location.id}}'>
+          {{location.name}}
+        </option>
+      </select>
+      <%= f.hidden_field :location_id, value: "{{selected.location_id}}" %>
+      <label>Pool</label>
+      <select ng-model='selected.pool_id' class='form-control'>
+        <option value=''>Select Pools</option>
+        <option ng-repeat='pool in pools | filter:{location_id: selected.location_id}' value='{{pool.id}}'>
+          {{pool.name}}
+        </option>
+      </select>
+      <%= f.hidden_field :pool_id, value: "{{selected.pool_id}}" %>
+    </div>
+  <%= f.primary 'Query Database' %>
 <% end %>
 
