@@ -78,8 +78,8 @@
       <td>{{record.pool_temp}}</td>
       <td class='hidden-xs'>{{record.air_temp}}</td>
       <td class='hidden-xs'>{{record.water_clarity}}</td>
-      <td class='hidden-xs'>{{record.si_index}}</td>
-      <td class='hidden-xs'>{{record.si_status}}</td>
+      <td class='hidden-xs' ng-class='cssClass(record)'>{{record.si_index}}</td>
+      <td class='hidden-xs' ng-class='cssClass(record)'>{{record.si_status}}</td>
       <td>
         <a ng-href='{{record.url}}'>
           {{record.time_stamp | date:'M/d/yy h:mm a'}}

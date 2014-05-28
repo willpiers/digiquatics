@@ -8,6 +8,13 @@
       location_id: ''
       pool_id: ''
 
+    $scope.cssClass = (record) ->
+      if       record.si_index < -0.6 then 'danger'
+      else if  record.si_index >= -0.6 && record.si_index < -0.3 then 'warning'
+      else if  record.si_index >= -0.3 && record.si_index <= -0.3 then 'success'
+      else if  record.si_index > 0.3 && record.si_index < 0.6 then 'warning'
+      else    'danger'
+
     $scope.totalDisplayed = 10
 
     $scope.loadMore = ->
