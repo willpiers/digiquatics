@@ -82,7 +82,69 @@ describe 'Private Lessons' do
     it { should have_content('Private Lessons Mangement') }
   end
 
-  describe 'signup' do
+  describe 'signup while not signed in' do
+    before do
+      Warden.test_reset!
+      visit new_account_private_lesson_path(account_id: account.id)
+    end
+
+    it { should have_title(full_title('Lesson Request')) }
+    it { should have_selector('legend', text: 'Lesson Request') }
+    it { should have_selector('h4', text: 'Parent Information') }
+    it { should have_selector('h4', text: 'Student Information') }
+    it { should have_selector('h4', text: 'Lesson Request') }
+
+    let(:submit) { 'Submit' }
+
+    describe 'with valid information' do
+      before do
+        fill_in 'Parent First Name', with: 'Josh'
+        fill_in 'Parent Last Name',  with: 'Josh'
+        fill_in 'Phone Number',      with: '303-921-8628'
+        fill_in 'Parent First Name', with: 'Josh'
+        fill_in 'Email',             with: 'Josh.m.duffy@gmail.com'
+        select 'Call',               from: 'Preferred Contact Method'
+        fill_in 'Student First Name', with: 'CJ'
+        select 'M', from: 'Gender *'
+        fill_in 'Age *', with: '12'
+        check 'private_lesson_sunday_morning'
+        check 'private_lesson_sunday_afternoon'
+        check 'private_lesson_sunday_evening'
+        check 'private_lesson_monday_morning'
+        check 'private_lesson_monday_afternoon'
+        check 'private_lesson_monday_evening'
+        check 'private_lesson_tuesday_morning'
+        check 'private_lesson_tuesday_afternoon'
+        check 'private_lesson_tuesday_evening'
+        check 'private_lesson_wednesday_morning'
+        check 'private_lesson_wednesday_afternoon'
+        check 'private_lesson_wednesday_evening'
+        check 'private_lesson_thursday_morning'
+        check 'private_lesson_thursday_afternoon'
+        check 'private_lesson_thursday_evening'
+        check 'private_lesson_friday_morning'
+        check 'private_lesson_friday_afternoon'
+        check 'private_lesson_friday_evening'
+        check 'private_lesson_saturday_morning'
+        check 'private_lesson_saturday_afternoon'
+        check 'private_lesson_saturday_evening'
+      end
+
+      it 'should create a private lesson' do
+        expect { click_button submit }.to change(PrivateLesson, :count).by(1)
+      end
+    end
+
+    describe 'with invalid information' do
+      before { fill_in 'Parent First Name', with: ' ' }
+
+      it 'should not create a private lesson' do
+        expect { click_button submit }.not_to change(PrivateLesson, :count)
+      end
+    end
+  end
+
+  describe 'lesson request while signed in' do
     before do
       Warden.test_reset!
       login_as(user, scope: :user)
