@@ -76,10 +76,34 @@ describe 'Private Lessons' do
     it { should have_content('My Lessons') }
   end
 
-  describe 'Manage as Admin' do
+  describe 'Manage as Admin Open' do
     before { visit admin_index_path }
 
-    it { should have_content('Private Lessons Mangement') }
+    it { should have_content('Open Private Lessons Mangement') }
+    it { should have_selector('th', text: 'Instructor') }
+    it { should have_selector('th', text: 'Instructor Phone') }
+    it { should have_selector('th', text: 'Parent') }
+    it { should have_selector('th', text: 'Parent Phone') }
+    it { should have_selector('th', text: 'Student') }
+    it { should have_selector('th', text: 'Location') }
+    it { should have_selector('th', text: 'Submitted') }
+    it { should have_selector('th', text: 'Claimed') }
+  end
+
+  describe 'Manage as Admin Closed' do
+    before { visit closed_admin_index_path }
+
+    it { should have_content('Closed Private Lessons Mangement') }
+    it { should have_selector('th', text: 'Instructor') }
+    it { should have_selector('th', text: 'Instructor Phone') }
+    it { should have_selector('th', text: 'Parent') }
+    it { should have_selector('th', text: 'Parent Phone') }
+    it { should have_selector('th', text: 'Student') }
+    it { should have_selector('th', text: 'Location') }
+    it { should have_selector('th', text: 'Submitted') }
+    it { should have_selector('th', text: 'Claimed') }
+    it { should have_selector('th', text: 'Completed') }
+
   end
 
   describe 'signup while not signed in' do
