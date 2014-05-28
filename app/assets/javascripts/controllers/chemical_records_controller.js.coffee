@@ -8,7 +8,7 @@
       location_id: ''
       pool_id: ''
 
-    $scope.totalDisplayed = 20
+    $scope.totalDisplayed = 10
 
     $scope.loadMore = ->
       $scope.totalDisplayed += 50

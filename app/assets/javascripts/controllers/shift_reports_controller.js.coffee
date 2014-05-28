@@ -7,7 +7,7 @@
       x = 7 # go back 5 days!
       if data.created_at > (d - 7) then true
 
-    $scope.totalDisplayed = 20
+    $scope.totalDisplayed = 10
 
     $scope.loadMore = ->
       $scope.totalDisplayed += 50
