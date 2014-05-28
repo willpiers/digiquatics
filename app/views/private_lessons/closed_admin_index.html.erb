@@ -1,30 +1,30 @@
 <div ng-app='digiquatics'>
-  <div ng-controller='AdminPrivateLessonsCtrl'>
-    <% provide(:title, 'Open Lessons Mangement') %>
-    <h1 class='cross_platform_header'>Open Private Lessons Mangement</h1>
+  <div ng-controller='ClosedAdminPrivateLessonsCtrl'>
+    <% provide(:title, 'Closed Lessons Mangement') %>
+    <h1 class='cross_platform_header'>Closed Private Lessons Mangement</h1>
     <div class='row'>
       <dq-search></dq-search>
       <div class='visible-xs'><br></div>
       <dq-location></dq-location>
-      <div class='col-md-2'></div>
+      <div class='col-md-4'></div>
       <div class='col-md-5 pull-right'>
         <div class='btn-group'>
-          <%if current_user.admin? %>
           <%= link_to 'New Private Lesson',
             new_account_private_lesson_path(account_id: current_account.id),
               class: 'btn btn-primary btn-sm',
               role: 'button' %>
+          <%if current_user.admin? %>
             <%= link_to 'Queue',
                 account_private_lessons_path(account_id: current_user.account_id),
               class: 'btn btn-success btn-sm', role: 'button' %>
-            <%= link_to 'Closed Lessons Management',
-                closed_admin_index_path,
+            <%= link_to 'Open Lessons Management',
+                admin_index_path,
               class: 'btn btn-danger btn-sm', role: 'button' %>
           <% end %>
         </div>
       </div>
     </div>
     <br>
-    <%= render 'admin_private_lessons' %>
+    <%= render 'closed_admin_index' %>
   </div>
 </div>
