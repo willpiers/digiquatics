@@ -8,7 +8,7 @@
     </center>
     <%= content_tag(:legend, legend) if legend %>
     <%= render 'shared/required' %>
-    <h4> Parent Information </h4>
+    <h4>Parent Information</h4>
     <br>
       <%= f.text_field :parent_first_name, label: 'Parent First Name *' %>
       <%= f.text_field :parent_last_name, label: 'Parent Last Name *' %>
@@ -17,28 +17,39 @@
       <%= f.select :contact_method, options_for_select(%w[Call Email Text],
                    @private_lesson.contact_method.to_s), label: 'Preferred Contact Method' %>
 
-    <h4> Student Information </h4>
+    <h4>Student Information</h4>
 
-      <%= f.fields_for :participants do |builder| %>
-        <%= render 'participant_fields', f: builder %>
-      <% end %>
+    <%= f.fields_for :participants do |builder| %>
+      <%= render 'participant_fields', f: builder %>
+    <% end %>
 
     <%= link_to_add_fields(
       raw('<i class="glyphicon glyphicon-plus-sign"></i> Add Student'),
       f, :participants) %>
 
-    <h4> Preferences </h4>
+    <h4>Preferences</h4>
+
+    <% if signed_in? %>
       <%= f.select :location_id,
-        options_from_collection_for_select(Location.same_account_as(current_user),
+        options_from_collection_for_select(Location
+                                           .same_account_as(current_user),
                                            :id,
                                            :name, @private_lesson.location_id) %>
-      <%= f.text_area :notes,
-                      placeholder: 'Special requests or comments',
-                      size: '2x' %>
-      <%= f.text_area :lesson_objective,
-                      placeholder: 'Learning objectives',
-                      side: '2x',
-                      label: 'Lesson Objectives' %>
+    <% else %>
+      <%= f.select :location_id,
+        options_from_collection_for_select(Location
+                                           .same_account_as(@private_lesson),
+                                           :id,
+                                           :name, @private_lesson.location_id) %>
+    <% end %>
+
+    <%= f.text_area :notes,
+                    placeholder: 'Special requests or comments',
+                    size: '2x' %>
+    <%= f.text_area :lesson_objective,
+                    placeholder: 'Learning objectives',
+                    side: '2x',
+                    label: 'Lesson Objectives' %>
 
     <h4>Availability (Please check times you are available):</h4>
 
@@ -53,7 +64,7 @@
         <th class='lessons_form_table_cell hidden-xs'> Evening </th>
       </tr>
       <tr>
-        <th> Sunday </th>
+        <th>Sunday</th>
         <td>
           <div class='checkbox_fix'>
             <%= f.check_box :sunday_morning, label: '' %>
@@ -71,122 +82,122 @@
         </td>
       </tr>
       <tr>
-        <th> Monday </th>
+        <th>Monday</th>
         <td>
           <div class='checkbox_fix'>
-          <%= f.check_box :monday_morning, label: '' %>
+            <%= f.check_box :monday_morning, label: '' %>
           </div>
         </td>
         <td>
           <div class='checkbox_fix'>
-        <%= f.check_box :monday_afternoon, label: '' %>
-        </div>
-        </td>
-        <td>
-          <div class='checkbox_fix'>
-          <%= f.check_box :monday_evening, label: '' %>
-          </div>
-        </td>
-      </tr>
-      <tr>
-        <th> Tuesday </th>
-        <td>
-          <div class='checkbox_fix'>
-          <%= f.check_box :tuesday_morning, label: '' %>
+            <%= f.check_box :monday_afternoon, label: '' %>
           </div>
         </td>
         <td>
           <div class='checkbox_fix'>
-        <%= f.check_box :tuesday_afternoon, label: '' %>
-        </td>
-        </div>
-        <td>
-          <div class='checkbox_fix'>
-          <%= f.check_box :tuesday_evening, label: '' %>
+            <%= f.check_box :monday_evening, label: '' %>
           </div>
         </td>
       </tr>
       <tr>
-        <th> Wednesday </th>
+        <th>Tuesday</th>
         <td>
           <div class='checkbox_fix'>
-          <%= f.check_box :wednesday_morning, label: '' %>
+            <%= f.check_box :tuesday_morning, label: '' %>
           </div>
         </td>
         <td>
           <div class='checkbox_fix'>
-        <%= f.check_box :wednesday_afternoon, label: '' %>
-        </div>
-        </td>
-        <td>
-          <div class='checkbox_fix'>
-          <%= f.check_box :wednesday_evening, label: '' %>
-          </div>
-        </td>
-      </tr>
-      <tr>
-        <th> Thursday </th>
-        <td>
-          <div class='checkbox_fix'>
-          <%= f.check_box :thursday_morning, label: '' %>
+            <%= f.check_box :tuesday_afternoon, label: '' %>
           </div>
         </td>
         <td>
           <div class='checkbox_fix'>
-        <%= f.check_box :thursday_afternoon, label: '' %>
-        </div>
-        </td>
-        <td>
-          <div class='checkbox_fix'>
-          <%= f.check_box :thursday_evening, label: '' %>
+            <%= f.check_box :tuesday_evening, label: '' %>
           </div>
         </td>
       </tr>
       <tr>
-        <th> Friday </th>
+        <th>Wednesday</th>
         <td>
           <div class='checkbox_fix'>
-          <%= f.check_box :friday_morning, label: '' %>
+            <%= f.check_box :wednesday_morning, label: '' %>
           </div>
         </td>
         <td>
           <div class='checkbox_fix'>
-        <%= f.check_box :friday_afternoon, label: '' %>
-        </div>
+            <%= f.check_box :wednesday_afternoon, label: '' %>
+          </div>
         </td>
         <td>
           <div class='checkbox_fix'>
-          <%= f.check_box :friday_evening, label: '' %>
+            <%= f.check_box :wednesday_evening, label: '' %>
           </div>
         </td>
       </tr>
       <tr>
-        <th> Saturday </th>
+        <th>Thursday</th>
         <td>
           <div class='checkbox_fix'>
-          <%= f.check_box :saturday_morning, label: '' %>
+            <%= f.check_box :thursday_morning, label: '' %>
           </div>
         </td>
         <td>
           <div class='checkbox_fix'>
-        <%= f.check_box :saturday_afternoon, label: '' %>
-        </div>
+            <%= f.check_box :thursday_afternoon, label: '' %>
+          </div>
         </td>
         <td>
           <div class='checkbox_fix'>
-          <%= f.check_box :saturday_evening, label: '' %>
+            <%= f.check_box :thursday_evening, label: '' %>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <th>Friday</th>
+        <td>
+          <div class='checkbox_fix'>
+            <%= f.check_box :friday_morning, label: '' %>
+          </div>
+        </td>
+        <td>
+          <div class='checkbox_fix'>
+            <%= f.check_box :friday_afternoon, label: '' %>
+          </div>
+        </td>
+        <td>
+          <div class='checkbox_fix'>
+            <%= f.check_box :friday_evening, label: '' %>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <th>Saturday</th>
+        <td>
+          <div class='checkbox_fix'>
+            <%= f.check_box :saturday_morning, label: '' %>
+          </div>
+        </td>
+        <td>
+          <div class='checkbox_fix'>
+            <%= f.check_box :saturday_afternoon, label: '' %>
+          </div>
+        </td>
+        <td>
+          <div class='checkbox_fix'>
+            <%= f.check_box :saturday_evening, label: '' %>
           </div>
         </td>
       </tr>
     </table>
 
-    <h4> Lesson Request </h4>
+    <h4>Lesson Request</h4>
       <%= f.select :number_lessons,
                    options_for_select((1..10).to_a),
                    label: 'Number of Lessons' %>
-    <%= f.primary ( f.object.new_record? ?  'Submit' :
-    'Save Changes' ) %>
-  <% end %>
-</div>
+      <%= f.primary ( f.object.new_record? ?  'Submit' : 'Save Changes' ) %>
+
+    <% end %>
+  </div>
 </div>
 

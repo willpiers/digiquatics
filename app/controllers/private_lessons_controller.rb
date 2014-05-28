@@ -79,16 +79,16 @@ class PrivateLessonsController < ApplicationController
   include PrivateLessonsHelper
 
   def handle_action(resource, message, page, account)
-    if signed_in?
-      if yield(resource)
+    if yield(resource)
+      thank_you_email(resource, account)
+      if signed_in?
         flash[:success] = message
-        thank_you_email(resource, account)
         redirect_to resource
       else
-        render page
+        redirect_to thank_you_path
       end
     else
-      redirect_to thank_you_path
+      render page
     end
   end
 
