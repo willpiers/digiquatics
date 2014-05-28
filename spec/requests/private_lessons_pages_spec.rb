@@ -276,6 +276,9 @@ describe 'Private Lessons' do
         let(:student_first_name) { 'Johnny' }
 
         before do
+          # Meeting Arrangement
+          fill_in 'private_lesson_meeting_time_agreement', with: 'Sat 8am'
+
           # Parent information
           fill_in 'Parent First Name', with: 'Parent First'
           fill_in 'Parent Last Name',  with: 'Parent Last'
@@ -345,7 +348,6 @@ describe 'Private Lessons' do
       end
     end
   end
-
 
   describe 'stats' do
     before do
