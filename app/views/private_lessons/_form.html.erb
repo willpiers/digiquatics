@@ -24,7 +24,8 @@
       <% end %>
 
     <%= link_to_add_fields(
-      raw('<i class="glyphicon glyphicon-plus-sign"></i> Add Student'),
+      raw('<i class="glyphicon glyphicon-plus-sign"></i> Add Student to make
+          this request a semi-private lesson'),
       f, :participants) %>
 
     <h4> Preferences </h4>
@@ -40,7 +41,7 @@
                       side: '2x',
                       label: 'Lesson Objectives' %>
 
-    <h4>Availability (Please check times you are available):</h4>
+    <h4>Availability <br/> (Please check times you are available) </h4>
 
     <table class='table table-bordered' >
       <tr>
