@@ -92,7 +92,7 @@ describe 'User pages' do
         visit new_user_path
       end
 
-      let(:submit) { 'Create New Employee' }
+      let(:second_submit) { 'Create New Employee' }
 
       it { should_not have_selector('label', text: 'Account') }
 
@@ -107,11 +107,11 @@ describe 'User pages' do
         end
 
         it 'should create another user' do
-          expect { click_button submit }.to change(User, :count).by(1)
+          expect { click_button second_submit }.to change(User, :count).by(1)
         end
 
         describe 'after saving the user' do
-          before { click_button submit }
+          before { click_button second_submit }
 
           let(:another_created_user) do
             User.find_by_email('user2@example.com')
