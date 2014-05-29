@@ -43,7 +43,8 @@ class ParticipantsController < ApplicationController
 
   def participant_params
     params.require(:participant)
-    .permit(:private_lesson_id, :first_name, :last_name, :sex, :age)
+    .permit(:private_lesson_id, :first_name, :last_name, :sex, :age,
+            :skill_level_id)
   end
 
   def handle_action(resource, message, page)

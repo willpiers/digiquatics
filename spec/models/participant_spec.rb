@@ -8,7 +8,8 @@ describe Participant do
       first_name:         'Lydia',
       last_name:          'Pierce',
       sex:                'M',
-      age:                '12')
+      age:                '12',
+      skill_level_id:     1)
   end
 
   subject { @participant }
@@ -18,6 +19,7 @@ describe Participant do
   it { should respond_to(:last_name) }
   it { should respond_to(:sex) }
   it { should respond_to(:age) }
+  it { should respond_to(:skill_level_id) }
 
   it { should be_valid }
 

@@ -1,0 +1,31 @@
+<% provide(:title, 'Manage Skill Levels') %>
+<h1>Manage Skill Levels</h1>
+
+<div class='table-responsive'>
+
+<table class='table table-hover table-condensed'>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @skill_levels.each do |skill_level| %>
+      <tr>
+        <td><%= skill_level.name %></td>
+        <td><%= link_to 'Edit', edit_skill_level_path(skill_level) %></td>
+        <td><%= link_to 'Delete', skill_level, method: :delete,
+          data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Skill Level', new_skill_level_path %>
+
+</div>

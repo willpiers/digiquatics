@@ -5,6 +5,8 @@ describe 'Private Lessons' do
   let!(:another_account) { FactoryGirl.create(:account) }
   let(:location) { FactoryGirl.create(:location) }
   let(:position) { FactoryGirl.create(:position) }
+  let(:skill_level) { FactoryGirl.create(:skill_level,
+                                         account_id: account.id) }
   let(:user) do
     FactoryGirl.create(:user,
                        location_id: location.id,
@@ -48,6 +50,8 @@ describe 'Private Lessons' do
 
   before do
     login_as(user, scope: :user)
+    FactoryGirl.create(:skill_level,
+                       account_id: account.id)
     FactoryGirl.create(:participant,
                        private_lesson_id:   unassigned_lesson.id,
                        first_name:          'unassigned_lesson')
@@ -119,6 +123,8 @@ describe 'Private Lessons' do
     it { should have_selector('h4', text: 'Student Information') }
     it { should have_selector('h4', text: 'Lesson Request') }
 
+    # it { should have_content(skill_level.name) }
+
     let(:submit) { 'Submit' }
 
     describe 'with valid information' do
@@ -181,6 +187,8 @@ describe 'Private Lessons' do
     it { should have_selector('h4', text: 'Parent Information') }
     it { should have_selector('h4', text: 'Student Information') }
     it { should have_selector('h4', text: 'Lesson Request') }
+
+    # it { should have_content(skill_level.name) }
 
     let(:submit) { 'Submit' }
 
@@ -247,6 +255,7 @@ describe 'Private Lessons' do
       it { should have_title(full_title('Lesson Request')) }
       it { should have_selector('h1', text: 'Lesson Request') }
       it { should have_content('Instructor Information') }
+      it { should have_content('Skill Level') }
       it { should have_selector('h4', text: 'Availability') }
     end
 

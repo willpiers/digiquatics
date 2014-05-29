@@ -74,7 +74,7 @@
   <% if current_user.admin? %>
     <table class='table table-bordered table-condensed' >
 
-      <h4> Instructor Information </h4>
+      <h4>Instructor Information</h4>
       <tr>
          <th id='fixtablewidth'>Name</th>
         <td>
@@ -85,7 +85,7 @@
         </td>
       </tr>
       <tr>
-        <th> Phone Number </th>
+        <th>Phone Number</th>
         <td>
           <% if @private_lesson.user %>
             <%= phone_number_link(@private_lesson.user.phone_number) %>
@@ -93,7 +93,7 @@
         </td>
       </tr>
       <tr>
-        <th> Email </th>
+        <th>Email</th>
         <td>
           <% if @private_lesson.user %>
             <%= mail_to "{@private_lesson.user.email}" do %>
@@ -103,7 +103,7 @@
         </td>
       </tr>
       <tr>
-        <th> Location </th>
+        <th>Location</th>
         <td>
           <% if @private_lesson.user %>
             <%= @private_lesson.user.location.name %>
@@ -111,7 +111,7 @@
         </td>
       </tr>
       <tr>
-        <th> Agreed Meeting Time </th>
+        <th>Agreed Meeting Time</th>
         <td>
           <% if @private_lesson.meeting_time_agreement %>
             <%= @private_lesson.meeting_time_agreement %>
@@ -127,51 +127,59 @@
   <table class='table table-bordered table-condensed' >
     <h4> Parent Information </h4>
       <tr>
-        <th id='fixtablewidth'> Name </th>
+        <th id='fixtablewidth'>Name</th>
         <td>
           <%= "#{@private_lesson.parent_last_name}, #{@private_lesson.parent_first_name}" %>
         </td>
       </tr>
       <tr>
-        <th> Phone Number</th>
-        <td> <%= phone_number_link(@private_lesson.phone_number) %> </td>
+        <th>Phone Number</th>
+        <td><%= phone_number_link(@private_lesson.phone_number) %></td>
       </tr>
       <tr>
-        <th> Email </th>
+        <th>Email</th>
         <td>
           <%= mail_to "#{@private_lesson.email}" do %>
-            <span> <%= @private_lesson.email %> </span>
+            <span><%= @private_lesson.email %></span>
           <% end %>
         </td>
       </tr>
       <tr>
-        <th> Preferred Contact Method </th>
-        <td> <%= @private_lesson.contact_method %> </td>
+        <th>Preferred Contact Method</th>
+        <td><%= @private_lesson.contact_method %></td>
       </tr>
   </table>
 
   <% @private_lesson.participants.each do |participant| %>
     <table class='table table-bordered' >
-      <h4> Student Information </h4>
+      <h4>Student Information</h4>
       <tr>
-         <th id='fixtablewidth'> Name </th>
-        <td> <%= "#{participant.last_name}, #{participant.first_name}" %> </td>
+         <th id='fixtablewidth'>Name</th>
+        <td><%= "#{participant.last_name}, #{participant.first_name}" %></td>
       </tr>
       <tr>
-        <th> Gender</th>
-        <td> <%= participant.sex %> </td>
+        <th>Gender</th>
+        <td><%= participant.sex %></td>
       </tr>
       <tr>
-        <th> Age </th>
-        <td> <%= participant.age %> </td>
+        <th>Age </th>
+        <td><%= participant.age %></td>
+      </tr>
+      <tr>
+        <th>Skill Level</th>
+        <td>
+          <% if participant.skill_level %>
+            <%= participant.skill_level.name %>
+          <% end %>
+        </td>
       </tr>
     </table>
   <% end %>
 
   <table class='table table-bordered' >
-    <h4> Preferences </h4>
+    <h4>Preferences</h4>
     <tr>
-      <th> Location </th>
+      <th>Location</th>
       <td>
         <% if @private_lesson.location %>
           <%= @private_lesson.location.name %>
@@ -185,12 +193,12 @@
       <td> <%= @private_lesson.notes %> </td>
     </tr>
     <tr>
-      <th> Lesson Objectives </th>
+      <th>Lesson Objectives</th>
       <td> <%= @private_lesson.lesson_objective %> </td>
     </tr>
   </table>
 
-  <h4> Availability </h4>
+  <h4>Availability</h4>
   <table class='table table-bordered' >
     <tr>
       <th id='fixtablewidth'></th>
@@ -199,7 +207,7 @@
       <th class='lessons_table_cell'> Evening </th>
     </tr>
     <tr>
-      <th> Sunday </th>
+      <th>Sunday</th>
       <td class='lessons_table_cell
                  <%=lesson_css_class(@private_lesson.sunday_morning)%>'>
         <%= boolean_to_words_lessons(@private_lesson.sunday_morning) %>
@@ -214,7 +222,7 @@
       </td>
     </tr>
     <tr>
-      <th> Monday </th>
+      <th>Monday</th>
       <td class='lessons_table_cell
                  <%=lesson_css_class(@private_lesson.monday_morning)%>'>
         <%= boolean_to_words_lessons(@private_lesson.monday_morning) %>
@@ -229,7 +237,7 @@
       </td>
     </tr>
     <tr>
-      <th> Tuesday </th>
+      <th>Tuesday</th>
       <td class='lessons_table_cell
                  <%=lesson_css_class(@private_lesson.tuesday_morning)%>'>
         <%= boolean_to_words_lessons(@private_lesson.tuesday_morning) %>
@@ -244,7 +252,7 @@
       </td>
     </tr>
     <tr>
-      <th> Wednesday </th>
+      <th>Wednesday</th>
       <td class='lessons_table_cell
                  <%=lesson_css_class(@private_lesson.wednesday_morning)%>'>
         <%= boolean_to_words_lessons(@private_lesson.wednesday_morning) %>
@@ -259,7 +267,7 @@
       </td>
     </tr>
     <tr>
-      <th> Thursday </th>
+      <th>Thursday</th>
       <td class='lessons_table_cell
                  <%=lesson_css_class(@private_lesson.thursday_morning)%>'>
         <%= boolean_to_words_lessons(@private_lesson.thursday_morning) %>
@@ -274,7 +282,7 @@
       </td>
     </tr>
     <tr>
-      <th> Friday </th>
+      <th>Friday</th>
       <td class='lessons_table_cell
                  <%=lesson_css_class(@private_lesson.friday_morning)%>'>
         <%= boolean_to_words_lessons(@private_lesson.friday_morning) %>
@@ -289,7 +297,7 @@
       </td>
     </tr>
     <tr>
-      <th> Saturday </th>
+      <th>Saturday</th>
       <td class='lessons_table_cell
                  <%=lesson_css_class(@private_lesson.saturday_morning)%>'>
         <%= boolean_to_words_lessons(@private_lesson.saturday_morning) %>
@@ -306,7 +314,7 @@
   </table>
 
   <table class='table table-bordered' >
-    <h4> Lesson Request </h4>
+    <h4>Lesson Request</h4>
       <tr>
         <th id='fixtablewidth'> Number Lessons </th>
         <td> <%= @private_lesson.number_lessons %> </td>

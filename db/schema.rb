@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140528151849) do
+ActiveRecord::Schema.define(version: 20140529014656) do
 
   create_table "accounts", force: true do |t|
     t.string   "name"
@@ -110,6 +110,7 @@ ActiveRecord::Schema.define(version: 20140528151849) do
     t.string  "last_name"
     t.string  "sex"
     t.integer "age"
+    t.integer "skill_level_id"
   end
 
   create_table "pools", force: true do |t|
@@ -205,6 +206,11 @@ ActiveRecord::Schema.define(version: 20140528151849) do
     t.string   "attachment_back_content_type"
     t.integer  "attachment_back_file_size"
     t.datetime "attachment_back_updated_at"
+  end
+
+  create_table "skill_levels", force: true do |t|
+    t.integer "account_id"
+    t.string  "name"
   end
 
   create_table "slide_inspection_tasks", force: true do |t|
