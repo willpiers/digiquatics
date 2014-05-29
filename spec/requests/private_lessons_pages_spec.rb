@@ -334,7 +334,7 @@ describe 'Private Lessons' do
           fill_in 'Lesson Objectives', with: 'Starts and turns'
 
           # Lesson Request
-          select 1, from: 'Number of Lessons'
+          select package.name, from: 'Lesson Package *'
 
           click_button 'Save Changes'
         end

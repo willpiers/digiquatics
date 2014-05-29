@@ -20,7 +20,7 @@ class PrivateLesson < ActiveRecord::Base
 
   validates_presence_of :account_id, :parent_first_name, :parent_last_name,
                         :phone_number, :email, :contact_method,
-                        :number_lessons, :package_id
+                        :package_id
 
   comma do
     last_name 'Student Last'

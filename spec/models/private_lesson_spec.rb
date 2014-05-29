@@ -10,7 +10,6 @@ describe PrivateLesson do
       phone_number:           '720-387-9691',
       email:                  'michael@affektive.com',
       contact_method:         'Call',
-      number_lessons:         '5',
       instructor_gender:      'F',
       notes:                  'No Jake',
       lesson_objective:       'Get Better',
@@ -47,7 +46,6 @@ describe PrivateLesson do
   it { should respond_to(:phone_number) }
   it { should respond_to(:email) }
   it { should respond_to(:contact_method) }
-  it { should respond_to(:number_lessons) }
   it { should respond_to(:instructor_gender) }
   it { should respond_to(:notes) }
   it { should respond_to(:lesson_objective) }
@@ -104,11 +102,6 @@ describe PrivateLesson do
 
   describe 'when contact methid is not present' do
     before { @private_lesson.contact_method = nil }
-    it { should_not be_valid }
-  end
-
-  describe 'when number of lessons is not present' do
-    before { @private_lesson.number_lessons = nil }
     it { should_not be_valid }
   end
 

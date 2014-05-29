@@ -79,7 +79,6 @@ FactoryGirl.define do
     preferred_location 1
     user_id 1
     contact_method 'Call'
-    number_lessons 3
     instructor_gender 'F'
     notes 'None at this moment'
     lesson_objective 'Starts & Turns'
