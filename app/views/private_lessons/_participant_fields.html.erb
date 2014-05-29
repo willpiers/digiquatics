@@ -5,6 +5,20 @@
     <%= f.text_field :last_name, label: 'Student Last Name' %>
     <%= f.select :sex, options_for_select(%w[M F]), label: 'Gender *' %>
     <%= f.number_field :age, label: 'Age *' %>
+    <% if signed_in? %>
+      <%= f.select :skill_level_id,
+        options_from_collection_for_select(SkillLevel.same_account_as(current_user),
+                                           :id,
+                                           :name,
+                                           f.object.skill_level_id), include_blank: true %>
+    <% else %>
+      <%= f.select :skill_level_id,
+        options_from_collection_for_select(SkillLevel.same_account_as(@private_lesson),
+                                           :id,
+                                           :name,
+                                           f.object.skill_level_id), include_blank: true %>
+    <% end %>
+
     </div>
 
     <div class="col-md-3 col-xs-5 remove">

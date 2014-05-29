@@ -9,6 +9,7 @@ DigiQuatics::Application.routes.draw do
   resources :pools
   resources :chemical_records
   resources :positions
+  resources :skill_levels
   resources :certifications
   resources :certification_names
   resources :slide_inspections

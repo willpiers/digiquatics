@@ -165,6 +165,14 @@
         <th> Age </th>
         <td> <%= participant.age %> </td>
       </tr>
+      <tr>
+        <th> Skill Level </th>
+        <td>
+          <% if participant.skill_level %>
+            <%= participant.skill_level.name %>
+          <% end %>
+        </td>
+      </tr>
     </table>
   <% end %>
 

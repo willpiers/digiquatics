@@ -13,7 +13,7 @@ module PrivateLessonsHelper
     :meeting_time_agreement,
     participants_attributes: [
       :_destroy, :id, :private_lesson_id, :first_name, :last_name,
-      :sex, :age
+      :sex, :age, :skill_level_id
     ]
   ]
 

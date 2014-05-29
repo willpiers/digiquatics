@@ -130,4 +130,9 @@ FactoryGirl.define do
     user_id 1
     location_id 1
   end
+
+  factory :skill_level do
+    name 'Level 1'
+    account_id 1
+  end
 end

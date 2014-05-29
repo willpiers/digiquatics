@@ -1,0 +1,14 @@
+<p id='notice'><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @skill_level.name %>
+</p>
+
+<p>
+  <strong>Account:</strong>
+  <%= @skill_level.account_id %>
+</p>
+
+<%= link_to 'Edit', edit_skill_level_path(@skill_level) %> |
+<%= link_to 'Back', skill_levels_path %>

@@ -55,6 +55,7 @@ class PrivateLessonsController < ApplicationController
 
   def new
     @private_lesson = Account.find(params[:account_id]).private_lessons.build
+    @skill_levels = SkillLevel.same_account_as(current_user || @private_lesson)
     @private_lesson.participants.build
     unless current_user
       render layout: 'devise'
