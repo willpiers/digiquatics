@@ -10,7 +10,7 @@ module PrivateLessonsHelper
     :wednesday_afternoon, :wednesday_evening, :thursday_morning,
     :thursday_afternoon, :thursday_evening, :friday_morning, :friday_afternoon,
     :friday_evening, :saturday_morning, :saturday_afternoon, :saturday_evening,
-    :meeting_time_agreement,
+    :meeting_time_agreement, :package_id,
     participants_attributes: [
       :_destroy, :id, :private_lesson_id, :first_name, :last_name,
       :sex, :age, :skill_level_id

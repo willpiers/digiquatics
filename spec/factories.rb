@@ -83,6 +83,7 @@ FactoryGirl.define do
     instructor_gender 'F'
     notes 'None at this moment'
     lesson_objective 'Starts & Turns'
+    package_id 1
   end
 
   factory :participant do
@@ -133,6 +134,11 @@ FactoryGirl.define do
 
   factory :skill_level do
     name 'Level 1'
+    account_id 1
+  end
+
+  factory :package do
+    name '3 Lessons ($50.00)'
     account_id 1
   end
 end

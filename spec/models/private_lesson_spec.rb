@@ -35,7 +35,8 @@ describe PrivateLesson do
       friday_evening:         true,
       saturday_morning:       true,
       saturday_afternoon:     true,
-      saturday_evening:       true)
+      saturday_evening:       true,
+      package_id:             1)
   end
 
   subject { @private_lesson }
@@ -72,6 +73,7 @@ describe PrivateLesson do
   it { should respond_to(:saturday_morning) }
   it { should respond_to(:saturday_afternoon) }
   it { should respond_to(:saturday_evening) }
+  it { should respond_to(:package_id) }
 
   it { should be_valid }
 
@@ -107,6 +109,11 @@ describe PrivateLesson do
 
   describe 'when number of lessons is not present' do
     before { @private_lesson.number_lessons = nil }
+    it { should_not be_valid }
+  end
+
+  describe 'when lesson package is not present' do
+    before { @private_lesson.package = nil }
     it { should_not be_valid }
   end
 end

@@ -204,7 +204,13 @@
     <h4>Lesson Request</h4>
       <%= f.select :number_lessons,
                    options_for_select((1..10).to_a),
-                   label: 'Number of Lessons' %>
+                   label: 'Number of Lessons *' %>
+      <%= f.select :package_id,
+        options_from_collection_for_select(Package
+                                           .same_account_as(@private_lesson),
+                                           :id,
+                                           :name, @private_lesson.package_id),
+                                           label: 'Lesson Package *' %>
       <%= f.primary ( f.object.new_record? ?  'Submit' : 'Save Changes' ) %>
 
     <% end %>

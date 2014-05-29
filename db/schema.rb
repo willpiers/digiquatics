@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140529014656) do
+ActiveRecord::Schema.define(version: 20140529213942) do
 
   create_table "accounts", force: true do |t|
     t.string   "name"
@@ -104,6 +104,11 @@ ActiveRecord::Schema.define(version: 20140529014656) do
     t.datetime "updated_at"
   end
 
+  create_table "packages", force: true do |t|
+    t.integer "account_id"
+    t.string  "name"
+  end
+
   create_table "participants", force: true do |t|
     t.string  "private_lesson_id"
     t.string  "first_name"
@@ -179,6 +184,7 @@ ActiveRecord::Schema.define(version: 20140529014656) do
     t.boolean  "saturday_afternoon"
     t.boolean  "saturday_evening"
     t.text     "meeting_time_agreement"
+    t.integer  "package_id"
   end
 
   create_table "sessions", force: true do |t|

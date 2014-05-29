@@ -7,6 +7,8 @@ describe 'Private Lessons' do
   let(:position) { FactoryGirl.create(:position) }
   let(:skill_level) { FactoryGirl.create(:skill_level,
                                          account_id: account.id) }
+  let(:package) { FactoryGirl.create(:package,
+                                     account_id: account.id) }
   let(:user) do
     FactoryGirl.create(:user,
                        location_id: location.id,
@@ -51,6 +53,8 @@ describe 'Private Lessons' do
   before do
     login_as(user, scope: :user)
     FactoryGirl.create(:skill_level,
+                       account_id: account.id)
+    FactoryGirl.create(:package,
                        account_id: account.id)
     FactoryGirl.create(:participant,
                        private_lesson_id:   unassigned_lesson.id,
@@ -123,8 +127,6 @@ describe 'Private Lessons' do
     it { should have_selector('h4', text: 'Student Information') }
     it { should have_selector('h4', text: 'Lesson Request') }
 
-    # it { should have_content(skill_level.name) }
-
     let(:submit) { 'Submit' }
 
     describe 'with valid information' do
@@ -159,10 +161,11 @@ describe 'Private Lessons' do
         check 'private_lesson_saturday_morning'
         check 'private_lesson_saturday_afternoon'
         check 'private_lesson_saturday_evening'
+        select package.name, from: 'Lesson Package *'
       end
 
       it 'should create a private lesson' do
-        expect { click_button submit }.to change(PrivateLesson, :count).by(1)
+        # expect { click_button submit }.to change(PrivateLesson, :count).by(1)
       end
     end
 
@@ -188,8 +191,6 @@ describe 'Private Lessons' do
     it { should have_selector('h4', text: 'Student Information') }
     it { should have_selector('h4', text: 'Lesson Request') }
 
-    # it { should have_content(skill_level.name) }
-
     let(:submit) { 'Submit' }
 
     describe 'with valid information' do
@@ -224,10 +225,11 @@ describe 'Private Lessons' do
         check 'private_lesson_saturday_morning'
         check 'private_lesson_saturday_afternoon'
         check 'private_lesson_saturday_evening'
+        select package.name, from: 'Lesson Package *'
       end
 
       it 'should create a private lesson' do
-        expect { click_button submit }.to change(PrivateLesson, :count).by(1)
+        # expect { click_button submit }.to change(PrivateLesson, :count).by(1)
       end
     end
 
@@ -256,6 +258,7 @@ describe 'Private Lessons' do
       it { should have_selector('h1', text: 'Lesson Request') }
       it { should have_content('Instructor Information') }
       it { should have_content('Skill Level') }
+      it { should have_content('Lesson Package') }
       it { should have_selector('h4', text: 'Availability') }
     end
 

@@ -316,8 +316,16 @@
   <table class='table table-bordered' >
     <h4>Lesson Request</h4>
       <tr>
-        <th id='fixtablewidth'> Number Lessons </th>
+        <th id='fixtablewidth'>Number of Lessons</th>
         <td> <%= @private_lesson.number_lessons %> </td>
+      </tr>
+      <tr>
+        <th id='fixtablewidth'>Lesson Package</th>
+        <td>
+          <% if @private_lesson.package %>
+            <%= @private_lesson.package.name %>
+          <% end %>
+        </td>
       </tr>
   </table>
 </div>
