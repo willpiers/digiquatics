@@ -10,7 +10,6 @@ describe PrivateLesson do
       phone_number:           '720-387-9691',
       email:                  'michael@affektive.com',
       contact_method:         'Call',
-      number_lessons:         '5',
       instructor_gender:      'F',
       notes:                  'No Jake',
       lesson_objective:       'Get Better',
@@ -35,7 +34,8 @@ describe PrivateLesson do
       friday_evening:         true,
       saturday_morning:       true,
       saturday_afternoon:     true,
-      saturday_evening:       true)
+      saturday_evening:       true,
+      package_id:             1)
   end
 
   subject { @private_lesson }
@@ -46,7 +46,6 @@ describe PrivateLesson do
   it { should respond_to(:phone_number) }
   it { should respond_to(:email) }
   it { should respond_to(:contact_method) }
-  it { should respond_to(:number_lessons) }
   it { should respond_to(:instructor_gender) }
   it { should respond_to(:notes) }
   it { should respond_to(:lesson_objective) }
@@ -72,6 +71,7 @@ describe PrivateLesson do
   it { should respond_to(:saturday_morning) }
   it { should respond_to(:saturday_afternoon) }
   it { should respond_to(:saturday_evening) }
+  it { should respond_to(:package_id) }
 
   it { should be_valid }
 
@@ -105,8 +105,8 @@ describe PrivateLesson do
     it { should_not be_valid }
   end
 
-  describe 'when number of lessons is not present' do
-    before { @private_lesson.number_lessons = nil }
+  describe 'when lesson package is not present' do
+    before { @private_lesson.package = nil }
     it { should_not be_valid }
   end
 end

@@ -24,6 +24,35 @@
     class: 'glyphicon glyphicon-plus-sign' %>
 </p>
 
+<table class='table'>
+  <tbody>
+    <tr>
+      <th>Packages</th>
+      <th></th>
+      <th></th>
+    </tr>
+    <% @packages.each do |package| %>
+      <tr>
+        <td class='fixtablewidthadmin'> <%= package.name %></td>
+
+        <td><%= link_to ' Edit', edit_package_path(package),
+        class: 'glyphicon glyphicon-pencil' %></td>
+        <td><%= link_to ' Delete', package, method: :delete,
+          class: 'glyphicon glyphicon-trash',
+          data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<p class='new_button'>
+  <%= link_to ' New', new_package_path,
+    class: 'glyphicon glyphicon-plus-sign' %>
+</p>
+
+<hr>
+
+<h4>External Private Lessons Request Access:</h4>
 <p>
   The unique URL below for private lessons allows patrons to access the private
   lessons portal without needing an account or any additional information

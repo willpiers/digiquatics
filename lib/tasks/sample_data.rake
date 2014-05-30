@@ -67,6 +67,28 @@ namespace :db do
                     account_id: 1)
     print '.'
 
+    puts "\nSkill Levels\n"
+    SkillLevel.create(name: 'Level 1',
+                    account_id: 1)
+    print '.'
+    SkillLevel.create(name: 'Level 2',
+                    account_id: 1)
+    print '.'
+    SkillLevel.create(name: 'Level 3',
+                    account_id: 1)
+    print '.'
+
+    puts "\nPackages\n"
+    Package.create(name: '1 lesson ($15.00)',
+                   account_id: 1)
+    print '.'
+    Package.create(name: '3 lessons ($40.00)',
+                   account_id: 1)
+    print '.'
+    Package.create(name: '10 lessons ($100.00)',
+                   account_id: 1)
+    print '.'
+
     User.create!(first_name:             'First',
                  nickname:               'Dubs',
                  last_name:              'Last',
@@ -181,7 +203,7 @@ namespace :db do
                             phone_number: Faker::PhoneNumber.phone_number,
                             contact_method: %w(Call Email Text).sample,
                             location_id: rand(3) + 1,
-                            number_lessons: rand(5) + 1,
+                            package_id: rand(2) + 1,
                             account_id: 1)
     end
 
@@ -193,7 +215,8 @@ namespace :db do
                           first_name: Faker::Name.first_name,
                           last_name: Faker::Name.last_name,
                           age: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11].sample,
-                          sex: %w(M F).sample)
+                          sex: %w(M F).sample,
+                          skill_level_id: rand(2) + 1)
     end
 
     puts "\nChemicalRecords\n"
