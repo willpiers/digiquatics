@@ -9,6 +9,7 @@
       <center><h4>Sign Up</h4></center><hr>
       <%= render 'shared/required' %>
       <div id='basic'><%= render 'sign_up_user_fields', f: f %></div>
+      <h5>By creating an account with DigiQuatics, you agree to our <%= link_to 'Terms of Service', tos_path %> and <%= link_to 'Privacy Policy', privacy_path %></h5>
       <center>
         <%= f.submit 'Create Your Account', class: 'devise-button' %>
       </center>

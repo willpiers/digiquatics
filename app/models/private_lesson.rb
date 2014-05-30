@@ -14,12 +14,13 @@ class PrivateLesson < ActiveRecord::Base
   belongs_to :user
   has_many :participants
   belongs_to :location
+  belongs_to :package
 
   accepts_nested_attributes_for :participants, allow_destroy: true
 
   validates_presence_of :account_id, :parent_first_name, :parent_last_name,
                         :phone_number, :email, :contact_method,
-                        :number_lessons
+                        :package_id
 
   comma do
     last_name 'Student Last'

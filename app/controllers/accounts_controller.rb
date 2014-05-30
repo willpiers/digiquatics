@@ -28,6 +28,7 @@ class AccountsController < ApplicationController
     @locations = Location.joins(:account).same_account_as(current_user)
     @positions = Position.joins(:account).same_account_as(current_user)
     @skill_levels = SkillLevel.joins(:account).same_account_as(current_user)
+    @packages = Package.joins(:account).same_account_as(current_user)
     @certification_names = CertificationName.joins(:account)
       .same_account_as(current_user)
     @account = Account.find(current_user.account_id)
