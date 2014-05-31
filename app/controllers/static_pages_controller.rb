@@ -1,5 +1,5 @@
 class StaticPagesController < ApplicationController
-  METRICS = {'Free Chlorine (PPM)' => 'free_chlorine_ppm',
+  METRICS = { 'Free Chlorine (PPM)' => 'free_chlorine_ppm',
               'Combined Chlorine (PPM)' => 'combined_chlorine_ppm',
               'Total Chlorine (PPM)' => 'total_chlorine_ppm',
               'PH' => 'ph',
@@ -7,7 +7,7 @@ class StaticPagesController < ApplicationController
               'Calcium Hardness' => 'calcium_hardness',
               'Air Temp (F)' => 'air_temp',
               'Pool Temp (F)' => 'pool_temp',
-              'SI Index' => 'si_index'}
+              'SI Index' => 'si_index' }
 
   def dashboard
     Tracker.track(current_user.id, 'View Dashboard') unless Rails.env.test?
@@ -46,4 +46,3 @@ class StaticPagesController < ApplicationController
     @facade = StaticPagesFacade.new(current_user)
   end
 end
-

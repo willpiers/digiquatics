@@ -1,8 +1,8 @@
 require 'spec_helper'
 
 describe Package do
-  before { @package = Package.new(account_id: 1,
-                                  name: '3 lessons ($50.00)') }
+  before do @package = Package.new(account_id: 1,
+                                   name: '3 lessons ($50.00)') end
 
   subject { @package }
 
