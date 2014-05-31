@@ -5,4 +5,7 @@
 
     $scope.userAdmin = (user) ->
       user.admin == true
+
+    $scope.thArrow = (current_column, anchored_column) ->
+      if current_column == anchored_column then true
 ]
