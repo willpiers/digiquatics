@@ -1,4 +1,6 @@
 DigiQuatics::Application.routes.draw do
+  resources :email_groups
+
   devise_for :users
 
   resources :shift_reports
@@ -55,6 +57,13 @@ DigiQuatics::Application.routes.draw do
         via: 'get'
   match '/chemical_record_stats',
         to: 'static_pages#chemical_record_stats',
+        via: 'post'
+
+  match '/manage_email_group',
+        to: 'accounts#manage_email_group',
+        via: 'get'
+  match '/manage_email_group',
+        to: 'accounts#manage_email_group',
         via: 'post'
 
   match '/inactive_index', to: 'users#inactive_index', via: 'get'
