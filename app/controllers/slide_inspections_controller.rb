@@ -92,7 +92,8 @@ class SlideInspectionsController < ApplicationController
 
   def slide_email_alert(error, slide_inspection, user)
     @account = current_user.account_id
-    @location = current_user.location_id
-    SlideMailer.urgent_slide_inspection(error, slide_inspection, @account, @location, user).deliver
+    @location_id = @slide_inspection.slide.location_id
+    @current_user_location_id = current_user.location_id
+    SlideMailer.urgent_slide_inspection(error, slide_inspection, @account, @location_id, @current_user_location_id, user).deliver
   end
 end
