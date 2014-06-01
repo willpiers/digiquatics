@@ -3,7 +3,8 @@ class HelpDeskMailer < ActionMailer::Base
 
   def urgent_email(issue, account_id, location_id, current_user_location_id)
     @help_desk = issue
-    mail(to: email(account_id, location_id, current_user_location_id), from: 'Team@digiquatics.com',
+    mail(to: email(account_id, location_id, current_user_location_id),
+         from: 'Team@digiquatics.com',
          subject: "Urgent Help Desk Issue at #{Location.find(@help_desk.location_id).name}")
   end
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140601003432) do
+ActiveRecord::Schema.define(version: 20140601011404) do
 
   create_table "accounts", force: true do |t|
     t.string   "name"
@@ -23,12 +23,15 @@ ActiveRecord::Schema.define(version: 20140601003432) do
     t.integer  "logo_file_size"
     t.datetime "logo_updated_at"
     t.text     "email_group"
-    t.boolean  "slides_group_email",         default: false
-    t.boolean  "slides_admin_email",         default: false
-    t.boolean  "slides_location_email",      default: false
-    t.boolean  "maintenance_group_email",    default: false
-    t.boolean  "maintenance_admin_email",    default: false
-    t.boolean  "maintenance_location_email", default: false
+    t.boolean  "slides_group_email",              default: false
+    t.boolean  "slides_admin_email",              default: false
+    t.boolean  "slides_location_email",           default: false
+    t.boolean  "maintenance_group_email",         default: false
+    t.boolean  "maintenance_admin_email",         default: false
+    t.boolean  "maintenance_location_email",      default: false
+    t.boolean  "chemical_records_group_email",    default: false
+    t.boolean  "chemical_records_admin_email",    default: false
+    t.boolean  "chemical_records_location_email", default: false
   end
 
   create_table "attendance_records", force: true do |t|
