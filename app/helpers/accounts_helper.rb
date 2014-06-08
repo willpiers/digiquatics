@@ -1,5 +1,5 @@
 module AccountsHelper
-  ACCOUNT_PARAMS = [:name, :time_zone, :logo, :email_group,
+  ACCOUNT_PARAMS = [:name, :time_zone, :logo,
                     :slides_admin_email, :slides_location_email,
                     :slides_group_email, :maintenance_admin_email,
                     :maintenance_location_email, :maintenance_group_email,

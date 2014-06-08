@@ -59,17 +59,6 @@ DigiQuatics::Application.routes.draw do
         to: 'static_pages#chemical_record_stats',
         via: 'post'
 
-  match '/manage_email_group',
-        to: 'users#manage_email_group',
-        via: 'get'
-
-  match '/email',
-        to: 'users#email',
-        via: 'get'
-  match '/email',
-        to: 'users#email',
-        via: 'post'
-
   match '/inactive_index', to: 'users#inactive_index', via: 'get'
   match '/all_users', to: 'users#all_users', via: 'get'
   match '/admin_dashboard', to: 'accounts#admin_dashboard', via: 'get'
