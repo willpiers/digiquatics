@@ -19,7 +19,7 @@ class EmailGroupsController < ApplicationController
     @email_group = EmailGroup.new(email_group_params)
     @email_group.user_first_name = User.find_by_id(@email_group.user_id).first_name
     @email_group.user_last_name = User.find_by_id(@email_group.user_id).last_name
-    @email_group.email = User.find_by_id(@email_group.user_id).email
+    @email_group.user_email = User.find_by_id(@email_group.user_id).email
 
     if @email_group.save
       redirect_to email_groups_path, notice: 'User was added to email group.'
