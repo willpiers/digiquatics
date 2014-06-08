@@ -1,0 +1,76 @@
+<p>
+  Please use form below to setup who will receive email alerts. Emails can be
+  sent to: <br/> 1) All admin users <br/>2) Admin users by location that the
+  alert is being generated. <br/> 3) Custom email group, which can be setup
+  <%= link_to 'here!', email_groups_path %>
+</p>
+
+  <%= bootstrap_form_for @account do |f| %>
+  <table class='table table-bordered' >
+    <tr>
+      <th style='width: 150px;'></th>
+      <th class='lessons_form_table_cell'>All Admin</th>
+      <th class='lessons_form_table_cell'>Admin by Location</th>
+      <th class='lessons_form_table_cell'>Email Group</th>
+    </tr>
+    <tr>
+      <th>Chemical Records</th>
+      <td>
+        <div class='checkbox_fix'>
+          <%= f.check_box :chemical_records_admin_email, label: '' %>
+        </div>
+      </td>
+      <td>
+        <div class='checkbox_fix'>
+          <%= f.check_box :chemical_records_location_email, label: '' %>
+        </div>
+      </td>
+      <td>
+        <div class='checkbox_fix'>
+          <%= f.check_box :chemical_records_group_email, label: '' %>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <th>Maintenance Issues</th>
+      <td>
+        <div class='checkbox_fix'>
+          <%= f.check_box :maintenance_admin_email, label: '' %>
+        </div>
+      </td>
+      <td>
+        <div class='checkbox_fix'>
+          <%= f.check_box :maintenance_location_email, label: '' %>
+        </div>
+      </td>
+      <td>
+        <div class='checkbox_fix'>
+          <%= f.check_box :maintenance_group_email, label: '' %>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <th>Slide Inspections</th>
+      <td>
+        <div class='checkbox_fix'>
+          <%= f.check_box :slides_admin_email, label: '' %>
+        </div>
+      </td>
+      <td>
+        <div class='checkbox_fix'>
+          <%= f.check_box :slides_location_email, label: '' %>
+        </div>
+      </td>
+      <td>
+        <div class='checkbox_fix'>
+          <%= f.check_box :slides_group_email, label: '' %>
+        </div>
+      </td>
+    </tr>
+  </table>
+  <div class='dashboard_email_button'>
+    <%= f.primary 'Update Email Prefrences' %>
+  </div>
+<% end %>
+
+

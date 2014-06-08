@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140529223605) do
+ActiveRecord::Schema.define(version: 20140608165142) do
 
   create_table "accounts", force: true do |t|
     t.string   "name"
@@ -22,6 +22,15 @@ ActiveRecord::Schema.define(version: 20140529223605) do
     t.string   "logo_content_type"
     t.integer  "logo_file_size"
     t.datetime "logo_updated_at"
+    t.boolean  "slides_group_email",              default: false
+    t.boolean  "slides_admin_email",              default: false
+    t.boolean  "slides_location_email",           default: false
+    t.boolean  "maintenance_group_email",         default: false
+    t.boolean  "maintenance_admin_email",         default: false
+    t.boolean  "maintenance_location_email",      default: false
+    t.boolean  "chemical_records_group_email",    default: false
+    t.boolean  "chemical_records_admin_email",    default: false
+    t.boolean  "chemical_records_location_email", default: false
   end
 
   create_table "attendance_records", force: true do |t|
@@ -77,6 +86,16 @@ ActiveRecord::Schema.define(version: 20140529223605) do
     t.string   "type"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "email_groups", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "user_email"
+    t.integer  "user_id"
+    t.integer  "account_id"
+    t.string   "user_first_name"
+    t.string   "user_last_name"
   end
 
   create_table "help_desks", force: true do |t|
@@ -211,6 +230,14 @@ ActiveRecord::Schema.define(version: 20140529223605) do
     t.string   "attachment_back_content_type"
     t.integer  "attachment_back_file_size"
     t.datetime "attachment_back_updated_at"
+  end
+
+  create_table "shifts", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "location_id"
+    t.integer  "position_id"
+    t.datetime "start_time"
+    t.datetime "end_time"
   end
 
   create_table "skill_levels", force: true do |t|

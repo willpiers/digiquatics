@@ -27,5 +27,14 @@
       "year-format": "'yy'"
       "starting-day": 1
 
+    $scope.mytime = new Date()
+    $scope.hstep = 1
+
+    $scope.ismeridian = true
+
+    $scope.changed = ->
+      console.log "Time changed to: " + $scope.mytime
+      return
+
     return
 ]
