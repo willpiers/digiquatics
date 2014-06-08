@@ -36,7 +36,6 @@ class HelpDesksController < ApplicationController
   def create
     @help_desk = HelpDesk.new(help_desk_params)
     @help_desk.user_id = current_user.id
-    @help_desk.location_id = current_user.location_id
 
     if @help_desk.save
       flash[:success] = 'Help desk was successfully created.'
@@ -83,8 +82,10 @@ class HelpDesksController < ApplicationController
 
   def urgent_email(issue)
     @account = current_user.account_id
+    @location_id = issue.location_id
+    @current_user_location_id = current_user.location_id
     if issue.urgency == 'High' then
-      HelpDeskMailer.urgent_email(issue, @account).deliver
+      HelpDeskMailer.urgent_email(issue, @account, @location_id, @current_user_location_id).deliver
     end
   end
 end

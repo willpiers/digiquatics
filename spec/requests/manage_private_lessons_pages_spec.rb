@@ -6,10 +6,10 @@ describe 'Manage Private Lessons' do
 
   describe 'page' do
     let(:account) { FactoryGirl.create(:account) }
-    let(:skill_level) { FactoryGirl.create(:skill_level,
-                                           account_id: account.id) }
-    let(:package) { FactoryGirl.create(:package,
-                                       account_id: account.id) }
+    let(:skill_level) do FactoryGirl.create(:skill_level,
+                                            account_id: account.id) end
+    let(:package) do FactoryGirl.create(:package,
+                                        account_id: account.id) end
     let(:user) do
       FactoryGirl.create(:admin,
                          account_id: account.id)

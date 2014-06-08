@@ -1,4 +1,6 @@
 DigiQuatics::Application.routes.draw do
+  resources :email_groups
+
   devise_for :users
 
   resources :shift_reports

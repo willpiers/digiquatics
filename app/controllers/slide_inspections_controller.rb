@@ -71,7 +71,9 @@ class SlideInspectionsController < ApplicationController
   def create_help_desk(slide_inspection)
     create_error_string(slide_inspection)
     create_ticket(@error_string, slide_inspection)
-    slide_email_alert(@error_string, slide_inspection, current_user.id)
+    if has_email_alerts?(current_user.account)
+      slide_email_alert(@error_string, slide_inspection, current_user.id)
+    end
   end
 
   def create_error_string(slide_inspection)
@@ -92,6 +94,8 @@ class SlideInspectionsController < ApplicationController
 
   def slide_email_alert(error, slide_inspection, user)
     @account = current_user.account_id
-    SlideMailer.urgent_slide_inspection(error, slide_inspection, @account, user).deliver
+    @location_id = @slide_inspection.slide.location_id
+    @current_user_location_id = current_user.location_id
+    SlideMailer.urgent_slide_inspection(error, slide_inspection, @account, @location_id, @current_user_location_id, user).deliver
   end
 end
