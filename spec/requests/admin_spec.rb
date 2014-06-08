@@ -62,5 +62,31 @@ describe 'admin setup' do
         end
       end
     end
+
+    describe 'email groups' do
+      describe 'as non-admin' do
+        before do
+          Warden.test_reset!
+          login_as(non_admin, scope: :user)
+          visit email_groups_path
+        end
+
+        it 'should redirect to sign in page' do
+          current_path.should eq(user_path(non_admin))
+        end
+      end
+
+      describe 'as admin' do
+        before do
+          Warden.test_reset!
+          login_as(admin, scope: :user)
+          visit email_groups_path
+        end
+
+        it 'should redirect to admin dash' do
+          current_path.should eq email_groups_path
+        end
+      end
+    end
   end
 end

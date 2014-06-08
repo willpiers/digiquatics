@@ -1,5 +1,7 @@
 class EmailGroupsController < ApplicationController
+  include ApplicationHelper
   before_action :set_email_group, only: [:show, :edit, :update, :destroy]
+  before_action :admin_user, only: [:index]
 
   def index
     @email_groups = EmailGroup.all
