@@ -72,6 +72,4 @@ DigiQuatics::Application.routes.draw do
   match '/privacy', to: 'static_pages#privacy', via: 'get'
   match '/tos', to: 'static_pages#tos', via: 'get'
 
-  match '/email_location', to: 'users#email_location', via: 'get'
-
 end
