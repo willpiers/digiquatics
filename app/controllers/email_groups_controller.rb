@@ -4,7 +4,7 @@ class EmailGroupsController < ApplicationController
   before_action :admin_user, only: [:index]
 
   def index
-    @email_groups = EmailGroup.all
+    @email_groups = EmailGroup.same_account_as(current_user)
   end
 
   def show
@@ -19,6 +19,7 @@ class EmailGroupsController < ApplicationController
 
   def create
     @email_group = EmailGroup.new(email_group_params)
+    @email_group.account_id = current_user.account_id
     @email_group.user_first_name = User.find_by_id(@email_group.user_id).first_name
     @email_group.user_last_name = User.find_by_id(@email_group.user_id).last_name
     @email_group.user_email = User.find_by_id(@email_group.user_id).email
