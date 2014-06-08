@@ -7,15 +7,27 @@
         <th class='hidden-xs'>Gender</th>
         <th>
           <a href="" ng-click="predicate.value = '-location.name'; reverse=!reverse">
-          Location</a>
+          Location
+          </a>
+          <span ng-show="thArrow(predicate.value, '-location.name')">
+            <dq-arrow></dq-arrow>
+          </span>
         </th>
         <th class='hidden-xs'>
           <a href="" ng-click="predicate.value = '-claimed_on'; reverse=!reverse">
-          Claimed</a>
+          Claimed
+          </a>
+          <span ng-show="thArrow(predicate.value, '-claimed_on')">
+            <dq-arrow></dq-arrow>
+          </span>
         </th>
         <th class='hidden-xs'>
           <a href="" ng-click="predicate.value = '-completed_on'; reverse=!reverse">
-          Completed</a>
+          Completed
+          </a>
+          <span ng-show="thArrow(predicate.value, '-completed_on')">
+            <dq-arrow></dq-arrow>
+          </span>
         </th>
       </tr>
     </thead>

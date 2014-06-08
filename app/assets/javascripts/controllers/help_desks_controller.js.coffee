@@ -6,6 +6,9 @@
       $scope.predicate =
         value: 'created_at'
 
+      $scope.thArrow = (current_column, anchored_column) ->
+        if current_column == anchored_column then true
+
       $scope.showPic = (data) ->
         data.help_desk_attachment_file_name?
 

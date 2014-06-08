@@ -1,5 +1,5 @@
 <div ng-show='(privateLessons | orderBy:order.value:order.reverse | filter:locationFilter | filter:search).length'>
-  <table class='table table-hover table-condensed' >
+  <table class='table table-hover' >
     <thead>
       <tr>
         <th class='visible-xs'>Name</th>
@@ -9,11 +9,19 @@
         <th class='hidden-xs'>Gender</th>
         <th>
           <a href="" ng-click="predicate.value = '-location.name'; reverse=!reverse">
-          Location</a>
+          Location
+          </a>
+          <span ng-show="thArrow(predicate.value, '-location.name')">
+            <dq-arrow></dq-arrow>
+          </span>
         </th>
         <th class='hidden-xs'>
           <a href="" ng-click="predicate.value = '-created_at'; reverse=!reverse">
-          Date</a>
+          Date
+          </a>
+          <span ng-show="thArrow(predicate.value, '-created_at')">
+            <dq-arrow></dq-arrow>
+          </span>
         </th>
       </tr>
     </thead>

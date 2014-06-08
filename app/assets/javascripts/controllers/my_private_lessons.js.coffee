@@ -7,4 +7,7 @@
 
       $scope.predicate =
         value: 'claimed_on'
+
+      $scope.thArrow = (current_column, anchored_column) ->
+        if current_column == anchored_column then true
 ]

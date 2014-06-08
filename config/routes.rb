@@ -41,6 +41,7 @@ DigiQuatics::Application.routes.draw do
   match '/manage_chemicals', to: 'static_pages#manage_chemicals', via: 'get'
   match '/maintenance', to: 'static_pages#maintenance', via: 'get'
   match '/contact', to: 'static_pages#contact', via: 'get'
+  match '/instructions', to: 'static_pages#instructions', via: 'get'
 
   match '/support', to: 'users#support', via: 'get'
   match '/certifications_stats',

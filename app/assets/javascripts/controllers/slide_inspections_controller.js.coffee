@@ -4,6 +4,9 @@
     $scope.predicate =
       value: '-created_at'
 
+    $scope.thArrow = (current_column, anchored_column) ->
+      if current_column == anchored_column then true
+
     $scope.cssClass = (inspection) ->
       if      inspection.all_ok == false    then 'danger'
       else if     inspection.all_ok == true    then 'success'
