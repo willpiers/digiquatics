@@ -13,6 +13,7 @@ class Location < ActiveRecord::Base
   has_many :private_lessons
   has_many :pools, dependent: :destroy
   has_many :slides, dependent: :destroy
+  has_many :shifts
 
   accepts_nested_attributes_for :pools,
                                 reject_if: -> (pool) { pool[:name].blank? },

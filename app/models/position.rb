@@ -4,6 +4,7 @@ class Position < ActiveRecord::Base
 
   belongs_to :account
   has_many :users
+  has_many :shifts
 
   validates_presence_of :name, :account_id
 end

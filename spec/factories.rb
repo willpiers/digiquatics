@@ -140,4 +140,16 @@ FactoryGirl.define do
     name '3 Lessons ($50.00)'
     account_id 1
   end
+
+  factory :shift do
+    user_id 1
+    location_id 1
+    position_id 1
+    start_time Time.zone.now
+    end_time Time.zone.now + 5.hours
+  end
+
+  factory :invalid_shift, parent: :shift do
+    user_id nil
+  end
 end
