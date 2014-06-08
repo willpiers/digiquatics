@@ -46,6 +46,9 @@ Spork.prefork do
     #     --seed 1234
     config.order = 'random'
     config.include Capybara::DSL
+
+    #include Devise test helpers
+    config.include Devise::TestHelpers, type: :controller
   end
 end
 
