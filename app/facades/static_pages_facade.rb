@@ -94,5 +94,4 @@ class StaticPagesFacade
   def total_records(metric, id)
     @chemical_records.where(pool_id: id).count(metric)
   end
-
 end

@@ -1,0 +1,58 @@
+<% provide(:title, 'Manage Email Group') %>
+<h1 class='cross_platform_header'>Manage Email Group</h1>
+
+<div ng-app='digiquatics'>
+  <div ng-controller='UsersCtrl'>
+
+    <div class='pull-left'>
+      <%= link_to ' Back', admin_dashboard_path,
+          class: 'glyphicon glyphicon-arrow-left' %>
+    </div>
+
+    <% if current_user.admin? %>
+      <div style='width: 275px;' class='pull-right'>
+        <%= bootstrap_form_for(EmailGroup.new,
+          style: :horizontal, left: 'col-sm-4', right: 'col-sm-8') do |f| %>
+          <select ng-model='selectedUserId' class='form-control'>
+            <option value=''>Select Employee</option>
+            <option ng-repeat="user in users | orderBy: 'last_name'" value='{{user.id}}'        name='account[user_id]'>
+              {{user.last_name}}, {{user.first_name}}
+            </option>
+          </select>
+          <%= f.hidden_field :user_id, value: "{{selectedUserId}}" %>
+          <%= f.primary 'Add To Group' %>
+        <% end %>
+      </div>
+    <% end %>
+
+    <br><br><br><br><br><br>
+
+    <table class='table table-hover'>
+      <thead>
+        <tr>
+          <th>Last Name</th>
+          <th>First Name</th>
+          <th>Email</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @email_groups.each do |email_group| %>
+          <tr>
+            <td><%= email_group.user_first_name %></td>
+            <td><%= email_group.user_last_name %></td>
+            <td><%= email_group.user_email %></td>
+            <td>
+              <%= link_to ' Delete', email_group,
+                  class: 'glyphicon glyphicon-trash', method: :delete,
+                  data: { confirm: 'Are you sure?' } %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+

@@ -5,10 +5,10 @@ describe 'Private Lessons' do
   let!(:another_account) { FactoryGirl.create(:account) }
   let(:location) { FactoryGirl.create(:location) }
   let(:position) { FactoryGirl.create(:position) }
-  let(:skill_level) { FactoryGirl.create(:skill_level,
-                                         account_id: account.id) }
-  let(:package) { FactoryGirl.create(:package,
-                                     account_id: account.id) }
+  let(:skill_level) do FactoryGirl.create(:skill_level,
+                                          account_id: account.id) end
+  let(:package) do FactoryGirl.create(:package,
+                                      account_id: account.id) end
   let(:user) do
     FactoryGirl.create(:user,
                        location_id: location.id,

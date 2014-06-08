@@ -14,4 +14,9 @@ module SlideInspectionsHelper
     end
     count
   end
+
+  def has_email_alerts?(account)
+    account.slides_group_email || account.slides_admin_email || account.slides_location_email
+  end
 end
+
