@@ -46,7 +46,9 @@ class ChemicalRecordsController < ApplicationController
                           @chemical_record.free_chlorine_ppm)
     if @chemical_record.save
       flash[:success] = 'Chemical record was successfully created.'
-      urgent_email(@chemical_record)
+      if need_email_alert?(@chemical_record)
+        urgent_email(@chemical_record)
+      end
       redirect_to @chemical_record
     else
       render 'new'
@@ -84,12 +86,10 @@ class ChemicalRecordsController < ApplicationController
     @account = current_user.account_id
     @location_id = record.location_id
     @current_user_location_id = current_user.location_id
-    if chemical_email_alert(record) == true
-      ChemicalRecordMailer.urgent_email(record, @account, @location_id, @current_user_location_id).deliver
-    end
+    ChemicalRecordMailer.urgent_email(record, @account, @location_id, @current_user_location_id).deliver
   end
 
-  def chemical_email_alert(record)
+  def need_email_alert?(record)
     if record.total_chlorine_ppm < 1 || record.total_chlorine_ppm > 5 then
       true
     elsif record.ph < 6.8 || record.ph > 8.2 then

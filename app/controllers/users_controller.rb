@@ -48,17 +48,6 @@ class UsersController < ApplicationController
     end
   end
 
-  def email
-    @location_id = params[:location_id]
-    @position_id = params[:position_id]
-    @subject = params[:subject]
-    @message = params[:message]
-    @account_id = current_user.account_id
-    ContactMailer.contact_email(@location_id, @position_id, @admin, @account_id, @subject, @message).deliver
-    flash[:success] = 'Email has been sent'
-    redirect_to manage_email_group_path
-  end
-
   def show
   end
 
