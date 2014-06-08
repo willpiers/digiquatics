@@ -27,5 +27,42 @@
       "year-format": "'yy'"
       "starting-day": 1
 
+    $scope.mytime = new Date()
+    $scope.hstep = 1
+    $scope.options =
+      hstep: [
+        1
+        2
+        3
+      ]
+      mstep: [
+        1
+        5
+        10
+        15
+        25
+        30
+      ]
+
+    $scope.ismeridian = true
+    $scope.toggleMode = ->
+      $scope.ismeridian = not $scope.ismeridian
+      return
+
+    $scope.update = ->
+      d = new Date()
+      d.setHours 14
+      d.setMinutes 0
+      $scope.mytime = d
+      return
+
+    $scope.changed = ->
+      console.log "Time changed to: " + $scope.mytime
+      return
+
+    $scope.clear = ->
+      $scope.mytime = null
+      return
+
     return
 ]
