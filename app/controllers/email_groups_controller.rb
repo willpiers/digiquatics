@@ -50,12 +50,12 @@ class EmailGroupsController < ApplicationController
 
   private
 
-    def set_email_group
-      @email_group = EmailGroup.find(params[:id])
-    end
+  def set_email_group
+    @email_group = EmailGroup.find(params[:id])
+  end
 
-    def email_group_params
-      params.require(:email_group).permit(:id, :user_id, :email,
-                                          :user_first_name, :user_last_name)
-    end
+  def email_group_params
+    params.require(:email_group).permit(:id, :user_id, :email,
+                                        :user_first_name, :user_last_name)
+  end
 end

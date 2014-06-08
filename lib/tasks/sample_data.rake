@@ -69,13 +69,13 @@ namespace :db do
 
     puts "\nSkill Levels\n"
     SkillLevel.create(name: 'Level 1',
-                    account_id: 1)
+                      account_id: 1)
     print '.'
     SkillLevel.create(name: 'Level 2',
-                    account_id: 1)
+                      account_id: 1)
     print '.'
     SkillLevel.create(name: 'Level 3',
-                    account_id: 1)
+                      account_id: 1)
     print '.'
 
     puts "\nPackages\n"

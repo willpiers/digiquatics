@@ -2,12 +2,12 @@ class SlideMailer < ActionMailer::Base
   default from: 'Team@digiquatics.com'
 
   def urgent_slide_inspection(error, slide_inspection, account_id, location_id, current_user_location_id, user_id)
-      @slide_inspection = slide_inspection
-      @user = User.find_by_id(user_id)
-      @error = error
-      mail(to: email(account_id, location_id, current_user_location_id),
-           from: 'Team@digiquatics.com',
-           subject: "#{slide_inspection.slide.name} Slide Inspection Issue at #{Location.find(@slide_inspection.slide.location.id).name}")
+    @slide_inspection = slide_inspection
+    @user = User.find_by_id(user_id)
+    @error = error
+    mail(to: email(account_id, location_id, current_user_location_id),
+         from: 'Team@digiquatics.com',
+         subject: "#{slide_inspection.slide.name} Slide Inspection Issue at #{Location.find(@slide_inspection.slide.location.id).name}")
   end
 
   def email(account_id, location_id, current_user_location_id)
@@ -30,8 +30,5 @@ class SlideMailer < ActionMailer::Base
 
     @array = [group, admin, location].compact
     @array.join(',')
-
   end
 end
-
-

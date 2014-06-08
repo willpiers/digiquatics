@@ -20,19 +20,6 @@ class AccountsController < ApplicationController
   def edit
   end
 
-  def manage_email_group
-    @account = Account.find(current_user.account_id)
-    @email_groups = EmailGroup.all
-
-    if @account.save
-      flash[:success] = 'Employee was added to email group.'
-      @email = params[:email]
-      @account.email_group = @email
-      @account.save!
-    end
-
-  end
-
   def admin_dashboard
     unless Rails.env.test?
       Tracker.track(current_user.id, 'View Admin Dashboard')
@@ -80,7 +67,6 @@ class AccountsController < ApplicationController
 
   include AccountsHelper
 
-  # Use callbacks to share common setup or constraints between actions.
   def set_account
     @account = Account.find(params[:id])
   end

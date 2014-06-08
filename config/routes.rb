@@ -60,10 +60,14 @@ DigiQuatics::Application.routes.draw do
         via: 'post'
 
   match '/manage_email_group',
-        to: 'accounts#manage_email_group',
+        to: 'users#manage_email_group',
         via: 'get'
-  match '/manage_email_group',
-        to: 'accounts#manage_email_group',
+
+  match '/email',
+        to: 'users#email',
+        via: 'get'
+  match '/email',
+        to: 'users#email',
         via: 'post'
 
   match '/inactive_index', to: 'users#inactive_index', via: 'get'
@@ -78,5 +82,7 @@ DigiQuatics::Application.routes.draw do
 
   match '/privacy', to: 'static_pages#privacy', via: 'get'
   match '/tos', to: 'static_pages#tos', via: 'get'
+
+  match '/email_location', to: 'users#email_location', via: 'get'
 
 end

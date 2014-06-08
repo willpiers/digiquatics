@@ -1,0 +1,39 @@
+<% provide(:title, 'Employee Communication Dashboard') %>
+<h1 class='cross_platform_header'>Employee Communication Dashboard</h1>
+
+<div class='table-width-desktop'>
+  <div class='pull-left'>
+    <%= link_to ' Back', users_path,
+        class: 'glyphicon glyphicon-arrow-left' %>
+  </div>
+
+  <br><br>
+
+<div ng-app='digiquatics' ng-controller='UsersCtrl'>
+  <div class='well'>
+    <center><h4>Compose Message</h1></center>
+    <%= bootstrap_form_tag(url: '/email', method: "post") do |f| %>
+      <label>Location</label>
+      <select ng-model='selected.location_id' class='form-control'>
+        <option value=''>All Locations</option>
+        <option ng-repeat='location in locations' value='{{location.id}}'>
+          {{location.name}}
+        </option>
+      </select>
+      <%= f.hidden_field :location_id, value: "{{selected.location_id}}" %>
+      <%= f.select :position_id,
+          options_from_collection_for_select(Position
+                                             .same_account_as(current_user),
+                                             :id,
+                                             :name),
+          include_blank: 'All Positions' %>
+      <%= f.text_field :subject %>
+      <%= f.text_area :message,
+                      placeholder: 'Type message here.',
+                      side: '2x',
+                      label: 'Message' %>
+      <%= f.primary 'Submit' %>
+    <% end %>
+ </div>
+</div>
+

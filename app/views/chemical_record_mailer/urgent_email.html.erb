@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+
+    <p>
+      A <b><u>high</u></b> urgency <b><u>Chemical Record Issue</u></b>
+      has been submitted with the following information:
+    </p>
+
+    <br>
+
+    <legend>
+      Location:
+      <%= Location.find_by_id(@chemical_record.location_id).name %>
+    </legend>
+
+    <legend>
+      Pool:
+      <%= Pool.find_by_id(@chemical_record.pool_id).name %>
+    </legend>
+
+    <legend>
+      Chlorine(ppm):
+      <%= @chemical_record.total_chlorine_ppm%>
+    </legend>
+
+    <legend>
+      PH:
+      <%= @chemical_record.ph%>
+    </legend>
+
+    <legend>
+      Alkalinity:
+      <%= @chemical_record.alkalinity%>
+    </legend>
+
+    <legend>
+      Calcium Hardness:
+      <%= @chemical_record.calcium_hardness%>
+    </legend>
+
+    <legend>
+      Pool Temp:
+      <%= @chemical_record.pool_temp%>
+    </legend>
+
+    <legend>
+      Air Temp:
+      <%= @chemical_record.air_temp%>
+    </legend>
+
+    <legend>
+      SI Index:
+      <%= @chemical_record.si_index%>
+    </legend>
+
+    <legend>
+      SI Status:
+      <%= @chemical_record.si_status%>
+    </legend>
+
+    <legend>
+      SI Recommendation:
+      <%= @chemical_record.si_recommendation%>
+    </legend>
+
+    <legend>
+      Submitted By:
+      <%= "#{@chemical_record.user.last_name},
+           #{@chemical_record.user.first_name}" %>
+    </legend>
+
+    <legend>
+      Phone Number:
+      <%= @chemical_record.user.phone_number %>
+    </legend>
+
+    <legend>
+      Date Submitted:
+      <%= @chemical_record.time_stamp.strftime('%-m/%-d/%Y @ %I:%M%p') %>
+    </legend>
+
+  </body>
+</html>
