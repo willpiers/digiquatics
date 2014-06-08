@@ -27,6 +27,7 @@ class User < ActiveRecord::Base
   has_many :help_desks
   has_many :chemical_records
   has_many :slide_inspections
+  has_many :shifts
 
   has_attached_file :avatar,
                     path: PAPERCLIP_PATH,
