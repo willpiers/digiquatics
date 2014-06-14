@@ -376,3 +376,9 @@ legend{
 .fix-print-button a {
   font-weight:bold;
 }
+
+@media print {
+  .print-schedule-font {
+    font-size: 12px;
+  }
+}

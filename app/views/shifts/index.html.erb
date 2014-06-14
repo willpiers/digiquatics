@@ -1,59 +1,69 @@
 <div ng-app='digiquatics'>
   <div ng-controller='ShiftsCtrl'>
     <% provide(:title, 'Scheduler') %>
-    <h1 class='cross_platform_header'>Schedule {{displayStartDate()}} - {{displayEndDate(6)}} </h1>
-    <div class='row'>
-      <div class='visible-xs'><br></div>
-      <dq-location></dq-location>
-      <dq-position></dq-position>
-      <div class='col-md-4'></div>
-      <div class='col-md-2'>
-        <div class='btn-group pull-right'>
-          <%= link_to 'Day View', '#',
-                      class: 'btn btn-primary btn-sm', role: 'button' %>
-          <%= link_to 'Week View','#',
-                      class: 'btn btn-success btn-sm', role: 'button' %>
-        </div>
-      </div>
-    </div>
-    <div class='row'>
-      <div class='col-md-1'>
-        <btn class='btn btn-default btn-sm' ng-click='resetWeekCounter()'>
-          <b>Today</b>
-        </btn>
-      </div>
-      <div class='col-md-2'>
-        <div class='btn-group'>
-          <btn class='btn btn-default btn-sm' ng-click='previousWeek()'
-               style='width: 40px;'>
-            <%= fa_icon 'chevron-left' %>
-          </btn>
-          <btn class='btn btn-default btn-sm' ng-click='nextWeek()'
-               style='width: 40px;'>
-            <%= fa_icon 'chevron-right' %>
-          </btn>
-        </div>
-      </div>
-      <div class='col-md-5'>
-        <div class='center-row-text'>
-          <i>Legend: (Hours Scheduled - Max Requested Hours - Hours YTD)</i>
-        </div>
-      </div>
-      <div class='col-md-2'></div>
-      <div class='col-md-2'>
-        <div class='pull-right'>
-          <div class='fix-pdf-button'>
-            <%= link_to 'PDF','#',
-                        class: 'btn btn-default btn-sm'%>
-          </div>
-          <div class='fix-print-button'>
-            <%= link_to_function('Print', 'javascript:print()',
-                                 class: 'btn btn-default btn-sm') %>
+    <div class='hidden-print'>
+      <h1 class='cross_platform_header'>Schedule {{displayStartDate()}} - {{displayEndDate(6)}}</h1>
+      <div class='row'>
+        <div class='visible-xs'><br></div>
+        <dq-location></dq-location>
+        <dq-position></dq-position>
+        <div class='col-md-4'></div>
+        <div class='col-md-2'>
+          <div class='btn-group pull-right'>
+            <%= link_to 'Day View', '#',
+                        class: 'btn btn-primary btn-sm', role: 'button' %>
+            <%= link_to 'Week View','#',
+                        class: 'btn btn-success btn-sm', role: 'button' %>
           </div>
         </div>
       </div>
+      <div class='row'>
+        <div class='col-md-1'>
+          <btn class='btn btn-default btn-sm' ng-click='resetWeekCounter()'>
+            <b>Today</b>
+          </btn>
+        </div>
+        <div class='col-md-2'>
+          <div class='btn-group'>
+            <btn class='btn btn-default btn-sm' ng-click='previousWeek()'
+                 style='width: 40px;'>
+              <%= fa_icon 'chevron-left' %>
+            </btn>
+            <btn class='btn btn-default btn-sm' ng-click='nextWeek()'
+                 style='width: 40px;'>
+              <%= fa_icon 'chevron-right' %>
+            </btn>
+          </div>
+        </div>
+        <div class='col-md-5'>
+          <div class='center-row-text'>
+            <i>Legend: (Hours Scheduled - Max Requested Hours - Hours YTD)</i>
+          </div>
+        </div>
+        <div class='col-md-2'></div>
+        <div class='col-md-2'>
+          <div class='pull-right'>
+            <div class='fix-pdf-button'>
+              <%= link_to 'PDF','#',
+                          class: 'btn btn-default btn-sm'%>
+            </div>
+            <div class='fix-print-button'>
+              <%= link_to_function('Print', 'javascript:print()',
+                                   class: 'btn btn-default btn-sm') %>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br>
     </div>
-    <br>
+    <div class='visible-print'>
+      <center>
+        <h4>
+          Green Mtn Rec Center -
+          Schedule {{displayStartDate()}} - {{displayEndDate(6)}}
+        </h4>
+      </center>
+    </div>
     <%= render 'index' %>
   </div>
 </div>

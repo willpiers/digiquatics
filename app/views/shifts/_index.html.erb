@@ -1,10 +1,13 @@
-<table class='table table-hover table-condensed table-bordered'>
+<table class='table table-hover table-condensed table-bordered print-schedule-font'>
   <thead>
     <tr>
-      <th>
+      <th class='hidden-print'>
         <a href="" ng-click="predicate.value = '-last_name'; reverse=!reverse">
           Full Name
         </a>
+      </th>
+      <th class='visible-print'>
+        Full Name
       </th>
       <th class='lessons_table_cell'>
         {{weekStart()}}
@@ -32,14 +35,21 @@
   <tbody>
     <tr ng-repeat='user in users | orderBy:predicate.value:reverse |
                    filter:locationFilter | filter:positionFilter'>
-      <td>
+      <td class='hidden-print'>
         <a ng-href='/users/{{user.id}}'>
           {{user.last_name}}, {{user.first_name}}
         </a>
         <br/>
-        {{user.position.name}} ({{user.date_of_birth | age}} Yrs)
+        {{user.position.name}} (Age {{user.date_of_birth | age}})
         <br/>
         (30 - 40 - 1000)
+      </td>
+      <td class='visible-print'>
+        {{user.last_name}}, {{user.first_name}}
+        <br/>
+        {{user.position.name}}
+        <br/>
+        (30 Hours)
       </td>
       <td></td>
       <td></td>
