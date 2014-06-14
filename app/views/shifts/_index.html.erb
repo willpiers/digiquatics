@@ -1,0 +1,53 @@
+<table class='table table-hover table-condensed table-bordered'>
+  <thead>
+    <tr>
+      <th>
+        <a href="" ng-click="predicate.value = '-last_name'; reverse=!reverse">
+          Full Name
+        </a>
+      </th>
+      <th>
+        {{weekStart()}}
+      </th>
+      <th>
+        {{addToWeek(1)}}
+      </th>
+      <th>
+        {{addToWeek(2)}}
+      </th>
+      <th>
+        {{addToWeek(3)}}
+      </th>
+      <th>
+        {{addToWeek(4)}}
+      </th>
+      <th>
+        {{addToWeek(5)}}
+      </th>
+      <th>
+        {{addToWeek(6)}}
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat='user in users | orderBy:predicate.value:reverse |
+                   filter:locationFilter | filter:positionFilter'>
+      <td>
+        <a ng-href='/users/{{user.id}}'>
+          {{user.last_name}}, {{user.first_name}}
+        </a>
+        <br/>
+        {{user.position.name}} ({{user.date_of_birth | age}} Yrs)
+        <br/>
+        (30 - 40 - 1000)
+      </td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+  </tbody>
+</table>
+
