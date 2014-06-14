@@ -354,3 +354,25 @@ legend{
   position: relative;
   bottom: 7px;
 }
+
+.center-row-text {
+  position: relative;
+  top: 5px;
+}
+
+.fix-pdf-button {
+  float: left;
+  margin-right: 20px;
+}
+
+.fix-pdf-button a {
+  font-weight:bold;
+}
+
+.fix-print-button {
+  float: right;
+}
+
+.fix-print-button a {
+  font-weight:bold;
+}
