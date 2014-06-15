@@ -1,0 +1,73 @@
+<table class='table table-hover table-condensed table-bordered print-schedule-font'>
+  <thead>
+    <tr>
+      <th class='hidden-print'>
+        <a href="" ng-click="predicate.value = '-last_name'; reverse=!reverse">
+          Full Name
+        </a>
+      </th>
+      <th class='visible-print'>Full Name</th>
+      <th>4AM</th>
+      <th>5AM</th>
+      <th>6AM</th>
+      <th>7AM</th>
+      <th>8AM</th>
+      <th>9AM</th>
+      <th>10AM</th>
+      <th>11AM</th>
+      <th>12PM</th>
+      <th>1PM</th>
+      <th>2PM</th>
+      <th>3PM</th>
+      <th>4PM</th>
+      <th>5PM</th>
+      <th>6PM</th>
+      <th>7PM</th>
+      <th>8PM</th>
+      <th>9PM</th>
+      <th>10PM</th>
+      <th>11PM</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat='user in users | orderBy:predicate.value:reverse |
+                   filter:locationFilter | filter:positionFilter'>
+      <td class='hidden-print'>
+        <a ng-href='/users/{{user.id}}'>
+          {{user.last_name}}, {{user.first_name}}
+        </a>
+        <br/>
+        {{user.position.name}} (Age {{user.date_of_birth | age}})
+        <br/>
+        (30 - 40 - 1000)
+      </td>
+      <td class='visible-print'>
+        {{user.last_name}}, {{user.first_name}}
+        <br/>
+        {{user.position.name}}
+        <br/>
+        (30 Hours)
+      </td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+  </tbody>
+</table>
+
