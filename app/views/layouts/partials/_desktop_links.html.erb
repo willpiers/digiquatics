@@ -75,9 +75,9 @@
         <ul class = 'dropdown-menu'>
           <li><%= link_to 'My Profile', current_user %></li>
           <li class='divider'></li>
-          <li><%= link_to 'Manage Availability', '#' %></li>
-          <li><%= link_to 'Manage Sub Requests', '#' %></li>
-          <li><%= link_to 'Schedule Time Off', '#' %></li>
+          <li><%= link_to 'My Availability', '#' %></li>
+          <li><%= link_to 'My Sub Requests', '#' %></li>
+          <li><%= link_to 'Request Time Off', '#' %></li>
           <% if current_user && current_user.admin? %>
             <li class='divider'></li>
             <li><%= link_to 'Preferences', admin_dashboard_path %></li>
