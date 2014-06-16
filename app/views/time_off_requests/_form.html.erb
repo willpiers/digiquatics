@@ -1,59 +1,66 @@
-  <div class='userform well'>
-    <div ng-app='digiquatics' ng-controller='AnalyticsCtrl'>
-    <%= bootstrap_form_for(@time_off_request) do |f| %>
+<div ng-app='digiquatics' ng-controller='AnalyticsCtrl' class='userform well'>
+  <%= bootstrap_form_for(@time_off_request) do |f| %>
 
-      <%= render 'shared/required' %>
+    <%= render 'shared/required' %>
 
-        <label>Start</label>
-        <div class='row'>
-          <div class='col-md-4'>
-            <center>
-              <div class='fix_ampm_button'>
-                <timepicker ng-model="mytime" ng-change="changed()" hour-step="hstep"
-                            show-meridian="ismeridian"></timepicker>
-              </div>
-            </center>
+    <label>Start Time</label>
+    <div class='row'>
+      <div class='col-md-4'>
+        <center>
+          <div class='fix_ampm_button'>
+            <timepicker ng-model='mytime' ng-change='changed()' hour-step='hstep'
+                        show-meridian='ismeridian'></timepicker>
           </div>
-          <div class='col-md-8'>
-            <div class="input-group">
-              <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="dt1" is-open="opened1" max="'2015-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
-              <span class="input-group-btn">
-                <button class="btn btn-default" ng-click="open1($event)"><i class="glyphicon glyphicon-calendar"></i></button>
-              </span>
-            </div>
-          <div>
+        </center>
+      </div>
+      <div class='col-md-8'>
+        <div class='fix_angular_date_picker'>
+          <div class="input-group">
+            <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="dt1" is-open="opened1" max="'2015-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
+            <span class="input-group-btn">
+              <button class="btn btn-default" ng-click="open1($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+            </span>
+          </div>
         </div>
+      </div>
+    </div>
 
+    <%= f.hidden_field :starts_at,
+                       value: "{{dt1 | date:'yyyy-MM-dd'}}
+                               {{mytime | date:'HH:mm:ss Z' }}" %>
 
-        <br><br><br><br><br><br>
+    <br><br>
 
-<!--         <label>End</label>
-        <div class='row'>
-          <div class='col-md-4'>
-            <center>
-              <div class='fix_ampm_button'>
-                <timepicker ng-model="mytime2" ng-change="changed()" hour-step="hstep"
-                            show-meridian="ismeridian"></timepicker>
-              </div>
-            </center>
+    <label>End Time</label>
+    <div class='row'>
+      <div class='col-md-4'>
+        <center>
+          <div class='fix_ampm_button'>
+            <timepicker ng-model='mytime2' ng-change='changed()' hour-step='hstep'
+                        show-meridian='ismeridian'></timepicker>
           </div>
-          <div class='col-md-8'>
-            <div class="input-group">
-              <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="dt2" is-open="opened2" max="'2015-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
-              <span class="input-group-btn">
-                <button class="btn btn-default" ng-click="open2($event)"><i class="glyphicon glyphicon-calendar"></i></button>
-              </span>
-            </div>
-          <div>
-        </div> -->
+        </center>
+      </div>
+      <div class='col-md-8'>
+        <div class='fix_angular_date_picker'>
+          <div class="input-group">
+            <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="dt2" is-open="opened2" max="'2015-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
+            <span class="input-group-btn">
+              <button class="btn btn-default" ng-click="open2($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <%= f.hidden_field :ends_at,
+                       value: "{{dt2 | date:'yyyy-MM-dd'}}
+                               {{mytime2 | date:'HH:mm:ss Z' }}" %>
 
     <%= f.text_area :reason, label: 'Reason' %>
 
     <%= f.primary ( f.object.new_record? ?  'Submit' :
     'Save Changes' ) %>
   <% end %>
-</div>
-</div>
-</div>
 </div>
 </div>

@@ -45,7 +45,7 @@
       <%= f.select :water_clarity, %w[Clear Cloudy],
                   { label: 'Water Clarity' } %>
 
-      <div ng-controller="AnalyticsCtrl" class='hidden-xs hidden-sm'>
+      <div ng-controller='AnalyticsCtrl' class='hidden-xs hidden-sm'>
         <label>Date</label>
         <div class="input-group">
           <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="dt1" is-open="opened1" max="'2015-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
