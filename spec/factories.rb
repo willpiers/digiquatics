@@ -152,4 +152,18 @@ FactoryGirl.define do
   factory :invalid_shift, parent: :shift do
     user_id nil
   end
+
+  factory :time_off_request do
+    user_id 1
+    starts_at Time.now
+    ends_at Time.zone.now + 5.hours
+    reason 'I want to have some time off this weekend.'
+    approved false
+    approved_by_user_id nil
+    approved_at nil
+  end
+
+  factory :invalid_time_off_request, parent: :time_off_request do
+    user_id nil
+  end
 end

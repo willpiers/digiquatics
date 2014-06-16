@@ -1,0 +1,16 @@
+<div class='userform well'>
+  <%= bootstrap_form_for(@time_off_request,
+    style: :horizontal, left: 'col-sm-4', right: 'col-sm-8') do |f| %>
+
+    <%= render 'shared/required' %>
+
+    <%= f.date_field :starts_at, label: 'Start Date' %>
+    <%= f.date_field :ends_at, label: 'End Date' %>
+
+    <%= f.text_area :reason, label: 'Reason' %>
+
+    <%= f.primary ( f.object.new_record? ?  'Submit' :
+    'Save Changes' ) %>
+  <% end %>
+</div>
+</div>

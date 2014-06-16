@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140608165142) do
+ActiveRecord::Schema.define(version: 20140616125935) do
 
   create_table "accounts", force: true do |t|
     t.string   "name"
@@ -265,6 +265,19 @@ ActiveRecord::Schema.define(version: 20140608165142) do
   create_table "slides", force: true do |t|
     t.integer  "location_id"
     t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "time_off_requests", force: true do |t|
+    t.integer  "user_id"
+    t.datetime "starts_at"
+    t.datetime "ends_at"
+    t.text     "reason"
+    t.boolean  "approved"
+    t.string   "approved_by_user_id"
+    t.string   "integer"
+    t.datetime "approved_at"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

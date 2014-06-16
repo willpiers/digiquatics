@@ -18,6 +18,7 @@ DigiQuatics::Application.routes.draw do
   resources :slide_inspections
   resources :slide_inspection_tasks
   resources :shifts
+  resources :time_off_requests
 
   resources :accounts do
     resources :private_lessons, shallow: true
