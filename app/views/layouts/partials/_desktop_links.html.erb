@@ -58,7 +58,10 @@
             <ul class = 'dropdown-menu'>
                 <li><%= link_to 'Edit/View Schedule', shifts_path %></li>
                 <li><%= link_to 'View Sub Requests', '#' %></li>
-                <li><%= link_to 'View Time Off Requests', '#' %></li>
+                <li>
+                  <%= link_to 'View Time Off Requests',
+                      time_off_requests_path %>
+                </li>
             </ul>
           </li>
         <% else %>

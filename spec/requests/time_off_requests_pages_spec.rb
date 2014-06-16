@@ -22,7 +22,7 @@ describe 'Time Off Request pages' do
 
     it { should have_selector('h1', text: 'Time Off Requests') }
     it { should have_title(full_title('Time Off Requests')) }
-    it { should have_link('New Report', new_time_off_request_path) }
+    it { should have_link('New Request', new_time_off_request_path) }
 
     it { should have_selector('th', text: 'Employee') }
     it { should have_selector('th', text: 'Date Submitted') }

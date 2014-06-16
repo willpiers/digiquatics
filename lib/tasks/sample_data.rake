@@ -282,6 +282,18 @@ namespace :db do
                         )
     end
 
+    puts "\n\nTimeOffRequests"
+
+    10.times do |n|
+      print '.'
+      TimeOffRequest.create!(user_id: n + 1,
+                             starts_at: '2014-07-01 17:21:21',
+                             ends_at: '2014-07-04 17:21:25',
+                             reason: 'Blah Blah Blah',
+                             approved: false
+                            )
+    end
+
     puts "\n\nSlideInspection"
 
     8.times do |n|
