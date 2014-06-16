@@ -210,6 +210,7 @@ GEM
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
     net-ssh (2.9.0)
+    ng-rails-csrf (0.1.0)
     nio4r (1.0.0)
     nokogiri (1.6.1)
       mini_portile (~> 0.5.0)
@@ -388,6 +389,7 @@ DEPENDENCIES
   mixpanel-ruby
   momentjs-rails
   mysql2
+  ng-rails-csrf
   oj
   paperclip (= 3.5.2)
   phantomjs

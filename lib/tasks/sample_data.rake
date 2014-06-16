@@ -193,7 +193,7 @@ namespace :db do
                             issue_date: Date.today + rand(365).day)
     end
 
-    puts "\nPrivateLessons\n"
+    puts "\nPrivate Lessons\n"
 
     5.times do |n|
       print '.'
@@ -219,7 +219,7 @@ namespace :db do
                           skill_level_id: rand(2) + 1)
     end
 
-    puts "\nChemicalRecords\n"
+    puts "\nChemical Records\n"
 
     25.times do |n|
       print '.'
@@ -271,7 +271,7 @@ namespace :db do
                        )
     end
 
-    puts "\n\nShiftReport"
+    puts "\n\nShift Reports"
 
     10.times do |n|
       print '.'
@@ -282,19 +282,34 @@ namespace :db do
                         )
     end
 
-    puts "\n\nTimeOffRequests"
+    puts "\n\nTime Off Requests Non-Approved"
 
     10.times do |n|
       print '.'
       TimeOffRequest.create!(user_id: n + 1,
                              starts_at: '2014-07-01 17:21:21',
-                             ends_at: '2014-07-04 17:21:25',
+                             ends_at: '2014-07-04 17:30:25',
                              reason: 'Blah Blah Blah',
                              approved: false
                             )
     end
 
-    puts "\n\nSlideInspection"
+
+    puts "\n\nTime Off Requests Approved"
+
+    10.times do |n|
+      print '.'
+      TimeOffRequest.create!(user_id: n + 1,
+                             starts_at: '2014-07-01 17:21:21',
+                             ends_at: '2014-07-04 17:30:25',
+                             reason: 'Blah Blah Blah',
+                             approved: true,
+                             approved_by_user_id: 12,
+                             approved_at: '2014-06-25 12:15:21'
+                            )
+    end
+
+    puts "\n\nSlide Inspections"
 
     8.times do |n|
       print '.'

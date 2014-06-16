@@ -19,6 +19,7 @@
 #= require angular
 #= require angular-resource
 #= require angular-ui-bootstrap-tpls
+#= require ng-rails-csrf
 #= require moment
 
 #= require angular-rails-templates

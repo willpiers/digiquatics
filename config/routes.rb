@@ -75,4 +75,7 @@ DigiQuatics::Application.routes.draw do
   match '/privacy', to: 'static_pages#privacy', via: 'get'
   match '/tos', to: 'static_pages#tos', via: 'get'
 
+  match '/archived_time_off_requests',
+        to: 'time_off_requests#archived_time_off_requests',
+        via: 'get'
 end

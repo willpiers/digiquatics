@@ -2,15 +2,7 @@ class TimeOffRequestsController < ApplicationController
   before_action :set_TimeOffRequest, only: [:show, :edit, :update, :destroy]
 
   def index
-    @time_off_requests = TimeOffRequest.all
-
-    # respond_to do |format|
-    #   format.html
-    #   format.json
-    #   format.csv do
-    #     render csv: @time_off_requests, filename: 'TimeOffRequests'
-    #   end
-    # end
+    @time_off_requests = TimeOffRequest.where(active: true)
   end
 
   def show
@@ -25,18 +17,26 @@ class TimeOffRequestsController < ApplicationController
 
   def create
     @time_off_request = TimeOffRequest.new(time_off_request_params)
+    @time_off_request.user_id = current_user.id
+    @time_off_request.approved = false
 
     message = 'Time Off Request was successfully created.'
 
-    handle_action(@time_off_request, message, :new, &:save)
+    handle_action(@time_off_request, message, :show, &:save)
   end
 
   def update
-    message = 'Time Off Request was successfully updated.'
+    # message = 'Time Off Request was successfully updated.'
 
-    handle_action(@time_off_request, message, :edit) do |resource|
-      resource.update(time_off_request_params)
-    end
+    # handle_action(@time_off_request, message, :edit) do |resource|
+    #   resource.update(time_off_request_params)
+    # end
+    @time_off_request.update_attributes(time_off_request_params)
+    render :show
+  end
+
+  def archived_time_off_requests
+    @archived_time_off_requests = TimeOffRequest.where(active: false)
   end
 
   def destroy
@@ -54,7 +54,7 @@ class TimeOffRequestsController < ApplicationController
   def time_off_request_params
     params.require(:time_off_request)
     .permit(:user_id, :starts_at, :ends_at, :reason, :approved,
-            :approved_by_user_id, :approved_at)
+            :approved_by_user_id, :approved_at, :active)
   end
 
   def handle_action(resource, message, page)
