@@ -3,25 +3,19 @@
 
     <%= render 'shared/required' %>
 
+    Add Day?: <input type='checkbox' ng-model='checked'><br/>
+
+    <div ng-show='checked'>
+
     <label>Start Time *</label>
+    </div>
+
     <div class='row'>
       <div class='col-md-4'>
-        <center>
-          <div class='fix_ampm_button'>
-            <timepicker ng-model='mytime' ng-change='changed()' hour-step='hstep'
-                        show-meridian='ismeridian'></timepicker>
-          </div>
-        </center>
+        <%= render 'time_off_requests/form_elements/start_time' %>
       </div>
       <div class='col-md-8'>
-        <div class='fix_angular_date_picker'>
-          <div class="input-group">
-            <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="dt1" is-open="opened1" max="'2015-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
-            <span class="input-group-btn">
-              <button class="btn btn-default" ng-click="open1($event)"><i class="glyphicon glyphicon-calendar"></i></button>
-            </span>
-          </div>
-        </div>
+         <%= render 'time_off_requests/form_elements/start_date' %>
       </div>
     </div>
 
@@ -34,22 +28,10 @@
     <label>End Time *</label>
     <div class='row'>
       <div class='col-md-4'>
-        <center>
-          <div class='fix_ampm_button'>
-            <timepicker ng-model='mytime2' ng-change='changed()' hour-step='hstep'
-                        show-meridian='ismeridian'></timepicker>
-          </div>
-        </center>
+        <%= render 'time_off_requests/form_elements/end_time' %>
       </div>
       <div class='col-md-8'>
-        <div class='fix_angular_date_picker'>
-          <div class="input-group">
-            <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="dt2" is-open="opened2" max="'2015-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
-            <span class="input-group-btn">
-              <button class="btn btn-default" ng-click="open2($event)"><i class="glyphicon glyphicon-calendar"></i></button>
-            </span>
-          </div>
-        </div>
+         <%= render 'time_off_requests/form_elements/end_date' %>
       </div>
     </div>
 
