@@ -118,7 +118,7 @@ describe 'Shift Report pages' do
 
       describe 'with invalid information' do
         before do
-          fill_in 'Report', with: ''
+          fill_in 'Report *', with: ''
         end
 
         describe 'redirect to edit page' do

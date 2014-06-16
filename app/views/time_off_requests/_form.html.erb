@@ -7,7 +7,7 @@
     <%= f.date_field :starts_at, label: 'Start Date *' %>
     <%= f.date_field :ends_at, label: 'End Date *' %>
     <%= f.text_area :reason, label: 'Reason' %>
-
+    <%= check_box_tag 'All Day' %>
     <%= f.primary ( f.object.new_record? ?  'Submit' :
     'Save Changes' ) %>
   <% end %>
