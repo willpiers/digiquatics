@@ -1,16 +1,59 @@
-<div class='userform well'>
-  <%= bootstrap_form_for(@time_off_request,
-    style: :horizontal, left: 'col-sm-4', right: 'col-sm-8') do |f| %>
+  <div class='userform well'>
+    <div ng-app='digiquatics' ng-controller='AnalyticsCtrl'>
+    <%= bootstrap_form_for(@time_off_request) do |f| %>
 
-    <%= render 'shared/required' %>
+      <%= render 'shared/required' %>
 
-    <%= f.date_field :starts_at, label: 'Start Date' %>
-    <%= f.date_field :ends_at, label: 'End Date' %>
+        <label>Start</label>
+        <div class='row'>
+          <div class='col-md-4'>
+            <center>
+              <div class='fix_ampm_button'>
+                <timepicker ng-model="mytime" ng-change="changed()" hour-step="hstep"
+                            show-meridian="ismeridian"></timepicker>
+              </div>
+            </center>
+          </div>
+          <div class='col-md-8'>
+            <div class="input-group">
+              <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="dt1" is-open="opened1" max="'2015-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
+              <span class="input-group-btn">
+                <button class="btn btn-default" ng-click="open1($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+              </span>
+            </div>
+          <div>
+        </div>
+
+
+        <br><br><br><br><br><br>
+
+<!--         <label>End</label>
+        <div class='row'>
+          <div class='col-md-4'>
+            <center>
+              <div class='fix_ampm_button'>
+                <timepicker ng-model="mytime2" ng-change="changed()" hour-step="hstep"
+                            show-meridian="ismeridian"></timepicker>
+              </div>
+            </center>
+          </div>
+          <div class='col-md-8'>
+            <div class="input-group">
+              <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="dt2" is-open="opened2" max="'2015-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
+              <span class="input-group-btn">
+                <button class="btn btn-default" ng-click="open2($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+              </span>
+            </div>
+          <div>
+        </div> -->
 
     <%= f.text_area :reason, label: 'Reason' %>
 
     <%= f.primary ( f.object.new_record? ?  'Submit' :
     'Save Changes' ) %>
   <% end %>
+</div>
+</div>
+</div>
 </div>
 </div>

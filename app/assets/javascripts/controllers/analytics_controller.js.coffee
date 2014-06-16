@@ -28,6 +28,7 @@
       "starting-day": 1
 
     $scope.mytime = new Date()
+    $scope.mytime2 = new Date()
     $scope.hstep = 1
 
     $scope.ismeridian = true
