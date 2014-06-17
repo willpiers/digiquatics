@@ -14,7 +14,7 @@
     </div>
 
     <%= f.text_area :reason, label: 'Reason' %>
-
+    <%= check_box_tag 'All Day' %>
     <%= f.primary ( f.object.new_record? ?  'Submit' :
     'Save Changes' ) %>
   <% end %>

@@ -1,5 +1,5 @@
 class TimeOffRequestsController < ApplicationController
-  before_action :set_TimeOffRequest, only: [:show, :edit, :update, :destroy]
+  before_action :set_time_off_request, only: [:show, :edit, :update, :destroy]
 
   def index
     @time_off_requests = TimeOffRequest.where(active: true)
@@ -18,7 +18,6 @@ class TimeOffRequestsController < ApplicationController
   def create
     @time_off_request = TimeOffRequest.new(time_off_request_params)
     @time_off_request.user_id = current_user.id
-    @time_off_request.approved = false
 
     message = 'Time Off Request was successfully created.'
 
@@ -47,7 +46,7 @@ class TimeOffRequestsController < ApplicationController
 
   private
 
-  def set_TimeOffRequest
+  def set_time_off_request
     @time_off_request = TimeOffRequest.find(params[:id])
   end
 

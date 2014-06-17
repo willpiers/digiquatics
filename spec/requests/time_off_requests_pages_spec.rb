@@ -24,15 +24,15 @@ describe 'Time Off Request pages' do
     it { should have_title(full_title('Time Off Requests')) }
     it { should have_link('New Request', new_time_off_request_path) }
 
-    it { should have_selector('th', text: 'Employee') }
-    it { should have_selector('th', text: 'Date Submitted') }
-    it { should have_selector('th', text: 'Start Date') }
-    it { should have_selector('th', text: 'End Date') }
-    it { should have_content('report.location.name') }
-    it { should have_content("report.created_at | date:'M/d/yy h:mm a'") }
-    it { should have_content('report.user.last_name') }
-    it { should have_content('report.user.first_name') }
-    it { should have_content('report.report_filed | booleanToWords') }
+    it { should have_selector('th', text: 'Last Name') }
+    it { should have_selector('th', text: 'First Name') }
+    it { should have_selector('th', text: 'Start') }
+    it { should have_selector('th', text: 'End') }
+    # it { should have_content('report.location.name') }
+    # it { should have_content("report.created_at | date:'M/d/yy h:mm a'") }
+    # it { should have_content('report.user.last_name') }
+    # it { should have_content('report.user.first_name') }
+    # it { should have_content('report.report_filed | booleanToWords') }
   end
 
   describe 'new' do
@@ -150,11 +150,11 @@ describe 'Time Off Request pages' do
       it { should have_link('Back', time_off_requests_path) }
 
       describe 'attributes' do
-        it { should have_selector('th', text: 'Employee') }
+        it { should have_selector('th', text: 'Submitted By') }
         it { should have_selector('th', text: 'Date Submitted') }
-        it { should have_selector('th', text: 'Start Date') }
-        it { should have_selector('th', text: 'End Date') }
-        it { should have_selector('th', text: 'Approved') }
+        it { should have_selector('th', text: 'Start') }
+        it { should have_selector('th', text: 'End') }
+        it { should have_selector('th', text: 'Approved? (Y/N)') }
         it { should have_selector('th', text: 'Approved By') }
         it { should have_selector('th', text: 'Approved At') }
 
