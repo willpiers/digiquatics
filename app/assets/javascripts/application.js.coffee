@@ -14,6 +14,8 @@
 #= require jquery.turbolinks
 #= require jquery_ujs
 #= require bootstrap
+#= require bootstrap/tooltip
+#= require bootstrap/popover
 #= require turbolinks
 
 #= require angular

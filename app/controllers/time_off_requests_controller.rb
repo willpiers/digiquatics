@@ -7,6 +7,7 @@ class TimeOffRequestsController < ApplicationController
   end
 
   def show
+    @approver = User.find_by(@time_off_request.approved_by_user_id)
   end
 
   def new
@@ -22,17 +23,15 @@ class TimeOffRequestsController < ApplicationController
 
     message = 'Time Off Request was successfully created.'
 
-    handle_action(@time_off_request, message, :show, &:save)
+    handle_action(@time_off_request, message, :new, &:save)
   end
 
   def update
-    # message = 'Time Off Request was successfully updated.'
+    message = 'Time Off Request was successfully updated.'
 
-    # handle_action(@time_off_request, message, :edit) do |resource|
-    #   resource.update(time_off_request_params)
-    # end
-    @time_off_request.update_attributes(time_off_request_params)
-    render :show
+    handle_action(@time_off_request, message, :edit) do |resource|
+      resource.update(time_off_request_params)
+    end
   end
 
   def archived_time_off_requests
