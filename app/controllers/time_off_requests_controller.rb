@@ -1,4 +1,5 @@
 class TimeOffRequestsController < ApplicationController
+  include TimeOffRequestsHelper
   before_action :set_time_off_request, only: [:show, :edit, :update, :destroy]
 
   def index
