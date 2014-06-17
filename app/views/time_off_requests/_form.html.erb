@@ -3,7 +3,7 @@
 
     <%= render 'shared/required' %>
 
-    All Day?: <input type='checkbox' ng-model='checked'><br/>
+    <strong>All Day? </strong><input type='checkbox' ng-model='checked'><br/>
 
     <div ng-show='checked'>
       <%= render 'time_off_requests/show/all_day', f: f %>
@@ -14,7 +14,6 @@
     </div>
 
     <%= f.text_area :reason, label: 'Reason' %>
-    <%= check_box_tag 'All Day' %>
     <%= f.primary ( f.object.new_record? ?  'Submit' :
     'Save Changes' ) %>
   <% end %>

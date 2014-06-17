@@ -33,23 +33,31 @@
 
     <tr>
       <th>Start</th>
-        <td></td>
+        <td><%= @time_off_request.starts_at.strftime('%-m/%-d/%Y @ %I:%M%p') %></td>
     </tr>
     <tr>
       <th>End</th>
-        <td></td>
+        <td><%= @time_off_request.ends_at.strftime('%-m/%-d/%Y @ %I:%M%p') %></td>
+    </tr>
+    <tr>
+      <th>Reason</th>
+        <td><%= @time_off_request.reason %></td>
     </tr>
     <tr>
       <th>Approved? (Y/N)</th>
-        <td></td>
+        <td><%= boolean_to_words(@time_off_request.approved) %></td>
     </tr>
     <tr>
       <th>Approved By</th>
-        <td></td>
+        <td><%= "#{@approver.last_name}, #{@approver.first_name}" %></td>
     </tr>
     <tr>
       <th>Approved At</th>
-        <td></td>
+        <td>
+          <% if @time_off_request.approved_at %>
+            <%= @time_off_request.approved_at.strftime('%-m/%-d/%Y @ %I:%M%p') %>
+          <% end %>
+        </td>
     </tr>
   </table>
 </div>

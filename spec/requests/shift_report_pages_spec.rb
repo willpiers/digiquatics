@@ -118,11 +118,11 @@ describe 'Shift Report pages' do
 
       describe 'with invalid information' do
         before do
-          fill_in 'Report *', with: ''
+          fill_in 'Report *', with: ' '
+          click_button submit
         end
 
         describe 'redirect to edit page' do
-          before { click_button submit }
           it { current_path.should eq edit_shift_report_path(ShiftReport.last) }
           it { should have_content("can't be blank")}
         end
