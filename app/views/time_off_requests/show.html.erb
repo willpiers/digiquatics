@@ -1,1 +1,64 @@
-#show page here
+<% provide(:title, 'Time Off Request') %>
+
+<div style='margin-left:0px;'>
+  <h1 class='cross_platform_header'>Time Off Request</h1>
+</div>
+
+<div class='table-width-desktop'>
+  <ul class = 'pull-right'>
+    <%= link_to 'Edit Request', edit_time_off_request_path(@time_off_request),
+        class: 'btn btn-default btn-primary' %>
+  </ul>
+
+  <div class='pull-left'>
+    <%= link_to ' Back', time_off_requests_path,
+        class: 'glyphicon glyphicon-arrow-left' %>
+  </div>
+
+  <br>
+
+  <table class='table table-bordered table-condensed' >
+    <tr>
+      <th style='width:25%'> Location </th>
+        <td></td>
+    </tr>
+
+
+    <tr>
+      <th> Date Submitted </th>
+        <td><%= @shift_report.created_at.strftime('%-m/%-d/%Y @ %I:%M%p') %></td>
+    </tr>
+    <tr>
+      <th> Submitted By </th>
+        <td>
+          <%= link_to "#{@shift_report.user.last_name},
+                       #{@shift_report.user.first_name}",
+                       user_path(id: @shift_report.user.id) %>
+        </td>
+    </tr>
+    <tr>
+      <th>Incident / Accident Report Filed?</th>
+        <td><%= boolean_to_words(@shift_report.report_filed) %></td>
+    </tr>
+    <tr>
+      <th>Attachments</th>
+        <td>
+          <% if @shift_report.attachment_front? %>
+            <%= link_to '', @shift_report.attachment_front.url,
+            class: 'glyphicon glyphicon-list-alt' %>
+          <% else %>
+          <% end %>
+          <% if @shift_report.attachment_back? %>
+            <%= link_to '', @shift_report.attachment_back.url,
+            class: 'glyphicon glyphicon-list-alt' %>
+          <% else %>
+          <% end %>
+        </td>
+    </tr>
+    <tr>
+      <th>Shift Report</th>
+        <td><%= @shift_report.content %></td>
+    </tr>
+  </table>
+</div>
+
