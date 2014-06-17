@@ -387,8 +387,12 @@ legend{
   color: #658BCA
 }
 
-.fix_angular_date_picker {
-  position: relative;
-  top: 37px;
-  right: 30px;
+@media (min-width: 500px) {
+  .fix_angular_date_picker {
+    position: relative;
+    top: 37px;
+    right: 30px;
+  }
 }
+
+
