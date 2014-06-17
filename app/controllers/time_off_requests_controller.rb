@@ -18,7 +18,6 @@ class TimeOffRequestsController < ApplicationController
   def create
     @time_off_request = TimeOffRequest.new(time_off_request_params)
     @time_off_request.user_id = current_user.id
-    @time_off_request.approved = false
 
     message = 'Time Off Request was successfully created.'
 
