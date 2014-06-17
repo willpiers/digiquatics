@@ -386,3 +386,13 @@ legend{
 .link-color-fix{
   color: #658BCA
 }
+
+@media (min-width: 500px) {
+  .fix_angular_date_picker {
+    position: relative;
+    top: 37px;
+    left: 30px;
+  }
+}
+
+

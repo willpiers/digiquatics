@@ -282,10 +282,10 @@ ActiveRecord::Schema.define(version: 20140616230725) do
     t.text     "reason"
     t.boolean  "approved"
     t.string   "approved_by_user_id"
-    t.string   "integer"
     t.datetime "approved_at"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "active",              default: true
   end
 
   create_table "users", force: true do |t|

@@ -31,6 +31,7 @@ gem 'sendgrid'
 gem 'aws-sdk'
 gem 'font-awesome-rails'
 gem 'momentjs-rails'
+gem 'ng-rails-csrf'
 
 group :development, :test do
   gem 'rspec-rails'

@@ -1,11 +1,18 @@
-<div class='userform well'>
-  <%= bootstrap_form_for(@time_off_request,
-    style: :horizontal, left: 'col-sm-4', right: 'col-sm-8') do |f| %>
+<div ng-app='digiquatics' ng-controller='AnalyticsCtrl' class='userform well'>
+  <%= bootstrap_form_for(@time_off_request) do |f| %>
 
     <%= render 'shared/required' %>
 
-    <%= f.date_field :starts_at, label: 'Start Date *' %>
-    <%= f.date_field :ends_at, label: 'End Date *' %>
+    All Day?: <input type='checkbox' ng-model='checked'><br/>
+
+    <div ng-show='checked'>
+      <%= render 'time_off_requests/show/all_day', f: f %>
+    </div>
+
+    <div ng-hide='checked'>
+      <%= render 'time_off_requests/show/partial_day', f: f %>
+    </div>
+
     <%= f.text_area :reason, label: 'Reason' %>
     <%= check_box_tag 'All Day' %>
     <%= f.primary ( f.object.new_record? ?  'Submit' :
