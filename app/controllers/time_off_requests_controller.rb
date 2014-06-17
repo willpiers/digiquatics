@@ -1,6 +1,7 @@
 class TimeOffRequestsController < ApplicationController
-  include TimeOffRequestsHelper
   before_action :set_time_off_request, only: [:show, :edit, :update, :destroy]
+
+  include ApplicationHelper
 
   def index
     @time_off_requests = TimeOffRequest.where(active: true)

@@ -14,4 +14,7 @@
     $scope.cssClass = (request) ->
       if      request.approved == true then 'success'
       else 'danger'
+
+    $scope.thArrow = (current_column, anchored_column) ->
+      if current_column == anchored_column then true
 ]
