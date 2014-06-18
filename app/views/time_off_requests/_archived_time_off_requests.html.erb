@@ -94,7 +94,11 @@
       </td>
       <td>
         <a ng-href='/users/{{request.approved_by_user_id}}'>
-          {{request.approved_by_user_id}}
+          <div ng-hide='checkActive(request)' %>
+            <a ng-href='/users/{{request.approved_by_user_id}}'>
+              {{request.processed_by_last_name}}, {{request.processed_by_first_name}}
+            </a>
+          </div>
         </a>
       </td>
       <td>{{request.approved_at | date:'M/d/yy h:mm a'}}</td>

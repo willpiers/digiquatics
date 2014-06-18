@@ -15,6 +15,10 @@
       if      request.approved == true then 'success'
       else 'danger'
 
+    $scope.checkActive = (request) ->
+      if request.active == false then false
+      else true
+
     $scope.thArrow = (current_column, anchored_column) ->
       if current_column == anchored_column then true
 ]
