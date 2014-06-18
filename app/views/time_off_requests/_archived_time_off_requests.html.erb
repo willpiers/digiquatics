@@ -41,7 +41,7 @@
           <dq-arrow></dq-arrow>
         </span>
       </th>
-      <th>Reason</th>
+      <th class='hidden-xs'>Reason</th>
       <th>
         <a href="" ng-click="predicate.value = '-approved'; reverse=!reverse">
           Status
@@ -50,7 +50,7 @@
           <dq-arrow></dq-arrow>
         </span>
       </th>
-      <th>
+      <th class='hidden-xs'>
         <a href="" ng-click="predicate.value = '-created_at'; reverse=!reverse">
           Date Submitted
         </a>
@@ -58,7 +58,7 @@
           <dq-arrow></dq-arrow>
         </span>
       </th>
-      <th>
+      <th class='hidden-xs'>
         <a href="" ng-click="predicate.value = '-approved_by_user_id'; reverse=!reverse">
           Processed By
         </a>
@@ -66,7 +66,7 @@
           <dq-arrow></dq-arrow>
         </span>
       </th>
-      <th>
+      <th class='hidden-xs'>
         <a href="" ng-click="predicate.value = '-approved_at'; reverse=!reverse">
           Processed On
         </a>
@@ -92,14 +92,16 @@
       <td class='hidden-xs'>{{request.user.first_name}}</td>
       <td>{{request.starts_at | date:'M/d/yy h:mm a'}}</td>
       <td>{{request.ends_at | date:'M/d/yy h:mm a'}}</td>
-      <td>
+      <td class='hidden-xs'>
         {{request.reason | limitTo:15}}
       </td>
       <td ng-class='cssClass(request)'>
         {{request.approved | booleanToWordsTimeOff}}
       </td>
-      <td>{{request.created_at | date:'M/d/yy h:mm a'}}</td>
-      <td>
+      <td class='hidden-xs'>
+        {{request.created_at | date:'M/d/yy h:mm a'}}
+      </td>
+      <td class='hidden-xs'>
         <a ng-href='/users/{{request.approved_by_user_id}}'>
           <div ng-hide='checkActive(request)' %>
             <a ng-href='/users/{{request.approved_by_user_id}}'>
@@ -108,7 +110,9 @@
           </div>
         </a>
       </td>
-      <td>{{request.approved_at | date:'M/d/yy h:mm a'}}</td>
+      <td class='hidden-xs'>
+        {{request.approved_at | date:'M/d/yy h:mm a'}}
+      </td>
       <td>
         <a ng-href='/time_off_requests/{{request.id}}'>
           View Request

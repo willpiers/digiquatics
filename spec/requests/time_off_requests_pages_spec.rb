@@ -47,7 +47,7 @@ describe 'Time Off Request pages' do
     it { should have_selector('h1', text: 'Processed Time Off Requests') }
     it { should have_title(full_title('Processed Time Off Requests')) }
     it { should have_link('New Request', new_time_off_request_path) }
-    it { should have_link('View Open Requests', time_off_request_path) }
+    it { should have_link('View Pending', time_off_request_path) }
 
     it { should have_selector('th', text: 'Last Name') }
     it { should have_selector('th', text: 'First Name') }
