@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140618201631) do
+ActiveRecord::Schema.define(version: 20140618212454) do
 
   create_table "accounts", force: true do |t|
     t.string   "name"
@@ -284,9 +284,11 @@ ActiveRecord::Schema.define(version: 20140618201631) do
     t.datetime "approved_at"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "active",              default: true
-    t.boolean  "approved",            default: false
+    t.boolean  "active",                  default: true
+    t.boolean  "approved",                default: false
     t.integer  "location_id"
+    t.string   "processed_by_last_name"
+    t.string   "processed_by_first_name"
   end
 
   create_table "users", force: true do |t|

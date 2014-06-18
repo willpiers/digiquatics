@@ -10,7 +10,10 @@
       <%= bootstrap_form_for @time_off_request do |f| %>
         <%= f.hidden_field :approved, value: false %>
         <%= f.hidden_field :approved_by_user_id, value: current_user.id %>
+        <%= f.hidden_field :processed_by_last_name, value: current_user.last_name %>
+        <%= f.hidden_field :processed_by_first_name, value: current_user.first_name %>
         <%= f.hidden_field :approved_at, value: Time.now %>
+        <%= f.hidden_field :active, value: false %>
         <%= f.submit 'Deny', class: 'btn btn-danger' %>
       <% end %>
     </ul>
@@ -18,7 +21,10 @@
       <%= bootstrap_form_for @time_off_request do |f| %>
         <%= f.hidden_field :approved, value: true %>
         <%= f.hidden_field :approved_by_user_id, value: current_user.id %>
+        <%= f.hidden_field :processed_by_last_name, value: current_user.last_name %>
+        <%= f.hidden_field :processed_by_first_name, value: current_user.first_name %>
         <%= f.hidden_field :approved_at, value: Time.now %>
+        <%= f.hidden_field :active, value: false %>
         <%= f.submit 'Approve', class: 'btn btn-success'  %>
       <% end %>
     </ul>
@@ -48,7 +54,7 @@
     </tr>
     <tr>
       <th>Location</th>
-      <td></td>
+      <td><%= @time_off_request.location.name %></td>
     </tr>
     <tr>
       <th>Date Submitted</th>
@@ -76,28 +82,34 @@
     </tr>
     <tr>
       <th>Status</th>
-      <td class= <%=BooleanToWordsTimeOffCSS(@time_off_request.approved)%>>
-        <% if @time_off_request.active == false %>
+      <% if @time_off_request.active == false %>
+        <td class= <%=BooleanToWordsTimeOffCSS(@time_off_request.approved)%>>
           <%= BooleanToWordsTimeOff(@time_off_request.approved) %>
-        <% end %>
+        </td>
+      <% elsif %>
+      <td class='warning'>
+        Pending
       </td>
+      <% end %>
     </tr>
-    <tr>
-      <th>Processed By</th>
-      <td>
-        <% if @time_off_request.approved_by_user_id? %>
-          <%= "#{User.find_by_id(@time_off_request.approved_by_user_id).last_name},
-               #{User.find_by_id(@time_off_request.approved_by_user_id).first_name}" %>
-        <% end %>
-      </td>
-    </tr>
-    <tr>
-      <th>Processed On</th>
-      <td>
-        <% if @time_off_request.approved_at? %>
-          <%= @time_off_request.approved_at.strftime('%-m/%-d/%Y @ %I:%M%p') %>
-        <% end %>
-      </td>
-    </tr>
+    <% if @time_off_request.active == false %>
+      <tr>
+        <th>Processed By</th>
+        <td>
+          <% if @time_off_request.approved_by_user_id? %>
+            <%= "#{User.find_by_id(@time_off_request.approved_by_user_id).last_name},
+                 #{User.find_by_id(@time_off_request.approved_by_user_id).first_name}" %>
+          <% end %>
+        </td>
+      </tr>
+      <tr>
+        <th>Processed On</th>
+        <td>
+          <% if @time_off_request.approved_at? %>
+            <%= @time_off_request.approved_at.strftime('%-m/%-d/%Y @ %I:%M%p') %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
   </table>
 </div>

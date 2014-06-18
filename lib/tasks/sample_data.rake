@@ -296,6 +296,42 @@ namespace :db do
                             )
     end
 
+    puts "\n\nMy Time Off Requests"
+
+    print '.'
+    TimeOffRequest.create!(user_id: 1,
+                           starts_at: '2014-09-03 11:21:21',
+                           ends_at: '2014-10-17 12:30:25',
+                           reason: 'Blah Blah Blah',
+                           approved: false,
+                           active: false,
+                           location_id: rand(3) + 1
+                          )
+
+    print '.'
+    TimeOffRequest.create!(user_id: 1,
+                           starts_at: '2014-04-03 11:21:21',
+                           ends_at: '2014-6-17 12:30:25',
+                           reason: 'Blah Blah Blah',
+                           approved: false,
+                           active: true,
+                           location_id: rand(3) + 1
+                          )
+
+    print '.'
+    TimeOffRequest.create!(user_id: 1,
+                           starts_at: '2014-02-03 13:21:21',
+                           ends_at: '2014-7-17 15:30:25',
+                           reason: 'Blah Blah Blah',
+                           approved: true,
+                           approved_at: '2014-01-27 18:15:20',
+                           processed_by_last_name: 'Snow',
+                           processed_by_first_name: 'John',
+                           active: false,
+                           location_id: rand(3) + 1
+                          )
+
+
     puts "\n\nSlide Inspections"
 
     8.times do |n|

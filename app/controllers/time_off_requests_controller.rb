@@ -57,7 +57,8 @@ class TimeOffRequestsController < ApplicationController
   def time_off_request_params
     params.require(:time_off_request)
     .permit(:user_id, :starts_at, :ends_at, :reason, :approved,
-            :approved_by_user_id, :approved_at, :active, :location_id)
+            :approved_by_user_id, :approved_at, :active, :location_id,
+            :processed_by_last_name, :processed_by_first_name)
   end
 
   def handle_action(resource, message, page)
