@@ -23,17 +23,80 @@ describe 'Time Off Request pages' do
     it { should have_selector('h1', text: 'Time Off Requests') }
     it { should have_title(full_title('Time Off Requests')) }
     it { should have_link('New Request', new_time_off_request_path) }
+    it { should have_link('View Processed', new_time_off_request_path) }
 
     it { should have_selector('th', text: 'Last Name') }
     it { should have_selector('th', text: 'First Name') }
-    it { should have_selector('th', text: 'Start') }
-    it { should have_selector('th', text: 'End') }
+    it { should have_selector('th', text: 'Name') }
+    it { should have_selector('th', text: 'Start Date') }
+    it { should have_selector('th', text: 'End Date') }
+    it { should have_selector('th', text: 'Reason') }
     it { should have_content('request.user.last_name') }
     it { should have_content('request.user.first_name') }
+    it { should have_content('request.starts_at') }
+    it { should have_content('request.ends_at') }
+    it { should have_content('request.reason') }
+  end
 
-    it { should have_content("request.starts_at | date:'M/d/yy h:mm a'") }
-    it { should have_content("request.ends_at | date:'M/d/yy h:mm a'") }
-    it { should have_content('request.reason | limitTo:15') }
+  describe 'processed time off requests' do
+    before do
+      login_as(admin, scope: :user)
+      visit archived_time_off_requests_path
+    end
+
+    it { should have_selector('h1', text: 'Processed Time Off Requests') }
+    it { should have_title(full_title('Processed Time Off Requests')) }
+    it { should have_link('New Request', new_time_off_request_path) }
+    it { should have_link('View Open Requests', time_off_request_path) }
+
+    it { should have_selector('th', text: 'Last Name') }
+    it { should have_selector('th', text: 'First Name') }
+    it { should have_selector('th', text: 'Name') }
+    it { should have_selector('th', text: 'Start Date') }
+    it { should have_selector('th', text: 'End Date') }
+    it { should have_selector('th', text: 'Reason') }
+    it { should have_selector('th', text: 'Date Submitted') }
+    it { should have_selector('th', text: 'Status') }
+    it { should have_selector('th', text: 'Processed By') }
+    it { should have_selector('th', text: 'Processed On') }
+
+    it { should have_content('request.user.last_name') }
+    it { should have_content('request.user.first_name') }
+    it { should have_content('request.starts_at') }
+    it { should have_content('request.ends_at') }
+    it { should have_content('request.reason') }
+    it { should have_content('request.created_at') }
+    it { should have_content('request.approved') }
+    it { should have_content('request.approved_by_user_id') }
+    it { should have_content('request.approved_at') }
+  end
+
+  describe 'my time off requests' do
+    before do
+      login_as(admin, scope: :user)
+      visit my_time_off_requests_path
+    end
+
+    it { should have_selector('h1', text: 'My Time Off Requests') }
+    it { should have_title(full_title('My Time Off Requests')) }
+    it { should have_link('New Request', new_time_off_request_path) }
+
+    it { should have_selector('th', text: 'Start Date') }
+    it { should have_selector('th', text: 'End Date') }
+    it { should have_selector('th', text: 'Reason') }
+    it { should have_selector('th', text: 'Status') }
+    it { should have_selector('th', text: 'Date Submitted') }
+    it { should have_selector('th', text: 'Processed By') }
+    it { should have_selector('th', text: 'Processed On') }
+
+    it { should have_content('request.starts_at') }
+    it { should have_content('request.ends_at') }
+    it { should have_content('request.reason') }
+    it { should have_content('request.approved') }
+    it { should have_content('request.created_at') }
+    it { should have_content('request.approved') }
+    it { should have_content('request.approved_by_user_id') }
+    it { should have_content('request.approved_at') }
   end
 
   describe 'new' do
@@ -48,8 +111,8 @@ describe 'Time Off Request pages' do
 
       it { should have_selector('h1', text: 'New Time Off Request') }
       it { should have_title(full_title('New Time Off Request')) }
-      it { should have_content('Start Time *') }
-      it { should have_content('End Time *') }
+      it { should have_content('Start Date *') }
+      it { should have_content('End Date *') }
       it { should have_content('Reason') }
 
       describe 'with valid information' do
@@ -83,8 +146,8 @@ describe 'Time Off Request pages' do
 
       it { should have_selector('h1', text: 'Edit Time Off Request') }
       it { should have_title(full_title('Edit Time Off Request')) }
-      it { should have_content('Start Time *') }
-      it { should have_content('End Time *') }
+      it { should have_content('Start Date *') }
+      it { should have_content('End Date *') }
       it { should have_content('All Day') }
 
       describe 'with valid information' do
@@ -101,7 +164,7 @@ describe 'Time Off Request pages' do
             click_button submit
             pp page.body
           end
-          visit show_time_off_request_path(TimeOffRequest.last)
+          # visit show_time_off_request_path(TimeOffRequest.last)
           it { should have_content('Time Off Request was successfully updated.') }
         end
       end

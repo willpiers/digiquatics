@@ -3,7 +3,7 @@
     <tr>
       <th>
         <a href="" ng-click="predicate.value = '-starts_at'; reverse=!reverse">
-          Start Time
+          Start Date
         </a>
         <span ng-show="thArrow(predicate.value, '-starts_at')">
           <dq-arrow></dq-arrow>
@@ -11,7 +11,7 @@
       </th>
       <th>
         <a href="" ng-click="predicate.value = '-ends_at'; reverse=!reverse">
-          End Time
+          End Date
         </a>
         <span ng-show="thArrow(predicate.value, '-ends_at')">
           <dq-arrow></dq-arrow>
@@ -50,6 +50,7 @@
           <dq-arrow></dq-arrow>
         </span>
       </th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
@@ -57,10 +58,7 @@
       <td>{{request.starts_at | date:'M/d/yy h:mm a'}}</td>
       <td>{{request.ends_at | date:'M/d/yy h:mm a'}}</td>
       <td>
-        {{request.reason | limitTo:15}}...
-        <a ng-href='/time_off_requests/{{request.id}}'>
-          View
-        </a>
+        {{request.reason | limitTo:15}}
       </td>
       <td ng-class='cssClass(request)'>
         <div ng-hide='checkActive(request)' %>
@@ -79,6 +77,11 @@
         </div>
       </td>
       <td>{{request.approved_at | date:'M/d/yy h:mm a'}}</td>
+      <td>
+        <a ng-href='/time_off_requests/{{request.id}}'>
+          View Request
+        </a>
+      </td>
     </tr>
   </tbody>
 </table>
