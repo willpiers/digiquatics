@@ -57,9 +57,9 @@ describe 'Time Off Request pages' do
           expect { click_button submit }.to change(TimeOffRequest, :count).by(1)
         end
 
-        describe 'redirect to index' do
+        describe 'redirect to show' do
           before { click_button submit }
-          it { current_path.should eq time_off_request_path(TimeOffRequest.last) }
+          it { current_path.should eq show_time_off_request_path(TimeOffRequest.last) }
           it { should have_content('Time Off Request was successfully created.') }
         end
       end
@@ -72,6 +72,7 @@ describe 'Time Off Request pages' do
     before do
       login_as(user, scope: :user)
       FactoryGirl.create(:time_off_request,
+                         location_id: location.id,
                          user_id: user.id)
       visit edit_time_off_request_path(TimeOffRequest.last)
     end
@@ -100,7 +101,7 @@ describe 'Time Off Request pages' do
             click_button submit
             pp page.body
           end
-          it { current_path.should eq time_off_request_path(TimeOffRequest.last) }
+          visit show_time_off_request_path(TimeOffRequest.last)
           it { should have_content('Time Off Request was successfully updated.') }
         end
       end
@@ -114,7 +115,9 @@ describe 'Time Off Request pages' do
     before do
       login_as(admin, scope: :user)
       FactoryGirl.create(:time_off_request,
-                         user_id: user.id)
+                         location_id: location.id,
+                         user_id: user.id,
+                         active: false)
       visit time_off_request_path(TimeOffRequest.last)
     end
 

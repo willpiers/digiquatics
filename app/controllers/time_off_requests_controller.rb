@@ -23,7 +23,7 @@ class TimeOffRequestsController < ApplicationController
 
     message = 'Time Off Request was successfully created.'
 
-    handle_action(@time_off_request, message, :new, &:save)
+    handle_action(@time_off_request, message, :show, &:save)
   end
 
   def update
