@@ -125,13 +125,14 @@ describe 'Time Off Request pages' do
 
       describe 'attributes' do
         it { should have_selector('th', text: 'Submitted By') }
+        it { should have_selector('th', text: 'Location') }
         it { should have_selector('th', text: 'Date Submitted') }
-        it { should have_selector('th', text: 'Start') }
-        it { should have_selector('th', text: 'End') }
+        it { should have_selector('th', text: 'Start Date') }
+        it { should have_selector('th', text: 'End Date') }
         it { should have_selector('th', text: 'Reason') }
-        it { should have_selector('th', text: 'Approved? (Y/N)') }
-        it { should have_selector('th', text: 'Approved By') }
-        it { should have_selector('th', text: 'Approved At') }
+        it { should have_selector('th', text: 'Status') }
+        it { should have_selector('th', text: 'Processed By') }
+        it { should have_selector('th', text: 'Processed On') }
 
         it do should have_selector('td',
                                    text: user.first_name) end

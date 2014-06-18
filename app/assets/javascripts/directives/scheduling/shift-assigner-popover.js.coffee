@@ -10,5 +10,5 @@
     link: (scope, element, attrs) ->
       element.children('a').popover
         html: true
-        content: $compile("<dq-shift-assigner date='date' user='user'></dq-shift-assigner>")(scope)
+        content: $compile("<dq-shift-assigner date='date' user='user' position='position'></dq-shift-assigner>")(scope)
 ]

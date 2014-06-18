@@ -48,7 +48,10 @@
       <td class='visible-print'>
         {{user.last_name}}, {{user.first_name}}
       </td>
-      <td><dq-shift-assigner-popover date='{{weekStart()}}' user='user'><dq-shift-assigner-popover></td>
+      <td>
+        <dq-shift-assigner-popover date='{{weekStart()}}' user='user' position='positions'>
+        <dq-shift-assigner-popover>
+      </td>
       <td></td>
       <td></td>
       <td></td>

@@ -43,7 +43,6 @@
       </th>
       <th>Reason</th>
       <th></th>
-      <th></th>
     </tr>
   </thead>
   <tbody>
@@ -63,15 +62,11 @@
       <td>{{request.ends_at | date:'M/d/yy h:mm a'}}</td>
       <td>
         {{request.reason | limitTo:15}}...
+      </td>
+      <td>
         <a ng-href='/time_off_requests/{{request.id}}'>
-          View
+          View Request
         </a>
-      </td>
-      <td>
-        <approve-request info='request'></approve-request>
-      </td>
-      <td>
-        <deny-request info='request'></deny-request>
       </td>
     </tr>
   </tbody>
