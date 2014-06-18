@@ -9,7 +9,11 @@ describe TimeOffRequest do
       ends_at:   Time.now + 5.hours,
       reason: 'I want time off',
       approved:  true,
+      active: false,
       approved_by_user_id: 2,
+      location_id: 1,
+      processed_by_last_name: 'Last',
+      processed_by_last_name: 'First',
       approved_at: Time.now + 10.hours)
   end
 
@@ -20,7 +24,11 @@ describe TimeOffRequest do
   it { should respond_to(:ends_at) }
   it { should respond_to(:reason) }
   it { should respond_to(:approved) }
+  it { should respond_to(:active) }
   it { should respond_to(:approved_by_user_id) }
+  it { should respond_to(:location_id) }
+  it { should respond_to(:processed_by_last_name) }
+  it { should respond_to(:processed_by_last_name) }
   it { should respond_to(:approved_at) }
 
   it { should be_valid }
