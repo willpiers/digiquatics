@@ -14,6 +14,8 @@
     </div>
 
     <%= f.text_area :reason, label: 'Reason' %>
+    <%= f.hidden_field :user_id, value: current_user.id %>
+    <%= f.hidden_field :location_id, value: current_user.location_id %>
     <%= f.primary ( f.object.new_record? ?  'Submit' :
     'Save Changes' ) %>
   <% end %>

@@ -20,7 +20,6 @@ class TimeOffRequestsController < ApplicationController
 
   def create
     @time_off_request = TimeOffRequest.new(time_off_request_params)
-    @time_off_request.user_id = current_user.id
 
     message = 'Time Off Request was successfully created.'
 
@@ -39,6 +38,10 @@ class TimeOffRequestsController < ApplicationController
     @archived_time_off_requests = TimeOffRequest.where(active: false)
   end
 
+  def my_time_off_requests
+    @my_time_off_requests = TimeOffRequest.where(user_id: current_user.id)
+  end
+
   def destroy
     @time_off_request.destroy
 
@@ -54,7 +57,7 @@ class TimeOffRequestsController < ApplicationController
   def time_off_request_params
     params.require(:time_off_request)
     .permit(:user_id, :starts_at, :ends_at, :reason, :approved,
-            :approved_by_user_id, :approved_at, :active)
+            :approved_by_user_id, :approved_at, :active, :location_id)
   end
 
   def handle_action(resource, message, page)

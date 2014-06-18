@@ -1,10 +1,10 @@
 json.array!(@time_off_requests) do |request|
   json.extract! request, *TimeOffRequest.column_names
 
-  # json.location do
-  #   json.id request.location.id
-  #   json.name request.location.name
-  # end
+  json.location do
+    json.id request.location.id
+    json.name request.location.name
+  end
 
   json.user do
     json.id request.user.id

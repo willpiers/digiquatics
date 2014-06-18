@@ -80,7 +80,7 @@
           <li class='divider'></li>
           <li><%= link_to 'My Availability', '#' %></li>
           <li><%= link_to 'My Sub Requests', '#' %></li>
-          <li><%= link_to 'Request Time Off', '#' %></li>
+          <li><%= link_to 'My Time Off', my_time_off_requests_path %></li>
           <% if current_user && current_user.admin? %>
             <li class='divider'></li>
             <li><%= link_to 'Preferences', admin_dashboard_path %></li>

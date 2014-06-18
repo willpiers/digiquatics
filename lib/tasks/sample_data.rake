@@ -282,30 +282,17 @@ namespace :db do
                         )
     end
 
-    puts "\n\nTime Off Requests Non-Approved"
+    puts "\n\nTime Off Requests"
 
-    10.times do |n|
+    15.times do |n|
       print '.'
       TimeOffRequest.create!(user_id: n + 1,
                              starts_at: '2014-07-01 17:21:21',
                              ends_at: '2014-07-04 17:30:25',
                              reason: 'Blah Blah Blah',
-                             approved: false
-                            )
-    end
-
-
-    puts "\n\nTime Off Requests Approved"
-
-    10.times do |n|
-      print '.'
-      TimeOffRequest.create!(user_id: n + 1,
-                             starts_at: '2014-07-01 17:21:21',
-                             ends_at: '2014-07-04 17:30:25',
-                             reason: 'Blah Blah Blah',
-                             approved: true,
-                             approved_by_user_id: 12,
-                             approved_at: '2014-06-25 12:15:21'
+                             approved: false,
+                             active: true,
+                             location_id: rand(3) + 1
                             )
     end
 
