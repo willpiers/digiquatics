@@ -11,7 +11,6 @@
       scope.request.$update
 
       scope.request.$update (updatedRequest, putResponseHeaders) ->
-        console.log 'Great Success!'
         console.log updatedRequest
 
       scope.$apply()
