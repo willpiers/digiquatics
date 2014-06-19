@@ -14,6 +14,7 @@ class Location < ActiveRecord::Base
   has_many :pools, dependent: :destroy
   has_many :slides, dependent: :destroy
   has_many :shifts
+  has_many :time_off_requests
 
   accepts_nested_attributes_for :pools,
                                 reject_if: -> (pool) { pool[:name].blank? },

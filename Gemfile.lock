@@ -203,11 +203,14 @@ GEM
     mini_portile (0.5.3)
     minitest (4.7.5)
     mixpanel-ruby (1.4.0)
+    momentjs-rails (2.7.0)
+      railties (>= 3.1)
     multi_json (1.10.0)
     mysql2 (0.3.15)
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
     net-ssh (2.9.0)
+    ng-rails-csrf (0.1.0)
     nio4r (1.0.0)
     nokogiri (1.6.1)
       mini_portile (~> 0.5.0)
@@ -384,7 +387,9 @@ DEPENDENCIES
   jquery-turbolinks
   less (= 2.4.0)
   mixpanel-ruby
+  momentjs-rails
   mysql2
+  ng-rails-csrf
   oj
   paperclip (= 3.5.2)
   phantomjs

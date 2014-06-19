@@ -354,3 +354,47 @@ legend{
   position: relative;
   bottom: 7px;
 }
+
+.center-row-text {
+  position: relative;
+  top: 5px;
+}
+
+.fix-pdf-button {
+  float: left;
+  margin-right: 20px;
+}
+
+.fix-pdf-button a {
+  font-weight:bold;
+}
+
+.fix-print-button {
+  float: right;
+}
+
+.fix-print-button a {
+  font-weight:bold;
+}
+
+@media print {
+  .print-schedule-font {
+    font-size: 12px;
+  }
+}
+
+.link-color-fix{
+  color: #658BCA
+}
+
+@media (min-width: 500px) {
+  .fix_angular_date_picker {
+    position: relative;
+    top: 37px;
+    left: 30px;
+  }
+}
+
+#popover-width {
+  width: 225px;
+}

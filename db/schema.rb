@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140608165142) do
+ActiveRecord::Schema.define(version: 20140618212454) do
 
   create_table "accounts", force: true do |t|
     t.string   "name"
@@ -35,6 +35,12 @@ ActiveRecord::Schema.define(version: 20140608165142) do
 
   create_table "attendance_records", force: true do |t|
     t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "availabilities", force: true do |t|
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -267,6 +273,22 @@ ActiveRecord::Schema.define(version: 20140608165142) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "time_off_requests", force: true do |t|
+    t.integer  "user_id"
+    t.datetime "starts_at"
+    t.datetime "ends_at"
+    t.text     "reason"
+    t.string   "approved_by_user_id"
+    t.datetime "approved_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "active",                  default: true
+    t.boolean  "approved",                default: false
+    t.integer  "location_id"
+    t.string   "processed_by_last_name"
+    t.string   "processed_by_first_name"
   end
 
   create_table "users", force: true do |t|

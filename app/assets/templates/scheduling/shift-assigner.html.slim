@@ -1,0 +1,22 @@
+div id='popover-width'
+  h3
+    b Assign Shift
+    br
+  p
+    b Date:
+      {{date}}
+    br
+    b Employee:
+      {{user.last_name}}, {{user.first_name}}
+  p
+    | Start Time
+    =
+  br
+  p End Time
+  br
+  p Position
+  select ng-model='positionSelect' class='form-control'
+    option value='' Select Position
+    option ng-repeat='position in positions' value='{{position.name}}' {{postion.name}}
+  br
+  btn class='btn btn-primary btn-sm' Assign

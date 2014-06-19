@@ -50,6 +50,25 @@
         </ul>
       </li>
 
+      <% if FeatureToggleHelper.schedule? %>
+        <% if current_user && current_user.admin? %>
+          <li class = 'dropdown'>
+            <a href = '#' class = 'dropdown-toggle' data-toggle = 'dropdown'>
+              Schedule<b class = 'caret'></b></a>
+            <ul class = 'dropdown-menu'>
+                <li><%= link_to 'Edit/View Schedule', shifts_path %></li>
+                <li><%= link_to 'View Sub Requests', '#' %></li>
+                <li>
+                  <%= link_to 'View Time Off Requests',
+                      time_off_requests_path %>
+                </li>
+            </ul>
+          </li>
+        <% else %>
+          <li><%= link_to 'Schedule', shifts_path %></li>
+        <% end %>
+      <% end %>
+
       <% if FeatureToggleHelper.shift_reports? %>
         <li><%= link_to 'Shift Reports', shift_reports_path %></li>
       <% end %>
@@ -58,6 +77,13 @@
           Account<b class = 'caret'></b></a>
         <ul class = 'dropdown-menu'>
           <li><%= link_to 'My Profile', current_user %></li>
+          <% if FeatureToggleHelper.schedule? %>
+            <li class='divider'></li>
+            <li><%= link_to 'My Availability', '#' %></li>
+            <li><%= link_to 'My Sub Requests', '#' %></li>
+            <li><%= link_to 'My Time Off', my_time_off_requests_path %></li>
+          <% end %>
+
           <% if current_user && current_user.admin? %>
             <li class='divider'></li>
             <li><%= link_to 'Preferences', admin_dashboard_path %></li>

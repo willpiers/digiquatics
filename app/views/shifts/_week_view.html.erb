@@ -1,0 +1,63 @@
+<div id='shift-assigner-popover'></div>
+<table class='table table-hover table-condensed table-bordered print-schedule-font'>
+  <thead>
+    <tr>
+      <th class='hidden-print'>
+        <a href="" ng-click="predicate.value = '-last_name'; reverse=!reverse">
+          Full Name
+        </a>
+      </th>
+      <th class='visible-print'>
+        Full Name
+      </th>
+      <th class='lessons_table_cell'>
+        {{weekStart()}}
+      </th>
+      <th class='lessons_table_cell'>
+        {{addToWeek(1)}}
+      </th>
+      <th class='lessons_table_cell'>
+        {{addToWeek(2)}}
+      </th>
+      <th class='lessons_table_cell'>
+        {{addToWeek(3)}}
+      </th>
+      <th class='lessons_table_cell'>
+        {{addToWeek(4)}}
+      </th>
+      <th class='lessons_table_cell'>
+        {{addToWeek(5)}}
+      </th>
+      <th class='lessons_table_cell'>
+        {{addToWeek(6)}}
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat='user in users | orderBy:predicate.value:reverse |
+                   filter:locationFilter | filter:positionFilter'>
+      <td class='hidden-print'>
+        <a ng-href='/users/{{user.id}}'>
+          {{user.last_name}}, {{user.first_name}}
+        </a>
+        <br/>
+        {{user.position.name}} (Age {{user.date_of_birth | age}})
+        <br/>
+        (30 - 40 - 1000)
+      </td>
+      <td class='visible-print'>
+        {{user.last_name}}, {{user.first_name}}
+      </td>
+      <td>
+        <dq-shift-assigner-popover date='{{weekStart()}}' user='user' position='positions'>
+        <dq-shift-assigner-popover>
+      </td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+  </tbody>
+</table>
+

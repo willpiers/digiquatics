@@ -14,11 +14,15 @@
 #= require jquery.turbolinks
 #= require jquery_ujs
 #= require bootstrap
+#= require bootstrap/tooltip
+#= require bootstrap/popover
 #= require turbolinks
 
 #= require angular
 #= require angular-resource
 #= require angular-ui-bootstrap-tpls
+#= require ng-rails-csrf
+#= require moment
 
 #= require angular-rails-templates
 #= require_tree ../templates

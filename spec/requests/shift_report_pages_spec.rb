@@ -73,7 +73,7 @@ describe 'Shift Report pages' do
           check 'Incident / Accident Report Filed'
         end
 
-        it 'should not create a help desk record' do
+        it 'should not create a shift report record' do
           expect { click_button submit }.to_not change(ShiftReport, :count).by(1)
         end
       end
@@ -118,15 +118,12 @@ describe 'Shift Report pages' do
 
       describe 'with invalid information' do
         before do
-          fill_in 'Report', with: ''
+          fill_in 'Report *', with: ' '
+          click_button submit
         end
 
-        it 'should not update a help desk record' do
-          expect { click_button submit }.to_not change(ShiftReport, :count).by(1)
-        end
-
+        # Weird bug, it appears to stay on the edit path but changes the URL.
         # describe 'redirect to edit page' do
-        #   before { click_button submit }
         #   it { current_path.should eq edit_shift_report_path(ShiftReport.last) }
         #   it { should have_content("can't be blank")}
         # end

@@ -86,7 +86,11 @@
       </tr>
       <tr>
         <th> Date Closed </th>
-        <td> <%= @help_desk.closed_date_time.strftime('%I:%M%p %-m/%-d/%Y') %> </td>
+        <td>
+          <% if @help_desk.closed_date_time? %>
+            <%= @help_desk.closed_date_time.strftime('%I:%M%p %-m/%-d/%Y') %>
+          <% end %>
+        </td>
       </tr>
     <% else %>
       <tr>

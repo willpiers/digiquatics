@@ -1,0 +1,74 @@
+<table class='table table-hover'>
+  <thead>
+    <tr>
+      <th class='visible-xs'>
+        <a href="" ng-click="predicate.value = '-user.last_name'; reverse=!reverse">
+          Name
+        </a>
+        <span ng-show="thArrow(predicate.value, '-user.last_name')">
+          <dq-arrow></dq-arrow>
+        </span>
+      </th>
+      <th class='hidden-xs'>
+        <a href="" ng-click="predicate.value = '-user.last_name'; reverse=!reverse">
+          Last Name
+        </a>
+        <span ng-show="thArrow(predicate.value, '-user.last_name')">
+          <dq-arrow></dq-arrow>
+        </span>
+      </th>
+      <th class='hidden-xs'>
+        <a href="" ng-click="predicate.value = '-user.first_name'; reverse=!reverse">
+          First Name
+        </a>
+        <span ng-show="thArrow(predicate.value, '-user.first_name')">
+          <dq-arrow></dq-arrow>
+        </span>
+      </th>
+      <th>
+        <a href="" ng-click="predicate.value = '-starts_at'; reverse=!reverse">
+          Start Date
+        </a>
+        <span ng-show="thArrow(predicate.value, '-starts_at')">
+          <dq-arrow></dq-arrow>
+        </span>
+      </th>
+      <th>
+        <a href="" ng-click="predicate.value = '-ends_at'; reverse=!reverse">
+          End Date
+        </a>
+        <span ng-show="thArrow(predicate.value, '-ends_at')">
+          <dq-arrow></dq-arrow>
+        </span>
+      </th>
+      <th class='hidden-xs'>Reason</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat='request in timeOff | orderBy:predicate.value:reverse | filter:locationFilter | filter:search'>
+      <td class='visible-xs'>
+        <a ng-href='/users/{{request.user.id}}'>
+          {{request.user.last_name}}, {{request.user.first_name}}
+        </a>
+      </td>
+      <td class='hidden-xs'>
+        <a ng-href='/users/{{request.user.id}}'>
+          {{request.user.last_name}}
+        </a>
+      </td>
+      <td class='hidden-xs'>{{request.user.first_name}}</td>
+      <td>{{request.starts_at | date:'M/d/yy h:mm a' }}</td>
+      <td>{{request.ends_at | date:'M/d/yy h:mm a'}}</td>
+      <td class='hidden-xs'>
+        {{request.reason | limitTo:15}}
+      </td>
+      <td>
+        <a ng-href='/time_off_requests/{{request.id}}'>
+          View Request
+        </a>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
