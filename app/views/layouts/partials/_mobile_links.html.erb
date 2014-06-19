@@ -1,7 +1,7 @@
 <div class='visible-xs'>
   <ul class = 'nav navbar-nav navbar-right' >
     <li><%= link_to 'My Profile', current_user %></li>
-    <% if FeatureToggleHelper.schedule? %>
+    <% if FeatureToggleHelper.scheduling? %>
       <li><%= link_to 'My Time Off', my_time_off_requests_path %></li>
     <% end %>
     <li><%= link_to 'Contact List', users_path %></li>
