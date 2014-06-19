@@ -28,10 +28,10 @@ class TimeOffRequestsController < ApplicationController
 
   def update
     message = 'Time Off Request was successfully updated.'
-
     handle_action(@time_off_request, message, :edit) do |resource|
       resource.update(time_off_request_params)
     end
+    @time_off_request? nil : approve_or_deny_logic
   end
 
   def archived_time_off_requests
@@ -68,5 +68,12 @@ class TimeOffRequestsController < ApplicationController
     else
       render page
     end
+  end
+
+  def approve_or_deny_logic
+    @time_off_request.approved_by_user_id = current_user.id
+    @time_off_request.processed_by_last_name = current_user.last_name
+    @time_off_request.processed_by_first_name = current_user.first_name
+    @time_off_request.approved_at = Time.now
   end
 end
