@@ -50,7 +50,7 @@
         </ul>
       </li>
 
-      <% if FeatureToggleHelper.scheduling? %>
+      <% if FeatureToggleHelper.schedule? %>
         <% if current_user && current_user.admin? %>
           <li class = 'dropdown'>
             <a href = '#' class = 'dropdown-toggle' data-toggle = 'dropdown'>
@@ -77,7 +77,7 @@
           Account<b class = 'caret'></b></a>
         <ul class = 'dropdown-menu'>
           <li><%= link_to 'My Profile', current_user %></li>
-          <% if FeatureToggleHelper.scheduling? %>
+          <% if FeatureToggleHelper.schedule? %>
             <li class='divider'></li>
             <li><%= link_to 'My Availability', '#' %></li>
             <li><%= link_to 'My Sub Requests', '#' %></li>

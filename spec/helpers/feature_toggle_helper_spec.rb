@@ -11,7 +11,7 @@ describe FeatureToggleHelper do
   end
 
   it 'should return nil for features that aren\'t toggled on' do
-    FeatureToggleHelper.scheduling?.should be_nil
+    FeatureToggleHelper.schedule?.should be_nil
   end
 
   it 'should still call default methods' do
