@@ -59,19 +59,25 @@
     <tr>
       <th>Date Submitted</th>
       <td>
-        <%= @time_off_request.created_at.strftime('%-m/%-d/%Y @ %I:%M%p') %>
+        <% if @time_off_request.created_at? %>
+          <%= @time_off_request.created_at.strftime('%-m/%-d/%Y @ %I:%M%p') %>
+        <% end %>
       </td>
     </tr>
     <tr>
       <th>Start Date</th>
       <td>
-        <%= @time_off_request.starts_at.strftime('%-m/%-d/%Y @ %I:%M%p') %>
+        <% if @time_off_request.starts_at? %>
+          <%= @time_off_request.starts_at.strftime('%-m/%-d/%Y @ %I:%M%p') %>
+        <% end %>
       </td>
     </tr>
     <tr>
       <th>End Date</th>
       <td>
-        <%= @time_off_request.ends_at.strftime('%-m/%-d/%Y @ %I:%M%p') %>
+        <% if @time_off_request.ends_at? %>
+          <%= @time_off_request.ends_at.strftime('%-m/%-d/%Y @ %I:%M%p') %>
+        <% end %>
       </td>
     </tr>
     <tr>
