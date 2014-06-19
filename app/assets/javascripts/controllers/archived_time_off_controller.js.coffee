@@ -12,7 +12,7 @@
       value: 'last_name'
 
     $scope.cssClass = (request) ->
-      if      request.approved == true then 'success'
+      if request.approved == true then 'success'
       else 'danger'
 
     $scope.checkActive = (request) ->

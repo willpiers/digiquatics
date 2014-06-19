@@ -3,14 +3,6 @@ class AvailabilitiesController < ApplicationController
 
   def index
     @availabilities = Availability.all
-
-    # respond_to do |format|
-    #   format.html
-    #   format.json
-    #   format.csv do
-    #     render csv: @availabilities, filename: 'Availabilitys'
-    #   end
-    # end
   end
 
   def show
