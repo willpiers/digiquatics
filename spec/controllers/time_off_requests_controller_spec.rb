@@ -47,26 +47,25 @@ describe TimeOffRequestsController do
           post :create, time_off_request: FactoryGirl.attributes_for(:time_off_request)
         }.to change(TimeOffRequest, :count).by(1)
       end
+
       it 'redirects to the new time_off_request' do
         post :create, time_off_request: FactoryGirl.attributes_for(:time_off_request)
         response.should redirect_to TimeOffRequest.last
       end
     end
 
-    # ALL ANGULAR NOT SURE HOW TO TEST
+    context 'with invalid attributes' do
+      it 'does not save the new time_off_request' do
+        expect{
+          post :create, time_off_request: FactoryGirl.attributes_for(:invalid_time_off_request)
+        }.to_not change(TimeOffRequest, :count)
+      end
 
-    # context 'with invalid attributes' do
-    #   it 'does not save the new time_off_request' do
-    #     expect{
-    #       post :create, time_off_request: FactoryGirl.attributes_for(:invalid_time_off_request)
-    #     }.to_not change(TimeOffRequest, :count)
-    #   end
-
-    #   it 're-renders the #new template' do
-    #     post :create, time_off_request: FactoryGirl.attributes_for(:invalid_time_off_request)
-    #     response.should render_template :new
-    #   end
-    # end
+      it 're-renders the #new template' do
+        post :create, time_off_request: FactoryGirl.attributes_for(:invalid_time_off_request)
+        response.should render_template :new
+      end
+    end
   end
 
   describe 'PUT #update' do
