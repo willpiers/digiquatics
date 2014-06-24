@@ -1,22 +1,29 @@
-div id='popover-width'
+#popover-width
   h3
     b Assign Shift
     br
   p
-    b Date:
-      {{date}}
+    b Date: {{date}}
     br
-    b Employee:
-      {{user.last_name}}, {{user.first_name}}
-  p
-    | Start Time
-    =
+    b Employee: {{user.last_name}}, {{user.first_name}}
+  p Start Time:
+
+  center
+    .fix_ampm_button
+      timepicker ng-model='startTime' ng-change='changed()' hour-step='1' minute-step='15'
+
+      ' {{date}} {{startTime | date:'HH:mm:ss Z'}}
   br
-  p End Time
-  br
+  p End Time:
+
+  center
+    .fix_ampm_button
+      timepicker ng-model='endTime' ng-change='changed()' hour-step='1' minute-step='15'
+      ' {{endTime}}
+
   p Position
-  select ng-model='positionSelect' class='form-control'
+  select.form-control ng-model='positionSelect'
     option value='' Select Position
-    option ng-repeat='position in positions' value='{{position.name}}' {{postion.name}}
+    option ng-repeat='position in positions' value='{{position.name}}' {{position.name}}
   br
-  btn class='btn btn-primary btn-sm' Assign
+  btn.btn.btn-primary.btn-sm Assign
