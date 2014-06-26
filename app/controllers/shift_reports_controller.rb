@@ -26,7 +26,6 @@ class ShiftReportsController < ApplicationController
   def create
     @shift_report = ShiftReport.new(shift_report_params)
     @shift_report.user_id = current_user.id
-    @shift_report.location_id = current_user.location_id
 
     message = 'Shift Report was successfully created.'
 
