@@ -3,6 +3,10 @@
     style: :horizontal, left: 'col-sm-4', right: 'col-sm-8') do |f| %>
 
     <%= render 'shared/required' %>
+    <%= f.select :location_id,
+      options_from_collection_for_select(Location.same_account_as(current_user),
+                                         :id,
+                                         :name, current_user.location_id) %>
     <%= f.text_area :content, label: 'Report *' %>
     <%= f.form_group :report_filed, label: { text: 'Incident / Accident Report Filed' } do %>
       <%= f.check_box :report_filed, label: "" do %>

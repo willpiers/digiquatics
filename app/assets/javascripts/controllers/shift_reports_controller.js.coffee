@@ -9,8 +9,8 @@
       if current_column == anchored_column then true
 
     $scope.cssClass = (report) ->
-      if      report.report_filed == 'Yes'    then 'success'
-      else    'danger'
+      if report.report_filed == false then 'success'
+      else 'danger'
 
     $scope.totalDisplayed = 10
 
