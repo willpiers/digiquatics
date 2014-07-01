@@ -30,19 +30,6 @@ describe 'Manage Private Lessons' do
     it { should have_link('New', href: new_position_path) }
 
     describe 'admin dashboard' do
-      it { should have_content('Skill Levels') }
-
-      it 'should list each skill_level' do
-        SkillLevel.same_account_as(user).each do |skill_level|
-          skill_level.account_id.should eq(user.account_id)
-          should have_content(skill_level.name)
-          should have_link('Edit', href: edit_skill_level_path(skill_level))
-          should have_link('Delete', href: skill_level_path(skill_level))
-        end
-      end
-
-      it { should have_content('Packages') }
-
       it 'should list each package' do
         Package.same_account_as(user).each do |package|
           package.account_id.should eq(user.account_id)
@@ -82,20 +69,6 @@ describe 'Manage Private Lessons' do
       end
     end
 
-    describe 'deleting a skill_level' do
-      before do
-        visit admin_dashboard_path
-      end
-
-      it 'should be able to delete skill_level' do
-        expect do
-          click_link('Delete', match: :first)
-        end.to change(SkillLevel, :count).by(-1)
-
-        current_path.should == admin_dashboard_path
-      end
-    end
-
     describe 'creating a new package' do
       before do
         visit new_package_path
@@ -124,22 +97,5 @@ describe 'Manage Private Lessons' do
         current_path.should == admin_dashboard_path
       end
     end
-
-    # CANNOT TEST FOR DELETE LINK FOR PACKAGE BECAUSE THERE
-    # ARE MANY DELETE LINKS ON THIS PAGE
-
-    # describe 'deleting a package' do
-    #   before do
-    #     visit admin_dashboard_path
-    #   end
-
-    #   it 'should be able to delete package' do
-    #     expect do
-    #       click_link('Delete', match: :first)
-    #     end.to change(Package, :count).by(-1)
-
-    #     current_path.should == admin_dashboard_path
-    #   end
-    # end
   end
 end
