@@ -358,6 +358,17 @@ namespace :db do
                               all_ok: false)
     end
 
+    puts "\n\nShifts"
+
+    5.times do |n|
+      print '.'
+      Shift.create!(user_id: rand(80) + 1,
+                              location_id: rand(3) + 1,
+                              position_id: rand(3) + 1,
+                              start_time: Time.now,
+                              end_time: Time.now + 1.hour)
+    end
+
     puts "\n\n"
     puts '--------------------------------------------------------------------'
     puts '|   ( D | i | g | i | Q | u | a | t | i | c | s | 2 | 0 | 1 | 4 )  |'

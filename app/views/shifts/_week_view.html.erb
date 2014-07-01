@@ -11,7 +11,7 @@
         Full Name
       </th>
       <th class='lessons_table_cell'>
-        {{weekStart()}}
+        {{weekStart().format('ddd, MMM D')}}
       </th>
       <th class='lessons_table_cell'>
         {{addToWeek(1)}}
@@ -49,8 +49,11 @@
         {{user.last_name}}, {{user.first_name}}
       </td>
       <td>
-        <dq-shift-assigner-popover date='{{weekStart()}}' user='user' position='positions'>
-        <dq-shift-assigner-popover>
+        <dq-shift-assigner-popover
+          date="{{weekStart()}}"
+          user='user'
+          positions='positions'>
+        </dq-shift-assigner-popover>
       </td>
       <td></td>
       <td></td>
@@ -60,4 +63,3 @@
       <td></td>
   </tbody>
 </table>
-

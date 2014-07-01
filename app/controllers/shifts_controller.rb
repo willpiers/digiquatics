@@ -4,13 +4,13 @@ class ShiftsController < ApplicationController
   def index
     @shifts = Shift.all
 
-    # respond_to do |format|
-    #   format.html
-    #   format.json
-    #   format.csv do
-    #     render csv: @shifts, filename: 'shifts'
-    #   end
-    # end
+    respond_to do |format|
+      format.html
+      format.json
+      format.csv do
+        render csv: @shifts, filename: 'shifts'
+      end
+    end
   end
 
   def show

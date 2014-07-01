@@ -6,9 +6,12 @@
     scope:
       user: '='
       date: '@'
+      positions: '='
 
     link: (scope, element, attrs) ->
+      html = "<dq-shift-assigner date='date' user='user' positions='positions'></dq-shift-assigner>"
+
       element.children('a').popover
         html: true
-        content: $compile("<dq-shift-assigner date='date' user='user' position='position'></dq-shift-assigner>")(scope)
+        content: $compile(html) scope
 ]
