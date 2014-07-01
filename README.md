@@ -1,4 +1,5 @@
 # DigiQuatics
+[![Dependency Status](https://gemnasium.com/763d7e339248d2a0442ae161a7fe4c2b.svg)](https://gemnasium.com/duffcodester/digiquatics)
 
 ## Breakman (Security Auditing)
 `breakman`
