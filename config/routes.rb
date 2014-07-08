@@ -20,14 +20,17 @@ DigiQuatics::Application.routes.draw do
   resources :shifts
   resources :time_off_requests
   resources :availabilities
+
   resources :accounts do
     resources :private_lessons, shallow: true
   end
+
   resources :locations do
     member do
       get 'pools'
     end
   end
+
   resources :users do
     member do
       get 'certifications'
@@ -54,6 +57,7 @@ DigiQuatics::Application.routes.draw do
   match '/privacy', to: 'static_pages#privacy', via: 'get'
   match '/tos', to: 'static_pages#tos', via: 'get'
   match '/dashboard', to: 'static_pages#dashboard', via: 'get'
+  match '/availability', to: 'static_pages#availability', via: 'get'
 
   # Certifications
   match '/certifications_stats',

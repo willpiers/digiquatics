@@ -25,6 +25,9 @@ class StaticPagesController < ApplicationController
   def instructions
   end
 
+  def availability
+  end
+
   def landing
     if !Rails.env.test? && current_user
       Tracker.track(current_user.id, 'View Index')

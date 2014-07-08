@@ -17,6 +17,7 @@ class AvailabilitiesController < ApplicationController
 
   def create
     @availability = Availability.new(availability_params)
+    @availability.user_id = current_user.id
 
     message = 'Availability was successfully created.'
 
@@ -45,7 +46,7 @@ class AvailabilitiesController < ApplicationController
 
   def availability_params
     params.require(:availability)
-    .permit(:user_id)
+    .permit(:day, :start_time, :end_time)
   end
 
   def handle_action(resource, message, page)
