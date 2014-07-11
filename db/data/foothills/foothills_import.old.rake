@@ -70,7 +70,7 @@ namespace :db do
 
     User.find_or_initialize_by(email: ADMIN_EMAIL)
     .update_attributes!(last_name:             'Admin',
-                        first_name:            'DiqiQuatics',
+                        first_name:            'DigiQuatics',
                         password:              '@ffektive!',
                         password_confirmation: '@ffektive!',
                         active:                false,

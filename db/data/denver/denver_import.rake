@@ -60,7 +60,7 @@ namespace :db do
     end
 
     account.users.build(last_name:             'Admin',
-                        first_name:            'DiqiQuatics',
+                        first_name:            'DigiQuatics',
                         email:                 'admin@digiquatics.com',
                         password:              '@ffektive!',
                         password_confirmation: '@ffektive!',
