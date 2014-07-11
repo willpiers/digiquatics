@@ -2,7 +2,7 @@
   ($compile) ->
     restrict: 'E'
     # templateUrl: 'scheduling/'
-    template: '<a>popover</a>'
+    template: '<a>Create Shift</a>'
     scope:
       user: '='
       date: '@'
