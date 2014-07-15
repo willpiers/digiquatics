@@ -14,22 +14,22 @@
         {{weekStart().format('ddd, MMM D')}}
       </th>
       <th class='lessons_table_cell'>
-        {{addToWeek(1)}}
+        {{addToWeek(1).format('ddd, MMM D')}}
       </th>
       <th class='lessons_table_cell'>
-        {{addToWeek(2)}}
+        {{addToWeek(2).format('ddd, MMM D')}}
       </th>
       <th class='lessons_table_cell'>
-        {{addToWeek(3)}}
+        {{addToWeek(3).format('ddd, MMM D')}}
       </th>
       <th class='lessons_table_cell'>
-        {{addToWeek(4)}}
+        {{addToWeek(4).format('ddd, MMM D')}}
       </th>
       <th class='lessons_table_cell'>
-        {{addToWeek(5)}}
+        {{addToWeek(5).format('ddd, MMM D')}}
       </th>
       <th class='lessons_table_cell'>
-        {{addToWeek(6)}}
+        {{addToWeek(6).format('ddd, MMM D')}}
       </th>
     </tr>
   </thead>
@@ -56,6 +56,14 @@
         </dq-shift-assigner-popover>
       </td>
       <td>
+        <div ng-repeat='shift in user.shifts'>
+          Start Time: {{shift.start_time | date:'yyyy-MM-dd'}}
+          <br>
+          Add To: {{addToWeek(1).format('YYYY-MM-DD')}}
+          <div ng-show="showShift('{{shift.start_time | date:'yyyy-MM-dd'}}',1)">
+            <%= render 'week_view_shift' %>
+          </div>
+        </div>
         <dq-shift-assigner-popover
           date="{{weekStart(1)}}"
           user='user'
@@ -63,6 +71,14 @@
         </dq-shift-assigner-popover>
       </td>
       <td>
+        <div ng-repeat='shift in user.shifts'>
+          Start Time: {{shift.start_time | date:'yyyy-MM-dd'}}
+          <br>
+          Add To: {{addToWeek(2).format('YYYY-MM-DD')}}
+          <div ng-show="showShift('{{shift.start_time | date:'yyyy-MM-dd'}}',2)">
+            <%= render 'week_view_shift' %>
+          </div>
+        </div>
         <dq-shift-assigner-popover
           date="{{weekStart(2)}}"
           user='user'

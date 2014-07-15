@@ -28,7 +28,7 @@
     $scope.weekStart = ->
       moment().startOf('week').add('days', $scope.weekCounter)
     $scope.addToWeek = (days) ->
-      moment().startOf('week').add('days', $scope.weekCounter + days).format('ddd, MMM D')
+      moment().startOf('week').add('days', $scope.weekCounter + days)
 
     # Days
     $scope.dayCounter = 0
@@ -59,4 +59,13 @@
 
     $scope.hideIf = ->
       not $scope.ifValue
+
+    $scope.showShift = (shift, days) ->
+      console.log shift
+      console.log days
+
+      true if shift is '2014-08-14'
+      # $scope.addToWeek(days).format('YYYY-MM-DD')
+
 ]
+

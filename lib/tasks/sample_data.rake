@@ -360,13 +360,22 @@ namespace :db do
 
     puts "\n\nShifts"
 
-    5.times do |n|
+    20.times do |n|
       print '.'
-      Shift.create!(user_id: rand(80) + 1,
+      Shift.create!(user_id: rand(100) + 1,
                               location_id: rand(3) + 1,
                               position_id: rand(3) + 1,
-                              start_time: Time.now,
-                              end_time: Time.now + 1.hour)
+                              start_time: Time.now - rand(3).hours,
+                              end_time: Time.now + rand(3).hours)
+    end
+
+    20.times do |n|
+      print '.'
+      Shift.create!(user_id: rand(100) + 1,
+                              location_id: rand(3) + 1,
+                              position_id: rand(3) + 1,
+                              start_time: Time.now + rand(3).hours + 12.hours,
+                              end_time: Time.now + rand(5).hours + 12.hours)
     end
 
     puts "\n\n"
