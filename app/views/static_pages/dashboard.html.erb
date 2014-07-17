@@ -16,9 +16,10 @@
   </center>
 
   <br>
-
-  <%= link_to 'New Chemical Record', new_chemical_record_path,
-      class: 'btn btn-primary btn-block', role: 'button' %>
+  <% if FeatureToggleHelper.chemicals? %>
+    <%= link_to 'New Chemical Record', new_chemical_record_path,
+        class: 'btn btn-primary btn-block', role: 'button' %>
+  <% end %>
 
   <br>
 
