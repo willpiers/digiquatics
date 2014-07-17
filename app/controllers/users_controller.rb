@@ -22,7 +22,8 @@ class UsersController < ApplicationController
         users = User.same_account_as(current_user).active
 
         # if stale?(users)
-          render json: users.to_json(include: [:location, :position, :shifts])
+          render json: users.to_json(include: [:location, :position, :shifts,
+            :availabilities])
         # end
       end
     end

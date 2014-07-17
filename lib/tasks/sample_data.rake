@@ -360,7 +360,7 @@ namespace :db do
 
     puts "\n\nShifts"
 
-    20.times do |n|
+    100.times do |n|
       print '.'
       Shift.create!(user_id: rand(100) + 1,
                               location_id: rand(3) + 1,
@@ -369,13 +369,31 @@ namespace :db do
                               end_time: Time.now + rand(3).hours)
     end
 
-    20.times do |n|
+    100.times do |n|
       print '.'
       Shift.create!(user_id: rand(100) + 1,
                               location_id: rand(3) + 1,
                               position_id: rand(3) + 1,
                               start_time: Time.now + rand(3).hours + 12.hours,
                               end_time: Time.now + rand(5).hours + 12.hours)
+    end
+
+    puts "\n\nAvailabilities"
+
+    100.times do |n|
+      print '.'
+      Availability.create!(user_id: rand(100) + 1,
+                           day: rand(6),
+                           start_time: Time.now - rand(3).hours - 72.hours,
+                           end_time: Time.now + rand(3).hours - 72.hours)
+    end
+
+    100.times do |n|
+      print '.'
+      Availability.create!(user_id: rand(100) + 1,
+                           day: rand(6),
+                           start_time: Time.now + rand(3).hours + 16.hours,
+                           end_time: Time.now + rand(5).hours + 16.hours)
     end
 
     puts "\n\n"
