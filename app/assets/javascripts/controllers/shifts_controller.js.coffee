@@ -60,12 +60,11 @@
     $scope.hideIf = ->
       not $scope.ifValue
 
-    $scope.showShift = (shift, days) ->
+    $scope.showShift = (shift, calandar_day) ->
       console.log shift
-      console.log days
+      console.log calandar_day
+      console.log(moment(shift).isSame(calandar_day))
 
-      true if shift is '2014-08-14'
-      # $scope.addToWeek(days).format('YYYY-MM-DD')
-
+      moment(shift).isSame(calandar_day)
 ]
 

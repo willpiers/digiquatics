@@ -378,6 +378,51 @@ namespace :db do
                               end_time: Time.now + rand(5).hours + 12.hours)
     end
 
+    20.times do |n|
+      print '.'
+      Shift.create!(user_id: rand(100) + 1,
+                              location_id: rand(3) + 1,
+                              position_id: rand(3) + 1,
+                              start_time: Time.now + rand(3).hours - 24.hours,
+                              end_time: Time.now + rand(5).hours - 24.hours)
+    end
+
+    20.times do |n|
+      print '.'
+      Shift.create!(user_id: rand(100) + 1,
+                              location_id: rand(3) + 1,
+                              position_id: rand(3) + 1,
+                              start_time: Time.now + rand(3).hours - 72.hours,
+                              end_time: Time.now + rand(5).hours - 72.hours)
+    end
+
+    20.times do |n|
+      print '.'
+      Shift.create!(user_id: rand(100) + 1,
+                              location_id: rand(3) + 1,
+                              position_id: rand(3) + 1,
+                              start_time: Time.now + rand(3).hours - 96.hours,
+                              end_time: Time.now + rand(5).hours - 96.hours)
+    end
+
+    20.times do |n|
+      print '.'
+      Shift.create!(user_id: rand(100) + 1,
+                              location_id: rand(3) + 1,
+                              position_id: rand(3) + 1,
+                              start_time: Time.now + rand(3).hours - 120.hours,
+                              end_time: Time.now + rand(5).hours - 120.hours)
+    end
+
+    20.times do |n|
+      print '.'
+      Shift.create!(user_id: rand(100) + 1,
+                              location_id: rand(3) + 1,
+                              position_id: rand(3) + 1,
+                              start_time: Time.now + rand(3).hours - 144 .hours,
+                              end_time: Time.now + rand(5).hours - 144.hours)
+    end
+
     puts "\n\n"
     puts '--------------------------------------------------------------------'
     puts '|   ( D | i | g | i | Q | u | a | t | i | c | s | 2 | 0 | 1 | 4 )  |'
