@@ -1,15 +1,15 @@
 require 'spec_helper'
 
 describe SubRequestsController do
-  before do
     account = FactoryGirl.create(:account)
-    user = FactoryGirl.create(:user, account_id: account.id)
+    let!(:user) { FactoryGirl.create(:user, account_id: account.id) }
+  before do
     sign_in user
   end
 
   describe 'GET #index' do
     it 'assigns @sub_requests' do
-      sub_request = FactoryGirl.create(:sub_request)
+      sub_request = FactoryGirl.create(:sub_request, user_id: user.id)
       get :index
       assigns(:sub_requests).should eq([sub_request])
     end

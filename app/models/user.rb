@@ -16,20 +16,20 @@ class User < ActiveRecord::Base
   before_save { self.email = email.downcase }
 
   belongs_to :account
-  has_many :certifications
-
-  accepts_nested_attributes_for :certifications, allow_destroy: true
-
-  has_many :private_lessons
-  has_many :shift_reports
   belongs_to :location
   belongs_to :position
-  has_many :help_desks
-  has_many :chemical_records
-  has_many :slide_inspections
-  has_many :shifts
-  has_many :time_off_requests
+
   has_many :availabilities
+  has_many :certifications
+  accepts_nested_attributes_for :certifications, allow_destroy: true
+  has_many :chemical_records
+  has_many :help_desks
+  has_many :private_lessons
+  has_many :shift_reports
+  has_many :shifts
+  has_many :slide_inspections
+  has_many :sub_requests
+  has_many :time_off_requests
 
   has_attached_file :avatar,
                     path: PAPERCLIP_PATH,
@@ -42,11 +42,12 @@ class User < ActiveRecord::Base
                     default_url: '/images/missing.png'
 
   validates_presence_of :account_id
-  validates :first_name, presence: true, length: { maximum: 15 }
-  validates :last_name,  presence: true, length: { maximum: 25 }
   validates :email, presence: true,
                     format: { with: VALID_EMAIL_REGEX },
                     uniqueness: { case_sensitive: false }
+  validates :first_name, presence: true, length: { maximum: 15 }
+  validates :last_name,  presence: true, length: { maximum: 25 }
+
   validates :password,
             confirmation: true,
             presence: true,
