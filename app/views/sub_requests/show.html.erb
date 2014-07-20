@@ -1,1 +1,60 @@
-#show template here
+<% provide(:title, 'Sub Request') %>
+
+<h1 class='cross_platform_header'>Sub Request</h1>
+
+<div class='table-width-desktop'>
+
+  <ul class='pull-right'>
+    <%= link_to 'Accept', '#',
+                class: 'btn btn-default btn-success' %>
+  </ul>
+
+  <div class='pull-left'>
+    <%= link_to ' Back', sub_requests_path , class: 'glyphicon glyphicon-arrow-left' %>
+  </div>
+
+  <table class='table table-bordered table-condensed'>
+      <tr>
+        <th id='fixtablewidth'>Location</th>
+        <td><%= @sub_request.shift.location.name %></td>
+      </tr>
+      <tr>
+        <th>Position</th>
+        <td><%= @sub_request.shift.position.name %></td>
+      </tr>
+      <tr>
+        <th>Shift Date</th>
+        <td><%= @sub_request.shift.start_time.strftime('%-m/%-d/%Y') %></td>
+      </tr>
+      <tr>
+        <th>Shift Time</th>
+        <td>
+          <%= "#{@sub_request.shift.start_time.strftime('%I:%M')}-
+               #{@sub_request.shift.end_time.strftime('%I:%M%p')}" %>
+        </td>
+      </tr>
+    <tr>
+      <th>Requested By</th>
+        <td>
+            <%= link_to "#{@sub_request.shift.user.last_name},
+                         #{@sub_request.shift.user.first_name}",
+                         user_path(id: @sub_request.shift.user.id) %>
+        </td>
+    </tr>
+    <tr>
+      <th>Phone Number </th>
+      <td> <%= phone_number_link(@sub_request.shift.user.phone_number) %> </td>
+    <tr>
+    <tr>
+      <th> Email </th>
+      <td>
+      <%= mail_to "#{ @sub_request.shift.user.email}" do %>
+        <span> <%= @sub_request.shift.user.email %> </span>
+      <% end %>
+      </td>
+    </tr>
+      <th>Date Submitted</th>
+      <td><%= @sub_request.created_at.strftime('%-m/%-d/%Y @ %I:%M%p')%></td>
+    </tr>
+  </table>
+</div>

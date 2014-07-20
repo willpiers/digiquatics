@@ -81,6 +81,9 @@ DigiQuatics::Application.routes.draw do
   match '/thank_you', to: 'private_lessons#thank_you', via: 'get'
   match '/my_lessons', to: 'private_lessons#my_lessons', via: 'get'
 
+  # Sub Requests
+  match '/processed_sub_requests', to: 'sub_requests#processed', via: 'get'
+
   # Time Off
   match '/archived_time_off_requests',
         to: 'time_off_requests#archived_time_off_requests',
