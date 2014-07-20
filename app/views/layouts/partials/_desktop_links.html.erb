@@ -20,7 +20,6 @@
                 <%= link_to 'Private Lessons Queue',
                     account_private_lessons_path(account_id: current_user.account_id) %>
               </li>
-              <li><%= link_to 'My Private Lessons', my_lessons_path %></li>
               <% if current_user && current_user.admin? %>
                 <li class='divider'></li>
                 <li><%= link_to 'New Private Lesson',
@@ -80,6 +79,7 @@
           <% if FeatureToggleHelper.schedule? %>
             <li class='divider'></li>
             <li><%= link_to 'My Availability', '#' %></li>
+            <li><%= link_to 'My Private Lessons', my_lessons_path %></li>
             <li><%= link_to 'My Sub Requests', '#' %></li>
             <li><%= link_to 'My Time Off', my_time_off_requests_path %></li>
           <% end %>
