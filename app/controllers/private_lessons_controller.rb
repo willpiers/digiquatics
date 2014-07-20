@@ -14,7 +14,8 @@ class PrivateLessonsController < ApplicationController
 
   def admin_index
     @admin_index = PrivateLesson.joins(:account)
-                   .same_account_as(current_user).where(completed_on: nil).claimed
+                   .same_account_as(current_user)
+                   .where(completed_on: nil).claimed
     @participants = Participant.all
     @location = Location.all
     @users = User.all
@@ -26,7 +27,8 @@ class PrivateLessonsController < ApplicationController
 
   def completed_admin_index
     @admin_index = PrivateLesson.joins(:account)
-                   .same_account_as(current_user).where.not(completed_on: nil).claimed
+                   .same_account_as(current_user).where.not(completed_on: nil)
+                   .claimed
     @participants = Participant.all
     @location = Location.all
     @users = User.all

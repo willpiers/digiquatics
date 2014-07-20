@@ -7,7 +7,9 @@ class SubRequestsController < ApplicationController
     respond_to do |format|
       format.html
       format.json do
-        sub_requests = SubRequest.all
+        sub_requests = SubRequest.joins(:user)
+                                 .where(users: { account_id: current_user.account_id })
+                                 .where(active: true)
         render json: sub_requests.to_json(include: {shift: {include: [:location, :position, :user]}})
       end
     end
@@ -41,7 +43,8 @@ class SubRequestsController < ApplicationController
   end
 
   def archived_sub_requests
-    @archived_sub_requests = SubRequest.where(active: false)
+    @archived_sub_requests = SubRequest.joins(:user)
+    .where(users: { account_id: current_user.account_id }).where(active: false)
   end
 
   def my_sub_requests

@@ -4,7 +4,8 @@ class TimeOffRequestsController < ApplicationController
   include ApplicationHelper
 
   def index
-    @time_off_requests = TimeOffRequest.where(active: true)
+    @time_off_requests = TimeOffRequest.joins(:user)
+    .where(users: { account_id: current_user.account_id }).where(active: true)
   end
 
   def show
@@ -35,7 +36,8 @@ class TimeOffRequestsController < ApplicationController
   end
 
   def archived_time_off_requests
-    @archived_time_off_requests = TimeOffRequest.where(active: false)
+    @archived_time_off_requests = TimeOffRequest.joins(:user)
+    .where(users: { account_id: current_user.account_id }).where(active: false)
   end
 
   def my_time_off_requests
