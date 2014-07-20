@@ -2,7 +2,9 @@ class HelpDesksController < ApplicationController
   before_action :set_help_desk, only: [:show, :edit, :update, :destroy]
 
   def index
-    @help_desks = HelpDesk.where(issue_status: true)
+    @help_desks = HelpDesk.joins(:location)
+                  .where(locations: { account_id: current_user.account_id })
+                  .where(issue_status: true)
 
     respond_to do |format|
       format.html
@@ -19,7 +21,9 @@ class HelpDesksController < ApplicationController
   end
 
   def closed_index
-    @closed_index = HelpDesk.where(issue_status: false)
+    @closed_index = HelpDesk.joins(:location)
+                  .where(locations: { account_id: current_user.account_id })
+                  .where(issue_status: false)
     respond_to do |format|
       format.html
       format.json

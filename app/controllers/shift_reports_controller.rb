@@ -2,7 +2,8 @@ class ShiftReportsController < ApplicationController
   before_action :set_shift_report, only: [:show, :edit, :update, :destroy]
 
   def index
-    @shift_reports = ShiftReport.all
+    @shift_reports = ShiftReport.joins(:location)
+                     .where(locations: { account_id: current_user.account_id })
 
     respond_to do |format|
       format.html
