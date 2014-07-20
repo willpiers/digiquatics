@@ -2,7 +2,7 @@
                                                      'Locations', 'Positions',
   @UsersCtrl = ($scope, ProcessedSubRequests, Users, Locations, Positions) ->
     # Services
-    $scope.processedSubRequests = SubRequests.index()
+    $scope.processedSubRequests = ProcessedSubRequests.index()
     $scope.locations = Locations.index()
 
     # Other
