@@ -433,6 +433,14 @@ namespace :db do
                            end_time: Time.now + rand(3).hours)
     end
 
+    puts "\n\nSub Requests Pending"
+
+    20.times do |n|
+      print '.'
+      SubRequest.create!(shift_id: rand(20) + 1,
+                         user_id: rand(100) + 1)
+    end
+
     puts "\n\n"
     puts '--------------------------------------------------------------------'
     puts '|   ( D | i | g | i | Q | u | a | t | i | c | s | 2 | 0 | 1 | 4 )  |'
