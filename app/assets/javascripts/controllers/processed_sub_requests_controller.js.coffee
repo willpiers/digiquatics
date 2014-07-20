@@ -3,9 +3,7 @@
   @UsersCtrl = ($scope, ProcessedSubRequests, Users, Locations, Positions) ->
     # Services
     $scope.processedSubRequests = SubRequests.index()
-    $scope.users = Users.index()
     $scope.locations = Locations.index()
-    $scope.positions = Positions.index()
 
     # Other
     $scope.predicate =
