@@ -5,19 +5,16 @@ describe Importer do
   describe 'import' do
     before(:all) do
       User.destroy_all
+      Location.destroy_all
+      Position.destroy_all
+      CertificationName.destroy_all
+      Account.destroy_all
       user_data_file = Rails.root.join('db/data/example_user_import.csv')
       cert_data_file =
         Rails.root.join('db/data/example_certification_import.csv')
 
       Importer.import(user_data_file: user_data_file,
                       cert_data_file: cert_data_file)
-    end
-
-    after(:all) do
-      User.last.delete
-      4.times do
-        Certification.last.delete
-      end
     end
 
     describe 'for the account' do

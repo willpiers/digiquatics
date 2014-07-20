@@ -1,15 +1,16 @@
 require 'spec_helper'
 
 describe TimeOffRequestsController do
-  before do
     account = FactoryGirl.create(:account)
-    user = FactoryGirl.create(:user, account_id: account.id)
+    let!(:user) { FactoryGirl.create(:user, account_id: account.id) }
+
+  before do
     sign_in user
   end
 
   describe 'GET #index' do
     it 'assigns @time_off_requests' do
-      time_off_request = FactoryGirl.create(:time_off_request)
+      time_off_request = FactoryGirl.create(:time_off_request, user_id: user.id)
       get :index
       assigns(:time_off_requests).should eq([time_off_request])
     end
