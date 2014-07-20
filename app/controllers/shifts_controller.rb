@@ -59,7 +59,7 @@ class ShiftsController < ApplicationController
   def handle_action(resource, message, page)
     if yield(resource)
       flash[:success] = message
-      redirect_to resource
+      redirect_to shifts_path
     else
       render page
     end

@@ -73,12 +73,6 @@
         <div class='col-md-2'></div>
         <div class='col-md-2'>
           <div class='pull-right'>
-            <div class='fix-pdf-button'>
-<!--               <%= link_to 'PDF', '#',
-                          data:
-                          { confirm: "To create pdf click the 'Print' button and print to 'PDF')" },
-                          class: 'btn btn-default btn-sm'%> -->
-            </div>
             <div class='fix-print-button'>
               <%= link_to_function('Print or Print to PDF', 'javascript:print()',
                                    class: 'btn btn-default btn-sm') %>
@@ -97,7 +91,7 @@
       </center>
     </div>
     <div ng-if="showIf()">
-      <%= render 'week_view' %>
+      <%= render 'shifts/week_views/week_view' %>
     </div>
     <div ng-if="hideIf()">
       <%= render 'day_view' %>

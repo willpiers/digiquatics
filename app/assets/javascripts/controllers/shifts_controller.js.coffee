@@ -28,7 +28,7 @@
     $scope.weekStart = ->
       moment().startOf('week').add('days', $scope.weekCounter)
     $scope.addToWeek = (days) ->
-      moment().startOf('week').add('days', $scope.weekCounter + days).format('ddd, MMM D')
+      moment().startOf('week').add('days', $scope.weekCounter + days)
 
     # Days
     $scope.dayCounter = 0
@@ -59,4 +59,12 @@
 
     $scope.hideIf = ->
       not $scope.ifValue
+
+    $scope.showShift = (shift, calandar_day) ->
+      console.log shift
+      console.log calandar_day
+      console.log(moment(shift).isSame(calandar_day))
+
+      moment(shift).isSame(calandar_day)
 ]
+
