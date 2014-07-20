@@ -11,7 +11,6 @@ class SubRequestsController < ApplicationController
         render json: sub_requests.to_json(include: {shift: {include: [:location, :position, :user]}})
       end
     end
-
   end
 
   def show
