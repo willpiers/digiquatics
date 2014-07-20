@@ -428,8 +428,9 @@ namespace :db do
     100.times do |n|
       print '.'
       Availability.create!(user_id: rand(100) + 1,
-                              start_time: Time.now - rand(3).hours,
-                              end_time: Time.now + rand(3).hours)
+                           day: rand(6),
+                           start_time: Time.now - rand(3).hours,
+                           end_time: Time.now + rand(3).hours)
     end
 
     puts "\n\n"

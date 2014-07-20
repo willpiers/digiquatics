@@ -71,15 +71,124 @@
         </dq-shift-assigner-popover>
       </td>
 
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
+      <td>
+        <div ng-repeat='shift in user.shifts'>
+          <div ng-show="showShift('{{shift.start_time | date:'yyyy-MM-dd'}}',
+          {{addToWeek(1)}} )">
+            <%= render 'shifts/week_views/week_view_shift' %>
+          </div>
+        </div>
+
+        <div ng-repeat='time_off in user.time_off_requests'>
+          <%= render 'shifts/week_views/week_view_time_off_request' %>
+        </div>
+
+        <div ng-repeat="avail in user.availabilities | filter: { day: 0 }">
+          <%= render 'shifts/week_views/week_view_availability' %>
+        </div>
+
+        <dq-shift-assigner-popover
+          date="{{weekStart()}}"
+          user='user'
+          positions='positions'>
+        </dq-shift-assigner-popover>
+      </td>
+      <td>
+        <div ng-repeat='shift in user.shifts'>
+          <div ng-show="showShift('{{shift.start_time | date:'yyyy-MM-dd'}}',
+          {{addToWeek(2)}} )">
+            <%= render 'shifts/week_views/week_view_shift' %>
+          </div>
+        </div>
+
+        <div ng-repeat='time_off in user.time_off_requests'>
+          <%= render 'shifts/week_views/week_view_time_off_request' %>
+        </div>
+
+        <div ng-repeat="avail in user.availabilities | filter: { day: 0 }">
+          <%= render 'shifts/week_views/week_view_availability' %>
+        </div>
+
+        <dq-shift-assigner-popover
+          date="{{weekStart()}}"
+          user='user'
+          positions='positions'>
+        </dq-shift-assigner-popover>
+      </td>
+      <td>
+        <div ng-repeat='shift in user.shifts'>
+          <div ng-show="showShift('{{shift.start_time | date:'yyyy-MM-dd'}}',
+          {{addToWeek(3)}} )">
+            <%= render 'shifts/week_views/week_view_shift' %>
+          </div>
+        </div>
+
+        <div ng-repeat='time_off in user.time_off_requests'>
+          <%= render 'shifts/week_views/week_view_time_off_request' %>
+        </div>
+
+        <div ng-repeat="avail in user.availabilities | filter: { day: 0 }">
+          <%= render 'shifts/week_views/week_view_availability' %>
+        </div>
+
+        <dq-shift-assigner-popover
+          date="{{weekStart()}}"
+          user='user'
+          positions='positions'>
+        </dq-shift-assigner-popover>
+      </td>
+      <td>
+        <div ng-repeat='shift in user.shifts'>
+          <div ng-show="showShift('{{shift.start_time | date:'yyyy-MM-dd'}}',
+          {{addToWeek(4)}} )">
+            <%= render 'shifts/week_views/week_view_shift' %>
+          </div>
+        </div>
+
+        <div ng-repeat='time_off in user.time_off_requests'>
+          <%= render 'shifts/week_views/week_view_time_off_request' %>
+        </div>
+
+        <div ng-repeat="avail in user.availabilities | filter: { day: 0 }">
+          <%= render 'shifts/week_views/week_view_availability' %>
+        </div>
+
+        <dq-shift-assigner-popover
+          date="{{weekStart()}}"
+          user='user'
+          positions='positions'>
+        </dq-shift-assigner-popover>
+      </td>
 
       <td>
-        <div ng-repeat="shift in user.shifts | filter: { start_time: '2014-07-19' }">
-          <%= render 'shifts/week_views/week_view_shift' %>
+        <div ng-repeat='shift in user.shifts'>
+          <div ng-show="showShift('{{shift.start_time | date:'yyyy-MM-dd'}}',
+          {{addToWeek(5)}} )">
+            <%= render 'shifts/week_views/week_view_shift' %>
+          </div>
+        </div>
+
+        <div ng-repeat='time_off in user.time_off_requests'>
+          <%= render 'shifts/week_views/week_view_time_off_request' %>
+        </div>
+
+        <div ng-repeat="avail in user.availabilities | filter: { day: 0 }">
+          <%= render 'shifts/week_views/week_view_availability' %>
+        </div>
+
+        <dq-shift-assigner-popover
+          date="{{weekStart()}}"
+          user='user'
+          positions='positions'>
+        </dq-shift-assigner-popover>
+      </td>
+
+      <td>
+        <div ng-repeat='shift in user.shifts'>
+          <div ng-show="showShift('{{shift.start_time | date:'yyyy-MM-dd'}}',
+          {{addToWeek(6)}} )">
+            <%= render 'shifts/week_views/week_view_shift' %>
+          </div>
         </div>
 
         <div ng-repeat="avail in user.availabilities | filter: { day: 6 }">
@@ -91,7 +200,6 @@
           user='user'
           positions='positions'>
         </dq-shift-assigner-popover>
-
       </td>
   </tbody>
 </table>
