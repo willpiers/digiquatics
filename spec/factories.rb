@@ -176,4 +176,17 @@ FactoryGirl.define do
   factory :invalid_availability, parent: :availability do
     user_id nil
   end
+
+  factory :sub_request do
+    shift_id 1
+    user_id 1
+    processed_on Time.now
+    active true
+    approved false
+    processed_by_user_id nil
+  end
+
+  factory :invalid_sub_request, parent: :sub_request do
+    shift_id nil
+  end
 end

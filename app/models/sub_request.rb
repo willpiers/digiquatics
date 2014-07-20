@@ -4,5 +4,5 @@ class SubRequest < ActiveRecord::Base
 
   belongs_to :shift
 
-  validates_presence_of :shift_id
+  validates_presence_of :shift_id, :user_id
 end

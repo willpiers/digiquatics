@@ -3,23 +3,24 @@ DigiQuatics::Application.routes.draw do
 
   devise_for :users
 
-  resources :shift_reports
   resources :attendance_records
-  resources :help_desks
-  resources :preventative_lists
-  resources :daily_todos
-  resources :pools
-  resources :chemical_records
-  resources :positions
-  resources :skill_levels
-  resources :packages
+  resources :availabilities
   resources :certifications
   resources :certification_names
+  resources :chemical_records
+  resources :daily_todos
+  resources :help_desks
+  resources :packages
+  resources :pools
+  resources :positions
+  resources :preventative_lists
+  resources :shift_reports
+  resources :shifts
+  resources :skill_levels
   resources :slide_inspections
   resources :slide_inspection_tasks
-  resources :shifts
+  resources :sub_requests
   resources :time_off_requests
-  resources :availabilities
 
   resources :accounts do
     resources :private_lessons, shallow: true

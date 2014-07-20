@@ -47,9 +47,9 @@ describe ShiftsController do
           post :create, shift: FactoryGirl.attributes_for(:shift)
         }.to change(Shift, :count).by(1)
       end
-      it 'redirects to the new shift' do
+      it 'redirects to the schedule builder' do
         post :create, shift: FactoryGirl.attributes_for(:shift)
-        response.should redirect_to Shift.last
+        response.should redirect_to shifts_path
       end
     end
 
@@ -97,9 +97,9 @@ describe ShiftsController do
         @shift.end_time.should eq('Sun, 02 Feb 2014 13:45:00 UTC +00:00')
       end
 
-      it 'redirects to the updated shift' do
+      it 'redirects to the schedule builder' do
         put :update, id: @shift, shift: FactoryGirl.attributes_for(:shift)
-        response.should redirect_to @shift
+        response.should redirect_to shifts_path
       end
     end
 
