@@ -42,9 +42,16 @@ class SubRequestsController < ApplicationController
     @sub_request? nil : approve_or_deny_logic
   end
 
-  def archived_sub_requests
-    @archived_sub_requests = SubRequest.joins(:user)
-    .where(users: { account_id: current_user.account_id }).where(active: false)
+  def processed
+    respond_to do |format|
+      format.html
+      format.json do
+        sub_requests = SubRequest.joins(:user)
+                                 .where(users: { account_id: current_user.account_id })
+                                 .where(active: false)
+        render json: sub_requests.to_json(include: {shift: {include: [:location, :position, :user]}})
+      end
+    end
   end
 
   def my_sub_requests
