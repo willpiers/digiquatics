@@ -81,10 +81,7 @@ describe SubRequestsController do
 
       it "changes @sub_request's attributes" do
         put :update, id: @sub_request,
-          sub_request: FactoryGirl.attributes_for(:sub_request,
-                                                       user_id: 2,
-                                                       starts_at: new_start_time,
-                                                       ends_at: new_end_time)
+          sub_request: FactoryGirl.attributes_for(:sub_request, user_id: 2)
         @sub_request.reload
         @sub_request.user_id.should eq 2
       end
@@ -106,14 +103,9 @@ describe SubRequestsController do
 
       it "changes @sub_request's attributes" do
         put :update, id: @sub_request,
-          sub_request: FactoryGirl.attributes_for(:sub_request,
-                                                       user_id: 2,
-                                                       starts_at: nil,
-                                                       ends_at: new_end_time)
+          sub_request: FactoryGirl.attributes_for(:sub_request, user_id: nil)
         @sub_request.reload
-        @sub_request.user_id.should_not eq 2
-        @sub_request.starts_at.should_not eq('Sun, 02 Feb 2014 08:45:00 UTC +00:00')
-        @sub_request.ends_at.should_not eq('Sun, 02 Feb 2014 13:45:00 UTC +00:00')
+        @sub_request.user_id.should eq 1
       end
 
       it 're-renders the #edit template' do

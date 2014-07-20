@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140715025138) do
+ActiveRecord::Schema.define(version: 20140720145642) do
 
   create_table "accounts", force: true do |t|
     t.string   "name"
@@ -280,14 +280,16 @@ ActiveRecord::Schema.define(version: 20140715025138) do
 
   create_table "sub_requests", force: true do |t|
     t.integer  "shift_id"
-    t.boolean  "active"
-    t.boolean  "approved"
     t.datetime "processed_on"
     t.integer  "processed_by_user_id"
     t.string   "processed_by_first_name"
     t.string   "processed_by_last_name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "approved",                default: false
+    t.boolean  "active",                  default: true
+    t.integer  "user_id"
+    t.integer  "sub_user_id"
   end
 
   create_table "time_off_requests", force: true do |t|
@@ -304,6 +306,7 @@ ActiveRecord::Schema.define(version: 20140715025138) do
     t.integer  "location_id"
     t.string   "processed_by_last_name"
     t.string   "processed_by_first_name"
+    t.boolean  "all_day",                 default: false
   end
 
   create_table "users", force: true do |t|

@@ -4,8 +4,9 @@ describe SubRequest do
 
   before do
     @sub_request = SubRequest.new(
-      shift_id:     1,
-      approved:  true,
+      shift_id: 1,
+      user_id: 1,
+      approved: true,
       active: false,
       processed_by_user_id: 2,
       processed_by_last_name: 'Last',
@@ -16,6 +17,7 @@ describe SubRequest do
   subject { @sub_request }
 
   it { should respond_to(:shift_id) }
+  it { should respond_to(:user_id) }
   it { should respond_to(:approved) }
   it { should respond_to(:active) }
   it { should respond_to(:processed_by_user_id) }
