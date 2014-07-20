@@ -292,6 +292,7 @@ ActiveRecord::Schema.define(version: 20140701024417) do
     t.integer  "location_id"
     t.string   "processed_by_last_name"
     t.string   "processed_by_first_name"
+    t.boolean  "all_day",                 default: false
   end
 
   create_table "users", force: true do |t|
