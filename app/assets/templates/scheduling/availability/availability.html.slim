@@ -1,7 +1,7 @@
 form.form-horizontal role='form'
   .form-group ng-repeat='day in days'
-    label.col-sm-offset-3.col-sm-2 {{day}}
+    label.col-sm-offset-2.col-sm-2 {{day}}
     dq-availability-time day='$index'
 
   .form-group
-    button.btn.btn-default type='submit' Submit
+    button.btn.btn-primary.btn-default type='submit' Submit
