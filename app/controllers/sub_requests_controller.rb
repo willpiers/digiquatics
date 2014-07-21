@@ -61,8 +61,14 @@ class SubRequestsController < ApplicationController
   end
 
   def my_sub_requests
+    respond_to do |format|
+      format.html
+      format.json do
+        my_sub_requests = SubRequest.where(user_id: current_user.id)
+        render json: my_sub_requests.to_json(include: {shift: {include: [:location, :position, :user]}})
+      end
+    end
     Tracker.track(current_user.id, 'View My Sub Requests') unless Rails.env.test?
-    @my_sub_requests = SubRequest.where(user_id: current_user.id)
   end
 
   def destroy

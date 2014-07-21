@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140720145642) do
+ActiveRecord::Schema.define(version: 20140721034929) do
 
   create_table "accounts", force: true do |t|
     t.string   "name"
@@ -290,6 +290,8 @@ ActiveRecord::Schema.define(version: 20140720145642) do
     t.boolean  "active",                  default: true
     t.integer  "user_id"
     t.integer  "sub_user_id"
+    t.string   "sub_first_name"
+    t.string   "sub_last_name"
   end
 
   create_table "time_off_requests", force: true do |t|

@@ -438,7 +438,43 @@ namespace :db do
     20.times do |n|
       print '.'
       SubRequest.create!(shift_id: rand(20) + 1,
-                         user_id: rand(100) + 1)
+                         user_id: rand(100) + 1,
+                         active: true,
+                         approved: false)
+    end
+
+    puts "\n\nSub Requests Processed"
+
+    20.times do |n|
+      print '.'
+      SubRequest.create!(shift_id: rand(20) + 1,
+                         user_id: rand(100) + 1,
+                         processed_on: Time.now,
+                         processed_by_user_id: rand(100) + 1,
+                         sub_user_id: rand(100) + 1,
+                         approved: [true, false].sample,
+                         active: false,
+                         processed_by_first_name: Faker::Name.first_name,
+                         processed_by_last_name: Faker::Name.last_name
+                         )
+    end
+
+    puts "\n\nMy Sub Requests"
+
+    10.times do |n|
+      print '.'
+      SubRequest.create!(shift_id: rand(20) + 1,
+                         user_id: 1,
+                         processed_on: Time.now,
+                         processed_by_user_id: rand(100) + 1,
+                         sub_user_id: rand(100) + 1,
+                         sub_first_name: Faker::Name.first_name,
+                         sub_last_name: Faker::Name.last_name,
+                         approved: [true, false].sample,
+                         active: false,
+                         processed_by_first_name: Faker::Name.first_name,
+                         processed_by_last_name: Faker::Name.last_name
+                         )
     end
 
     puts "\n\n"
