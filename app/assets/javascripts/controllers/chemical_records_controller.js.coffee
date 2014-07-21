@@ -2,7 +2,7 @@
                                                 'Locations', 'Pools',
   @ChemicalRecordsCtrl = ($scope, ChemicalRecords, Locations, Pools) ->
     $scope.predicate =
-      value: 'time_stamp'
+      value: '-time_stamp'
 
     $scope.thArrow = (current_column, anchored_column) ->
       if current_column == anchored_column then true
