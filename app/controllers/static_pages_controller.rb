@@ -29,10 +29,6 @@ class StaticPagesController < ApplicationController
   end
 
   def landing
-    if !Rails.env.test?
-      Tracker.track(current_user.id, 'View Landing')
-    end
-
     render :index, layout: false
   end
 
