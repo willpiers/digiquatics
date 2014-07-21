@@ -6,5 +6,4 @@ class TimeOffRequest < ActiveRecord::Base
   belongs_to :location
 
   validates_presence_of :user_id, :starts_at, :ends_at
-
 end

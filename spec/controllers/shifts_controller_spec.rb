@@ -43,9 +43,9 @@ describe ShiftsController do
   describe 'POST #create' do
     context 'with valid attributes' do
       it 'creates a new shift' do
-        expect{
+        expect do
           post :create, shift: FactoryGirl.attributes_for(:shift)
-        }.to change(Shift, :count).by(1)
+        end.to change(Shift, :count).by(1)
       end
       it 'redirects to the schedule builder' do
         post :create, shift: FactoryGirl.attributes_for(:shift)
@@ -55,9 +55,9 @@ describe ShiftsController do
 
     context 'with invalid attributes' do
       it 'does not save the new shift' do
-        expect{
+        expect do
           post :create, shift: FactoryGirl.attributes_for(:invalid_shift)
-        }.to_not change(Shift, :count)
+        end.to_not change(Shift, :count)
       end
 
       it 're-renders the #new template' do
@@ -70,8 +70,8 @@ describe ShiftsController do
   describe 'PUT #update' do
     before :each do
       @shift = FactoryGirl.create(:shift, user_id: 1, location_id: 1,
-                                  position_id: 1, start_time: Time.zone.now,
-                                  end_time: Time.zone.now + 5.hours)
+                                          position_id: 1, start_time: Time.zone.now,
+                                          end_time: Time.zone.now + 5.hours)
     end
 
     context 'valid attributes' do
@@ -85,10 +85,10 @@ describe ShiftsController do
 
       it "changes @shift's attributes" do
         put :update, id: @shift,
-          shift: FactoryGirl.attributes_for(:shift, user_id: 2, location_id: 2,
-                                            position_id: 2,
-                                            start_time: new_start_time,
-                                            end_time: new_end_time)
+                     shift: FactoryGirl.attributes_for(:shift, user_id: 2, location_id: 2,
+                                                               position_id: 2,
+                                                               start_time: new_start_time,
+                                                               end_time: new_end_time)
         @shift.reload
         @shift.user_id.should eq 2
         @shift.location_id.should eq 2
@@ -114,10 +114,10 @@ describe ShiftsController do
 
       it "changes @shift's attributes" do
         put :update, id: @shift,
-          shift: FactoryGirl.attributes_for(:shift, user_id: 2, location_id: nil,
-                                            position_id: 2,
-                                            start_time: new_start_time,
-                                            end_time: new_end_time)
+                     shift: FactoryGirl.attributes_for(:shift, user_id: 2, location_id: nil,
+                                                               position_id: 2,
+                                                               start_time: new_start_time,
+                                                               end_time: new_end_time)
         @shift.reload
         @shift.user_id.should_not eq 2
         @shift.location_id.should eq 1
@@ -139,9 +139,9 @@ describe ShiftsController do
     end
 
     it 'deletes the shift' do
-      expect{
+      expect do
         delete :destroy, id: @shift
-      }.to change(Shift, :count).by(-1)
+      end.to change(Shift, :count).by(-1)
     end
 
     it 'redirects to shifts#index' do
@@ -150,5 +150,3 @@ describe ShiftsController do
     end
   end
 end
-
-

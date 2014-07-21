@@ -19,4 +19,3 @@ module SlideInspectionsHelper
     account.slides_group_email || account.slides_admin_email || account.slides_location_email
   end
 end
-

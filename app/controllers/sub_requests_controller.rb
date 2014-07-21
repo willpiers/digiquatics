@@ -11,7 +11,7 @@ class SubRequestsController < ApplicationController
     respond_to do |format|
       format.html
       format.json do
-        render json: @sub_requests.to_json(include: {shift: {include: [:location, :position, :user]}})
+        render json: @sub_requests.to_json(include: { shift: { include: [:location, :position, :user] } })
       end
     end
   end
@@ -44,7 +44,7 @@ class SubRequestsController < ApplicationController
     handle_action(@sub_request, message, :edit) do |resource|
       resource.update(sub_request_params)
     end
-    @sub_request? nil : approve_or_deny_logic
+    @sub_request ? nil : approve_or_deny_logic
   end
 
   def processed
@@ -55,7 +55,7 @@ class SubRequestsController < ApplicationController
         sub_requests = SubRequest.joins(:user)
                                  .where(users: { account_id: current_user.account_id })
                                  .where(active: false)
-        render json: sub_requests.to_json(include: {shift: {include: [:location, :position, :user]}})
+        render json: sub_requests.to_json(include: { shift: { include: [:location, :position, :user] } })
       end
     end
   end
@@ -65,7 +65,7 @@ class SubRequestsController < ApplicationController
       format.html
       format.json do
         my_sub_requests = SubRequest.where(user_id: current_user.id)
-        render json: my_sub_requests.to_json(include: {shift: {include: [:location, :position, :user]}})
+        render json: my_sub_requests.to_json(include: { shift: { include: [:location, :position, :user] } })
       end
     end
     Tracker.track(current_user.id, 'View My Sub Requests') unless Rails.env.test?

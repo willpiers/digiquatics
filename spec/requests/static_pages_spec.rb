@@ -21,7 +21,7 @@ describe 'Static pages' do
     let!(:account) { FactoryGirl.create(:account) }
     let(:user) do
       FactoryGirl.create(:admin,
-                         account_id: account.id )
+                         account_id: account.id)
     end
 
     before do

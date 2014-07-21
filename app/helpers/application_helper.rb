@@ -105,7 +105,7 @@ module ApplicationHelper
     value ? 'Approved' : 'Denied'
   end
 
-    def BooleanToWordsTimeOffCSS(value)
+  def BooleanToWordsTimeOffCSS(value)
     value ? 'success' : 'danger'
-  end
+end
 end

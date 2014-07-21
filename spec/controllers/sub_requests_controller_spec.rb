@@ -2,8 +2,8 @@ require 'spec_helper'
 
 describe SubRequestsController do
 
-    account = FactoryGirl.create(:account)
-    let!(:user) { FactoryGirl.create(:user, account_id: account.id) }
+  account = FactoryGirl.create(:account)
+  let!(:user) { FactoryGirl.create(:user, account_id: account.id) }
 
   before do
     sign_in user
@@ -45,9 +45,9 @@ describe SubRequestsController do
   describe 'POST #create' do
     context 'with valid attributes' do
       it 'creates a new sub_request' do
-        expect{
+        expect do
           post :create, sub_request: FactoryGirl.attributes_for(:sub_request)
-        }.to change(SubRequest, :count).by(1)
+        end.to change(SubRequest, :count).by(1)
       end
 
       it 'redirects to the new sub_request' do
@@ -58,9 +58,9 @@ describe SubRequestsController do
 
     context 'with invalid attributes' do
       it 'does not save the new sub_request' do
-        expect{
+        expect do
           post :create, sub_request: FactoryGirl.attributes_for(:invalid_sub_request)
-        }.to_not change(SubRequest, :count)
+        end.to_not change(SubRequest, :count)
       end
 
       it 're-renders the #new template' do
@@ -83,7 +83,7 @@ describe SubRequestsController do
 
       it "changes @sub_request's attributes" do
         put :update, id: @sub_request,
-          sub_request: FactoryGirl.attributes_for(:sub_request, user_id: 2)
+                     sub_request: FactoryGirl.attributes_for(:sub_request, user_id: 2)
         @sub_request.reload
         @sub_request.user_id.should eq 2
       end
@@ -105,7 +105,7 @@ describe SubRequestsController do
 
       it "changes @sub_request's attributes" do
         put :update, id: @sub_request,
-          sub_request: FactoryGirl.attributes_for(:sub_request, user_id: nil)
+                     sub_request: FactoryGirl.attributes_for(:sub_request, user_id: nil)
         @sub_request.reload
         @sub_request.user_id.should eq 1
       end
@@ -123,9 +123,9 @@ describe SubRequestsController do
     end
 
     it 'deletes the sub_request' do
-      expect{
+      expect do
         delete :destroy, id: @sub_request
-      }.to change(SubRequest, :count).by(-1)
+      end.to change(SubRequest, :count).by(-1)
     end
 
     it 'redirects to sub_requests#index' do
@@ -134,5 +134,3 @@ describe SubRequestsController do
     end
   end
 end
-
-

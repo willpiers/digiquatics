@@ -96,6 +96,6 @@ DigiQuatics::Application.routes.draw do
   # Admin Dashboard
   match '/admin_dashboard', to: 'accounts#admin_dashboard', via: 'get'
 
-  #Help Desk
+  # Help Desk
   match '/closed_index', to: 'help_desks#closed_index', via: 'get'
 end

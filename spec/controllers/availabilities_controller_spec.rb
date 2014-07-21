@@ -43,9 +43,9 @@ describe AvailabilitiesController do
   describe 'POST #create' do
     context 'with valid attributes' do
       it 'creates a new availability' do
-        expect{
+        expect do
           post :create, availability: FactoryGirl.attributes_for(:availability)
-        }.to change(Availability, :count).by(1)
+        end.to change(Availability, :count).by(1)
       end
       it 'redirects to the new availability' do
         post :create, availability: FactoryGirl.attributes_for(:availability)
@@ -85,7 +85,7 @@ describe AvailabilitiesController do
 
       it "changes @availability's attributes" do
         put :update, id: @availability,
-          availability: FactoryGirl.attributes_for(:availability, user_id: 2)
+                     availability: FactoryGirl.attributes_for(:availability, user_id: 2)
         @availability.reload
 
         # pulls in current user's id instead
@@ -107,7 +107,7 @@ describe AvailabilitiesController do
 
       it "changes @availability's attributes" do
         put :update, id: @availability,
-          availability: FactoryGirl.attributes_for(:availability, user_id: nil)
+                     availability: FactoryGirl.attributes_for(:availability, user_id: nil)
         @availability.reload
 
         # pulls in current users id
@@ -129,9 +129,9 @@ describe AvailabilitiesController do
     end
 
     it 'deletes the availability' do
-      expect{
+      expect do
         delete :destroy, id: @availability
-      }.to change(Availability, :count).by(-1)
+      end.to change(Availability, :count).by(-1)
     end
 
     it 'redirects to availabilities#index' do
@@ -140,5 +140,3 @@ describe AvailabilitiesController do
     end
   end
 end
-
-

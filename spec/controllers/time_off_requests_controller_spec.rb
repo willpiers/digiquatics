@@ -1,8 +1,8 @@
 require 'spec_helper'
 
 describe TimeOffRequestsController do
-    account = FactoryGirl.create(:account)
-    let!(:user) { FactoryGirl.create(:user, account_id: account.id) }
+  account = FactoryGirl.create(:account)
+  let!(:user) { FactoryGirl.create(:user, account_id: account.id) }
 
   before do
     sign_in user
@@ -44,9 +44,9 @@ describe TimeOffRequestsController do
   describe 'POST #create' do
     context 'with valid attributes' do
       it 'creates a new time_off_request' do
-        expect{
+        expect do
           post :create, time_off_request: FactoryGirl.attributes_for(:time_off_request)
-        }.to change(TimeOffRequest, :count).by(1)
+        end.to change(TimeOffRequest, :count).by(1)
       end
 
       it 'redirects to the new time_off_request' do
@@ -57,9 +57,9 @@ describe TimeOffRequestsController do
 
     context 'with invalid attributes' do
       it 'does not save the new time_off_request' do
-        expect{
+        expect do
           post :create, time_off_request: FactoryGirl.attributes_for(:invalid_time_off_request)
-        }.to_not change(TimeOffRequest, :count)
+        end.to_not change(TimeOffRequest, :count)
       end
 
       it 're-renders the #new template' do
@@ -88,10 +88,10 @@ describe TimeOffRequestsController do
 
       it "changes @time_off_request's attributes" do
         put :update, id: @time_off_request,
-          time_off_request: FactoryGirl.attributes_for(:time_off_request,
-                                                       user_id: 2,
-                                                       starts_at: new_start_time,
-                                                       ends_at: new_end_time)
+                     time_off_request: FactoryGirl.attributes_for(:time_off_request,
+                                                                  user_id: 2,
+                                                                  starts_at: new_start_time,
+                                                                  ends_at: new_end_time)
         @time_off_request.reload
         @time_off_request.user_id.should eq 2
         @time_off_request.starts_at.should eq('Sun, 02 Feb 2014 08:45:00 UTC +00:00')
@@ -115,10 +115,10 @@ describe TimeOffRequestsController do
 
       it "changes @time_off_request's attributes" do
         put :update, id: @time_off_request,
-          time_off_request: FactoryGirl.attributes_for(:time_off_request,
-                                                       user_id: 2,
-                                                       starts_at: nil,
-                                                       ends_at: new_end_time)
+                     time_off_request: FactoryGirl.attributes_for(:time_off_request,
+                                                                  user_id: 2,
+                                                                  starts_at: nil,
+                                                                  ends_at: new_end_time)
         @time_off_request.reload
         @time_off_request.user_id.should_not eq 2
         @time_off_request.starts_at.should_not eq('Sun, 02 Feb 2014 08:45:00 UTC +00:00')
@@ -138,9 +138,9 @@ describe TimeOffRequestsController do
     end
 
     it 'deletes the time_off_request' do
-      expect{
+      expect do
         delete :destroy, id: @time_off_request
-      }.to change(TimeOffRequest, :count).by(-1)
+      end.to change(TimeOffRequest, :count).by(-1)
     end
 
     it 'redirects to time_off_requests#index' do
@@ -149,5 +149,3 @@ describe TimeOffRequestsController do
     end
   end
 end
-
-

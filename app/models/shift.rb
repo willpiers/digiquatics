@@ -9,5 +9,4 @@ class Shift < ActiveRecord::Base
 
   validates_presence_of :user_id, :position_id, :location_id, :start_time,
                         :end_time
-
 end

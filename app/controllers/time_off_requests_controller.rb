@@ -37,7 +37,7 @@ class TimeOffRequestsController < ApplicationController
     handle_action(@time_off_request, message, :edit) do |resource|
       resource.update(time_off_request_params)
     end
-    @time_off_request? nil : approve_or_deny_logic
+    @time_off_request ? nil : approve_or_deny_logic
   end
 
   def archived_time_off_requests
