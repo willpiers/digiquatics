@@ -83,6 +83,7 @@ DigiQuatics::Application.routes.draw do
 
   # Sub Requests
   match '/processed_sub_requests', to: 'sub_requests#processed', via: 'get'
+  match '/my_sub_requests', to: 'sub_requests#my_sub_requests', via: 'get'
 
   # Time Off
   match '/archived_time_off_requests',
