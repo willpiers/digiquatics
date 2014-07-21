@@ -468,6 +468,8 @@ namespace :db do
                          processed_on: Time.now,
                          processed_by_user_id: rand(100) + 1,
                          sub_user_id: rand(100) + 1,
+                         sub_first_name: Faker::Name.first_name,
+                         sub_last_name: Faker::Name.last_name,
                          approved: [true, false].sample,
                          active: false,
                          processed_by_first_name: Faker::Name.first_name,
