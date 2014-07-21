@@ -3,6 +3,7 @@ class PrivateLessonsController < ApplicationController
     [:show, :edit, :update, :destroy]
 
   def index
+    Tracker.track(current_user.id, 'Private Lessons Index') unless Rails.env.test?
     @private_lessons = PrivateLesson.joins(:account)
                        .same_account_as(current_user).unclaimed
     @participants = Participant.all
@@ -13,6 +14,7 @@ class PrivateLessonsController < ApplicationController
   end
 
   def admin_index
+    Tracker.track(current_user.id, 'Private Lessons Admin Index') unless Rails.env.test?
     @admin_index = PrivateLesson.joins(:account)
                    .same_account_as(current_user)
                    .where(completed_on: nil).claimed
@@ -26,6 +28,7 @@ class PrivateLessonsController < ApplicationController
   end
 
   def completed_admin_index
+    Tracker.track(current_user.id, 'Private Lessons Completed Admin Index') unless Rails.env.test?
     @admin_index = PrivateLesson.joins(:account)
                    .same_account_as(current_user).where.not(completed_on: nil)
                    .claimed
@@ -39,6 +42,7 @@ class PrivateLessonsController < ApplicationController
   end
 
   def my_lessons
+    Tracker.track(current_user.id, 'My Lessons') unless Rails.env.test?
     @my_lessons = PrivateLesson.joins(:user).claimed_by(current_user)
     @participants = Participant.all
     @location = Location.all
@@ -65,9 +69,11 @@ class PrivateLessonsController < ApplicationController
   end
 
   def edit
+    Tracker.track(current_user.id, 'Edit Private Lesson') unless Rails.env.test?
   end
 
   def create
+    Tracker.track(current_user.id, 'Create Private Lesson') unless Rails.env.test?
     @private_lesson = Account.find(params[:account_id]).private_lessons
     .build(private_lesson_params)
     message = 'Private lesson was successfully created.'
@@ -76,6 +82,7 @@ class PrivateLessonsController < ApplicationController
   end
 
   def update
+    Tracker.track(current_user.id, 'Update Private Lesson') unless Rails.env.test?
     message = 'Private lesson was successfully updated.'
     @account = @private_lesson.account
     handle_action(@private_lesson, message, :edit, @account) do |resource|
