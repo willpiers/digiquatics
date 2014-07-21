@@ -55,7 +55,13 @@ class SubRequestsController < ApplicationController
   end
 
   def my_sub_requests
-    @my_sub_requests = SubRequest.where(user_id: current_user.id)
+    respond_to do |format|
+      format.html
+      format.json do
+        my_sub_requests = SubRequest.where(user_id: current_user.id)
+        render json: my_sub_requests.to_json(include: {shift: {include: [:location, :position, :user]}})
+      end
+    end
   end
 
   def destroy
