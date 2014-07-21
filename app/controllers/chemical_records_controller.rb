@@ -3,6 +3,7 @@ class ChemicalRecordsController < ApplicationController
   before_action :set_chemical_record, only: [:show, :edit, :update, :destroy]
 
   def index
+    Tracker.track(current_user.id, 'View Chemical Records Index') unless Rails.env.test?
     @chemical_records = ChemicalRecord.same_account_as(current_user)
 
     respond_to do |format|
@@ -16,6 +17,7 @@ class ChemicalRecordsController < ApplicationController
   end
 
   def show
+    Tracker.track(current_user.id, 'Show Chemical Record') unless Rails.env.test?
   end
 
   def new
@@ -23,9 +25,11 @@ class ChemicalRecordsController < ApplicationController
   end
 
   def edit
+    Tracker.track(current_user.id, 'Edit Chemical Record') unless Rails.env.test?
   end
 
   def create
+    Tracker.track(current_user.id, 'Create Chemical Record') unless Rails.env.test?
     @chemical_record = ChemicalRecord.new(chemical_record_params)
 
     @chemical_record.si_index =
@@ -56,6 +60,7 @@ class ChemicalRecordsController < ApplicationController
   end
 
   def update
+    Tracker.track(current_user.id, 'Update Chemical Record') unless Rails.env.test?
     if @chemical_record.update(chemical_record_params)
       flash[:success] = 'Chemical record was successfully updated.'
       redirect_to @chemical_record

@@ -1,7 +1,9 @@
-class CertificationsController < ApplicationController
+aclass CertificationsController < ApplicationController
   before_action :set_certification, only: [:show, :edit, :update, :destroy]
 
   def index
+    Tracker.track(current_user.id, 'View Certs') unless Rails.env.test?
+
     @certification_names = CertificationName.joins(:account)
     .same_account_as(current_user)
 
