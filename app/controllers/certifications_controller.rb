@@ -1,8 +1,8 @@
-aclass CertificationsController < ApplicationController
+class CertificationsController < ApplicationController
   before_action :set_certification, only: [:show, :edit, :update, :destroy]
 
   def index
-    Tracker.track(current_user.id, 'View Certs') unless Rails.env.test?
+    Tracker.track(current_user.id, 'View Certs Index') unless Rails.env.test?
 
     @certification_names = CertificationName.joins(:account)
     .same_account_as(current_user)
@@ -38,12 +38,14 @@ aclass CertificationsController < ApplicationController
   end
 
   def edit
+    Tracker.track(current_user.id, 'Edit Certification') unless Rails.env.test?
   end
 
   def create
     @certification = Certification.new(certification_params)
 
     if @certification.save
+      Tracker.track(current_user.id, 'Create Certification') unless Rails.env.test?
       redirect_to @certification,
                   notice: 'Certification was successfully created.'
     else
@@ -53,6 +55,7 @@ aclass CertificationsController < ApplicationController
 
   def update
     if @certification.update(certification_params)
+      Tracker.track(current_user.id, 'Update Certification') unless Rails.env.test?
       redirect_to @certification,
                   notice: 'Certification was successfully updated.'
     else

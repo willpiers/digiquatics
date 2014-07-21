@@ -1,8 +1,10 @@
 require 'spec_helper'
 
 describe SubRequestsController do
+
     account = FactoryGirl.create(:account)
     let!(:user) { FactoryGirl.create(:user, account_id: account.id) }
+
   before do
     sign_in user
   end
