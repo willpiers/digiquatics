@@ -4,6 +4,7 @@ class SubRequestsController < ApplicationController
   include ApplicationHelper
 
   def index
+    Tracker.track(current_user.id, 'Sub Requests Index') unless Rails.env.test?
     respond_to do |format|
       format.html
       format.json do
@@ -16,6 +17,7 @@ class SubRequestsController < ApplicationController
   end
 
   def show
+    Tracker.track(current_user.id, 'Show Sub Request') unless Rails.env.test?
     @approver = User.find_by(@sub_request.processed_by_user_id)
   end
 
@@ -24,9 +26,11 @@ class SubRequestsController < ApplicationController
   end
 
   def edit
+    Tracker.track(current_user.id, 'Edit Sub Request') unless Rails.env.test?
   end
 
   def create
+    Tracker.track(current_user.id, 'Create Sub Request') unless Rails.env.test?
     @sub_request = SubRequest.new(sub_request_params)
 
     message = 'Sub Request was successfully created.'
@@ -35,6 +39,7 @@ class SubRequestsController < ApplicationController
   end
 
   def update
+    Tracker.track(current_user.id, 'Update Sub Request') unless Rails.env.test?
     message = 'Sub Request was successfully updated.'
     handle_action(@sub_request, message, :edit) do |resource|
       resource.update(sub_request_params)
@@ -43,6 +48,7 @@ class SubRequestsController < ApplicationController
   end
 
   def processed
+    Tracker.track(current_user.id, 'View Processed Sub Requests') unless Rails.env.test?
     respond_to do |format|
       format.html
       format.json do
@@ -62,6 +68,7 @@ class SubRequestsController < ApplicationController
         render json: my_sub_requests.to_json(include: {shift: {include: [:location, :position, :user]}})
       end
     end
+    Tracker.track(current_user.id, 'View My Sub Requests') unless Rails.env.test?
   end
 
   def destroy

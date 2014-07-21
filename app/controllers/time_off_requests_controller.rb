@@ -4,11 +4,13 @@ class TimeOffRequestsController < ApplicationController
   include ApplicationHelper
 
   def index
+    Tracker.track(current_user.id, 'Time Off Requests Index') unless Rails.env.test?
     @time_off_requests = TimeOffRequest.joins(:user)
     .where(users: { account_id: current_user.account_id }).where(active: true)
   end
 
   def show
+    Tracker.track(current_user.id, 'Show Time Off Request') unless Rails.env.test?
     @approver = User.find_by(@time_off_request.approved_by_user_id)
   end
 
@@ -17,9 +19,11 @@ class TimeOffRequestsController < ApplicationController
   end
 
   def edit
+    Tracker.track(current_user.id, 'Edit Time Off Request') unless Rails.env.test?
   end
 
   def create
+    Tracker.track(current_user.id, 'Create Time Off Request') unless Rails.env.test?
     @time_off_request = TimeOffRequest.new(time_off_request_params)
 
     message = 'Time Off Request was successfully created.'
@@ -28,6 +32,7 @@ class TimeOffRequestsController < ApplicationController
   end
 
   def update
+    Tracker.track(current_user.id, 'Update Time Off Request') unless Rails.env.test?
     message = 'Time Off Request was successfully updated.'
     handle_action(@time_off_request, message, :edit) do |resource|
       resource.update(time_off_request_params)
@@ -36,11 +41,13 @@ class TimeOffRequestsController < ApplicationController
   end
 
   def archived_time_off_requests
+    Tracker.track(current_user.id, 'Archived Time Off Requests') unless Rails.env.test?
     @archived_time_off_requests = TimeOffRequest.joins(:user)
     .where(users: { account_id: current_user.account_id }).where(active: false)
   end
 
   def my_time_off_requests
+    Tracker.track(current_user.id, 'My Time Off Requests') unless Rails.env.test?
     @my_time_off_requests = TimeOffRequest.where(user_id: current_user.id)
   end
 
