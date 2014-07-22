@@ -1,7 +1,7 @@
 <table class='table'>
   <thead>
     <tr>
-      <th>
+      <th class='hidden-xs'>
         <a href="" ng-click="predicate.value = '-shift.location.name'; reverse=!reverse">
         Location</a>
         <span ng-show="thArrow(predicate.value, '-shift.location.name')">
@@ -16,7 +16,7 @@
           <dq-arrow></dq-arrow>
         </span>
       </th>
-      <th>
+      <th class='hidden-xs'>
         <a href="" ng-click="predicate.value = '-starts_at'; reverse=!reverse">
           Shift Date
         </a>
@@ -24,8 +24,16 @@
           <dq-arrow></dq-arrow>
         </span>
       </th>
-      <th> Shift Time </th>
-      <th>
+      <th class='hidden-xs'> Shift Time </th>
+      <th class='visible-xs'>
+        <a href="" ng-click="predicate.value = '-starts_at'; reverse=!reverse">
+          Shift
+        </a>
+        <span ng-show="thArrow(predicate.value, '-starts_at')">
+          <dq-arrow></dq-arrow>
+        </span>
+      </th>
+      <th class='hidden-xs'>
         <a href="" ng-click="predicate.value = '-shift.user.last_name'; reverse=!reverse">
           Requested By
         </a>
@@ -38,11 +46,18 @@
   </thead>
   <tbody>
     <tr ng-repeat='request in subRequests | orderBy:predicate.value:reverse | filter:locationFilter | filter:search'>
-      <td>{{request.shift.location.name}}</td>
+      <td class='hidden-xs'>{{request.shift.location.name}}</td>
       <td>{{request.shift.position.name}}</td>
-      <td>{{request.shift.start_time | date:'M/d/yy'}}</td>
-      <td>{{request.shift.start_time | date:'h:mm'}}-{{request.shift.end_time | date:'h:mm a'}}</td>
-      <td>
+      <td class='hidden-xs'>
+        {{request.shift.start_time | date:'M/d/yy'}}
+      </td>
+      <td class='hidden-xs'>
+        {{request.shift.start_time | date:'h:mm'}}-{{request.shift.end_time | date:'h:mm a'}}
+      </td>
+      <td class='visible-xs'>
+        {{request.shift.start_time | date:'h:mm'}}-{{request.shift.end_time | date:'h:mm a M/d/yy '}}
+      </td>
+      <td class='hidden-xs'>
         <a ng-href='/users/{{request.shift.user.id}}'>
           {{request.shift.user.last_name}}, {{request.shift.user.first_name}}
         </a>
