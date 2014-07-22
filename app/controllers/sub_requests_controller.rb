@@ -85,8 +85,8 @@ class SubRequestsController < ApplicationController
 
   def sub_request_params
     params.require(:sub_request)
-    .permit(:shift_id, :user_id, :sub_user_id, :approved,
-            :processed_by_user_id, :processed_on, :active,
+    .permit(:shift_id, :user_id, :sub_user_id, :sub_first_name, :sub_last_name,
+            :approved, :processed_by_user_id, :processed_on, :active,
             :processed_by_last_name, :processed_by_first_name)
   end
 
@@ -99,10 +99,4 @@ class SubRequestsController < ApplicationController
     end
   end
 
-  def approve_or_deny_logic
-    @sub_request.processed_by_user_id = current_user.id
-    @sub_request.processed_by_last_name = current_user.last_name
-    @sub_request.processed_by_first_name = current_user.first_name
-    @sub_request.processed_on = Time.now
-  end
 end

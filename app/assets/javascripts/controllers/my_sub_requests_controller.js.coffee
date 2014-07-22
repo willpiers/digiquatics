@@ -13,6 +13,11 @@
       if current_column == anchored_column then true
 
     $scope.cssClass = (request) ->
-      if request.approved == true then 'success'
-      else 'danger'
+      if request.approved == true && request.active == false then 'success'
+      else if request.approved == false && request.active == false then 'danger'
+      else 'warning'
+
+    $scope.checkActive = (request) ->
+      if request.active == false then false
+      else true
 ]

@@ -64,7 +64,12 @@
         </a>
       </td>
       <td ng-class='cssClass(request)'>
+        <div ng-hide='checkActive(request)' %>
         {{request.approved | booleanToWordsTimeOff}}
+        </div>
+        <div ng-show='checkActive(request)' %>
+        Pending
+        </div>
       </td>
       <td>{{request.processed_on | date:'M/d/yy'}}</td>
       <td>
