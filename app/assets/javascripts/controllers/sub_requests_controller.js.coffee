@@ -7,7 +7,7 @@
 
     # Other
     $scope.predicate =
-      value: 'last_name'
+      value: 'starts_at'
 
     $scope.thArrow = (current_column, anchored_column) ->
       if current_column == anchored_column then true

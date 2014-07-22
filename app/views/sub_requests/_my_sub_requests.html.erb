@@ -59,7 +59,7 @@
       <td>{{request.shift.start_time | date:'M/d/yy'}}</td>
       <td>{{request.shift.start_time | date:'h:mm'}}-{{request.shift.end_time | date:'h:mm a'}}</td>
       <td>
-        <a ng-href='/users/{{request.sub_user_id.id}}'>
+        <a ng-hide='checkActive(request)' ng-href='/users/{{request.sub_user_id.id}}'>
           {{request.sub_last_name}}, {{request.sub_first_name}}
         </a>
       </td>
@@ -73,7 +73,7 @@
       </td>
       <td>{{request.processed_on | date:'M/d/yy'}}</td>
       <td>
-        <a ng-href='/users/{{request.processed_by_user_id}}'>
+        <a ng-hide='checkActive(request)' ng-href='/users/{{request.processed_by_user_id}}'>
           {{request.processed_by_last_name}}, {{request.processed_by_first_name}}
         </a>
       </td>

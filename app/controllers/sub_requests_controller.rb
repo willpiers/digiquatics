@@ -60,6 +60,19 @@ class SubRequestsController < ApplicationController
     end
   end
 
+  def admin_index
+    respond_to do |format|
+      format.html
+      format.json do
+        sub_requests = SubRequest.joins(:user)
+                                 .where(users: { account_id: current_user.account_id })
+                                 .where(active: false)
+        render json: my_sub_requests.to_json(include: { shift: { include: [:location, :position, :user] } })
+      end
+    end
+    Tracker.track(current_user.id, 'View My Sub Requests') unless Rails.env.test?
+  end
+
   def my_sub_requests
     respond_to do |format|
       format.html
