@@ -1,4 +1,4 @@
-<table class='table table-hover'>
+<table class='table'>
   <thead>
     <tr>
       <th>
@@ -18,14 +18,6 @@
         </span>
       </th>
       <th>Shift Time</th>
-      <th>
-        <a href="" ng-click="predicate.value = '-shift.user.last_name'; reverse=!reverse">
-          Requested By
-        </a>
-        <span ng-show="thArrow(predicate.value, '-shift.user.last_name')">
-          <dq-arrow></dq-arrow>
-        </span>
-      </th>
       <th>
         <a href="" ng-click="predicate.value = '-sub_last_name'; reverse=!reverse">
           Employee Sub
@@ -67,11 +59,6 @@
       <td>{{request.shift.start_time | date:'M/d/yy'}}</td>
       <td>{{request.shift.start_time | date:'h:mm'}}-{{request.shift.end_time | date:'h:mm a'}}</td>
       <td>
-        <a ng-href='/users/{{request.shift.user.id}}'>
-          {{request.shift.user.last_name}}, {{request.shift.user.first_name}}
-        </a>
-      </td>
-      <td>
         <a ng-href='/users/{{request.sub_user_id.id}}'>
           {{request.sub_last_name}}, {{request.sub_first_name}}
         </a>
@@ -85,12 +72,11 @@
           {{request.processed_by_last_name}}, {{request.processed_by_first_name}}
         </a>
       </td>
-
       <td>
-        <a ng-href='/sub_requests/{{request.id}}'>
-          View Request
-        </a>
+        <%= link_to 'View Request', "/sub_requests/{{request.id}}",
+          class: 'btn btn-info btn-xs', role: 'button' %>
       </td>
     </tr>
   </tbody>
 </table>
+

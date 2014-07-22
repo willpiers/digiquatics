@@ -87,9 +87,8 @@
       </td>
 
       <td>
-        <a ng-href='/sub_requests/{{request.id}}'>
-          View Request
-        </a>
+        <%= link_to 'View Request', "/sub_requests/{{request.id}}",
+          class: 'btn btn-info btn-xs', role: 'button' %>
       </td>
     </tr>
   </tbody>

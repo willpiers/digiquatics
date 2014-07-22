@@ -1,4 +1,4 @@
-<table class='table table-hover'>
+<table class='table'>
   <thead>
     <tr>
       <th class='visible-xs'>
@@ -64,9 +64,8 @@
         {{request.reason | limitTo:15}}
       </td>
       <td>
-        <a ng-href='/time_off_requests/{{request.id}}'>
-          View Request
-        </a>
+        <%= link_to 'View Request', "/time_off_requests/{{request.id}}",
+          class: 'btn btn-info btn-xs', role: 'button' %>
       </td>
     </tr>
   </tbody>
