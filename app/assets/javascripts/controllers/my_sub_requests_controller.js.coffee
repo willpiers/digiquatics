@@ -7,12 +7,22 @@
 
     # Other
     $scope.predicate =
-      value: 'last_name'
+      value: 'starts_at'
 
     $scope.thArrow = (current_column, anchored_column) ->
       if current_column == anchored_column then true
 
+    $scope.totalDisplayed = 10
+
+    $scope.loadMore = ->
+      $scope.totalDisplayed += 50
+
     $scope.cssClass = (request) ->
-      if request.approved == true then 'success'
-      else 'danger'
+      if request.approved? && !request.active? then 'success'
+      else if !request.approved? && !request.active? then 'danger'
+      else 'warning'
+
+    $scope.checkActive = (request) ->
+      if request.active == false then false
+      else true
 ]

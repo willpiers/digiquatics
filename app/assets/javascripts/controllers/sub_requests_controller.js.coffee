@@ -7,7 +7,12 @@
 
     # Other
     $scope.predicate =
-      value: 'last_name'
+      value: 'starts_at'
+
+    $scope.totalDisplayed = 10
+
+    $scope.loadMore = ->
+      $scope.totalDisplayed += 50
 
     $scope.thArrow = (current_column, anchored_column) ->
       if current_column == anchored_column then true
