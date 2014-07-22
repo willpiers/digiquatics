@@ -15,5 +15,12 @@
           position_id: 3
           start_time: scope.startTime
           end_time: scope.endTime
+
+        # console.log 'hi'
+        # console.log 'user_id: <user_id>'
+        # console.log 'location_id: <location_id>'
+        # console.log 'position_id: <position_id>'
+        # console.log 'start_time: <start_time>'
+        # console.log 'end_time: <end_time>'
         console.log 'Shift was successfully created!'
 ]

@@ -1,8 +1,8 @@
-@digiquatics.controller 'ShiftsCtrl', ['$scope', 'Shifts', 'Users',
+@digiquatics.controller 'ShiftsCtrl', ['$scope', '$filter', 'Shifts', 'Users',
                                        'Locations', 'Positions',
-  @ShiftsCtrl = ($scope, Shifts, Users, Locations, Positions) ->
+  @ShiftsCtrl = ($scope, $filter, Shifts, Users, Locations, Positions) ->
     # Services
-    $scope.shifts = Shifts.index()
+    $scope.rawShifts = Shifts.index()
     $scope.users = Users.index()
     $scope.locations = Locations.index()
     $scope.positions = Positions.index()
@@ -27,10 +27,12 @@
 
     $scope.weekStart = ->
       moment().startOf('week').add('days', $scope.weekCounter)
+
     $scope.addToWeek = (days) ->
       moment().startOf('week').add('days', $scope.weekCounter + days)
 
     # Days
+
     $scope.dayCounter = 0
 
     $scope.previousDay = ->
@@ -60,11 +62,27 @@
     $scope.hideIf = ->
       not $scope.ifValue
 
-    $scope.showShift = (shift, calandar_day) ->
-      console.log shift
-      console.log calandar_day
-      console.log(moment(shift).isSame(calandar_day))
+    # show shifts by day of week
 
-      moment(shift).isSame(calandar_day)
+    $scope.sunday = (shift) ->
+      moment(shift).isSame($scope.weekStart(), 'day')
+
+    $scope.monday = (shift) ->
+      moment(shift).isSame($scope.addToWeek(1), 'day')
+
+    $scope.tuesday = (shift) ->
+      moment(shift).isSame($scope.addToWeek(2), 'day')
+
+    $scope.wednesday = (shift) ->
+      moment(shift).isSame($scope.addToWeek(3), 'day')
+
+    $scope.thursday = (shift) ->
+      moment(shift).isSame($scope.addToWeek(4), 'day')
+
+    $scope.friday = (shift) ->
+      moment(shift).isSame($scope.addToWeek(5), 'day')
+
+    $scope.saturday = (shift) ->
+      moment(shift).isSame($scope.addToWeek(6), 'day')
 ]
 
