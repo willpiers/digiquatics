@@ -1,4 +1,5 @@
-<table class='table'>
+<table ng-show='(subRequests | orderBy:predicate.value:predicate.reverse | filter:locationFilter | filter:search).length' class='table'>
+
   <thead>
     <tr>
       <th class='hidden-xs'>
@@ -45,7 +46,11 @@
     </tr>
   </thead>
   <tbody>
-    <tr ng-repeat='request in subRequests | orderBy:predicate.value:reverse | filter:locationFilter | filter:search'>
+    <tr ng-repeat='request in subRequests
+                  | orderBy:predicate.value:reverse
+                  | filter:locationFilter
+                  | filter:search
+                  | limitTo:totalDisplayed'>
       <td class='hidden-xs'>{{request.shift.location.name}}</td>
       <td>{{request.shift.position.name}}</td>
       <td class='hidden-xs'>
@@ -69,4 +74,12 @@
     </tr>
   </tbody>
 </table>
+<div ng-hide='(subRequests | orderBy:predicate.value:predicate.reverse | filter:locationFilter | filter:search).length'>
+  <hr/>
+  <center>
+    <p>
+      No sub requests match this search or there is none yet.
+    </p>
+  </center>
+</div>
 
