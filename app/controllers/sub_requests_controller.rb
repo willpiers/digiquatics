@@ -61,6 +61,7 @@ class SubRequestsController < ApplicationController
   end
 
   def admin_index
+    Tracker.track(current_user.id, 'View My Sub Requests') unless Rails.env.test?
     respond_to do |format|
       format.html
       format.json do
@@ -70,7 +71,6 @@ class SubRequestsController < ApplicationController
         render json: my_sub_requests.to_json(include: { shift: { include: [:location, :position, :user] } })
       end
     end
-    Tracker.track(current_user.id, 'View My Sub Requests') unless Rails.env.test?
   end
 
   def my_sub_requests
