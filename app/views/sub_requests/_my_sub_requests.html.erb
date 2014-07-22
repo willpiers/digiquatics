@@ -62,7 +62,11 @@
     </tr>
   </thead>
   <tbody>
-    <tr ng-repeat='request in mySubRequests | orderBy:predicate.value:reverse | filter:locationFilter | filter:search'>
+    <tr ng-repeat='request in mySubRequests
+                  | orderBy:predicate.value:reverse
+                  | filter:locationFilter
+                  | filter:search
+                  | limitTo:totalDisplayed'>
       <td class='hidden-xs'>{{request.shift.position.name}}</td>
       <td class='hidden-xs'>
         {{request.shift.start_time | date:'M/d/yy'}}
@@ -99,4 +103,7 @@
     </tr>
   </tbody>
 </table>
+<center>
+  <btn class='btn btn-default load-more-width' ng-click='loadMore()'>Load Additional Records</btn>
+</center>
 

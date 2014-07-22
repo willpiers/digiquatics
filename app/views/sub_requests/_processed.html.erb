@@ -1,4 +1,4 @@
-<table class='table'>
+<table ng-show='(processedSubRequests | orderBy:predicate.value:predicate.reverse | filter:locationFilter | filter:search).length' class='table'>
   <thead>
     <tr>
       <th class='hidden-xs'>
@@ -62,7 +62,11 @@
     </tr>
   </thead>
   <tbody>
-    <tr ng-repeat='request in processedSubRequests | orderBy:predicate.value:reverse | filter:locationFilter | filter:search'>
+    <tr ng-repeat='request in processedSubRequests
+                  | orderBy:predicate.value:reverse
+                  | filter:locationFilter
+                  | filter:search
+                  | limitTo:totalDisplayed'>
       <td class='hidden-xs'>{{request.shift.position.name}}</td>
       <td class='hidden-xs'>
         {{request.shift.start_time | date:'M/d/yy'}}
@@ -100,4 +104,16 @@
     </tr>
   </tbody>
 </table>
-
+<div ng-show='(processedSubRequests | orderBy:predicate.value:predicate.reverse | filter:locationFilter | filter:search).length'>
+  <center>
+    <btn class='btn btn-default load-more-width' ng-click='loadMore()'>Load Additional Records</btn>
+  </center>
+</div>
+<div ng-hide='(processedSubRequests | orderBy:predicate.value:predicate.reverse | filter:locationFilter | filter:search).length'>
+  <hr/>
+  <center>
+    <p>
+      No sub requests match this search or there is none yet.
+    </p>
+  </center>
+</div>

@@ -12,6 +12,11 @@
     $scope.thArrow = (current_column, anchored_column) ->
       if current_column == anchored_column then true
 
+    $scope.totalDisplayed = 10
+
+    $scope.loadMore = ->
+      $scope.totalDisplayed += 50
+
     $scope.cssClass = (request) ->
       if request.approved == true && request.active == false then 'success'
       else if request.approved == false && request.active == false then 'danger'

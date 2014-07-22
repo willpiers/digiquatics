@@ -1,5 +1,4 @@
 <table ng-show='(subRequests | orderBy:predicate.value:predicate.reverse | filter:locationFilter | filter:search).length' class='table'>
-
   <thead>
     <tr>
       <th class='hidden-xs'>
@@ -74,6 +73,11 @@
     </tr>
   </tbody>
 </table>
+<div ng-show='(subRequests | orderBy:predicate.value:predicate.reverse | filter:locationFilter | filter:search).length'>
+  <center>
+    <btn class='btn btn-default load-more-width' ng-click='loadMore()'>Load Additional Records</btn>
+  </center>
+</div>
 <div ng-hide='(subRequests | orderBy:predicate.value:predicate.reverse | filter:locationFilter | filter:search).length'>
   <hr/>
   <center>
