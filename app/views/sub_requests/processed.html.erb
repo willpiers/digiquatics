@@ -6,11 +6,13 @@
       <dq-search></dq-search>
       <div class='visible-xs'><br></div>
       <dq-location></dq-location>
-      <div class='col-md-5'></div>
-      <div class='col-md-2 pull-right'>
+      <div class='col-md-4'></div>
+      <div class='col-md-3 pull-right'>
         <div class='btn-group'>
           <%= link_to 'View Pending', sub_requests_path,
                       class: 'btn btn-success btn-sm' %>
+          <%= link_to 'Management', admin_sub_requests_path,
+                      class: 'btn btn-danger btn-sm' %>
         </div>
       </div>
     </div>

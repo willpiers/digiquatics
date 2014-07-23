@@ -1,7 +1,7 @@
 <div ng-app='digiquatics'>
-  <div ng-controller='SubRequestsCtrl'>
-    <% provide(:title, 'Sub Requests') %>
-    <h1 class='cross_platform_header'>Sub Requests</h1>
+  <div ng-controller='AdminSubRequestsCtrl'>
+    <% provide(:title, 'Admin Sub Requests') %>
+    <h1 class='cross_platform_header'>Sub Request Management</h1>
     <div class='row'>
       <dq-search></dq-search>
       <div class='visible-xs'><br></div>
@@ -9,14 +9,14 @@
       <div class='col-md-4'></div>
       <div class='col-md-3 pull-right'>
         <div class='btn-group'>
-          <%= link_to 'View Processed', processed_sub_requests_path,
+          <%= link_to 'View Pending', sub_requests_path,
                       class: 'btn btn-success btn-sm' %>
-          <%= link_to 'Management', admin_sub_requests_path,
-                      class: 'btn btn-danger btn-sm' %>
+          <%= link_to 'View Processed', processed_sub_requests_path,
+                      class: 'btn btn-warning btn-sm' %>
         </div>
       </div>
     </div>
     <br>
-    <%= render 'sub_requests' %>
+    <%= render 'admin_index' %>
   </div>
 </div>
