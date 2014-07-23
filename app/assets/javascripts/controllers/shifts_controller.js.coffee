@@ -2,7 +2,6 @@
                                        'Locations', 'Positions',
   @ShiftsCtrl = ($scope, $filter, Shifts, Users, Locations, Positions) ->
     # Services
-    $scope.rawShifts = Shifts.index()
     $scope.users = Users.index()
     $scope.locations = Locations.index()
     $scope.positions = Positions.index()

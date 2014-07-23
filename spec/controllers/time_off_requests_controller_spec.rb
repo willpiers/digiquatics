@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe TimeOffRequestsController do
-  account = FactoryGirl.create(:account)
+  let!(:account) { FactoryGirl.create(:account) }
   let!(:user) { FactoryGirl.create(:user, account_id: account.id) }
 
   before do

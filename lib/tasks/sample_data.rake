@@ -287,11 +287,23 @@ namespace :db do
     15.times do |n|
       print '.'
       TimeOffRequest.create!(user_id: n + 1,
-                             starts_at: '2014-07-01 17:21:21',
-                             ends_at: '2014-07-04 17:30:25',
+                             starts_at: Time.now,
+                             ends_at: Time.now + 3.hours,
                              reason: 'Blah Blah Blah',
                              approved: false,
                              active: true,
+                             location_id: rand(3) + 1
+                            )
+    end
+
+    15.times do |n|
+      print '.'
+      TimeOffRequest.create!(user_id: n + 1,
+                             starts_at: Time.now,
+                             ends_at: Time.now + 3.hours,
+                             reason: 'Blah Blah Blah',
+                             approved: true,
+                             active: false,
                              location_id: rand(3) + 1
                             )
     end
