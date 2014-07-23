@@ -18,8 +18,8 @@
       $scope.totalDisplayed += 50
 
     $scope.cssClass = (request) ->
-      if request.approved? && !request.active? then 'success'
-      else if !request.approved? && !request.active? then 'danger'
+      if request.approved is true then 'success'
+      else if request.approved is false then 'danger'
       else 'warning'
 
     $scope.checkActive = (request) ->
