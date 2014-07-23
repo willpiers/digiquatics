@@ -5,13 +5,13 @@ class SubRequestsController < ApplicationController
 
   def index
     Tracker.track(current_user.id, 'Sub Requests Index') unless Rails.env.test?
-    @sub_requests = SubRequest.joins(:user)
+    sub_requests = SubRequest.joins(:user)
                                  .where(users: { account_id: current_user.account_id })
-                                 .where(active: true)
+                                 .where(active: true).where(processed: false)
     respond_to do |format|
       format.html
       format.json do
-        render json: @sub_requests.to_json(include: { shift: { include: [:location, :position, :user] } })
+        render json: sub_requests.to_json(include: { shift: { include: [:location, :position, :user] } })
       end
     end
   end
@@ -54,7 +54,7 @@ class SubRequestsController < ApplicationController
       format.json do
         sub_requests = SubRequest.joins(:user)
                                  .where(users: { account_id: current_user.account_id })
-                                 .where(active: false)
+                                 .where(active: false).where(processed: true)
         render json: sub_requests.to_json(include: { shift: { include: [:location, :position, :user] } })
       end
     end
@@ -67,8 +67,8 @@ class SubRequestsController < ApplicationController
       format.json do
         sub_requests = SubRequest.joins(:user)
                                  .where(users: { account_id: current_user.account_id })
-                                 .where(active: false)
-        render json: my_sub_requests.to_json(include: { shift: { include: [:location, :position, :user] } })
+                                 .where(active: false).where(processed: false)
+        render json: sub_requests.to_json(include: { shift: { include: [:location, :position, :user] } })
       end
     end
   end
@@ -77,8 +77,8 @@ class SubRequestsController < ApplicationController
     respond_to do |format|
       format.html
       format.json do
-        my_sub_requests = SubRequest.where(user_id: current_user.id)
-        render json: my_sub_requests.to_json(include: { shift: { include: [:location, :position, :user] } })
+        sub_requests = SubRequest.where(user_id: current_user.id)
+        render json: sub_requests.to_json(include: { shift: { include: [:location, :position, :user] } })
       end
     end
     Tracker.track(current_user.id, 'View My Sub Requests') unless Rails.env.test?
@@ -100,7 +100,7 @@ class SubRequestsController < ApplicationController
     params.require(:sub_request)
     .permit(:shift_id, :user_id, :sub_user_id, :sub_first_name, :sub_last_name,
             :approved, :processed_by_user_id, :processed_on, :active,
-            :processed_by_last_name, :processed_by_first_name)
+            :processed_by_last_name, :processed_by_first_name, :processed)
   end
 
   def handle_action(resource, message, page)

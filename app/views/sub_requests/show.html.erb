@@ -16,10 +16,11 @@
     </ul>
   <% end %>
 
-  <% if current_user.admin? && @sub_request.active == false && !@sub_request.processed_by_user_id %>
+  <% if current_user.admin? && @sub_request.active == false && @sub_request.processed == false %>
     <ul class='pull-right'>
       <%= bootstrap_form_for @sub_request do |f| %>
         <%= f.hidden_field :approved, value: false %>
+        <%= f.hidden_field :processed, value: true %>
         <%= f.hidden_field :processed_on, value: Time.now %>
         <%= f.hidden_field :processed_by_user_id, value: current_user.id %>
         <%= f.hidden_field :processed_by_first_name, value: current_user.first_name %>
@@ -30,6 +31,7 @@
     <ul class='pull-right'>
       <%= bootstrap_form_for @sub_request do |f| %>
         <%= f.hidden_field :approved, value: true %>
+        <%= f.hidden_field :processed, value: true %>
         <%= f.hidden_field :processed_on, value: Time.now %>
         <%= f.hidden_field :processed_by_user_id, value: current_user.id %>
         <%= f.hidden_field :processed_by_first_name, value: current_user.first_name %>
@@ -82,13 +84,13 @@
             </td>
         </tr>
       <% end %>
-      <tr>
-        <th>Status</th>
-        <td class= <%=BooleanToWordsTimeOffCSS(@sub_request.approved)%>>
-          <%= BooleanToWordsTimeOff(@sub_request.approved) %>
-        </td>
-      </tr>
-      <% if @sub_request.processed_by_user_id %>
+      <% if @sub_request.processed == true %>
+        <tr>
+          <th>Status</th>
+          <td class= <%=BooleanToWordsTimeOffCSS(@sub_request.approved)%>>
+            <%= BooleanToWordsTimeOff(@sub_request.approved) %>
+          </td>
+        </tr>
         <tr>
           <th>Processed By</th>
           <td>
