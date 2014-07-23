@@ -83,5 +83,41 @@
 
     $scope.saturday = (shift) ->
       moment(shift).isSame($scope.addToWeek(6), 'day')
+
+    # Show Time off request over multiple days
+    $scope.sundayTime = (start, end) ->
+      moment(start).isSame($scope.weekStart(), 'day') ||
+      moment($scope.weekStart()).isAfter(start) &&
+      moment($scope.weekStart()).isBefore(end)
+
+    $scope.mondayTime = (start, end) ->
+      moment(start).isSame($scope.addToWeek(1), 'day') ||
+      moment($scope.addToWeek(1)).isAfter(start) &&
+      moment($scope.addToWeek(1)).isBefore(end)
+
+    $scope.tuesdayTime = (start, end) ->
+      moment(start).isSame($scope.addToWeek(2), 'day') ||
+      moment($scope.addToWeek(2)).isAfter(start) &&
+      moment($scope.addToWeek(2)).isBefore(end)
+
+    $scope.wednesdayTime = (start, end) ->
+      moment(start).isSame($scope.addToWeek(3), 'day') ||
+      moment($scope.addToWeek(3)).isAfter(start) &&
+      moment($scope.addToWeek(3)).isBefore(end)
+
+    $scope.thursdayTime = (start, end) ->
+      moment(start).isSame($scope.addToWeek(4), 'day') ||
+      moment($scope.addToWeek(4)).isAfter(start) &&
+      moment($scope.addToWeek(4)).isBefore(end)
+
+    $scope.fridayTime = (start, end) ->
+      moment(start).isSame($scope.addToWeek(5), 'day') ||
+      moment($scope.addToWeek(5)).isAfter(start) &&
+      moment($scope.addToWeek(5)).isBefore(end)
+
+    $scope.saturdayTime = (start, end) ->
+      moment(start).isSame($scope.addToWeek(6), 'day') ||
+      moment($scope.addToWeek(6)).isAfter(start) &&
+      moment($scope.addToWeek(6)).isBefore(end)
 ]
 

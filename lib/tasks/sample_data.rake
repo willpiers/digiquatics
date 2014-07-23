@@ -300,6 +300,19 @@ namespace :db do
       print '.'
       TimeOffRequest.create!(user_id: n + 1,
                              starts_at: Time.now,
+                             ends_at: Time.now + 8.days,
+                             reason: 'Blah Blah Blah',
+                             approved: false,
+                             active: true,
+                             location_id: rand(3) + 1,
+                             all_day: true
+                            )
+    end
+
+    15.times do |n|
+      print '.'
+      TimeOffRequest.create!(user_id: n + 1,
+                             starts_at: Time.now,
                              ends_at: Time.now + 3.hours,
                              reason: 'Blah Blah Blah',
                              approved: true,
@@ -436,10 +449,58 @@ namespace :db do
 
     puts "\n\nAvailabilities"
 
-    100.times do |n|
+    50.times do |n|
       print '.'
-      Availability.create!(user_id: rand(100) + 1,
-                           day: rand(6),
+      Availability.create!(user_id: n + 1,
+                           day: 0,
+                           start_time: Time.now - rand(3).hours,
+                           end_time: Time.now + rand(3).hours)
+    end
+
+    50.times do |n|
+      print '.'
+      Availability.create!(user_id: n + 1,
+                           day: 1,
+                           start_time: Time.now - rand(3).hours,
+                           end_time: Time.now + rand(3).hours)
+    end
+
+    50.times do |n|
+      print '.'
+      Availability.create!(user_id: n + 1,
+                           day: 2,
+                           start_time: Time.now - rand(3).hours,
+                           end_time: Time.now + rand(3).hours)
+    end
+
+    50.times do |n|
+      print '.'
+      Availability.create!(user_id: n + 1,
+                           day: 3,
+                           start_time: Time.now - rand(3).hours,
+                           end_time: Time.now + rand(3).hours)
+    end
+
+    50.times do |n|
+      print '.'
+      Availability.create!(user_id: n + 1,
+                           day: 4,
+                           start_time: Time.now - rand(3).hours,
+                           end_time: Time.now + rand(3).hours)
+    end
+
+    50.times do |n|
+      print '.'
+      Availability.create!(user_id: n + 1,
+                           day: 5,
+                           start_time: Time.now - rand(3).hours,
+                           end_time: Time.now + rand(3).hours)
+    end
+
+    50.times do |n|
+      print '.'
+      Availability.create!(user_id: n + 1,
+                           day: 6,
                            start_time: Time.now - rand(3).hours,
                            end_time: Time.now + rand(3).hours)
     end

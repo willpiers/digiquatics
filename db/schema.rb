@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140722031131) do
+ActiveRecord::Schema.define(version: 20140723144610) do
 
   create_table "accounts", force: true do |t|
     t.string   "name"
@@ -309,6 +309,7 @@ ActiveRecord::Schema.define(version: 20140722031131) do
     t.integer  "location_id"
     t.string   "processed_by_last_name"
     t.string   "processed_by_first_name"
+    t.boolean  "all_day"
   end
 
   create_table "users", force: true do |t|

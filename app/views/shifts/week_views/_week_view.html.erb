@@ -53,7 +53,7 @@
           <%= render 'shifts/week_views/week_view_shift' %>
         </div>
 
-        <div ng-if="sunday(time_off.starts_at)"
+        <div ng-if="sundayTime(time_off.starts_at, time_off.ends_at)"
              ng-repeat='time_off in user.time_off_requests'>
           <%= render 'shifts/week_views/week_view_time_off_request' %>
         </div>
@@ -74,7 +74,7 @@
             <%= render 'shifts/week_views/week_view_shift' %>
         </div>
 
-        <div ng-if="monday(time_off.starts_at)"
+        <div ng-if="mondayTime(time_off.starts_at, time_off.ends_at)"
              ng-repeat='time_off in user.time_off_requests'>
           <%= render 'shifts/week_views/week_view_time_off_request' %>
         </div>
@@ -94,7 +94,7 @@
           <%= render 'shifts/week_views/week_view_shift' %>
         </div>
 
-        <div ng-if="tuesday(time_off.starts_at)"
+        <div ng-if="tuesdayTime(time_off.starts_at, time_off.ends_at)"
              ng-repeat='time_off in user.time_off_requests'>
           <%= render 'shifts/week_views/week_view_time_off_request' %>
         </div>
@@ -114,7 +114,7 @@
           <%= render 'shifts/week_views/week_view_shift' %>
         </div>
 
-        <div ng-if="wednesday(time_off.starts_at)"
+        <div ng-if="wednesdayTime(time_off.starts_at, time_off.ends_at)"
              ng-repeat='time_off in user.time_off_requests'>
           <%= render 'shifts/week_views/week_view_time_off_request' %>
         </div>
@@ -134,7 +134,7 @@
           <%= render 'shifts/week_views/week_view_shift' %>
         </div>
 
-        <div ng-if="thursday(time_off.starts_at)"
+        <div ng-if="thursdayTime(time_off.starts_at, time_off.ends_at)"
              ng-repeat='time_off in user.time_off_requests'>
           <%= render 'shifts/week_views/week_view_time_off_request' %>
         </div>
@@ -155,7 +155,7 @@
           <%= render 'shifts/week_views/week_view_shift' %>
         </div>
 
-        <div ng-if="friday(time_off.starts_at)"
+        <div ng-if="fridayTime(time_off.starts_at, time_off.ends_at)"
              ng-repeat='time_off in user.time_off_requests'>
           <%= render 'shifts/week_views/week_view_time_off_request' %>
         </div>
@@ -176,7 +176,7 @@
           <%= render 'shifts/week_views/week_view_shift' %>
         </div>
 
-        <div ng-if="saturday(time_off.starts_at)"
+        <div ng-if="saturdayTime(time_off.starts_at, time_off.ends_at)"
              ng-repeat='time_off in user.time_off_requests'>
           <%= render 'shifts/week_views/week_view_time_off_request' %>
         </div>
