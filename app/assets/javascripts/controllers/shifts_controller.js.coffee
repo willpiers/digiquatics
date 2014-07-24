@@ -7,6 +7,12 @@
     $scope.positions = Positions.index()
 
     # Weeks
+
+    $scope.buildMode = 'Build'
+
+    $scope.build = ->
+      $scope.buildMode == 'Build'
+
     $scope.weekCounter = 0
 
     $scope.previousWeek = ->

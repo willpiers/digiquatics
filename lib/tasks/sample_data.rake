@@ -307,7 +307,7 @@ namespace :db do
 
     15.times do |n|
       print '.'
-      TimeOffRequest.create!(user_id: n + 1,
+      TimeOffRequest.create!(user_id: n + 30,
                              starts_at: Time.now,
                              ends_at: Time.now + 8.days,
                              reason: 'Blah Blah Blah',
@@ -320,7 +320,7 @@ namespace :db do
 
     15.times do |n|
       print '.'
-      TimeOffRequest.create!(user_id: n + 1,
+      TimeOffRequest.create!(user_id: n + 50,
                              starts_at: Time.now,
                              ends_at: Time.now + 3.hours,
                              reason: 'Blah Blah Blah',
@@ -393,63 +393,81 @@ namespace :db do
 
     puts "\n\nShifts"
 
-    100.times do |n|
+    50.times do |n|
       print '.'
-      Shift.create!(user_id: rand(100) + 1,
-                    location_id: rand(3) + 1,
+      Shift.create!(user_id: n + 1,
+                    location_id: 1,
+                    position_id: rand(3) + 1,
+                    start_time: Time.now - rand(3).hours + 48.hours,
+                    end_time: Time.now + rand(3).hours + 48.hours)
+    end
+
+    50.times do |n|
+      print '.'
+      Shift.create!(user_id: n + 1,
+                    location_id: 1,
+                    position_id: rand(3) + 1,
+                    start_time: Time.now - rand(3).hours + 24.hours,
+                    end_time: Time.now + rand(3).hours + 24.hours)
+    end
+
+    50.times do |n|
+      print '.'
+      Shift.create!(user_id: n + 1,
+                    location_id: 1,
                     position_id: rand(3) + 1,
                     start_time: Time.now - rand(3).hours,
                     end_time: Time.now + rand(3).hours)
     end
 
-    100.times do |n|
+    50.times do |n|
       print '.'
-      Shift.create!(user_id: rand(100) + 1,
+      Shift.create!(user_id: n + 1,
                     location_id: rand(3) + 1,
                     position_id: rand(3) + 1,
-                    start_time: Time.now + rand(3).hours + 12.hours,
-                    end_time: Time.now + rand(5).hours + 12.hours)
+                    start_time: Time.now + rand(3).hours - 48.hours,
+                    end_time: Time.now + rand(5).hours - 48.hours)
     end
 
-    20.times do |n|
+    50.times do |n|
       print '.'
-      Shift.create!(user_id: rand(100) + 1,
+      Shift.create!(user_id: n + 1,
                     location_id: rand(3) + 1,
                     position_id: rand(3) + 1,
                     start_time: Time.now + rand(3).hours - 24.hours,
                     end_time: Time.now + rand(5).hours - 24.hours)
     end
 
-    20.times do |n|
+    50.times do |n|
       print '.'
-      Shift.create!(user_id: rand(100) + 1,
+      Shift.create!(user_id: n + 1,
                     location_id: rand(3) + 1,
                     position_id: rand(3) + 1,
                     start_time: Time.now + rand(3).hours - 72.hours,
                     end_time: Time.now + rand(5).hours - 72.hours)
     end
 
-    20.times do |n|
+    50.times do |n|
       print '.'
-      Shift.create!(user_id: rand(100) + 1,
+      Shift.create!(user_id: n + 1,
                     location_id: rand(3) + 1,
                     position_id: rand(3) + 1,
                     start_time: Time.now + rand(3).hours - 96.hours,
                     end_time: Time.now + rand(5).hours - 96.hours)
     end
 
-    20.times do |n|
+    50.times do |n|
       print '.'
-      Shift.create!(user_id: rand(100) + 1,
+      Shift.create!(user_id: n + 1,
                     location_id: rand(3) + 1,
                     position_id: rand(3) + 1,
                     start_time: Time.now + rand(3).hours - 120.hours,
                     end_time: Time.now + rand(5).hours - 120.hours)
     end
 
-    20.times do |n|
+    50.times do |n|
       print '.'
-      Shift.create!(user_id: rand(100) + 1,
+      Shift.create!(user_id: n + 1,
                     location_id: rand(3) + 1,
                     position_id: rand(3) + 1,
                     start_time: Time.now + rand(3).hours - 144.hours,

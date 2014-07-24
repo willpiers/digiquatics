@@ -5,6 +5,10 @@
   p
     b Date: {{date}}
     br
+    b Location: {{location}}
+    br
+    b Position: {{positionSelect}}
+    br
     b Employee: {{user.last_name}}, {{user.first_name}}
   p Start Time:
 
@@ -22,6 +26,6 @@
   p Position
   select.form-control ng-model='positionSelect'
     option value='' Select Position
-    option ng-repeat='position in positions' value='{{position.name}}' {{position.name}}
+    option ng-repeat='position in positions' value='{{position.id}}' {{position.name}}
   br
   btn.btn.btn-primary.btn-sm Assign
