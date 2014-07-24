@@ -66,6 +66,15 @@ namespace :db do
     Position.create(name: 'WSI',
                     account_id: 1)
     print '.'
+    Position.create(name: 'Lifeguard2',
+                    account_id: 2)
+    print '.'
+    Position.create(name: 'MOD2',
+                    account_id: 2)
+    print '.'
+    Position.create(name: 'WSI2',
+                    account_id: 2)
+    print '.'
 
     puts "\nSkill Levels\n"
     SkillLevel.create(name: 'Level 1',
