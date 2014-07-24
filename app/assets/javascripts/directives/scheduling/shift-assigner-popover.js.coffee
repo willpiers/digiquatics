@@ -1,7 +1,6 @@
 @digiquatics.directive 'dqShiftAssignerPopover', ['$compile',
   ($compile) ->
     restrict: 'E'
-    # templateUrl: 'scheduling/'
     template: '<a>Create Shift</a>'
     scope:
       user: '='
