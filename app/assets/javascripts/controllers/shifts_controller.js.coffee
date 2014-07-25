@@ -8,25 +8,45 @@
 
     # Weeks
 
-    $scope.open = (size) ->
+    $scope.open = (user, size) ->
       modal = $modal.open(
         templateUrl: 'scheduling/shift-assigner.html',
         controller: ModalCtrl,
         size: size,
         resolve:
+          user: ->
+            user
+          location: ->
+            $scope.buildLocation
           startTime: ->
             $scope.startTime
           endTime: ->
             $scope.endTime
           positions: ->
             $scope.positions
+          position: ->
+            $scope.positionSelect
         )
 
-    ModalCtrl = ($scope, $modal, startTime, endTime, positions) ->
-      $scope.startTime = startTime
-      $scope.endTime = endTime
+    ModalCtrl = ($scope, $modal, user, location, startTime, endTime, positions, position) ->
+      $scope.user = user
+      $scope.location = location
+      $scope.startTime = startTime(0)
+      $scope.endTime = endTime(0)
       $scope.positions = positions
+      $scope.position = position
+      $scope.assignShift = (user, location, position, startTime, endTime) ->
+        console.log user.first_name
+        console.log location
+        console.log position
+        Shifts.create
+          user_id: user
+          location_id: location
+          position_id: position || 1
+          start_time: startTime
+          end_time: endTime
       $scope.ok = ->
+        $scope.assignShift(user, location, position, startTime, endTime)
         $modal.close "Assign"
         return
 
@@ -36,12 +56,19 @@
 
       return
 
-    # $scope.setStart = (days) ->
-    #   start = new Date()
-    #   start.setUTCDate($scope.weekDay(days).format('DD'))
-    #   start.setHours(7)
-    #   start.setMinutes(0)
-    #   $scope.startTime = start
+    $scope.startTime = (days) ->
+      start = new Date()
+      start.setUTCDate($scope.weekDay(days).format('DD'))
+      start.setHours(7)
+      start.setMinutes(0)
+      start
+
+    $scope.endTime = (days) ->
+      end = new Date()
+      end.setUTCDate($scope.weekDay(days).format('DD'))
+      end.setHours(8)
+      end.setMinutes(0)
+      end
 
     $scope.buildMode = 'Build'
 

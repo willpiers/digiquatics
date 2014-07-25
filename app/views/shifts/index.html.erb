@@ -5,7 +5,7 @@
       <div ng-if="showIf()">
         <h1 class='cross_platform_header'>
           <div ng-if="buildLocation">
-            {{buildLocation}}<br>
+            <!-- {{buildLocation}} -->
           </div>
           {{displayStartDate()}} - {{displayEndDate(6)}}
         </h1>
@@ -28,12 +28,13 @@
             <label class="btn btn-success" ng-model="buildMode" btn-radio="'View'">View</label>
           </div>
         </div>
-          <!-- <div class='pull-right'>
+        <br>
+          <div class='pull-right'>
             <button class='btn btn-success btn-sm'
                     ng-click='ifValue=!ifValue'>
               Change View
             </button>
-          </div> -->
+          </div>
         </div>
       </div>
       <div class='row'>

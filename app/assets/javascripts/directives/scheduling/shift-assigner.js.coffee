@@ -1,7 +1,7 @@
 @digiquatics.directive 'dqShiftAssigner', ['Shifts',
   (Shifts) ->
     restrict: 'E'
-    templateUrl: 'scheduling/shift-assigner.html'
+    templateUrl: 'scheduling/shift-assign-button.html'
     scope:
       date: '='
       user: '='
