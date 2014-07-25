@@ -1,15 +1,11 @@
-/ #popover-width
-h3
-  b Assign Shift {{weekDay(0)}}
-  br
-p
-  b Date: {{date}}
-  br
-  b Location: {{locationId}}
-  br
-  b Position: {{positionSelect}}
-  br
-  b Employee: {{user.last_name}}, {{user.first_name}}
+
+b Date: {{date}}
+br
+b Location: {{locationId}}
+br
+b Position: {{positionSelect}}
+br
+b Employee: {{user.last_name}}, {{user.first_name}}
 p Start Time:
 
 center
@@ -24,18 +20,12 @@ center
     timepicker ng-model='endTime' ng-change='changed()' hour-step='1' minute-step='15'
     ' {{endTime}}
 
-p Position
-select.form-control ng-model='positionSelect'
-  option value='' Select Position
-  option ng-repeat='position in positions' value='{{position.id}}' {{position.name}}
-br
-btn.btn.btn-primary.btn-sm Assign
+col-md-2
+'Position
+col-md-4
+  select.form-control ng-model='positionSelect'
+    option value='' Select Position
+    option ng-repeat='position in positions' value='{{position.id}}' {{position.name}}
 
-modal-header
-  h3
-    modal-title
-    'I'm a modal!
-
-modal-footer
-  btn.btn.btn-primary.btn-sm ng-click='ok()' Assign
-  btn.btn.btn-warning.btn-sm ng-click='cancel()' Cancel
+btn.btn.btn-primary.btn-sm ng-click='ok()' Assign
+btn.btn.btn-warning.btn-sm ng-click='cancel()' Cancel

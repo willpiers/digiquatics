@@ -38,9 +38,7 @@
     <tr ng-repeat='user in users | orderBy:predicate.value:reverse |
                    filter:locationFilter | filter:positionFilter'>
       <td class='hidden-print'>
-        <a ng-href='/users/{{user.id}}'>
-          {{user.last_name}}, {{user.first_name}}
-        </a>
+        {{user.last_name}}, {{user.first_name}}
         <br/>
         {{user.position.name}} (Age {{user.date_of_birth | age}})
         <br/>
