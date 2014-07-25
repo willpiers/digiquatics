@@ -1,31 +1,25 @@
 
-b Date: {{date}}
-br
-b Location: {{locationId}}
-br
-b Position: {{positionSelect}}
-br
-b Employee: {{user.last_name}}, {{user.first_name}}
-p Start Time:
-
+/ b Date: {{date}}
+/ br
+/ b Location: {{locationId}}
+/ br
+/ b Position: {{positionSelect}}
+/ br
+/ b Employee: {{user.last_name}}, {{user.first_name}}
+b Start Time:
 center
   .fix_ampm_button
     timepicker ng-model='startTime' ng-change='changed()' hour-step='1' minute-step='15'
     ' {{startTime}}
-br
-p End Time:
-
+b End Time:
 center
   .fix_ampm_button
     timepicker ng-model='endTime' ng-change='changed()' hour-step='1' minute-step='15'
     ' {{endTime}}
-
-col-md-2
-'Position
-col-md-4
-  select.form-control ng-model='positionSelect'
-    option value='' Select Position
-    option ng-repeat='position in positions' value='{{position.id}}' {{position.name}}
+b Position
+select.form-control ng-model='positionSelect'
+  option value='' Select Position
+  option ng-repeat='position in positions' value='{{position.id}}' {{position.name}}
 
 btn.btn.btn-primary.btn-sm ng-click='ok()' Assign
 btn.btn.btn-warning.btn-sm ng-click='cancel()' Cancel

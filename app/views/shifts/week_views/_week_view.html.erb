@@ -38,7 +38,7 @@
     <tr ng-repeat='user in users | orderBy:predicate.value:reverse |
                    filter:locationFilter | filter:positionFilter'>
       <td class='hidden-print'>
-        {{user.last_name}}, {{user.first_name}}
+        <b>{{user.last_name}}, {{user.first_name}}</b>
         <br/>
         {{user.position.name}} (Age {{user.date_of_birth | age}})
         <br/>
@@ -48,7 +48,6 @@
         {{user.last_name}}, {{user.first_name}}
       </td>
       <td>
-        <button class="btn btn-default" ng-click="open()">Open me!</button>
         <div ng-if="sunday(shift.start_time)" ng-repeat="shift in user.shifts">
           <%= render 'shifts/week_views/week_view_shift' %>
         </div>
@@ -63,12 +62,14 @@
             <%= render 'shifts/week_views/week_view_availability' %>
           </div>
 
-          <dq-shift-assigner-popover
+          <button class="btn btn-default btn-xs" ng-click="open()">Create</button>
+
+          <!-- <dq-shift-assigner-popover
             date="{{weekDay(0)}}"
             user='user'
             positions='positions'
             location="{{buildLocation}}">
-          </dq-shift-assigner-popover>
+          </dq-shift-assigner-popover> -->
         </div>
       </td>
 
@@ -88,12 +89,14 @@
             <%= render 'shifts/week_views/week_view_availability' %>
           </div>
 
-          <dq-shift-assigner-popover
+          <button class="btn btn-default btn-xs" ng-click="open()">Create</button>
+
+          <!-- <dq-shift-assigner-popover
             date="{{weekDay(1)}}"
             user='user'
             positions='positions'
             location="{{buildLocation}}">
-          </dq-shift-assigner-popover>
+          </dq-shift-assigner-popover> -->
         </div>
       </td>
       <td>
@@ -111,12 +114,14 @@
             <%= render 'shifts/week_views/week_view_availability' %>
           </div>
 
-          <dq-shift-assigner-popover
+          <button class="btn btn-default btn-xs" ng-click="open()">Create</button>
+
+          <!-- <dq-shift-assigner-popover
             date="{{weekDay(2)}}"
             user='user'
             positions='positions'
             location="{{buildLocation}}">
-          </dq-shift-assigner-popover>
+          </dq-shift-assigner-popover> -->
         </div>
       </td>
       <td>
@@ -134,12 +139,14 @@
             <%= render 'shifts/week_views/week_view_availability' %>
           </div>
 
-          <dq-shift-assigner-popover
+          <button class="btn btn-default btn-xs" ng-click="open()">Create</button>
+
+         <!--  <dq-shift-assigner-popover
             date="{{weekDay(3)}}"
             user='user'
             positions='positions'
             location="{{buildLocation}}">
-          </dq-shift-assigner-popover>
+          </dq-shift-assigner-popover> -->
         </div>
       </td>
       <td>
@@ -157,13 +164,14 @@
             <%= render 'shifts/week_views/week_view_availability' %>
           </div>
 
+          <button class="btn btn-default btn-xs" ng-click="open()">Create</button>
 
-          <dq-shift-assigner-popover
+          <!-- <dq-shift-assigner-popover
             date="{{weekDay(4)}}"
             user='user'
             positions='positions'
             location="{{buildLocation}}">
-          </dq-shift-assigner-popover>
+          </dq-shift-assigner-popover> -->
         </div>
       </td>
 
@@ -182,12 +190,14 @@
             <%= render 'shifts/week_views/week_view_availability' %>
           </div>
 
-          <dq-shift-assigner-popover
+          <button class="btn btn-default btn-xs" ng-click="open()">Create</button>
+
+          <!-- <dq-shift-assigner-popover
             date="{{weekDay(5)}}"
             user='user'
             positions='positions'
             location="{{buildLocation}}">
-          </dq-shift-assigner-popover>
+          </dq-shift-assigner-popover> -->
         </div>
       </td>
 
@@ -206,12 +216,14 @@
             <%= render 'shifts/week_views/week_view_availability' %>
           </div>
 
-          <dq-shift-assigner-popover
+          <button class="btn btn-default btn-xs" ng-click="open()">Create</button>
+
+          <!-- <dq-shift-assigner-popover
             date="{{weekDay(6)}}"
             user='user'
             positions='positions'
             location="{{buildLocation}}">
-          </dq-shift-assigner-popover>
+          </dq-shift-assigner-popover> -->
         </div>
       </td>
   </tbody>
