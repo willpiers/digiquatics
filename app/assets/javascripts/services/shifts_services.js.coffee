@@ -11,5 +11,6 @@
 
       create:
         method: 'POST'
+        isArray: true
     )
 ]

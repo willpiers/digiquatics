@@ -25,16 +25,11 @@ class ShiftsController < ApplicationController
 
   def create
     @shift = Shift.new(shift_params)
-
-    message = 'Shift was successfully created.'
-
-    handle_action(@shift, message, :new, &:save)
+    handle_action(@shift, :new, &:save)
   end
 
   def update
-    message = 'Shift was successfully updated.'
-
-    handle_action(@shift, message, :edit) do |resource|
+    handle_action(@shift, :edit) do |resource|
       resource.update(shift_params)
     end
   end
@@ -56,9 +51,8 @@ class ShiftsController < ApplicationController
     .permit(:user_id, :location_id, :position_id, :start_time, :end_time)
   end
 
-  def handle_action(resource, message, page)
+  def handle_action(resource, page)
     if yield(resource)
-      flash[:success] = message
       redirect_to shifts_path
     else
       render page

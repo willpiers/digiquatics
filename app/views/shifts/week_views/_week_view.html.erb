@@ -11,29 +11,30 @@
         Full Name
       </th>
       <th class='lessons_table_cell'>
-        {{weekStart().format('ddd, MMM D')}}
+        {{weekDay(0).format('ddd, MMM D')}}
       </th>
       <th class='lessons_table_cell'>
-        {{addToWeek(1).format('ddd, MMM D')}}
+        {{weekDay(1).format('ddd, MMM D')}}
       </th>
       <th class='lessons_table_cell'>
-        {{addToWeek(2).format('ddd, MMM D')}}
+        {{weekDay(2).format('ddd, MMM D')}}
       </th>
       <th class='lessons_table_cell'>
-        {{addToWeek(3).format('ddd, MMM D')}}
+        {{weekDay(3).format('ddd, MMM D')}}
       </th>
       <th class='lessons_table_cell'>
-        {{addToWeek(4).format('ddd, MMM D')}}
+        {{weekDay(4).format('ddd, MMM D')}}
       </th>
       <th class='lessons_table_cell'>
-        {{addToWeek(5).format('ddd, MMM D')}}
+        {{weekDay(5).format('ddd, MMM D')}}
       </th>
       <th class='lessons_table_cell'>
-        {{addToWeek(6).format('ddd, MMM D')}}
+        {{weekDay(6).format('ddd, MMM D')}}
       </th>
     </tr>
   </thead>
   <tbody>
+
     <tr ng-repeat='user in users | orderBy:predicate.value:reverse |
                    filter:locationFilter | filter:positionFilter'>
       <td class='hidden-print'>
@@ -49,6 +50,7 @@
         {{user.last_name}}, {{user.first_name}}
       </td>
       <td>
+        <button class="btn btn-default" ng-click="open()">Open me!</button>
         <div ng-if="sunday(shift.start_time)" ng-repeat="shift in user.shifts">
           <%= render 'shifts/week_views/week_view_shift' %>
         </div>
@@ -64,7 +66,7 @@
           </div>
 
           <dq-shift-assigner-popover
-            date="{{weekStart()}}"
+            date="{{weekDay(0)}}"
             user='user'
             positions='positions'
             location="{{buildLocation}}">
@@ -89,7 +91,7 @@
           </div>
 
           <dq-shift-assigner-popover
-            date="{{addToWeek(1)}}"
+            date="{{weekDay(1)}}"
             user='user'
             positions='positions'
             location="{{buildLocation}}">
@@ -112,7 +114,7 @@
           </div>
 
           <dq-shift-assigner-popover
-            date="{{addToWeek(2)}}"
+            date="{{weekDay(2)}}"
             user='user'
             positions='positions'
             location="{{buildLocation}}">
@@ -135,7 +137,7 @@
           </div>
 
           <dq-shift-assigner-popover
-            date="{{addToWeek(3)}}"
+            date="{{weekDay(3)}}"
             user='user'
             positions='positions'
             location="{{buildLocation}}">
@@ -159,7 +161,7 @@
 
 
           <dq-shift-assigner-popover
-            date="{{addToWeek(4)}}"
+            date="{{weekDay(4)}}"
             user='user'
             positions='positions'
             location="{{buildLocation}}">
@@ -183,7 +185,7 @@
           </div>
 
           <dq-shift-assigner-popover
-            date="{{addToWeek(5)}}"
+            date="{{weekDay(5)}}"
             user='user'
             positions='positions'
             location="{{buildLocation}}">
@@ -207,7 +209,7 @@
           </div>
 
           <dq-shift-assigner-popover
-            date="{{addToWeek(6)}}"
+            date="{{weekDay(6)}}"
             user='user'
             positions='positions'
             location="{{buildLocation}}">

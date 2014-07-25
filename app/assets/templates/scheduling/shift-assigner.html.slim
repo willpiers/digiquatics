@@ -1,31 +1,41 @@
-#popover-width
+/ #popover-width
+h3
+  b Assign Shift {{weekDay(0)}}
+  br
+p
+  b Date: {{date}}
+  br
+  b Location: {{locationId}}
+  br
+  b Position: {{positionSelect}}
+  br
+  b Employee: {{user.last_name}}, {{user.first_name}}
+p Start Time:
+
+center
+  .fix_ampm_button
+    timepicker ng-model='startTime' ng-change='changed()' hour-step='1' minute-step='15'
+    ' {{startTime}}
+br
+p End Time:
+
+center
+  .fix_ampm_button
+    timepicker ng-model='endTime' ng-change='changed()' hour-step='1' minute-step='15'
+    ' {{endTime}}
+
+p Position
+select.form-control ng-model='positionSelect'
+  option value='' Select Position
+  option ng-repeat='position in positions' value='{{position.id}}' {{position.name}}
+br
+btn.btn.btn-primary.btn-sm Assign
+
+modal-header
   h3
-    b Assign Shift
-    br
-  p
-    b Date: {{date}}
-    br
-    b Location: {{location}}
-    br
-    b Position: {{positionSelect}}
-    br
-    b Employee: {{user.last_name}}, {{user.first_name}}
-  p Start Time:
+    modal-title
+    'I'm a modal!
 
-  center
-    .fix_ampm_button
-      timepicker ng-model='startTime' ng-change='changed()' hour-step='1' minute-step='15'
-  br
-  p End Time:
-
-  center
-    .fix_ampm_button
-      timepicker ng-model='endTime' ng-change='changed()' hour-step='1' minute-step='15'
-      ' {{endTime}}
-
-  p Position
-  select.form-control ng-model='positionSelect'
-    option value='' Select Position
-    option ng-repeat='position in positions' value='{{position.id}}' {{position.name}}
-  br
-  btn.btn.btn-primary.btn-sm Assign
+modal-footer
+  btn.btn.btn-primary.btn-sm ng-click='ok()' Assign
+  btn.btn.btn-warning.btn-sm ng-click='cancel()' Cancel

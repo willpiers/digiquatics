@@ -7,9 +7,16 @@
       date: '@'
       positions: '='
       location: '@'
+      startTime: '='
+      endTime: '='
 
     link: (scope, element, attrs) ->
-      html = "<dq-shift-assigner date='date' user='user' positions='positions' location='location'></dq-shift-assigner>"
+      html = "<dq-shift-assigner
+                user='user' date='date' positions='positions'
+                location='location'
+                startTime='startTime' endTime='endTime'
+                >
+              </dq-shift-assigner>"
 
       element.children('a').popover
         html: true
