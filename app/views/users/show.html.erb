@@ -16,10 +16,41 @@
 
 <div class='table-width-desktop'>
 
-  <ul class='pull-right hidden-xs'>
-    <%= link_to 'Edit Information', edit_user_path(@user),
-                class: 'btn btn-default btn-primary' %>
-  </ul>
+  <div class="btn-group pull-right hidden-xs">
+    <%= link_to 'Edit Profile', edit_user_path(@user),
+                class: 'btn btn-primary btn-default', role: 'button' %>
+    <div class="btn-group">
+      <button type="button" class="btn btn-default btn-success dropdown-toggle"
+              data-toggle="dropdown">
+        My Information
+        <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu" role="menu">
+        <li><%= link_to 'My Availability', availability_path %></li>
+        <li><%= link_to 'My Private Lessons', my_lessons_path %></li>
+        <li><%= link_to 'My Sub Requests', my_sub_requests_path %></li>
+        <li><%= link_to 'My Time Off', my_time_off_requests_path %></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="btn-group visible-xs pull-right">
+    <%= link_to 'Edit Profile', edit_user_path(@user),
+                class: 'btn btn-primary btn-xs', role: 'button' %>
+    <div class="btn-group">
+      <button type="button" class="btn btn-xs btn-success dropdown-toggle"
+              data-toggle="dropdown">
+        My Information
+        <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu" role="menu">
+        <li><%= link_to 'Availability', availability_path %></li>
+        <li><%= link_to 'Lessons', my_lessons_path %></li>
+        <li><%= link_to 'Sub Requests', my_sub_requests_path %></li>
+        <li><%= link_to 'Time Off', my_time_off_requests_path %></li>
+      </ul>
+    </div>
+  </div>
 
   <div class='pull-left'>
     <%= link_to ' Back', users_path, class: 'glyphicon glyphicon-arrow-left' %>
