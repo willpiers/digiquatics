@@ -9,7 +9,7 @@ describe 'Slide Inspection pages' do
   end
 
   let!(:user) do
-    FactoryGirl.create(:user, account_id: account.id)
+    FactoryGirl.create(:user, account_id: account.id, location_id: location.id)
   end
 
   let!(:slide) { FactoryGirl.create(:slide, location_id: location.id) }
