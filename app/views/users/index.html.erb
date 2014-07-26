@@ -4,6 +4,7 @@
     <h1 class='cross_platform_header'>Active Employees</h1>
     <div class='row'>
       <dq-search></dq-search>
+      <%= render 'layouts/location_select' %>
       <div class='visible-xs'><br></div>
       <dq-location></dq-location>
       <div class='col-md-3'></div>
@@ -21,6 +22,6 @@
       </div>
     </div>
     <br>
-    <dq-user-table></dq-user-table>
+    <%= render 'users' %>
   </div>
 </div>
