@@ -49,7 +49,7 @@ describe ShiftsController do
       end
       it 'redirects to the schedule builder' do
         post :create, shift: FactoryGirl.attributes_for(:shift)
-        response.should redirect_to shifts_path
+        response.should render_template :show
       end
     end
 
@@ -99,7 +99,7 @@ describe ShiftsController do
 
       it 'redirects to the schedule builder' do
         put :update, id: @shift, shift: FactoryGirl.attributes_for(:shift)
-        response.should redirect_to shifts_path
+        response.should render_template :show
       end
     end
 
