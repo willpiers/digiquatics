@@ -6,20 +6,10 @@
 
     <div class='row'>
       <div class='col-md-3'>
-        <select ng-model='filters.location_id' class='form-control'>
-          <option value=''>All Locations</option>
-          <option ng-repeat='location in locations' value='{{location.id}}'>
-            {{location.name}}
-          </option>
-        </select>
+        <%= render 'layouts/location_select_chemicals' %>
       </div>
       <div class='col-md-3'>
-        <select ng-model='filters.pool_id' class='form-control'>
-          <option value=''>All Pools</option>
-          <option ng-repeat='pool in pools | filter:{location_id: filters.location_id}' value='{{pool.id}}'>
-            {{pool.name}}
-          </option>
-        </select>
+        <%= render 'layouts/pool_select' %>
       </div>
       <div class='col-md-3'></div>
       <div class='col-md-3 pull-right'>
