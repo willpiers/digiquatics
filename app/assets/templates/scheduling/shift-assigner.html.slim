@@ -1,26 +1,19 @@
 h1 Assign Shift
-/ b Date: {{date}}
-/ br
-/ b Location: {{locationId}}
-/ br
-/ b Position: {{positionSelect}}
-/ br
-b Employee: {{user.last_name}}, {{user.first_name}}
-br
-b Start Time:
+center
+  h4 Employee: {{user.last_name}}, {{user.first_name}}
+h3 Start Time:
 center
   .fix_ampm_button
     timepicker ng-model='startTime' ng-change='changed()' hour-step='1' minute-step='15'
-    ' {{startTime}}
-b End Time:
+    / ' {{startTime}}
+h3 End Time:
 center
   .fix_ampm_button
     timepicker ng-model='endTime' ng-change='changed()' hour-step='1' minute-step='15'
-    ' {{endTime}}
-b Position
+    / ' {{endTime}}
 select.form-control ng-model='positionSelect'
   option value='' Select Position
   option ng-repeat='position in positions' value='{{position.id}}' {{position.name}}
 
-btn.btn.btn-primary.btn-sm ng-click='ok()' Assign
+btn.btn.btn-primary.btn-sm ng-click='ok(positionSelect, startTime, endTime)' Assign
 btn.btn.btn-warning.btn-sm ng-click='cancel()' Cancel

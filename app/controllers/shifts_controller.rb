@@ -25,6 +25,7 @@ class ShiftsController < ApplicationController
 
   def create
     @shift = Shift.new(shift_params)
+    puts shift_params
     handle_action(@shift, :new, &:save)
   end
 

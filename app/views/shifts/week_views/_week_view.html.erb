@@ -4,11 +4,11 @@
     <tr>
       <th class='hidden-print'>
         <a href="" ng-click="predicate.value = '-last_name'; reverse=!reverse">
-          Full Name
+          Name
         </a>
       </th>
       <th class='visible-print'>
-        Full Name
+        Name
       </th>
       <th class='lessons_table_cell'>
         {{weekDay(0).format('ddd, MMM D')}}
@@ -38,11 +38,11 @@
     <tr ng-repeat='user in users | orderBy:predicate.value:reverse |
                    filter:locationFilter | filter:positionFilter'>
       <td class='hidden-print'>
-        <b>{{user.last_name}}, {{user.first_name}}</b>
+        <b>{{user.last_name}}, {{user.first_name}}</b></br>
+        {{user.position.name}}
+        <!--  (Age {{user.date_of_birth | age}})
         <br/>
-        {{user.position.name}} (Age {{user.date_of_birth | age}})
-        <br/>
-        (30 - 40 - 1000)
+        (30 - 40 - 1000) -->
       </td>
       <td class='visible-print'>
         {{user.last_name}}, {{user.first_name}}
@@ -62,7 +62,7 @@
             <%= render 'shifts/week_views/week_view_availability' %>
           </div>
 
-          <button class="btn btn-default btn-xs" ng-click="open(user)">Create</button>
+          <button class="btn btn-default btn-xs" ng-click="open(user, 0)">Create</button>
 
           <!-- <dq-shift-assigner-popover
             date="{{weekDay(0)}}"
@@ -89,7 +89,7 @@
             <%= render 'shifts/week_views/week_view_availability' %>
           </div>
 
-          <button class="btn btn-default btn-xs" ng-click="open()">Create</button>
+          <button class="btn btn-default btn-xs" ng-click="open(user, 1)">Create</button>
 
           <!-- <dq-shift-assigner-popover
             date="{{weekDay(1)}}"
@@ -114,7 +114,7 @@
             <%= render 'shifts/week_views/week_view_availability' %>
           </div>
 
-          <button class="btn btn-default btn-xs" ng-click="open()">Create</button>
+          <button class="btn btn-default btn-xs" ng-click="open(user, 2)">Create</button>
 
           <!-- <dq-shift-assigner-popover
             date="{{weekDay(2)}}"
@@ -139,7 +139,7 @@
             <%= render 'shifts/week_views/week_view_availability' %>
           </div>
 
-          <button class="btn btn-default btn-xs" ng-click="open()">Create</button>
+          <button class="btn btn-default btn-xs" ng-click="open(user, 3)">Create</button>
 
          <!--  <dq-shift-assigner-popover
             date="{{weekDay(3)}}"
@@ -164,7 +164,7 @@
             <%= render 'shifts/week_views/week_view_availability' %>
           </div>
 
-          <button class="btn btn-default btn-xs" ng-click="open()">Create</button>
+          <button class="btn btn-default btn-xs" ng-click="open(user, 4)">Create</button>
 
           <!-- <dq-shift-assigner-popover
             date="{{weekDay(4)}}"
@@ -190,7 +190,7 @@
             <%= render 'shifts/week_views/week_view_availability' %>
           </div>
 
-          <button class="btn btn-default btn-xs" ng-click="open()">Create</button>
+          <button class="btn btn-default btn-xs" ng-click="open(user, 5)">Create</button>
 
           <!-- <dq-shift-assigner-popover
             date="{{weekDay(5)}}"
@@ -216,7 +216,7 @@
             <%= render 'shifts/week_views/week_view_availability' %>
           </div>
 
-          <button class="btn btn-default btn-xs" ng-click="open()">Create</button>
+          <button class="btn btn-default btn-xs" ng-click="open(user, 6)">Create</button>
 
           <!-- <dq-shift-assigner-popover
             date="{{weekDay(6)}}"

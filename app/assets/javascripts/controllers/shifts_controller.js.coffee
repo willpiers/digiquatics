@@ -1,6 +1,6 @@
 @digiquatics.controller 'ShiftsCtrl', ['$scope', '$filter', 'Shifts', 'Users',
-                                       'Locations', 'Positions', '$modal'
-  @ShiftsCtrl = ($scope, $filter, Shifts, Users, Locations, Positions, $modal) ->
+                                       'Locations', 'Positions', '$modal', '$log',
+  @ShiftsCtrl = ($scope, $filter, Shifts, Users, Locations, Positions, $modal, $log) ->
     # Services
     $scope.users = Users.index()
     $scope.locations = Locations.index()
@@ -8,50 +8,58 @@
 
     # Weeks
 
-    $scope.open = (user, size) ->
-      modal = $modal.open(
+    $scope.open = (user, day, size) ->
+      modalInstance = $modal.open(
         templateUrl: 'scheduling/shift-assigner.html',
-        controller: ModalCtrl,
+        controller: ModalInstanceCtrl,
         size: size,
         resolve:
           user: ->
             user
+          day: ->
+            day
           location: ->
             $scope.buildLocation
           startTime: ->
-            $scope.startTime
+            $scope.startTime(day)
           endTime: ->
-            $scope.endTime
+            $scope.endTime(day)
           positions: ->
             $scope.positions
           position: ->
-            $scope.positionSelect
+            user.position_id
         )
 
-    ModalCtrl = ($scope, $modal, user, location, startTime, endTime, positions, position) ->
+      modalInstance.result.then ->
+        $log.info('Modal dismissed at: ' + new Date())
+
+    ModalInstanceCtrl = ($scope, $modalInstance, user, location, startTime, endTime, positions, position) ->
       $scope.user = user
-      $scope.location = location
-      $scope.startTime = startTime(0)
-      $scope.endTime = endTime(0)
       $scope.positions = positions
-      $scope.position = position
-      $scope.assignShift = (user, location, position, startTime, endTime) ->
-        console.log user.first_name
-        console.log location
-        console.log position
+      $scope.positionSelect = position
+      $scope.startTime = startTime
+      $scope.endTime = endTime
+      $scope.assignShift = (user, location, position, start, end) ->
+        console.log "User:" + user.first_name
+        console.log "Location:" + location
+        console.log "Position:" + position
+        console.log "startTime:" + start
+        console.log "endTime:" + end
+
         Shifts.create
-          user_id: user
+          user_id: user.id
           location_id: location
-          position_id: position || 1
-          start_time: startTime
-          end_time: endTime
-      $scope.ok = ->
+          position_id: position
+          start_time: start
+          end_time: end
+        console.log 'great success'
+      $scope.ok = (position, startTime, endTime) ->
         $scope.assignShift(user, location, position, startTime, endTime)
-        $modal.close "Assign"
+        $modalInstance.close($scope.user)
         return
 
       $scope.cancel = ->
-        $modal.dismiss "Cancel"
+        $modalInstance.dismiss "Cancel"
         return
 
       return

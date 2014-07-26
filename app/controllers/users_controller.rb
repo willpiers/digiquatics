@@ -21,9 +21,11 @@ class UsersController < ApplicationController
       format.json do
         users = User.same_account_as(current_user).active
 
-        render json: users.to_json(include: [:location, :position, :shifts,
-                                             :time_off_requests,
-                                             :availabilities])
+        render json: users.to_json(include: [
+          :location, {position: {only: :name}},
+          {shifts: { include: {position: {only: :name} } }},
+          :time_off_requests,
+          :availabilities])
       end
     end
   end
