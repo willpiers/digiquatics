@@ -66,6 +66,15 @@ namespace :db do
     Position.create(name: 'WSI',
                     account_id: 1)
     print '.'
+    Position.create(name: 'Lifeguard2',
+                    account_id: 2)
+    print '.'
+    Position.create(name: 'MOD2',
+                    account_id: 2)
+    print '.'
+    Position.create(name: 'WSI2',
+                    account_id: 2)
+    print '.'
 
     puts "\nSkill Levels\n"
     SkillLevel.create(name: 'Level 1',
@@ -287,11 +296,36 @@ namespace :db do
     15.times do |n|
       print '.'
       TimeOffRequest.create!(user_id: n + 1,
-                             starts_at: '2014-07-01 17:21:21',
-                             ends_at: '2014-07-04 17:30:25',
+                             starts_at: Time.now,
+                             ends_at: Time.now + 3.hours,
                              reason: 'Blah Blah Blah',
                              approved: false,
                              active: true,
+                             location_id: rand(3) + 1
+                            )
+    end
+
+    15.times do |n|
+      print '.'
+      TimeOffRequest.create!(user_id: n + 30,
+                             starts_at: Time.now,
+                             ends_at: Time.now + 8.days,
+                             reason: 'Blah Blah Blah',
+                             approved: false,
+                             active: true,
+                             location_id: rand(3) + 1,
+                             all_day: true
+                            )
+    end
+
+    15.times do |n|
+      print '.'
+      TimeOffRequest.create!(user_id: n + 50,
+                             starts_at: Time.now,
+                             ends_at: Time.now + 3.hours,
+                             reason: 'Blah Blah Blah',
+                             approved: true,
+                             active: false,
                              location_id: rand(3) + 1
                             )
     end
@@ -359,63 +393,81 @@ namespace :db do
 
     puts "\n\nShifts"
 
-    100.times do |n|
+    50.times do |n|
       print '.'
-      Shift.create!(user_id: rand(100) + 1,
-                    location_id: rand(3) + 1,
+      Shift.create!(user_id: n + 1,
+                    location_id: 1,
+                    position_id: rand(3) + 1,
+                    start_time: Time.now - rand(3).hours + 48.hours,
+                    end_time: Time.now + rand(3).hours + 48.hours)
+    end
+
+    50.times do |n|
+      print '.'
+      Shift.create!(user_id: n + 1,
+                    location_id: 1,
+                    position_id: rand(3) + 1,
+                    start_time: Time.now - rand(3).hours + 24.hours,
+                    end_time: Time.now + rand(3).hours + 24.hours)
+    end
+
+    50.times do |n|
+      print '.'
+      Shift.create!(user_id: n + 1,
+                    location_id: 1,
                     position_id: rand(3) + 1,
                     start_time: Time.now - rand(3).hours,
                     end_time: Time.now + rand(3).hours)
     end
 
-    100.times do |n|
+    50.times do |n|
       print '.'
-      Shift.create!(user_id: rand(100) + 1,
+      Shift.create!(user_id: n + 1,
                     location_id: rand(3) + 1,
                     position_id: rand(3) + 1,
-                    start_time: Time.now + rand(3).hours + 12.hours,
-                    end_time: Time.now + rand(5).hours + 12.hours)
+                    start_time: Time.now + rand(3).hours - 48.hours,
+                    end_time: Time.now + rand(5).hours - 48.hours)
     end
 
-    20.times do |n|
+    50.times do |n|
       print '.'
-      Shift.create!(user_id: rand(100) + 1,
+      Shift.create!(user_id: n + 1,
                     location_id: rand(3) + 1,
                     position_id: rand(3) + 1,
                     start_time: Time.now + rand(3).hours - 24.hours,
                     end_time: Time.now + rand(5).hours - 24.hours)
     end
 
-    20.times do |n|
+    50.times do |n|
       print '.'
-      Shift.create!(user_id: rand(100) + 1,
+      Shift.create!(user_id: n + 1,
                     location_id: rand(3) + 1,
                     position_id: rand(3) + 1,
                     start_time: Time.now + rand(3).hours - 72.hours,
                     end_time: Time.now + rand(5).hours - 72.hours)
     end
 
-    20.times do |n|
+    50.times do |n|
       print '.'
-      Shift.create!(user_id: rand(100) + 1,
+      Shift.create!(user_id: n + 1,
                     location_id: rand(3) + 1,
                     position_id: rand(3) + 1,
                     start_time: Time.now + rand(3).hours - 96.hours,
                     end_time: Time.now + rand(5).hours - 96.hours)
     end
 
-    20.times do |n|
+    50.times do |n|
       print '.'
-      Shift.create!(user_id: rand(100) + 1,
+      Shift.create!(user_id: n + 1,
                     location_id: rand(3) + 1,
                     position_id: rand(3) + 1,
                     start_time: Time.now + rand(3).hours - 120.hours,
                     end_time: Time.now + rand(5).hours - 120.hours)
     end
 
-    20.times do |n|
+    50.times do |n|
       print '.'
-      Shift.create!(user_id: rand(100) + 1,
+      Shift.create!(user_id: n + 1,
                     location_id: rand(3) + 1,
                     position_id: rand(3) + 1,
                     start_time: Time.now + rand(3).hours - 144.hours,
@@ -424,10 +476,58 @@ namespace :db do
 
     puts "\n\nAvailabilities"
 
-    100.times do |n|
+    50.times do |n|
       print '.'
-      Availability.create!(user_id: rand(100) + 1,
-                           day: rand(6),
+      Availability.create!(user_id: n + 1,
+                           day: 0,
+                           start_time: Time.now - rand(3).hours,
+                           end_time: Time.now + rand(3).hours)
+    end
+
+    50.times do |n|
+      print '.'
+      Availability.create!(user_id: n + 1,
+                           day: 1,
+                           start_time: Time.now - rand(3).hours,
+                           end_time: Time.now + rand(3).hours)
+    end
+
+    50.times do |n|
+      print '.'
+      Availability.create!(user_id: n + 1,
+                           day: 2,
+                           start_time: Time.now - rand(3).hours,
+                           end_time: Time.now + rand(3).hours)
+    end
+
+    50.times do |n|
+      print '.'
+      Availability.create!(user_id: n + 1,
+                           day: 3,
+                           start_time: Time.now - rand(3).hours,
+                           end_time: Time.now + rand(3).hours)
+    end
+
+    50.times do |n|
+      print '.'
+      Availability.create!(user_id: n + 1,
+                           day: 4,
+                           start_time: Time.now - rand(3).hours,
+                           end_time: Time.now + rand(3).hours)
+    end
+
+    50.times do |n|
+      print '.'
+      Availability.create!(user_id: n + 1,
+                           day: 5,
+                           start_time: Time.now - rand(3).hours,
+                           end_time: Time.now + rand(3).hours)
+    end
+
+    50.times do |n|
+      print '.'
+      Availability.create!(user_id: n + 1,
+                           day: 6,
                            start_time: Time.now - rand(3).hours,
                            end_time: Time.now + rand(3).hours)
     end

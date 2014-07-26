@@ -4,129 +4,178 @@
     <tr>
       <th class='hidden-print'>
         <a href="" ng-click="predicate.value = '-last_name'; reverse=!reverse">
-          Full Name
+          Name
         </a>
       </th>
       <th class='visible-print'>
-        Full Name
+        Name
       </th>
       <th class='lessons_table_cell'>
-        {{weekStart().format('ddd, MMM D')}}
+        {{weekDay(0).format('ddd, MMM D')}}
       </th>
       <th class='lessons_table_cell'>
-        {{addToWeek(1).format('ddd, MMM D')}}
+        {{weekDay(1).format('ddd, MMM D')}}
       </th>
       <th class='lessons_table_cell'>
-        {{addToWeek(2).format('ddd, MMM D')}}
+        {{weekDay(2).format('ddd, MMM D')}}
       </th>
       <th class='lessons_table_cell'>
-        {{addToWeek(3).format('ddd, MMM D')}}
+        {{weekDay(3).format('ddd, MMM D')}}
       </th>
       <th class='lessons_table_cell'>
-        {{addToWeek(4).format('ddd, MMM D')}}
+        {{weekDay(4).format('ddd, MMM D')}}
       </th>
       <th class='lessons_table_cell'>
-        {{addToWeek(5).format('ddd, MMM D')}}
+        {{weekDay(5).format('ddd, MMM D')}}
       </th>
       <th class='lessons_table_cell'>
-        {{addToWeek(6).format('ddd, MMM D')}}
+        {{weekDay(6).format('ddd, MMM D')}}
       </th>
     </tr>
   </thead>
   <tbody>
+
     <tr ng-repeat='user in users | orderBy:predicate.value:reverse |
                    filter:locationFilter | filter:positionFilter'>
       <td class='hidden-print'>
-        <a ng-href='/users/{{user.id}}'>
-          {{user.last_name}}, {{user.first_name}}
-        </a>
+        <b>{{user.last_name}}, {{user.first_name}}</b></br>
+        {{user.position.name}}
+        <!--  (Age {{user.date_of_birth | age}})
         <br/>
-        {{user.position.name}} (Age {{user.date_of_birth | age}})
-        <br/>
-        (30 - 40 - 1000)
+        (30 - 40 - 1000) -->
       </td>
       <td class='visible-print'>
         {{user.last_name}}, {{user.first_name}}
       </td>
       <td>
-        <div ng-if="sunday(shift.start_time)" ng-repeat="shift in user.shifts">
+        <div ng-if="sameDay(shift.start_time, 0)" ng-repeat="shift in user.shifts">
           <%= render 'shifts/week_views/week_view_shift' %>
         </div>
 
-        <dq-shift-assigner-popover
-          date="{{weekStart()}}"
-          user='user'
-          positions='positions'>
-        </dq-shift-assigner-popover>
+        <div ng-if="build()">
+          <div ng-if="sameDayTimeOff(time_off.starts_at, time_off.ends_at, 0)"
+               ng-repeat='time_off in user.time_off_requests'>
+            <%= render 'shifts/week_views/week_view_time_off_request' %>
+          </div>
+
+          <div ng-repeat="avail in user.availabilities | filter: { day: 0 }">
+            <%= render 'shifts/week_views/week_view_availability' %>
+          </div>
+
+          <button class="btn btn-default btn-xs" ng-click="open(user, 0)">Create</button>
+        </div>
       </td>
 
       <td>
-        <div ng-if="monday(shift.start_time)" ng-repeat="shift in user.shifts">
+        <div ng-if="sameDay(shift.start_time, 1)" ng-repeat="shift in user.shifts">
             <%= render 'shifts/week_views/week_view_shift' %>
         </div>
 
-        <dq-shift-assigner-popover
-          date="{{addToWeek(1)}}"
-          user='user'
-          positions='positions'>
-        </dq-shift-assigner-popover>
+        <div ng-if="build()">
+          <div ng-if="sameDayTimeOff(time_off.starts_at, time_off.ends_at, 1)"
+               ng-repeat='time_off in user.time_off_requests'>
+            <%= render 'shifts/week_views/week_view_time_off_request' %>
+          </div>
+
+
+          <div ng-repeat="avail in user.availabilities | filter: { day: 1 }">
+            <%= render 'shifts/week_views/week_view_availability' %>
+          </div>
+
+          <button class="btn btn-default btn-xs" ng-click="open(user, 1)">Create</button>
+        </div>
       </td>
       <td>
-        <div ng-if="tuesday(shift.start_time)" ng-repeat="shift in user.shifts">
+        <div ng-if="sameDay(shift.start_time, 2)" ng-repeat="shift in user.shifts">
           <%= render 'shifts/week_views/week_view_shift' %>
         </div>
 
-        <dq-shift-assigner-popover
-          date="{{addToWeek(2)}}"
-          user='user'
-          positions='positions'>
-        </dq-shift-assigner-popover>
+        <div ng-if="build()">
+          <div ng-if="sameDayTimeOff(time_off.starts_at, time_off.ends_at, 2)"
+               ng-repeat='time_off in user.time_off_requests'>
+            <%= render 'shifts/week_views/week_view_time_off_request' %>
+          </div>
+
+          <div ng-repeat="avail in user.availabilities | filter: { day: 2 }">
+            <%= render 'shifts/week_views/week_view_availability' %>
+          </div>
+
+          <button class="btn btn-default btn-xs" ng-click="open(user, 2)">Create</button>
+        </div>
       </td>
       <td>
-        <div ng-if="wednesday(shift.start_time)" ng-repeat="shift in user.shifts">
+        <div ng-if="sameDay(shift.start_time, 3)" ng-repeat="shift in user.shifts">
           <%= render 'shifts/week_views/week_view_shift' %>
         </div>
 
-        <dq-shift-assigner-popover
-          date="{{addToWeek(3)}}"
-          user='user'
-          positions='positions'>
-        </dq-shift-assigner-popover>
+        <div ng-if="build()">
+          <div ng-if="sameDayTimeOff(time_off.starts_at, time_off.ends_at, 3)"
+               ng-repeat='time_off in user.time_off_requests'>
+            <%= render 'shifts/week_views/week_view_time_off_request' %>
+          </div>
+
+          <div ng-repeat="avail in user.availabilities | filter: { day: 3 }">
+            <%= render 'shifts/week_views/week_view_availability' %>
+          </div>
+
+          <button class="btn btn-default btn-xs" ng-click="open(user, 3)">Create</button>
+        </div>
       </td>
       <td>
-        <div ng-if="thursday(shift.start_time)" ng-repeat="shift in user.shifts">
+        <div ng-if="sameDay(shift.start_time, 4)" ng-repeat="shift in user.shifts">
           <%= render 'shifts/week_views/week_view_shift' %>
         </div>
 
-        <dq-shift-assigner-popover
-          date="{{addToWeek(4)}}"
-          user='user'
-          positions='positions'>
-        </dq-shift-assigner-popover>
+        <div ng-if="build()">
+          <div ng-if="sameDayTimeOff(time_off.starts_at, time_off.ends_at, 4)"
+               ng-repeat='time_off in user.time_off_requests'>
+            <%= render 'shifts/week_views/week_view_time_off_request' %>
+          </div>
+
+          <div ng-repeat="avail in user.availabilities | filter: { day: 4 }">
+            <%= render 'shifts/week_views/week_view_availability' %>
+          </div>
+
+          <button class="btn btn-default btn-xs" ng-click="open(user, 4)">Create</button>
+        </div>
       </td>
 
       <td>
-        <div ng-if="friday(shift.start_time)" ng-repeat="shift in user.shifts">
+        <div ng-if="sameDay(shift.start_time, 5)" ng-repeat="shift in user.shifts">
           <%= render 'shifts/week_views/week_view_shift' %>
         </div>
 
-        <dq-shift-assigner-popover
-          date="{{addToWeek(5)}}"
-          user='user'
-          positions='positions'>
-        </dq-shift-assigner-popover>
+        <div ng-if="build()">
+          <div ng-if="sameDayTimeOff(time_off.starts_at, time_off.ends_at, 5)"
+               ng-repeat='time_off in user.time_off_requests'>
+            <%= render 'shifts/week_views/week_view_time_off_request' %>
+          </div>
+
+          <div ng-repeat="avail in user.availabilities | filter: { day: 5 }">
+            <%= render 'shifts/week_views/week_view_availability' %>
+          </div>
+
+          <button class="btn btn-default btn-xs" ng-click="open(user, 5)">Create</button>
+        </div>
       </td>
 
       <td>
-        <div ng-if="saturday(shift.start_time)" ng-repeat="shift in user.shifts">
+        <div ng-if="sameDay(shift.start_time, 6)" ng-repeat="shift in user.shifts">
           <%= render 'shifts/week_views/week_view_shift' %>
         </div>
 
-        <dq-shift-assigner-popover
-          date="{{addToWeek(6)}}"
-          user='user'
-          positions='positions'>
-        </dq-shift-assigner-popover>
+        <div ng-if="build()">
+          <div ng-if="sameDayTimeOff(time_off.starts_at, time_off.ends_at, 6)"
+               ng-repeat='time_off in user.time_off_requests'>
+            <%= render 'shifts/week_views/week_view_time_off_request' %>
+          </div>
+
+          <div ng-repeat="avail in user.availabilities | filter: { day: 6 }">
+            <%= render 'shifts/week_views/week_view_availability' %>
+          </div>
+
+          <button class="btn btn-default btn-xs" ng-click="open(user, 6)">Create</button>
+        </div>
       </td>
   </tbody>
 </table>

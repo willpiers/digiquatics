@@ -2,7 +2,7 @@ class PositionsController < ApplicationController
   before_action :set_position, only: [:show, :edit, :update, :destroy]
 
   def index
-    @positions = Position.all
+    @positions = Position.joins(:account).same_account_as(current_user)
   end
 
   def show

@@ -1,7 +1,0 @@
-<div ng-repeat='time_off in user.time_off_requests'>
-  <%= render 'shifts/week_views/week_view_time_off_request' %>
-</div>
-
-<div ng-repeat="avail in user.availabilities | filter: { day: 1 }">
-  <%= render 'shifts/week_views/week_view_availability' %>
-</div>
