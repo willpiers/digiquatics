@@ -17,22 +17,23 @@
       <%= render 'shared/required' %>
 
       <div ng-controller='ChemicalRecordsCtrl'>
+
         <label>Location</label>
-        <select ng-model='selected.location_id' class='form-control'>
-          <option value=''>Select Locations</option>
-          <option ng-repeat='location in locations' value='{{location.id}}'>
-            {{location.name}}
-          </option>
+        <div ng-init="location_id = <%= current_user.location.id %>"></div>
+        <select ng-model='location_id'
+                class='form-control'
+                ng-options='location.id as location.name for location in locations'>
         </select>
-        <%= f.hidden_field :location_id, value: "{{selected.location_id}}" %>
-        <label>Pool</label>
-        <select ng-model='selected.pool_id' class='form-control'>
-          <option value=''>Select Pools</option>
-          <option ng-repeat='pool in pools | filter:{location_id: selected.location_id}' value='{{pool.id}}'>
-            {{pool.name}}
-          </option>
+        <%= f.hidden_field :location_id, value: "{{location_id}}" %>
+
+        <div ng-init="pool_id = <%= current_user.location.pools.first.id %>"></div>
+        <select ng-model='pool_id'
+                class='form-control'
+                ng-options='pool.id as pool.name for pool in pools | filter:{location_id: location_id}'>
+          <option value=''>Select Pool </option>
         </select>
-        <%= f.hidden_field :pool_id, value: "{{selected.pool_id}}" %>
+
+        <%= f.hidden_field :pool_id, value: "{{pool_id}}" %>
       </div>
 
       <%= f.text_field :free_chlorine_ppm, label: 'Free Chlorine ppm' %>
