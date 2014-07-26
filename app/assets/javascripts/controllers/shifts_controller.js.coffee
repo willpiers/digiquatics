@@ -8,12 +8,14 @@
 
     # Weeks
 
-    $scope.open = (user, day, size) ->
+    $scope.open = (user, day, shift, size) ->
       modalInstance = $modal.open(
         templateUrl: 'scheduling/shift-assigner.html',
         controller: ModalInstanceCtrl,
         size: size,
         resolve:
+          shift: ->
+            shift
           user: ->
             user
           day: ->
@@ -33,20 +35,26 @@
       modalInstance.result.then ->
         $log.info('Modal dismissed at: ' + new Date())
 
-    ModalInstanceCtrl = ($scope, $modalInstance, user, location, startTime, endTime, positions, position) ->
+    ModalInstanceCtrl = ($scope, $modalInstance, shift, user, location, startTime, endTime, positions, position) ->
       $scope.user = user
       $scope.positions = positions
-      $scope.positionSelect = position
-      $scope.startTime = startTime
-      $scope.endTime = endTime
-      $scope.assignShift = (user, location, position, start, end) ->
+      $scope.positionSelect = if shift then shift.position_id else position
+      $scope.startTime = if shift then shift.start_time else startTime
+      $scope.endTime = if shift then shift.end_time else endTime
+      $scope.assignShift = (user, location, position, start, end, shift) ->
+        console.log "Shift" + if shift then shift.id
         console.log "User:" + user.first_name
         console.log "Location:" + location
         console.log "Position:" + position
         console.log "startTime:" + start
         console.log "endTime:" + end
-
-        Shifts.create
+        if shift
+          $id = shift.id
+          shift.start_time = start
+          shift.end_time = end
+          shift.position_id = position
+          Shifts.update({ id:$id }, shift)
+        else Shifts.create
           user_id: user.id
           location_id: location
           position_id: position
@@ -54,7 +62,7 @@
           end_time: end
         console.log 'great success'
       $scope.ok = (position, startTime, endTime) ->
-        $scope.assignShift(user, location, position, startTime, endTime)
+        $scope.assignShift(user, location, position, startTime, endTime, shift)
         $modalInstance.close($scope.user)
         return
 
@@ -136,61 +144,13 @@
 
     # show shifts by day of week
 
-    $scope.sunday = (shift) ->
-      moment(shift).isSame($scope.weekDay(0), 'day')
-
-    $scope.monday = (shift) ->
-      moment(shift).isSame($scope.weekDay(1), 'day')
-
-    $scope.tuesday = (shift) ->
-      moment(shift).isSame($scope.weekDay(2), 'day')
-
-    $scope.wednesday = (shift) ->
-      moment(shift).isSame($scope.weekDay(3), 'day')
-
-    $scope.thursday = (shift) ->
-      moment(shift).isSame($scope.weekDay(4), 'day')
-
-    $scope.friday = (shift) ->
-      moment(shift).isSame($scope.weekDay(5), 'day')
-
-    $scope.saturday = (shift) ->
-      moment(shift).isSame($scope.weekDay(6), 'day')
+    $scope.sameDay = (shift, day) ->
+      moment(shift).isSame($scope.weekDay(day), 'day')
 
     # Show Time off request over multiple days
-    $scope.sundayTime = (start, end) ->
-      moment(start).isSame($scope.weekDay(0), 'day') ||
-      moment($scope.weekDay(0)).isAfter(start) &&
-      moment($scope.weekDay(0)).isBefore(end)
-
-    $scope.mondayTime = (start, end) ->
-      moment(start).isSame($scope.weekDay(1), 'day') ||
-      moment($scope.weekDay(1)).isAfter(start) &&
-      moment($scope.weekDay(1)).isBefore(end)
-
-    $scope.tuesdayTime = (start, end) ->
-      moment(start).isSame($scope.weekDay(2), 'day') ||
-      moment($scope.weekDay(2)).isAfter(start) &&
-      moment($scope.weekDay(2)).isBefore(end)
-
-    $scope.wednesdayTime = (start, end) ->
-      moment(start).isSame($scope.weekDay(3), 'day') ||
-      moment($scope.weekDay(3)).isAfter(start) &&
-      moment($scope.weekDay(3)).isBefore(end)
-
-    $scope.thursdayTime = (start, end) ->
-      moment(start).isSame($scope.weekDay(4), 'day') ||
-      moment($scope.weekDay(4)).isAfter(start) &&
-      moment($scope.weekDay(4)).isBefore(end)
-
-    $scope.fridayTime = (start, end) ->
-      moment(start).isSame($scope.weekDay(5), 'day') ||
-      moment($scope.weekDay(5)).isAfter(start) &&
-      moment($scope.weekDay(5)).isBefore(end)
-
-    $scope.saturdayTime = (start, end) ->
-      moment(start).isSame($scope.weekDay(6), 'day') ||
-      moment($scope.weekDay(6)).isAfter(start) &&
-      moment($scope.weekDay(6)).isBefore(end)
+    $scope.sameDayTimeOff = (start, end, day) ->
+      moment(start).isSame($scope.weekDay(day), 'day') ||
+      moment($scope.weekDay(day)).isAfter(start) &&
+      moment($scope.weekDay(day)).isBefore(end)
 ]
 

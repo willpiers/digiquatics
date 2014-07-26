@@ -14,6 +14,7 @@ class ShiftsController < ApplicationController
   end
 
   def show
+
   end
 
   def new
@@ -25,7 +26,6 @@ class ShiftsController < ApplicationController
 
   def create
     @shift = Shift.new(shift_params)
-    puts shift_params
     handle_action(@shift, :new, &:save)
   end
 
@@ -54,7 +54,7 @@ class ShiftsController < ApplicationController
 
   def handle_action(resource, page)
     if yield(resource)
-      redirect_to shifts_path
+      render :show
     else
       render page
     end

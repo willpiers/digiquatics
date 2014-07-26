@@ -1,7 +1,7 @@
 @digiquatics.factory 'Shifts', [
   '$resource'
   ($resource) ->
-    $resource('/shifts/:id.json', {id: '@id'},
+    $resource('/shifts/:id.json', null,
       index:
         method: 'GET'
         isArray: true
@@ -11,6 +11,5 @@
 
       create:
         method: 'POST'
-        isArray: true
     )
 ]
