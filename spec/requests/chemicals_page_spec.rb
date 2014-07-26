@@ -22,8 +22,6 @@ describe 'Chemicals' do
     end
 
     describe 'should have correct headers' do
-      it { should have_content('Location') }
-      it { should have_content('Pool') }
       it { should have_content('Free Cl') }
       it { should have_content('Combined Cl') }
       it { should have_content('Total Cl') }
