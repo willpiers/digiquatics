@@ -19,19 +19,10 @@
       <div ng-controller='ChemicalRecordsCtrl'>
 
         <label>Location</label>
-        <div ng-init="location_id = <%= current_user.location.id %>"></div>
-        <select ng-model='location_id'
-                class='form-control'
-                ng-options='location.id as location.name for location in locations'>
-        </select>
+        <%= render 'layouts/location_select_chemicals' %>
         <%= f.hidden_field :location_id, value: "{{location_id}}" %>
 
-        <div ng-init="pool_id = <%= current_user.location.pools.first.id %>"></div>
-        <select ng-model='pool_id'
-                class='form-control'
-                ng-options='pool.id as pool.name for pool in pools | filter:{location_id: location_id}'>
-          <option value=''>Select Pool </option>
-        </select>
+        <%= render 'layouts/pool_select' %>
 
         <%= f.hidden_field :pool_id, value: "{{pool_id}}" %>
       </div>
