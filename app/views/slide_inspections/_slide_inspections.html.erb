@@ -1,4 +1,4 @@
-<table class='table table-hover table-condensed' >
+<table class='table'>
   <thead>
     <tr>
       <th>
@@ -44,8 +44,10 @@
     </tr>
   </thead>
   <tbody>
-    <tr ng-repeat='inspection in slideInspections | orderBy:predicate.value:reverse |
-                   filter:locationFilter'>
+    <tr ng-repeat='inspection in slideInspections
+      | orderBy:predicate.value:reverse
+      | filter:locationFilter
+      | limitTo:totalDisplayed'>
       <td>{{inspection.location.name}}</td>
       <td>{{inspection.slide.name}}</td>
       <td>
@@ -64,4 +66,6 @@
     </tr>
   </tbody>
 </table>
-
+<center>
+  <btn class='btn btn-default load-more-width' ng-click='loadMore()'>Load Additional Records</btn>
+</center>

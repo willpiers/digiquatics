@@ -5,6 +5,11 @@
 
       $scope.locations = Locations.index()
 
+      $scope.totalDisplayed = 10
+
+      $scope.loadMore = ->
+        $scope.totalDisplayed += 50
+
       $scope.predicate =
         value: 'created_at'
 

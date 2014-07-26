@@ -1,4 +1,4 @@
-<table class='table'>
+<table ng-show='(archivedTimeOff | orderBy:predicate.value:predicate.reverse | filter:locationFilter | filter:search).length' class='table'>
   <thead>
     <tr>
       <th class='visible-xs'>
@@ -120,3 +120,17 @@
     </tr>
   </tbody>
 </table>
+
+<div ng-show='(archivedTimeOff | orderBy:predicate.value:predicate.reverse | filter:locationFilter | filter:search).length' class='table'>
+  <center>
+    <btn class='btn btn-default load-more-width' ng-click='loadMore()'>Load Additional Records</btn>
+  </center>
+</div>
+<div ng-hide='(archivedTimeOff | orderBy:predicate.value:predicate.reverse | filter:locationFilter | filter:search).length' class='table'>
+  <hr/>
+  <center>
+    <p>
+      No time off requests match this search or you have none yet.
+    </p>
+  </center>
+</div>
