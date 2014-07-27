@@ -76,7 +76,7 @@
     </tbody>
   </table>
 </div>
-<div ng-show='(completedAdminPrivateLessons | orderBy:order.value:order.reverse | filter:locationFilter | filter:search).length'>
+<div ng-show='(completedAdminPrivateLessons | orderBy:order.value:order.reverse | filter:locationFilter | filter:search).length > 10'>
   <center>
     <btn class='btn btn-default load-more-width' ng-click='loadMore()'>Load Additional Records</btn>
   </center>
