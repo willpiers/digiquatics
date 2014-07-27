@@ -1,4 +1,8 @@
-<div ng-show='(chemicalRecords | orderBy:order.value:order.reverse | filter:locationFilter | filter:search).length'>
+<div ng-show='(chemicalRecords
+              | orderBy:order.value:order.reverse
+              | filter:{pool_id: pool_id}
+              | filter:{pool: {location_id: location_id}}
+              | filter:search).length'>
   <table class='table'>
     <thead>
       <tr>
@@ -127,18 +131,26 @@
   </table>
 </div>
 
-<div ng-show='(chemicalRecords | orderBy:order.value:order.reverse | filter:locationFilter | filter:search).length > 5' >
+<div ng-show='(chemicalRecords
+              | orderBy:order.value:order.reverse
+              | filter:{pool_id: pool_id}
+              | filter:{pool: {location_id: location_id}}
+              | filter:search).length > 10' >
   <center>
     <btn class='btn btn-default load-more-width' ng-click='loadMore()'>Load Additional Records</btn>
   </center>
 </div>
-<div ng-hide='(chemicalRecords | orderBy:order.value:order.reverse | filter:locationFilter | filter:search).length' >
+<div ng-hide='(chemicalRecords
+              | orderBy:order.value:order.reverse
+              | filter:{pool_id: pool_id}
+              | filter:{pool: {location_id: location_id}}
+              | filter:search).length' >
   <hr/>
   <center>
     <p>
-      No closed issues match this search or you have none yet.
-        <%= link_to 'Click here to view the current open issues.',
-            help_desks_path %>
+      No chemical records match this filter or you have none yet.
+        <%= link_to 'Click here to add a record.',
+            new_chemical_record_path %>
     </p>
   </center>
 </div>
