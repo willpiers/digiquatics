@@ -1,1 +1,52 @@
-Hi Mom
+<div ng-app='digiquatics'>
+  <div ng-controller='MyScheduleCtrl'>
+    <% provide(:title, 'My Schedule') %>
+
+    <h1 class='cross_platform_header'>
+      {{displayStartDate()}} - {{displayEndDate(6)}}
+    </h1>
+
+
+    <div class='row'>
+      <%= render 'layouts/location_select_build' %>
+      <dq-position></dq-position>
+      <div class='col-md-6'></div>
+    </div>
+
+    <div class='row'>
+      <div class='col-md-1'>
+        <btn class='btn btn-default btn-sm' ng-click='resetWeekCounter()'>
+          <b>Today</b>
+        </btn>
+      </div>
+
+      <div class='col-md-2'>
+        <div class='btn-group'>
+          <btn class='btn btn-default btn-sm' ng-click='previousWeek()'
+               style='width: 40px;'>
+            <%= fa_icon 'chevron-left' %>
+          </btn>
+          <btn class='btn btn-default btn-sm' ng-click='nextWeek()'
+               style='width: 40px;'>
+            <%= fa_icon 'chevron-right' %>
+          </btn>
+        </div>
+      </div>
+
+      <div class='col-md-7'></div>
+
+      <div class='col-md-2'>
+        <div class='pull-right'>
+          <div class='fix-print-button'>
+            <%= link_to_function('Print or Print to PDF', 'javascript:print()',
+                                 class: 'btn btn-default btn-sm') %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <br>
+    <%= render 'shifts/week_views/my_schedule' %>
+
+  </div>
+</div>
