@@ -1,1 +1,77 @@
-Hi Mom
+<div id='shift-assigner-popover'></div>
+<table class='table table-bordered print-schedule-font'>
+  <thead>
+    <tr>
+      <th class='lessons_table_cell'>
+        {{weekDay(0).format('ddd, MMM D')}}
+      </th>
+      <th class='lessons_table_cell'>
+        {{weekDay(1).format('ddd, MMM D')}}
+      </th>
+      <th class='lessons_table_cell'>
+        {{weekDay(2).format('ddd, MMM D')}}
+      </th>
+      <th class='lessons_table_cell'>
+        {{weekDay(3).format('ddd, MMM D')}}
+      </th>
+      <th class='lessons_table_cell'>
+        {{weekDay(4).format('ddd, MMM D')}}
+      </th>
+      <th class='lessons_table_cell'>
+        {{weekDay(5).format('ddd, MMM D')}}
+      </th>
+      <th class='lessons_table_cell'>
+        {{weekDay(6).format('ddd, MMM D')}}
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+
+    <tr ng-repeat='user in users | orderBy:predicate.value:reverse |
+                   filter:locationFilter | filter:positionFilter'>
+      <td>
+        <div ng-if="sameDay(shift.start_time, 0)" ng-repeat="shift in user.shifts">
+          <%= render 'shifts/week_views/week_view_shift' %>
+        </div>
+      </td>
+
+      <td>
+        <div ng-if="sameDay(shift.start_time, 1)" ng-repeat="shift in user.shifts">
+          <%= render 'shifts/week_views/week_view_shift' %>
+        </div>
+      </td>
+
+      <td>
+        <div ng-if="sameDay(shift.start_time, 2)" ng-repeat="shift in user.shifts">
+          <%= render 'shifts/week_views/week_view_shift' %>
+        </div>
+      </td>
+
+      <td>
+        <div ng-if="sameDay(shift.start_time, 3)" ng-repeat="shift in user.shifts">
+          <%= render 'shifts/week_views/week_view_shift' %>
+        </div>
+      </td>
+
+      <td>
+        <div ng-if="sameDay(shift.start_time, 4)" ng-repeat="shift in user.shifts">
+          <%= render 'shifts/week_views/week_view_shift' %>
+        </div>
+      </td>
+
+      <td>
+        <div ng-if="sameDay(shift.start_time, 5)" ng-repeat="shift in user.shifts">
+          <%= render 'shifts/week_views/week_view_shift' %>
+        </div>
+      </td>
+
+      <td>
+        <div ng-if="sameDay(shift.start_time, 6)" ng-repeat="shift in user.shifts">
+          <%= render 'shifts/week_views/week_view_shift' %>
+        </div>
+      </td>
+
+
+      </tr>
+  </tbody>
+</table>

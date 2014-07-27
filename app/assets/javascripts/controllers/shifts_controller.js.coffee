@@ -7,7 +7,6 @@
     $scope.positions = Positions.index()
 
     # Weeks
-
     $scope.open = (user, day, shift, size) ->
       modalInstance = $modal.open(
         templateUrl: 'scheduling/shift-assigner.html',

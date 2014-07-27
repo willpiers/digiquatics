@@ -6,20 +6,13 @@
       {{displayStartDate()}} - {{displayEndDate(6)}}
     </h1>
 
-
-    <div class='row'>
-      <%= render 'layouts/location_select_build' %>
-      <dq-position></dq-position>
-      <div class='col-md-6'></div>
-    </div>
-
     <div class='row'>
       <div class='col-md-1'>
         <btn class='btn btn-default btn-sm' ng-click='resetWeekCounter()'>
-          <b>Today</b>
+          <i class='fa fa-calendar-o fa-lg'></i>
+          <b> Today</b>
         </btn>
       </div>
-
       <div class='col-md-2'>
         <div class='btn-group'>
           <btn class='btn btn-default btn-sm' ng-click='previousWeek()'
@@ -32,21 +25,16 @@
           </btn>
         </div>
       </div>
-
       <div class='col-md-7'></div>
-
       <div class='col-md-2'>
         <div class='pull-right'>
-          <div class='fix-print-button'>
-            <%= link_to_function('Print or Print to PDF', 'javascript:print()',
-                                 class: 'btn btn-default btn-sm') %>
-          </div>
+          <%= link_to_function(' Print', 'javascript:print()',
+                               class: 'btn btn-default fa fa-print fa-lg') %>
         </div>
       </div>
     </div>
 
     <br>
     <%= render 'shifts/week_views/my_schedule' %>
-
   </div>
 </div>
