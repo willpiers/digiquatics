@@ -42,12 +42,12 @@
       $scope.startTime = if shift then shift.start_time else startTime
       $scope.endTime = if shift then shift.end_time else endTime
       $scope.assignShift = (user, location, position, start, end, shift) ->
-        console.log "Shift" + if shift then shift.id
-        console.log "User:" + user.first_name
-        console.log "Location:" + location
-        console.log "Position:" + position
-        console.log "startTime:" + start
-        console.log "endTime:" + end
+        # console.log "Shift" + if shift then shift.id
+        # console.log "User:" + user.first_name
+        # console.log "Location:" + location
+        # console.log "Position:" + position
+        # console.log "startTime:" + start
+        # console.log "endTime:" + end
         if shift
           $id = shift.id
           shift.start_time = start
@@ -60,7 +60,7 @@
           position_id: position
           start_time: start
           end_time: end
-        console.log 'great success'
+        # console.log 'great success'
       $scope.ok = (position, startTime, endTime) ->
         $scope.assignShift(user, location, position, startTime, endTime, shift)
         $modalInstance.close($scope.user)
