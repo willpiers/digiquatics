@@ -26,8 +26,11 @@
       </tr>
     </thead>
     <tbody>
-      <tr ng-repeat='lesson in privateLessons | orderBy:predicate.value:reverse
-      | filter:locationFilter | filter:search'>
+      <tr ng-repeat='lesson in privateLessons
+        | orderBy:predicate.value:reverse
+        | filter:locationFilter
+        | filter:search
+        | limitTo:totalDisplayed'>
         <td class='visible-xs'>
           <div ng-repeat='participant in lesson.participants'>
             <a ng-href='/private_lessons/{{lesson.id}}'>
@@ -64,8 +67,13 @@
   </table>
 </div>
 
+<div ng-show='(privateLessons | orderBy:order.value:order.reverse | filter:locationFilter | filter:search).length > 10'>
+  <center>
+    <btn class='btn btn-default load-more-width' ng-click='loadMore()'>Load Additional Records</btn>
+  </center>
+</div>
 <div ng-hide='(privateLessons | orderBy:order.value:order.reverse | filter:locationFilter | filter:search).length'>
-  <hr>
+  <hr/>
   <center>
     <p>
       No private lessons match this search or you have none yet.
@@ -74,5 +82,3 @@
     </p>
   </center>
 </div>
-
-

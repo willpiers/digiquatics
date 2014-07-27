@@ -1,4 +1,4 @@
-<div ng-show='(closedAdminPrivateLessons | orderBy:order.value:order.reverse | filter:locationFilter | filter:search).length'>
+<div ng-show='(completedAdminPrivateLessons | orderBy:order.value:order.reverse | filter:locationFilter | filter:search).length'>
   <table class='table table-hover' >
     <thead>
       <tr>
@@ -32,7 +32,11 @@
       </tr>
     </thead>
     <tbody>
-      <tr ng-repeat='lesson in closedAdminPrivateLessons | orderBy:predicate.value:reverse | filter:locationFilter | filter:search'>
+      <tr ng-repeat='lesson in completedAdminPrivateLessons
+        | orderBy:predicate.value:reverse
+        | filter:locationFilter
+        | filter:search
+        | limitTo:totalDisplayed'>
         <td>
             <a ng-href='/users/{{lesson.user.id}}'>
               {{lesson.user.last_name}}, {{lesson.user.first_name}}
@@ -65,21 +69,25 @@
         <td>
           {{lesson.claimed_on | date:'M/d/yy h:mm a'}}
         </td>
-        <td class='hidden-xs'>
+        <td>
           {{lesson.completed_on | date:'M/d/yy h:mm a'}}
         </td>
       </tr>
     </tbody>
   </table>
 </div>
-
-<div ng-hide='(closedAdminPrivateLessons | orderBy:order.value:order.reverse | filter:locationFilter | filter:search).length'>
-  <hr>
+<div ng-show='(completedAdminPrivateLessons | orderBy:order.value:order.reverse | filter:locationFilter | filter:search).length > 10'>
+  <center>
+    <btn class='btn btn-default load-more-width' ng-click='loadMore()'>Load Additional Records</btn>
+  </center>
+</div>
+<div ng-hide='(completedAdminPrivateLessons | orderBy:order.value:order.reverse | filter:locationFilter | filter:search).length'>
+  <hr/>
   <center>
     <p>
-      No private lessons match this search or none are completed at this time.
-        <%= link_to ' Click here to view the open private lessons mangement page.',
-            admin_index_path %>
+      No private lessons match this search or none are claimed at this time.
+        <%= link_to ' Click here to view the private lesson queue.',
+            account_private_lessons_path(account_id: current_user.account_id) %>
     </p>
   </center>
 </div>
