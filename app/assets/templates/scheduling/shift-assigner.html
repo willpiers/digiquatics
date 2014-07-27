@@ -1,0 +1,38 @@
+<div class='userform well'>
+  <h1 style='margin: 0px; padding: 0px;'>Assign Shift</h1>
+
+  <center>
+    <p>{{user.last_name}}, {{user.first_name}}</p>
+    <div class='row'>
+      <div class='col-md-6'>
+        <h4> Start Time </h4>
+        <div class='fix_ampm_button'>
+          <timepicker ng-model='startTime' ng-change='changed()' hour-step='1' minute-step='15'>
+           {{startTime}}
+          </timepicker>
+        </div>
+      </div>
+      <div class='col-md-6'>
+        <h4> End Time </h4>
+        <div class='fix_ampm_button'>
+          <timepicker ng-model='endTime' ng-change='changed()' hour-step='1' minute-step='15'>
+           {{endTime}}
+          </timepicker>
+        </div>
+      </div>
+    </div>
+  </center>
+
+  <h4>Position</h4>
+  <select class='form-control'
+          ng-model='positionSelect'
+          ng-options="position.id as position.name for position in positions">
+  </select>
+
+  <button class='btn btn-primary btn-block'
+          ng-click='ok(positionSelect, startTime, endTime)'> Assign
+  </button>
+  <button class='btn btn-danger btn-block'
+          ng-click='cancel()'> Cancel
+  </button>
+</div>
