@@ -1,0 +1,19 @@
+.shift {
+min-height:60px;
+width: 130px;
+}
+
+/* Hide original text */
+.shift:hover {
+
+  background-color: #F5F5F5;
+  color: black;
+  text-align: center;
+  vertical-align: middle;
+}
+
+/* Replace original text with value in data-hover */
+.shift:hover:before {
+  font-size: 16px;
+  content: attr(data-hover);
+}
