@@ -1,5 +1,8 @@
-<div ng-show='(closedHelpDesks | orderBy:order.value:order.reverse | filter:locationFilter | filter:search).length'>
-  <table class='table table-hover table-condensed' >
+<div ng-show='(closedHelpDesks
+              | orderBy:order.value:order.reverse
+              | filter:locationFilter
+              | filter:search).length'>
+  <table class='table'>
     <thead>
       <tr>
         <th></th>
@@ -54,7 +57,11 @@
       </tr>
     </thead>
     <tbody>
-      <tr ng-repeat='item in closedHelpDesks | orderBy:predicate.value:reverse | filter:locationFilter | filter:search'>
+      <tr ng-repeat='item in closedHelpDesks
+        | orderBy:predicate.value:reverse
+        | filter:locationFilter
+        | filter:search
+        | limitTo:totalDisplayed'>
         <td>
           <div ng-show='showPic(item)' %>
             <a ng-href='{{item.attachment_url}}'>
@@ -80,8 +87,19 @@
   </table>
 </div>
 
-<div ng-hide='(closedHelpDesks | orderBy:order.value:order.reverse | filter:locationFilter | filter:search).length'>
-  <hr>
+<div ng-show='(closedHelpDesks
+              | orderBy:order.value:order.reverse
+              | filter:locationFilter
+              | filter:search).length > 10'>
+  <center>
+    <btn class='btn btn-default load-more-width' ng-click='loadMore()'>Load Additional Records</btn>
+  </center>
+</div>
+<div ng-hide='(closedHelpDesks
+              | orderBy:order.value:order.reverse
+              | filter:locationFilter
+              | filter:search).length'>
+  <hr/>
   <center>
     <p>
       No closed issues match this search or you have none yet.
@@ -90,4 +108,3 @@
     </p>
   </center>
 </div>
-
