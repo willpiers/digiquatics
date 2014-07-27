@@ -6,51 +6,29 @@
 <br>
 
 <div class ='row'>
-  <% if FeatureToggleHelper.chemicals? %>
-    <div class='col-md-3'>
-      <%= link_to 'Chemical Records', chemical_records_path(format: 'csv'),
-        class: 'btn btn-danger btn-sm' %>
-    </div>
-  <% end %>
-  <div class='visible-xs'><br></div>
-  <!-- <div class='col-md-3'>
-    <%= link_to 'Certifications', certifications_path(format: 'csv'),
-      class: 'btn btn-danger btn-sm' %>
-  </div> -->
-  <% if FeatureToggleHelper.private_lessons? %>
-    <div class='col-md-3'>
-      <%= link_to 'Private Lessons Queue', account_private_lessons_path(format: 'csv', account_id: current_account.id),
-        class: 'btn btn-danger btn-sm' %>
-    </div>
-  <% end %>
+  <div class='col-md-3'>
+    <a class='btn btn-success btn-default' href='#'>
+      Certifications <i class='fa fa-file-excel-o fa-lg'></i></a>
+  </div>
   <div class='visible-xs'><br></div>
   <div class='col-md-3'>
-    <%= link_to 'Active Employees', users_path(format: 'csv'),
-      class: 'btn btn-danger btn-sm' %>
+    <a class='btn btn-success btn-default' href='/chemical_records.csv'>
+      Chemical Records <i class='fa fa-file-excel-o fa-lg'></i></a>
   </div>
 </div>
 
 <br>
 
 <div class ='row'>
-    <div class='col-md-3'>
-    <%= link_to 'Inactive Employees', inactive_index_path(format: 'csv'),
-      class: 'btn btn-danger btn-sm' %>
+  <div class='col-md-3'>
+    <a class='btn btn-success btn-default' href='/users.csv'>
+      Active Employees <i class='fa fa-file-excel-o fa-lg'></i></a>
   </div>
   <div class='visible-xs'><br></div>
-  <% if FeatureToggleHelper.maintenance? %>
-    <div class='col-md-3'>
-      <%= link_to 'Open and Closed Issues', help_desks_path(format: 'csv'),
-        class: 'btn btn-danger btn-sm' %>
-    </div>
-  <% end %>
-  <div class='visible-xs'><br></div>
-  <% if FeatureToggleHelper.shift_reports? %>
-    <div class='col-md-3'>
-      <%= link_to 'Shift Reports', shift_reports_path(format: 'csv'),
-        class: 'btn btn-danger btn-sm' %>
-    </div>
-  <% end %>
+  <div class='col-md-3'>
+    <a class='btn btn-success btn-default' href='/inactive_index.csv'>
+       Inactive Employees <i class='fa fa-file-excel-o fa-lg'></i></a>
+  </div>
 </div>
 
-<br><br><br><br>
+<br>
