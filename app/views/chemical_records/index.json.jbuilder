@@ -8,5 +8,10 @@ json.array!(@chemical_records) do |chemical_record|
     json.location    chemical_record.pool.location
   end
 
+  json.location do
+    json.id          chemical_record.location.id
+    json.name        chemical_record.location.name
+  end
+
   json.url chemical_record_url(chemical_record)
 end

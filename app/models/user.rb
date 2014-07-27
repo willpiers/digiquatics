@@ -80,20 +80,34 @@ class User < ActiveRecord::Base
   end
 
   comma do
-    last_name 'Last'
-    first_name 'First'
+    last_name 'Last Name'
+    nickname 'Preferred Name'
+    first_name 'First Name'
+    phone_number 'Phone #'
+    email 'Email'
     date_of_birth 'DOB'
-    sex
-    employee_id 'ID'
-    date_of_hire 'DOH'
+    sex 'Sex'
+    secondary_phone_number 'Other Phone #'
+    address1 'Address 1'
+    address2 'Address 2'
+    city 'City'
+    state 'State'
+    zipcode 'Zip'
+    suit_size 'Suit Size'
+    shirt_size 'Shirt Size'
+    femalesuit 'One Piece Size'
+    emergency_first 'Emergency First Name'
+    emergency_last 'Emergency Last Name'
+    emergency_phone 'Emergency Phone #'
     location name: 'Location'
     position name: 'Position'
-    email
-    phone_number 'Phone#'
-    suit_size
-    shirt_size
-    femalesuit
-    admin
-    active
+    grouping 'Group'
+    employee_id 'ID'
+    payrate 'Pay Rate'
+    date_of_hire 'DOH'
+    private_lesson_access 'Lessons Access'
+    admin 'Admin'
+    active 'Active'
+    notes 'Notes'
   end
 end
