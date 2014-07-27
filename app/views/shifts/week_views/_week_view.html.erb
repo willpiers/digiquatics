@@ -1,14 +1,9 @@
 <div id='shift-assigner-popover'></div>
-<table class='table table-hover table-condensed table-bordered print-schedule-font'>
+<table class='table table-bordered print-schedule-font'>
   <thead>
     <tr>
-      <th class='hidden-print'>
-        <a href="" ng-click="predicate.value = '-last_name'; reverse=!reverse">
-          Name
-        </a>
-      </th>
-      <th class='visible-print'>
-        Name
+      <th>
+        Last, First
       </th>
       <th class='lessons_table_cell'>
         {{weekDay(0).format('ddd, MMM D')}}
@@ -61,8 +56,9 @@
           <div ng-repeat="avail in user.availabilities | filter: { day: 0 }">
             <%= render 'shifts/week_views/week_view_availability' %>
           </div>
-
-          <button class="btn btn-default btn-xs" ng-click="open(user, 0)">Create</button>
+          <div class='shift';
+               ng-click="open(user, 0)"
+               data-hover='Assign Shift'></div>
         </div>
       </td>
 
@@ -82,7 +78,7 @@
             <%= render 'shifts/week_views/week_view_availability' %>
           </div>
 
-          <button class="btn btn-default btn-xs" ng-click="open(user, 1)">Create</button>
+         <div style='height: 40px; width: 120px'; ng-click="open(user, 1)"></div>
         </div>
       </td>
       <td>
@@ -100,7 +96,7 @@
             <%= render 'shifts/week_views/week_view_availability' %>
           </div>
 
-          <button class="btn btn-default btn-xs" ng-click="open(user, 2)">Create</button>
+          <div style='height: 40px; width: 120px'; ng-click="open(user, 2)"></div>
         </div>
       </td>
       <td>
@@ -118,7 +114,7 @@
             <%= render 'shifts/week_views/week_view_availability' %>
           </div>
 
-          <button class="btn btn-default btn-xs" ng-click="open(user, 3)">Create</button>
+          <div style='height: 40px; width: 120px'; ng-click="open(user, 3)"></div>
         </div>
       </td>
       <td>
@@ -136,7 +132,7 @@
             <%= render 'shifts/week_views/week_view_availability' %>
           </div>
 
-          <button class="btn btn-default btn-xs" ng-click="open(user, 4)">Create</button>
+          <div style='height: 40px; width: 120px'; ng-click="open(user, 4)"></div>
         </div>
       </td>
 
@@ -155,7 +151,7 @@
             <%= render 'shifts/week_views/week_view_availability' %>
           </div>
 
-          <button class="btn btn-default btn-xs" ng-click="open(user, 5)">Create</button>
+          <div style='height: 40px; width: 120px'; ng-click="open(user, 5)"></div>
         </div>
       </td>
 
@@ -174,8 +170,32 @@
             <%= render 'shifts/week_views/week_view_availability' %>
           </div>
 
-          <button class="btn btn-default btn-xs" ng-click="open(user, 6)">Create</button>
+         <div style='height: 40px; width: 120px'; ng-click="open(user, 6)"></div>
         </div>
       </td>
   </tbody>
 </table>
+
+<style>
+
+.shift {
+  height: 45px;
+  width: 120px;
+}
+
+/* Hide original text */
+.shift:hover {
+
+  background-color: #F5F5F5;
+  color: black;
+  text-align: center;
+  vertical-align: middle;
+}
+
+/* Replace original text with value in data-hover */
+.shift:hover:before {
+  font-size: 16px;
+  content: attr(data-hover);
+}
+
+</style>

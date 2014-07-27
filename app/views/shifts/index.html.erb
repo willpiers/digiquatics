@@ -2,15 +2,14 @@
   <div ng-controller='ShiftsCtrl'>
     <% provide(:title, 'Scheduler') %>
     <div class='hidden-print'>
-      <div ng-if="showIf()">
+      <div ng-if='showIf()'>
         <h1 class='cross_platform_header'>
-          <div ng-if="buildLocation">
-            <!-- {{buildLocation}} -->
+          <div ng-if='buildLocation'>
           </div>
           {{displayStartDate()}} - {{displayEndDate(6)}}
         </h1>
       </div>
-      <div ng-if="hideIf()">
+      <div ng-if='hideIf()'>
         <h1 class='cross_platform_header'>
           {{displayDay()}}
         </h1>
@@ -23,34 +22,35 @@
         <div class='col-md-1'></div>
         <div class='col-md-2'>
         <div class='pull-right'>
-          <div class="btn-group">
-            <label class="btn btn-success" ng-model="buildMode" btn-radio="'Build'">Build</label>
-            <label class="btn btn-success" ng-model="buildMode" btn-radio="'View'">View</label>
+          <br>
+          <div class='btn-group'>
+            <label class='btn btn-info' ng-model='buildMode' btn-radio="'Build'">
+              <i class='fa fa-wrench fa-lg'></i>
+            </label>
+            <label class='btn btn-info' ng-model='buildMode' btn-radio="'View'">
+              <i class='fa fa-calendar fa-lg'></i></a>
+            </label>
           </div>
         </div>
-          <!-- <div class='pull-right'>
-            <button class='btn btn-success btn-sm'
-                    ng-click='ifValue=!ifValue'>
-              Change View
-            </button>
-          </div> -->
         </div>
       </div>
       <div class='row'>
         <div class='col-md-1'>
-          <div ng-if="showIf()">
+          <div ng-if='showIf()'>
             <btn class='btn btn-default btn-sm' ng-click='resetWeekCounter()'>
-              <b>Today</b>
+              <i class='fa fa-calendar-o fa-lg'></i>
+              <b> Today</b>
             </btn>
           </div>
-          <div ng-if="hideIf()">
+          <div ng-if='hideIf()'>
             <btn class='btn btn-default btn-sm' ng-click='resetDayCounter()'>
-              <b>Today</b>
+              <i class='fa fa-calendar-o fa-lg'></i>
+              <b> Today</b>
             </btn>
           </div>
         </div>
         <div class='col-md-2'>
-          <div ng-if="showIf()">
+          <div ng-if='showIf()'>
             <div class='btn-group'>
               <btn class='btn btn-default btn-sm' ng-click='previousWeek()'
                    style='width: 40px;'>
@@ -62,7 +62,7 @@
               </btn>
             </div>
           </div>
-          <div ng-if="hideIf()">
+          <div ng-if='hideIf()'>
             <div class='btn-group'>
               <btn class='btn btn-default btn-sm' ng-click='previousDay()'
                    style='width: 40px;'>
@@ -76,17 +76,12 @@
           </div>
         </div>
         <div class='col-md-5'>
-          <!-- <div class='center-row-text'>
-            <i>Legend: (Hours Scheduled - Max Requested Hours - Hours YTD)</i>
-          </div> -->
         </div>
         <div class='col-md-2'></div>
         <div class='col-md-2'>
           <div class='pull-right'>
-            <div class='fix-print-button'>
-              <%= link_to_function('Print or Print to PDF', 'javascript:print()',
-                                   class: 'btn btn-default btn-sm') %>
-            </div>
+            <%= link_to_function(' Print', 'javascript:print()',
+                                 class: 'btn btn-default fa fa-print fa-lg') %>
           </div>
         </div>
       </div>
@@ -99,10 +94,10 @@
         </h4>
       </center>
     </div>
-    <div ng-if="showIf()">
+    <div ng-if='showIf()'>
       <%= render 'shifts/week_views/week_view' %>
     </div>
-    <div ng-if="hideIf()">
+    <div ng-if='hideIf()'>
       <%= render 'day_view' %>
     </div>
   </div>
