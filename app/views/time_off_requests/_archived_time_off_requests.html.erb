@@ -1,4 +1,7 @@
-<table ng-show='(archivedTimeOff | orderBy:predicate.value:predicate.reverse | filter:locationFilter | filter:search).length' class='table'>
+<table ng-show='(archivedTimeOff
+                | orderBy:predicate.value:predicate.reverse
+                | filter:locationFilter
+                | filter:search).length' class='table'>
   <thead>
     <tr>
       <th class='visible-xs'>
@@ -78,7 +81,10 @@
     </tr>
   </thead>
   <tbody>
-    <tr ng-repeat='request in archivedTimeOff | orderBy:predicate.value:reverse | filter:locationFilter | filter:search'>
+    <tr ng-repeat='request in archivedTimeOff
+                  | orderBy:predicate.value:reverse
+                  | filter:locationFilter
+                  | filter:search'>
       <td class='visible-xs'>
         <a ng-href='/users/{{request.user.id}}'>
           {{request.user.last_name}}, {{request.user.first_name}}
@@ -121,12 +127,18 @@
   </tbody>
 </table>
 
-<div ng-show='(archivedTimeOff | orderBy:predicate.value:predicate.reverse | filter:locationFilter | filter:search).length' class='table'>
+<div ng-show='(archivedTimeOff
+              | orderBy:predicate.value:predicate.reverse
+              | filter:locationFilter
+              | filter:search).length > 10' class='table'>
   <center>
     <btn class='btn btn-default load-more-width' ng-click='loadMore()'>Load Additional Records</btn>
   </center>
 </div>
-<div ng-hide='(archivedTimeOff | orderBy:predicate.value:predicate.reverse | filter:locationFilter | filter:search).length' class='table'>
+<div ng-hide='(archivedTimeOff
+              | orderBy:predicate.value:predicate.reverse
+              | filter:locationFilter
+              | filter:search).length' class='table'>
   <hr/>
   <center>
     <p>
