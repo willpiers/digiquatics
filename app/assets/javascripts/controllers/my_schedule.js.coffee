@@ -1,8 +1,8 @@
-@digiquatics.controller 'MyScheduleCtrl', ['$scope', 'MyShifts', 'Users',
+@digiquatics.controller 'MyScheduleCtrl', ['$scope', 'Shifts', 'MyShifts',
                                            'Locations', 'Positions',
-  @MyScheduleCtrl = ($scope, MyShifts, Users, Locations, Positions) ->
+  @MyScheduleCtrl = ($scope, Shifts, MyShifts, Locations, Positions) ->
     # Services
-    $scope.users = Users.index()
+    $scope.myShifts = MyShifts.index()
     $scope.locations = Locations.index()
     $scope.positions = Positions.index()
 

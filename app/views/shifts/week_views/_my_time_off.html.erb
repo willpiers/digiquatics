@@ -1,0 +1,12 @@
+<progressbar class='progress-striped fix-schedule-time-bar my_progess_bar'
+             value='100'
+             type='danger'>
+  <div ng-if="time_off.all_day">
+    Time Off <br>
+    All Day
+  </div>
+  <div ng-hide="time_off.all_day">
+    Time Off <br>
+    {{time_off.starts_at | date:'h:mm'}}-{{time_off.ends_at | date:'h:mma'}}
+  </div>
+</progressbar>
