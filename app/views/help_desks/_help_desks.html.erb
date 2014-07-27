@@ -1,5 +1,5 @@
 <div ng-show='(helpDesks | orderBy:order.value:order.reverse | filter:locationFilter | filter:search).length'>
-  <table class='table table-hover' >
+  <table class='table' >
     <thead>
       <tr>
         <th></th>
@@ -75,12 +75,18 @@
   </table>
 </div>
 
-<div ng-show='(helpDesks | orderBy:order.value:order.reverse | filter:locationFilter | filter:search).length'>
+<div ng-show='(helpDesks
+              | orderBy:order.value:order.reverse
+              | filter:locationFilter
+              | filter:search).length > 10'>
   <center>
     <btn class='btn btn-default load-more-width' ng-click='loadMore()'>Load Additional Records</btn>
   </center>
 </div>
-<div ng-hide='(helpDesks | orderBy:order.value:order.reverse | filter:locationFilter | filter:search).length'>
+<div ng-hide='(helpDesks
+              | orderBy:order.value:order.reverse
+              | filter:locationFilter
+              | filter:search).length'>
   <hr/>
   <center>
     <p>
