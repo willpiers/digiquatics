@@ -1,3 +1,5 @@
+{{today}}
+
 <table class='table'>
   <thead>
     <tr>
@@ -41,25 +43,37 @@
       </td>
       <td class='hidden-xs'>{{user.first_name}}</td>
       <td class='hidden-xs'>{{user.location.name}}</td>
-      <div ng-if='!user.certifications.length'>
-        <td ng-repeat='cert in user.certifications'>
-          <a class='pointer-hand' ng-click="predicate.value = certName.name; predicate.reverse = !predicate.reverse">
-          {{cert.expiration_date | date:'yyyy-MM-dd'}}</a>
-        </td>
-      </div>
-      <div ng-if='user.certifications.length'>
-        <td></td>
-        <td></td>
-        <td></td>
-      </div>
+      <td ng-repeat='cert in user.certifications'>
+        <div ng-class="cssClass(cert.expiration_date)">
+          {{cert.expiration_date | date:'MM-dd-yyyy'}}
+        </div>
+
+
+        <!-- <div ng-if="cssClass(cert.expiration_date)=='before'"> Before {{cert.expiration_date | date:'MM-dd-yyyy'}}</div> -->
+      </td>
     </tr>
   </tbody>
 </table>
 
+<style>
+  .red {
+    background-color: #F2DEDE;
+  }
 
-<ul ui-if="!!events.length">
-    <li ng-repeat="event in events">{{event.title}}</li>
-</ul>
+  .yellow {
+    background-color: yellow;
+  }
+
+  .green {
+    background-color: #D0E9C6;
+  }
+
+  .blue {
+    background-color: blue;
+  }
+
+</style>
+
 
 
 <!-- <div ng-hide='(users | orderBy:predicate.value:predicate.reverse | filter:locationFilter | filter:search).length'>
