@@ -17,7 +17,6 @@
       <%= render 'shared/required' %>
 
       <div ng-controller='ChemicalRecordsCtrl'>
-
         <label>Location</label>
         <%= render 'layouts/location_select_chemicals' %>
         <%= f.hidden_field :location_id, value: "{{location_id}}" %>
