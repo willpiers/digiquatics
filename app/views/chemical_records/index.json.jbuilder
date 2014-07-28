@@ -1,6 +1,12 @@
 json.array!(@chemical_records) do |chemical_record|
   json.extract! chemical_record, *ChemicalRecord.column_names
 
+  json.user do
+    json.id          chemical_record.user.id
+    json.last_name   chemical_record.user.last_name
+    json.first_name  chemical_record.user.first_name
+  end
+
   json.pool do
     json.id          chemical_record.pool.id
     json.name        chemical_record.pool.name
