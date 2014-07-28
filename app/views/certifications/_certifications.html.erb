@@ -1,4 +1,4 @@
-<table ng-show='(users | orderBy:predicate.value:predicate.reverse | filter:locationFilter | filter:search).length' class='table table-hover'>
+<table class='table'>
   <thead>
     <tr>
       <th class='visible-xs'>
@@ -17,31 +17,52 @@
         <a class='pointer-hand' ng-click="predicate.value = '-location'; predicate.reverse = !predicate.reverse">
         Location</a>
       </th>
-      <th ng-repeat='certName in certNames'>
+      <th ng-repeat='certName in certificationNames'>
         <a class='pointer-hand' ng-click="predicate.value = certName.name; predicate.reverse = !predicate.reverse">
         {{certName.name}}</a>
       </th>
     </tr>
   </thead>
+
   <tbody>
-    <tr ng-repeat='userData in users | orderBy:predicate.value:predicate.reverse | filter:locationFilter | filter:search'>
+    <tr ng-repeat='user in users
+                  | orderBy:predicate.value:predicate.reverse
+                  | filter:locationFilter
+                  | filter:search'>
       <td class='visible-xs'>
-        <a ng-href='/users/{{userData.id}}'>
-          {{userData.lastName}}, {{userData.firstName}}
+        <a ng-href='/users/{{user.id}}'>
+          {{user.last_name}}, {{user.first_name}}
         </a>
       </td>
       <td class='hidden-xs'>
-        <a ng-href='/users/{{userData.id}}'>{{userData.lastName}}</a>
+        <a ng-href='/users/{{user.id}}'>
+          {{user.last_name}}
+        </a>
       </td>
-      <td class='hidden-xs'>{{userData.firstName}}</td>
-      <td class='hidden-xs'>{{userData.location}}</td>
-      <td ng-repeat='certName in certNames' class='{{userData[certName.name + "class"]}} cert-width-fix'>
-        {{userData[certName.name] | formatDate}}
-      </td>
+      <td class='hidden-xs'>{{user.first_name}}</td>
+      <td class='hidden-xs'>{{user.location.name}}</td>
+      <div ng-if='!user.certifications.length'>
+        <td ng-repeat='cert in user.certifications'>
+          <a class='pointer-hand' ng-click="predicate.value = certName.name; predicate.reverse = !predicate.reverse">
+          {{cert.expiration_date | date:'yyyy-MM-dd'}}</a>
+        </td>
+      </div>
+      <div ng-if='user.certifications.length'>
+        <td></td>
+        <td></td>
+        <td></td>
+      </div>
     </tr>
   </tbody>
 </table>
-<div ng-hide='(users | orderBy:predicate.value:predicate.reverse | filter:locationFilter | filter:search).length'>
+
+
+<ul ui-if="!!events.length">
+    <li ng-repeat="event in events">{{event.title}}</li>
+</ul>
+
+
+<!-- <div ng-hide='(users | orderBy:predicate.value:predicate.reverse | filter:locationFilter | filter:search).length'>
   <hr/>
   <center>
     <p>
@@ -52,3 +73,4 @@
     </p>
   </center>
 </div>
+ -->
