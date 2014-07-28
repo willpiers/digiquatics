@@ -8,6 +8,7 @@ describe 'chemical records' do
   let!(:chemical_record) do
     FactoryGirl.create(:chemical_record,
                        pool_id: pool.id,
+                       location_id: location.id,
                        ph: 7.5,
                        total_chlorine_ppm: 7.5)
   end
@@ -34,8 +35,8 @@ describe 'chemical records' do
     end
 
     it 'should have a location' do
-      actual.first['pool']['location_id'].should eq location.id
-      actual.first['pool']['location']['id'].should eq location.id
+      actual.first['location_id'].should eq location.id
+      actual.first['location']['id'].should eq location.id
     end
   end
 end
