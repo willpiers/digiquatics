@@ -1,4 +1,4 @@
-<div id='shift-assigner-popover'></div>
+<div ng-controller='SubRequestsCtrl'>
 <table class='table table-bordered print-schedule-font'>
   <thead>
     <tr>
@@ -27,44 +27,7 @@
   </thead>
   <tbody>
     <tr ng-repeat='user in myShifts | orderBy:predicate.value:reverse'>
-      <td class='my_schedule_height'>
-        <div ng-if="sameDay(shift.start_time, 0)" ng-repeat="shift in user.shifts">
-            <%= render 'shifts/week_views/my_shift' %>
-        </div>
-      </td>
       <td>
-        <div ng-if="sameDay(shift.start_time, 1)" ng-repeat="shift in user.shifts">
-            <%= render 'shifts/week_views/my_shift' %>
-        </div>
-      </td>
-      <td>
-        <div ng-if="sameDay(shift.start_time, 2)" ng-repeat="shift in user.shifts">
-            <%= render 'shifts/week_views/my_shift' %>
-        </div>
-      </td>
-      <td>
-        <div ng-if="sameDay(shift.start_time, 3)" ng-repeat="shift in user.shifts">
-            <%= render 'shifts/week_views/my_shift' %>
-        </div>
-      </td>
-      <td>
-        <div ng-if="sameDay(shift.start_time, 4)" ng-repeat="shift in user.shifts">
-            <%= render 'shifts/week_views/my_shift' %>
-        </div>
-      </td>
-      <td>
-        <div ng-if="sameDay(shift.start_time, 5)" ng-repeat="shift in user.shifts">
-            <%= render 'shifts/week_views/my_shift' %>
-        </div>
-      </td>
-      <td>
-        <div ng-if="sameDay(shift.start_time, 6)" ng-repeat="shift in user.shifts">
-            <%= render 'shifts/week_views/my_shift' %>
-        </div>
-      </td>
-    </tr>
-    <tr ng-repeat='user in myShifts | orderBy:predicate.value:reverse'>
-      <td class='my_schedule_height'>
         <div ng-if="sameDayTimeOff(time_off.starts_at, time_off.ends_at, 0)"
              ng-repeat='time_off in user.time_off_requests'>
           <%= render 'shifts/week_views/my_time_off' %>
@@ -107,5 +70,44 @@
         </div>
       </td>
     </tr>
+
+    <tr ng-repeat='user in myShifts | orderBy:predicate.value:reverse'>
+      <td class='my_schedule'>
+        <div ng-if="sameDay(shift.start_time, 0)" ng-repeat="shift in user.shifts">
+            <%= render 'shifts/week_views/my_shift' %>
+        </div>
+      </td>
+      <td class='my_schedule'>
+        <div ng-if="sameDay(shift.start_time, 1)" ng-repeat="shift in user.shifts">
+            <%= render 'shifts/week_views/my_shift' %>
+        </div>
+      </td>
+      <td class='my_schedule'>
+        <div ng-if="sameDay(shift.start_time, 2)" ng-repeat="shift in user.shifts">
+            <%= render 'shifts/week_views/my_shift' %>
+        </div>
+      </td>
+      <td class='my_schedule'>
+        <div ng-if="sameDay(shift.start_time, 3)" ng-repeat="shift in user.shifts">
+            <%= render 'shifts/week_views/my_shift' %>
+        </div>
+      </td>
+      <td class='my_schedule'>
+        <div ng-if="sameDay(shift.start_time, 4)" ng-repeat="shift in user.shifts">
+            <%= render 'shifts/week_views/my_shift' %>
+        </div>
+      </td>
+      <td class='my_schedule'>
+        <div ng-if="sameDay(shift.start_time, 5)" ng-repeat="shift in user.shifts">
+            <%= render 'shifts/week_views/my_shift' %>
+        </div>
+      </td>
+      <td class='my_schedule'>
+        <div ng-if="sameDay(shift.start_time, 6)" ng-repeat="shift in user.shifts">
+            <%= render 'shifts/week_views/my_shift' %>
+        </div>
+      </td>
+    </tr>
   </tbody>
 </table>
+</div>
