@@ -23,9 +23,7 @@
         </th>
         <th ng-repeat='certName in certificationNames'>
           <center>
-             <a class='pointer-hand' ng-click="predicate.value = certName.name; predicate.reverse = !predicate.reverse">
             {{certName.name}}
-            </a>
           </center>
         </th>
       </tr>
@@ -57,7 +55,7 @@
             <div ng-class="cssClass(cert.expiration_date)"
                  class='cert-cell'>
               <div class='cert-cell-text'>
-              {{cert.expiration_date | date:'MM-dd-yyyy'}}
+              {{cert.expiration_date | date:'MM-dd-yy'}}
             </div>
             </div>
           </center>
