@@ -9,7 +9,6 @@ class ChemicalRecordsController < ApplicationController
     respond_to do |format|
       format.html
       format.json
-
       format.csv do
         render csv: @chemical_records, filename: 'chemical_records'
       end

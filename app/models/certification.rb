@@ -18,6 +18,7 @@ class Certification < ActiveRecord::Base
   after_save :track
 
   comma do
+    location name: 'Location'
     certification_name :name
     issue_date
     expiration_date

@@ -17,7 +17,6 @@
       <%= render 'shared/required' %>
 
       <div ng-controller='ChemicalRecordsCtrl'>
-
         <label>Location</label>
         <%= render 'layouts/location_select_chemicals' %>
         <%= f.hidden_field :location_id, value: "{{location_id}}" %>
@@ -30,12 +29,13 @@
       <%= f.text_field :free_chlorine_ppm, label: 'Free Chlorine ppm' %>
       <%= f.text_field :total_chlorine_ppm, label: 'Total Chlorine ppm *' %>
       <%= f.text_field :ph, label: 'PH *' %>
-      <%= f.text_field :alkalinity %>
-      <%= f.text_field :calcium_hardness, label: 'Calcium Hardness' %>
+
       <%= f.text_field :pool_temp, label: 'Pool Temp' %>
       <%= f.text_field :air_temp, label: 'Air Temp' %>
       <%= f.select :water_clarity, %w[Clear Cloudy],
                   { label: 'Water Clarity' } %>
+      <%= f.text_field :alkalinity %>
+      <%= f.text_field :calcium_hardness, label: 'Calcium Hardness' %>
 
       <div ng-controller='AnalyticsCtrl' class='hidden-xs hidden-sm'>
         <label>Date</label>

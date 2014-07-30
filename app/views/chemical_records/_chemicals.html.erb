@@ -6,19 +6,27 @@
   <table class='table'>
     <thead>
       <tr>
+        <th>
+          <a href='' ng-click="predicate.value = 'time_stamp'; reverse=!reverse">
+            Time
+          </a>
+          <span ng-show="thArrow(predicate.value, 'time_stamp')">
+            <dq-arrow></dq-arrow>
+          </span>
+        </th>
+        <th class='hidden-xs'>
+          <a href='' ng-click="predicate.value = '-user.last_name'; reverse=!reverse">
+            Submitted By
+          </a>
+          <span ng-show="thArrow(predicate.value, '-user.last_name')">
+            <dq-arrow></dq-arrow>
+          </span>
+        </th>
         <th class='hidden-xs'>
           <a href='' ng-click="predicate.value = '-free_chlorine_ppm'; reverse=!reverse">
             Free Cl
           </a>
           <span ng-show="thArrow(predicate.value, '-free_chlorine_ppm')">
-            <dq-arrow></dq-arrow>
-          </span>
-        </th>
-        <th class='hidden-xs'>
-          <a href='' ng-click="predicate.value = '-combined_chlorine_ppm'; reverse=!reverse">
-            Combined Cl
-          </a>
-          <span ng-show="thArrow(predicate.value, '-combined_chlorine_ppm')">
             <dq-arrow></dq-arrow>
           </span>
         </th>
@@ -86,22 +94,6 @@
             <dq-arrow></dq-arrow>
           </span>
         </th>
-        <th class='hidden-xs'>
-          <a href='' ng-click="predicate.value = '-si_status'; reverse=!reverse">
-            SI Status
-          </a>
-          <span ng-show="thArrow(predicate.value, '-si_status')">
-            <dq-arrow></dq-arrow>
-          </span>
-        </th>
-        <th>
-          <a href='' ng-click="predicate.value = 'time_stamp'; reverse=!reverse">
-            Time
-          </a>
-          <span ng-show="thArrow(predicate.value, 'time_stamp')">
-            <dq-arrow></dq-arrow>
-          </span>
-        </th>
       </tr>
     </thead>
 
@@ -110,8 +102,15 @@
         | filter:{pool_id: pool_id}
         | filter:{pool: {location_id: location_id}}
         | limitTo:totalDisplayed'>
+        <td>
+          {{record.time_stamp | date:'M/d/yy h:mm a'}}
+        </td>
+        <td class='hidden-xs'>
+          <a ng-href='/users/{{record.user.id}}'>
+            {{record.user.last_name}}, {{record.user.first_name}}
+          </a>
+        </td>
         <td class='hidden-xs'>{{record.free_chlorine_ppm}}</td>
-        <td class='hidden-xs'>{{record.combined_chlorine_ppm}}</td>
         <td>{{record.total_chlorine_ppm}}</td>
         <td>{{record.ph}}</td>
         <td>{{record.alkalinity}}</td>
@@ -120,11 +119,9 @@
         <td class='hidden-xs'>{{record.air_temp}}</td>
         <td class='hidden-xs'>{{record.water_clarity}}</td>
         <td class='hidden-xs' ng-class='cssClass(record)'>{{record.si_index}}</td>
-        <td class='hidden-xs' ng-class='cssClass(record)'>{{record.si_status}}</td>
         <td>
-          <a ng-href='{{record.url}}'>
-            {{record.time_stamp | date:'M/d/yy h:mm a'}}
-          </a>
+          <%= link_to 'View Request', "/chemical_records/{{record.id}}",
+            class: 'btn btn-info btn-xs', role: 'button' %>
         </td>
       </tr>
     </tbody>
