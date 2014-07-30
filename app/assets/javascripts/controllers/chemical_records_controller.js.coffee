@@ -23,6 +23,6 @@
     ChemicalRecords.index (data) ->
       $scope.chemicalRecords = data
 
-    $scope.pools           = Pools.index()
-    $scope.locations       = Locations.index()
+    $scope.pools = Pools.index()
+    $scope.locations = Locations.index()
 ]

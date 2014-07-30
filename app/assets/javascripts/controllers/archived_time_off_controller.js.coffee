@@ -15,6 +15,11 @@
       if request.approved == true then 'success'
       else 'danger'
 
+    $scope.totalDisplayed = 10
+
+    $scope.loadMore = ->
+      $scope.totalDisplayed += 50
+
     $scope.checkActive = (request) ->
       if request.active == false then false
       else true

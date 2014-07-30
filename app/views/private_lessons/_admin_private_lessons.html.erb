@@ -1,5 +1,5 @@
 <div ng-show='(adminPrivateLessons | orderBy:order.value:order.reverse | filter:locationFilter | filter:search).length'>
-  <table class='table table-hover' >
+  <table class='table'>
     <thead>
       <tr>
         <th>
@@ -48,7 +48,11 @@
       </tr>
     </thead>
     <tbody>
-      <tr ng-repeat='lesson in adminPrivateLessons | orderBy:predicate.value:reverse | filter:locationFilter | filter:search'>
+      <tr ng-repeat='lesson in adminPrivateLessons
+        | orderBy:predicate.value:reverse
+        | filter:locationFilter
+        | filter:search
+        | limitTo:totalDisplayed'>
         <td>
             <a ng-href='/users/{{lesson.user.id}}'>
               {{lesson.user.last_name}}, {{lesson.user.first_name}}
@@ -85,9 +89,13 @@
     </tbody>
   </table>
 </div>
-
+<div ng-show='(adminPrivateLessons | orderBy:order.value:order.reverse | filter:locationFilter | filter:search).length > 10'>
+  <center>
+    <btn class='btn btn-default load-more-width' ng-click='loadMore()'>Load Additional Records</btn>
+  </center>
+</div>
 <div ng-hide='(adminPrivateLessons | orderBy:order.value:order.reverse | filter:locationFilter | filter:search).length'>
-  <hr>
+  <hr/>
   <center>
     <p>
       No private lessons match this search or none are claimed at this time.
@@ -96,3 +104,4 @@
     </p>
   </center>
 </div>
+

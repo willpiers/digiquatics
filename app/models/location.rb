@@ -7,6 +7,7 @@ class Location < ActiveRecord::Base
 
   belongs_to :account
 
+  has_many :chemical_records
   has_many :users
   has_many :shift_reports
   has_many :help_desks
@@ -15,6 +16,7 @@ class Location < ActiveRecord::Base
   has_many :slides, dependent: :destroy
   has_many :shifts
   has_many :time_off_requests
+
 
   accepts_nested_attributes_for :pools,
                                 reject_if: -> (pool) { pool[:name].blank? },

@@ -23,7 +23,6 @@ describe 'Chemicals' do
 
     describe 'should have correct headers' do
       it { should have_content('Free Cl') }
-      it { should have_content('Combined Cl') }
       it { should have_content('Total Cl') }
       it { should have_content('PH') }
       it { should have_content('Alk') }
@@ -31,7 +30,6 @@ describe 'Chemicals' do
       it { should have_content('Pool(F)') }
       it { should have_content('Air(F)') }
       it { should have_content('SI Index') }
-      it { should have_content('SI Status') }
       it { should have_content('Water Clarity') }
       it { should have_content('Time') }
     end

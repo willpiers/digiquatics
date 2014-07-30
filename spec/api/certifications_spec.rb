@@ -21,7 +21,7 @@ describe 'certification expirations' do
     FactoryGirl.create(:certification,
                        user_id: user.id,
                        certification_name_id: certification_name.id,
-                       expiration_date: '2014-10-24T18:00:00.000-06:00')
+                       expiration_date: '2014-11-24T18:00:00.000-06:00')
   end
 
   before do
@@ -40,7 +40,7 @@ describe 'certification expirations' do
           'lastName'                        => user.last_name,
           'firstName'                       => user.first_name,
           'location'                        => location.name,
-          certification_name.name           => '2014-10-24T18:00:00.000-06:00',
+          certification_name.name           => '2014-11-24T17:00:00.000-07:00',
           "#{certification_name.id}"        => 'CPR/AED',
           "#{certification_name.name}class" => 'cert_blue'
         }

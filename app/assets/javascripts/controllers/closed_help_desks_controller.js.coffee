@@ -12,6 +12,11 @@
       $scope.showPic = (data) ->
         data.help_desk_attachment_file_name?
 
+      $scope.totalDisplayed = 10
+
+      $scope.loadMore = ->
+        $scope.totalDisplayed += 50
+
       $scope.cssClass = (item) ->
         if      item.urgency == 'Low'    then 'success'
         else if item.urgency == 'Medium' then 'warning'
