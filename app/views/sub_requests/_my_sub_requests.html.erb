@@ -10,22 +10,15 @@
         </span>
       </th>
       <th class='hidden-xs'>
-        <a href="" ng-click="predicate.value = '-starts_at'; reverse=!reverse">
+        <a href="" ng-click="predicate.value = '-shift.start_time'; reverse=!reverse">
           Shift Date
         </a>
-        <span ng-show="thArrow(predicate.value, '-starts_at')">
+        <span ng-show="thArrow(predicate.value, '-shift.start_time')">
           <dq-arrow></dq-arrow>
         </span>
       </th>
       <th class='hidden-xs'> Shift Time </th>
-      <th class='visible-xs'>
-        <a href="" ng-click="predicate.value = '-starts_at'; reverse=!reverse">
-          Shift
-        </a>
-        <span ng-show="thArrow(predicate.value, '-starts_at')">
-          <dq-arrow></dq-arrow>
-        </span>
-      </th>
+      <th class='visible-xs'> Shift </th>
       <th>
         <a href="" ng-click="predicate.value = '-sub_last_name'; reverse=!reverse">
           Employee Sub
