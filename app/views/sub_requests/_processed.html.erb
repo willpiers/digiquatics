@@ -30,6 +30,14 @@
         </span>
       </th>
       <th>
+        <a href="" ng-click="predicate.value = '-shift.user.last_name'; reverse=!reverse">
+          Employee
+        </a>
+        <span ng-show="thArrow(predicate.value, '-shift.user.last_name')">
+          <dq-arrow></dq-arrow>
+        </span>
+      </th>
+      <th>
         <a href="" ng-click="predicate.value = '-sub_last_name'; reverse=!reverse">
           Employee Sub
         </a>

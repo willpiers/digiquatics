@@ -20,8 +20,7 @@
     $scope.loadMore = ->
       $scope.totalDisplayed += 50
 
-    ChemicalRecords.index (data) ->
-      $scope.chemicalRecords = data
+    $scope.chemicalRecords = ChemicalRecords.index()
 
     $scope.pools = Pools.index()
     $scope.locations = Locations.index()
