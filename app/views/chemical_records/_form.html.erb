@@ -18,12 +18,18 @@
 
       <div ng-controller='ChemicalRecordsCtrl'>
         <label>Location</label>
-        <%= render 'layouts/location_select_chemicals' %>
-        <%= f.hidden_field :location_id, value: "{{location_id}}" %>
 
-        <%= render 'layouts/pool_select' %>
+      <% if @chemical_record.new_record?() %>
+          <!-- Defaults to current location for new -->
+          <%= render 'layouts/location_select_chemicals' %>
+          <%= f.hidden_field :location_id, value: "{{location_id}}" %>
+          <%= render 'layouts/pool_select' %>
+          <%= f.hidden_field :pool_id, value: "{{pool_id}}" %>
+      <% else %>
+        <%= render 'layouts/location_select_chemicals_edit' %>
+        <%= render 'layouts/pool_select_chemicals_edit' %>
+      <% end %>
 
-        <%= f.hidden_field :pool_id, value: "{{pool_id}}" %>
       </div>
 
       <%= f.text_field :free_chlorine_ppm, label: 'Free Chlorine ppm' %>
