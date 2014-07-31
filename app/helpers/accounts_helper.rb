@@ -8,7 +8,7 @@ module AccountsHelper
                     :chemical_records_group_email,
                     private_lessons_attributes: [:id],
                     users_attributes: [
-                      :first_name, :nickname, :last_name, :email, :account_id,
+                      :first_name, :last_name, :email, :account_id,
                       :password, :password_confirmation, :phone_number]
                    ]
 

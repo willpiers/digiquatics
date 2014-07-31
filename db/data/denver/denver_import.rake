@@ -29,7 +29,6 @@ namespace :db do
 
       user = account.users.build(last_name:           user_row['last_name'],
                                  first_name:          user_row['first_name'],
-                                 nickname:            user_row['nickname'],
                                  phone_number:      user_row['phone_number'],
                                  email:               email,
                                  notes:               user_row['notes'],

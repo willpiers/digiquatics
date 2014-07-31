@@ -1,11 +1,11 @@
 module UsersHelper
   USER_PARAMS = [
-    :first_name, :nickname, :last_name, :account_id, :admin, :email, :password,
+    :first_name, :last_name, :account_id, :admin, :email, :password,
     :password_confirmation, :date_of_birth, :date_of_hire, :sex, :phone_number,
     :shirt_size, :suit_size, :location_id, :position_id, :femalesuit, :avatar,
     :employee_id, :emergency_first, :emergency_last, :emergency_phone, :notes,
     :payrate, :grouping, :address1, :address2, :city, :state, :zipcode,
-    :active, :private_lesson_access,
+    :active, :private_lesson_access, :chemical_records_access,
     certifications_attributes: [
       :_destroy, :id, :certification_name_id, :user_id, :issue_date,
       :expiration_date, :attachment
@@ -32,9 +32,7 @@ module UsersHelper
   end
 
   def full_name(user)
-    nickname = user.nickname.to_s.blank? ? ' ' : " (#{user.nickname}) "
-
-    "#{user.first_name}#{nickname}#{user.last_name}"
+    "#{user.first_name} #{user.last_name}"
   end
 
   def age(dob)

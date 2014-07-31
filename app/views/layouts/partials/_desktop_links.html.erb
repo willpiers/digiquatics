@@ -5,7 +5,9 @@
         <li><%= link_to 'Attendance', attendance_records_path %></li>
       <% end %>
       <% if FeatureToggleHelper.chemicals? %>
-        <li><%= link_to 'Chemicals', chemical_records_path %></li>
+        <% if current_user.chemical_records_access? || current_user.admin? %>
+          <li><%= link_to 'Chemicals', chemical_records_path %></li>
+        <% end %>
       <% end %>
       <% if current_user && current_user.admin? %>
         <li><%= link_to 'Certifications', certifications_path %></li>
@@ -78,8 +80,9 @@
           <li><%= link_to 'My Profile', current_user %></li>
           <% if FeatureToggleHelper.schedule? %>
             <li class='divider'></li>
-            <li><%= link_to 'My Availability', '#' %></li>
+            <li><%= link_to 'My Availability', '/availability' %></li>
             <li><%= link_to 'My Private Lessons', my_lessons_path %></li>
+            <li><%= link_to 'My Schedule', my_schedule_path %></li>
             <li><%= link_to 'My Sub Requests', my_sub_requests_path %></li>
             <li><%= link_to 'My Time Off', my_time_off_requests_path %></li>
           <% end %>

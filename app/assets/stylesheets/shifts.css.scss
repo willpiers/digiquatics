@@ -1,6 +1,11 @@
+.edit_shift {
+  cursor: pointer;
+}
+
 .shift {
-min-height:60px;
+min-height:30px;
 width: 130px;
+cursor: pointer;
 }
 
 /* Hide original text */
@@ -16,4 +21,30 @@ width: 130px;
 .shift:hover:before {
   font-size: 16px;
   content: attr(data-hover);
+}
+
+.my_schedule_header {;
+  text-align: center;
+}
+
+.my_schedule {
+  height: 120px;
+  width: 145px;
+  text-align: center;
+}
+
+.my_time_off_bar {
+  height: 40px;
+  width: 145px;
+  margin: 0px;
+  padding: 0px;
+  vertical-align: middle;
+}
+
+.my_shift_bar {
+  height: 120px;
+  width: 145px;
+  margin: 0px;
+  padding: 0px;
+  vertical-align: middle;
 }
