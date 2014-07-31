@@ -37,6 +37,7 @@ FactoryGirl.define do
     location_id 1
     position_id 1
     employee_id 1313
+    chemical_records_access true
   end
 
   factory :admin, class: User do
@@ -56,6 +57,7 @@ FactoryGirl.define do
     account_id 1
     location_id 1
     position_id 1
+    chemical_records_access true
   end
 
   factory :certification do
