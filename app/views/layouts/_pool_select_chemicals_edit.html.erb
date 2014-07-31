@@ -4,4 +4,4 @@
         ng-options='pool.id as pool.name for pool in pools | filter:{location_id: location_id}'>
   <option value=''>Select Pool </option>
 </select>
-<%= f.hidden_field :pool_id, value: "{{pool_id}}" %>
+
