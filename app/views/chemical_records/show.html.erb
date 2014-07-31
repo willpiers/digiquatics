@@ -4,10 +4,12 @@
 
 <div class='table-width-desktop'>
 
-  <ul class='pull-right'>
-    <%= link_to 'Edit Record', edit_chemical_record_path(@chemical_record),
-                class: 'btn btn-default btn-primary' %>
-  </ul>
+  <% if current_user.admin? %>
+    <ul class='pull-right'>
+      <%= link_to 'Edit Record', edit_chemical_record_path(@chemical_record),
+                  class: 'btn btn-default btn-primary' %>
+    </ul>
+  <% end %>
 
   <div class='pull-left'>
     <%= link_to ' Back', chemical_records_path , class: 'glyphicon glyphicon-arrow-left' %>

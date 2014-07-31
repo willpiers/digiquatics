@@ -1,6 +1,7 @@
 class ChemicalRecordsController < ApplicationController
   include ChemicalRecordsHelper
   before_action :set_chemical_record, only: [:show, :edit, :update, :destroy]
+  before_action :admin_user, only: [:edit]
 
   def index
     Tracker.track(current_user.id, 'View Chemical Records Index') unless Rails.env.test?
@@ -74,6 +75,8 @@ class ChemicalRecordsController < ApplicationController
   end
 
   private
+
+  include ApplicationHelper
 
   def set_chemical_record
     @chemical_record = ChemicalRecord.find(params[:id])
