@@ -3,13 +3,13 @@
 <div style='margin-left:0px;'>
 <h1 class='hidden-xs'>
   <%= image_tag @user.avatar.url, size: '100x100', class: 'img-circle' %>
-  <%= full_name(@user) %>
+  <%= "#{@user.first_name} #{@user.last_name}" %>
   <br>
 </h1>
 <h4 class='visible-xs'>
   <center>
     <%= image_tag @user.avatar.url, size: '50x50', class: 'img-circle' %>
-    <%= full_name(@user) %>
+    <%= "#{@user.first_name} #{@user.last_name}" %>
   </center>
 </h4>
 </div>
