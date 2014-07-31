@@ -17,7 +17,7 @@
 
   <br>
   <% if FeatureToggleHelper.chemicals? %>
-    <% if current_user.private_lesson_access? || current_user.admin? %>
+     <% if current_user.chemical_records_access? || current_user.admin? %>
       <%= link_to 'New Chemical Record', new_chemical_record_path,
           class: 'btn btn-primary btn-block', role: 'button' %>
     <% end %>

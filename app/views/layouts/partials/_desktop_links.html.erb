@@ -5,7 +5,9 @@
         <li><%= link_to 'Attendance', attendance_records_path %></li>
       <% end %>
       <% if FeatureToggleHelper.chemicals? %>
-        <li><%= link_to 'Chemicals', chemical_records_path %></li>
+        <% if current_user.chemical_records_access? || current_user.admin? %>
+          <li><%= link_to 'Chemicals', chemical_records_path %></li>
+        <% end %>
       <% end %>
       <% if current_user && current_user.admin? %>
         <li><%= link_to 'Certifications', certifications_path %></li>
