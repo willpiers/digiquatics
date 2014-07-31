@@ -13,6 +13,22 @@ class ShiftsController < ApplicationController
     end
   end
 
+  def my_schedule
+    @my_schedule = Shift.all
+
+    respond_to do |format|
+      format.html
+      format.json do
+        my_schedule = User.where(id: current_user.id).select("id, first_name, last_name")
+
+        render json: my_schedule.to_json(include: [
+              {shifts: { include: {position: {only: :name}, location: {only: :name} } }},
+              :time_off_requests,
+              :availabilities])
+      end
+    end
+  end
+
   def show
 
   end

@@ -99,7 +99,6 @@ namespace :db do
     print '.'
 
     User.create!(first_name:             'First',
-                 nickname:               'Dubs',
                  last_name:              'Last',
                  phone_number:           '303-123-8888',
                  secondary_phone_number: '303-123-4567',
@@ -136,7 +135,6 @@ namespace :db do
       print '.'
 
       User.create!(first_name: Faker::Name.first_name,
-                   nickname: Faker::Name.name,
                    last_name: Faker::Name.last_name,
                    phone_number: Faker::PhoneNumber.phone_number,
                    secondary_phone_number: Faker::PhoneNumber.phone_number,
