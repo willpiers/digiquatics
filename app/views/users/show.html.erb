@@ -255,6 +255,10 @@
         <td><%= boolean_to_words(@user.active) %></td>
       </tr>
       <tr>
+      <th> Chemical Records Access</th>
+        <td>
+          <%= boolean_to_words(@user.chemical_records_access) %>
+        </td>
       <th> Private Lesson Access</th>
         <td>
           <%= boolean_to_words(@user.private_lesson_access) %>
