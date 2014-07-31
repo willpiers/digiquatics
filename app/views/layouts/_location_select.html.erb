@@ -1,6 +1,6 @@
 <div class='col-md-3'>
-<!--   <div ng-init="locationFilter = '<%= current_user.location.name %>' "></div>
- -->  <select ng-model='locationFilter'
+  <div ng-init="locationFilter = '<%= current_user.location.name %>' "></div>
+  <select ng-model='locationFilter'
           class='form-control'
           ng-options='location.name as location.name for location in locations'>
     <option value="">All Locations</option>
