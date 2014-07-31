@@ -1,0 +1,57 @@
+.red {
+  background-color: #F2DEDE;
+}
+
+.yellow {
+  background-color: #FCF8E3;
+}
+
+.green {
+  background-color: #D0E9C6;
+}
+
+.blue {
+  background-color: #DBF2FF;
+}
+
+.cert-cell {
+  height: 37px;
+  vertical-align: middle;
+}
+
+.cert-cell {
+  height: 37px;
+  vertical-align: middle;
+}
+
+.cert-cell-text {
+  position: relative;
+  top: 8px;
+}
+
+  .certs-table  {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 20px;
+  }
+  .certs-table > thead > tr > th {
+    line-height: 1.42857143;
+    vertical-align: middle;
+    height: 37px;
+  }
+
+  .certs-table > tbody > tr > th,
+  .certs-table > tfoot > tr > th,
+  .certs-table > thead > tr > td,
+  .certs-table > tbody > tr > td,
+  .certs-table > tfoot > tr > td {
+    line-height: 1.42857143;
+    vertical-align: middle;
+    border-top: 1px solid #ddd;
+    height: 37px;
+  }
+  .certs-table > thead > tr > th {
+    vertical-align: bottom;
+    border-bottom: 2px solid #ddd;
+  }
+

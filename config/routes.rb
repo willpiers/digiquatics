@@ -64,9 +64,6 @@ DigiQuatics::Application.routes.draw do
   match '/certifications_stats',
         to: 'static_pages#certifications_stats',
         via: 'get'
-  match '/certification_expirations',
-        to: 'certifications#index',
-        via: 'get'
 
   # Schedule
   match '/my_schedule', to: 'shifts#my_schedule', via: 'get'

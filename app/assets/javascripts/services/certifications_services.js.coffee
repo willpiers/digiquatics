@@ -1,4 +1,4 @@
 @digiquatics.factory 'Certifications', ['$resource',
   ($resource) ->
-    $resource '/certification_expirations.json'
+    $resource('/certifications.json', {}, { index: { method: 'GET', isArray: true}})
 ]

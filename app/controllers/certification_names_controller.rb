@@ -5,6 +5,14 @@ class CertificationNamesController < ApplicationController
   def index
     @certification_names = CertificationName.joins(:account)
     .same_account_as(current_user)
+
+    respond_to do |format|
+      format.html
+      format.json do
+        certification_names = CertificationName.same_account_as(current_user).select('name')
+        render json: certification_names.to_json
+      end
+    end
   end
 
   def show

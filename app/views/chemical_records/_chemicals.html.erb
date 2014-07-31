@@ -7,7 +7,8 @@
     <thead>
       <tr>
         <th>
-          <a href='' ng-click="predicate.value = 'time_stamp'; reverse=!reverse">
+          <a class='pointer-hand' href=''
+             ng-click="predicate.value = 'time_stamp'; reverse=!reverse">
             Time
           </a>
           <span ng-show="thArrow(predicate.value, 'time_stamp')">
@@ -15,7 +16,8 @@
           </span>
         </th>
         <th class='hidden-xs'>
-          <a href='' ng-click="predicate.value = '-user.last_name'; reverse=!reverse">
+          <a class='pointer-hand' href=''
+             ng-click="predicate.value = '-user.last_name'; reverse=!reverse">
             Submitted By
           </a>
           <span ng-show="thArrow(predicate.value, '-user.last_name')">
@@ -23,7 +25,8 @@
           </span>
         </th>
         <th class='hidden-xs'>
-          <a href='' ng-click="predicate.value = '-free_chlorine_ppm'; reverse=!reverse">
+          <a class='pointer-hand' href=''
+             ng-click="predicate.value = '-free_chlorine_ppm'; reverse=!reverse">
             Free Cl
           </a>
           <span ng-show="thArrow(predicate.value, '-free_chlorine_ppm')">
@@ -31,7 +34,8 @@
           </span>
         </th>
         <th>
-          <a href='' ng-click="predicate.value = '-total_chlorine_ppm'; reverse=!reverse">
+          <a class='pointer-hand' href=''
+             ng-click="predicate.value = '-total_chlorine_ppm'; reverse=!reverse">
             Total Cl
           </a>
           <span ng-show="thArrow(predicate.value, '-total_chlorine_ppm')">
@@ -39,7 +43,8 @@
           </span>
         </th>
         <th>
-          <a href='' ng-click="predicate.value = '-ph'; reverse=!reverse">
+          <a class='pointer-hand' href=''
+             ng-click="predicate.value = '-ph'; reverse=!reverse">
             PH
           </a>
           <span ng-show="thArrow(predicate.value, '-ph')">
@@ -47,7 +52,8 @@
           </span>
         </th>
         <th>
-          <a href='' ng-click="predicate.value = '-alkalinity'; reverse=!reverse">
+          <a class='pointer-hand' href=''
+             ng-click="predicate.value = '-alkalinity'; reverse=!reverse">
             Alk
           </a>
           <span ng-show="thArrow(predicate.value, '-alkalinity')">
@@ -55,7 +61,8 @@
           </span>
         </th>
         <th>
-          <a href='' ng-click="predicate.value = '-calcium_hardness'; reverse=!reverse">
+          <a class='pointer-hand' href=''
+             ng-click="predicate.value = '-calcium_hardness'; reverse=!reverse">
             CH
           </a>
           <span ng-show="thArrow(predicate.value, '-calcium_hardness')">
@@ -63,7 +70,8 @@
           </span>
         </th>
         <th>
-          <a href='' ng-click="predicate.value = '-pool_temp'; reverse=!reverse">
+          <a class='pointer-hand' href=''
+             ng-click="predicate.value = '-pool_temp'; reverse=!reverse">
             Pool(F)
           </a>
           <span ng-show="thArrow(predicate.value, '-pool_temp')">
@@ -71,7 +79,8 @@
           </span>
         </th>
         <th class='hidden-xs'>
-          <a href='' ng-click="predicate.value = '-air_temp'; reverse=!reverse">
+          <a class='pointer-hand' href=''
+             ng-click="predicate.value = '-air_temp'; reverse=!reverse">
             Air(F)
           </a>
           <span ng-show="thArrow(predicate.value, '-air_temp')">
@@ -79,7 +88,8 @@
           </span>
         </th>
         <th class='hidden-xs'>
-          <a href='' ng-click="predicate.value = '-water_clarity'; reverse=!reverse">
+          <a class='pointer-hand' href=''
+             ng-click="predicate.value = '-water_clarity'; reverse=!reverse">
             Water Clarity
           </a>
           <span ng-show="thArrow(predicate.value, '-water_clarity')">
@@ -87,7 +97,8 @@
           </span>
         </th>
         <th class='hidden-xs'>
-          <a href='' ng-click="predicate.value = '-si_index'; reverse=!reverse">
+          <a class='pointer-hand' href=''
+             ng-click="predicate.value = '-si_index'; reverse=!reverse">
             SI Index
           </a>
           <span ng-show="thArrow(predicate.value, '-si_index')">
@@ -98,7 +109,8 @@
     </thead>
 
     <tbody>
-      <tr ng-repeat='record in chemicalRecords | orderBy:predicate.value:reverse
+      <tr ng-repeat='record in chemicalRecords
+        | orderBy:predicate.value:reverse
         | filter:{pool_id: pool_id}
         | filter:{pool: {location_id: location_id}}
         | limitTo:totalDisplayed'>
@@ -118,7 +130,10 @@
         <td>{{record.pool_temp}}</td>
         <td class='hidden-xs'>{{record.air_temp}}</td>
         <td class='hidden-xs'>{{record.water_clarity}}</td>
-        <td class='hidden-xs' ng-class='cssClass(record)'>{{record.si_index}}</td>
+        <td class='hidden-xs'
+            ng-class='cssClass(record)'>
+            {{record.si_index}}
+        </td>
         <td>
           <%= link_to 'View Request', "/chemical_records/{{record.id}}",
             class: 'btn btn-info btn-xs', role: 'button' %>
@@ -134,7 +149,9 @@
               | filter:{pool: {location_id: location_id}}
               | filter:search).length > 10' >
   <center>
-    <btn class='btn btn-default load-more-width' ng-click='loadMore()'>Load Additional Records</btn>
+    <btn class='btn btn-default load-more-width' ng-click='loadMore()'>
+      Load Additional Records
+    </btn>
   </center>
 </div>
 <div ng-hide='(chemicalRecords
@@ -151,3 +168,4 @@
     </p>
   </center>
 </div>
+
