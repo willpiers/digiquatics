@@ -25,7 +25,7 @@ class UsersController < ApplicationController
           :location, {position: {only: :name}},
           {shifts: { include: {position: {only: :name} } }},
           :time_off_requests,
-          :availabilities])
+          :availabilities, :certifications])
       end
     end
   end

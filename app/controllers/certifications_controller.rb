@@ -4,24 +4,27 @@ class CertificationsController < ApplicationController
   def index
     Tracker.track(current_user.id, 'View Certs Index') unless Rails.env.test?
 
-    @certification_names = CertificationName.joins(:account)
-    .same_account_as(current_user)
-
-    @users = User.joins(:account).same_account_as(current_user).active
-    .includes(:certifications)
-
-    certs_hash = {}
-
-    @certification_names.each do |cert_name|
-      cert_name.certifications.merge(certs_hash)
-    end
-
     respond_to do |format|
       format.html
-      format.csv { render csv: @certifications, filename: 'certifications' }
-      format.json { expirations }
+      # format.csv { render csv: @certifications, filename: 'certifications' }
+      format.json do
+        employee_certifications = User.same_account_as(current_user).active
+        render json: employee_certifications.to_json(include: [:certifications])
+      end
     end
   end
+
+  # format.json do
+  #   users = User.same_account_as(current_user).active
+
+  #   render json: users.to_json(include: [
+  #     :location, {position: {only: :name}},
+  #     {shifts: { include: {position: {only: :name} } }},
+  #     :time_off_requests,
+  #     :availabilities])
+
+
+
 
   def expirations
     render json: {
