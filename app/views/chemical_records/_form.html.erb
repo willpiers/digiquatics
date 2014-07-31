@@ -27,7 +27,9 @@
           <%= f.hidden_field :pool_id, value: "{{pool_id}}" %>
       <% else %>
         <%= render 'layouts/location_select_chemicals_edit' %>
+        <%= f.hidden_field :location_id, value: "{{location_id}}" %>
         <%= render 'layouts/pool_select_chemicals_edit' %>
+        <%= f.hidden_field :pool_id, value: "{{pool_id}}" %>
       <% end %>
 
       </div>
