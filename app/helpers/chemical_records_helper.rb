@@ -68,4 +68,12 @@ module ChemicalRecordsHelper
       total_chlorine
     end
   end
+
+  def chemical_records_access
+    unless current_user.chemical_records_access?
+      flash[:notice] = 'You must have chemical records rights to access this page.'
+      redirect_to current_user
+    end
+  end
+
 end
