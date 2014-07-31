@@ -6,8 +6,8 @@ class SubRequestsController < ApplicationController
   def index
     Tracker.track(current_user.id, 'Sub Requests Index') unless Rails.env.test?
     @sub_requests = SubRequest.joins(:user)
-                                 .where(users: { account_id: current_user.account_id })
-                                 .where(active: true).where(processed: false)
+                              .where(users: { account_id: current_user.account_id })
+                              .where(active: true).where(processed: false)
     respond_to do |format|
       format.html
       format.json do

@@ -2,7 +2,7 @@ require 'csv'
 
 module Importer
   USER_HEADERS = %w(
-    first_name last_name email nickname phone_number secondary_phone_number
+    first_name last_name email phone_number secondary_phone_number
     employee_id notes address1 address2 city state zipcode emergency_first
     emergency_last emergency_phone sex shirt_size suit_size femalesuit payrate
     grouping

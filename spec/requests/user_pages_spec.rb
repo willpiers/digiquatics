@@ -252,7 +252,6 @@ describe 'User pages' do
           before do
             # Basic User Information
             fill_in 'First Name *',       with: new_first_name, exact: true
-            # fill_in 'user_nickname',    with: 'Bobs'
             fill_in 'Last Name *',        with: 'Last', exact: true
             fill_in 'Phone Number *',     with: '720-387-9691', exact: true
             fill_in 'Email *',            with: new_email, exact: true
@@ -358,7 +357,6 @@ describe 'User pages' do
           before do
             # Basic User Information
             fill_in 'First Name *',       with: new_first_name, exact: true
-            # fill_in 'user_nickname',    with: 'Bobs'
             fill_in 'Last Name *',        with: 'Last', exact: true
             fill_in 'Phone Number *',     with: '720-387-9691', exact: true
             fill_in 'Email *',            with: new_email, exact: true

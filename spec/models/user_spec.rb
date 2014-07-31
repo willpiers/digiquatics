@@ -17,7 +17,6 @@ describe User do
   it { should respond_to(:date_of_birth) }
   it { should respond_to(:date_of_hire) }
   it { should respond_to(:sex) }
-  it { should respond_to(:nickname) }
   it { should respond_to(:last_name) }
   it { should respond_to(:email) }
   it { should respond_to(:employee_id) }
@@ -65,11 +64,6 @@ describe User do
   describe 'when first name is not present' do
     before { @user.first_name = ' ' }
     it { should_not be_valid }
-  end
-
-  describe 'when preferred name is not present' do
-    before { @user.nickname = ' ' }
-    it { should be_valid }
   end
 
   describe 'when last name is not present' do

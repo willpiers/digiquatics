@@ -41,7 +41,6 @@ describe Importer do
       end
 
       it 'should have all other available info' do
-        user.nickname.should == 'Quz'
         user.phone_number.should == '1234567890'
         user.secondary_phone_number.should == '123-456-7890'
         user.date_of_birth.should == Date.parse('Sun, 12 Sep 1993')
