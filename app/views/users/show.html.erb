@@ -56,35 +56,40 @@
     <%= link_to ' Back', users_path, class: 'glyphicon glyphicon-arrow-left' %>
   </div>
 
-  <% if @user != current_user && current_user.admin? %>
-    <ul class='pull-right'>
-      <% if @user.active? %>
-        <%= bootstrap_form_for @user do |f| %>
-          <%= f.hidden_field :active, value: false %>
-          <%= f.submit 'Deactivate' %>
+  <div id='shift_buttons_users_profile' class='hidden-xs'>
+
+    <% if @user != current_user && current_user.admin? %>
+      <ul class='pull-right'>
+        <% if @user.active? %>
+          <%= bootstrap_form_for @user do |f| %>
+            <%= f.hidden_field :active, value: false %>
+            <%= f.submit 'Deactivate' %>
+          <% end %>
+        <% else %>
+          <%= bootstrap_form_for @user do |f| %>
+            <%= f.hidden_field :active, value: true %>
+            <%= f.submit 'Activate'  %>
+          <% end %>
         <% end %>
-      <% else %>
-        <%= bootstrap_form_for @user do |f| %>
-          <%= f.hidden_field :active, value: true %>
-          <%= f.submit 'Activate'  %>
+      </ul>
+
+      <ul class='pull-right'>
+        <% if @user.admin? %>
+          <%= bootstrap_form_for @user do |f| %>
+            <%= f.hidden_field :admin, value: false %>
+            <%= f.submit 'Remove Admin', onclick:
+              'return confirm("Are you sure you want to remove admin rights?")'  %>
+          <% end %>
+        <% else %>
+          <%= bootstrap_form_for @user do |f| %>
+            <%= f.hidden_field :admin, value: true %>
+            <%= f.submit 'Add Admin' %>
+          <% end %>
         <% end %>
-      <% end %>
-    </ul>
-    <ul class='pull-right'>
-      <% if @user.admin? %>
-        <%= bootstrap_form_for @user do |f| %>
-          <%= f.hidden_field :admin, value: false %>
-          <%= f.submit 'Remove Admin', onclick:
-            'return confirm("Are you sure you want to remove admin rights?")'  %>
-        <% end %>
-      <% else %>
-        <%= bootstrap_form_for @user do |f| %>
-          <%= f.hidden_field :admin, value: true %>
-          <%= f.submit 'Add Admin' %>
-        <% end %>
-      <% end %>
-    </ul>
-  <% end %>
+      </ul>
+    <% end %>
+
+  </div>
 
   <br><br>
 
