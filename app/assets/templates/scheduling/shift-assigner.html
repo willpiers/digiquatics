@@ -1,4 +1,6 @@
 <div class='userform well'>
+  <a class='pull-right close-button link-color' ng-click='cancel()'>
+    <i class='fa fa-times fa-lg'></i></a>
   <h1 style='margin: 0px; padding: 0px;'>Assign Shift</h1>
 
   <center>
@@ -29,10 +31,9 @@
           ng-options="position.id as position.name for position in positions">
   </select>
 
-  <button class='btn btn-primary btn-block'
-          ng-click='ok(positionSelect, startTime, endTime)'> Assign
-  </button>
-  <button class='btn btn-danger btn-block'
-          ng-click='cancel()'> Cancel
-  </button>
+  <a class='btn btn-primary btn-block' ng-click='ok(positionSelect, startTime, endTime)'>
+    <i class="fa fa-check fa-lg"></i> Assign</a>
+
+  <a class='btn btn-danger btn-block' ng-click='delete()'>
+    <i class="fa fa-trash-o fa-lg"></i> Delete</a>
 </div>

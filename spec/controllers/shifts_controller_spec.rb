@@ -146,7 +146,7 @@ describe ShiftsController do
 
     it 'redirects to shifts#index' do
       delete :destroy, id: @shift
-      response.should redirect_to shifts_url
+      response.should render_template :show
     end
   end
 end

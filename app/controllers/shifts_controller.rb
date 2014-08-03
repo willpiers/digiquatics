@@ -53,8 +53,7 @@ class ShiftsController < ApplicationController
 
   def destroy
     @shift.destroy
-
-    redirect_to shifts_url
+    render :show
   end
 
   private

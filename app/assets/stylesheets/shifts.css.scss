@@ -48,3 +48,17 @@ cursor: pointer;
   padding: 0px;
   vertical-align: middle;
 }
+
+.close-button {
+  position: relative;
+  left: 15px;
+  bottom: 15px;
+}
+.link-color {
+  color: #CCCCCC;
+}
+
+.link-color:hover {
+  color: #77777B;
+  text-decoration: none;
+}
