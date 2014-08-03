@@ -11,7 +11,7 @@
       scope.$on 'submit-availabilities', =>
         if scope.start and scope.end
           Availability.create
-            start_time: moment.utc(scope.start)
-            end_time: moment.utc(scope.end)
+            start_time: scope.start
+            end_time: scope.end
             day: scope.day
 ]
