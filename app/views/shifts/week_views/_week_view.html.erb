@@ -40,7 +40,7 @@
         <td>
           <div ng-if="build()">
             <div ng-if="sameDayTimeOff(time_off.starts_at, time_off.ends_at, 0)"
-                 ng-repeat='time_off in user.time_off_requests'>
+                 ng-repeat="time_off in user.time_off_requests | orderBy:'starts_at'">
               <%= render 'shifts/week_views/week_view_time_off_request' %>
             </div>
 
@@ -49,7 +49,8 @@
             </div>
           </div>
 
-          <div ng-if="sameDay(shift.start_time, 0)" ng-repeat="shift in user.shifts">
+          <div ng-if="sameDay(shift.start_time, 0)"
+               ng-repeat="shift in user.shifts | orderBy:'start_time'">
             <%= render 'shifts/week_views/week_view_shift' %>
           </div>
 
@@ -64,7 +65,7 @@
         <td>
           <div ng-if="build()">
             <div ng-if="sameDayTimeOff(time_off.starts_at, time_off.ends_at, 1)"
-                 ng-repeat='time_off in user.time_off_requests'>
+                 ng-repeat="time_off in user.time_off_requests | orderBy:'starts_at'">
               <%= render 'shifts/week_views/week_view_time_off_request' %>
             </div>
 
@@ -74,7 +75,8 @@
             </div>
           </div>
 
-          <div ng-if="sameDay(shift.start_time, 1)" ng-repeat="shift in user.shifts">
+          <div ng-if="sameDay(shift.start_time, 1)"
+               ng-repeat="shift in user.shifts | orderBy:'start_time'">
               <%= render 'shifts/week_views/week_view_shift' %>
           </div>
 
@@ -89,7 +91,7 @@
         <td>
           <div ng-if="build()">
             <div ng-if="sameDayTimeOff(time_off.starts_at, time_off.ends_at, 2)"
-                 ng-repeat='time_off in user.time_off_requests'>
+                 ng-repeat="time_off in user.time_off_requests | orderBy:'starts_at'">
               <%= render 'shifts/week_views/week_view_time_off_request' %>
             </div>
 
@@ -98,7 +100,8 @@
             </div>
           </div>
 
-          <div ng-if="sameDay(shift.start_time, 2)" ng-repeat="shift in user.shifts">
+          <div ng-if="sameDay(shift.start_time, 2)"
+               ng-repeat="shift in user.shifts | orderBy:'start_time'">
             <%= render 'shifts/week_views/week_view_shift' %>
           </div>
 
@@ -113,7 +116,7 @@
         <td>
           <div ng-if="build()">
             <div ng-if="sameDayTimeOff(time_off.starts_at, time_off.ends_at, 3)"
-                 ng-repeat='time_off in user.time_off_requests'>
+                 ng-repeat="time_off in user.time_off_requests | orderBy:'starts_at'">
               <%= render 'shifts/week_views/week_view_time_off_request' %>
             </div>
 
@@ -122,7 +125,8 @@
             </div>
           </div>
 
-          <div ng-if="sameDay(shift.start_time, 3)" ng-repeat="shift in user.shifts">
+          <div ng-if="sameDay(shift.start_time, 3)"
+               ng-repeat="shift in user.shifts | orderBy:'start_time'">
             <%= render 'shifts/week_views/week_view_shift' %>
           </div>
 
@@ -137,7 +141,7 @@
         <td>
           <div ng-if="build()">
             <div ng-if="sameDayTimeOff(time_off.starts_at, time_off.ends_at, 4)"
-                 ng-repeat='time_off in user.time_off_requests'>
+                 ng-repeat="time_off in user.time_off_requests | orderBy:'starts_at'">
               <%= render 'shifts/week_views/week_view_time_off_request' %>
             </div>
 
@@ -146,7 +150,8 @@
             </div>
           </div>
 
-          <div ng-if="sameDay(shift.start_time, 4)" ng-repeat="shift in user.shifts">
+          <div ng-if="sameDay(shift.start_time, 4)"
+               ng-repeat="shift in user.shifts | orderBy:'start_time'">
             <%= render 'shifts/week_views/week_view_shift' %>
           </div>
 
@@ -161,7 +166,7 @@
         <td>
           <div ng-if="build()">
             <div ng-if="sameDayTimeOff(time_off.starts_at, time_off.ends_at, 5)"
-                 ng-repeat='time_off in user.time_off_requests'>
+                 ng-repeat="time_off in user.time_off_requests | orderBy:'starts_at'">
               <%= render 'shifts/week_views/week_view_time_off_request' %>
             </div>
 
@@ -170,7 +175,8 @@
             </div>
           </div>
 
-          <div ng-if="sameDay(shift.start_time, 5)" ng-repeat="shift in user.shifts">
+          <div ng-if="sameDay(shift.start_time, 5)"
+               ng-repeat="shift in user.shifts | orderBy:'start_time'">
             <%= render 'shifts/week_views/week_view_shift' %>
           </div>
 
@@ -185,7 +191,7 @@
         <td>
           <div ng-if="build()">
             <div ng-if="sameDayTimeOff(time_off.starts_at, time_off.ends_at, 6)"
-                 ng-repeat='time_off in user.time_off_requests'>
+                 ng-repeat="time_off in user.time_off_requests | orderBy:'starts_at'">
               <%= render 'shifts/week_views/week_view_time_off_request' %>
             </div>
 
@@ -194,7 +200,8 @@
             </div>
           </div>
 
-          <div ng-if="sameDay(shift.start_time, 6)" ng-repeat="shift in user.shifts">
+          <div ng-if="sameDay(shift.start_time, 6)"
+               ng-repeat="shift in user.shifts | orderBy:'start_time'">
             <%= render 'shifts/week_views/week_view_shift' %>
           </div>
 
