@@ -3,6 +3,7 @@
     <thead>
       <tr>
         <th></th>
+        <th></th>
         <th class='hidden-xs'>
           <a href="" ng-click="predicate.value = '-location.name'; reverse=!reverse">
             Location
@@ -51,6 +52,11 @@
         | filter:locationFilter
         | filter:search
         | limitTo:totalDisplayed'>
+        <td>
+          <div class='star' ng-show='showStar(item.created_at)' %>
+            <i class="fa fa-star"></i>
+          </div>
+        </td>
         <td>
           <div ng-show='showPic(item)' %>
             <a ng-href='{{item.attachment_url}}'>
