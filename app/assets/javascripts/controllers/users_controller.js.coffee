@@ -8,4 +8,8 @@
 
     $scope.thArrow = (current_column, anchored_column) ->
       if current_column == anchored_column then true
+
+    $scope.showStar = (created_at) ->
+      if moment(created_at).isAfter(moment().subtract('days', 15)) then true
+      else false
 ]

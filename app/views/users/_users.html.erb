@@ -2,6 +2,7 @@
   <table class='table table-hover'>
     <thead>
       <tr>
+        <th></th>
         <th class='visible-xs'>
           <a href="" ng-click="predicate.value = '-last_name'; reverse=!reverse">
             Name
@@ -64,6 +65,11 @@
     </thead>
     <tbody>
       <tr ng-repeat='user in users | orderBy:predicate.value:reverse | filter:locationFilter | filter:search'>
+        <td>
+          <div class='star' ng-show='showStar(item.created_at)' %>
+            <i class="fa fa-star"></i>
+          </div>
+        </td>
         <td class='visible-xs'>
           <a ng-href='/users/{{user.id}}'>
             {{user.last_name}}, {{user.first_name}}

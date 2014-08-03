@@ -12,6 +12,10 @@
       $scope.showPic = (data) ->
         data.help_desk_attachment_file_name?
 
+      $scope.showStar = (created_at) ->
+        if moment(created_at).isAfter(moment().subtract('days', 8)) then true
+        else false
+
       $scope.totalDisplayed = 10
 
       $scope.loadMore = ->
