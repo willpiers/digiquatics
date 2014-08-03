@@ -1,0 +1,7 @@
+<!-- Defaults to records location for edit -->
+<div ng-init="location_id = <%= @chemical_record.location.id %>"></div>
+<select ng-model='location_id'
+        class='form-control'
+        ng-options='location.id as location.name for location in locations'>
+</select>
+

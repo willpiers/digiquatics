@@ -51,13 +51,15 @@ module ChemicalRecordsHelper
       ta   = 0.4341 * log(alkalinity) + 0.0074
       @si  = (ph_reading + temp + ch + ta - 12.1).round(2)
     else
-      'no data'
+      @si = nil
     end
   end
 
   def si_calc(si_index, option)
-    SI_CALC_RANGES.each do |range, message|
-      return message[option] if si_index.between?(*range)
+    if si_index != nil
+      SI_CALC_RANGES.each do |range, message|
+        return message[option] if si_index.between?(*range)
+      end
     end
   end
 
@@ -68,4 +70,12 @@ module ChemicalRecordsHelper
       total_chlorine
     end
   end
+
+  def chemical_records_access
+    unless current_user.chemical_records_access?
+      flash[:notice] = 'You must have chemical records rights to access this page.'
+      redirect_to current_user
+    end
+  end
+
 end

@@ -278,7 +278,7 @@ describe 'User pages' do
             # Emergency Contact Information
             fill_in 'Emergency First Name',    with: 'my'
             fill_in 'Emergency Last Name',     with: 'mom'
-            fill_in 'Emergency Phone #',    with: '303-999-8765'
+            fill_in 'Emergency Phone Number',    with: '303-999-8765'
 
             # Admin User Information
             # No admin information
@@ -384,7 +384,7 @@ describe 'User pages' do
             # Emergency Contact Information
             fill_in 'Emergency First Name', with: 'my'
             fill_in 'Emergency Last Name',  with: 'mom'
-            fill_in 'Emergency Phone #',    with: '303-999-8765'
+            fill_in 'Emergency Phone Number',    with: '303-999-8765'
 
             # Admin User Information
             select location.name,         from: 'user_location_id'
