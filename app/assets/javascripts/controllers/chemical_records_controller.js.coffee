@@ -8,7 +8,8 @@
       if current_column == anchored_column then true
 
     $scope.cssClass = (record) ->
-      if       record.si_index < -0.6 then 'danger'
+      if       record.si_index == null then ''
+      else if  record.si_index < -0.6 then 'danger'
       else if  record.si_index >= -0.6 && record.si_index < -0.3 then 'warning'
       else if  record.si_index >= -0.3 && record.si_index <= 0.3 then 'success'
       else if  record.si_index > 0.3 && record.si_index < 0.6 then 'warning'
