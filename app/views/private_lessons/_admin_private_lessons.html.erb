@@ -79,7 +79,8 @@
           </div>
         </td>
         <td class='hidden-xs'>{{lesson.location.name}}</td>
-        <td class='hidden-xs'>
+        <td ng-class='cssClass(lesson.created_at)'
+            class='hidden-xs'>
           {{lesson.created_at | date:'M/d/yy h:mm a'}}
         </td>
         <td>

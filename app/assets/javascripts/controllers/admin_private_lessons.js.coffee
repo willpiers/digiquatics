@@ -15,4 +15,9 @@
 
       $scope.thArrow = (current_column, anchored_column) ->
         if current_column == anchored_column then true
+
+      $scope.cssClass = (created_at) ->
+        if moment(created_at).isAfter(moment().subtract('days', 3)) then 'success'
+        else if moment(created_at).isAfter(moment().subtract('days', 8)) then 'warning'
+        else 'danger'
 ]
