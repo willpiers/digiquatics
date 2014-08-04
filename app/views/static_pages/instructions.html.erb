@@ -1,26 +1,3 @@
 <% provide(:title, 'Instructions') %>
 <h1 class='cross_platform_header'>Instructions</h1>
 
-<%= line_chart ChemicalRecord.where(pool_id: 1).order('created_at desc').pluck(:id, :ph),
-  { discrete: false,
-    library: {
-              title: 'PH Levels',
-              hAxis: {title: "Record" , textPosition: 'none'},
-              vAxis: {title: "PH Level"}
-             }
-  } %>
-
-  <%= line_chart [
-    {name: "Free Chlorine PPM", data: ChemicalRecord.where(pool_id: 1).order('created_at desc').pluck(:id, :free_chlorine_ppm)},
-    {name: "Combined Chlorine PPM", data: ChemicalRecord.where(pool_id: 1).order('created_at desc').pluck(:id, :combined_chlorine_ppm)},
-    {name: "Total Chlorine PPM", data: ChemicalRecord.where(pool_id: 1).order('created_at desc').pluck(:id, :total_chlorine_ppm)},
-    ],
-    min: -0.5,
-    discrete: false,
-        library: {
-                title: 'Chlorine Levels',
-                hAxis: {title: "Record" , textPosition: 'none'},
-                vAxis: {title: "Chlorine Level"}
-               }
-  %>
-

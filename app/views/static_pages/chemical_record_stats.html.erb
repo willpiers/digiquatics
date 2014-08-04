@@ -14,17 +14,18 @@
           <%= render 'end_date' %>
           <br>
           <%= render 'form' %>
-          <%= @start_date %> <br>
+<!--           <%= @start_date %> <br>
           <%= @start_adj %><br>
           <%= @end_date %><br>
           <%= @end_adj %><br>
-          <%= Time.now %>
+          <%= Time.now %> -->
         </div>
       </div>
     </div>
   </div>
 
   <div class='col-md-8'>
+    <h4> Numeric Analysis </h4>
     <table class='table table-bordered'>
     <tr>
       <th>Metric</th>
@@ -46,4 +47,83 @@
   </div>
 </div>
 
+<h4> Graphical Analysis </h4>
 
+<%= line_chart [
+  {name: "Free Chlorine PPM", data: ChemicalRecord.where(pool_id: @pool_id).order('created_at desc').pluck(:id, :free_chlorine_ppm)},
+  {name: "Combined Chlorine PPM", data: ChemicalRecord.where(pool_id: @pool_id).order('created_at desc').pluck(:id, :combined_chlorine_ppm)},
+  {name: "Total Chlorine PPM", data: ChemicalRecord.where(pool_id: @pool_id).order('created_at desc').pluck(:id, :total_chlorine_ppm)}
+  ],
+  min: -0.5,
+  discrete: false,
+  library: {
+          title: 'Chlorine Levels',
+          hAxis: {title: "Record" , textPosition: 'none'},
+          vAxis: {title: "Chlorine Level"}
+         }
+%>
+
+<%= line_chart [
+  {name: 'PH', data: ChemicalRecord.where(pool_id: @pool_id).order('created_at desc').pluck(:id, :ph)}
+  ],
+  min: -0.5,
+  discrete: false,
+  library: {
+          title: 'PH Levels',
+          hAxis: {title: "Record" , textPosition: 'none'},
+          vAxis: {title: "PH Level"},
+          colors:['#009688']
+         }
+  %>
+
+<%= line_chart [
+  {name: 'Alkalinity', data: ChemicalRecord.where(pool_id: @pool_id).order('created_at desc').pluck(:id, :alkalinity)}
+  ],
+  min: -0.5,
+  discrete: false,
+      library: {
+              title: 'Alkalinity Levels',
+              hAxis: {title: "Record" , textPosition: 'none'},
+              vAxis: {title: "Alkalinity Level"},
+              colors:['#FF4081']
+             }
+  %>
+
+  <%= line_chart [
+    {name: 'Calcium Hardness', data: ChemicalRecord.where(pool_id: @pool_id).order('created_at desc').pluck(:id, :calcium_hardness)}
+    ],
+    min: -0.5,
+    discrete: false,
+    library: {
+            title: 'Calcium Hardness Levels',
+            hAxis: {title: "Record" , textPosition: 'none'},
+            vAxis: {title: "Calcium Hardness Level"},
+            colors:['#ffea00']
+           }
+    %>
+
+<%= line_chart [
+  {name: "Air Temp(F)", data: ChemicalRecord.where(pool_id: @pool_id).order('created_at desc').pluck(:id, :air_temp)},
+  {name: "Pool Temp(F)", data: ChemicalRecord.where(pool_id: @pool_id).order('created_at desc').pluck(:id, :pool_temp)}
+  ],
+  min: -0.5,
+  discrete: false,
+  library: {
+          title: 'Temperature Levels',
+          hAxis: {title: "Record" , textPosition: 'none'},
+          vAxis: {title: "Temperature Level"},
+          colors:['#12C700', '#00E5FF']
+         }
+%>
+
+<%= line_chart [
+  {name: 'SI Index', data: ChemicalRecord.where(pool_id: @pool_id).order('created_at desc').pluck(:id, :si_index)}
+  ],
+  discrete: false,
+  library: {
+          title: 'SI Index Levels',
+          hAxis: {title: "Record" , textPosition: 'none'},
+          vAxis: {title: "SI Index Level"},
+          colors:['#673AB7']
+         }
+    %>
