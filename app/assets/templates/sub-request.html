@@ -1,14 +1,12 @@
 <div class='userform well'>
+  <a class='pull-right close-button link-color' ng-click='cancel()'>
+    <i class='fa fa-times fa-lg'></i></a>
   <h1 style='margin: 0px; padding: 0px;'>Request Sub</h1>
 
   <center>
     <p>Are you sure you want to request sub for this shift?</p>
   </center>
 
-  <button class='btn btn-primary btn-block'
-          ng-click='ok()'> Request
-  </button>
-  <button class='btn btn-danger btn-block'
-          ng-click='cancel()'> Cancel
-  </button>
+  <a class='btn btn-primary btn-block' ng-click='ok()'>
+    <i class="fa fa-check fa-lg"></i> Request</a>
 </div>
