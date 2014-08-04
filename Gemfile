@@ -32,6 +32,8 @@ gem 'aws-sdk'
 gem 'font-awesome-rails'
 gem 'momentjs-rails'
 gem 'ng-rails-csrf'
+gem 'chartkick'
+gem 'groupdate'
 
 group :development, :test do
   gem 'rspec-rails'

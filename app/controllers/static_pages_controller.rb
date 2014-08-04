@@ -23,6 +23,7 @@ class StaticPagesController < ApplicationController
   end
 
   def instructions
+    @chemicals = ChemicalRecord.select(:ph)
   end
 
   def availability
