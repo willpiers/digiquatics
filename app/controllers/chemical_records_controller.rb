@@ -52,9 +52,9 @@ class ChemicalRecordsController < ApplicationController
                           @chemical_record.free_chlorine_ppm)
     if @chemical_record.save
       flash[:success] = 'Chemical record was successfully created.'
-      if need_email_alert?(@chemical_record)
-        urgent_email(@chemical_record)
-      end
+      # if need_email_alert?(@chemical_record)
+      #   urgent_email(@chemical_record)
+      # end
       redirect_to @chemical_record
     else
       render 'new'
