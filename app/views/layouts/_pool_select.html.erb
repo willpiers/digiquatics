@@ -1,4 +1,6 @@
-<div ng-init="pool_id = <%= current_user.location.pools.first.id %>"></div>
+<% if current_user.location.pools.first %>
+  <div ng-init="pool_id = <%= current_user.location.pools.first.id %>"></div>
+<% end %>
 <select ng-model='pool_id'
         class='form-control'
         ng-options='pool.id as pool.name for pool in pools | filter:{location_id: location_id}'>
