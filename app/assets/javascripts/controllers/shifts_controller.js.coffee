@@ -54,8 +54,11 @@
           start_time: start
           end_time: end
       $scope.deleteShift = (shift) ->
-        $id = shift.id
-        Shifts.destroy({ id:$id })
+        console.log "Before length: " + $scope.user.shifts.length
+        $scope.user.shifts.splice(shift.$index, 1)
+        console.log "After length: " + $scope.user.shifts.length
+        # $id = shift.id
+        # Shifts.destroy({ id:$id })
       $scope.ok = (position, startTime, endTime) ->
         $scope.assignShift(user, location, position, startTime, endTime, shift)
         $modalInstance.close($scope.user)
@@ -74,14 +77,14 @@
 
     $scope.startTime = (days) ->
       start = new Date()
-      start.setUTCDate($scope.weekDay(days).format('DD'))
+      start.setDate($scope.weekDay(days).format('DD'))
       start.setHours(7)
       start.setMinutes(0)
       start
 
     $scope.endTime = (days) ->
       end = new Date()
-      end.setUTCDate($scope.weekDay(days).format('DD'))
+      end.setDate($scope.weekDay(days).format('DD'))
       end.setHours(8)
       end.setMinutes(0)
       end
