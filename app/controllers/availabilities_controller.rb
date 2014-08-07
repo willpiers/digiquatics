@@ -5,6 +5,10 @@ class AvailabilitiesController < ApplicationController
     @availabilities = Availability.all
   end
 
+  def my_availability
+    @availabilities = Availability.where(user_id: current_user.id)
+  end
+
   def show
   end
 
