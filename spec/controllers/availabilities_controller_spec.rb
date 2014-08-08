@@ -1,15 +1,16 @@
 require 'spec_helper'
 
 describe AvailabilitiesController do
+    let!(:account) { FactoryGirl.create(:account) }
+    let!(:user) { FactoryGirl.create(:user, account_id: account.id) }
+
   before do
-    account = FactoryGirl.create(:account)
-    user = FactoryGirl.create(:user, account_id: account.id)
     sign_in user
   end
 
   describe 'GET #index' do
     it 'assigns @availabilities' do
-      availability = FactoryGirl.create(:availability)
+      availability = FactoryGirl.create(:availability, user_id: user.id)
       get :index
       assigns(:availabilities).should eq([availability])
     end
@@ -49,7 +50,7 @@ describe AvailabilitiesController do
       end
       it 'redirects to the new availability' do
         post :create, availability: FactoryGirl.attributes_for(:availability)
-        response.should redirect_to Availability.last
+        response.should render_template :show
       end
     end
 
@@ -94,7 +95,7 @@ describe AvailabilitiesController do
 
       it 'redirects to the updated availability' do
         put :update, id: @availability, availability: FactoryGirl.attributes_for(:availability)
-        response.should redirect_to @availability
+        response.should render_template :show
       end
     end
 
@@ -134,9 +135,9 @@ describe AvailabilitiesController do
       end.to change(Availability, :count).by(-1)
     end
 
-    it 'redirects to availabilities#index' do
+    it 'renders show template' do
       delete :destroy, id: @availability
-      response.should redirect_to availabilities_url
+      response.should render_template :show
     end
   end
 end

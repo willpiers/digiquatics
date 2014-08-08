@@ -6,75 +6,6 @@
     $scope.locations = Locations.index()
     $scope.positions = Positions.index()
 
-    # Weeks
-    $scope.open = (user, day, shift, size) ->
-      modalInstance = $modal.open(
-        templateUrl: 'scheduling/shift-assigner.html',
-        controller: ModalInstanceCtrl,
-        size: size,
-        resolve:
-          shift: ->
-            shift
-          user: ->
-            user
-          day: ->
-            day
-          location: ->
-            $scope.buildLocation
-          startTime: ->
-            $scope.startTime(day)
-          endTime: ->
-            $scope.endTime(day)
-          positions: ->
-            $scope.positions
-          position: ->
-            user.position_id
-        )
-
-      modalInstance.result.then ->
-        $log.info('Modal dismissed at: ' + new Date())
-
-    ModalInstanceCtrl = ($scope, $modalInstance, shift, user, location, startTime, endTime, positions, position) ->
-      $scope.user = user
-      $scope.positions = positions
-      $scope.positionSelect = if shift then shift.position_id else position
-      $scope.startTime = if shift then shift.start_time else startTime
-      $scope.endTime = if shift then shift.end_time else endTime
-      $scope.assignShift = (user, location, position, start, end, shift) ->
-        if shift
-          $id = shift.id
-          shift.start_time = start
-          shift.end_time = end
-          shift.position_id = position
-          Shifts.update({ id:$id }, shift)
-        else Shifts.create
-          user_id: user.id
-          location_id: location
-          position_id: position
-          start_time: start
-          end_time: end
-      $scope.deleteShift = (shift) ->
-        console.log "Before length: " + $scope.user.shifts.length
-        $scope.user.shifts.splice(shift.$index, 1)
-        console.log "After length: " + $scope.user.shifts.length
-        # $id = shift.id
-        # Shifts.destroy({ id:$id })
-      $scope.ok = (position, startTime, endTime) ->
-        $scope.assignShift(user, location, position, startTime, endTime, shift)
-        $modalInstance.close($scope.user)
-        return
-
-      $scope.cancel = ->
-        $modalInstance.dismiss "Cancel"
-        return
-
-      $scope.delete = ->
-        $scope.deleteShift(shift)
-        $modalInstance.close($scope.user)
-        return
-
-      return
-
     $scope.startTime = (days) ->
       start = new Date()
       start.setDate($scope.weekDay(days).format('DD'))
@@ -155,5 +86,65 @@
       moment(start).isSame($scope.weekDay(day), 'day') ||
       moment($scope.weekDay(day)).isAfter(start) &&
       moment($scope.weekDay(day)).isBefore(end)
+
+    $scope.open = (user, day, shift, size) ->
+      modalInstance = $modal.open(
+        templateUrl: 'scheduling/shift-assigner.html',
+        controller: ModalInstanceCtrl,
+        size: size,
+        resolve:
+          shift: ->
+            shift
+          user: ->
+            user
+          day: ->
+            day
+          location: ->
+            $scope.buildLocation
+          startTime: ->
+            $scope.startTime(day)
+          endTime: ->
+            $scope.endTime(day)
+          positions: ->
+            $scope.positions
+          position: ->
+            user.position_id
+        )
+
+      modalInstance.result.then ->
+        $log.info('Modal dismissed at: ' + new Date())
+
+    ModalInstanceCtrl = ($scope, $modalInstance, shift, user, location, startTime, endTime, positions, position) ->
+      $scope.user = user
+      $scope.positions = positions
+      $scope.positionSelect = if shift then shift.position_id else position
+      $scope.startTime = if shift then shift.start_time else startTime
+      $scope.endTime = if shift then shift.end_time else endTime
+      $scope.assignShift = (user, location, position, start, end, shift) ->
+        if shift
+          $id = shift.id
+          shift.start_time = start
+          shift.end_time = end
+          shift.position_id = position
+          Shifts.update({ id:$id }, shift)
+        else Shifts.create
+          user_id: user.id
+          location_id: location
+          position_id: position
+          start_time: start
+          end_time: end
+      $scope.deleteShift = (shift) ->
+        $id = shift.id
+        Shifts.destroy({ id:$id })
+      $scope.ok = (position, startTime, endTime) ->
+        $scope.assignShift(user, location, position, startTime, endTime, shift)
+        $modalInstance.close($scope.user)
+
+      $scope.cancel = ->
+        $modalInstance.dismiss "Cancel"
+
+      $scope.delete = ->
+        $scope.deleteShift(shift)
+        $modalInstance.close($scope.user)
 ]
 

@@ -144,7 +144,7 @@ describe ShiftsController do
       end.to change(Shift, :count).by(-1)
     end
 
-    it 'redirects to shifts#index' do
+    it 'renders json show template' do
       delete :destroy, id: @shift
       response.should render_template :show
     end

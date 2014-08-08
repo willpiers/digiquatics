@@ -80,7 +80,7 @@
           <li><%= link_to 'My Profile', current_user %></li>
           <% if FeatureToggleHelper.schedule? %>
             <li class='divider'></li>
-            <li><%= link_to 'My Availability', '/availability' %></li>
+            <li><%= link_to 'My Availability', availabilities_path %></li>
             <li><%= link_to 'My Private Lessons', my_lessons_path %></li>
             <li><%= link_to 'My Schedule', my_schedule_path %></li>
             <li><%= link_to 'My Sub Requests', my_sub_requests_path %></li>
