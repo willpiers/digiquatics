@@ -30,7 +30,6 @@ class ShiftsController < ApplicationController
   end
 
   def show
-
   end
 
   def new

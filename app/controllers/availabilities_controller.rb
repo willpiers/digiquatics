@@ -2,11 +2,13 @@ class AvailabilitiesController < ApplicationController
   before_action :set_availability, only: [:show, :edit, :update, :destroy]
 
   def index
-    @availabilities = Availability.all
-  end
-
-  def my_availability
     @availabilities = Availability.where(user_id: current_user.id)
+    respond_to do |format|
+      format.html
+      format.json do
+        render json: @availabilities.to_json
+      end
+    end
   end
 
   def show
@@ -38,8 +40,7 @@ class AvailabilitiesController < ApplicationController
 
   def destroy
     @availability.destroy
-
-    redirect_to availabilities_url
+    render :show
   end
 
   private
@@ -55,8 +56,7 @@ class AvailabilitiesController < ApplicationController
 
   def handle_action(resource, message, page)
     if yield(resource)
-      flash[:success] = message
-      redirect_to resource
+      render :show
     else
       render page
     end

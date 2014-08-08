@@ -40,9 +40,6 @@ DigiQuatics::Application.routes.draw do
 
   root 'static_pages#landing'
 
-  # Availability
-  match '/my_availability', to: 'availabilities#my_availability', via: 'get'
-
   # Chemicals
   match '/chemicals', to: 'static_pages#chemicals',    via: 'get'
   match '/manage_chemicals', to: 'static_pages#manage_chemicals', via: 'get'
