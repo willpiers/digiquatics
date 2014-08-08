@@ -9,6 +9,8 @@ class StaticPagesController < ApplicationController
               'Pool Temp (F)' => 'pool_temp',
               'SI Index' => 'si_index' }
 
+
+
   def dashboard
     Tracker.track(current_user.id, 'View Dashboard') unless Rails.env.test?
   end
@@ -23,7 +25,24 @@ class StaticPagesController < ApplicationController
   end
 
   def instructions
-    @chemicals = ChemicalRecord.select(:ph)
+data_table = GoogleVisualr::DataTable.new
+    # Add Column Headers
+    data_table.new_column('string', 'Year' )
+    data_table.new_column('number', 'Sales')
+    data_table.new_column('number', 'Expenses')
+
+    # Add Rows and Values
+    data_table.add_rows([
+        ['2004', 1000, 400],
+        ['2005', 1170, 460],
+        ['2006', 660, 1120],
+        ['2007', 1030, 540]
+    ])
+
+
+
+    opts   = { :width => 400, :height => 240, :title => 'Company Performance', :legend => 'bottom' }
+    @chart = GoogleVisualr::Interactive::LineChart.new(data_table, opts)
   end
 
   def availability
@@ -36,9 +55,24 @@ class StaticPagesController < ApplicationController
   def chemical_record_stats
     @metrics = METRICS
     @start_date = params[:start_date]
+    if @start_date
+      @start_adj = DateTime.strptime(@start_date, '%Y-%m-%d %H:%M:%S').in_time_zone(Time.zone) + 6.hours
+    end
     @end_date = params[:end_date]
+    if @end_date
+      @end_adj = DateTime.strptime(@end_date, '%Y-%m-%d %H:%M:%S').in_time_zone(Time.zone) + 6.hours
+    end
     @pool_id = params[:pool_id]
     @facade = StaticPagesFacade.new(current_user)
+    @free_cl = ChemicalRecord.where(pool_id: @pool_id, created_at: @start_adj..@end_adj).order('created_at desc').pluck(:id, :free_chlorine_ppm)
+    @combined_cl = ChemicalRecord.where(pool_id: @pool_id, created_at: @start_adj..@end_adj).order('created_at desc').pluck(:id, :combined_chlorine_ppm)
+    @total_cl = ChemicalRecord.where(pool_id: @pool_id, created_at: @start_adj..@end_adj).order('created_at desc').pluck(:id, :total_chlorine_ppm)
+    @ph = ChemicalRecord.where(pool_id: @pool_id, created_at: @start_adj..@end_adj).order('created_at desc').pluck(:id, :ph)
+    @ch = ChemicalRecord.where(pool_id: @pool_id, created_at: @start_adj..@end_adj).order('created_at desc').pluck(:id, :calcium_hardness)
+    @alk = ChemicalRecord.where(pool_id: @pool_id, created_at: @start_adj..@end_adj).order('created_at desc').pluck(:id, :alkalinity)
+    @air_temp = ChemicalRecord.where(pool_id: @pool_id, created_at: @start_adj..@end_adj).order('created_at desc').pluck(:id, :air_temp)
+    @pool_temp = ChemicalRecord.where(pool_id: @pool_id, created_at: @start_adj..@end_adj).order('created_at desc').pluck(:id, :pool_temp)
+    @si = ChemicalRecord.where(pool_id: @pool_id, created_at: @start_adj..@end_adj).order('created_at desc').pluck(:id, :si_index)
   end
 
   def user_stats

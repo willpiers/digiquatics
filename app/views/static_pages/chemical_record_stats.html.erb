@@ -49,10 +49,13 @@
 
 <h4> Graphical Analysis </h4>
 
+
+
 <%= line_chart [
-  {name: "Free Chlorine PPM", data: ChemicalRecord.where(pool_id: @pool_id).order('created_at desc').pluck(:id, :free_chlorine_ppm)},
-  {name: "Combined Chlorine PPM", data: ChemicalRecord.where(pool_id: @pool_id).order('created_at desc').pluck(:id, :combined_chlorine_ppm)},
-  {name: "Total Chlorine PPM", data: ChemicalRecord.where(pool_id: @pool_id).order('created_at desc').pluck(:id, :total_chlorine_ppm)}
+  {name: "Free Chlorine PPM",
+   data: @free_cl},
+  {name: "Combined Chlorine PPM", data: @combined_cl},
+  {name: "Total Chlorine PPM", data: @total_cl}
   ],
   min: -0.5,
   discrete: false,
@@ -64,7 +67,8 @@
 %>
 
 <%= line_chart [
-  {name: 'PH', data: ChemicalRecord.where(pool_id: @pool_id).order('created_at desc').pluck(:id, :ph)}
+  {name: 'PH',
+   data: @ph}
   ],
   min: -0.5,
   discrete: false,
@@ -77,7 +81,7 @@
   %>
 
 <%= line_chart [
-  {name: 'Alkalinity', data: ChemicalRecord.where(pool_id: @pool_id).order('created_at desc').pluck(:id, :alkalinity)}
+  {name: 'Alkalinity', data: @alk}
   ],
   min: -0.5,
   discrete: false,
@@ -90,7 +94,7 @@
   %>
 
   <%= line_chart [
-    {name: 'Calcium Hardness', data: ChemicalRecord.where(pool_id: @pool_id).order('created_at desc').pluck(:id, :calcium_hardness)}
+    {name: 'Calcium Hardness', data: @ch}
     ],
     min: -0.5,
     discrete: false,
@@ -103,8 +107,8 @@
     %>
 
 <%= line_chart [
-  {name: "Air Temp(F)", data: ChemicalRecord.where(pool_id: @pool_id).order('created_at desc').pluck(:id, :air_temp)},
-  {name: "Pool Temp(F)", data: ChemicalRecord.where(pool_id: @pool_id).order('created_at desc').pluck(:id, :pool_temp)}
+  {name: "Air Temp(F)", data: @air_temp},
+  {name: "Pool Temp(F)", data: @pool_temp}
   ],
   min: -0.5,
   discrete: false,
@@ -117,7 +121,7 @@
 %>
 
 <%= line_chart [
-  {name: 'SI Index', data: ChemicalRecord.where(pool_id: @pool_id).order('created_at desc').pluck(:id, :si_index)}
+  {name: 'SI Index', data: @si}
   ],
   discrete: false,
   library: {
