@@ -117,6 +117,26 @@
       <% end %>
       </td>
     </tr>
+    <tr>
+      <th style='width:25%'>Location </th>
+      <td>
+        <% if @user.location %>
+          <%= @user.location.name %>
+        <% else %>
+          Please update location information on user edit page
+        <% end %>
+      </td>
+    </tr>
+    <tr>
+      <th> Position </th>
+      <td>
+        <% if @user.position %>
+          <%= @user.position.name %>
+        <% else %>
+          Please update position information on user edit page
+        <% end %>
+      </td>
+    </tr>
   </table>
 
   <h4>
@@ -211,26 +231,6 @@
     </h4>
 
     <table class='table table-bordered table-condensed' >
-      <tr>
-        <th style='width:25%'>Location </th>
-        <td>
-          <% if @user.location %>
-            <%= @user.location.name %>
-          <% else %>
-            Please update location information on user edit page
-          <% end %>
-        </td>
-      </tr>
-      <tr>
-        <th> Position </th>
-        <td>
-          <% if @user.position %>
-            <%= @user.position.name %>
-          <% else %>
-            Please update position information on user edit page
-          <% end %>
-        </td>
-      </tr>
       <tr>
       <th> Grouping </th>
         <td><%= @user.grouping%></td>
