@@ -4,15 +4,17 @@
 <%= f.text_field :last_name, label: 'Last Name *' %>
 <%= f.text_field :phone_number, label: 'Phone Number *' %>
 <%= f.text_field :email, label: 'Email *' %>
-<%= f.select :location_id,
-  options_from_collection_for_select(Location.same_account_as(current_user),
-                                     :id,
-                                     :name, @user.location_id),
-                                     label: 'Location *' %>
-<%= f.select :position_id,
-  options_from_collection_for_select(Position.same_account_as(current_user),
-                                     :id,
-                                     :name, @user.position_id),
-                                     label: 'Position *' %>
+<% if current_user.admin? %>
+  <%= f.select :location_id,
+    options_from_collection_for_select(Location.same_account_as(current_user),
+                                       :id,
+                                       :name, @user.location_id),
+                                       label: 'Location *' %>
+  <%= f.select :position_id,
+    options_from_collection_for_select(Position.same_account_as(current_user),
+                                       :id,
+                                       :name, @user.position_id),
+                                       label: 'Position *' %>
+<% end %>
 <%= f.password_field :password, label: 'Password *' %>
 <%= f.password_field :password_confirmation, label: 'Confirm Password *' %>
