@@ -108,8 +108,10 @@ class UsersController < ApplicationController
     if signed_in?
       Tracker.track(current_user.id, 'Create New User',
                     created_user_id: @user.id) unless Rails.env.test?
+      redirect_to(@user)
+    else
+      sign_in_and_redirect(@user)
     end
-    signed_in? ? redirect_to(@user) : sign_in_and_redirect(@user)
   end
 
   def updated_access
