@@ -14,17 +14,18 @@
           <%= render 'end_date' %>
           <br>
           <%= render 'form' %>
-          <%= @start_date %> <br>
+<!--           <%= @start_date %> <br>
           <%= @start_adj %><br>
           <%= @end_date %><br>
           <%= @end_adj %><br>
-          <%= Time.now %>
+          <%= Time.now %> -->
         </div>
       </div>
     </div>
   </div>
 
   <div class='col-md-8'>
+    <h4> Numeric Analysis </h4>
     <table class='table table-bordered'>
     <tr>
       <th>Metric</th>
@@ -45,3 +46,95 @@
     </table>
   </div>
 </div>
+
+<h4> Graphical Analysis </h4>
+
+
+
+<%= line_chart [
+  {name: "Free Chlorine PPM",
+   data: @free_cl},
+  {name: "Combined Chlorine PPM", data: @combined_cl},
+  {name: "Total Chlorine PPM", data: @total_cl}
+  ],
+  min: -0.5,
+  max: 6,
+  discrete: false,
+  library: {
+          title: 'Chlorine (PPM)',
+          hAxis: {title: "Record" , textPosition: 'none'},
+          vAxis: {title: "Chlorine Level"}
+         }
+%>
+
+<%= line_chart [
+  {name: 'PH',
+   data: @ph}
+  ],
+  min: 6.5,
+  max: 8.5,
+  discrete: false,
+  library: {
+          title: 'PH',
+          hAxis: {title: "Record" , textPosition: 'none'},
+          vAxis: {title: "PH Level"},
+          colors:['#009688']
+         }
+  %>
+
+<%= line_chart [
+  {name: 'Alkalinity', data: @alk}
+  ],
+  min: 30,
+  max: 150,
+  discrete: false,
+      library: {
+              title: 'Alkalinity (PPM)',
+              hAxis: {title: "Record" , textPosition: 'none'},
+              vAxis: {title: "Alkalinity Level"},
+              colors:['#FF4081']
+             }
+  %>
+
+  <%= line_chart [
+    {name: 'Calcium Hardness (PPM)', data: @ch}
+    ],
+    min: 50,
+    max: 550,
+    discrete: false,
+    library: {
+            title: 'Calcium Hardness (PPM)',
+            hAxis: {title: "Record" , textPosition: 'none'},
+            vAxis: {title: "Calcium Hardness Level"},
+            colors:['#ffea00']
+           }
+    %>
+
+<%= line_chart [
+  {name: "Air Temp(F)", data: @air_temp},
+  {name: "Pool Temp(F)", data: @pool_temp}
+  ],
+  min: 60,
+  max: 90,
+  discrete: false,
+  library: {
+          title: 'Temperature (F)',
+          hAxis: {title: "Record" , textPosition: 'none'},
+          vAxis: {title: "Temperature Level"},
+          colors:['#12C700', '#00E5FF']
+         }
+%>
+
+<%= line_chart [
+  {name: 'SI Index', data: @si}
+  ],
+  min: -2.0,
+  max: 2.0,
+  discrete: false,
+  library: {
+          title: 'SI Index',
+          hAxis: {title: "Record" , textPosition: 'none'},
+          vAxis: {title: "SI Index Level"},
+          colors:['#673AB7']
+         }
+    %>
