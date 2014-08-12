@@ -130,7 +130,7 @@
     <tr>
       <th> Position </th>
       <td>
-        <% if @user.position %>
+        <% if @user.position? %>
           <%= @user.position.name %>
         <% else %>
           Please update position information on user edit page
