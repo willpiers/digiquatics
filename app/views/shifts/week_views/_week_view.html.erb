@@ -51,7 +51,9 @@
 
           <div ng-if="sameDay(shift.start_time, 0)"
                ng-repeat="shift in user.shifts | orderBy:'start_time'">
-            <%= render 'shifts/week_views/week_view_shift' %>
+            <dq-week-view-shifts user='user' day='day' shift='shift'
+            weekCounter='weekCounter' positions='positions'>
+            </dq-week-view-shifts>
           </div>
 
           <div ng-if="build()">
@@ -77,7 +79,9 @@
 
           <div ng-if="sameDay(shift.start_time, 1)"
                ng-repeat="shift in user.shifts | orderBy:'start_time'">
-              <%= render 'shifts/week_views/week_view_shift' %>
+            <dq-week-view-shifts user='user' day='day' shift='shift'
+            weekCounter='weekCounter' positions='positions'>
+            </dq-week-view-shifts>
           </div>
 
           <div ng-if="build()">
@@ -102,7 +106,9 @@
 
           <div ng-if="sameDay(shift.start_time, 2)"
                ng-repeat="shift in user.shifts | orderBy:'start_time'">
-            <%= render 'shifts/week_views/week_view_shift' %>
+            <dq-week-view-shifts user='user' day='day' shift='shift'
+            weekCounter='weekCounter' positions='positions'>
+            </dq-week-view-shifts>
           </div>
 
           <div ng-if="build()">
@@ -127,7 +133,9 @@
 
           <div ng-if="sameDay(shift.start_time, 3)"
                ng-repeat="shift in user.shifts | orderBy:'start_time'">
-            <%= render 'shifts/week_views/week_view_shift' %>
+            <dq-week-view-shifts user='user' day='day' shift='shift'
+            weekCounter='weekCounter' positions='positions'>
+            </dq-week-view-shifts>
           </div>
 
           <div ng-if="build()">
@@ -152,7 +160,9 @@
 
           <div ng-if="sameDay(shift.start_time, 4)"
                ng-repeat="shift in user.shifts | orderBy:'start_time'">
-            <%= render 'shifts/week_views/week_view_shift' %>
+            <dq-week-view-shifts user='user' day='day' shift='shift'
+            weekCounter='weekCounter' positions='positions'>
+            </dq-week-view-shifts>
           </div>
 
           <div ng-if="build()">
@@ -177,7 +187,9 @@
 
           <div ng-if="sameDay(shift.start_time, 5)"
                ng-repeat="shift in user.shifts | orderBy:'start_time'">
-            <%= render 'shifts/week_views/week_view_shift' %>
+            <dq-week-view-shifts user='user' day='day' shift='shift'
+            weekCounter='weekCounter' positions='positions'>
+            </dq-week-view-shifts>
           </div>
 
           <div ng-if="build()">
@@ -202,7 +214,9 @@
 
           <div ng-if="sameDay(shift.start_time, 6)"
                ng-repeat="shift in user.shifts | orderBy:'start_time'">
-            <%= render 'shifts/week_views/week_view_shift' %>
+            <dq-week-view-shifts user='user' day='day' shift='shift'
+            weekCounter='weekCounter' positions='positions'>
+            </dq-week-view-shifts>
           </div>
 
           <div ng-if="build()">
