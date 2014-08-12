@@ -228,7 +228,7 @@ namespace :db do
 
     puts "\nChemical Records\n"
 
-    25.times do |n|
+    500.times do |n|
       print '.'
       si_status = ['Severe Corrosion', 'Moderate Corrosion', 'Mild Corrosion',
                    'Balanced', 'Some Faint Coating', 'Mild Scale Coating',
@@ -238,8 +238,8 @@ namespace :db do
                            'Probably No Treatment', 'No Treatment',
                            'Treatment May Be Needed', 'Treatment Recommended']
       water_clarity = %w(Clear Cloudy)
-      free_cl_ppm = rand(2) + 1
-      combined_cl_ppm = rand(2) + 1
+      free_cl_ppm = rand(3) + 1
+      combined_cl_ppm = rand(3) + 1
 
       ChemicalRecord.create!(free_chlorine_ppm: free_cl_ppm,
                              combined_chlorine_ppm: combined_cl_ppm,
