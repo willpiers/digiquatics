@@ -120,7 +120,7 @@
     <tr>
       <th style='width:25%'>Location </th>
       <td>
-        <% if @user.location? %>
+        <% if @user.location %>
           <%= @user.location.name %>
         <% else %>
           Please update location information on user edit page
@@ -130,7 +130,7 @@
     <tr>
       <th> Position </th>
       <td>
-        <% if @user.position? %>
+        <% if @user.position %>
           <%= @user.position.name %>
         <% else %>
           Please update position information on user edit page
