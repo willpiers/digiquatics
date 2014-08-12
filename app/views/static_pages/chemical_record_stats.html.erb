@@ -58,9 +58,10 @@
   {name: "Total Chlorine PPM", data: @total_cl}
   ],
   min: -0.5,
+  max: 6,
   discrete: false,
   library: {
-          title: 'Chlorine Levels',
+          title: 'Chlorine (PPM)',
           hAxis: {title: "Record" , textPosition: 'none'},
           vAxis: {title: "Chlorine Level"}
          }
@@ -70,10 +71,11 @@
   {name: 'PH',
    data: @ph}
   ],
-  min: -0.5,
+  min: 6.5,
+  max: 8.5,
   discrete: false,
   library: {
-          title: 'PH Levels',
+          title: 'PH',
           hAxis: {title: "Record" , textPosition: 'none'},
           vAxis: {title: "PH Level"},
           colors:['#009688']
@@ -83,10 +85,11 @@
 <%= line_chart [
   {name: 'Alkalinity', data: @alk}
   ],
-  min: -0.5,
+  min: 30,
+  max: 150,
   discrete: false,
       library: {
-              title: 'Alkalinity Levels',
+              title: 'Alkalinity (PPM)',
               hAxis: {title: "Record" , textPosition: 'none'},
               vAxis: {title: "Alkalinity Level"},
               colors:['#FF4081']
@@ -94,12 +97,13 @@
   %>
 
   <%= line_chart [
-    {name: 'Calcium Hardness', data: @ch}
+    {name: 'Calcium Hardness (PPM)', data: @ch}
     ],
-    min: -0.5,
+    min: 50,
+    max: 550,
     discrete: false,
     library: {
-            title: 'Calcium Hardness Levels',
+            title: 'Calcium Hardness (PPM)',
             hAxis: {title: "Record" , textPosition: 'none'},
             vAxis: {title: "Calcium Hardness Level"},
             colors:['#ffea00']
@@ -110,10 +114,11 @@
   {name: "Air Temp(F)", data: @air_temp},
   {name: "Pool Temp(F)", data: @pool_temp}
   ],
-  min: -0.5,
+  min: 60,
+  max: 90,
   discrete: false,
   library: {
-          title: 'Temperature Levels',
+          title: 'Temperature (F)',
           hAxis: {title: "Record" , textPosition: 'none'},
           vAxis: {title: "Temperature Level"},
           colors:['#12C700', '#00E5FF']
@@ -123,9 +128,11 @@
 <%= line_chart [
   {name: 'SI Index', data: @si}
   ],
+  min: -2.0,
+  max: 2.0,
   discrete: false,
   library: {
-          title: 'SI Index Levels',
+          title: 'SI Index',
           hAxis: {title: "Record" , textPosition: 'none'},
           vAxis: {title: "SI Index Level"},
           colors:['#673AB7']

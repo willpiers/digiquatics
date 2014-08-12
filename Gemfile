@@ -33,7 +33,6 @@ gem 'font-awesome-rails'
 gem 'momentjs-rails'
 gem 'ng-rails-csrf'
 gem 'chartkick'
-gem "google_visualr", "~> 2.1.0"
 
 group :development, :test do
   gem 'rspec-rails'
