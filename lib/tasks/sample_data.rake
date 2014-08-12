@@ -473,6 +473,61 @@ namespace :db do
     end
 
     puts "\n\nAvailabilities"
+    50.times do |n|
+      print '.'
+      Availability.create!(user_id: n + 1,
+                           day: 0,
+                           start_time: Time.now - rand(3).hours,
+                           end_time: Time.now + rand(3).hours)
+    end
+
+    50.times do |n|
+      print '.'
+      Availability.create!(user_id: n + 1,
+                           day: 1,
+                           start_time: Time.now - rand(3).hours,
+                           end_time: Time.now + rand(3).hours)
+    end
+
+    50.times do |n|
+      print '.'
+      Availability.create!(user_id: n + 1,
+                           day: 2,
+                           start_time: Time.now - rand(3).hours,
+                           end_time: Time.now + rand(3).hours)
+    end
+
+    50.times do |n|
+      print '.'
+      Availability.create!(user_id: n + 1,
+                           day: 3,
+                           start_time: Time.now - rand(3).hours,
+                           end_time: Time.now + rand(3).hours)
+    end
+
+    50.times do |n|
+      print '.'
+      Availability.create!(user_id: n + 1,
+                           day: 4,
+                           start_time: Time.now - rand(3).hours,
+                           end_time: Time.now + rand(3).hours)
+    end
+
+    50.times do |n|
+      print '.'
+      Availability.create!(user_id: n + 1,
+                           day: 5,
+                           start_time: Time.now - rand(3).hours,
+                           end_time: Time.now + rand(3).hours)
+    end
+
+    50.times do |n|
+      print '.'
+      Availability.create!(user_id: n + 1,
+                           day: 6,
+                           start_time: Time.now - rand(3).hours,
+                           end_time: Time.now + rand(3).hours)
+    end
 
     50.times do |n|
       print '.'

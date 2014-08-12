@@ -22,6 +22,8 @@ Tracker = Mixpanel::Tracker.new(ENV['MIXPANEL_TOKEN'] || '1')
 
 module DigiQuatics
   class Application < Rails::Application
+    config.autoload_paths += Dir[Rails.root.join('app', '{**/}')]
+
     # system("rubocop -D #{Rails.root}") if Rails.env.development?
 
     config.generators do |g|

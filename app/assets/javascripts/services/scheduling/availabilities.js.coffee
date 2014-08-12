@@ -1,12 +1,18 @@
-@digiquatics.factory 'AvailabilityService', [
+@digiquatics.factory 'Availabilities', [
   '$resource'
-
   ($resource) ->
-    Availability = $resource '/availabilities', {},
+    $resource('/availabilities/:id.json', null,
+      index:
+        method: 'GET'
+        isArray: true
+
+      update:
+        method: 'PUT'
+
       create:
         method: 'POST'
 
-    Availability.create = Availability.save
-
-    Availability
+      destroy:
+        method: 'DELETE'
+    )
 ]

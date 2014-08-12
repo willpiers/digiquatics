@@ -66,7 +66,7 @@
     <tbody>
       <tr ng-repeat='user in users | orderBy:predicate.value:reverse | filter:locationFilter | filter:search'>
         <td>
-          <div class='star' ng-show='showStar(item.created_at)' %>
+          <div class='star' ng-show='showStar(user.created_at)' %>
             <i class="fa fa-star"></i>
           </div>
         </td>
