@@ -33,6 +33,7 @@ gem 'font-awesome-rails'
 gem 'momentjs-rails'
 gem 'ng-rails-csrf'
 gem 'chartkick'
+gem 'lodash-rails'
 
 group :development, :test do
   gem 'rspec-rails'

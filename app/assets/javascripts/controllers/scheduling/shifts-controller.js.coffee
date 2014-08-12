@@ -6,6 +6,20 @@
     $scope.locations = Locations.index()
     $scope.positions = Positions.index()
 
+    $scope.startTime = (days) ->
+      start = new Date()
+      start.setDate($scope.weekDay(days).format('DD'))
+      start.setHours(7)
+      start.setMinutes(0)
+      start
+
+    $scope.endTime = (days) ->
+      end = new Date()
+      end.setDate($scope.weekDay(days).format('DD'))
+      end.setHours(8)
+      end.setMinutes(0)
+      end
+
     $scope.buildMode = 'Build'
 
     $scope.build = ->
@@ -73,23 +87,6 @@
       moment($scope.weekDay(day)).isAfter(start) &&
       moment($scope.weekDay(day)).isBefore(end)
 
-    $scope.weekDay = (days) ->
-      moment().startOf('week').add('days', $scope.weekCounter + days)
-
-    $scope.startTime = (days) ->
-      start = new Date()
-      start.setDate($scope.weekDay(days).format('DD'))
-      start.setHours(7)
-      start.setMinutes(0)
-      start
-
-    $scope.endTime = (days) ->
-      end = new Date()
-      end.setDate($scope.weekDay(days).format('DD'))
-      end.setHours(8)
-      end.setMinutes(0)
-      end
-
     $scope.open = (user, day, shift, size) ->
       modalInstance = $modal.open(
         templateUrl: 'scheduling/shift-assigner.html',
@@ -126,11 +123,14 @@
 
       $scope.assignShift = (user, location, position, start, end, shift) ->
         if shift
-          $id = shift.id
           shift.start_time = start
           shift.end_time = end
           shift.position_id = position
-          Shifts.update({ id:$id }, shift)
+
+          Shifts.update
+            id: shift.id
+          ,
+            shift
         else
           newShift = Shifts.create
             user_id: user.id
@@ -142,10 +142,14 @@
           user.shifts.push newShift
 
       $scope.ok = (position, startTime, endTime) ->
-        $scope.assignShift(user, location, position, startTime, endTime, shift)
-        $modalInstance.close($scope.user)
+        $scope.assignShift user, location, position, startTime, endTime, shift
+        $modalInstance.close $scope.user
 
       $scope.cancel = ->
-        $modalInstance.dismiss "Cancel"
-]
+        $modalInstance.dismiss 'Cancel'
 
+      $scope.delete = ->
+        Shifts.destroy id: shift.id
+        _.remove user.shifts, (userShift) -> userShift.id is shift.id
+        $modalInstance.close $scope.user
+]
