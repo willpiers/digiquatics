@@ -1,10 +1,8 @@
 @digiquatics.directive 'dqWeekViewShifts', [
   '$modal'
   'Shifts'
-  '$log'
-  '$rootScope'
 
-  ($modal, Shifts, $log, $rootScope) ->
+  ($modal, Shifts) ->
     restrict: 'E'
     templateUrl: 'scheduling/week-view-shifts.html'
     scope:
@@ -14,9 +12,6 @@
       weekCounter: '='
 
     link: ($scope, element, attrs) ->
-      $rootScope.$on 'deleteShift', (event, shiftId) ->
-        element.remove() if $scope.shift.id is shiftId
-
       $scope.weekDay = (days) ->
         moment().startOf('week').add('days', $scope.weekCounter + days)
 
@@ -39,6 +34,8 @@
           templateUrl: 'scheduling/shift-assigner.html',
           controller: ModalInstanceCtrl,
           size: size,
+          scope:
+            user: user
           resolve:
             shift: ->
               shift
@@ -67,6 +64,7 @@
         $scope.positionSelect = if shift then shift.position_id else position
         $scope.startTime = if shift then shift.start_time else startTime
         $scope.endTime = if shift then shift.end_time else endTime
+
         $scope.assignShift = (user, location, position, start, end, shift) ->
           if shift
             $id = shift.id
@@ -80,9 +78,6 @@
             position_id: position
             start_time: start
             end_time: end
-        $scope.deleteShift = (shift) ->
-          Shifts.destroy({ id: shift.id })
-          $rootScope.$emit 'deleteShift', shift.id
 
         $scope.ok = (position, startTime, endTime) ->
           $scope.assignShift(user, location, position, startTime, endTime, shift)
@@ -92,7 +87,8 @@
           $modalInstance.dismiss "Cancel"
 
         $scope.delete = ->
-          $scope.deleteShift(shift)
+          Shifts.destroy({ id: shift.id })
+          element.remove()
           $modalInstance.close($scope.user)
 
 ]
