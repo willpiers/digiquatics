@@ -61,9 +61,8 @@ describe 'Certifications' do
     it 'should list each certification belonging to an account' do
       Certification.joins(:certification_name)
       .where(certification_names: { account_id: 1 }).each do |cert|
-        page.should have_content('userData.lastName')
-        page.should have_content('userData.firstName')
-        page.should have_content('userData[certName.name] | formatDate')
+        page.should have_content('user.last_name')
+        page.should have_content('user.first_name')
       end
     end
   end

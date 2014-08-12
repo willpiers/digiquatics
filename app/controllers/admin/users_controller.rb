@@ -104,12 +104,14 @@ class UsersController < ApplicationController
   def redirect_to_created_user
     mixpanel_track_people
 
-    Tracker.track(current_user.id, 'Create New User',
-                  created_user_id: @user.id) unless Rails.env.test?
-
     flash[:success] = 'You have successfully created a user account!'
-
-    signed_in? ? redirect_to(@user) : sign_in_and_redirect(@user)
+    if signed_in?
+      Tracker.track(current_user.id, 'Create New User',
+                    created_user_id: @user.id) unless Rails.env.test?
+      redirect_to(@user)
+    else
+      sign_in_and_redirect(@user)
+    end
   end
 
   def updated_access
