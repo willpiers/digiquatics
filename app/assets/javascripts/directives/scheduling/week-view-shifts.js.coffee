@@ -11,6 +11,7 @@
       day: '='
       shift: '='
       weekCounter: '='
+      positions: '='
 
     link: ($scope, element, attrs) ->
       $scope.weekDay = (days) ->
