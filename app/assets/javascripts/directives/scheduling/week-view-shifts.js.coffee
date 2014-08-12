@@ -1,8 +1,9 @@
 @digiquatics.directive 'dqWeekViewShifts', [
   '$modal'
   'Shifts'
+  '$log'
 
-  ($modal, Shifts) ->
+  ($modal, Shifts, $log) ->
     restrict: 'E'
     templateUrl: 'scheduling/week-view-shifts.html'
     scope:
@@ -34,8 +35,6 @@
           templateUrl: 'scheduling/shift-assigner.html',
           controller: ModalInstanceCtrl,
           size: size,
-          scope:
-            user: user
           resolve:
             shift: ->
               shift
