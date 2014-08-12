@@ -9,8 +9,6 @@ class StaticPagesController < ApplicationController
               'Pool Temp (F)' => 'pool_temp',
               'SI Index' => 'si_index' }
 
-
-
   def dashboard
     Tracker.track(current_user.id, 'View Dashboard') unless Rails.env.test?
   end
@@ -25,24 +23,6 @@ class StaticPagesController < ApplicationController
   end
 
   def instructions
-data_table = GoogleVisualr::DataTable.new
-    # Add Column Headers
-    data_table.new_column('string', 'Year' )
-    data_table.new_column('number', 'Sales')
-    data_table.new_column('number', 'Expenses')
-
-    # Add Rows and Values
-    data_table.add_rows([
-        ['2004', 1000, 400],
-        ['2005', 1170, 460],
-        ['2006', 660, 1120],
-        ['2007', 1030, 540]
-    ])
-
-
-
-    opts   = { :width => 400, :height => 240, :title => 'Company Performance', :legend => 'bottom' }
-    @chart = GoogleVisualr::Interactive::LineChart.new(data_table, opts)
   end
 
   def availability
@@ -53,6 +33,7 @@ data_table = GoogleVisualr::DataTable.new
   end
 
   def chemical_record_stats
+    Tracker.track(current_user.id, 'View Chemical Record Stats') unless Rails.env.test?
     @metrics = METRICS
     @start_date = params[:start_date]
     if @start_date
