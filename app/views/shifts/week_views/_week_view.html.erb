@@ -51,13 +51,11 @@
 
           <div ng-if="sameDay(shift.start_time, 0)"
                ng-repeat="shift in user.shifts | orderBy:'start_time'">
-            <dq-week-view-shifts user='user' day='day' shift='shift'
-            weekCounter='weekCounter' positions='positions'>
-            </dq-week-view-shifts>
+            <%= render 'shifts/week_views/week_view_shifts' %>
           </div>
 
           <div ng-if="build()">
-            <div class='shift';
+            <div class='shift'
               ng-click="open(user, 0)"
               data-hover='Assign Shift'>
             </div>
@@ -79,13 +77,11 @@
 
           <div ng-if="sameDay(shift.start_time, 1)"
                ng-repeat="shift in user.shifts | orderBy:'start_time'">
-            <dq-week-view-shifts user='user' day='day' shift='shift'
-            weekCounter='weekCounter' positions='positions'>
-            </dq-week-view-shifts>
+            <%= render 'shifts/week_views/week_view_shifts' %>
           </div>
 
           <div ng-if="build()">
-            <div class='shift';
+            <div class='shift'
               ng-click="open(user, 1)"
               data-hover='Assign Shift'>
             </div>
@@ -106,13 +102,11 @@
 
           <div ng-if="sameDay(shift.start_time, 2)"
                ng-repeat="shift in user.shifts | orderBy:'start_time'">
-            <dq-week-view-shifts user='user' day='day' shift='shift'
-            weekCounter='weekCounter' positions='positions'>
-            </dq-week-view-shifts>
+            <%= render 'shifts/week_views/week_view_shifts' %>
           </div>
 
           <div ng-if="build()">
-            <div class='shift';
+            <div class='shift'
                  ng-click="open(user, 2)"
                  data-hover='Assign Shift'>
             </div>
@@ -133,13 +127,11 @@
 
           <div ng-if="sameDay(shift.start_time, 3)"
                ng-repeat="shift in user.shifts | orderBy:'start_time'">
-            <dq-week-view-shifts user='user' day='day' shift='shift'
-            weekCounter='weekCounter' positions='positions'>
-            </dq-week-view-shifts>
+            <%= render 'shifts/week_views/week_view_shifts' %>
           </div>
 
           <div ng-if="build()">
-            <div class='shift';
+            <div class='shift'
                  ng-click="open(user, 3)"
                  data-hover='Assign Shift'>
             </div>
@@ -160,13 +152,11 @@
 
           <div ng-if="sameDay(shift.start_time, 4)"
                ng-repeat="shift in user.shifts | orderBy:'start_time'">
-            <dq-week-view-shifts user='user' day='day' shift='shift'
-            weekCounter='weekCounter' positions='positions'>
-            </dq-week-view-shifts>
+            <%= render 'shifts/week_views/week_view_shifts' %>
           </div>
 
           <div ng-if="build()">
-            <div class='shift';
+            <div class='shift'
                  ng-click="open(user, 4)"
                  data-hover='Assign Shift'>
             </div>
@@ -187,13 +177,11 @@
 
           <div ng-if="sameDay(shift.start_time, 5)"
                ng-repeat="shift in user.shifts | orderBy:'start_time'">
-            <dq-week-view-shifts user='user' day='day' shift='shift'
-            weekCounter='weekCounter' positions='positions'>
-            </dq-week-view-shifts>
+            <%= render 'shifts/week_views/week_view_shifts' %>
           </div>
 
           <div ng-if="build()">
-            <div class='shift';
+            <div class='shift'
                  ng-click="open(user, 5)"
                  data-hover='Assign Shift'>
             </div>
@@ -214,13 +202,11 @@
 
           <div ng-if="sameDay(shift.start_time, 6)"
                ng-repeat="shift in user.shifts | orderBy:'start_time'">
-            <dq-week-view-shifts user='user' day='day' shift='shift'
-            weekCounter='weekCounter' positions='positions'>
-            </dq-week-view-shifts>
+            <%= render 'shifts/week_views/week_view_shifts' %>
           </div>
 
           <div ng-if="build()">
-            <div class='shift';
+            <div class='shift'
               ng-click="open(user, 6)"
               data-hover='Assign Shift'>
             </div>
