@@ -1,20 +1,24 @@
-<div ng-app='digiquatics' ng-controller='AnalyticsCtrl' class='userform well'>
+<div ng-app='digiquatics' ng-controller='TimeOffCtrl' class='userform well'>
   <%= bootstrap_form_for(@time_off_request) do |f| %>
 
     <%= render 'shared/required' %>
 
-    <button type='button' class='btn btn-success'
-            ng-model='checked'
-            btn-checkbox btn-checkbox-true='1' btn-checkbox-false='0'>
-      <div ng-show='checked'>Change to: Partial Day </div>
-      <div ng-hide='checked'>Change to: All Day </div>
-    </button>
+    <div class='center'>
+      <div class='btn-group'>
+        <label class='btn btn-info' ng-model='requestMode' btn-radio="'partialDay'">
+          Partial Day
+        </label>
+        <label class='btn btn-info' ng-model='requestMode' btn-radio="'allDay'">
+          All Day
+        </label>
+      </div>
+    </div>
 
-    <div ng-show='checked'>
+    <div ng-if='allDayRequestMode()'>
       <%= render 'time_off_requests/show/all_day', f: f %>
     </div>
 
-    <div ng-hide='checked'>
+    <div ng-if='partialDayRequestMode()'>
       <%= render 'time_off_requests/show/partial_day', f: f %>
     </div>
 

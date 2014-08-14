@@ -1,9 +1,6 @@
 <label>Start Date *</label>
 
 <div class='row'>
-  <div class='hidden'>
-    <%= render 'time_off_requests/form_elements/start_time' %>
-  </div>
   <div class='col-md-12'>
      <%= render 'time_off_requests/form_elements/start_date' %>
   </div>
@@ -11,15 +8,13 @@
 
 <%= f.hidden_field :starts_at,
                    value: "{{dt1 | date:'yyyy-MM-dd'}}
-                           {{mytime1 | date:'HH:mm:ss Z' }}" %>
+                           {{allDayStartTime | date:'HH:mm:ss Z' }}" %>
 
 <br><br>
 
 <label>End Date *</label>
+
 <div class='row'>
-  <div class='hidden'>
-    <%= render 'time_off_requests/form_elements/end_time' %>
-  </div>
   <div class='col-md-12'>
      <%= render 'time_off_requests/form_elements/end_date' %>
   </div>
@@ -27,4 +22,6 @@
 
 <%= f.hidden_field :ends_at,
                    value: "{{dt2 | date:'yyyy-MM-dd'}}
-                           {{mytime2 | date:'HH:mm:ss Z' }}" %>
+                           {{allDayEndTime | date:'HH:mm:ss Z' }}" %>
+
+<%= f.hidden_field :all_day, value: true %>
