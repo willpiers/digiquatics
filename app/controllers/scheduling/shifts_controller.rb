@@ -2,8 +2,8 @@ class ShiftsController < ApplicationController
   before_action :set_shift, only: [:show, :edit, :update, :destroy]
 
   def index
+    Tracker.track(current_user.id, 'Schedule Index') unless Rails.env.test?
     @shifts = Shift.all
-
     respond_to do |format|
       format.html
       format.json
@@ -14,13 +14,12 @@ class ShiftsController < ApplicationController
   end
 
   def my_schedule
+    Tracker.track(current_user.id, 'My Schedule') unless Rails.env.test?
     @my_schedule = Shift.all
-
     respond_to do |format|
       format.html
       format.json do
         my_schedule = User.where(id: current_user.id).select("id, first_name, last_name")
-
         render json: my_schedule.to_json(include: [
               {shifts: { include: {position: {only: :name}, location: {only: :name} } }},
               :time_off_requests,
