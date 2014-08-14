@@ -3,7 +3,12 @@
 
     <%= render 'shared/required' %>
 
-    <strong>All Day? </strong><input type='checkbox' ng-model='checked'><br/>
+    <button type='button' class='btn btn-success'
+            ng-model='checked'
+            btn-checkbox btn-checkbox-true='1' btn-checkbox-false='0'>
+      <div ng-show='checked'>Change to: Partial Day </div>
+      <div ng-hide='checked'>Change to: All Day </div>
+    </button>
 
     <div ng-show='checked'>
       <%= render 'time_off_requests/show/all_day', f: f %>
