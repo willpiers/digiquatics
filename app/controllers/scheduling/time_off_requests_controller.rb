@@ -65,7 +65,7 @@ class TimeOffRequestsController < ApplicationController
 
   def time_off_request_params
     params.require(:time_off_request)
-    .permit(:user_id, :starts_at, :ends_at, :reason, :approved,
+    .permit(:user_id, :starts_at, :ends_at, :all_day, :reason, :approved,
             :approved_by_user_id, :approved_at, :active, :location_id,
             :processed_by_last_name, :processed_by_first_name)
   end
