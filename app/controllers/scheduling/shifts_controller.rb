@@ -3,7 +3,7 @@ class ShiftsController < ApplicationController
 
   def index
     Tracker.track(current_user.id, 'Schedule Index') unless Rails.env.test?
-    @shifts = Shift.all
+    @shifts = Shift.same_account_as(current_user)
     respond_to do |format|
       format.html
       format.json
@@ -15,7 +15,7 @@ class ShiftsController < ApplicationController
 
   def my_schedule
     Tracker.track(current_user.id, 'My Schedule') unless Rails.env.test?
-    @my_schedule = Shift.all
+    @my_schedule = Shift.same_account_as(current_user)
     respond_to do |format|
       format.html
       format.json do
