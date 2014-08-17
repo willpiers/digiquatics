@@ -4,7 +4,7 @@
 
 .shift {
 min-height:30px;
-width: 130px;
+width: 150px;
 cursor: pointer;
 }
 
@@ -19,7 +19,28 @@ cursor: pointer;
 
 /* Replace original text with value in data-hover */
 .shift:hover:before {
-  font-size: 16px;
+  font-size: 18px;
+  content: attr(data-hover);
+}
+
+.shift-mobile {
+min-height:20px;
+width: 350px;
+cursor: pointer;
+}
+
+/* Hide original text */
+.shift-mobile:hover {
+
+  background-color: #F5F5F5;
+  color: black;
+  text-align: center;
+  vertical-align: middle;
+}
+
+/* Replace original text with value in data-hover */
+.shift-mobile:hover:before {
+  font-size: 12px;
   content: attr(data-hover);
 }
 
@@ -42,9 +63,25 @@ cursor: pointer;
   vertical-align: middle;
 }
 
+.my_time_off_bar_mobile {
+  height: 20px;
+  width: 350px;
+  margin: 0px;
+  padding: 0px;
+  vertical-align: middle;
+}
+
 .my_shift_bar {
   height: 120px;
   width: 145px;
+  margin: 0px;
+  padding: 0px;
+  vertical-align: middle;
+}
+
+.my_shift_bar_mobile {
+  height: 40px;
+  width: 350px;
   margin: 0px;
   padding: 0px;
   vertical-align: middle;

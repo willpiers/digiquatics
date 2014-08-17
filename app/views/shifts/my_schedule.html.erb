@@ -8,13 +8,13 @@
       </h1>
 
         <div class='row'>
-          <div class='col-md-1'>
+          <div class='col-md-1 col-xs-4'>
             <btn class='btn btn-default btn-sm' ng-click='resetWeekCounter()'>
               <i class='fa fa-calendar-o fa-lg'></i>
               <b> Today</b>
             </btn>
           </div>
-          <div class='col-md-2'>
+          <div class='col-md-2 col-xs-4'>
             <div class='btn-group'>
               <btn class='btn btn-default btn-sm' ng-click='previousWeek()'
                    style='width: 40px;'>
@@ -26,16 +26,15 @@
               </btn>
             </div>
           </div>
-          <div class='col-md-7'></div>
-          <div class='col-md-2'>
-            <div class='pull-right'>
+          <div class='col-md-7 col-xs-0'></div>
+          <div class='col-md-2 col-xs-2'>
+            <div class='pull-right hidden-xs'>
               <%= link_to_function(' Print', 'javascript:print()',
                                    class: 'btn btn-default fa fa-print fa-lg') %>
             </div>
           </div>
         </div>
       </div>
-
       <br>
       <div class='visible-print'>
         <center>
@@ -45,7 +44,6 @@
         </center>
       </div>
       <%= render 'shifts/week_views/my_schedule' %>
-
   </div>
 </div>
 
