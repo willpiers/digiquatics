@@ -2,7 +2,7 @@ class PackagesController < ApplicationController
   before_action :set_package, only: [:show, :edit, :update, :destroy]
 
   def index
-    @packages = Package.all
+    @packages = Package.same_account_as(current_user)
   end
 
   def show

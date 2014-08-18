@@ -2,7 +2,7 @@ class SkillLevelsController < ApplicationController
   before_action :set_skill_level, only: [:show, :edit, :update, :destroy]
 
   def index
-    @skill_levels = SkillLevel.all
+    @skill_levels = SkillLevel.same_account_as(current_user)
   end
 
   def show
