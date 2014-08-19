@@ -1,6 +1,16 @@
 @digiquatics.controller 'AvailabilityCtrl', ['$scope', '$filter','Availabilities',
                                             '$modal', '$log',
   @AvailabilityCtrl = ($scope, $filter, Availabilities, $modal, $log) ->
+    $scope.days = [
+      'Sunday',
+      'Monday',
+      'Tuesday',
+      'Wednesday',
+      'Thursday',
+      'Friday',
+      'Saturday'
+    ]
+
     $scope.availabilities = Availabilities.index()
 
     $scope.weekDay = (days) ->
@@ -20,7 +30,7 @@
       end.setMinutes 0
       end
 
-    $scope.open = (day, availability, size, availabilities) ->
+    $scope.open = (availability, day, size, availabilities, days) ->
       modalInstance = $modal.open(
         templateUrl: 'scheduling/availability/availability.html',
         controller: ModalInstanceCtrl,
@@ -28,6 +38,8 @@
         resolve:
           day: ->
             day
+          days: ->
+            $scope.days
           availabilities: ->
             $scope.availabilities
           availability: ->
@@ -41,8 +53,9 @@
       modalInstance.result.then ->
         $log.info('Modal dismissed at: ' + new Date())
 
-    ModalInstanceCtrl = ($scope, $modalInstance, day, availabilities, availability, startTime, endTime) ->
+    ModalInstanceCtrl = ($scope, $modalInstance, day, availabilities, availability, startTime, endTime, days) ->
       $scope.day = day
+      $scope.days = days
       $scope.availabilities = availabilities
       $scope.availability = availability
       $scope.startTime = if availability then availability.start_time else startTime
