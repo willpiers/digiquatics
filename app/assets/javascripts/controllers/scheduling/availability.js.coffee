@@ -48,9 +48,8 @@
       $scope.startTime = if availability then availability.start_time else startTime
       $scope.endTime = if availability then availability.end_time else endTime
 
-      $scope.assignAvailability = (availability, start, end, day, availabilities) ->
+      assignAvailability = (availability, start, end, day, availabilities) ->
         if availability
-          availability.day = day
           availability.start_time = start
           availability.end_time = end
 
@@ -67,7 +66,7 @@
           availabilities.push newAvailability
 
       $scope.ok = (startTime, endTime) ->
-        $scope.assignAvailability availability, startTime, endTime, day, availabilities
+        assignAvailability availability, startTime, endTime, day, availabilities
         $modalInstance.close $scope.availability
 
       $scope.cancel = ->

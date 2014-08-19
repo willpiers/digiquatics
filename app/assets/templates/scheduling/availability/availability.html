@@ -1,7 +1,9 @@
 <div class='userform well'>
   <a class='pull-right close-button link-color' ng-click='cancel()'>
     <i class='fa fa-times fa-lg'></i></a>
-  <h1 style='margin: 0px; padding: 0px;'>Add Availability</h1>
+  <h1 style='margin: 0px; padding: 0px;'>
+    {{availability ? ' Edit' : ' Add'}} Availability
+  </h1>
 
   <center>
     <p>Day of Week</p>
@@ -10,7 +12,7 @@
         <h4> Start Time </h4>
         <div class='fix_ampm_button'>
           <timepicker ng-model='startTime' ng-change='changed()' hour-step='1' minute-step='15'>
-           {{startTime}}
+            {{startTime}}
           </timepicker>
         </div>
       </div>
@@ -18,7 +20,7 @@
         <h4> End Time </h4>
         <div class='fix_ampm_button'>
           <timepicker ng-model='endTime' ng-change='changed()' hour-step='1' minute-step='15'>
-           {{endTime}}
+            {{endTime}}
           </timepicker>
         </div>
       </div>
@@ -26,8 +28,8 @@
   </center>
 
   <a class='btn btn-primary btn-block' ng-click='ok(startTime, endTime)'>
-    <i class="fa fa-check fa-lg"></i> Add</a>
+    <i class="fa fa-check fa-lg"></i> {{availability ? 'Save' : 'Add'}}</a>
 
   <a class='btn btn-danger btn-block' ng-click='delete()'>
-    <i class="fa fa-trash-o fa-lg"></i> Delete</a>
+    <i class="fa fa-trash-o fa-lg"></i> {{availability ? 'Delete' : 'Cancel'}}</a>
 </div>
