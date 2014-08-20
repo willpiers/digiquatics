@@ -1,5 +1,10 @@
-@digiquatics.controller 'AvailabilityCtrl', ['$scope', '$filter','Availabilities',
-                                            '$modal', '$log',
+@digiquatics.controller 'AvailabilityCtrl', [
+  '$scope'
+  '$filter'
+  'Availabilities'
+  '$modal'
+  '$log'
+
   @AvailabilityCtrl = ($scope, $filter, Availabilities, $modal, $log) ->
     $scope.days = [
       'Sunday'
@@ -13,19 +18,23 @@
 
     $scope.availabilities = Availabilities.index()
 
-    $scope.weekDay = (days) ->
+    $scope.sortTime = (availability) ->
+      momentTime = moment availability.start_time
+      momentTime - momentTime.clone().startOf 'day'
+
+    weekDay = (days) ->
       moment().startOf('week').add('days', days)
 
     $scope.startTime = (days) ->
       start = new Date()
-      start.setDate($scope.weekDay(days).format('DD'))
+      start.setDate(weekDay(days).format('DD'))
       start.setHours 7
       start.setMinutes 0
       start
 
     $scope.endTime = (days) ->
       end = new Date()
-      end.setDate($scope.weekDay(days).format('DD'))
+      end.setDate(weekDay(days).format('DD'))
       end.setHours 8
       end.setMinutes 0
       end
@@ -74,5 +83,3 @@
 
         $modalInstance.close $scope.availability
 ]
-
-

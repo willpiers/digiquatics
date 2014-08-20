@@ -31,7 +31,7 @@
       <tbody>
         <tr>
           <td>
-            <div ng-repeat="availability in availabilities | orderBy:'start_time' | filter: { day: 0 }">
+            <div ng-repeat="availability in availabilities | orderBy:sortTime | filter: { day: 0 }">
               <%= render 'availability' %>
             </div>
 
@@ -40,8 +40,9 @@
               data-hover='Add Availability'>
             </div>
           </td>
+
           <td>
-            <div ng-repeat="availability in availabilities | orderBy:'start_time' | filter: { day: 1 }">
+            <div ng-repeat="availability in availabilities | orderBy:sortTime | filter: { day: 1 }">
               <%= render 'availability' %>
             </div>
 
@@ -50,48 +51,53 @@
               data-hover='Add Availability'>
             </div>
           </td>
+
           <td>
-            <div ng-repeat="availability in availabilities | orderBy:'start_time' | filter: { day: 2 }">
+            <div ng-repeat="availability in availabilities | orderBy:sortTime | filter: { day: 2 }">
               <%= render 'availability' %>
             </div>
 
             <div class='shift'
-                 ng-click='open(availability, 2)'
-                 data-hover='Add Availability'>
+              ng-click='open(availability, 2)'
+              data-hover='Add Availability'>
             </div>
           </td>
+
           <td>
-            <div ng-repeat="availability in availabilities | orderBy:'start_time' | filter: { day: 3 }">
+            <div ng-repeat="availability in availabilities | orderBy:sortTime | filter: { day: 3 }">
               <%= render 'availability' %>
             </div>
 
             <div class='shift'
-                 ng-click='open(availability, 3)'
-                 data-hover='Add Availability'>
+              ng-click='open(availability, 3)'
+              data-hover='Add Availability'>
             </div>
           </td>
+
           <td>
-            <div ng-repeat="availability in availabilities | orderBy:'start_time' | filter: { day: 4 }">
+            <div ng-repeat="availability in availabilities | orderBy:sortTime | filter: { day: 4 }">
               <%= render 'availability' %>
             </div>
 
             <div class='shift'
-                 ng-click='open(availability, 4)'
-                 data-hover='Add Availability'>
+              ng-click='open(availability, 4)'
+              data-hover='Add Availability'>
             </div>
           </td>
+
           <td>
-            <div ng-repeat="availability in availabilities | orderBy:'start_time' | filter: { day: 5 }">
+            <div ng-repeat="availability in availabilities | orderBy:sortTime | filter: { day: 5 }">
               <%= render 'availability' %>
             </div>
 
             <div class='shift'
-                 ng-click='open(availability, 5)'
-                 data-hover='Add Availability'>
+              ng-click='open(availability, 5)'
+              data-hover='Add Availability'>
             </div>
           </td>
+
           <td>
-            <div ng-repeat="availability in availabilities | orderBy:'start_time' | filter: { day: 6 }">
+            <div ng-repeat="availability in availabilities | orderBy:sortTime | filter: { day: 6 }">
               <%= render 'availability' %>
             </div>
 
