@@ -105,6 +105,7 @@ class User < ActiveRecord::Base
     employee_id 'ID'
     payrate 'Pay Rate'
     date_of_hire 'DOH'
+    chemical_records_access 'Chemicals Access'
     private_lesson_access 'Lessons Access'
     admin 'Admin'
     active 'Active'

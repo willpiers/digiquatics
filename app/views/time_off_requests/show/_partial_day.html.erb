@@ -1,5 +1,4 @@
 <label>Start Date *</label>
-
 <div class='row'>
   <div class='col-md-8 col-xs-12'>
     <div class='fix_angular_date_picker'>
@@ -13,7 +12,7 @@
 
 <%= f.hidden_field :starts_at,
                    value: "{{dt1 | date:'yyyy-MM-dd'}}
-                           {{mytime | date:'HH:mm:ss Z' }}" %>
+                           {{partialDayStartTime | date:'HH:mm:ss Z' }}" %>
 
 <br><br>
 
@@ -31,4 +30,7 @@
 
 <%= f.hidden_field :ends_at,
                    value: "{{dt2 | date:'yyyy-MM-dd'}}
-                           {{mytime2 | date:'HH:mm:ss Z' }}" %>
+                           {{partialDayEndTime | date:'HH:mm:ss Z' }}" %>
+
+<%= f.hidden_field :all_day, value: false %>
+

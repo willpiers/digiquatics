@@ -116,6 +116,7 @@
 
     ModalInstanceCtrl = ($scope, $modalInstance, shift, user, location, startTime, endTime, positions, position) ->
       $scope.user = user
+      $scope.shift = shift
       $scope.positions = positions
       $scope.positionSelect = if shift then shift.position_id else position
       $scope.startTime = if shift then shift.start_time else startTime
