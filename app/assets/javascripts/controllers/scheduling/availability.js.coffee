@@ -1,6 +1,16 @@
 @digiquatics.controller 'AvailabilityCtrl', ['$scope', '$filter','Availabilities',
                                             '$modal', '$log',
   @AvailabilityCtrl = ($scope, $filter, Availabilities, $modal, $log) ->
+    $scope.days = [
+      'Sunday'
+      'Monday'
+      'Tuesday'
+      'Wednesday'
+      'Thursday'
+      'Friday'
+      'Saturday'
+    ]
+
     $scope.availabilities = Availabilities.index()
 
     $scope.weekDay = (days) ->
