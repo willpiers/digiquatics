@@ -57,7 +57,9 @@
             <a href = '#' class = 'dropdown-toggle' data-toggle = 'dropdown'>
               Scheduling<b class = 'caret'></b></a>
             <ul class = 'dropdown-menu'>
-                <li><%= link_to 'Schedule', shifts_path %></li>
+                <% if current_user.admin? %>
+                  <li><%= link_to 'Schedule', shifts_path %></li>
+                <% end %>
                 <li><%= link_to 'Sub Requests Queue', sub_requests_path %></li>
                 <% if current_user.admin? %>
                   <li>
