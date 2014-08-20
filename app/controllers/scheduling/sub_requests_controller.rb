@@ -44,7 +44,6 @@ class SubRequestsController < ApplicationController
     handle_action(@sub_request, message, :edit) do |resource|
       resource.update(sub_request_params)
     end
-    @sub_request ? nil : approve_or_deny_logic
   end
 
   def processed
@@ -105,6 +104,9 @@ class SubRequestsController < ApplicationController
 
   def handle_action(resource, message, page)
     if yield(resource)
+      if resource.approved?
+        handle_shift_change(resource)
+      end
       flash[:success] = message
       redirect_to resource
     else
@@ -112,4 +114,22 @@ class SubRequestsController < ApplicationController
     end
   end
 
+  def handle_shift_change(sub_request)
+    puts 'Sub Request: '
+    puts sub_request.attributes
+    shift = find_sub_request_shift(sub_request)
+    puts 'Original Shift: '
+    puts shift.attributes
+    puts 'User: ' + shift.user.first_name + shift.user.last_name
+    puts 'Sub: ' + sub_request.sub_first_name + sub_request.sub_last_name
+    shift.update(user_id: sub_request.sub_user_id)
+    puts 'New shift user:' + shift.user.first_name + shift.user.last_name
+
+    puts 'New Shift: '
+    puts shift.attributes
+  end
+
+  def find_sub_request_shift(sub_request)
+    sub_request.shift
+  end
 end
