@@ -2,7 +2,6 @@
 <div ng-app='digiquatics'>
   <div ng-controller='AvailabilityCtrl'>
     <h1 class='cross_platform_header'>My Availability</h1>
-
     <div class='hidden-xs'>
       <table class='table table-bordered print-schedule-font'>
         <thead>
@@ -36,73 +35,60 @@
               <div ng-repeat="availability in availabilities | orderBy:'start_time' | filter: { day: 0 }">
                 <%= render 'availability' %>
               </div>
-
               <div class='shift';
                 ng-click="open(0)"
                 data-hover='Add Availability'>
               </div>
             </td>
-
               <td>
                 <div ng-repeat="availability in availabilities | orderBy:'start_time' | filter: { day: 1 }">
                   <%= render 'availability' %>
                 </div>
-
                 <div class='shift';
                   ng-click="open(1)"
                   data-hover='Add Availability'>
                 </div>
               </td>
-
               <td>
                 <div ng-repeat="availability in availabilities | orderBy:'start_time' | filter: { day: 2 }">
                   <%= render 'availability' %>
                 </div>
-
                 <div class='shift';
                      ng-click="open(2)"
                      data-hover='Add Availability'>
                 </div>
               </td>
-
               <td>
                 <div ng-repeat="availability in availabilities | orderBy:'start_time' | filter: { day: 3 }">
                   <%= render 'availability' %>
                 </div>
-
                 <div class='shift';
                      ng-click="open(3)"
                      data-hover='Add Availability'>
                 </div>
               </td>
-
               <td>
                 <div ng-repeat="availability in availabilities | orderBy:'start_time' | filter: { day: 4 }">
                   <%= render 'availability' %>
                 </div>
-
                 <div class='shift';
                      ng-click="open(4)"
                      data-hover='Add Availability'>
                 </div>
               </td>
-
               <td>
                 <div ng-repeat="availability in availabilities | orderBy:'start_time' | filter: { day: 5 }">
                   <%= render 'availability' %>
                 </div>
-
                 <div class='shift';
                      ng-click="open(5)"
                      data-hover='Add Availability'>
                 </div>
               </td>
-
               <td>
                 <div ng-repeat="availability in availabilities | orderBy:'start_time' | filter: { day: 6 }">
                   <%= render 'availability' %>
                 </div>
-
                 <div class='shift';
                   ng-click="open(6)"
                   data-hover='Add Availability'>
@@ -112,9 +98,7 @@
         </tbody>
       </table>
     </div>
-
     <div class='visible-xs'>
-
       <table class='table table-bordered print-schedule-font'>
         <thead>
           <tr>
@@ -138,7 +122,6 @@
             </tr>
         </tbody>
       </table>
-
       <table class='table table-bordered print-schedule-font'>
         <thead>
           <tr>
@@ -155,14 +138,13 @@
               </div>
 
               <div class='shift-mobile';
-                ng-click="open(0)"
+                ng-click="open(1)"
                 data-hover='Add Availability'>
               </div>
             </td>
             </tr>
         </tbody>
       </table>
-
       <table class='table table-bordered print-schedule-font'>
         <thead>
           <tr>
@@ -179,14 +161,13 @@
               </div>
 
               <div class='shift-mobile';
-                ng-click="open(0)"
+                ng-click="open(2)"
                 data-hover='Add Availability'>
               </div>
             </td>
             </tr>
         </tbody>
       </table>
-
       <table class='table table-bordered print-schedule-font'>
         <thead>
           <tr>
@@ -203,14 +184,13 @@
               </div>
 
               <div class='shift-mobile';
-                ng-click="open(0)"
+                ng-click="open(3)"
                 data-hover='Add Availability'>
               </div>
             </td>
             </tr>
         </tbody>
       </table>
-
       <table class='table table-bordered print-schedule-font'>
         <thead>
           <tr>
@@ -227,14 +207,13 @@
               </div>
 
               <div class='shift-mobile';
-                ng-click="open(0)"
+                ng-click="open(4)"
                 data-hover='Add Availability'>
               </div>
             </td>
             </tr>
         </tbody>
       </table>
-
       <table class='table table-bordered print-schedule-font'>
         <thead>
           <tr>
@@ -251,14 +230,13 @@
               </div>
 
               <div class='shift-mobile';
-                ng-click="open(0)"
+                ng-click="open(5)"
                 data-hover='Add Availability'>
               </div>
             </td>
             </tr>
         </tbody>
       </table>
-
       <table class='table table-bordered print-schedule-font'>
         <thead>
           <tr>
@@ -275,17 +253,13 @@
               </div>
 
               <div class='shift-mobile';
-                ng-click="open(0)"
+                ng-click="open(6)"
                 data-hover='Add Availability'>
               </div>
             </td>
             </tr>
         </tbody>
       </table>
-
-
     </div>
-
-
   </div>
 </div>
