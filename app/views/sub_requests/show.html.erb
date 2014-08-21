@@ -47,11 +47,11 @@
 
   <table class='table table-bordered table-condensed'>
       <tr>
-        <th id='fixtablewidth'>Location</th>
+        <th id='fixtablewidth'>Shift Location</th>
         <td><%= @sub_request.shift.location.name %></td>
       </tr>
       <tr>
-        <th>Position</th>
+        <th>Shift Position</th>
         <td><%= @sub_request.shift.position.name %></td>
       </tr>
       <tr>
@@ -61,8 +61,8 @@
       <tr>
         <th>Shift Time</th>
         <td>
-          <%= "#{@sub_request.shift.start_time.strftime('%I:%M')}-
-               #{@sub_request.shift.end_time.strftime('%I:%M%p')}" %>
+          <%= "#{@sub_request.shift.start_time.strftime('%l:%M')} -
+               #{@sub_request.shift.end_time.strftime('%l:%M%p')}" %>
         </td>
       </tr>
     <tr>
@@ -73,17 +73,19 @@
                          user_path(id: @sub_request.shift.user.id) %>
         </td>
     </tr>
+    <tr>
+      <th>Requested On</th>
+      <td><%= @sub_request.created_at.strftime('%-m/%-d/%Y @ %I:%M%p')%></td>
+    </tr>
     <% if !@sub_request.active? %>
-      <% if @sub_request.approved? %>
-        <tr>
-          <th>Employee Sub</th>
-            <td>
-                <%= link_to "#{@sub_request.sub_last_name},
-                             #{@sub_request.sub_first_name}",
-                             user_path(id: @sub_request.sub_user_id) %>
-            </td>
-        </tr>
-      <% end %>
+      <tr>
+        <th>Sub Name</th>
+        <td>
+            <%= link_to "#{@sub_request.sub_last_name},
+                         #{@sub_request.sub_first_name}",
+                         user_path(id: @sub_request.sub_user_id) %>
+        </td>
+      </tr>
       <% if @sub_request.processed? %>
         <tr>
           <th>Status</th>
@@ -108,9 +110,5 @@
         </tr>
       <% end %>
     <% end %>
-    <tr>
-      <th>Date Submitted</th>
-      <td><%= @sub_request.created_at.strftime('%-m/%-d/%Y @ %I:%M%p')%></td>
-    </tr>
   </table>
 </div>

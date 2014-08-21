@@ -7,7 +7,7 @@
 
     # Other
     $scope.predicate =
-      value: 'starts_at'
+      value: '-processed_on'
 
     $scope.totalDisplayed = 10
 
