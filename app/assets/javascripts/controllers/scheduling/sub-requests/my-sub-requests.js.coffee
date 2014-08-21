@@ -7,7 +7,7 @@
 
     # Other
     $scope.predicate =
-      value: 'starts_at'
+      value: '-shift.start_time'
 
     $scope.thArrow = (current_column, anchored_column) ->
       if current_column == anchored_column then true

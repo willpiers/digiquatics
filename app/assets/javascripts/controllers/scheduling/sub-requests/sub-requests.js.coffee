@@ -7,7 +7,7 @@
 
     # Other
     $scope.predicate =
-      value: 'starts_at'
+      value: 'shift.start_time'
 
     $scope.totalDisplayed = 10
 
