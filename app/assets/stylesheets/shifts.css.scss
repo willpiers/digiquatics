@@ -23,27 +23,6 @@ cursor: pointer;
   content: attr(data-hover);
 }
 
-.shift-mobile {
-min-height:20px;
-width: 350px;
-cursor: pointer;
-}
-
-/* Hide original text */
-.shift-mobile:hover {
-
-  background-color: #F5F5F5;
-  color: black;
-  text-align: center;
-  vertical-align: middle;
-}
-
-/* Replace original text with value in data-hover */
-.shift-mobile:hover:before {
-  font-size: 12px;
-  content: attr(data-hover);
-}
-
 .my_schedule_header {;
   text-align: center;
   min-width: 145px;
