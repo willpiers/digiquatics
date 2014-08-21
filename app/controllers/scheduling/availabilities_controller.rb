@@ -26,15 +26,11 @@ class AvailabilitiesController < ApplicationController
     @availability = Availability.new(availability_params)
     @availability.user_id = current_user.id
 
-    message = 'Availability was successfully created.'
-
-    handle_action(@availability, message, :new, &:save)
+    handle_action(@availability, :new, &:save)
   end
 
   def update
-    message = 'Availability was successfully updated.'
-
-    handle_action(@availability, message, :edit) do |resource|
+    handle_action(@availability, :edit) do |resource|
       resource.update(availability_params)
     end
   end
@@ -55,7 +51,7 @@ class AvailabilitiesController < ApplicationController
     .permit(:day, :start_time, :end_time)
   end
 
-  def handle_action(resource, message, page)
+  def handle_action(resource, page)
     if yield(resource)
       render :show
     else

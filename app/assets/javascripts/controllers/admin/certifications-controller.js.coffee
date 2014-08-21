@@ -22,9 +22,9 @@
     $scope.thArrow = (current_column, anchored_column) ->
       if current_column == anchored_column then true
 
-    $scope.today = moment().format()
-    $scope.ninetyDays = moment().add('days', 90).format()
-    $scope.onehundredeighty = moment().add('days', 180).format()
+    $scope.today = moment()
+    $scope.ninetyDays = moment().add('days', 90)
+    $scope.onehundredeighty = moment().add('days', 180)
 
     $scope.cssClass = (certification) ->
       if      moment(certification).isBefore($scope.today) ||
