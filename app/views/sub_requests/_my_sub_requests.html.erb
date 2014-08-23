@@ -65,10 +65,10 @@
         {{request.shift.start_time | date:'M/d/yy'}}
       </td>
       <td class='hidden-xs'>
-        {{request.shift.start_time | date:'h:mm'}}-{{request.shift.end_time | date:'h:mm a'}}
+        {{request.shift.start_time | date:'h:mm'}}-{{request.shift.end_time | date:'h:mma'}}
       </td>
       <td class='visible-xs'>
-        {{request.shift.start_time | date:'h:mm'}}-{{request.shift.end_time | date:'h:mm a M/d/yy '}}
+        {{request.shift.start_time | date:' M/d/yy @ h:mm'}}-{{request.shift.end_time | date:'h:mma'}}
       </td>
       <td>
         <a ng-hide='checkActive(request)' ng-href='/users/{{request.sub_user_id.id}}'>
@@ -83,7 +83,7 @@
         Pending
         </div>
       </td>
-      <td class='hidden-xs'>{{request.processed_on | date:'M/d/yy'}}</td>
+      <td class='hidden-xs'>{{request.processed_on | date:'M/d/yy @ h:mma'}}</td>
       <td class='hidden-xs'>
         <a ng-hide='checkActive(request)' ng-href='/users/{{request.processed_by_user_id}}'>
           {{request.processed_by_last_name}}, {{request.processed_by_first_name}}

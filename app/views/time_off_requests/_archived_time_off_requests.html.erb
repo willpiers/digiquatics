@@ -96,8 +96,8 @@
         </a>
       </td>
       <td class='hidden-xs'>{{request.user.first_name}}</td>
-      <td>{{request.starts_at | date:'M/d/yy h:mm a'}}</td>
-      <td>{{request.ends_at | date:'M/d/yy h:mm a'}}</td>
+      <td>{{request.starts_at | date:'M/d/yy @ h:mma'}}</td>
+      <td>{{request.ends_at | date:'M/d/yy @ h:mma'}}</td>
       <td class='hidden-xs'>
         {{request.reason | limitTo:15}}
       </td>
@@ -105,7 +105,7 @@
         {{request.approved | booleanToWordsTimeOff}}
       </td>
       <td class='hidden-xs'>
-        {{request.created_at | date:'M/d/yy h:mm a'}}
+        {{request.created_at | date:'M/d/yy @ h:mma'}}
       </td>
       <td class='hidden-xs'>
         <a ng-href='/users/{{request.approved_by_user_id}}'>

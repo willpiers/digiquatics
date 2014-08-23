@@ -107,5 +107,9 @@ module ApplicationHelper
 
   def BooleanToWordsTimeOffCSS(value)
     value ? 'success' : 'danger'
-end
+  end
+
+  def date_and_time(date)
+    date ? date.strftime('%-m/%-d/%Y @ %I:%M%p') : ''
+  end
 end

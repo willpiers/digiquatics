@@ -43,7 +43,7 @@
       <td>{{report.location.name}}</td>
       <td>
         <a ng-href='/shift_reports/{{report.id}}'>
-          {{report.created_at | date:'M/d/yy h:mm a'}}
+          {{report.created_at | date:'M/d/yy @ h:mma'}}
         </a>
       </td>
       <td>{{report.user.last_name}}, {{report.user.first_name}} </td>
