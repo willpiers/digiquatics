@@ -29,7 +29,7 @@ describe 'Shift Report pages' do
     it { should have_selector('th', text: 'Submitted By') }
     it { should have_selector('th', text: 'Incident / Accident Report Filed') }
     it { should have_content('report.location.name') }
-    it { should have_content("report.created_at | date:'M/d/yy h:mm a'") }
+    it { should have_content("report.created_at | date:'M/d/yy @ h:mma'") }
     it { should have_content('report.user.last_name') }
     it { should have_content('report.user.first_name') }
     it { should have_content('report.report_filed | booleanToWords') }

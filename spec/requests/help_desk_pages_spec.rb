@@ -33,7 +33,7 @@ describe 'Help Desk pages' do
     it { should have_content('location.name') }
     it { should have_content('item.name') }
     it { should have_content('item.urgency') }
-    it { should have_content("item.created_at | date:'M/d/yy h:mm a'") }
+    it { should have_content("item.created_at | date:'M/d/yy @ h:mma'") }
     it { should have_content('user.first_name') }
     it { should have_content('user.last_name') }
   end
@@ -60,8 +60,8 @@ describe 'Help Desk pages' do
     it { should have_content('location.name') }
     it { should have_content('item.name') }
     it { should have_content('item.urgency') }
-    it { should have_content("item.created_at | date:'M/d/yy h:mm a'") }
-    it { should have_content("item.closed_date_time | date:'M/d/yy h:mm a'") }
+    it { should have_content("item.created_at | date:'M/d/yy @ h:mma'") }
+    it { should have_content("item.closed_date_time | date:'M/d/yy @ h:mma'") }
     it { should have_content('user.first_name') }
     it { should have_content('user.last_name') }
   end
