@@ -13,7 +13,15 @@
     $scope.locations = Locations.index()
     $scope.positions = Positions.index()
 
-    $scope.range = [1, 2, 3, 4, 5]
+    $scope.calculateHours = (user) ->
+      shifts = user.shifts
+      total = 0
+      for shift in shifts
+        hours = moment(shift.end_time).hours() - moment(shift.start_time).hours()
+        minutes = moment(shift.end_time).minutes() - moment(shift.start_time).minutes()
+        hours = hours + ( minutes / 60 )
+        total += hours
+      total
 
     $scope.startTime = (days) ->
       start = new Date()
