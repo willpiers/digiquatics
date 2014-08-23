@@ -8,7 +8,6 @@ width: 130px;
 cursor: pointer;
 }
 
-/* Hide original text */
 .shift:hover {
 
   background-color: #F5F5F5;
@@ -17,7 +16,6 @@ cursor: pointer;
   vertical-align: middle;
 }
 
-/* Replace original text with value in data-hover */
 .shift:hover:before {
   font-size: 16px;
   content: attr(data-hover);
@@ -73,7 +71,7 @@ cursor: pointer;
 .fix-schedule-time-bar {
   margin: 0px;
   margin-bottom: 2px;
-                        }
+}
 
 .shift {
   height: 40px;
