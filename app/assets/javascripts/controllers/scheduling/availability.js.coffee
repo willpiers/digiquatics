@@ -82,4 +82,11 @@
         _.remove $scope.availabilities, (userAvail) -> userAvail.id is availability.id
 
         $modalInstance.close $scope.availability
+
+    ModalInstanceCtrl['$inject'] = [
+      '$scope'
+      '$modalInstance'
+      'day'
+      'availability'
+    ]
 ]

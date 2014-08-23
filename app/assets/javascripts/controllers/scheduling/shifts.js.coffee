@@ -13,6 +13,8 @@
     $scope.locations = Locations.index()
     $scope.positions = Positions.index()
 
+    $scope.range = [1, 2, 3, 4, 5]
+
     $scope.startTime = (days) ->
       start = new Date()
       start.setDate($scope.weekDay(days).format('DD'))
