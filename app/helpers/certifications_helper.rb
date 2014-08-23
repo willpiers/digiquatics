@@ -1,6 +1,6 @@
 module CertificationsHelper
   def css_class(date)
-    case date
+    case date.to_date
     when (Date.today - 3000.days)..(Date.today)
       'danger'
     when (Date.today)...(Date.today + 90.days)
