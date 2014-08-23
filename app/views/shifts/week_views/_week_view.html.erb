@@ -29,16 +29,16 @@
     </tr>
   </thead>
   <tbody>
-
     <tr ng-repeat='user in users | orderBy:predicate.value:reverse |
                    filter:locationFilter | filter:positionFilter'>
         <td>
           {{user.last_name}}, </br>
           {{user.first_name}}
+          <br>Hours: {{calculateHours(user)}}
         </td>
 
         <td>
-          <div ng-if="build()">
+          <div ng-if='build()'>
             <div ng-if="sameDayTimeOff(time_off.starts_at, time_off.ends_at, 0)"
                  ng-repeat="time_off in user.time_off_requests | orderBy:'starts_at'">
               <%= render 'shifts/week_views/week_view_time_off_request' %>
@@ -49,21 +49,21 @@
             </div>
           </div>
 
-          <div ng-if="sameDay(shift.start_time, 0)"
+          <div ng-if='sameDay(shift.start_time, 0)'
                ng-repeat="shift in user.shifts | orderBy:'start_time'">
             <%= render 'shifts/week_views/week_view_shifts' %>
           </div>
 
-          <div ng-if="build()">
+          <div ng-if='build()'>
             <div class='shift'
-              ng-click="openNew(user, 0, 'sm')"
+              ng-click='open(user, 0)'
               data-hover='Assign Shift'>
             </div>
           </div>
         </td>
 
         <td>
-          <div ng-if="build()">
+          <div ng-if='build()'>
             <div ng-if="sameDayTimeOff(time_off.starts_at, time_off.ends_at, 1)"
                  ng-repeat="time_off in user.time_off_requests | orderBy:'starts_at'">
               <%= render 'shifts/week_views/week_view_time_off_request' %>
@@ -75,14 +75,14 @@
             </div>
           </div>
 
-          <div ng-if="sameDay(shift.start_time, 1)"
+          <div ng-if='sameDay(shift.start_time, 1)'
                ng-repeat="shift in user.shifts | orderBy:'start_time'">
             <%= render 'shifts/week_views/week_view_shifts' %>
           </div>
 
-          <div ng-if="build()">
+          <div ng-if='build()'>
             <div class='shift'
-              ng-click="open(user, 1)"
+              ng-click='open(user, 1)'
               data-hover='Assign Shift'>
             </div>
           </div>

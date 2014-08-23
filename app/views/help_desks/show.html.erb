@@ -63,7 +63,7 @@
     </tr>
     <tr>
       <th> Date Submitted </th>
-      <td> <%= @help_desk.created_at.strftime('%-m/%-d/%Y') %> </td>
+      <td> <%= date_and_time(@help_desk.created_at) %> </td>
     </tr>
     <tr>
       <th> Issue Status </th>
@@ -88,7 +88,7 @@
         <th> Date Closed </th>
         <td>
           <% if @help_desk.closed_date_time? %>
-            <%= @help_desk.closed_date_time.strftime('%I:%M%p %-m/%-d/%Y') %>
+            <%= date_and_time(@help_desk.closed_date_time) %>
           <% end %>
         </td>
       </tr>

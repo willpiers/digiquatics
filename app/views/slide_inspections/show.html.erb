@@ -35,7 +35,7 @@
     </tr>
     <tr>
       <th>Date</th>
-      <td><%= @slide_inspection.created_at.strftime("%m/%-d/%Y") %></td>
+      <td><%= date_and_time(@slide_inspection.created_at) %></td>
     </tr>
     <tr>
       <th>All OK?</th>

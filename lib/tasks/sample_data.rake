@@ -396,8 +396,8 @@ namespace :db do
       Shift.create!(user_id: n + 1,
                     location_id: 1,
                     position_id: rand(3) + 1,
-                    start_time: Time.now - rand(3).hours + 48.hours,
-                    end_time: Time.now + rand(3).hours + 48.hours)
+                    start_time: Time.now + rand(3).hours + 48.hours,
+                    end_time: Time.now + rand(3).hours + 52.hours)
     end
 
     50.times do |n|
@@ -405,8 +405,8 @@ namespace :db do
       Shift.create!(user_id: n + 1,
                     location_id: 1,
                     position_id: rand(3) + 1,
-                    start_time: Time.now - rand(3).hours + 24.hours,
-                    end_time: Time.now + rand(3).hours + 24.hours)
+                    start_time: Time.now + rand(3).hours + 24.hours,
+                    end_time: Time.now + rand(3).hours + 28.hours)
     end
 
     50.times do |n|
@@ -414,7 +414,7 @@ namespace :db do
       Shift.create!(user_id: n + 1,
                     location_id: 1,
                     position_id: rand(3) + 1,
-                    start_time: Time.now - rand(3).hours,
+                    start_time: Time.now,
                     end_time: Time.now + rand(3).hours)
     end
 
@@ -424,7 +424,7 @@ namespace :db do
                     location_id: rand(3) + 1,
                     position_id: rand(3) + 1,
                     start_time: Time.now + rand(3).hours - 48.hours,
-                    end_time: Time.now + rand(5).hours - 48.hours)
+                    end_time: Time.now + rand(5).hours - 42.hours)
     end
 
     50.times do |n|
@@ -433,7 +433,7 @@ namespace :db do
                     location_id: rand(3) + 1,
                     position_id: rand(3) + 1,
                     start_time: Time.now + rand(3).hours - 24.hours,
-                    end_time: Time.now + rand(5).hours - 24.hours)
+                    end_time: Time.now + rand(5).hours - 18.hours)
     end
 
     50.times do |n|
@@ -442,7 +442,7 @@ namespace :db do
                     location_id: rand(3) + 1,
                     position_id: rand(3) + 1,
                     start_time: Time.now + rand(3).hours - 72.hours,
-                    end_time: Time.now + rand(5).hours - 72.hours)
+                    end_time: Time.now + rand(5).hours - 66.hours)
     end
 
     50.times do |n|
@@ -451,7 +451,7 @@ namespace :db do
                     location_id: rand(3) + 1,
                     position_id: rand(3) + 1,
                     start_time: Time.now + rand(3).hours - 96.hours,
-                    end_time: Time.now + rand(5).hours - 96.hours)
+                    end_time: Time.now + rand(5).hours - 90.hours)
     end
 
     50.times do |n|
@@ -460,7 +460,7 @@ namespace :db do
                     location_id: rand(3) + 1,
                     position_id: rand(3) + 1,
                     start_time: Time.now + rand(3).hours - 120.hours,
-                    end_time: Time.now + rand(5).hours - 120.hours)
+                    end_time: Time.now + rand(5).hours - 116.hours)
     end
 
     50.times do |n|
@@ -469,7 +469,7 @@ namespace :db do
                     location_id: rand(3) + 1,
                     position_id: rand(3) + 1,
                     start_time: Time.now + rand(3).hours - 144.hours,
-                    end_time: Time.now + rand(5).hours - 144.hours)
+                    end_time: Time.now + rand(5).hours - 140.hours)
     end
 
     puts "\n\nAvailabilities"

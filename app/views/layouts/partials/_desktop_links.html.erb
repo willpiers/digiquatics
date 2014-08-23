@@ -3,9 +3,8 @@
     <% if signed_in? %>
       <% if FeatureToggleHelper.chemicals? %>
         <% if current_user.chemical_records_access? || current_user.admin? %>
-          <li class="<%= active_nav('chemical_records')%>
-                     <%= action_nav('chemical_record_stats')%>">
-            <%= link_to 'Chemicals', chemical_records_path %>
+          <li>
+            <%= active_link_to 'Chemicals', chemical_records_path, :active => [['chemical_records', 'static_pages'], ['index', 'edit', 'new', 'show', 'chemical_record_stats']] %>
           </li>
         <% end %>
       <% end %>

@@ -123,4 +123,8 @@ module ApplicationHelper
     if params[:controller] == 'users' && params[:action] == 'show' then false
     end
   end
+
+  def date_and_time(date)
+    date ? date.strftime('%-m/%-d/%Y @ %I:%M%p') : ''
+  end
 end
