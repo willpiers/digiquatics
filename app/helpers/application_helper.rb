@@ -107,5 +107,20 @@ module ApplicationHelper
 
   def BooleanToWordsTimeOffCSS(value)
     value ? 'success' : 'danger'
-end
+  end
+
+  def active_nav(controller)
+    if params[:controller] == controller then 'active'
+    end
+  end
+
+  def action_nav(action_name)
+    if params[:action] == action_name then 'active'
+    end
+  end
+
+  def allowed
+    if params[:controller] == 'users' && params[:action] == 'show' then false
+    end
+  end
 end
