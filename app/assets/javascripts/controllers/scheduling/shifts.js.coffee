@@ -7,7 +7,6 @@
   'Positions'
   '$modal'
   '$log'
-
   @ShiftsCtrl = ($scope, $filter, Shifts, Users, Locations, Positions, $modal, $log) ->
     # Services
     $scope.users = Users.index()
@@ -94,32 +93,10 @@
       moment($scope.weekDay(day)).isAfter(start) &&
       moment($scope.weekDay(day)).isBefore(end)
 
-    $scope.openNew = (user, day, size) ->
+    $scope.open = (user, day, shift, size) ->
       modalInstance = $modal.open(
         templateUrl: 'scheduling/shift-assigner.html',
-        controller: ModalInstanceCtrlNew,
-        size: size,
-        resolve:
-          user: ->
-            user
-          day: ->
-            day
-          location: ->
-            $scope.buildLocation
-          startTime: ->
-            $scope.startTime(day)
-          endTime: ->
-            $scope.endTime(day)
-          positions: ->
-            $scope.positions
-          position: ->
-            user.position_id
-        )
-
-    $scope.openEdit = (user, day, shift, size) ->
-      modalInstance = $modal.open(
-        templateUrl: 'scheduling/shift-assigner.html',
-        controller: ModalInstanceCtrlEdit,
+        controller: ModalInstanceCtrl,
         size: size,
         resolve:
           shift: ->
@@ -140,7 +117,7 @@
             user.position_id
         )
 
-    ModalInstanceCtrlEdit = ($scope, $modalInstance, shift, user, location, startTime, endTime, positions, position) ->
+    ModalInstanceCtrl = ($scope, $modalInstance, shift, user, location, startTime, endTime, positions, position) ->
       $scope.user = user
       $scope.shift = shift
       $scope.positions = positions
@@ -182,46 +159,15 @@
         _.remove user.shifts, (userShift) -> userShift.id is shift.id
         $modalInstance.close $scope.user
 
-    ModalInstanceCtrlNew = ($scope, $modalInstance, user, location, startTime, endTime, positions, position) ->
-      $scope.user = user
-      # $scope.shift = shift
-      $scope.positions = positions
-      $scope.positionSelect = position
-      $scope.startTime = startTime
-      $scope.endTime = endTime
-
-      $scope.assignShift = (user, location, position, start, end) ->
-        # if shift
-        #   shift.start_time = start
-        #   shift.end_time = end
-        #   shift.position_id = position
-
-        #   Shifts.update
-        #     id: shift.id
-        #   ,
-        #     shift
-        # else
-
-        newShift = Shifts.create
-          user_id: user.id
-          location_id: location
-          position_id: position
-          start_time: start
-          end_time: end
-
-        console.log newShift.position
-
-        user.shifts.push newShift
-
-      $scope.ok = (position, startTime, endTime) ->
-        $scope.assignShift user, location, position, startTime, endTime
-        $modalInstance.close $scope.user
-
-      $scope.cancel = ->
-        $modalInstance.dismiss 'Cancel'
-
-      $scope.delete = ->
-        Shifts.destroy id: shift.id
-        _.remove user.shifts, (userShift) -> userShift.id is shift.id
-        $modalInstance.close $scope.user
+    ModalInstanceCtrl['$inject'] = [
+      '$scope'
+      '$modalInstance'
+      'shift'
+      'user'
+      'location'
+      'startTime'
+      'endTime'
+      'positions'
+      'position'
+    ]
 ]
