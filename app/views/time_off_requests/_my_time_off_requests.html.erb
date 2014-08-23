@@ -55,8 +55,8 @@
   </thead>
   <tbody>
     <tr ng-repeat='request in myTimeOff | orderBy:predicate.value:reverse | filter:locationFilter | filter:search'>
-      <td>{{request.starts_at | date:'M/d/yy h:mm a'}}</td>
-      <td>{{request.ends_at | date:'M/d/yy h:mm a'}}</td>
+      <td>{{request.starts_at | date:'M/d/yy @ h:mma'}}</td>
+      <td>{{request.ends_at | date:'M/d/yy @ h:mma'}}</td>
       <td class='hidden-xs'>
         {{request.reason | limitTo:15}}
       </td>
@@ -69,7 +69,7 @@
         </div>
       </td>
       <td class='hidden-xs'>
-        {{request.created_at | date:'M/d/yy h:mm a'}}
+        {{request.created_at | date:'M/d/yy @ h:mma'}}
       </td>
       <td class='hidden-xs'>
         <div ng-hide='checkActive(request)' %>
@@ -79,7 +79,7 @@
         </div>
       </td>
       <td class='hidden-xs'>
-        {{request.approved_at | date:'M/d/yy h:mm a'}}
+        {{request.approved_at | date:'M/d/yy @ h:mma'}}
       </td>
       <td>
         <%= link_to 'View Request', "/time_off_requests/{{request.id}}",
