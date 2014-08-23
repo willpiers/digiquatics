@@ -8,6 +8,9 @@
     <ul class='pull-right'>
       <%= link_to 'Edit Record', edit_chemical_record_path(@chemical_record),
                   class: 'btn btn-default btn-primary' %>
+      <%= link_to ' Delete Record', chemical_record_path(@chemical_record),
+                  class: 'btn btn-default btn-danger',
+                  confirm: 'Are you sure?', method: 'delete' %>
     </ul>
   <% end %>
 
