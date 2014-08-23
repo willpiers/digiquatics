@@ -9,7 +9,7 @@ class CertificationNamesController < ApplicationController
     respond_to do |format|
       format.html
       format.json do
-        certification_names = CertificationName.same_account_as(current_user).select('name')
+        certification_names = CertificationName.same_account_as(current_user).select('name', 'id')
         render json: certification_names.to_json
       end
     end

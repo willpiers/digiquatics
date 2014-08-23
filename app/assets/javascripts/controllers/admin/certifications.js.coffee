@@ -13,11 +13,10 @@
       user.admin == true
 
     $scope.checkId = (certification, count) ->
-      if certification.certification_name_id is (count+1) then true
+      console.log $scope.certificationNames[0].id
+      baseline = $scope.certificationNames[0].id
+      if certification.certification_name_id is (count + baseline) then true
       else false
-
-    $scope.showBlank = (certification, count) ->
-      if certification == count + 1 then true
 
     $scope.thArrow = (current_column, anchored_column) ->
       if current_column == anchored_column then true
