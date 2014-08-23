@@ -4,7 +4,7 @@
 
 .shift {
 min-height:30px;
-width: 130px;
+width: 150px;
 cursor: pointer;
 }
 
@@ -17,7 +17,7 @@ cursor: pointer;
 }
 
 .shift:hover:before {
-  font-size: 16px;
+  font-size: 18px;
   content: attr(data-hover);
 }
 
@@ -40,9 +40,25 @@ cursor: pointer;
   vertical-align: middle;
 }
 
+.my_time_off_bar_mobile {
+  height: 20px;
+  width: 350px;
+  margin: 0px;
+  padding: 0px;
+  vertical-align: middle;
+}
+
 .my_shift_bar {
   height: 120px;
   width: 145px;
+  margin: 0px;
+  padding: 0px;
+  vertical-align: middle;
+}
+
+.my_shift_bar_mobile {
+  height: 40px;
+  width: 350px;
   margin: 0px;
   padding: 0px;
   vertical-align: middle;

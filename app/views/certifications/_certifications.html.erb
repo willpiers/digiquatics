@@ -52,13 +52,13 @@
                           | orderBy:'certification_name_id'"
                ng-if='checkId(cert, $parent.$index)'>
             <center>
-            <div ng-class="cssClass(cert.expiration_date)"
-                 class='cert-cell'>
-              <div class='cert-cell-text'>
-              {{cert.expiration_date | date:'MM-dd-yy'}}
-            </div>
-            </div>
-          </center>
+              <div ng-class="cssClass(cert.expiration_date)"
+                   class='cert-cell'>
+                <div class='cert-cell-text'>
+                {{cert.expiration_date | date:'MM-dd-yy'}}
+                </div>
+              </div>
+            </center>
           </div>
         </td>
       </tr>
