@@ -325,40 +325,6 @@ legend{
   width: 200px;
 }
 
-.form_width {
-  width: 400px;
-  margin: auto;
-}
-
-.btn{
-  margin: auto;
-  display: block;
-}
-
-.fixbtn {
- margin: 7px;
-}
-
-@media (min-width: 500px) {
-  .mobile-btn-fix {
-    width: 150px;
-    display: block;
-
-  }
-}
-
-@media (max-width: 500px) {
-  .mobile-btn-fix {
-    width: 150px;
-    display: block;
-  }
-}
-
-.dashboard_email_button {
-  width: 200px;
-  margin: auto;
-}
-
-.new_button {
-  margin-left: 12px;
+.star {
+  color:#FED845;
 }

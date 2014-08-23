@@ -1,7 +1,7 @@
 <div class='edit_shift'>
-  <progressbar ng-click='open(user, day, shift)' class='progress fix-schedule-time-bar'
+  <progressbar ng-click='open(user, day, shift)' class='progress fix-schedule-time-bar shift'
                value='100' type='primary'>
-    {{shift.start_time | date:'h:mm'}}-{{shift.end_time | date:'h:mma'}}
+    {{shift.start_time | date:'h:mm'}}-{{shift.end_time | date:'h:mma'}}<br>
     {{shift.position.name}}
   </progressbar>
 </div>

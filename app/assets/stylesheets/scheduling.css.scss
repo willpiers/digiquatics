@@ -62,20 +62,18 @@ cursor: pointer;
   text-decoration: none;
 }
 
-.edit_availability {
-  cursor: pointer;
-}
-
-#popover-width {
-  width: 225px;
+#schedule_legend{
+  position: relative;
+  right: 90px;
+  bottom: 18px;
 }
 
 .fix-schedule-time-bar {
   margin: 0px;
   margin-bottom: 2px;
-                        }
+}
 
-.fix_ampm_button button{
-  position: relative;
-  bottom: 7px;
+.shift {
+  height: 40px;
+  vertical-align: middle;
 }
