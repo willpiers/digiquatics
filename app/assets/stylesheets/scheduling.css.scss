@@ -8,7 +8,6 @@ width: 150px;
 cursor: pointer;
 }
 
-/* Hide original text */
 .shift:hover {
 
   background-color: #F5F5F5;
@@ -17,7 +16,6 @@ cursor: pointer;
   vertical-align: middle;
 }
 
-/* Replace original text with value in data-hover */
 .shift:hover:before {
   font-size: 18px;
   content: attr(data-hover);
@@ -78,4 +76,20 @@ cursor: pointer;
 .link-color:hover {
   color: #77777B;
   text-decoration: none;
+}
+
+#schedule_legend{
+  position: relative;
+  right: 90px;
+  bottom: 18px;
+}
+
+.fix-schedule-time-bar {
+  margin: 0px;
+  margin-bottom: 2px;
+}
+
+.shift {
+  height: 40px;
+  vertical-align: middle;
 }

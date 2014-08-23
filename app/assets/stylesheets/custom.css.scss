@@ -1,17 +1,9 @@
 @import "bootstrap";
 
-/* Navbar
-
-.navbar-inverse {
-
-  background-color: #666b70;
-}
-
-*/
+$lightgrey: #999;
+$grayMediumLight: #eaeaea;
 
 /* universal */
-
-$lightgrey: #999;
 
 html {
   overflow-y: scroll;
@@ -24,7 +16,6 @@ body {
 section {
   overflow: auto;
 }
-
 
 textarea {
   resize: vertical;
@@ -72,6 +63,22 @@ h2 {
 P {
   font-size: 1.1em;
   line-height: 1.7em;
+}
+
+.contact {
+  color: #065BA0;
+}
+
+.copyright {
+  color: #C0C0C0;
+}
+
+.contact_body {
+  color: black;
+}
+
+a.contact_body {
+  color: black;
 }
 
 /* header */
@@ -141,25 +148,6 @@ footer ul li {
   margin-left: 10px;
 }
 
-.contact {
-  color: #065BA0;
-}
-
-.copyright {
-  color: #C0C0C0;
-}
-
-.contact_body {
-  color: black;
-}
-
-a.contact_body {
-  color: black;
-}
-
-/* mixins, variables, etc. */
-$grayMediumLight: #eaeaea;
-
 @mixin box_sizing {
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
@@ -220,15 +208,6 @@ legend{
   @extend .error;
 }
 
-.btn{
-  margin: auto;
-  display: block;
-
-}
-
-.fixbtn {
- margin: 7px;
-}
 
 // Default form width convenience class
 .userform{
@@ -296,33 +275,12 @@ legend{
   }
 }
 
-
-.new_button {
-  margin-left: 12px;
-}
-
-/* Todo List index */
-
 .done-true {
   text-decoration: line-through;
   color: grey;
 }
 
-.cert_blue {
- background-color: #DBF2FF;
-}
-
-.cert-width-fix {
-  width: 100px;
-}
-
 @media (min-width: 500px) {
-  .mobile-btn-fix {
-    width: 150px;
-    display: block;
-
-  }
-
   .table-width-desktop {
     width: 75%;
     margin: 0 auto;
@@ -330,11 +288,6 @@ legend{
 }
 
 @media (max-width: 500px) {
-  .mobile-btn-fix {
-    width: 150px;
-    display: block;
-  }
-
   .table-width-desktop {
     width: 100%;
     margin: 0 auto;
@@ -345,36 +298,9 @@ legend{
   color: #658BCA;
 }
 
-.dashboard_email_button {
-  width: 200px;
-  margin: auto;
-}
-
-.fix_ampm_button button{
-  position: relative;
-  bottom: 7px;
-}
-
 .center-row-text {
   position: relative;
   top: 5px;
-}
-
-.fix-pdf-button {
-  float: left;
-  margin-right: 20px;
-}
-
-.fix-pdf-button a {
-  font-weight:bold;
-}
-
-.fix-print-button {
-  float: right;
-}
-
-.fix-print-button a {
-  font-weight:bold;
 }
 
 @media print {
@@ -395,18 +321,9 @@ legend{
   }
 }
 
-#popover-width {
-  width: 225px;
-}
-
 .load-more-width {
   width: 200px;
 }
-
-.fix-schedule-time-bar {
-  margin: 0px;
-  margin-bottom: 2px;
-                        }
 
 .star {
   color:#FED845;
