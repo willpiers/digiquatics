@@ -9,17 +9,17 @@
       <div class='col-md-2'></div>
       <div class='col-md-5 pull-right'>
         <div class='btn-group'>
-          <%if current_user.admin? %>
-          <%= link_to 'New Private Lesson',
-            new_account_private_lesson_path(account_id: current_account.id),
-              class: 'btn btn-primary btn-sm',
-              role: 'button' %>
-            <%= link_to 'Completed',
-                completed_admin_index_path,
-              class: 'btn btn-danger btn-sm', role: 'button' %>
-            <%= link_to 'Queue',
-                account_private_lessons_path(account_id: current_user.account_id),
-              class: 'btn btn-warning btn-sm', role: 'button' %>
+          <%= link_to(new_account_private_lesson_path(account_id: current_account.id),
+              class:'btn btn-sm btn-primary') do %>
+            <i class='fa fa-plus fa-lg'></i> New Lesson
+          <% end %>
+          <%= link_to(completed_admin_index_path,
+              class:'btn btn-sm btn-danger') do %>
+            <i class='fa fa-check-square fa-lg'></i> Completed
+          <% end %>
+          <%= link_to(account_private_lessons_path(account_id: current_user.account_id),
+              class:'btn btn-sm btn-warning') do %>
+            <i class='fa fa-list fa-lg'></i> Queue
           <% end %>
         </div>
       </div>

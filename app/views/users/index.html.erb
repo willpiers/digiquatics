@@ -6,17 +6,24 @@
       <dq-search></dq-search>
       <%= render 'layouts/location_select' %>
       <div class='visible-xs'><br></div>
-      <dq-location></dq-location>
       <div class='col-md-3'></div>
       <div class='col-md-4'>
         <% if signed_in? && current_user.admin? %>
           <div class='btn-group hidden-xs'>
-            <%= link_to 'New Employee', new_user_path,
-                        class: 'btn btn-primary btn-sm', role: 'button' %>
-            <%= link_to 'Manage Inactive', inactive_index_path,
-                        class: 'btn btn-danger btn-sm', role: 'button' %>
-            <%= link_to 'Statistics', user_stats_path,
-                        class: 'btn btn-success btn-sm', role: 'button' %>
+            <%= link_to(new_user_path,
+                class:'btn btn-sm btn-primary') do %>
+              <i class='fa fa-plus fa-lg'></i> New Employee
+            <% end %>
+            <% if current_user.admin? %>
+              <%= link_to(inactive_index_path,
+                  class:'btn btn-sm btn-danger') do %>
+                <i class='fa fa-cogs fa-lg'></i> Manage Inactive
+              <% end %>
+            <% end %>
+            <%= link_to(user_stats_path,
+                class:'btn btn-sm btn-success') do %>
+              <i class='fa fa-bar-chart-o fa-lg'></i> Statistics
+            <% end %>
           </div>
         <% end %>
       </div>
