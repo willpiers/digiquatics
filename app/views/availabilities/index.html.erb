@@ -7,18 +7,18 @@
         <thead>
           <tr>
             <th class='my_schedule_header' ng-repeat='day in days'>
-              {{day.dayName}}
+              {{day}}
             </th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <td ng-repeat='day in days'>
-              <div ng-repeat='availability in availabilities | orderBy:sortTime | filter: { day: day.dayNum }'>
+              <div ng-repeat='availability in availabilities | orderBy:sortTime | filter: { day: $index }'>
                 <%= render 'availability' %>
               </div>
               <div class='shift';
-                ng-click="open(day.dayNum)"
+                ng-click="open($index)"
                 data-hover='Add Availability'>
               </div>
             </td>
@@ -31,17 +31,17 @@
         <thead>
           <tr>
             <th class='my_schedule_header'>
-              {{day.dayName}}
+              {{day}}
             </th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <td>
-              <div ng-repeat="availability in availabilities | orderBy:sortTime | filter: { day: day.dayNum }">
+              <div ng-repeat="availability in availabilities | orderBy:sortTime | filter: { day: $index }">
                 <%= render 'availability' %>
               </div>
-              <button class='btn btn-default btn-xs btn-block' ng-click='open(day.dayNum)'>Add Availability</button>
+              <button class='btn btn-default btn-xs btn-block' ng-click='open($index)'>Add Availability</button>
             </td>
             </tr>
         </tbody>

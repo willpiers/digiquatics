@@ -7,13 +7,13 @@
 
   @AvailabilityCtrl = ($scope, $filter, Availabilities, $modal, $log) ->
     $scope.days = [
-      {dayNum: 0, dayName: 'Sunday'}
-      {dayNum: 1, dayName: 'Monday'}
-      {dayNum: 2, dayName: 'Tuesday'}
-      {dayNum: 3, dayName: 'Wednesday'}
-      {dayNum: 4, dayName: 'Thursday'}
-      {dayNum: 5, dayName: 'Friday'}
-      {dayNum: 6, dayName: 'Saturday'}
+      'Sunday'
+      'Monday'
+      'Tuesday'
+      'Wednesday'
+      'Thursday'
+      'Friday'
+      'Saturday'
     ]
 
     $scope.availabilities = Availabilities.index()
