@@ -1,17 +1,22 @@
+$redCert: #F2DEDE;
+$yellowCert: #FCF8E3;
+$greenCert: #D0E9C6;
+$blueCert: #DBF2FF;
+
 .red {
-  background-color: #F2DEDE;
+  background-color: $redCert;
 }
 
 .yellow {
-  background-color: #FCF8E3;
+  background-color: $yellowCert;
 }
 
 .green {
-  background-color: #D0E9C6;
+  background-color: $greenCert;
 }
 
 .blue {
-  background-color: #DBF2FF;
+  background-color: $blueCert;
 }
 
 .cert-cell {
@@ -56,7 +61,7 @@
   }
 
   .cert_blue {
-   background-color: #DBF2FF;
+   background-color: $blueCert;
   }
 
   .cert-width-fix {
