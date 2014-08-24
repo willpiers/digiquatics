@@ -3,7 +3,8 @@
   <thead>
     <tr>
       <th>
-        Last, First
+        Last, First <br>
+        <i class="fa fa-clock-o"></i> Hours
       </th>
       <th class='lessons_table_cell'>
         {{weekDay(0).format('ddd, MMM D')}}
@@ -34,7 +35,7 @@
         <td>
           {{user.last_name}}, </br>
           {{user.first_name}}
-          <br>Hours: {{calculateHours(user)}}
+          <br><i class="fa fa-clock-o"></i> {{calculateHours(user)}}
         </td>
 
         <td>
