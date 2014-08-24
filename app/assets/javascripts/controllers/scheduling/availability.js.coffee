@@ -7,13 +7,13 @@
 
   @AvailabilityCtrl = ($scope, $filter, Availabilities, $modal, $log) ->
     $scope.days = [
-      'Sunday'
-      'Monday'
-      'Tuesday'
-      'Wednesday'
-      'Thursday'
-      'Friday'
-      'Saturday'
+      {dayNum: 0, dayName: 'Sunday'}
+      {dayNum: 1, dayName: 'Monday'}
+      {dayNum: 2, dayName: 'Tuesday'}
+      {dayNum: 3, dayName: 'Wednesday'}
+      {dayNum: 4, dayName: 'Thursday'}
+      {dayNum: 5, dayName: 'Friday'}
+      {dayNum: 6, dayName: 'Saturday'}
     ]
 
     $scope.availabilities = Availabilities.index()
@@ -39,7 +39,7 @@
       end.setMinutes 0
       end
 
-    $scope.open = (availability, day, size) ->
+    $scope.open = (day, availability, size) ->
       modalInstance = $modal.open
         templateUrl: 'scheduling/availability/availability.html'
         controller: ModalInstanceCtrl

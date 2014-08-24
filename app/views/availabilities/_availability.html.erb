@@ -1,5 +1,5 @@
 <progressbar class='progress fix-schedule-time-bar edit_availability'
-             ng-click="open(availability)"
+             ng-click='open(day.dayNum, availability)'
              value='100' type='success'>
   {{availability.start_time | date:'h:mma'}}-{{availability.end_time | date:'h:mma'}}
 </progressbar>
