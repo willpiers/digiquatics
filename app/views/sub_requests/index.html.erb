@@ -10,12 +10,12 @@
       <div class='col-md-3 pull-right'>
         <div class='btn-group pull-right'>
           <% if current_user.admin? %>
-            <%= link_to(processed_sub_requests_path,
-                class:'btn btn-sm btn-warning') do %>
+            <%= link_to processed_sub_requests_path,
+                class:'btn btn-sm btn-warning' do %>
               <i class='fa fa-history fa-lg'></i> Processed
             <% end %>
-            <%= link_to(admin_sub_requests_path,
-                class:'btn btn-sm btn-danger') do %>
+            <%= link_to admin_sub_requests_path,
+                class:'btn btn-sm btn-danger' do %>
               <i class='fa fa-cogs fa-lg'></i> Management
             <% end %>
           <% end %>
