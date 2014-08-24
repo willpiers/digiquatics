@@ -10,7 +10,6 @@ $blueLink: #658BCA;
 
 html {
   overflow-y: scroll;
-  font-family: 'Roboto', sans-serif;
 }
 
 body {
@@ -34,6 +33,10 @@ textarea {
 }
 
 /* typography */
+
+* {
+  font-family: 'Roboto', sans-serif;
+}
 
 h1, h2, h3, h4, h5, h6 {
   line-height: 1;
