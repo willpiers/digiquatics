@@ -33,39 +33,16 @@ class ChemicalRecordsController < ApplicationController
   def create
     Tracker.track(current_user.id, 'Create Chemical Record') unless Rails.env.test?
     @chemical_record = ChemicalRecord.new(chemical_record_params)
-
-    @chemical_record.si_index =
-      si_index_calculator(@chemical_record.ph,
-                          @chemical_record.pool_temp,
-                          @chemical_record.calcium_hardness,
-                          @chemical_record.alkalinity)
-
-    @chemical_record.si_status = si_calc(@chemical_record.si_index, :status)
-
-    @chemical_record.si_recommendation =
-      si_calc(@chemical_record.si_index, :recommendation)
-
-    @chemical_record.user_id = current_user.id
-
-    @chemical_record.combined_chlorine_ppm =
-      combined_calculator(@chemical_record.total_chlorine_ppm,
-                          @chemical_record.free_chlorine_ppm)
-    if @chemical_record.save
-      flash[:success] = 'Chemical record was successfully created.'
-      # if need_email_alert?(@chemical_record)
-      #   urgent_email(@chemical_record)
-      # end
-      redirect_to @chemical_record
-    else
-      render 'new'
-    end
+    calculations(@chemical_record)
+    record_saved?(@chemical_record)
   end
 
   def update
     Tracker.track(current_user.id, 'Update Chemical Record') unless Rails.env.test?
     if @chemical_record.update(chemical_record_params)
-      flash[:success] = 'Chemical record was successfully updated.'
-      redirect_to @chemical_record
+      calculations(@chemical_record)
+      @chemical_record.save!
+      record_updated?(@chemical_record)
     else
       render 'edit'
     end
@@ -90,6 +67,46 @@ class ChemicalRecordsController < ApplicationController
             :alkalinity, :calcium_hardness, :pool_temp, :air_temp, :si_index,
             :time_stamp, :user_id, :pool_id, :water_clarity, :location_id)
   end
+
+  def si_index(record)
+    record.si_index =
+      si_index_calculator(record.ph,
+                          record.pool_temp,
+                          record.calcium_hardness,
+                          record.alkalinity)
+  end
+
+  def chlorine_calculation(record)
+    record.combined_chlorine_ppm =
+      combined_calculator(record.total_chlorine_ppm,
+                          record.free_chlorine_ppm)
+  end
+
+  def record_saved?(record)
+    if record.save
+      flash[:success] = 'Chemical record was successfully created.'
+      redirect_to record
+    else
+      render 'new'
+    end
+  end
+
+  def record_updated?(record)
+    flash[:success] = 'Chemical record was successfully updated.'
+    redirect_to @chemical_record
+  end
+
+  def calculations(record)
+    si_index(record)
+    record.si_status = si_calc(record.si_index, :status)
+    record.si_recommendation = si_calc(record.si_index, :recommendation)
+    record.user_id = current_user.id
+    chlorine_calculation(record)
+  end
+
+  # if need_email_alert?(@chemical_record)
+  #   urgent_email(@chemical_record)
+  # end
 
   # def urgent_email(record)
   #   @account = current_user.account_id
