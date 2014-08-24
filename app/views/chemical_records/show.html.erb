@@ -6,8 +6,14 @@
 
   <% if current_user.admin? %>
     <ul class='pull-right'>
-      <%= link_to 'Edit Record', edit_chemical_record_path(@chemical_record),
-                  class: 'btn btn-default btn-primary' %>
+      <%= link_to edit_chemical_record_path(@chemical_record),
+                  class:'btn btn-default btn-primary' do %>
+        <i class='fa fa-pencil fa-lg'></i> Edit
+      <% end %>
+      <%= link_to chemical_record_path(@chemical_record), confirm: 'Are you sure?',
+                  method: 'delete', class:'btn btn-default btn-danger' do %>
+        <i class='fa fa-trash-o fa-lg'></i> Delete
+      <% end %>
     </ul>
   <% end %>
 
