@@ -1,4 +1,12 @@
-<div ng-app='digiquatics'>
+<div class='visible-xs visible-sm'>
+  <h4>
+    Please use a desktop/laptop computer to use the scheduling feature.
+    Currently we do not support mobile view for this feature. </br>
+    Thank you. </br>
+    -The Digiquatics Team
+  </h4>
+</div>
+<div ng-app='digiquatics' class='hidden-xs hidden-sm'>
   <div ng-controller='ShiftsCtrl'>
     <% provide(:title, 'Scheduler') %>
     <div class='hidden-print'>
@@ -19,8 +27,8 @@
         <%= render 'layouts/location_select_build' %>
         <%= render 'layouts/location_select_shifts' %>
         <dq-position></dq-position>
-        <div class='col-md-1'></div>
-        <div class='col-md-2'>
+        <div class='col-lg-1'></div>
+        <div class='col-lg-2'>
         <div class='pull-right'>
           <br>
           <div class='btn-group pull-right'>
