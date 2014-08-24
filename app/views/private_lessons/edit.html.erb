@@ -1,7 +1,6 @@
 <% provide(:title, 'Edit Private Lesson') %>
-
-<%= render partial: 'form', locals: {
-  legend: 'Edit Private Lesson',
-  resources: @private_lesson
-} %>
-
+<div class='userform well'>
+  <%= render partial: 'form', locals: {
+    legend: 'Edit Private Lesson',
+    resources: @private_lesson } %>
+</div>

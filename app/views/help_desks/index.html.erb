@@ -8,10 +8,10 @@
       <%= render 'layouts/location_select' %>
       <div class='col-md-4'></div>
       <div class='col-md-3 pull-right'>
-       <div class='btn-group'>
+       <div class='btn-group pull-right'>
          <%= link_to(new_help_desk_path,
              class:'btn btn-sm btn-primary') do %>
-           <i class='fa fa-plus fa-lg'></i> New Issue
+           <i class='fa fa-plus fa-lg'></i> Add Issue
          <% end %>
          <%= link_to(closed_index_path,
              class:'btn btn-sm btn-danger') do %>
@@ -21,7 +21,7 @@
       </div>
     </div>
     <div class='hidden-xs'>
-      <div><i class="fa fa-star star"></i> New Record</div>
+      <div><i class="fa fa-star star"></i> New</div>
     </div>
     <br>
     <%= render 'help_desks' %>

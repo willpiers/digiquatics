@@ -1,5 +1,8 @@
 <div ng-controller='InactiveUsersCtrl'>
-  <div ng-show='(inactive_users | orderBy:order.value:order.reverse | filter:locationFilter | filter:search).length'>
+  <div ng-show='(inactive_users
+                | orderBy:order.value:order.reverse
+                | filter:locationFilter
+                | filter:search).length'>
     <table class='table table-hover'>
       <thead>
         <tr>
@@ -61,19 +64,19 @@
               <dq-arrow></dq-arrow>
             </span>
           </th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
-        <tr ng-repeat='user in inactive_users | orderBy:predicate.value:reverse | filter:locationFilter | filter:search'>
+        <tr ng-repeat='user in inactive_users
+                       | orderBy:predicate.value:reverse
+                       | filter:locationFilter
+                       | filter:search'>
           <td class='visible-xs'>
-            <a ng-href='/users/{{user.id}}'>
-              {{user.last_name}}, {{user.first_name}}
-            </a>
+            {{user.last_name}}, {{user.first_name}}
           </td>
           <td class='hidden-xs'>
-            <a ng-href='/users/{{user.id}}'>
-              {{user.last_name}}
-            </a>
+            {{user.last_name}}
           </td>
           <td class='hidden-xs'>{{user.first_name}}</td>
           <td class='hidden-xs'>{{user.date_of_birth | age}}</td>
@@ -82,12 +85,19 @@
           <td class='hidden-xs'><%= mail_to '{{user.email}}' %></td>
           <td><a ng-href='tel:{{user.phone_number}}'>{{user.phone_number}}</td>
           <td class='hidden-xs'>{{user.admin | booleanToWords}}</td>
+          <td>
+            <%= link_to 'View Employee', '/users/{{user.id}}',
+              class: 'btn btn-info btn-xs' %>
+          </td>
         </tr>
       </tbody>
     </table>
   </div>
 
-  <div ng-hide='(inactive_users | orderBy:order.value:order.reverse | filter:locationFilter | filter:search).length'>
+  <div ng-hide='(inactive_users
+                | orderBy:order.value:order.reverse
+                | filter:locationFilter
+                | filter:search).length'>
     <hr>
     <center>
       <p>

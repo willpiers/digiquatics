@@ -4,14 +4,14 @@
   <h1 style='margin: 0px; padding: 0px;'>
     {{shift ? ' Edit' : ' Assign'}} Shift
   </h1>
-
   <center>
     <p>{{user.last_name}}, {{user.first_name}}</p>
     <div class='row'>
       <div class='col-md-6'>
         <h4> Start Time </h4>
         <div class='fix_ampm_button'>
-          <timepicker ng-model='startTime' ng-change='changed()' hour-step='1' minute-step='15'>
+          <timepicker ng-model='startTime' ng-change='changed()'
+                      hour-step='1' minute-step='15'>
            {{startTime}}
           </timepicker>
         </div>
@@ -19,23 +19,30 @@
       <div class='col-md-6'>
         <h4> End Time </h4>
         <div class='fix_ampm_button'>
-          <timepicker ng-model='endTime' ng-change='changed()' hour-step='1' minute-step='15'>
+          <timepicker ng-model='endTime' ng-change='changed()'
+                      hour-step='1' minute-step='15'>
            {{endTime}}
           </timepicker>
         </div>
       </div>
     </div>
   </center>
-
   <h4>Position</h4>
   <select class='form-control'
           ng-model='positionSelect'
-          ng-options="position.id as position.name for position in positions">
+          ng-options='position.id as position.name for position in positions'>
   </select>
-
-  <a class='btn btn-primary btn-block' ng-click='ok(positionSelect, startTime, endTime)'>
-    <i class="fa fa-check fa-lg"></i> {{shift ? 'Edit' : 'Assign'}}</a>
-
-  <a class='btn btn-danger btn-block' ng-click='delete()'>
-    <i class="fa fa-trash-o fa-lg"></i> {{shift ? 'Delete' : 'Cancel'}}</a>
+  <div ng-show='shift'>
+    <a class='btn btn-primary btn-block'
+       ng-click='ok(positionSelect, startTime, endTime)'>
+      <i class='fa fa-pencil fa-lg'></i> {{'Edit'}}</a>
+    <a class='btn btn-danger btn-block'
+       ng-click='delete()'>
+      <i class='fa fa-trash-o fa-lg'></i> {{'Delete'}}</a>
+  </div>
+  <div ng-hide='shift'>
+    <a class='btn btn-primary btn-block'
+       ng-click='ok(positionSelect, startTime, endTime)'>
+      <i class='fa fa-check fa-lg'></i> {{'Assign'}}</a>
+  </div>
 </div>

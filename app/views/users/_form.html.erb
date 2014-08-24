@@ -5,8 +5,9 @@
     <div class='visible-xs'><center><h4><%= legend %></h4></center></div>
     <%= render 'shared/required' %>
     <div id='basic'><%= render 'basic_user_fields', f: f %></div>
-
-    <%= f.primary 'Create New Employee' %>
+    <button type='submit' class='btn btn-block btn-primary'>
+      <i class='fa fa-check'></i> Create New Employee
+    </button>
   <% end %>
 </div>
 </div>

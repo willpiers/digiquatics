@@ -1,19 +1,16 @@
 <%= bootstrap_form_for resources,
 style: :horizontal, left: 'col-sm-4', right: 'col-sm-8' do |f| %>
-
   <center>
     <%= image_tag Account.find(@private_lesson.account).logo.url, height: '100' %>
   </center>
   <%= content_tag(:legend, legend) if legend %>
   <%= render 'shared/required' %>
-
   <% unless @private_lesson.new_record? %>
     <h4> Meeting Arrangement </h4>
     <%= f.text_area :meeting_time_agreement,
                     placeholder: 'Please enter agreed meeting time',
                     size: '2x', hide_label: true %>
   <% end %>
-
   <h4>Parent Information</h4>
   <br>
   <%= f.text_field :parent_first_name, label: 'Parent First Name *' %>
@@ -25,17 +22,13 @@ style: :horizontal, left: 'col-sm-4', right: 'col-sm-8' do |f| %>
                  label: 'Preferred Contact Method' %>
 
   <h4>Student Information</h4>
-
   <%= f.fields_for :participants do |builder| %>
     <%= render 'participant_fields', f: builder %>
   <% end %>
-
   <%= link_to_add_fields(
     raw('<i class="glyphicon glyphicon-plus-sign"></i> Add Semi-Private Lesson Student'),
     f, :participants) %>
-
   <h4>Preferences</h4>
-
   <% if signed_in? %>
     <%= f.select :location_id,
       options_from_collection_for_select(Location
@@ -49,7 +42,6 @@ style: :horizontal, left: 'col-sm-4', right: 'col-sm-8' do |f| %>
                                          :id,
                                          :name, @private_lesson.location_id) %>
   <% end %>
-
   <%= f.text_area :notes,
                   placeholder: 'Special requests or comments',
                   size: '2x' %>
@@ -57,10 +49,8 @@ style: :horizontal, left: 'col-sm-4', right: 'col-sm-8' do |f| %>
                   placeholder: 'Learning objectives',
                   side: '2x',
                   label: 'Lesson Objectives' %>
-
   <h4>Availability<br/></h4>
   <h5>Please check times you are available</h5>
-
   <table class='table table-bordered' >
     <tr>
       <th class=''></th>
@@ -198,7 +188,6 @@ style: :horizontal, left: 'col-sm-4', right: 'col-sm-8' do |f| %>
       </td>
     </tr>
   </table>
-
   <h4>Lesson Request</h4>
     <%= f.select :package_id,
       options_from_collection_for_select(Package
@@ -207,14 +196,19 @@ style: :horizontal, left: 'col-sm-4', right: 'col-sm-8' do |f| %>
                                          :name, @private_lesson.package_id),
                                          label: 'Lesson Package *' %>
     <% if signed_in? %>
-      <%= f.primary ( f.object.new_record? ?  'Submit' : 'Save Changes' ) %>
+      <% if @private_lesson.new_record?() %>
+        <button type='submit' class='btn btn-block btn-primary'>
+          <i class='fa fa-check'></i> Submit Lesson
+        </button>
+      <% else %>
+        <button type='submit' class='btn btn-block btn-primary'>
+          <i class='fa fa-refresh'></i> Update Lesson
+        </button>
+      <% end %>
     <% else %>
       <center>
-        <%= f.submit 'Submit', class: 'devise-button' %>
+        <%= f.submit 'Submit Lesson', class: 'devise-button' %>
       </center>
     <% end %>
 <% end %>
 </div>
-
-
-

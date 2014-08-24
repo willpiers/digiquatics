@@ -1,5 +1,4 @@
 <% provide(:title, 'Edit Employee') %>
-
 <div class='userform well'>
   <%= bootstrap_form_for(@user,
     style: :horizontal, left: 'col-sm-4', right: 'col-sm-8') do |f| %>
@@ -7,14 +6,15 @@
     <div class='visible-xs'><center><h4>Edit Employee</h4></center></div>
     <%= render 'shared/required' %>
     <div id='basic'><%= render 'basic_user_fields', f: f %></div>
-
-    <div id='additional'><%= render 'additional_user_fields', { f: f, user: @user } %></div>
-
+    <div id='additional'>
+      <%= render 'additional_user_fields', { f: f, user: @user } %>
+    </div>
     <% if signed_in? && current_user.admin? %>
       <%= render 'admin_fields', f: f, user: @user %>
     <% end %>
-
-    <%= f.primary 'Save Changes' %>
+    <button type='submit' class='btn btn-block btn-primary'>
+      <i class='fa fa-refresh'></i> Update Employee Information
+    </button>
   <% end %>
 </div>
 </div>

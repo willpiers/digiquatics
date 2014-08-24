@@ -1,20 +1,11 @@
 <% provide(:title, 'Dashboard') %>
 <div class='jumbotron well hidden-xs'>
 <h1 class='cross_platform_header'>DigiQuatics Dashboard</h1>
-<center>
-  <h3>
-    To get started, click a link above! <br/><br>
-    OR </br><br>
-    If you have question please see our
-    instructions page <a href='/instructions'>here!</a>
-  </h3>
-</center>
 </div>
 <div class='visible-xs'>
   <center>
     <h4>DigiQuatics Dashboard</h4>
   </center>
-
   <br>
   <% if FeatureToggleHelper.chemicals? %>
      <% if current_user.chemical_records_access? || current_user.admin? %>
@@ -22,21 +13,14 @@
           class: 'btn btn-primary btn-block', role: 'button' %>
     <% end %>
   <% end %>
-
   <br>
-
   <%= link_to 'New Maintenance Issue', new_help_desk_path,
       class: 'btn btn-primary btn-block', role: 'button' %>
-
   <br>
-
   <%= link_to 'New Shift Report', new_shift_report_path,
       class: 'btn btn-primary btn-block', role: 'button' %>
-
   <br>
-
   <%= link_to 'New Slide Inspection', new_slide_inspection_path,
       class: 'btn btn-primary btn-block', role: 'button' %>
-
 </div>
 

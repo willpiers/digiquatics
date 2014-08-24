@@ -7,12 +7,16 @@
       <div class='visible-xs'><br></div>
       <%= render 'layouts/location_select' %>
       <div class='col-md-4'></div>
-      <div class='col-md-3 pull-right'>
-        <div class='btn-group'>
-          <%= link_to 'View Pending', sub_requests_path,
-                      class: 'btn btn-success btn-sm' %>
-          <%= link_to 'Management', admin_sub_requests_path,
-                      class: 'btn btn-danger btn-sm' %>
+      <div class='col-md-3 pull-right pull-right'>
+        <div class='btn-group pull-right'>
+          <%= link_to(sub_requests_path,
+              class:'btn btn-sm btn-success') do %>
+            <i class='fa fa-list fa-lg'></i> Queue
+          <% end %>
+          <%= link_to(admin_sub_requests_path,
+              class:'btn btn-sm btn-danger') do %>
+            <i class='fa fa-cogs fa-lg'></i> Management
+          <% end %>
         </div>
       </div>
     </div>

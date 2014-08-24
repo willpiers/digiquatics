@@ -8,12 +8,16 @@
       <%= render 'layouts/location_select' %>
       <div class='col-md-4'></div>
       <div class='col-md-3 pull-right'>
-        <div class='btn-group'>
+        <div class='btn-group pull-right'>
           <% if current_user.admin? %>
-            <%= link_to 'View Processed', processed_sub_requests_path,
-                        class: 'btn btn-success btn-sm' %>
-            <%= link_to 'Management', admin_sub_requests_path,
-                        class: 'btn btn-danger btn-sm' %>
+            <%= link_to(processed_sub_requests_path,
+                class:'btn btn-sm btn-warning') do %>
+              <i class='fa fa-history fa-lg'></i> Processed
+            <% end %>
+            <%= link_to(admin_sub_requests_path,
+                class:'btn btn-sm btn-danger') do %>
+              <i class='fa fa-cogs fa-lg'></i> Management
+            <% end %>
           <% end %>
         </div>
       </div>

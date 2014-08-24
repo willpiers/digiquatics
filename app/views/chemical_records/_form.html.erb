@@ -1,6 +1,5 @@
 <div ng-app='digiquatics'>
   <div class='userform well'>
-
     <%= bootstrap_form_for(@chemical_record) do |f| %>
       <% if @chemical_record.errors.any? %>
 
@@ -15,10 +14,8 @@
         </div>
       <% end %>
       <%= render 'shared/required' %>
-
       <div ng-controller='ChemicalRecordsCtrl'>
         <label>Location</label>
-
       <% if @chemical_record.new_record?() %>
           <!-- Defaults to current location for new -->
           <%= render 'layouts/location_select_chemicals' %>
@@ -31,34 +28,37 @@
         <%= render 'layouts/pool_select_chemicals_edit' %>
         <%= f.hidden_field :pool_id, value: "{{pool_id}}" %>
       <% end %>
-
       </div>
-
       <%= f.text_field :free_chlorine_ppm, label: 'Free Chlorine ppm' %>
       <%= f.text_field :total_chlorine_ppm, label: 'Total Chlorine ppm *' %>
       <%= f.text_field :ph, label: 'PH *' %>
-
       <%= f.text_field :pool_temp, label: 'Pool Temp' %>
       <%= f.text_field :air_temp, label: 'Air Temp' %>
       <%= f.select :water_clarity, %w[Clear Cloudy],
                   { label: 'Water Clarity' } %>
       <%= f.text_field :alkalinity %>
       <%= f.text_field :calcium_hardness, label: 'Calcium Hardness' %>
-
       <div ng-controller='AnalyticsCtrl' class='hidden-xs hidden-sm'>
         <label>Date</label>
-        <div class="input-group">
-          <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="dt1" is-open="opened1" max="'2015-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
-          <span class="input-group-btn">
-            <button class="btn btn-default" ng-click="open1($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+        <div class='input-group'>
+          <input type='text' class='form-control' datepicker-popup='{{format}}'
+                 ng-model='dt1' is-open='opened1' max=''2015-06-22''
+                 datepicker-options='dateOptions'
+                 date-disabled='disabled(date, mode)'
+                 ng-required='true' close-text='Close' />
+          <span class='input-group-btn'>
+            <button class='btn btn-default' ng-click='open1($event)'>
+              <i class='glyphicon glyphicon-calendar'></i>
+            </button>
           </span>
         </div>
         <br>
         <label>Time</label>
           <center>
             <div class='fix_ampm_button'>
-              <timepicker ng-model="mytime" ng-change="changed()" hour-step="hstep"
-                          show-meridian="ismeridian"></timepicker>
+              <timepicker ng-model='mytime' ng-change='changed()'
+                          hour-step='hstep' show-meridian='ismeridian'>
+              </timepicker>
             </div>
           </center>
           <%= f.hidden_field :time_stamp,
@@ -66,7 +66,15 @@
                                      {{mytime | date:'HH:mm:ss Z' }}" %>
       </div>
       <br>
-      <%= f.primary ( f.object.new_record? ?  'Submit' : 'Save Changes' ) %>
+      <% if @chemical_record.new_record?() %>
+        <button type='submit' class='btn btn-block btn-primary'>
+          <i class='fa fa-check'></i> Submit Record
+        </button>
+      <% else %>
+        <button type='submit' class='btn btn-block btn-primary'>
+          <i class='fa fa-refresh'></i> Update Record
+        </button>
+      <% end %>
     <% end %>
   </div>
 </div>

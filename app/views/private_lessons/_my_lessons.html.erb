@@ -1,4 +1,7 @@
-<div ng-show='(myPrivateLessons | orderBy:order.value:order.reverse | filter:locationFilter | filter:search).length'>
+<div ng-show='(myPrivateLessons
+              | orderBy:order.value:order.reverse
+              | filter:locationFilter
+              | filter:search).length'>
   <table class='table table-hover' >
     <thead>
       <tr>
@@ -32,7 +35,10 @@
       </tr>
     </thead>
     <tbody>
-      <tr ng-repeat='lesson in myPrivateLessons | orderBy:predicate.value:reverse | filter:locationFilter | filter:search'>
+      <tr ng-repeat='lesson in myPrivateLessons
+                    | orderBy:predicate.value:reverse
+                    | filter:locationFilter
+                    | filter:search'>
         <td>
           <div ng-repeat='participant in lesson.participants'>
             <a ng-href='/private_lessons/{{lesson.id}}'>
@@ -62,7 +68,10 @@
   </table>
 </div>
 
-<div ng-hide='(myPrivateLessons | orderBy:order.value:order.reverse | filter:locationFilter | filter:search).length'>
+<div ng-hide='(myPrivateLessons
+              | orderBy:order.value:order.reverse
+              | filter:locationFilter
+              | filter:search).length'>
   <hr>
   <center>
     <p>
