@@ -42,7 +42,7 @@ describe 'Slide Inspection pages' do
 
     it { should have_selector('h1', text: 'Slide Inspections') }
     it { should have_title(full_title('Slide Inspections')) }
-    it { should have_link('New Slide Inspection', new_slide_inspection_path) }
+    it { should have_link('New Inspection', new_slide_inspection_path) }
 
     it { should have_selector('th', text: 'Location') }
     it { should have_selector('th', text: 'Slide') }
