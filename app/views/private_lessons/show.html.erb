@@ -48,8 +48,8 @@
   <% end %>
   <% if current_user.admin? %>
     <ul class = 'pull-right'>
-      <%= link_to(edit_private_lesson_path(@private_lesson),
-                  class:'btn btn-default btn-primary') do %>
+      <%= link_to edit_private_lesson_path(@private_lesson),
+                  class:'btn btn-default btn-primary' do %>
         <i class='fa fa-pencil fa-lg'></i> Edit Lesson
       <% end %>
     </ul>
