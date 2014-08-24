@@ -109,6 +109,16 @@ module ApplicationHelper
     value ? 'success' : 'danger'
   end
 
+  def active_nav(controller)
+    if params[:controller] == controller then 'active'
+    end
+  end
+
+  def action_nav(action_name)
+    if params[:action] == action_name then 'active'
+    end
+  end
+
   def date_and_time(date)
     date ? date.strftime('%-m/%-d/%Y @ %I:%M%p') : ''
   end

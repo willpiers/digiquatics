@@ -34,6 +34,7 @@ gem 'momentjs-rails'
 gem 'ng-rails-csrf'
 gem 'chartkick'
 gem 'lodash-rails'
+gem 'active_link_to'
 
 group :development, :test do
   gem 'rspec-rails'
