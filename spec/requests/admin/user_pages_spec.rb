@@ -241,7 +241,7 @@ describe 'User pages' do
         describe 'with invalid information' do
           before do
             fill_in('Password *', with: 'foo', exact: true)
-            click_button 'Save Changes'
+            click_button 'Update Employee Information'
           end
         end
 
@@ -283,7 +283,7 @@ describe 'User pages' do
             # Admin User Information
             # No admin information
 
-            click_button 'Save Changes'
+            click_button 'Update Employee Information'
           end
 
           it { should have_title(full_title(new_first_name)) }
@@ -345,7 +345,7 @@ describe 'User pages' do
         describe 'with invalid information' do
           before do
             fill_in 'Password *', with: 'foo', exact: true
-            click_button 'Save Changes'
+            click_button 'Update Employee Information'
           end
 
         end
@@ -397,7 +397,7 @@ describe 'User pages' do
             fill_in 'Pay Rate',           with: '9.50'
             select('Yes',                  from: 'user_private_lesson_access')
 
-            click_button 'Save Changes'
+            click_button 'Update Employee Information'
           end
 
           it { should have_title(full_title(new_first_name)) }

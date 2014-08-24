@@ -6,11 +6,11 @@
     <%= f.text_field :name, label: 'Name *' %>
       <% if @certification_name.new_record?() %>
         <button type='submit' class='btn btn-block btn-primary'>
-          <i class='fa fa-check'></i> Submit
+          <i class='fa fa-check'></i> Submit Certification
         </button>
       <% else %>
         <button type='submit' class='btn btn-block btn-primary'>
-          <i class='fa fa-floppy-o'></i> Save
+          <i class='fa fa-refresh'></i> Update Certification
         </button>
       <% end %>
   <% end %>
