@@ -1,8 +1,6 @@
 <div ng-app='digiquatics' ng-controller='TimeOffCtrl' class='userform well'>
   <%= bootstrap_form_for(@time_off_request) do |f| %>
-
     <%= render 'shared/required' %>
-
     <div class='center'>
       <div class='btn-group'>
         <label class='btn btn-info' ng-model='requestMode' btn-radio="'partialDay'">
@@ -13,20 +11,18 @@
         </label>
       </div>
     </div>
-
     <div ng-if='allDayRequestMode()'>
       <%= render 'time_off_requests/show/all_day', f: f %>
     </div>
-
     <div ng-if='partialDayRequestMode()'>
       <%= render 'time_off_requests/show/partial_day', f: f %>
     </div>
-
     <%= f.text_area :reason, label: 'Reason' %>
     <%= f.hidden_field :user_id, value: current_user.id %>
     <%= f.hidden_field :location_id, value: current_user.location_id %>
-    <%= f.primary ( f.object.new_record? ?  'Submit' :
-    'Save Changes' ) %>
+    <button type='submit' class='btn btn-block btn-primary'>
+      <i class='fa fa-check'></i> Submit Request
+    </button>
   <% end %>
 </div>
 </div>

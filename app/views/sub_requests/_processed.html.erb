@@ -83,10 +83,12 @@
         {{request.shift.start_time | date:'M/d/yy'}}
       </td>
       <td class='hidden-xs'>
-        {{request.shift.start_time | date:'h:mm'}}-{{request.shift.end_time | date:'h:mm a'}}
+        {{request.shift.start_time | date:'h:mm'}}-
+        {{request.shift.end_time | date:'h:mm a'}}
       </td>
       <td class='visible-xs'>
-        {{request.shift.start_time | date:'h:mm'}}-{{request.shift.end_time | date:'h:mm a M/d/yy '}}
+        {{request.shift.start_time | date:'h:mm'}}-
+        {{request.shift.end_time | date:'h:mm a M/d/yy'}}
       </td>
       <td class='hidden-xs'>
         <a ng-href='/users/{{request.shift.user.id}}'>
@@ -120,7 +122,9 @@
               | filter:locationFilter
               | filter:search).length > 10'>
   <center>
-    <btn class='btn btn-default load-more-width' ng-click='loadMore()'>Load Additional Records</btn>
+    <btn class='btn btn-default load-more-width'
+      ng-click='loadMore()'>Load More
+    </btn>
   </center>
 </div>
 <div ng-hide='(processedSubRequests

@@ -8,11 +8,12 @@
       <dq-location></dq-location>
       <div class='col-md-5'></div>
       <div class='col-md-2 pull-right'>
-        <div class='btn-group'>
+        <div class='btn-group pull-right'>
           <%if current_user.admin? %>
-            <%= link_to 'Queue',
-            account_private_lessons_path(account_id: current_user.account_id),
-              class: 'btn btn-warning btn-sm', role: 'button' %>
+            <%= link_to account_private_lessons_path(account_id: current_user.account_id),
+                class:'btn btn-sm btn-warning' do %>
+              <i class='fa fa-list fa-lg'></i> Queue
+            <% end %>
           <% end %>
         </div>
       </div>

@@ -1,7 +1,10 @@
 @import "bootstrap";
+@import url(http://fonts.googleapis.com/css?family=Roboto:400,400italic,900);
 
 $lightgrey: #999;
 $grayMediumLight: #eaeaea;
+$yellow: #FED845;
+$blueLink: #658BCA;
 
 /* universal */
 
@@ -30,6 +33,10 @@ textarea {
 }
 
 /* typography */
+
+* {
+  font-family: 'Roboto', sans-serif;
+}
 
 h1, h2, h3, h4, h5, h6 {
   line-height: 1;
@@ -295,7 +302,7 @@ legend{
 }
 
 .arrow_link_color {
-  color: #658BCA;
+  color: $blueLink;
 }
 
 .center-row-text {
@@ -310,7 +317,7 @@ legend{
 }
 
 .link-color-fix{
-  color: #658BCA
+  color: $blueLink
 }
 
 @media (min-width: 500px) {
@@ -326,5 +333,5 @@ legend{
 }
 
 .star {
-  color:#FED845;
+  color:$yellow;
 }

@@ -4,8 +4,14 @@
     <%= content_tag(:legend, legend) unless !legend %>
     <%= render 'shared/required' %>
     <%= f.text_field :name, label: 'Name *' %>
-      <%= f.form_group do %>
-        <%= f.primary %>
+      <% if @certification_name.new_record?() %>
+        <button type='submit' class='btn btn-block btn-primary'>
+          <i class='fa fa-check'></i> Submit Certification
+        </button>
+      <% else %>
+        <button type='submit' class='btn btn-block btn-primary'>
+          <i class='fa fa-refresh'></i> Update Certification
+        </button>
       <% end %>
   <% end %>
 </div>

@@ -4,12 +4,10 @@
 
 .shift {
 min-height:30px;
-width: 150px;
 cursor: pointer;
 }
 
 .shift:hover {
-
   background-color: #F5F5F5;
   color: black;
   text-align: center;
@@ -80,7 +78,6 @@ cursor: pointer;
 
 #schedule_legend{
   position: relative;
-  right: 90px;
   bottom: 18px;
 }
 
@@ -97,4 +94,18 @@ cursor: pointer;
 .fix_ampm_button button{
   position: relative;
   bottom: 7px;
+}
+
+#availability_form{
+  margin: 0px; padding: 0px;
+}
+
+#schedule_info_column {
+  text-align: left;
+  width: 80px;
+}
+
+.schedule_day_header{
+  text-align: center;
+  width: 100px;
 }

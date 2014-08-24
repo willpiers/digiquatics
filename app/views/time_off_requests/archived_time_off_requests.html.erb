@@ -8,11 +8,15 @@
       <%= render 'layouts/location_select' %>
       <div class='col-md-3'></div>
       <div class='col-md-3 pull-right'>
-        <div class='btn-group'>
-          <%= link_to 'New Request', new_time_off_request_path,
-                      class: 'btn btn-primary btn-sm' %>
-          <%= link_to 'View Pending', time_off_requests_path,
-                      class: 'btn btn-success btn-sm' %>
+        <div class='btn-group pull-right'>
+          <%= link_to new_time_off_request_path,
+              class:'btn btn-sm btn-primary' do %>
+            <i class='fa fa-plus fa-lg'></i> Add Request
+          <% end %>
+          <%= link_to time_off_requests_path,
+              class:'btn btn-sm btn-success' do %>
+            <i class='fa fa-history fa-lg'></i> Queue
+          <% end %>
         </div>
       </div>
     </div>

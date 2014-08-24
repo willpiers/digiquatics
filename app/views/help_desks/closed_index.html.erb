@@ -8,9 +8,11 @@
       <%= render 'layouts/location_select' %>
       <div class='col-md-5'></div>
       <div class='col-md-2 pull-right'>
-        <div class='btn-group'>
-            <%= link_to 'View Open', help_desks_path,
-            class: 'btn btn-danger btn-sm', role: 'button' %>
+        <div class='btn-group pull-right'>
+          <%= link_to help_desks_path,
+              class:'btn btn-sm btn-danger' do %>
+            <i class='fa fa-cogs fa-lg'></i> Manage Open
+          <% end %>
         </div>
       </div>
     </div>

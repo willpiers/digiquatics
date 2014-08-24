@@ -1,10 +1,9 @@
 <div class='userform well'>
   <a class='pull-right close-button link-color' ng-click='cancel()'>
     <i class='fa fa-times fa-lg'></i></a>
-  <h1 style='margin: 0px; padding: 0px;'>
+  <h1 id='availability_form'>
     {{availability ? ' Edit' : ' Add'}} Availability
   </h1>
-
   <center>
     <p>{{days[day]}}</p>
     <div class='row'>
@@ -26,10 +25,14 @@
       </div>
     </div>
   </center>
-
-  <a class='btn btn-primary btn-block' ng-click='ok(startTime, endTime)'>
-    <i class="fa fa-check fa-lg"></i> {{availability ? 'Save' : 'Add'}}</a>
-
-  <a class='btn btn-danger btn-block' ng-click='delete()'>
-    <i class="fa fa-trash-o fa-lg"></i> {{availability ? 'Delete' : 'Cancel'}}</a>
+  <div ng-show='availability'>
+    <a class='btn btn-primary btn-block' ng-click='ok(startTime, endTime)'>
+      <i class="fa fa-refresh fa-lg"></i> {{'Update Availability'}}</a>
+    <a class='btn btn-danger btn-block' ng-click='delete()'>
+      <i class="fa fa-trash-o fa-lg"></i> {{'Delete'}}</a>
+  </div>
+  <div ng-hide='availability'>
+    <a class='btn btn-primary btn-block' ng-click='ok(startTime, endTime)'>
+      <i class="fa fa-check fa-lg"></i> {{'Submit Availability'}}</a>
+  </div>
 </div>

@@ -191,7 +191,7 @@ describe 'Private Lessons' do
     it { should have_selector('h4', text: 'Student Information') }
     it { should have_selector('h4', text: 'Lesson Request') }
 
-    let(:submit) { 'Submit' }
+    let(:submit) { 'Submit Lesson' }
 
     describe 'with valid information' do
       before do
@@ -302,7 +302,7 @@ describe 'Private Lessons' do
       describe 'with invalid information' do
         before do
           fill_in 'Parent First Name', with: ' '
-          click_button 'Save Changes'
+          click_button 'Update Lesson'
         end
 
         it { should have_content('can\'t be blank') }
@@ -336,7 +336,7 @@ describe 'Private Lessons' do
           # Lesson Request
           select package.name, from: 'Lesson Package *'
 
-          click_button 'Save Changes'
+          click_button 'Update Lesson'
         end
 
         it { should have_title('Lesson Request') }

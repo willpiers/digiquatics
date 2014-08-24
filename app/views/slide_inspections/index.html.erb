@@ -6,9 +6,11 @@
       <%= render 'layouts/location_select' %>
       <div class='col-md-7'></div>
       <div class='col-md-2 pull-right'>
-        <div class='btn-group'>
-          <%= link_to 'New Slide Inspection', new_slide_inspection_path,
-                      class: 'btn btn-primary btn-sm', role: 'button' %>
+        <div class='btn-group pull-right'>
+          <%= link_to new_slide_inspection_path,
+              class:'btn btn-sm btn-primary' do %>
+            <i class='fa fa-plus fa-lg'></i> New Inspection
+          <% end %>
         </div>
       </div>
     </div>

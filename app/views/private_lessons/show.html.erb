@@ -1,20 +1,19 @@
 <% provide(:title, 'Lesson Request') %>
-
 <h1 class='cross_platform_header'>Lesson Request</h1>
-
 <div class='table-width-desktop'>
-
   <div class='pull-left'>
-    <%= link_to ' Back', account_private_lessons_path(account_id: current_user.account_id) ,
+    <%= link_to ' Back',
+        account_private_lessons_path(account_id: current_user.account_id),
         class: 'glyphicon glyphicon-arrow-left' %>
   </div>
-
   <% unless @private_lesson.user_id %>
     <ul class = 'pull-right'>
     <%= bootstrap_form_for @private_lesson do |f| %>
       <%= f.hidden_field :user_id, value: current_user.id %>
       <%= f.hidden_field :claimed_on, value: Time.now %>
-      <%= f.submit 'Claim Lesson', class: 'btn btn-default btn-success' %>
+      <button type='submit' class='btn btn-default btn-success'>
+        <i class='fa fa-check'></i> Claim Lesson
+      </button>
     <% end %>
     </ul>
   <% else %>
@@ -22,14 +21,18 @@
       <ul class = 'pull-right'>
       <%= bootstrap_form_for @private_lesson do |f| %>
         <%= f.hidden_field :completed_on, value: Time.now %>
-        <%= f.submit 'Mark Completed', class: 'btn btn-default btn-danger'  %>
+        <button type='submit' class='btn btn-default btn-danger'>
+          <i class='fa fa-check-square-o'></i> Mark Completed
+        </button>
       <% end %>
       </ul>
     <% else %>
       <ul class = 'pull-right'>
       <%= bootstrap_form_for @private_lesson do |f| %>
         <%= f.hidden_field :completed_on, value: nil %>
-        <%= f.submit 'Mark Open', class: 'btn btn-default btn-danger'  %>
+        <button type='submit' class='btn btn-default btn-danger'>
+          <i class='fa fa-square-o'></i> Mark Uncompleted
+        </button>
       <% end %>
       </ul>
     <% end %>
@@ -37,43 +40,44 @@
     <%= bootstrap_form_for @private_lesson do |f| %>
       <%= f.hidden_field :user_id, value: nil %>
       <%= f.hidden_field :claimed_on, value: nil %>
-      <%= f.submit 'Unclaim Lesson', class: 'btn btn-default btn-success' %>
+      <button type='submit' class='btn btn-default btn-success'>
+        <i class='fa fa-sign-out'></i> Unclaim Lesson
+      </button>
     <% end %>
     </ul>
   <% end %>
-
   <% if current_user.admin? %>
     <ul class = 'pull-right'>
-      <%= link_to 'Edit Lesson', edit_private_lesson_path(@private_lesson),
-          class: 'btn btn-default btn-primary' %>
+      <%= link_to edit_private_lesson_path(@private_lesson),
+                  class:'btn btn-default btn-primary' do %>
+        <i class='fa fa-pencil fa-lg'></i> Edit Lesson
+      <% end %>
     </ul>
   <% end %>
-
   <br/><br/><br/>
-
   <% if current_user.admin? %>
     <div ng-app='digiquatics'>
-      <div ng-controller='UsersCtrl' style='width: 300px;' class='pull-right'>
+      <div ng-controller='UsersCtrl' style='width: 170px;' class='pull-right'>
         <%= bootstrap_form_for @private_lesson do |f| %>
           <select ng-model='selectedUserId' class='form-control'>
             <option value=''>Select Employee</option>
-            <option ng-repeat="user in users | orderBy: 'last_name'" value='{{user.id}}' name='private_lesson[user_id]'>
+            <option ng-repeat="user in users | orderBy: 'last_name'"
+                    value='{{user.id}}' name='private_lesson[user_id]'>
               {{user.last_name}}, {{user.first_name}}</option>
           </select>
 
           <%= f.hidden_field :user_id, value: "{{selectedUserId}}" %>
           <%= f.hidden_field :claimed_on, value: Time.now %>
-          <%= f.submit 'Assign', class: 'btn btn-default btn-warning' %>
+          <button type='submit' class='btn btn-default btn-warning'>
+            <i class='fa fa-user'></i> Assign To Employee
+          </button>
         <% end %>
       </div>
     </div>
   <% end %>
-
   <br><br><br>
-
   <% if current_user.admin? %>
     <table class='table table-bordered table-condensed' >
-
       <h4>Instructor Information</h4>
       <tr>
          <th id='fixtablewidth'>Name</th>
@@ -123,13 +127,13 @@
       </tr>
     </table>
   <% end %>
-
   <table class='table table-bordered table-condensed' >
     <h4> Parent Information </h4>
       <tr>
         <th id='fixtablewidth'>Name</th>
         <td>
-          <%= "#{@private_lesson.parent_last_name}, #{@private_lesson.parent_first_name}" %>
+          <%= "#{@private_lesson.parent_last_name},
+               #{@private_lesson.parent_first_name}" %>
         </td>
       </tr>
       <tr>
@@ -149,7 +153,6 @@
         <td><%= @private_lesson.contact_method %></td>
       </tr>
   </table>
-
   <% @private_lesson.participants.each do |participant| %>
     <table class='table table-bordered' >
       <h4>Student Information</h4>
@@ -175,7 +178,6 @@
       </tr>
     </table>
   <% end %>
-
   <table class='table table-bordered' >
     <h4>Preferences</h4>
     <tr>
@@ -197,7 +199,6 @@
       <td> <%= @private_lesson.lesson_objective %> </td>
     </tr>
   </table>
-
   <h4>Availability</h4>
   <table class='table table-bordered' >
     <tr>
@@ -312,8 +313,7 @@
       </td>
     </tr>
   </table>
-
-  <table class='table table-bordered' >
+  <table class='table table-bordered'>
     <h4>Lesson Request</h4>
       <tr>
         <th id='fixtablewidth'>Lesson Package</th>
@@ -325,4 +325,3 @@
       </tr>
   </table>
 </div>
-

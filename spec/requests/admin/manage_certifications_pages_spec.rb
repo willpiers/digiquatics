@@ -52,7 +52,7 @@ describe 'Manage Certifications' do
       end
 
       it 'should create a new cert name and redirect to admin dashboard' do
-        expect { click_button 'Create Certification name' }
+        expect { click_button 'Submit Certification' }
         .to change(CertificationName, :count).by(1)
 
         current_path.should == admin_dashboard_path
@@ -82,7 +82,7 @@ describe 'Manage Certifications' do
       # end
 
       it 'should update the cert_name and redirect to admin dashboard' do
-        expect { click_button 'Update Certification name' }
+        expect { click_button 'Update Certification' }
         .to_not change(CertificationName, :count).by(1)
 
         expect(cert_name1.reload.name).to eq('new certification_name name')

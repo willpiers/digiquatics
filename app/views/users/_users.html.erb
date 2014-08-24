@@ -61,6 +61,7 @@
             <dq-arrow></dq-arrow>
           </span>
         </th>
+        <th class='hidden-xs'></th>
       </tr>
     </thead>
     <tbody>
@@ -76,9 +77,7 @@
           </a>
         </td>
         <td class='hidden-xs'>
-          <a ng-href='/users/{{user.id}}'>
             {{user.last_name}}
-          </a>
         </td>
         <td class='hidden-xs'>{{user.first_name}}</td>
         <td class='hidden-xs'>{{user.date_of_birth | age}}</td>
@@ -87,6 +86,10 @@
         <td class='hidden-xs'><%= mail_to '{{user.email}}' %></td>
         <td><a ng-href='tel:{{user.phone_number}}'>{{user.phone_number}}</td>
         <td class='hidden-xs'>{{user.admin | booleanToWords}}</td>
+        <td class='hidden-xs'>
+          <%= link_to 'View Employee', '/users/{{user.id}}',
+            class: 'btn btn-info btn-xs' %>
+        </td>
       </tr>
     </tbody>
   </table>

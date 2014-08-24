@@ -21,7 +21,7 @@ GIT
 
 GIT
   remote: git://github.com/potenza/bootstrap_form.git
-  revision: c54c35f6fb6ce95b66adb07ce0815d1ba4595700
+  revision: 82a9ae3efb11cdcd7c2a371dc3424a15f283308b
   specs:
     bootstrap_form (2.1.1)
 

@@ -3,43 +3,71 @@
 
 <div ng-app="digiquatics" ng-controller="AdminDashboardCtrl">
   <accordion close-others="oneAtATime">
-    <accordion-group heading="Manage Account">
-     <%= render 'account' %>
+    <accordion-group>
+        <accordion-heading>
+          <i class="fa fa-home"></i> Manage Account
+        </accordion-heading>
+        <%= render 'account' %>
     </accordion-group>
 
-    <accordion-group heading="Manage Certifications">
-      <%= render 'certifications' %>
+    <accordion-group>
+        <accordion-heading>
+          <i class="fa fa-bell"></i> Manage Alerts
+        </accordion-heading>
+        <%= render 'emails' %>
+    </accordion-group>
+
+    <accordion-group>
+        <accordion-heading>
+          <i class="fa fa-list-alt"></i> Manage Certifications
+        </accordion-heading>
+        <%= render 'certifications' %>
     </accordion-group>
 
     <% if FeatureToggleHelper.chemicals? %>
-      <accordion-group heading="Manage Chemicals">
-        <%= render 'chemicals' %>
+      <accordion-group>
+          <accordion-heading>
+            <i class="fa fa-flask"></i> Manage Chemicals
+          </accordion-heading>
+          <%= render 'chemicals' %>
       </accordion-group>
     <% end %>
 
-    <accordion-group heading="Manage Locations">
-      <%= render 'locations' %>
+    <accordion-group>
+        <accordion-heading>
+          <i class="fa fa-building"></i> Manage Locations
+        </accordion-heading>
+        <%= render 'locations' %>
     </accordion-group>
+
     <% if FeatureToggleHelper.attendance? %>
       <accordion-group heading="Manage Attendance">
         <%= render 'attendance' %>
       </accordion-group>
     <% end %>
-    <accordion-group heading="Manage Positions">
-      <%= render 'positions' %>
+
+    <accordion-group>
+        <accordion-heading>
+          <i class="fa fa-users"></i> Manage Positions
+        </accordion-heading>
+        <%= render 'positions' %>
     </accordion-group>
+
     <% if FeatureToggleHelper.private_lessons? %>
-      <accordion-group heading="Manage Private Lessons Information">
-        <%= render 'private_lessons' %>
+      <accordion-group>
+          <accordion-heading>
+            <i class="fa fa-child"></i> Manage Private Lessons
+          </accordion-heading>
+          <%= render 'private_lessons' %>
       </accordion-group>
     <% end %>
 
-    <accordion-group heading="Email Alerts">
-    <%= render 'emails' %>
+    <accordion-group>
+        <accordion-heading>
+          <i class="fa fa-download"></i> Export Data
+        </accordion-heading>
+        <%= render 'exports' %>
     </accordion-group>
 
-    <accordion-group heading="Export Data">
-      <%= render 'exports' %>
-    </accordion-group>
   </accordion>
 </div>

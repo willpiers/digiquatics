@@ -136,8 +136,8 @@
             {{record.si_index}}
         </td>
         <td>
-          <%= link_to 'View Record', "/chemical_records/{{record.id}}",
-            class: 'btn btn-info btn-xs', role: 'button' %>
+          <%= link_to 'View Record', '/chemical_records/{{record.id}}',
+            class: 'btn btn-info btn-xs' %>
         </td>
       </tr>
     </tbody>
@@ -151,7 +151,7 @@
               | filter:search).length > 10' >
   <center>
     <btn class='btn btn-default load-more-width' ng-click='loadMore()'>
-      Load Additional Records
+      Load More
     </btn>
   </center>
 </div>
@@ -164,7 +164,7 @@
   <center>
     <p>
       No chemical records match this filter or you have none yet.
-        <%= link_to 'Click here to add a record.',
+        <%= link_to 'Click here to add a new record.',
             new_chemical_record_path %>
     </p>
   </center>

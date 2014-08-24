@@ -1,4 +1,7 @@
-<div ng-show='(adminPrivateLessons | orderBy:order.value:order.reverse | filter:locationFilter | filter:search).length'>
+<div ng-show='(adminPrivateLessons
+              | orderBy:order.value:order.reverse
+              | filter:locationFilter
+              | filter:search).length'>
   <table class='table'>
     <thead>
       <tr>
@@ -90,12 +93,21 @@
     </tbody>
   </table>
 </div>
-<div ng-show='(adminPrivateLessons | orderBy:order.value:order.reverse | filter:locationFilter | filter:search).length > 10'>
+<div ng-show='(adminPrivateLessons
+              | orderBy:order.value:order.reverse
+              | filter:locationFilter
+              | filter:search).length > 10'>
   <center>
-    <btn class='btn btn-default load-more-width' ng-click='loadMore()'>Load Additional Records</btn>
+    <btn class='btn btn-default load-more-width'
+          ng-click='loadMore()'>
+      Load More
+    </btn>
   </center>
 </div>
-<div ng-hide='(adminPrivateLessons | orderBy:order.value:order.reverse | filter:locationFilter | filter:search).length'>
+<div ng-hide='(adminPrivateLessons
+              | orderBy:order.value:order.reverse
+              | filter:locationFilter
+              | filter:search).length'>
   <hr/>
   <center>
     <p>

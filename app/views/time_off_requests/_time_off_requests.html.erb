@@ -82,7 +82,10 @@
               | filter:locationFilter
               | filter:search).length > 10' class='table'>
   <center>
-    <btn class='btn btn-default load-more-width' ng-click='loadMore()'>Load Additional Records</btn>
+    <btn class='btn btn-default load-more-width'
+         ng-click='loadMore()'>
+      Load More
+    </btn>
   </center>
 </div>
 <div ng-hide='(timeOff
