@@ -17,12 +17,14 @@
 <div class='table-width-desktop'>
 
   <div class="btn-group pull-right hidden-xs">
-    <%= link_to 'Edit Profile', edit_user_path(@user),
-                class: 'btn btn-primary btn-default', role: 'button' %>
+    <%= link_to(edit_user_path(@user),
+                class:'btn btn-default btn-primary') do %>
+      <i class='fa fa-pencil fa-lg'></i> Edit Profile
+    <% end %>
     <div class="btn-group">
       <button type="button" class="btn btn-default btn-success dropdown-toggle"
               data-toggle="dropdown">
-        My Information
+        <span class="fa fa-user fa-lg"></span> My Information
         <span class="caret"></span>
       </button>
       <ul class="dropdown-menu" role="menu">
@@ -36,12 +38,14 @@
   </div>
 
   <div class="btn-group visible-xs pull-right">
-    <%= link_to 'Edit Profile', edit_user_path(@user),
-                class: 'btn btn-primary btn-xs', role: 'button' %>
+    <%= link_to(edit_user_path(@user),
+                class:'btn btn-xs btn-primary') do %>
+      <i class='fa fa-pencil fa-lg'></i> Edit Profile
+    <% end %>
     <div class="btn-group">
       <button type="button" class="btn btn-xs btn-success dropdown-toggle"
               data-toggle="dropdown">
-        My Information
+        <span class="fa fa-user fa-lg"></span> My Information
         <span class="caret"></span>
       </button>
       <ul class="dropdown-menu" role="menu">

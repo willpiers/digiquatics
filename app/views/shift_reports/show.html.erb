@@ -6,8 +6,10 @@
 
 <div class='table-width-desktop'>
   <ul class = 'pull-right'>
-    <%= link_to 'Edit Shift Report', edit_shift_report_path(@shift_report),
-        class: 'btn btn-default btn-primary' %>
+    <%= link_to(edit_shift_report_path(@shift_report),
+                class:'btn btn-default btn-primary') do %>
+      <i class='fa fa-pencil fa-lg'></i> Edit Report
+    <% end %>
   </ul>
 
   <div class='pull-left'>
