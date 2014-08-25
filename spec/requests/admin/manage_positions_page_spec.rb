@@ -29,7 +29,7 @@ describe 'Manage Positions' do
       visit admin_dashboard_path
     end
 
-    it { should have_link('New', href: new_position_path) }
+    it { should have_link('Add', href: new_position_path) }
 
     describe 'admin dashboard' do
       it 'should list each position' do
@@ -49,7 +49,7 @@ describe 'Manage Positions' do
       end
 
       it 'should create a new position and redirect to index' do
-        expect { click_button 'Create Position' }
+        expect { click_button 'Submit Position' }
         .to change(Position, :count).by(1)
 
         current_path.should == admin_dashboard_path

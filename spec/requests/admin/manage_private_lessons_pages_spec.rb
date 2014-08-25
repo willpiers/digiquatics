@@ -27,7 +27,7 @@ describe 'Manage Private Lessons' do
       visit admin_dashboard_path
     end
 
-    it { should have_link('New', href: new_position_path) }
+    it { should have_link('Add', href: new_position_path) }
 
     describe 'admin dashboard' do
       it 'should list each package' do
@@ -47,7 +47,7 @@ describe 'Manage Private Lessons' do
       end
 
       it 'should create a new skill_level and redirect to index' do
-        expect { click_button 'Create Skill level' }
+        expect { click_button 'Submit Skill Level' }
         .to change(SkillLevel, :count).by(1)
 
         current_path.should == admin_dashboard_path
@@ -61,7 +61,7 @@ describe 'Manage Private Lessons' do
       end
 
       it 'should update the skill_level and redirect to admin dashboard' do
-        expect { click_button 'Update Skill level' }
+        expect { click_button 'Update Skill Level' }
         .to_not change(SkillLevel, :count).by(1)
 
         expect(skill_level.reload.name).to eq('new skill_level name')
@@ -76,7 +76,7 @@ describe 'Manage Private Lessons' do
       end
 
       it 'should create a new package and redirect to index' do
-        expect { click_button 'Create Package' }
+        expect { click_button 'Submit Package' }
         .to change(Package, :count).by(1)
 
         current_path.should == admin_dashboard_path

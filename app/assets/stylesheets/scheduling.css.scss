@@ -15,7 +15,7 @@ cursor: pointer;
 }
 
 .shift:hover:before {
-  font-size: 18px;
+  font-size: 14px;
   content: attr(data-hover);
 }
 
@@ -26,7 +26,7 @@ cursor: pointer;
 
 .my_time_off_bar {
   height: 40px;
-  max-width: 110px;
+  max-width: 120px;
   margin: 0px;
   padding: 0px;
   vertical-align: middle;
@@ -41,7 +41,7 @@ cursor: pointer;
 
 .my_shift_bar {
   height: 150px;
-  max-width: 110px;
+  max-width: 120px;
   margin: 0px;
   padding: 0px;
   vertical-align: middle;
@@ -99,5 +99,5 @@ cursor: pointer;
 
 .schedule_day_header{
   text-align: center;
-  min-width: 110px;
+  max-width: 110px;
 }

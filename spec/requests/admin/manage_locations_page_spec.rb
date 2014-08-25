@@ -22,7 +22,7 @@ describe 'Manage Locations' do
       visit admin_dashboard_path
     end
 
-    it { should have_link('New', href: new_location_path) }
+    it { should have_link('Add', href: new_location_path) }
     it { should have_content('Pools') }
     it { should have_content('Slides') }
 
@@ -49,25 +49,25 @@ describe 'Manage Locations' do
       it { should have_content('Add Slide') }
 
       it 'should create a new location and redirect to index' do
-        expect { click_button 'Create Location' }
+        expect { click_button 'Submit Location' }
         .to change(Location, :count).by(1)
 
         current_path.should eq admin_dashboard_path
       end
 
       describe 'after saving location' do
-        before { click_button 'Create Location' }
+        before { click_button 'Submit Location' }
 
         it { should have_content('Location was successfully created.') }
       end
 
       it 'should also create the locations pool' do
-        expect { click_button 'Create Location' }
+        expect { click_button 'Submit Location' }
         .to change(Pool, :count).by(1)
       end
 
       it 'should also create the locations slide' do
-        expect { click_button 'Create Location' }
+        expect { click_button 'Submit Location' }
         .to change(Slide, :count).by(1)
       end
     end
