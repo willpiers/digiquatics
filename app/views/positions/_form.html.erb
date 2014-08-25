@@ -4,8 +4,14 @@
       <%= content_tag(:legend, legend) unless !legend %>
       <%= render 'shared/required' %>
       <%= f.text_field :name %>
-      <%= f.form_group do %>
-        <%= f.primary %>
+      <% if @position.new_record?() %>
+        <button type='submit' class='btn btn-block btn-primary'>
+          <i class='fa fa-check'></i> Submit Position
+        </button>
+      <% else %>
+        <button type='submit' class='btn btn-block btn-primary'>
+          <i class='fa fa-refresh'></i> Update Position
+        </button>
       <% end %>
   <% end %>
 </div>
