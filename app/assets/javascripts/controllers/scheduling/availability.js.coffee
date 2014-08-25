@@ -39,7 +39,7 @@
       end.setMinutes 0
       end
 
-    $scope.open = (availability, day, size) ->
+    $scope.open = (day, availability, size) ->
       modalInstance = $modal.open
         templateUrl: 'scheduling/availability/availability.html'
         controller: ModalInstanceCtrl
