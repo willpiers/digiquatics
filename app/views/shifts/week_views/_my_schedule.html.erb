@@ -1,27 +1,27 @@
 <div ng-controller='SubRequestsCtrl'>
-  <div class='hidden-xs'>
+  <div class='hidden-xs visible-sm visible-md visible-lg visible-print'>
     <table class='table table-bordered print-schedule-font'>
       <thead>
         <tr>
-          <th class='my_schedule_header'>
+          <th class='schedule_day_header'>
             {{weekDay(0).format('ddd, MMM D')}}
           </th>
-          <th class='my_schedule_header'>
+          <th class='schedule_day_header'>
             {{weekDay(1).format('ddd, MMM D')}}
           </th>
-          <th class='my_schedule_header'>
+          <th class='schedule_day_header'>
             {{weekDay(2).format('ddd, MMM D')}}
           </th>
-          <th class='my_schedule_header'>
+          <th class='schedule_day_header'>
             {{weekDay(3).format('ddd, MMM D')}}
           </th>
-          <th class='my_schedule_header'>
+          <th class='schedule_day_header'>
             {{weekDay(4).format('ddd, MMM D')}}
           </th>
-          <th class='my_schedule_header'>
+          <th class='schedule_day_header'>
             {{weekDay(5).format('ddd, MMM D')}}
           </th>
-          <th class='my_schedule_header'>
+          <th class='schedule_day_header'>
             {{weekDay(6).format('ddd, MMM D')}}
           </th>
         </tr>
@@ -112,8 +112,8 @@
       </tbody>
     </table>
   </div>
-  <div class='visible-xs'>
-    <table class='table table-bordered print-schedule-font'>
+  <div class='visible-xs hidden-print'>
+    <table class='table table-bordered'>
       <thead>
         <tr>
           <th class='my_schedule_header'>

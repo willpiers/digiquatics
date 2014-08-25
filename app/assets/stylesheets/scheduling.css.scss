@@ -19,20 +19,13 @@ cursor: pointer;
   content: attr(data-hover);
 }
 
-.my_schedule_header {;
-  text-align: center;
-  min-width: 145px;
-}
-
 .my_schedule {
   height: 120px;
-  width: 145px;
   text-align: center;
 }
 
 .my_time_off_bar {
   height: 40px;
-  width: 145px;
   margin: 0px;
   padding: 0px;
   vertical-align: middle;
@@ -40,15 +33,13 @@ cursor: pointer;
 
 .my_time_off_bar_mobile {
   height: 20px;
-  width: 350px;
   margin: 0px;
   padding: 0px;
   vertical-align: middle;
 }
 
 .my_shift_bar {
-  height: 120px;
-  width: 145px;
+  height: 150px;
   margin: 0px;
   padding: 0px;
   vertical-align: middle;
@@ -56,7 +47,6 @@ cursor: pointer;
 
 .my_shift_bar_mobile {
   height: 40px;
-  width: 350px;
   margin: 0px;
   padding: 0px;
   vertical-align: middle;
