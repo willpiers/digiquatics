@@ -95,11 +95,17 @@
       <% end %>
       <li class = "dropdown <%= active_link_to_class('#', :active =>
             [['accounts', 'availabilities', 'private_lessons', 'shifts',
-              'sub_requests', 'time_off_requests', 'users', 'locations',
+              'sub_requests', 'users', 'locations',
               'positions', 'skills', 'packages'],
-            ['show', 'new', 'edit', 'availabilities', 'my_lessons',
+            ['edit', 'availabilities', 'my_lessons',
              'my_schedule', 'my_sub_requests', 'my_time_off_requests',
              'admin_dashboard']]) %>
+             <%= active_link_to_class('#', :active =>
+                         [['users'],
+                         ['show']]) %>
+              <%= active_link_to_class('#', :active =>
+                          [['time_off_requests'],
+                          ['my_time_off_requests']]) %>
              <%= active_link_to_class(availabilities_path,
                  :active => :inclusive) %>">
         <a href = '#' class = 'dropdown-toggle' data-toggle = 'dropdown'>
