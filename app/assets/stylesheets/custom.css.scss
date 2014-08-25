@@ -7,7 +7,6 @@ $yellow: #FED845;
 $blueLink: #658BCA;
 
 /* universal */
-
 html {
   overflow-y: scroll;
 }
@@ -33,7 +32,6 @@ textarea {
 }
 
 /* typography */
-
 * {
   font-family: 'Roboto', sans-serif;
 }
@@ -89,14 +87,12 @@ a.contact_body {
 }
 
 /* header */
-
 #logo {
   float: left;
   margin-right: 10px;
   font-size: 1.7em;
   color: #fff;
-  text-transform: uppercase;
-  letter-spacing: -1px;
+  letter-spacing: 1px;
   padding-top: 12px;
   font-weight: bold;
   line-height: 1;
@@ -112,7 +108,6 @@ a.contact_body {
   margin-right: 10px;
   font-size: 1.7em;
   color: #fff;
-  text-transform: uppercase;
   letter-spacing: -1px;
   padding-top: 5px;
   font-weight: bold;
