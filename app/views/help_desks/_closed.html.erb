@@ -94,12 +94,7 @@
               | orderBy:order.value:order.reverse
               | filter:locationFilter
               | filter:search).length > 10'>
-  <center>
-    <btn class='btn btn-default load-more-width'
-         ng-click='loadMore()'>
-      Load More
-    </btn>
-  </center>
+  <dq-load-more></dq-load-more>
 </div>
 <div ng-hide='(closedHelpDesks
               | orderBy:order.value:order.reverse
