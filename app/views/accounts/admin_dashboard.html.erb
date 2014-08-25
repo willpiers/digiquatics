@@ -24,14 +24,12 @@
         <%= render 'certifications' %>
     </accordion-group>
 
-    <% if FeatureToggleHelper.chemicals? %>
-      <accordion-group>
-          <accordion-heading>
-            <i class="fa fa-flask"></i> Manage Chemicals
-          </accordion-heading>
-          <%= render 'chemicals' %>
-      </accordion-group>
-    <% end %>
+    <accordion-group>
+        <accordion-heading>
+          <i class="fa fa-flask"></i> Manage Chemicals
+        </accordion-heading>
+        <%= render 'chemicals' %>
+    </accordion-group>
 
     <accordion-group>
         <accordion-heading>
@@ -53,14 +51,12 @@
         <%= render 'positions' %>
     </accordion-group>
 
-    <% if FeatureToggleHelper.private_lessons? %>
-      <accordion-group>
-          <accordion-heading>
-            <i class="fa fa-child"></i> Manage Private Lessons
-          </accordion-heading>
-          <%= render 'private_lessons' %>
-      </accordion-group>
-    <% end %>
+    <accordion-group>
+        <accordion-heading>
+          <i class="fa fa-child"></i> Manage Private Lessons
+        </accordion-heading>
+        <%= render 'private_lessons' %>
+    </accordion-group>
 
     <accordion-group>
         <accordion-heading>
