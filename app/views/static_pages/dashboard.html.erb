@@ -7,11 +7,9 @@
     <h4>DigiQuatics Dashboard</h4>
   </center>
   <br>
-  <% if FeatureToggleHelper.chemicals? %>
-     <% if current_user.chemical_records_access? || current_user.admin? %>
-      <%= link_to 'New Chemical Record', new_chemical_record_path,
-          class: 'btn btn-primary btn-block', role: 'button' %>
-    <% end %>
+   <% if current_user.chemical_records_access? || current_user.admin? %>
+    <%= link_to 'New Chemical Record', new_chemical_record_path,
+        class: 'btn btn-primary btn-block', role: 'button' %>
   <% end %>
   <br>
   <%= link_to 'New Maintenance Issue', new_help_desk_path,
@@ -23,4 +21,3 @@
   <%= link_to 'New Slide Inspection', new_slide_inspection_path,
       class: 'btn btn-primary btn-block', role: 'button' %>
 </div>
-
