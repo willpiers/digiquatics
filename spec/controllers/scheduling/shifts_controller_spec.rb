@@ -47,9 +47,17 @@ describe ShiftsController do
           post :create, shift: FactoryGirl.attributes_for(:shift)
         end.to change(Shift, :count).by(1)
       end
+
       it 'redirects to the schedule builder' do
         post :create, shift: FactoryGirl.attributes_for(:shift)
-        response.should render_template :show
+        json = JSON.parse(response.body)
+
+        json['user_id'].should == 1
+        json['location_id'].should == 1
+        json['position_id'].should == 1
+        json['end_time'].should be_an_instance_of(String)
+        json['start_time'].should be_an_instance_of(String)
+        json['id'].should be_an_instance_of(Fixnum)
       end
     end
 
