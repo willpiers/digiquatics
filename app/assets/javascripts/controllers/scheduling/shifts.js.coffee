@@ -137,25 +137,23 @@
 
       $scope.assignShift = (user, location, position, start, end, shift) ->
         if shift
-          new Shifts angular.extend shift,
+          shiftData = angular.extend shift,
             start_time: start
             end_time: end
             position_id: position
-          .$update
-            id: shift.id
-          .then (updatedShift) ->
+
+          Shifts.update id: shiftData.id, shiftData
+          .$promise.then (updatedShift) ->
             _.remove user.shifts, (userShift) -> userShift.id is shift.id
             user.shifts.push updatedShift
-
         else
-          new Shifts
+          Shifts.create
             user_id: user.id
             location_id: location
             position_id: position
             start_time: start
             end_time: end
-          .$create()
-          .then (newShift) ->
+          .$promise.then (newShift) ->
             user.shifts.push newShift
 
       $scope.ok = (position, startTime, endTime) ->
