@@ -24,7 +24,7 @@
 <br><br>
 
 <% @facade.locations.each do |location| %>
-  <%= column_chart [['Uncliamed',  @facade.unclaimed_for(location)],
+  <%= column_chart [['Uncliamed', @facade.unclaimed_for(location)],
                     ['Claimed', @facade.claimed_for(location)],
                     ['Total', @facade.total_for(location)]],
                     colors: ['065BA0'],
