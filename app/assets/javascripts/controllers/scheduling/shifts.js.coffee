@@ -40,7 +40,7 @@
     $scope.buildMode = 'Build'
 
     $scope.build = ->
-      $scope.buildMode == 'Build'
+      $scope.buildMode is 'Build'
 
     $scope.weekCounter = 0
 
@@ -99,8 +99,8 @@
 
     # Show Time off request over multiple days
     $scope.sameDayTimeOff = (start, end, day) ->
-      moment(start).isSame($scope.weekDay(day), 'day') ||
-      moment($scope.weekDay(day)).isAfter(start) &&
+      moment(start).isSame($scope.weekDay(day), 'day') or
+      moment($scope.weekDay(day)).isAfter(start) and
       moment($scope.weekDay(day)).isBefore(end)
 
     $scope.open = (user, day, shift, size) ->
@@ -137,25 +137,26 @@
 
       $scope.assignShift = (user, location, position, start, end, shift) ->
         if shift
-          shift.start_time = start
-          shift.end_time = end
-          shift.position_id = position
-
-          Shifts.update
+          new Shifts angular.extend shift,
+            start_time: start
+            end_time: end
+            position_id: position
+          .$update
             id: shift.id
-          ,
-            shift
+          .then (updatedShift) ->
+            _.remove user.shifts, (userShift) -> userShift.id is shift.id
+            user.shifts.push updatedShift
+
         else
-          newShift = Shifts.create
+          new Shifts
             user_id: user.id
             location_id: location
             position_id: position
             start_time: start
             end_time: end
-
-          console.log newShift.position
-
-          user.shifts.push newShift
+          .$create()
+          .then (newShift) ->
+            user.shifts.push newShift
 
       $scope.ok = (position, startTime, endTime) ->
         $scope.assignShift user, location, position, startTime, endTime, shift
