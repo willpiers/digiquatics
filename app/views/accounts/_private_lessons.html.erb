@@ -8,7 +8,6 @@
     <% @skill_levels.each do |skill_level| %>
       <tr>
         <td class='fixtablewidthadmin'> <%= skill_level.name %></td>
-
         <td><%= link_to ' Edit', edit_skill_level_path(skill_level),
         class: 'glyphicon glyphicon-pencil' %></td>
         <td><%= link_to ' Delete', skill_level, method: :delete,
@@ -20,7 +19,7 @@
 </table>
 
 <p class='new_button'>
-  <%= link_to ' New', new_skill_level_path,
+  <%= link_to ' Add', new_skill_level_path,
     class: 'glyphicon glyphicon-plus-sign' %>
 </p>
 
@@ -34,7 +33,6 @@
     <% @packages.each do |package| %>
       <tr>
         <td class='fixtablewidthadmin'> <%= package.name %></td>
-
         <td><%= link_to ' Edit', edit_package_path(package),
         class: 'glyphicon glyphicon-pencil' %></td>
         <td><%= link_to ' Delete', package, method: :delete,
@@ -46,10 +44,9 @@
 </table>
 
 <p class='new_button'>
-  <%= link_to ' New', new_package_path,
+  <%= link_to ' Add', new_package_path,
     class: 'glyphicon glyphicon-plus-sign' %>
 </p>
-
 <hr>
 
 <h4>External Private Lessons Request Access:</h4>
@@ -63,7 +60,6 @@
   <%= link_to "http://www.digiquatics.com/account/#{@account.id}/private_lessons/new",
               new_account_private_lesson_path(account_id: current_account.id) %>
 </div>
-
 <div class='visible-xs'>
   Unique
   <%= link_to "URL",

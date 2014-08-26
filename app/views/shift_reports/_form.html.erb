@@ -14,9 +14,15 @@
     <% end %>
     <%= f.file_field :attachment_front, label: 'Attachment #1' %>
     <%= f.file_field :attachment_back, label: 'Attachment #2' %>
-
-    <%= f.primary ( f.object.new_record? ?  'Submit' :
-    'Save Changes' ) %>
+    <% if @shift_report.new_record?() %>
+      <button type='submit' class='btn btn-block btn-primary'>
+        <i class='fa fa-check'></i> Submit Report
+      </button>
+    <% else %>
+      <button type='submit' class='btn btn-block btn-primary'>
+        <i class='fa fa-refresh'></i> Update Report
+      </button>
+    <% end %>
   <% end %>
 </div>
 </div>

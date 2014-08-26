@@ -1,26 +1,30 @@
 <div class='userform well'>
   <%= bootstrap_form_for(@location) do |f| %>
-      <%= content_tag(:legend, legend) unless !legend %>
-      <%= render 'shared/required' %>
-
-      <h4> Location </h4>
-      <%= f.text_field :name, label: 'Name *' %>
-
-      <h4> Pools </h4>
-      <%= f.fields_for :pools do |builder| %>
-        <%= render 'pool_fields', f: builder %>
-      <% end %>
-      <%= link_to_add_fields raw('<i class="glyphicon glyphicon-plus-sign"></i> Add Pool'), f, :pools %>
-      <br>
-
-      <h4> Slides </h4>
-      <%= f.fields_for :slides do |builder| %>
-        <%= render 'slide_fields', f: builder %>
-      <% end %>
-      <%= link_to_add_fields raw('<i class="glyphicon glyphicon-plus-sign"></i> Add Slide'), f, :slides %>
-
+    <%= content_tag(:legend, legend) if legend %>
+    <%= render 'shared/required' %>
+    <h4> Location </h4>
+    <%= f.text_field :name, label: 'Name *' %>
+    <h4> Pools </h4>
+    <%= f.fields_for :pools do |builder| %>
+      <%= render 'pool_fields', f: builder %>
+    <% end %>
+    <%= link_to_add_fields raw('<i class="glyphicon glyphicon-plus-sign"></i> Add Pool'), f, :pools %>
+    <br>
+    <h4> Slides </h4>
+    <%= f.fields_for :slides do |builder| %>
+      <%= render 'slide_fields', f: builder %>
+    <% end %>
+    <%= link_to_add_fields raw('<i class="glyphicon glyphicon-plus-sign"></i> Add Slide'), f, :slides %>
     <br><br>
-    <%= f.primary %>
+    <% if @location.new_record?() %>
+      <button type='submit' class='btn btn-block btn-primary'>
+        <i class='fa fa-check'></i> Submit Location
+      </button>
+    <% else %>
+      <button type='submit' class='btn btn-block btn-primary'>
+        <i class='fa fa-refresh'></i> Update Location
+      </button>
+    <% end %>
   <% end %>
 </div>
 </div>

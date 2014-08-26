@@ -32,7 +32,7 @@ describe 'Manage Certifications' do
       visit admin_dashboard_path
     end
 
-    it { should have_link('New', href: new_certification_name_path) }
+    it { should have_link('Add', href: new_certification_name_path) }
 
     describe 'list' do
       it 'should display cert names' do

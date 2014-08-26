@@ -22,7 +22,7 @@ describe 'Shift Report pages' do
 
     it { should have_selector('h1', text: 'Shift Reports') }
     it { should have_title(full_title('Shift Reports')) }
-    it { should have_link('New Report', new_shift_report_path) }
+    it { should have_link('Add Report', new_shift_report_path) }
 
     it { should have_selector('th', text: 'Location') }
     it { should have_selector('th', text: 'Date') }
@@ -43,7 +43,7 @@ describe 'Shift Report pages' do
 
     describe 'shift report' do
       let(:content) { 'Example shift report content' }
-      let(:submit) { 'Submit' }
+      let(:submit) { 'Submit Report' }
 
       it { should have_selector('h1', text: 'New Shift Report') }
       it { should have_title(full_title('New Shift Report')) }
@@ -91,7 +91,7 @@ describe 'Shift Report pages' do
 
     describe 'shift report' do
       let(:edited_content) { 'edit content' }
-      let(:submit) { 'Save Changes' }
+      let(:submit) { 'Update Report' }
 
       it { should have_selector('h1', text: 'Edit Shift Report') }
       it { should have_title(full_title('Edit Shift Report')) }

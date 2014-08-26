@@ -1,11 +1,17 @@
 <div class='userform well'>
   <%= bootstrap_form_for(@position,
     style: :horizontal, left: 'col-sm-4', right: 'col-sm-8') do |f| %>
-      <%= content_tag(:legend, legend) unless !legend %>
+      <%= content_tag(:legend, legend) if legend %>
       <%= render 'shared/required' %>
       <%= f.text_field :name %>
-      <%= f.form_group do %>
-        <%= f.primary %>
+      <% if @position.new_record?() %>
+        <button type='submit' class='btn btn-block btn-primary'>
+          <i class='fa fa-check'></i> Submit Position
+        </button>
+      <% else %>
+        <button type='submit' class='btn btn-block btn-primary'>
+          <i class='fa fa-refresh'></i> Update Position
+        </button>
       <% end %>
   <% end %>
 </div>
