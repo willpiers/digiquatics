@@ -99,5 +99,12 @@
     </tr>
   </tbody>
 </table>
-<dq-load-more></dq-load-more>
+<div ng-show='request in mySubRequests
+                  | orderBy:predicate.value:reverse
+                  | filter:locationFilter
+                  | filter:search
+                  | limitTo:totalDisplayed > 10'>
+  <dq-load-more></dq-load-more>
+</div>
+
 
