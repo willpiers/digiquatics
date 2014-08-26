@@ -1,7 +1,7 @@
 <div class='userform well'>
   <%= bootstrap_form_for(@position,
     style: :horizontal, left: 'col-sm-4', right: 'col-sm-8') do |f| %>
-      <%= content_tag(:legend, legend) unless !legend %>
+      <%= content_tag(:legend, legend) if legend %>
       <%= render 'shared/required' %>
       <%= f.text_field :name %>
       <% if @position.new_record?() %>
