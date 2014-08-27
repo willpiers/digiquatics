@@ -219,6 +219,8 @@ GEM
       mini_portile (= 0.6.0)
     oj (2.9.0)
     orm_adapter (0.5.0)
+    pace-rails (0.1.0)
+      jquery-rails
     paperclip (3.5.2)
       activemodel (>= 3.0.0)
       activesupport (>= 3.0.0)
@@ -397,6 +399,7 @@ DEPENDENCIES
   mysql2
   ng-rails-csrf
   oj
+  pace-rails
   paperclip (= 3.5.2)
   phantomjs
   rails (= 4.0.3)

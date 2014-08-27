@@ -35,6 +35,7 @@ gem 'ng-rails-csrf'
 gem 'chartkick'
 gem 'lodash-rails'
 gem 'active_link_to'
+gem 'pace-rails'
 
 group :development, :test do
   gem 'rspec-rails'

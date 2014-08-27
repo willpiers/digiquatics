@@ -30,3 +30,4 @@
 
 #= require modules
 #= require_tree .
+#= require pace/pace
