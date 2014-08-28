@@ -1,6 +1,7 @@
 
 # DigiQuatics
 [![Stories in Ready](https://badge.waffle.io/affektive/digiquatics.png?label=ready&title=Ready)](https://waffle.io/affektive/digiquatics)
+[![Code Climate](https://codeclimate.com/github/affektive/digiquatics/badges/gpa.svg)](https://codeclimate.com/github/affektive/digiquatics)
 [![Dependency Status](https://gemnasium.com/763d7e339248d2a0442ae161a7fe4c2b.svg)](https://gemnasium.com/duffcodester/digiquatics)
 [ ![Codeship Status for affektive/digiquatics](https://codeship.io/projects/5d448710-ff39-0131-8ce1-4af98b35db61/status)](https://codeship.io/projects/29689)  
 
