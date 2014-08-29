@@ -30,14 +30,22 @@
         <th>Pool</th>
         <td><%= Pool.find_by_id(@chemical_record.pool_id).name %></td>
       </tr>
+      <% if @chemical_record.free_chlorine_ppm %>
+        <tr>
+          <th>Free Chlorine (ppm)</th>
+          <td><%= @chemical_record.free_chlorine_ppm %></td>
+        </tr>
+      <% end %>
       <tr>
-        <th>Chlorine(ppm)</th>
-        <td><%= @chemical_record.total_chlorine_ppm%></td>
+        <th>Total Chlorine (ppm)</th>
+        <td><%= @chemical_record.total_chlorine_ppm %></td>
       </tr>
-      <tr>
-        <th> Chlorine(orp)</th>
-        <td><%= @chemical_record.chlorine_orp%></td>
-      </tr>
+      <% if @chemical_record.chlorine_orp %>
+        <tr>
+          <th> Chlorine(orp)</th>
+          <td><%= @chemical_record.chlorine_orp %></td>
+        </tr>
+      <% end %>
       <tr>
         <th>PH</th>
         <td><%= @chemical_record.ph%> </td>
