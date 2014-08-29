@@ -39,6 +39,14 @@ class StaticPagesController < ApplicationController
     cheical_graphs
   end
 
+  def user_stats
+    @facade = StaticPagesFacade.new(current_user)
+  end
+
+  def private_lesson_stats
+    @facade = StaticPagesFacade.new(current_user)
+  end
+
   private
 
   def cheical_graphs
@@ -209,13 +217,5 @@ class StaticPagesController < ApplicationController
                  margin: 10}}
       ]
     end
-  end
-
-  def user_stats
-    @facade = StaticPagesFacade.new(current_user)
-  end
-
-  def private_lesson_stats
-    @facade = StaticPagesFacade.new(current_user)
   end
 end
