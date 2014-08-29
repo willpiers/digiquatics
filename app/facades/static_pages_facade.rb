@@ -98,6 +98,4 @@ class StaticPagesFacade
   def graph_data(metric, id)
     @chemical_records.where(pool_id: id).order('created_at desc').pluck(:created_at, metric)
   end
-
-
 end
