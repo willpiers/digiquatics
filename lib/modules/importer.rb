@@ -22,7 +22,7 @@ module Importer
 
     CSV.foreach(user_data_file, headers: true) do |user_row|
       @user_row = user_row
-      # puts @user_row
+      puts @user_row
       @account ||= create_account
       @account.users.build(user_hash).save!
     end
@@ -108,7 +108,7 @@ module Importer
   end
 
   def self.find_user_and_create_certification
-    @user = User.find_by(email: @cert_row['email'])
+    @user = User.find_by(email: @cert_row['email'].downcase)
     if @user
       @user.certifications.build(cert_hash).save!
     else
