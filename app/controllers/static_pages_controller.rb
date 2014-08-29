@@ -13,16 +13,10 @@ class StaticPagesController < ApplicationController
     Tracker.track(current_user.id, 'View Dashboard') unless Rails.env.test?
   end
 
-  def about
-  end
-
   def privacy
   end
 
   def tos
-  end
-
-  def instructions
   end
 
   def availability

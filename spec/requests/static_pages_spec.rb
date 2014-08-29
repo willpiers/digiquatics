@@ -24,19 +24,8 @@ describe 'Static pages' do
                          account_id: account.id)
     end
 
-    before do
-      login_as(user, scope: :user)
-    end
-
-    before { visit '/instructions' }
-
-    it 'should have the content \'Instructions\'' do
-      expect(page).to have_content('Instructions')
-    end
-
-    it 'should have the base title' do
-      expect(page).to have_title('Instructions')
-    end
-
+    # before do
+    #   login_as(user, scope: :user)
+    # end
   end
 end
