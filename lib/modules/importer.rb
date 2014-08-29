@@ -114,7 +114,7 @@ module Importer
   end
 
   def self.password
-    'lakewood'
+    'carbonvalley'
   end
 
   def self.parse_date(date_string)
