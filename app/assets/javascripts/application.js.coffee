@@ -31,3 +31,6 @@
 #= require modules
 #= require_tree .
 #= require pace/pace
+#= require highcharts/highcharts
+#= require highcharts/highcharts-more
+#= require highcharts/highstock
