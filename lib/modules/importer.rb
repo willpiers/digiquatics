@@ -125,6 +125,6 @@ module Importer
   end
 
   def self.to_boolean(boolean_string)
-    boolean_string == 'true'
+    boolean_string == 'TRUE'
   end
 end
