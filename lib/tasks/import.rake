@@ -1,7 +1,7 @@
 require Rails.root.join('lib/modules/importer')
 
-USER_DATA_FILE = 'db/data/lakewood/lakewood_user_import.csv'
-CERT_DATA_FILE = 'db/data/lakewood/lakewood_certification_import.csv'
+USER_DATA_FILE = 'db/data/carbon/carbon_user_import.csv'
+CERT_DATA_FILE = 'db/data/carbon/carbon_certification_import.csv'
 
 namespace :db do
   desc 'Import customer data to database'

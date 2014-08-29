@@ -5,7 +5,7 @@ module Importer
     first_name last_name email phone_number secondary_phone_number
     employee_id notes address1 address2 city state zipcode emergency_first
     emergency_last emergency_phone sex shirt_size suit_size femalesuit payrate
-    grouping
+    grouping active admin chemical_records_access private_lesson_access
 )
 
   CERT_HEADERS = %w(
@@ -60,7 +60,10 @@ module Importer
       password_confirmation:  password,
       date_of_birth:          parse_date(@user_row['date_of_birth']),
       date_of_hire:           parse_date(@user_row['date_of_hire']),
-      active:                 to_boolean(@user_row['active'])
+      active:                 to_boolean(@user_row['active']),
+      admin:                  to_boolean(@user_row['admin']),
+      chemical_records_access: to_boolean(@user_row['chemical_records_access']),
+      private_lesson_access:  to_boolean(@user_row['private_lesson_access'])
     }
   end
 
@@ -114,7 +117,7 @@ module Importer
   end
 
   def self.password
-    'lakewood'
+    'carbonvalley'
   end
 
   def self.parse_date(date_string)
