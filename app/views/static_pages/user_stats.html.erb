@@ -1,102 +1,128 @@
 <% provide(:title, 'Employee Statistics') %>
 <h1 class='cross_platform_header'>Employee Statistics</h1>
 
-<div class='table-width-desktop'>
-  <div class='pull-left'>
-    <%= link_to ' Back', users_path,
-        class: 'glyphicon glyphicon-arrow-left' %>
+<div ng-app='digiquatics'>
+  <div ng-controller='AnalyticsCtrl'>
+
+  <div class='table-width-desktop'>
+    <div class='pull-left'>
+      <%= link_to ' Back', users_path,
+          class: 'glyphicon glyphicon-arrow-left' %>
+    </div>
+
+  <div class='pull-right'>
+    <div class='btn-group'>
+      <label class='btn btn-info' ng-model='requestMode' btn-radio="'graphical'">
+        Graphical View
+      </label>
+      <label class='btn btn-info' ng-model='requestMode' btn-radio="'numerical'">
+        Numerical View
+      </label>
+    </div>
   </div>
 
-<!--   <%= column_chart User.same_account_as(current_user).group(:sex).count %>
-  <%= column_chart User.same_account_as(current_user).group(:admin).count %>
-  <%= column_chart User.same_account_as(current_user).group(:active).count %>
-  <%= column_chart User.same_account_as(current_user).group(:shirt_size).count %>
-  <%= column_chart User.same_account_as(current_user).group(:suit_size).count %>
-  <%= column_chart User.same_account_as(current_user).female.group(:femalesuit).count %>
-   <%= column_chart User.same_account_as(current_user).female.group(:shirt_size).count %>
-    <%= column_chart User.same_account_as(current_user).female.group(:suit_size).count %> -->
+  <div ng-show='numericalMode()'>
+    <br><br>
+    <%= high_chart('employee_demographics', @employee_demographics) %>
+    <br><br>
+    <%= high_chart('employee_admin', @employee_admin) %>
+    <br><br>
+    <%= high_chart('employee_status', @employee_status) %>
+    <br><br>
+    <%= high_chart('employee_shirts', @employee_shirts) %>
+    <br><br>
+    <%= high_chart('male_suits', @male_suits) %>
+    <br><br>
+    <%= high_chart('one_pieces', @one_pieces) %>
+    <br><br>
+    <%= high_chart('female_tops', @female_tops) %>
+    <br><br>
+    <%= high_chart('female_bottoms', @female_bottoms) %>
+  </div>
 
-  <br><br>
+  <div ng-if='graphicalMode()'>
+    <div class='table-width-desktop'>
+      <br><br>
+        <h4>Basic Information</h4>
+        <table class='table table-bordered'>
+          <tr>
+            <th style='width:50%'>Location</th><!-- TODO: pull this style out-->
+            <th>Number <br/>Male</td>
+            <th>Number <br/>Female</td>
+            <th>Total <br/>Employees</td>
+          </tr>
+          <% @facade.locations.each do |location| %>
+            <tr>
+              <td><%= location.name %></td>
+              <td><%= @facade.total_male_employees(location) %></td>
+              <td><%= @facade.total_female_employees(location) %></td>
+              <td><%= @facade.total_employees(location) %></td>
+            </tr>
+          <% end %>
+        </table>
+      </div>
 
-  <h4>Basic Information</h4>
-  <table class='table table-bordered'>
-    <tr>
-      <th style='width:50%'>Location</th><!-- TODO: pull this style out-->
-      <th>Number <br/>Male</td>
-      <th>Number <br/>Female</td>
-      <th>Total <br/>Employees</td>
-    </tr>
-    <% @facade.locations.each do |location| %>
-      <tr>
-        <td><%= location.name %></td>
-        <td><%= @facade.total_male_employees(location) %></td>
-        <td><%= @facade.total_female_employees(location) %></td>
-        <td><%= @facade.total_employees(location) %></td>
-      </tr>
-    <% end %>
-  </table>
-</div>
+      <div class='table-width-desktop'>
+        <h4>Classification</h4>
+        <table class='table table-bordered'>
+          <tr>
+            <th style='width:50%'>Location</th><!-- TODO: pull this style out-->
+            <th>Number <br/>Admin</td>
+            <th>Number <br/>Active</td>
+            <th>Number <br/>Inactive</td>
+          </tr>
+          <% @facade.locations.each do |location| %>
+            <tr>
+              <td><%= location.name %></td>
+              <td><%= @facade.admin(location) %></td>
+              <td><%= @facade.active(location) %></td>
+              <td><%= @facade.inactive(location) %></td>
+            </tr>
+          <% end %>
+        </table>
+      </div>
 
-<div class='table-width-desktop'>
-  <h4>Classification</h4>
-  <table class='table table-bordered'>
-    <tr>
-      <th style='width:50%'>Location</th><!-- TODO: pull this style out-->
-      <th>Number <br/>Admin</td>
-      <th>Number <br/>Active</td>
-      <th>Number <br/>Inactive</td>
-    </tr>
-    <% @facade.locations.each do |location| %>
-      <tr>
-        <td><%= location.name %></td>
-        <td><%= @facade.admin(location) %></td>
-        <td><%= @facade.active(location) %></td>
-        <td><%= @facade.inactive(location) %></td>
-      </tr>
-    <% end %>
-  </table>
-</div>
-
-<div class='table-width-desktop'>
-  <h4>Inventory</h4>
-  <table class='table table-bordered'>
-    <tr>
-      <th style='width:25%'>Location</th><!-- TODO: pull this style out-->
-      <th>Shirts</td>
-      <th>Male <br/>Suit</td>
-      <th>Female <br/>One-Piece</td>
-      <th>Female <br/>Top</td>
-      <th>Female <br/>Bottom</td>
-    </tr>
-    <% @facade.locations.each do |location| %>
-      <tr>
-        <td><%= location.name %></td>
-        <td>
-          <% @facade.shirt_sizes(location).each do |key, value| %>
-            <%= "#{key}:#{value} "%></br>
-          <% end %>
-        </td>
-        <td>
-          <% @facade.male_suit_sizes(location).each do |key, value| %>
-            <%= "#{key}:#{value} "%></br>
-          <% end %>
-        </td>
-        <td>
-          <% @facade.female_one_piece_suit_sizes(location).each do |key, value| %>
-            <%= "Size(#{key}): #{value} "%></br>
-          <% end %>
-        </td>
-        <td>
-          <% @facade.female_top_sizes(location).each do |key, value| %>
-            <%= "#{key}:#{value} "%></br>
-          <% end %>
-        </td>
-        <td>
-          <% @facade.female_bottom_sizes(location).each do |key, value| %>
-            <%= "#{key}:#{value} "%></br>
-          <% end %>
-        </td>
-      </tr>
-    <% end %>
-  </table>
+      <h4>Inventory</h4>
+      <table class='table table-bordered'>
+        <tr>
+          <th style='width:25%'>Location</th><!-- TODO: pull this style out-->
+          <th>Shirts</td>
+          <th>Male <br/>Suit</td>
+          <th>Female <br/>One-Piece</td>
+          <th>Female <br/>Top</td>
+          <th>Female <br/>Bottom</td>
+        </tr>
+        <% @facade.locations.each do |location| %>
+          <tr>
+            <td><%= location.name %></td>
+            <td>
+              <% @facade.shirt_sizes(location).each do |key, value| %>
+                <%= "#{key}:#{value} "%></br>
+              <% end %>
+            </td>
+            <td>
+              <% @facade.male_suit_sizes(location).each do |key, value| %>
+                <%= "#{key}:#{value} "%></br>
+              <% end %>
+            </td>
+            <td>
+              <% @facade.female_one_piece_suit_sizes(location).each do |key, value| %>
+                <%= "Size(#{key}): #{value} "%></br>
+              <% end %>
+            </td>
+            <td>
+              <% @facade.female_top_sizes(location).each do |key, value| %>
+                <%= "#{key}:#{value} "%></br>
+              <% end %>
+            </td>
+            <td>
+              <% @facade.female_bottom_sizes(location).each do |key, value| %>
+                <%= "#{key}:#{value} "%></br>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+  </div>
 </div>

@@ -35,13 +35,54 @@ class StaticPagesController < ApplicationController
 
   def user_stats
     @facade = StaticPagesFacade.new(current_user)
+    employee_stat_graphs
   end
 
   def private_lesson_stats
     @facade = StaticPagesFacade.new(current_user)
+    private_lessons_count_graph
   end
 
   private
+
+  def private_lessons_count_graph
+    @private_lessons_graph = LazyHighCharts::HighChart.new('graph') do |f|
+      f.legend({layout: 'vertical',
+                align: 'right',
+                verticalAlign: 'middle',
+                borderWidth: 0})
+      f.series(name: 'Unclaimed',
+               data: unclaimed)
+      f.series(name: 'Claimed',
+               data: claimed)
+      f.title({text: 'Total Private Lessons'})
+      f.options[:xAxis] = {plot_bands: 'none',
+                           title: {text: 'Location'},
+                           categories: Location.where(account_id: current_user.account_id).map { |x| x.name }}
+      f.options[:chart][:defaultSeriesType] = 'bar'
+      f.plot_options({bar: {stacking: 'normal'}})
+    end
+  end
+
+  def private_lessons
+    PrivateLesson.same_account_as(current_user)
+  end
+
+  def unclaimed
+     @query = []
+    location_query.each do |location|
+      @query.push(private_lessons.for_location(location).unclaimed.count)
+    end
+    @query
+  end
+
+  def claimed
+    @query = []
+    location_query.each do |location|
+      @query.push(private_lessons.for_location(location).claimed.count)
+    end
+    @query
+  end
 
   def cheical_graphs
     temp
@@ -212,4 +253,328 @@ class StaticPagesController < ApplicationController
       ]
     end
   end
+
+  def location_query
+    Location.same_account_as(current_user)
+  end
+
+  def user_query
+    User.same_account_as(current_user)
+  end
+
+  def males
+     @query = []
+    location_query.each do |location|
+      @query.push(user_query.for_location(location).female.count)
+    end
+    @query
+  end
+
+  def females
+    @query = []
+    location_query.each do |location|
+      @query.push(user_query.for_location(location).female.count)
+    end
+    @query
+  end
+
+  def admin
+    @query = []
+    location_query.each do |location|
+      @query.push(user_query.for_location(location).admin.count)
+    end
+    @query
+  end
+
+  def non_admin
+    @query = []
+    location_query.each do |location|
+      @query.push(user_query.for_location(location).non_admin.count)
+    end
+    @query
+  end
+
+  def active
+    @query = []
+    location_query.each do |location|
+      @query.push(user_query.for_location(location).active.count)
+    end
+    @query
+  end
+
+  def inactive
+    @query = []
+    location_query.each do |location|
+      @query.push(user_query.for_location(location).inactive.count)
+    end
+    @query
+  end
+
+  def shirt_size(size)
+    @query = []
+    location_query.each do |location|
+      @query.push(user_query.for_location(location).where(shirt_size: size).count)
+    end
+    @query
+  end
+
+  def male_suit(size)
+    @query = []
+    location_query.each do |location|
+      @query.push(user_query.for_location(location).male.where(suit_size: size).count)
+    end
+    @query
+  end
+
+  def one_piece(size)
+    @query = []
+    location_query.each do |location|
+      @query.push(user_query.for_location(location).female.where(femalesuit: size).count)
+    end
+    @query
+  end
+
+  def female_top(size)
+    @query = []
+    location_query.each do |location|
+      @query.push(user_query.for_location(location).female.where(shirt_size: size).count)
+    end
+    @query
+  end
+
+  def female_bottom(size)
+    @query = []
+    location_query.each do |location|
+      @query.push(user_query.for_location(location).female.where(suit_size: size).count)
+    end
+    @query
+  end
+
+  def employee_stat_graphs
+    employee_demographics
+    employee_admin
+    employee_status
+    employee_shirts
+    male_suits
+    one_pieces
+    female_tops
+    female_bottoms
+  end
+
+  def employee_demographics
+    @employee_demographics = LazyHighCharts::HighChart.new('graph') do |f|
+      f.legend({layout: 'vertical',
+                align: 'right',
+                verticalAlign: 'middle',
+                borderWidth: 0})
+      f.series(name: 'Male',
+               data: males,
+               color: '#738FFE')
+      f.series(name: 'Female',
+               data: females,
+               color: '#EC407A')
+      f.title({text: 'Employee Demographics'})
+      f.options[:xAxis] = {plot_bands: 'none',
+                           title: {text: 'Location'},
+                           categories: Location.where(account_id: current_user.account_id).map { |x| x.name }}
+      f.options[:chart][:defaultSeriesType] = 'bar'
+      f.plot_options({bar: {stacking: 'normal'}})
+    end
+  end
+
+  def employee_admin
+    @employee_admin= LazyHighCharts::HighChart.new('graph') do |f|
+      f.legend({layout: 'vertical',
+                align: 'right',
+                verticalAlign: 'middle',
+                borderWidth: 0})
+      f.series(name: 'Admin',
+               data: admin,
+               color: '#2BAF2B')
+      f.series(name: 'Non-Admin',
+               data: non_admin,
+               color: '#BDBDBD')
+      f.title({text: 'Employee Classification'})
+      f.options[:xAxis] = {plot_bands: 'none',
+                           title: {text: 'Location'},
+                           categories: Location.where(account_id: current_user.account_id).map { |x| x.name }}
+      f.options[:chart][:defaultSeriesType] = 'bar'
+      f.plot_options({bar: {stacking: 'normal'}})
+    end
+  end
+
+  def employee_status
+    @employee_status= LazyHighCharts::HighChart.new('graph') do |f|
+      f.legend({layout: 'vertical',
+                align: 'right',
+                verticalAlign: 'middle',
+                borderWidth: 0})
+      f.series(name: 'Active',
+               data: active,
+               color: '#1DE9B6')
+      f.series(name: 'Inactive',
+               data: inactive,
+               color: '#E84E40')
+      f.title({text: 'Employee Status'})
+      f.options[:xAxis] = {plot_bands: 'none',
+                           title: {text: 'Location'},
+                           categories: Location.where(account_id: current_user.account_id).map { |x| x.name }}
+      f.options[:chart][:defaultSeriesType] = 'bar'
+      f.plot_options({bar: {stacking: 'normal'}})
+    end
+  end
+
+  def employee_shirts
+    @employee_shirts= LazyHighCharts::HighChart.new('graph') do |f|
+      f.legend({layout: 'vertical',
+                align: 'right',
+                verticalAlign: 'middle',
+                borderWidth: 0})
+      f.legend({layout: 'vertical',
+                align: 'right',
+                verticalAlign: 'middle',
+                borderWidth: 0})
+      f.series(name: 'XS',
+               data: shirt_size('XS'),
+               color: '#FFCCBC')
+      f.series(name: 'S',
+               data: shirt_size('S'),
+               color: '#FF8A65')
+      f.series(name: 'M',
+               data: shirt_size('M'),
+               color: '#FF5722')
+      f.series(name: 'L',
+               data: shirt_size('L'),
+               color: '#E64A19')
+      f.series(name: 'XL',
+               data: shirt_size('XL'),
+               color: '#BF360C')
+      f.title({text: 'Employee Shirt Sizes'})
+      f.options[:xAxis] = {plot_bands: 'none',
+                           title: {text: 'Location'},
+                           categories: Location.where(account_id: current_user.account_id).map { |x| x.name }}
+      f.options[:chart][:defaultSeriesType] = 'bar'
+      f.plot_options({bar: {stacking: 'normal'}})
+    end
+  end
+
+  def male_suits
+    @male_suits= LazyHighCharts::HighChart.new('graph') do |f|
+      f.legend({layout: 'vertical',
+                align: 'right',
+                verticalAlign: 'middle',
+                borderWidth: 0})
+      f.series(name: 'XS',
+               data: male_suit('XS'),
+               color: '#B3E5FC')
+      f.series(name: 'S',
+               data: male_suit('S'),
+               color: '#4FC3F7')
+      f.series(name: 'M',
+               data: male_suit('M'),
+               color: '#03A9F4')
+      f.series(name: 'L',
+               data: male_suit('L'),
+               color: '#0288D1')
+      f.series(name: 'XL',
+               data: male_suit('XL'),
+               color: '#01579B')
+      f.title({text: 'Male Suit Sizes'})
+      f.options[:xAxis] = {plot_bands: 'none',
+                           title: {text: 'Location'},
+                           categories: Location.where(account_id: current_user.account_id).map { |x| x.name }}
+      f.options[:chart][:defaultSeriesType] = 'bar'
+      f.plot_options({bar: {stacking: 'normal'}})
+    end
+  end
+
+  def one_pieces
+    @one_pieces= LazyHighCharts::HighChart.new('graph') do |f|
+      f.legend({layout: 'vertical',
+                align: 'right',
+                verticalAlign: 'middle',
+                borderWidth: 0})
+      f.series(name: 'Size(28)',
+               data: one_piece('28'))
+      f.series(name: 'Size(30)',
+               data: one_piece('30'))
+      f.series(name: 'Size(32)',
+               data: one_piece('32'))
+      f.series(name: 'Size(34)',
+               data: one_piece('34'))
+      f.series(name: 'Size(36)',
+               data: one_piece('36'))
+      f.series(name: 'Size(38)',
+               data: one_piece('38'))
+      f.series(name: 'Size(40)',
+               data: one_piece('40'))
+      f.title({text: 'Female One-Piece Suit Sizes'})
+      f.options[:xAxis] = {plot_bands: 'none',
+                           title: {text: 'Location'},
+                           categories: Location.where(account_id: current_user.account_id).map { |x| x.name }}
+      f.options[:chart][:defaultSeriesType] = 'bar'
+      f.plot_options({bar: {stacking: 'normal'}})
+    end
+  end
+
+  def female_tops
+    @female_tops= LazyHighCharts::HighChart.new('graph') do |f|
+      f.legend({layout: 'vertical',
+                align: 'right',
+                verticalAlign: 'middle',
+                borderWidth: 0})
+      f.series(name: 'XS',
+               data: female_top('XS'),
+               color: '#F8BBD0')
+      f.series(name: 'S',
+               data: female_top('S'),
+               color: '#F06292')
+      f.series(name: 'M',
+               data: female_top('M'),
+               color: '#E91E63')
+      f.series(name: 'L',
+               data: female_top('L'),
+               color: '#C2185B')
+      f.series(name: 'XL',
+               data: female_top('XL'),
+               color: '#880E4F')
+      f.title({text: 'Female Tops Sizes'})
+      f.options[:xAxis] = {plot_bands: 'none',
+                           title: {text: 'Location'},
+                           categories: Location.where(account_id: current_user.account_id).map { |x| x.name }}
+      f.options[:chart][:defaultSeriesType] = 'bar'
+      f.plot_options({bar: {stacking: 'normal'}})
+    end
+  end
+
+  def female_bottoms
+    @female_bottoms= LazyHighCharts::HighChart.new('graph') do |f|
+      f.legend({layout: 'vertical',
+                align: 'right',
+                verticalAlign: 'middle',
+                borderWidth: 0})
+      f.series(name: 'XS',
+               data: female_bottom('XS'),
+               color: '#E1BEE7')
+      f.series(name: 'S',
+               data: female_bottom('S'),
+               color: '#BA68C8')
+      f.series(name: 'M',
+               data: female_bottom('M'),
+               color: '#9C27B0')
+      f.series(name: 'L',
+               data: female_bottom('L'),
+               color: '#7B1FA2')
+      f.series(name: 'XL',
+               data: female_bottom('XL'),
+               color: '#4A148C')
+      f.title({text: 'Female Bottom Sizes'})
+      f.options[:xAxis] = {plot_bands: 'none',
+                           title: {text: 'Location'},
+                           categories: Location.where(account_id: current_user.account_id).map { |x| x.name }}
+      f.options[:chart][:defaultSeriesType] = 'bar'
+      f.plot_options({bar: {stacking: 'normal'}})
+    end
+  end
+
 end

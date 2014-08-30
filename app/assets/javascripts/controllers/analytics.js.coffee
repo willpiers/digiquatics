@@ -43,4 +43,13 @@
 
     $scope.changed = ->
       console.log "Time changed to: " + $scope.mytime
+
+    # Used to show and hide form elements on user stats
+    $scope.requestMode = 'graphical'
+
+    $scope.graphicalMode = ->
+      $scope.requestMode  == 'numerical'
+
+    $scope.numericalMode = ->
+      $scope.requestMode  == 'graphical'
 ]
