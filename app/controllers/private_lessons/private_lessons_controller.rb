@@ -73,7 +73,9 @@ class PrivateLessonsController < ApplicationController
   end
 
   def create
-    Tracker.track(current_user.id, 'Create Private Lesson') unless Rails.env.test?
+    if signed_in?
+      Tracker.track(current_user.id, 'Create Private Lesson') unless Rails.env.test?
+    end
     @private_lesson = Account.find(params[:account_id]).private_lessons
     .build(private_lesson_params)
     message = 'Private lesson was successfully created.'
