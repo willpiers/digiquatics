@@ -9,7 +9,7 @@
       <% end %>
       <% if current_user && current_user.admin? %>
         <%= active_link_to 'Certifications', certifications_path, :active =>
-        [['certifications', 'certification_names'], []], :wrap_tag => :li %>
+        [['certifications', 'certification_names'], ['index']], :wrap_tag => :li %>
       <% end %>
       <% if current_user.private_lesson_access? || current_user.admin? %>
         <li class = "dropdown <%= active_link_to_class('#', :active =>
@@ -76,15 +76,15 @@
           </ul>
         </li>
       <% end %>
+
       <%= active_link_to 'Shift Reports', shift_reports_path, :active =>
           [['shift_reports'], []], :wrap_tag => :li %>
+
       <li class = "dropdown <%= active_link_to_class('#', :active =>
-            [['accounts', 'availabilities', 'private_lessons', 'shifts',
-              'sub_requests', 'users', 'locations',
-              'positions', 'skills', 'packages'],
+            [['availabilities', 'private_lessons', 'shifts',
+              'sub_requests', 'users'],
             ['edit', 'availabilities', 'my_lessons',
-             'my_schedule', 'my_sub_requests', 'my_time_off_requests',
-             'admin_dashboard']]) %>
+             'my_schedule', 'my_sub_requests', 'my_time_off_requests']]) %>
              <%= active_link_to_class('#', :active =>
                          [['users'],
                          ['show']]) %>
@@ -94,7 +94,8 @@
              <%= active_link_to_class(availabilities_path,
                  :active => :inclusive) %>">
         <a href = '#' class = 'dropdown-toggle' data-toggle = 'dropdown'>
-          Account<b class = 'caret'></b></a>
+
+          <%= "#{current_user.first_name} #{current_user.last_name}" %> <b class = 'caret'></b></a>
         <ul class = 'dropdown-menu'>
           <li><%= link_to 'My Profile', current_user %></li>
           <li class='divider'></li>
@@ -103,15 +104,19 @@
           <li><%= link_to 'My Schedule', my_schedule_path %></li>
           <li><%= link_to 'My Sub Requests', my_sub_requests_path %></li>
           <li><%= link_to 'My Time Off', my_time_off_requests_path %></li>
-          <% if current_user && current_user.admin? %>
-            <li class='divider'></li>
-            <li><%= link_to 'Preferences', admin_dashboard_path %></li>
-          <% end %>
           <li class='divider'></li>
           <li><%= link_to 'Sign Out', destroy_user_session_path,
             method: :delete %></li>
         </ul>
       </li>
+      <% if current_user.admin? %>
+        <li class='<%= active_link_to_class('#', :active =>
+              [['accounts', 'locations', 'certification_names',
+                'positions', 'skill_levels', 'packages'],
+              ['new', 'edit', 'admin_dashboard']]) %>'>
+          <a href='/admin_dashboard'><span class='glyphicon glyphicon-cog'></span></a>
+        </li>
+      <% end %>
     <% else #!signed_in? %>
       <li><a href='#features'> Features </a> </li>
       <li><a href='#benefits'> Benefits </a> </li>
