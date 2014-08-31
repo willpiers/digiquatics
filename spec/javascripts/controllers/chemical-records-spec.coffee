@@ -30,12 +30,12 @@ describe 'ChemicalRecordsCtrl', ->
   )
 
   it 'should set the chemicalRecords on scope', ->
-    expect(scope.chemicalRecords).toEqualData undefined
+    scope.chemicalRecords.length.should.equal 0
 
     $httpBackend.flush()
 
-    expect(scope.chemicalRecords).toEqualData chemicalRecords
+    scope.chemicalRecords.length.should.equal 2
 
   it 'should set filters to empty string', ->
-    expect(scope.filters.location_id).toEqual ''
-    expect(scope.filters.pool_id).toEqual ''
+    scope.filters.location_id.should.equal ''
+    scope.filters.pool_id.should.equal ''

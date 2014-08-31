@@ -46,11 +46,11 @@ Teaspoon.configure do |config|
 
     # Specify a file matcher as a regular expression and all matching files will be loaded when the suite is run. These
     # files need to be within an asset path. You can add asset paths using the `config.asset_paths`.
-    #suite.matcher = "{spec/javascripts,app/assets}/**/*_spec.{js,js.coffee,coffee}"
+    suite.matcher = "{spec/javascripts,app/assets}/**/*-spec.{js,js.coffee,coffee}"
 
     # This suites spec helper, which can require additional support files. This file is loaded before any of your test
     # files are loaded.
-    #suite.helper = "spec_helper"
+    suite.helper = "spec-helper"
 
     # The core Teaspoon javascripts. It's recommended to include only the base files here, as you can require support
     # libraries from your spec helper.

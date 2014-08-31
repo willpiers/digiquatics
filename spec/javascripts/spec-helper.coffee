@@ -1,9 +1,3 @@
-# Teaspoon includes some support files, but you can use anything from your own support path too.
-# require support/expect
-# require support/sinon
-# require support/chai
-# require support/your-support-file
-#
 # PhantomJS (Teaspoons default driver) doesn't have support for Function.prototype.bind, which has caused confusion.
 # Use this polyfill to avoid the confusion.
 #= require support/bind-poly
@@ -36,10 +30,11 @@
 #
 # You can require your own javascript files here. By default this will include everything in application, however you
 # may get better load performance if you require the specific files that are being used in the spec that tests them.
+
+#= require support/chai
+
 #= require application
 
 #= require angular-mocks
 
-beforeEach ->
-  # @addMatchers toEqualData: (expected) ->
-  #   angular.equals JSON.stringify(@actual), JSON.stringify(expected)
+chai.should()

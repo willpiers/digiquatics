@@ -14,7 +14,10 @@ describe 'UsersCtrl', ->
   beforeEach inject((_$httpBackend_, $rootScope, $controller) ->
     $httpBackend = _$httpBackend_
 
+    $httpBackend.expectGET('/time_off_requests.json').respond []
     $httpBackend.expectGET('/users.json').respond users
+    $httpBackend.expectGET('/locations.json').respond []
+    $httpBackend.expectGET('/positions.json').respond []
 
     scope = $rootScope.$new()
     ctrl = $controller UsersCtrl,
@@ -22,8 +25,8 @@ describe 'UsersCtrl', ->
   )
 
   it 'should set the users on scope', ->
-    expect(scope.users).toEqualData []
+    scope.users.length.should.equal 0
 
     $httpBackend.flush()
 
-    expect(scope.users).toEqualData users
+    scope.users.length.should.equal 2
