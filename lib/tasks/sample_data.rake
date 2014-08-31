@@ -127,7 +127,8 @@ namespace :db do
                  admin:                  true,
                  active:                 true,
                  account_id:             1,
-                 private_lesson_access:  true)
+                 private_lesson_access:  true,
+                 chemical_record_access: true)
 
     puts "\nUsers\n"
 
