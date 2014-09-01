@@ -24,7 +24,7 @@
         <br>
         <center>
           <h3>DigiQuatics</h3>
-          <strong id='main-heading'> Aquatics Redefined </strong>
+          <strong id='main-heading'>Aquatics Redefined</strong>
           <h4 id='sub-heading'>
             Online scheduling, data management and web</br>based private lesson
             portal that puts you in control.
@@ -41,9 +41,9 @@
     <%= render 'layouts/landing_nav' %>
 
     <center>
-      <div id='dq_overview'>
+      <div id='dq_overview' class='mobile_fix'>
         <br><br>
-        <p style='width: 650px; text-align: left;'>
+        <p id='overview_content'>
           DigiQuatics provides all the tools necessary to eliminate paper,
           organize data, schedule your staff, and automate
           your private lessons program and requests. Best of all your employees
@@ -58,71 +58,71 @@
         <strong id='info-header'>FEATURES</strong>
         <br><br><br>
         <div class='row'>
-          <div class='col-md-1'></div> <!-- Placeholder -->
-          <div class='col-md-2'>
-            <div style='color: #3F51B5'>
+          <div class='col-sm-1'></div> <!-- Placeholder -->
+          <div class='col-sm-2'>
+            <div class='blue_icon'>
               <i class='fa fa-calendar fa-5x'></i>
             </div>
             <br>
             <h4>Staff<br>Scheduling</h4>
-            <p>
+            <p class='mobile_features_text'>
               Create schedules for your staff and publish online. Designed to
               work with multiple locations. Staff can submit availabilities,
               sub requests and time off requests online.
             </p>
           </div>
-          <div class='col-md-2'>
-            <div style='color: #3F51B5'>
+          <div class='col-sm-2'>
+            <div class='blue_icon'>
               <i class='fa fa-users fa-5x'></i>
             </div>
             <br>
             <h4>Employee<br>Management</h4>
-            <p>
+            <p class='mobile_features_text'>
               Manage all your staff information in one place: contact
               information, sizing, emergency contacts, notes, and more.
               Track Red Cross, Ellis and Associates, and other certifications.
               Know when employees need to renew automatically.
             </p>
           </div>
-          <div class='col-md-2'>
-            <div style='color: #3F51B5'>
+          <div class='col-sm-2'>
+            <div class='blue_icon'>
               <i class='fa fa-flask fa-5x'></i>
             </div>
             <br>
             <h4>Chemical<br>Records</h4>
-            <p>
+            <p class='mobile_features_text'>
               Submit pool chemical readings on the go. Instantly calculate
               combined chlorine and langelier saturation index upon submitting
               a chemical record. Receive detailed recomendations. Track trends
               with robust analytics.
             </p>
           </div>
-          <div class='col-md-2'>
-            <div style='color: #3F51B5'>
+          <div class='col-sm-2'>
+            <div class='blue_icon'>
               <i class='fa fa-child fa-5x'></i>
             </div>
             <br>
             <h4>Private Lessons<br>Portal</h4>
-            <p>
+            <p class='mobile_features_text'>
               Parents can request private lessons online 24/7 - without an
               needing an account. Online queue system designed to pair
               instructors with students faster and supervisor dashboard.
             </p>
           </div>
-          <div class='col-md-2'>
-            <div style='color: #3F51B5'>
+          <div class='col-sm-2'>
+            <div class='blue_icon'>
               <i class='fa fa-wrench fa-5x'></i>
             </div>
             <br>
             <h4>Maintenance<br>Tracking</h4>
-            <p>
-              Issue tracking system allows any staff member to flag issues. Upload
-              photos of any problems from your mobile device. Handle and manage
-              slide inspections online with instant notifications of potential
-              problems.
+            <p class='mobile_features_text'>
+              Issue tracking system allows any staff member to flag issues.
+              Upload photos of any problems from your mobile device. Handle and
+              manage slide inspections online with instant notifications of
+              potential problems.
             </p>
           </div>
-          <div class='col-md-1'></div> <!-- Placeholder -->
+          <div class='col-sm-1'></div> <!-- Placeholder -->
         </div>
         <br><br>
       </div>
@@ -132,7 +132,7 @@
         <br><br>
         <strong id='info-header'>BENEFITS</strong>
         <br><br>
-        <div style='width: 200px; text-align: left;'>
+        <div id='benefit_content'>
           <li>Email and SMS notifications</li>
           <br>
           <li>Designed with mobile in mind</li>
@@ -154,35 +154,40 @@
         <br><br>
         <strong id='info-header'>PRICING</strong>
         <br><br>
-        <div style='width: 700px;'>
-          <div class='pull-left'>
-            <div id='pricing_table'>
-              <br>
-              <h4>1-5 Pools</h4>
-              <br>
-              <h2>$200</h2>
-              <p class='pricing-sub-text'>PER MONTH PER POOL</p>
-            </div>
+        <div id='pricing_content' class='hidden-xs'>
+        <div class='pull-left'>
+          <div id='pricing_table'>
+            <br>
+            <h4>1-5 Pools</h4>
+            <br>
+            <h2>$200</h2>
+            <p class='pricing-sub-text'>PER MONTH PER POOL</p>
           </div>
-          <div class='pull-left'>
-            <div id='pricing_table'>
-              <br>
-              <h4>6-10 Pools</h4>
-              <br>
-              <h2>$150</h2>
-              <p class='pricing-sub-text'>PER MONTH PER POOL</p>
-            </div>
+        </div>
+        <div class='pull-left'>
+          <div id='pricing_table'>
+            <br>
+            <h4>6-10 Pools</h4>
+            <br>
+            <h2>$150</h2>
+            <p class='pricing-sub-text'>PER MONTH PER POOL</p>
           </div>
-          <div class='pull-left'>
-            <div id='pricing_table'>
-              <br>
-              <h4>10+ Pools</h4>
-              <br>
-              <h2>Request<br>Quote</h2>
-            </div>
+        </div>
+        <div class='pull-left'>
+          <div id='pricing_table'>
+            <br>
+            <h4>10+ Pools</h4>
+            <br>
+            <h2>Request<br>Quote</h2>
           </div>
         </div>
         <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+        </div>
+        <div class='visible-xs'>
+          <strong>1-5  Pools - $200 Per Month Per Pool</strong><br><br>
+          <strong>6-10 Pools - $150 Per Month Per Pool</strong><br><br>
+          <strong>1-5  Pools - Request Quote</strong><br><br><br>
+        </div>
       </div>
 
       <div id='dq_sign_up'>
@@ -190,14 +195,14 @@
         <br><br>
         <strong id='info-header'>SIGN UP</strong>
         <br><br>
-        <p style='width: 375px;' align='left'>
+        <p id='signup_contact_content' class='mobile_fix'>
           Sign up to gain access to DigiQuatics. Our team will reach out to you
           imediately to onboard your facility and staff onto our platform. We
           do all the heavy lifting so you don't have to. Just send us your
           data!
         </p>
         <br>
-        <div style='color: white;'>
+        <div class='landing_button_text'>
         <%= link_to 'SIGN UP TODAY FOR FREE TRAIL', new_user_path,
                      class: 'btn btn-default btn-lg btn-outline-cta1' %>
         </div>
@@ -205,12 +210,25 @@
         <br><br><br>
       </div>
 
+      <div id='dq_demo'>
+        <hr>
+        <br><br>
+        <strong id='info-header'>DEMO</strong>
+        <br><br>
+        <p id='signup_contact_content' class='mobile_fix'>
+          Our team would love to demo the app for you anytime. If you are local
+          we would love to come meet face to face, otherwise a virtual meeting
+          can be setup.
+        </p>
+        <br><br>
+      </div>
+
       <div id='dq_contact'>
         <hr>
         <br><br>
         <strong id='info-header'>CONTACT</strong>
         <br><br>
-          <p style='width: 375px;' align='left'>
+          <p id='signup_contact_content' class='mobile_fix'>
            We're headquartered in Denver, Colorado but our developers can also
            be found from time to time at the Colorado School of Mines. You can
            contact us via email, phone, or Twitter
@@ -218,17 +236,17 @@
              <b> @DigiQuatics</b>.
            </a>
           </p>
-          <a style='color: white; width: 300px;'
-             class='btn btn-default btn-lg btn-outline-cta1'
-             href='tel:303-921-8628'>
-            <i class='fa fa-phone fa-lg'></i>
-             (303)-921-8628</a>
-            <br><br>
-          <a style='color: white; width: 300px;'
-             class='btn btn-default btn-lg btn-outline-cta1'
-             href='mailto:Team@DigiQuatics.com'>
-            <i class='fa fa-envelope fa-lg'></i>
-             Team@DigiQuatics.com</a>
+          <div id='contact_link'>
+            <a class='btn btn-default btn-lg btn-outline-cta1'
+               href='tel:303-921-8628'>
+              <i class='fa fa-phone fa-lg'></i>
+               (303)-921-8628</a>
+              <br><br>
+            <a class='btn btn-default btn-lg btn-outline-cta1'
+               href='mailto:Team@DigiQuatics.com'>
+              <i class='fa fa-envelope fa-lg'></i>
+               Team@DigiQuatics.com</a>
+          </div>
           <br><br><br><br><br>
       </div>
 
@@ -273,7 +291,7 @@
             <p>
               Made with <i class='fa fa-heart fa-1x' id='heart'></i>
               in Denver, CO
-              <%= image_tag('http://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Flag_of_Colorado.svg/23px-Flag_of_Colorado.svg.png', alt: 'Colorado State Flag') %>
+              <%= image_tag('/images/co.png', alt: 'Colorado State Flag') %>
             </p>
             <br>
             <span>&#169; 2013-2014 -</span>
