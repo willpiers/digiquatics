@@ -22,6 +22,15 @@ width: 100%
   text-align: center;
 }
 
+#splash_page_other {
+  height: 100px;
+  vertical-align: middle;
+  background-color: $indigo500;
+  color: white;
+  margin-top: 0px;
+  text-align: center;
+}
+
 #info-header {
   font-size: 25px;
   color: $indigo500;
@@ -32,6 +41,10 @@ width: 100%
     width: 650px;
     text-align: left;
   }
+
+  #pricing_content {
+    width: 700px;
+  }
 }
 
 @media (max-width: 750px) {
@@ -39,6 +52,15 @@ width: 100%
     width: 375px;
     text-align: left;
     padding: 10px;
+  }
+  .mobile_fix_team {
+    width: 375px;
+    text-align: middle;
+    padding: 10px;
+  }
+
+  #pricing_content {
+    width: 375px;
   }
 }
 
@@ -57,10 +79,6 @@ width: 100%
 #benefit_content {
   width: 200px;
   text-align: left;
-}
-
-#pricing_content {
-  width: 700px;
 }
 
 #signup_contact_content {
@@ -196,7 +214,14 @@ width: 100%
   top: 38px;
   color: white;
   text-decoration: none;
+}
 
+#landing_back_link{
+  padding-left: 50px;
+  position: relative;
+  top: 38px;
+  color: white;
+  text-decoration: none;
 }
 
 #pricing_table {
