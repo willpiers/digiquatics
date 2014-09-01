@@ -1,24 +1,15 @@
-#header {
-  height: 1080px;
+#splash_page {
+  height: 525px;
   vertical-align: middle;
+  background-color: #3F51B5;
   color: white;
   margin-top: 0px;
   text-align: center;
 }
 
-#features {
-  height: 950px;
-  vertical-align: middle;
-  color: black;
-  margin-top: 0px;
-  text-align: center;
-  background-color: #F2F7FA;
-  border-top:1px solid;
-}
-
 #info-header {
   font-size: 25px;
-  color: #065BA0;
+  color: #3F51B5;
 }
 
 #benefits {
@@ -47,7 +38,7 @@
 }
 
 #pricing {
-  height: 325px;
+  height: 500px;
   vertical-align: middle;
   color: black;
   margin-top: 0px;
@@ -87,21 +78,21 @@
 }
 
 #main-heading {
-  font-size: 40px;
+  font-size: 28px;
   position:relative;
-  top:150px;
+  top:100px;
 }
 
 #sub-heading {
-  font-size: 25px;
+  font-size: 24px;
   position:relative;
-  top:160px;
+  top:100px;
 }
 
 #sub-heading2 {
   font-size: 16px;
   position:relative;
-  top:185px;
+  top:125px;
 }
 
 #sub-heading3 {
@@ -113,7 +104,6 @@
 
 #landing-fix {
   margin-bottom: 0px;
-
 }
 
 #header-btn {
@@ -132,59 +122,31 @@
   font-size: 20px;
 }
 
-.square {
-  background-color: white;
-  color: black;
-  height: 150px;
-  width: 150px;
-  background: #ddd;
-  border:2px solid #065BA0;
-  font-size: 20px;
-  margin: 20px;
-  box-shadow: 0 0 10px #9ecaed;
-}
-
-/* Hide original text */
-.square:hover {
-  font-size: 0;
-  background-color: #065BA0;
-  color: white;
-  text-align: left;
-  padding-top: 5px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border:2px solid black;
-}
-
-/* Replace original text with value in data-hover */
-.square:hover:before {
-  font-size: 16px;
-  content: attr(data-hover);
-}
-
-.position-square-text {
-  position: relative;
-  top: 50%;
-  transform: translateY(-50%);
-  -webkit-transform: translateY(-50%);
-}
-
-.rectangle {
-  background-color: white;
-  color: black;
-  height: 100px;
-  width: 325px;
-  background: #ddd;
-  border:2px solid grey;
-  font-size: 20px;
-  margin: 20px;
-  box-shadow: 0 0 10px #9ecaed;
-}
-
 #sign_in_link {
   color: white;
   text-decoration:underline;
   font-weight:bold;
 }
 
+.footer_text_primary a{
+  color: grey;
+}
 
+#copyright{
+  color: white;
+  background-color: #212121;
+}
+
+#social{
+  background-color: #BDBDBD;
+}
+
+.social_icon a{
+  color: white;
+  padding: 10px;
+}
+
+
+#heart{
+  color: red;
+}
