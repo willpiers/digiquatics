@@ -26,6 +26,10 @@ class StaticPagesController < ApplicationController
     render :index, layout: false
   end
 
+  def signup
+    render :signup, layout: false
+  end
+
   def team
     render :team, layout: false
   end

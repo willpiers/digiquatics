@@ -1,0 +1,33 @@
+<h1>Listing sign_ups</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>First name</th>
+      <th>Last name</th>
+      <th>Email</th>
+      <th>Locations</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @sign_ups.each do |sign_up| %>
+      <tr>
+        <td><%= sign_up.first_name %></td>
+        <td><%= sign_up.last_name %></td>
+        <td><%= sign_up.email %></td>
+        <td><%= sign_up.locations %></td>
+        <td><%= link_to 'Show', sign_up %></td>
+        <td><%= link_to 'Edit', edit_sign_up_path(sign_up) %></td>
+        <td><%= link_to 'Destroy', sign_up, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Sign up', new_sign_up_path %>

@@ -13,6 +13,7 @@
   </head>
 
   <body>
+    <%= flash_messages %>
     <div>
       <div id='splash_page'>
         <div class='pull-right'>
@@ -203,7 +204,7 @@
         </p>
         <br>
         <div class='landing_button_text'>
-        <%= link_to 'SIGN UP TODAY FOR FREE TRAIL', new_user_path,
+        <%= link_to 'SIGN UP TODAY FOR FREE TRAIL', signup_path,
                      class: 'btn btn-default btn-lg btn-outline-cta1' %>
         </div>
         <strong>No Credit Card Required</strong>

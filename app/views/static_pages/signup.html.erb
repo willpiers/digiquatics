@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>DigiQuatics - Team</title>
+    <title>DigiQuatics - Sign Up</title>
     <meta name='viewport'
           content='width=device-width, initial-scale=1.0 user-scalable=no'>
     <meta name='description'
-          content='DigiQuatics Team'>
+          content='Sign Up for DigiQuatics - Modern Pool Management and Scheduling'>
     <%= stylesheet_link_tag 'application', media: 'all',
                             'data-turbolinks-track' => true %>
   </head>
@@ -35,26 +35,22 @@
     <center>
       <div id='pricing_content' class='mobile_fix_team'>
         <br><br><br><br>
-        <strong id='info-header'>Affektive Software</strong><br>
+        <strong id='info-header'>SIGN UP</strong><br>
         <h4>
-          We co-founded Affektive Software and DigiQuatics is our first product.
+          Please fill out the information below to request access to DigiQuatics.
         </h4>
         <br>
-        <div class='col'>
-          <div class='col-md-4'>
-            <%= image_tag '/images/josh.jpg', size: '150x150', class: 'img-circle' %>
-            <p>Josh Duffy</p>
-          </div>
-          <div class='col-md-4'>
-            <%= image_tag '/images/michael.jpg', size: '150x150', class: 'img-circle' %>
-            <p>Michael Pierce</p>
-          </div>
-          <div class='col-md-4'>
-            <%= image_tag '/images/kelton.jpg', size: '150x150', class: 'img-circle' %>
-            <p>Kelton Manzanares</p>
-          </div>
-        </div>
-        <br><br><br><br><br><br><br><br><br>
+        <%= bootstrap_form_for(SignUp.new) do |f| %>
+          <%= f.text_field :first_name, placeholder: 'First Name',
+                           hide_label: true %>
+          <%= f.text_field :last_name, placeholder: 'Last Name',
+                           hide_label: true %>
+          <%= f.text_field :locations, placeholder: 'Number of Locations',
+                           hide_label: true %>
+          <%= f.email_field :email, placeholder: 'Email',
+                           hide_label: true %>
+          <%= f.submit 'Request Access' %>
+        <% end %>
       </div>
     </center>
   </body>
