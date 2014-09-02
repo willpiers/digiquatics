@@ -17,9 +17,10 @@ describe 'CertificationsCtrl', ->
   beforeEach inject((_$httpBackend_, $rootScope, $controller) ->
     $httpBackend = _$httpBackend_
 
-    $httpBackend.expectGET('/certification_expirations.json').respond
-      certification_names: certNames
-      users: users
+    $httpBackend.expectGET('/users.json').respond users
+    $httpBackend.expectGET('/locations.json').respond []
+    $httpBackend.expectGET('/certification_names.json').respond certNames
+    $httpBackend.expectGET('/certifications.json').respond []
 
     scope = $rootScope.$new()
     ctrl = $controller CertificationsCtrl,
@@ -27,10 +28,8 @@ describe 'CertificationsCtrl', ->
   )
 
   it 'should set the certification names and users on scope', ->
-    expect(scope.certNames).toEqualData undefined
-    expect(scope.users).toEqualData undefined
+    scope.users.length.should.equal 0
 
     $httpBackend.flush()
 
-    expect(scope.certNames).toEqual certNames
-    expect(scope.users).toEqual users
+    scope.users.length.should.equal 2

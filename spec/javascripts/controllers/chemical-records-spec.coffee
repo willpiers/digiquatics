@@ -36,6 +36,5 @@ describe 'ChemicalRecordsCtrl', ->
 
     scope.chemicalRecords.length.should.equal 2
 
-  it 'should set filters to empty string', ->
-    scope.filters.location_id.should.equal ''
-    scope.filters.pool_id.should.equal ''
+  it 'should set predicate for filter', ->
+    scope.predicate.value.should.equal '-time_stamp'
