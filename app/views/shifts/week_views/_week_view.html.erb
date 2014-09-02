@@ -35,7 +35,10 @@
       <td>
         {{user.last_name}}, </br>
         {{user.first_name}}
-        <br><i class="fa fa-clock-o"></i> {{calculateHours(user)}}
+        <div class='hidden-print'>
+          <br><i class="fa fa-clock-o"></i>
+          {{calculateHours(user)}}
+        </div>
       </td>
 
       <td>
