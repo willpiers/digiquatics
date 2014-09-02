@@ -30,12 +30,11 @@ describe 'ChemicalRecordsCtrl', ->
   )
 
   it 'should set the chemicalRecords on scope', ->
-    expect(scope.chemicalRecords).toEqualData undefined
+    scope.chemicalRecords.length.should.equal 0
 
     $httpBackend.flush()
 
-    expect(scope.chemicalRecords).toEqualData chemicalRecords
+    scope.chemicalRecords.length.should.equal 2
 
-  it 'should set filters to empty string', ->
-    expect(scope.filters.location_id).toEqual ''
-    expect(scope.filters.pool_id).toEqual ''
+  it 'should set predicate for filter', ->
+    scope.predicate.value.should.equal '-time_stamp'

@@ -1,5 +1,5 @@
 @digiquatics.controller 'CertificationsCtrl', ['$scope', 'Users', 'Locations', 'CertificationNames', 'Certifications'
-  @UsersCtrl = ($scope, Users, Locations, CertificationNames, Certifications) ->
+  @CertificationsCtrl = ($scope, Users, Locations, CertificationNames, Certifications) ->
 
     $scope.predicate =
       value: '-user.last_name'

@@ -31,10 +31,10 @@ describe 'LocationsCtrl', ->
   )
 
   it 'should set locations on scope', ->
-    expect(scope.locations).toEqualData []
-    expect(scope.users).toEqualData []
+    scope.locations.length.should.equal 0
+    scope.users.length.should.equal 0
 
     $httpBackend.flush()
 
-    expect(scope.locations).toEqualData locations
-    expect(scope.users).toEqualData users
+    scope.locations.length.should.equal 2
+    scope.users.length.should.equal 1

@@ -9,31 +9,38 @@ gem 'bootstrap_form', github: 'potenza/bootstrap_form'
 gem 'less', '2.4.0'
 gem 'therubyracer', '0.12.0'
 gem 'paperclip', '3.5.2'
-gem 'intercom-rails', github: 'kmanzana/intercom-rails'
+gem 'will_paginate', '~>3.0.4'
+gem 'bootstrap-will_paginate'
 gem 'comma', '~> 3.0'
 gem 'slim'
-gem 'angularjs-rails'
-gem 'angular-ui-bootstrap-rails'
-gem 'angular-rails-templates'
-gem 'jquery-turbolinks'
 gem 'devise'
 gem 'activerecord-session_store', github: 'rails/activerecord-session_store'
 gem 'browser', github: 'fnando/browser'
-gem 'mixpanel-ruby'
 gem 'oj'
 gem 'mysql2'
-gem 'sass-rails', '~> 4.0.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'tilt', '~> 1.3.0'
 gem 'sendgrid'
 gem 'aws-sdk'
 gem 'font-awesome-rails'
-gem 'momentjs-rails'
 gem 'ng-rails-csrf'
-gem 'lodash-rails'
+gem 'chartkick'
 gem 'active_link_to'
+gem 'sass-rails', '~> 4.0.0'
 gem 'pace-rails'
 gem 'lazy_high_charts'
+
+# metrics/feedback libs
+gem 'intercom-rails', github: 'kmanzana/intercom-rails'
+gem 'mixpanel-ruby'
+
+# js libs
+gem 'angularjs-rails', '~> 1.2.14'
+gem 'angular-ui-bootstrap-rails'
+gem 'angular-rails-templates'
+gem 'jquery-turbolinks'
+gem 'momentjs-rails'
+gem 'lodash-rails'
 
 group :development, :test do
   gem 'rspec-rails'
@@ -44,9 +51,12 @@ group :development, :test do
   gem 'childprocess', '0.3.6'
   gem 'byebug'
   gem 'rubocop'
+  gem 'brakeman'
+
+  # js testing
   gem 'teaspoon'
   gem 'phantomjs'
-  gem 'brakeman'
+
 end
 
 group :test do
