@@ -9,9 +9,11 @@
 
     <%= render 'layouts/partials/logo' %>
 
-    <div class = 'collapse navbar-collapse navHeaderCollapse'>
-      <%= render 'layouts/partials/desktop_links' %>
-      <%= render 'layouts/partials/mobile_links' %>
-    </div>
+    <% if signed_in? %>
+      <div class = 'collapse navbar-collapse navHeaderCollapse'>
+        <%= render 'layouts/partials/desktop_links' %>
+        <%= render 'layouts/partials/mobile_links' %>
+      </div>
+    <% end %>
   </div>
 </div>

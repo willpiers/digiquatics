@@ -48,41 +48,21 @@ describe 'User pages' do
 
   describe 'signup' do
     before do
-      visit new_user_path
+      visit signup_path
     end
 
-    let(:submit) { 'Create Your Account' }
-
-    describe 'with invalid information' do
-      before { fill_in 'Password *', with: 'foo' }
-
-      it 'should not create a user' do
-        expect { click_button submit }.not_to change(User, :count)
-      end
-    end
+    let(:submit) { 'Request Access' }
 
     describe 'with valid information' do
       before do
-        select blank_account.name,       from: 'Account'
-        fill_in 'Email',                 with: 'user@example.com'
-        fill_in('Password *',            with: 'foobar77', exact: true)
-        fill_in('Confirm Password *',    with: 'foobar77', exact: true)
+        fill_in 'First Name', with: 'John'
+        fill_in 'Last Name',  with: 'Snow'
+        fill_in 'Locations',  with: '2'
+        fill_in 'Email',      with: 'user@example.com'
       end
 
-      it 'should create a user' do
-        expect { click_button submit }.to change(User, :count).by(1)
-      end
-
-      describe 'after saving the user' do
-        before { click_button submit }
-        let(:created_user) { User.find_by_email('user@example.com') }
-
-        it 'should be an admin' do
-          created_user.admin.should eq true
-        end
-
-        it { should have_link('Sign Out') }
-        it { should have_selector('div.alert') }
+      it 'should create a sign up record' do
+        expect { click_button submit }.to change(SignUp, :count).by(1)
       end
     end
 
