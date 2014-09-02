@@ -232,6 +232,11 @@ width: 100%
   box-shadow: 2px 2px grey;
 }
 
+#email_link{
+  color: white;
+  &:hover { color: white; }
+}
+
 .pricing-sub-text{
   font-size: 12px;
   padding: 0px;
