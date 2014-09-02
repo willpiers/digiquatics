@@ -26,6 +26,14 @@ class StaticPagesController < ApplicationController
     render :index, layout: false
   end
 
+  def signup
+    render :signup, layout: false
+  end
+
+  def team
+    render :team, layout: false
+  end
+
   def chemical_record_stats
     Tracker.track(current_user.id, 'View Chemical Record Stats') unless Rails.env.test?
     date_picker

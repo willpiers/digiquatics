@@ -12,4 +12,7 @@
     $scope.showStar = (created_at) ->
       if moment(created_at).isAfter(moment().subtract('days', 15)) then true
       else false
+
+    $scope.go = (path) ->
+      $location.path path
 ]

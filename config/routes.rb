@@ -1,4 +1,6 @@
 DigiQuatics::Application.routes.draw do
+  resources :sign_ups
+
   resources :email_groups
 
   devise_for :users
@@ -42,6 +44,8 @@ DigiQuatics::Application.routes.draw do
   root 'static_pages#landing'
   match '/privacy', to: 'static_pages#privacy', via: 'get'
   match '/tos', to: 'static_pages#tos', via: 'get'
+  match '/team', to: 'static_pages#team', via: 'get'
+  match '/signup', to: 'static_pages#signup', via: 'get'
 
   # Dashboard
   match '/dashboard', to: 'static_pages#dashboard', via: 'get'
