@@ -1,79 +1,105 @@
-#header {
-  height: 1080px;
+// Material Design Indigo
+$indigo500: #3f51b5;
+$indigo600: #3949AB;
+$indigo700: #303f9f;
+
+// Material Design Grey
+$grey400: #BDBDBD;
+$grey900: #212121;
+
+body
+{
+overflow-x: hidden;
+width: 100%
+}
+
+#splash_page {
+  height: 525px;
   vertical-align: middle;
+  background-color: $indigo500;
   color: white;
   margin-top: 0px;
   text-align: center;
 }
 
-#features {
-  height: 950px;
+#splash_page_other {
+  height: 100px;
   vertical-align: middle;
-  color: black;
+  background-color: $indigo500;
+  color: white;
   margin-top: 0px;
   text-align: center;
-  background-color: #F2F7FA;
-  border-top:1px solid;
 }
-
 #info-header {
   font-size: 25px;
-  color: #065BA0;
+  color: $indigo500;
 }
 
-#benefits {
-  height: 550px;
-  vertical-align: middle;
-  color: black;
-  margin-top: 0px;
-  text-align: center;
-  background-color: white;
-  border-top:1px solid;
+@media (min-width: 750px) {
+  #overview_content {
+    width: 650px;
+    text-align: left;
+  }
+
+  #pricing_content {
+    width: 700px;
+  }
+}
+
+@media (max-width: 750px) {
+  .mobile_fix {
+    width: 375px;
+    text-align: left;
+    padding: 10px;
+  }
+  .mobile_fix_team {
+    width: 375px;
+    text-align: middle;
+    padding: 10px;
+  }
+
+  #pricing_content {
+    width: 375px;
+  }
+}
+
+@media (max-width: 780px) {
+  .mobile_features_text {
+    width: 375px;
+    text-align: middle;
+    padding: 10px;
+  }
+}
+
+.blue_icon {
+  color: $indigo500;
+}
+
+#benefit_content {
+  width: 200px;
+  text-align: left;
+}
+
+#signup_contact_content {
+  width: 375px;
+  text-align: left;
+}
+
+.landing_button_text {
+  color: white;
+}
+
+#contact_link {
+  color: white;
+}
+
+#contact_link a{
+  width: 300px;
 }
 
 #feature-header {
   font-size: 15px;
   color: black;
-}
-
-#testimonials {
-  height: 450px;
-  vertical-align: middle;
-  color: black;
-  margin-top: 0px;
-  text-align: center;
-  background-color: #F2F7FA;
-  border-top:1px solid;
-}
-
-#pricing {
-  height: 325px;
-  vertical-align: middle;
-  color: black;
-  margin-top: 0px;
-  text-align: center;
-  background-color: white;
-  border-top:1px solid;
-}
-
-#signup {
-  height: 400px;
-  vertical-align: middle;
-  color: black;
-  margin-top: 0px;
-  text-align: center;
-  background-color: #F2F7FA;
-  border-top:1px solid;
-}
-
-#contact {
-  height: 630px;
-  vertical-align: middle;
-  color: black;
-  margin-top: 0px;
-  text-align: center;
-  background-color: white;
-  border-top:1px solid;
 }
 
 #footer {
@@ -87,21 +113,21 @@
 }
 
 #main-heading {
-  font-size: 40px;
+  font-size: 28px;
   position:relative;
-  top:150px;
+  top:100px;
 }
 
 #sub-heading {
-  font-size: 25px;
+  font-size: 24px;
   position:relative;
-  top:160px;
+  top:100px;
 }
 
 #sub-heading2 {
   font-size: 16px;
   position:relative;
-  top:185px;
+  top:125px;
 }
 
 #sub-heading3 {
@@ -113,7 +139,6 @@
 
 #landing-fix {
   margin-bottom: 0px;
-
 }
 
 #header-btn {
@@ -132,59 +157,89 @@
   font-size: 20px;
 }
 
-.square {
-  background-color: white;
-  color: black;
-  height: 150px;
-  width: 150px;
-  background: #ddd;
-  border:2px solid #065BA0;
-  font-size: 20px;
-  margin: 20px;
-  box-shadow: 0 0 10px #9ecaed;
-}
-
-/* Hide original text */
-.square:hover {
-  font-size: 0;
-  background-color: #065BA0;
-  color: white;
-  text-align: left;
-  padding-top: 5px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border:2px solid black;
-}
-
-/* Replace original text with value in data-hover */
-.square:hover:before {
-  font-size: 16px;
-  content: attr(data-hover);
-}
-
-.position-square-text {
-  position: relative;
-  top: 50%;
-  transform: translateY(-50%);
-  -webkit-transform: translateY(-50%);
-}
-
-.rectangle {
-  background-color: white;
-  color: black;
-  height: 100px;
-  width: 325px;
-  background: #ddd;
-  border:2px solid grey;
-  font-size: 20px;
-  margin: 20px;
-  box-shadow: 0 0 10px #9ecaed;
-}
-
 #sign_in_link {
   color: white;
   text-decoration:underline;
   font-weight:bold;
 }
 
+.footer_text_primary a{
+  color: grey;
+}
 
+#copyright{
+  color: white;
+  background-color: $grey900;
+}
+
+#social{
+  background-color: $grey400;
+}
+
+.social_icon a{
+  color: white;
+  padding: 10px;
+}
+
+#heart{
+  color: red;
+}
+
+.btn.btn-outline-cta1 {
+  background-color: $indigo600; }
+  .btn.btn-outline-cta1.btn-default {
+    color: inherit;
+    &:hover { background-color: $indigo700;}
+    }
+
+#landing_nav_btn_fix {
+  position: relative;
+  top: 10px;
+}
+
+.btn.btn-outline-cta2 {
+  background-color: transparent }
+  .btn.btn-outline-cta2.btn-default {
+    color: inherit;
+    &:hover { background-color: transparent; color: $indigo600;}
+    }
+.nav-hoover .navbar-nav > li > a:hover {
+&:hover { color: $indigo600;}
+}
+
+#landing_sign_in_link{
+  padding-right: 50px;
+  position: relative;
+  top: 38px;
+  color: white;
+  text-decoration: none;
+}
+
+#landing_back_link{
+  padding-left: 50px;
+  position: relative;
+  top: 38px;
+  color: white;
+  text-decoration: none;
+}
+
+#pricing_table {
+  background-color: $indigo500;
+  color: white;
+  height: 250px;
+  width: 300px;
+  box-shadow: 2px 2px grey;
+}
+
+#email_link{
+  color: white;
+  &:hover { color: white; }
+}
+
+.pricing-sub-text{
+  font-size: 12px;
+  padding: 0px;
+  margin: 0px;
+  position: relative;
+  bottom: 30px;
+}

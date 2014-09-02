@@ -12,6 +12,9 @@
     $scope.userAdmin = (user) ->
       user.admin == true
 
+    $scope.localToUtc = (expirationDate) ->
+      moment(expirationDate).utc().format('MM/DD/YYYY')
+
     $scope.checkId = (certification, count) ->
       console.log $scope.certificationNames[0].id
       baseline = $scope.certificationNames[0].id

@@ -14,18 +14,6 @@ class CertificationsController < ApplicationController
     end
   end
 
-  # format.json do
-  #   users = User.same_account_as(current_user).active
-
-  #   render json: users.to_json(include: [
-  #     :location, {position: {only: :name}},
-  #     {shifts: { include: {position: {only: :name} } }},
-  #     :time_off_requests,
-  #     :availabilities])
-
-
-
-
   def expirations
     render json: {
       users:               users_certification_expiration_data,

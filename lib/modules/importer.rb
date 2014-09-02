@@ -5,7 +5,7 @@ module Importer
     first_name last_name email phone_number secondary_phone_number
     employee_id notes address1 address2 city state zipcode emergency_first
     emergency_last emergency_phone sex shirt_size suit_size femalesuit payrate
-    grouping
+    grouping active admin chemical_records_access private_lesson_access
 )
 
   CERT_HEADERS = %w(
@@ -22,7 +22,7 @@ module Importer
 
     CSV.foreach(user_data_file, headers: true) do |user_row|
       @user_row = user_row
-      # puts @user_row
+      puts @user_row unless Rails.env.test?
       @account ||= create_account
       @account.users.build(user_hash).save!
     end
@@ -60,7 +60,10 @@ module Importer
       password_confirmation:  password,
       date_of_birth:          parse_date(@user_row['date_of_birth']),
       date_of_hire:           parse_date(@user_row['date_of_hire']),
-      active:                 to_boolean(@user_row['active'])
+      active:                 to_boolean(@user_row['active']),
+      admin:                  to_boolean(@user_row['admin']),
+      chemical_records_access: to_boolean(@user_row['chemical_records_access']),
+      private_lesson_access:  to_boolean(@user_row['private_lesson_access'])
     }
   end
 
@@ -105,7 +108,7 @@ module Importer
   end
 
   def self.find_user_and_create_certification
-    @user = User.find_by(email: @cert_row['email'])
+    @user = User.find_by(email: @cert_row['email'].downcase)
     if @user
       @user.certifications.build(cert_hash).save!
     else
@@ -114,7 +117,7 @@ module Importer
   end
 
   def self.password
-    'lakewood'
+    'carbonvalley'
   end
 
   def self.parse_date(date_string)
@@ -122,6 +125,6 @@ module Importer
   end
 
   def self.to_boolean(boolean_string)
-    boolean_string == 'true'
+    boolean_string == 'TRUE'
   end
 end

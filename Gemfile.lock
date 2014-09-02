@@ -68,7 +68,7 @@ GEM
       sprockets
       tilt
     angular-ui-bootstrap-rails (0.11.0)
-    angularjs-rails (1.2.16)
+    angularjs-rails (1.2.22)
     arel (4.0.2)
     ast (2.0.0)
     aws-sdk (1.39.0)
@@ -152,7 +152,7 @@ GEM
       i18n (~> 0.5)
     fastercsv (1.5.5)
     ffi (1.9.3)
-    font-awesome-rails (4.1.0.0)
+    font-awesome-rails (4.2.0.0)
       railties (>= 3.2, < 5.0)
     formatador (0.2.4)
     guard (2.6.1)
@@ -173,6 +173,7 @@ GEM
       spork (>= 0.8.4)
     haml (4.0.5)
       tilt
+    hash-deep-merge (0.1.1)
     highline (1.6.21)
     hike (1.2.3)
     i18n (0.6.11)
@@ -187,6 +188,9 @@ GEM
       turbolinks
     json (1.8.1)
     kgio (2.9.2)
+    lazy_high_charts (1.5.4)
+      bundler (>= 1.0)
+      hash-deep-merge
     less (2.4.0)
       commonjs (~> 0.2.7)
     libv8 (3.16.14.3)
@@ -219,6 +223,8 @@ GEM
       mini_portile (= 0.6.0)
     oj (2.9.0)
     orm_adapter (0.5.0)
+    pace-rails (0.1.0)
+      jquery-rails
     paperclip (3.5.2)
       activemodel (>= 3.0.0)
       activesupport (>= 3.0.0)
@@ -350,7 +356,7 @@ GEM
       raindrops (~> 0.7)
     warden (1.2.3)
       rack (>= 1.0)
-    will_paginate (3.0.5)
+    will_paginate (3.0.7)
     xpath (2.0.0)
       nokogiri (~> 1.3)
 
@@ -390,6 +396,7 @@ DEPENDENCIES
   jbuilder (~> 1.2)
   jquery-rails
   jquery-turbolinks
+  lazy_high_charts
   less (= 2.4.0)
   lodash-rails
   mixpanel-ruby
@@ -397,6 +404,7 @@ DEPENDENCIES
   mysql2
   ng-rails-csrf
   oj
+  pace-rails
   paperclip (= 3.5.2)
   phantomjs
   rails (= 4.0.3)

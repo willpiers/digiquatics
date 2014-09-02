@@ -1,8 +1,8 @@
-<div class='table-width-desktop'>
+<div class='table-width-desktop well'>
   <%= bootstrap_form_for(@slide_inspection) do |f| %>
     <% if @slide_inspection.errors.any? %>
-      <div id="error_explanation">
-        <h2><%= pluralize(@slide_inspection.errors.count, "error") %>
+      <div id='error_explanation'>
+        <h2><%= pluralize(@slide_inspection.errors.count, 'error') %>
           prohibited this slide inspection from being saved:</h2>
         <ul>
         <% @slide_inspection.errors.full_messages.each do |msg| %>
@@ -11,25 +11,31 @@
         </ul>
       </div>
     <% end %>
+
     <%= f.select :slide_id,
       options_from_collection_for_select(Slide.joins(:location)
                                                .where(locations:
                                                 { account_id: current_user.account_id }),
                                                :id, :name ) %>
+
     <table class='table table-bordered'>
       <% SlideInspection::TASKS.each do |task| %>
         <%= f.fields_for :slide_inspection_tasks do |builder| %>
           <tr>
-            <td width='175px'>
-              <%= builder.check_box :completed, label: 'Completed', checked: true %>
-              <%= builder.hidden_field :task_name, value: task %>
+            <td id='slide_checkbox_td_width'>
+              <div id='checkbox_fix'>
+                <%= builder.check_box :completed,
+                                      label: 'Completed', checked: true %>
+                <%= builder.hidden_field :task_name, value: task %>
+              </div>
             </td>
-            <td width='350px'><%= task %></td>
+            <td id='slide_task_td_width'><%= task %></td>
           </tr>
         <% end %>
       <% end %>
     </table>
-    <%= f.text_area :notes, placeholder: 'Please leave a detailed description...' %>
+    <%= f.text_area :notes,
+                    placeholder: 'Please leave a detailed description...' %>
     <button type='submit' class='btn btn-block btn-primary'>
       <i class='fa fa-check'></i> Submit Slide Inspection
     </button>

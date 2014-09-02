@@ -5,30 +5,22 @@
   <%= link_to ' Back', account_private_lessons_path(account_id: current_user.account_id) ,
       class: 'glyphicon glyphicon-arrow-left' %>
 </div>
-
 <br><br>
 
-<div class='table-width-desktop'>
-  <table class='table table-bordered'>
-    <tr>
-      <th style='width:50%'>Location</th><!-- TODO: pull this style out-->
-      <th>Number <br/>Unclaimed</td>
-      <th>Number <br/>Claimed</td>
-      <th>Total <br/>Lessons</td>
-    </tr>
-    <% @facade.locations.each do |location| %>
-      <tr>
-        <td><%= location.name %></td>
-        <td><%= @facade.unclaimed_for(location) %></td>
-        <td><%= @facade.claimed_for(location) %></td>
-        <td><%= @facade.total_for(location) %></td>
-      </tr>
-    <% end %>
-    <tr>
-      <th> Totals </th>
-      <th><%= @facade.unclaimed_total %></th>
-      <th><%= @facade.claimed_total %></th>
-      <th><%= @facade.total %></th>
-    </tr>
-  </table>
-</div>
+<table class='table table-bordered'>
+  <tr>
+    <th>Metric</th>
+    <th>Uncliamed</th>
+    <th>Claimed</th>
+    <th>Total</th>
+  </tr>
+  <tr>
+    <th>All Locations</th>
+    <th><%= @facade.unclaimed_total %></th>
+    <th><%= @facade.claimed_total %></th>
+    <th><%= @facade.total %></th>
+  </tr>
+</table>
+<br><br>
+
+<%= high_chart('private_lessons_graph', @private_lessons_graph) %>

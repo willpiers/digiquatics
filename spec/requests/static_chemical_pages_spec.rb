@@ -13,13 +13,4 @@ describe 'Chemical Statistics' do
   end
 
   subject { page }
-
-  # describe 'page' do
-  #   before do
-  #     login_as(admin, scope: :user)
-  #     visit chemical_record_stats_path
-  #   end
-
-  #   it { should have_selector('h1', text: 'Chemical Statistics') }
-  # end
 end

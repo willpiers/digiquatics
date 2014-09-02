@@ -40,12 +40,25 @@ class ShiftsController < ApplicationController
 
   def create
     @shift = Shift.new(shift_params)
-    handle_action(@shift, :new, &:save)
+
+    if @shift.save
+      render json: @shift.to_json(include: {
+        position: { only: :name },
+        location: { only: :name }
+      })
+    else
+      render json: @shift.errors, status: :unprocessable_entity
+    end
   end
 
   def update
-    handle_action(@shift, :edit) do |resource|
-      resource.update(shift_params)
+    if @shift.update(shift_params)
+      render json: @shift.to_json(include: {
+        position: { only: :name },
+        location: { only: :name }
+      })
+    else
+      render json: @shift.errors, status: :unprocessable_entity
     end
   end
 

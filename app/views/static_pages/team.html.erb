@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>DigiQuatics - Team</title>
+    <meta name='viewport'
+          content='width=device-width, initial-scale=1.0 user-scalable=no'>
+    <meta name='description'
+          content='DigiQuatics Team'>
+    <%= stylesheet_link_tag 'application', media: 'all',
+                            'data-turbolinks-track' => true %>
+  </head>
+
+  <body>
+    <div>
+      <div id='splash_page_other'>
+        <div class='pull-right'>
+          <% unless signed_in? %>
+            <%= link_to 'Sign In', new_user_session_path,
+                        id: 'landing_sign_in_link' %>
+          <% end %>
+        </div>
+        <div class='pull-left'>
+          <% unless signed_in? %>
+            <%= link_to 'Back', root_path,
+                        id: 'landing_back_link' %>
+          <% end %>
+        </div>
+        <br>
+        <center>
+          <h3>DigiQuatics</h3>
+        </center>
+      </div>
+    </div>
+
+    <center>
+      <div id='pricing_content' class='mobile_fix_team'>
+        <br><br><br><br>
+        <strong id='info-header'>Affektive Software</strong><br>
+        <h4>
+          We co-founded Affektive Software and DigiQuatics is our first product.
+        </h4>
+        <br>
+        <div class='col'>
+          <div class='col-md-4'>
+            <%= image_tag '/images/josh.jpg', size: '150x150', class: 'img-circle' %>
+            <p>Josh Duffy</p>
+          </div>
+          <div class='col-md-4'>
+            <%= image_tag '/images/michael.jpg', size: '150x150', class: 'img-circle' %>
+            <p>Michael Pierce</p>
+          </div>
+          <div class='col-md-4'>
+            <%= image_tag '/images/kelton.jpg', size: '150x150', class: 'img-circle' %>
+            <p>Kelton Manzanares</p>
+          </div>
+        </div>
+        <br><br><br><br><br><br><br><br><br>
+      </div>
+    </center>
+  </body>
+
+  <div class='footer navbar-fixed-bottom'>
+    <div id='copyright'>
+      <br><br>
+        <center>
+        <span>&#169; 2013-2014 -</span>
+        <a href='http://www.affektive.com'>
+          Affketive Software LLC
+        </a>
+      </center>
+      <br><br>
+    </div>
+  </div>
+</html>

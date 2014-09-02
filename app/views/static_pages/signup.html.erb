@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>DigiQuatics - Sign Up</title>
+    <meta name='viewport'
+          content='width=device-width, initial-scale=1.0 user-scalable=no'>
+    <meta name='description'
+          content='Sign Up for DigiQuatics - Modern Pool Management and Scheduling'>
+    <%= stylesheet_link_tag 'application', media: 'all',
+                            'data-turbolinks-track' => true %>
+  </head>
+
+  <body>
+    <div>
+      <div id='splash_page_other'>
+        <div class='pull-right'>
+          <% unless signed_in? %>
+            <%= link_to 'Sign In', new_user_session_path,
+                        id: 'landing_sign_in_link' %>
+          <% end %>
+        </div>
+        <div class='pull-left'>
+          <% unless signed_in? %>
+            <%= link_to 'Back', root_path,
+                        id: 'landing_back_link' %>
+          <% end %>
+        </div>
+        <br>
+        <center>
+          <h3>DigiQuatics</h3>
+        </center>
+      </div>
+    </div>
+
+    <center>
+      <div id='pricing_content' class='mobile_fix_team'>
+        <br><br><br><br>
+        <strong id='info-header'>SIGN UP</strong><br>
+        <h4>
+          Please fill out the information below to request access to DigiQuatics.
+        </h4>
+        <br>
+        <%= bootstrap_form_for(SignUp.new) do |f| %>
+          <%= f.text_field :first_name, placeholder: 'First Name',
+                           hide_label: true %>
+          <%= f.text_field :last_name, placeholder: 'Last Name',
+                           hide_label: true %>
+          <%= f.text_field :locations, placeholder: 'Number of Locations',
+                           hide_label: true %>
+          <%= f.email_field :email, placeholder: 'Email',
+                           hide_label: true %>
+          <%= f.submit 'Request Access' %>
+        <% end %>
+      </div>
+    </center>
+  </body>
+
+  <div class='footer navbar-fixed-bottom'>
+    <div id='copyright'>
+      <br><br>
+        <center>
+        <span>&#169; 2013-2014 -</span>
+        <a href='http://www.affektive.com'>
+          Affketive Software LLC
+        </a>
+      </center>
+      <br><br>
+    </div>
+  </div>
+</html>

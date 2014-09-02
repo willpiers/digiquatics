@@ -2,6 +2,8 @@ require 'spec_helper'
 
 describe ShiftsController do
   before do
+    @compare_attrs = Shift.column_names - ['start_time', 'end_time']
+
     account = FactoryGirl.create(:account)
     user = FactoryGirl.create(:user, account_id: account.id)
     sign_in user
@@ -47,9 +49,12 @@ describe ShiftsController do
           post :create, shift: FactoryGirl.attributes_for(:shift)
         end.to change(Shift, :count).by(1)
       end
-      it 'redirects to the schedule builder' do
+
+      it 'sends the new shift as json' do
         post :create, shift: FactoryGirl.attributes_for(:shift)
-        response.should render_template :show
+
+        JSON.parse(response.body).slice(*@compare_attrs).should ==
+          Shift.last.attributes.slice(*@compare_attrs)
       end
     end
 
@@ -60,9 +65,11 @@ describe ShiftsController do
         end.to_not change(Shift, :count)
       end
 
-      it 're-renders the #new template' do
+      it 'sends a 422 with an error message' do
         post :create, shift: FactoryGirl.attributes_for(:invalid_shift)
-        response.should render_template :new
+
+        response.status.should == 422
+        response.body.should == { user_id: ["can't be blank"] }.to_json
       end
     end
   end
@@ -97,9 +104,11 @@ describe ShiftsController do
         @shift.end_time.should eq('Sun, 02 Feb 2014 13:45:00 UTC +00:00')
       end
 
-      it 'redirects to the schedule builder' do
+      it 'sends the updated shift as json' do
         put :update, id: @shift, shift: FactoryGirl.attributes_for(:shift)
-        response.should render_template :show
+
+        JSON.parse(response.body).slice(*@compare_attrs).should ==
+          Shift.last.attributes.slice(*@compare_attrs)
       end
     end
 
@@ -128,7 +137,9 @@ describe ShiftsController do
 
       it 're-renders the #edit template' do
         put :update, id: @shift, shift: FactoryGirl.attributes_for(:invalid_shift)
-        response.should render_template :edit
+
+        response.status.should == 422
+        response.body.should == { user_id: ["can't be blank"] }.to_json
       end
     end
   end

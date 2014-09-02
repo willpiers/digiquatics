@@ -1,325 +1,286 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>DigiQuatics - Modern Pool Management</title>
-    <meta name='viewport' content='width=device-width, initial-scale=1.0 user-scalable=no'>
-    <meta name="google-site-verification" content="mLoArmT6xfG0I-ieQbr_wvv2ucTsgXRgUapHy4NX18M" />
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
-    <script>
-      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-      ga('create', 'UA-53113625-1', 'auto');
-      ga('send', 'pageview');
-
-    </script>
+    <title>DigiQuatics - Web Based Scheduling & Aquatics Management</title>
+    <meta name='viewport'
+          content='width=device-width, initial-scale=1.0 user-scalable=no'>
+    <meta name='description'
+          content='Online scheduling and data management for rec centers,
+                   YMCAs, country clubs, and HOA pools.'>
+    <%= stylesheet_link_tag 'application', media: 'all',
+                            'data-turbolinks-track' => true %>
+    <%= render 'layouts/google_analytics' %>
   </head>
 
-  <style>
-  #header {
-    background: url(images/swiming_lap_pool.jpg) no-repeat center center fixed;
-  }
-  </style>
-
-  <div class = 'navbar navbar-inverse navbar-fixed-top' id='landing-fix'>
-    <div class = 'container'>
-      <button class = 'navbar-toggle' data-toggle = 'collapse'
-      data-target = '.navHeaderCollapse'>
-        <span class = 'icon-bar'></span>
-        <span class = 'icon-bar'></span>
-        <span class = 'icon-bar'></span>
-      </button>
-
-      <%= render 'layouts/partials/logo' %>
-
-      <div class = 'collapse navbar-collapse navHeaderCollapse'>
-        <%= render 'layouts/partials/landing_page' %>
+  <body>
+    <%= flash_messages %>
+    <div>
+      <div id='splash_page'>
+        <div class='pull-right'>
+          <% unless signed_in? %>
+            <%= link_to 'Sign In', new_user_session_path,
+                        id: 'landing_sign_in_link' %>
+          <% end %>
+        </div>
+        <br>
+        <center>
+          <h3>DigiQuatics</h3>
+          <strong id='main-heading'>Aquatics Redefined</strong>
+          <h4 id='sub-heading'>
+            Online scheduling, data management and web</br>based private lesson
+            portal that puts you in control.
+          </h4>
+        </center>
+        <div id='sub-heading2'>
+          <%= link_to 'TRY IT FREE FOR 30 DAYS', '#dq_sign_up',
+                       class: 'btn btn-default btn-lg btn-outline-cta1',
+                       id: 'header-btn' %>
+        </div>
       </div>
     </div>
-  </div>
 
-  <div class='hidden-xs'>
-    <div id="header">
-      <strong id='main-heading'> Use DigiQuatics to manage your data and workforce. </strong>
-      <br>
-      <h4 id='sub-heading'>
-         Imagine a paperless pool.
-      </h4>
-      <div id='sub-heading2'>
-        <%= link_to 'Sign up for free!', new_user_path,
-                     class: 'btn btn-default btn-lg', id: 'header-btn' %>
+    <%= render 'layouts/landing_nav' %>
+
+    <center>
+      <div id='dq_overview' class='mobile_fix'>
         <br><br>
-        Already have an account?
-        <%= link_to ' Sign in here ', dashboard_path, id: 'sign_in_link' %>
-      </div>
-      <div id='sub-heading3'>
-        <%= link_to '', '#features', class: 'glyphicon glyphicon-chevron-down',
-        id: 'arrow-color-fix' %>
-      </div>
-    </div>
-
-    <div id='features'>
-       <br><br><br><br><br>
-      <strong id='info-header'> Focus on running your pool. Not paperwork. </strong>
-      <center>
-        <p style='width: 375px;'>
-          DigiQuatics provides you with all the tools necessary to eliminate paper
-          and provide a robust platform to manage your data.
+        <p id='overview_content'>
+          DigiQuatics provides all the tools necessary to eliminate paper,
+          organize data, schedule your staff, and automate
+          your private lessons program and requests. Best of all, your employees
+          can access it from any device anywhere.
         </p>
-      </center>
-      <br>
-
-      <strong id='info-header'> Features designed by us. Requested by you. </strong>
-      <center>
-
-        <br>
-        <div style='width: 575px;'>
-          <div class='square pull-left'
-               data-hover='Search, sort, and track employee certifications.
-                           Email notifications for expirations.'>
-            <div class='position-square-text'>
-              Certification <br/> Tracking
-            </div>
-          </div>
-          <div class='square pull-left'
-               data-hover='Track, analyze and submit records from any device.'>
-            <div class='position-square-text'>
-              Chemical <br/> Records <br/>
-            </div>
-          </div>
-          <div class='square pull-left'
-               data-hover='Manage employee contact & HR info,
-                           certifications, position, location, and more.'>
-            <div class='position-square-text'>
-              Employee <br/> Management
-            </div>
-          </div>
-        </div>
-        <br>
-        <div style='width: 575px;'>
-          <div class='square pull-left'
-               data-hover='Submit pending maintenance
-                           requests. Email notifications for supervisors.'>
-            <div class='position-square-text'>
-              Maintenance <br/> Help Desk
-            </div>
-          </div>
-          <div class='square pull-left'
-               data-hover='Manage sub and time off requests, employee
-                           availability, and create schedules easily.'>
-            <div class='position-square-text'>
-             Scheduling
-            </div>
-          </div>
-          <div class='square pull-left'
-               data-hover='Quick and easy shift reporting for employees. Know
-                           more as a supervisor.'>
-            <div class='position-square-text'>
-              Shift <br/> Reports <br/>
-            </div>
-          </div>
-        </div>
-
-        <div style='width: 575px;'>
-          <div class='square pull-left'
-               data-hover='Mobile friendly checklist of mandated slide
-                           inspection items.'>
-            <div class='position-square-text'>
-              Slide <br/> Inspections
-            </div>
-          </div>
-          <div class='square pull-left'
-               data-hover='Unique web portal for customers to login and request
-                           lesons. Mobile/Desktop access for staff.'>
-            <div class='position-square-text'>
-              Private Lessons <br/> Management <br/>
-            </div>
-          </div>
-          <div class='square pull-left'
-               data-hover='Coming Soon!'>
-            <div class='position-square-text'>
-              To-Do List
-            </div>
-          </div>
-        </div>
-
-      </center>
-    </div>
-
-    <div id='benefits'>
-      <center>
-       <br><br><br><br><br>
-      <strong id='info-header'> Benefits </strong>
-      <br><br>
-
-        <div style='width: 350px;'>
-          <div class='row' align='left'>
-            <div class='col-md-2'>
-              <span class='glyphicon glyphicon-cloud big-icon'></span>
-            </div>
-            <div class='col-md-10'>
-              <strong id='feature-header'>
-                Cloud based data management. Never worry about back-ups again.
-              </strong>
-            </div>
-          </div>
-
-          <br><br>
-
-          <div class='row' align='left'>
-            <div class='col-md-2'>
-              <span class='glyphicon glyphicon-phone big-icon'></span>
-            </div>
-            <div class='col-md-10'>
-              <strong id='feature-header'>
-                 Cross-Platform access: desktop, tablet & phone.
-              </strong>
-            </div>
-          </div>
-
-          <br><br>
-
-          <div class='row' align='left'>
-            <div class='col-md-2'>
-              <span class='glyphicon glyphicon-download-alt big-icon'></span>
-            </div>
-            <div class='col-md-10'>
-              <strong id='feature-header'>
-                 Export your data anytime, anywhere.
-              </strong>
-            </div>
-          </div>
-
-          <br><br>
-
-          <div class='row' align='left'>
-            <div class='col-md-2'>
-              <span class='glyphicon glyphicon-lock big-icon'></span>
-            </div>
-            <div class='col-md-10'>
-              <strong id='feature-header'>
-                State-of-the-art security.
-              </strong>
-            </div>
-          </div>
-
-      </center>
-    </div>
-
-    <div id="testimonials">
-      <center>
-      <br><br><br><br><br>
-      <strong id='info-header'> What others are saying...</strong>
-      <br><br>
-      <p style='width: 375px;' align='left'>
-        "DigiQuatics has changed the way we run our pool on a daily basis."
-        <br/>-Customer A
-      </p>
-
-      <br>
-
-      <p style='width: 375px;' align='left'>
-        "After implementing the online private lesson sign up feature we increased our
-        lessons revenue by 50%" <br/> -Customer B
-      </p>
-
-    </div>
-
-    <div id="pricing">
-      <center>
-       <br><br><br><br><br>
-      <strong id='info-header'> Pricing</strong>
-      <br><br>
-      <p style='width: 375px;' align='left'>
-        At this time we are pricing on a case by case basis. Please contact
-        us for a quote. Our contact information can be found below.
-      </p>
-      </center>
-    </div>
-
-    <div id="signup">
-      <center>
-         <br><br><br><br><br>
-        <strong id='info-header'> Want early access?</strong>
         <br><br>
-        <p style='width: 375px;' align='left'>
-         Our team is working hard to develop new features. But we have
-         plenty of solid features ready to start using immediately.
+      </div>
+
+      <div id='dq_features'>
+        <hr>
+        <br><br>
+        <strong id='info-header'>FEATURES</strong>
+        <br><br><br>
+        <div class='row'>
+          <div class='col-sm-1'></div> <!-- Placeholder -->
+          <div class='col-sm-2'>
+            <div class='blue_icon'>
+              <i class='fa fa-calendar fa-5x'></i>
+            </div>
+            <br>
+            <h4>Staff<br>Scheduling</h4>
+            <p class='mobile_features_text'>
+              Create schedules for your staff and publish online. Designed to
+              work with multiple locations. Staff can submit availabilities,
+              sub requests and time off requests online.
+            </p>
+          </div>
+          <div class='col-sm-2'>
+            <div class='blue_icon'>
+              <i class='fa fa-users fa-5x'></i>
+            </div>
+            <br>
+            <h4>Employee<br>Management</h4>
+            <p class='mobile_features_text'>
+              Manage all your staff information in one place: contact
+              information, sizing, emergency contacts, notes, and more.
+              Track American Red Cross, Ellis and Associates, and other certifications.
+              Know when your employees need to renew automatically.
+            </p>
+          </div>
+          <div class='col-sm-2'>
+            <div class='blue_icon'>
+              <i class='fa fa-flask fa-5x'></i>
+            </div>
+            <br>
+            <h4>Chemical<br>Records</h4>
+            <p class='mobile_features_text'>
+              Submit pool chemical readings on the go. Instantly calculate
+              combined chlorine and langelier saturation index upon submitting
+              a chemical record. Receive detailed recomendations. Track trends
+              with robust analytics.
+            </p>
+          </div>
+          <div class='col-sm-2'>
+            <div class='blue_icon'>
+              <i class='fa fa-child fa-5x'></i>
+            </div>
+            <br>
+            <h4>Private Lessons<br>Portal</h4>
+            <p class='mobile_features_text'>
+              Parents can request private lessons online 24/7 - without an
+              account. Online queue system designed to pair
+              instructors with students faster and supervisor dashboard.
+            </p>
+          </div>
+          <div class='col-sm-2'>
+            <div class='blue_icon'>
+              <i class='fa fa-wrench fa-5x'></i>
+            </div>
+            <br>
+            <h4>Maintenance<br>Tracking</h4>
+            <p class='mobile_features_text'>
+              Issue tracking system allows any staff member to flag issues.
+              Upload photos of any problems from your mobile device. Handle and
+              manage slide inspections online with instant notifications of
+              potential problems.
+            </p>
+          </div>
+          <div class='col-sm-1'></div> <!-- Placeholder -->
+        </div>
+        <br><br>
+      </div>
+
+      <div id='dq_benefits'>
+        <hr>
+        <br><br>
+        <strong id='info-header'>BENEFITS</strong>
+        <br><br>
+        <div id='benefit_content'>
+          <li>Email and SMS notifications</li>
+          <br>
+          <li>Designed with mobile in mind</li>
+          <br>
+          <li>Cloud based data protection</li>
+          <br>
+          <li>Built in tech support</li>
+          <br>
+          <li>Robust security</li>
+          <br>
+          <li>Export your data anytime</li>
+        </div>
+        <br>
+        <br>
+      </div>
+
+      <div id='dq_pricing'>
+        <hr>
+        <br><br>
+        <strong id='info-header'>PRICING</strong>
+        <br><br>
+        <div id='pricing_content'>
+        <div>
+          <div id='pricing_table'>
+            <br>
+            <h4>Any Size Organization</h4>
+            <br>
+            <h2>Request Quote<br><br>
+              <%= link_to 'Team@DigiQuatics.com',
+                          'mailto:Team@DigiQuatics.com',
+                           id: 'email_link' %>
+            </h2>
+          </div>
+        </div>
+        <br><br><br>
+        </div>
+      </div>
+
+      <div id='dq_sign_up'>
+        <hr>
+        <br><br>
+        <strong id='info-header'>SIGN UP</strong>
+        <br><br>
+        <p id='signup_contact_content' class='mobile_fix'>
+          Sign up to gain access to DigiQuatics. Our team will reach out to you
+          imediately to onboard your facility and staff onto our platform. We
+          do all the heavy lifting so you don't have to. Just send us your
+          data!
         </p>
         <br>
-        <%= link_to 'Sign Up for free!', new_user_path,
-            class: 'btn btn-primary btn-lg', id: 'header-btn' %>
-      </center>
-    </div>
+        <div class='landing_button_text'>
+        <%= link_to 'SIGN UP TODAY FOR FREE TRAIL', signup_path,
+                     class: 'btn btn-default btn-lg btn-outline-cta1' %>
+        </div>
+        <strong>No Credit Card Required</strong>
+        <br><br><br>
+      </div>
 
-    <div id="contact">
-      <center>
-         <br><br><br><br><br>
-        <strong id='info-header'>
-          <span class='glyphicon glyphicon-comment big-icon'></span>
-          Contact Us
-        </strong>
+      <div id='dq_demo'>
+        <hr>
         <br><br>
-        <p style='width: 375px;' align='left'>
-          We're headquartered in Lakewood, Colorado but our developers can also be found
-          from time to time at the Colorado School of Mines. You can contact us
-          via email, phone, or Twitter
-          <a style='color: black;' href="https://twitter.com/DigiQuatics">
-            <b> @DigiQuatics</b>.
+        <strong id='info-header'>DEMO</strong>
+        <br><br>
+        <p id='signup_contact_content' class='mobile_fix'>
+          Our team would love to demo the app for you anytime. If you are local
+          we would love to come meet face to face. Otherwise a virtual meeting
+          can be setup easily.
+        </p>
+        <br><br>
+      </div>
+
+      <div id='dq_contact'>
+        <hr>
+        <br><br>
+        <strong id='info-header'>CONTACT</strong>
+        <br><br>
+          <p id='signup_contact_content' class='mobile_fix'>
+           We're headquartered in Denver, Colorado and would love to meet in
+           person if you're local too. Otherwise, you can contact us via phone,
+           email, or Twitter
+           <a style='color: black;' href='https://twitter.com/DigiQuatics'>
+             <b> @DigiQuatics</b>.
+           </a>
+          </p>
+          <div id='contact_link'>
+            <a class='btn btn-default btn-lg btn-outline-cta1'
+               href='tel:303-921-8628'>
+              <i class='fa fa-phone fa-lg'></i>
+               (303)-921-8628</a>
+              <br><br>
+            <a class='btn btn-default btn-lg btn-outline-cta1'
+               href='mailto:Team@DigiQuatics.com'>
+              <i class='fa fa-envelope fa-lg'></i>
+               Team@DigiQuatics.com</a>
+          </div>
+          <br><br><br><br>
+      </div>
+
+      <div id='social'>
+        <br><br>
+        <p class='social_icon'>
+          <a href='https://twitter.com/DigiQuatics'>
+            <i class='fa fa-twitter-square fa-3x'></i>
+          </a>
+          <a href='https://www.facebook.com/DigiQuatics'>
+            <i class='fa fa-facebook-square  fa-3x'></i>
+          </a>
+          <a href='http://instagram.com/DigiQuatics'>
+            <i class='fa fa-instagram fa-3x'></i>
           </a>
         </p>
+        <br><br>
+      </div>
 
-
-        <div style='width: 375px;'>
-          <div class='rectangle'>
-            <div class='position-square-text'>
-              <span class='glyphicon glyphicon-earphone small-icon'></span>
-              <a style='color: black;' href="tel:303-921-8628">
-                (303)-921-8628
-              </a>
-            </div>
+      <div id='copyright'>
+        <br><br>
+        <div class='row'>
+          <div class='col-md-4'></div> <!-- Placeholder -->
+          <div class='col-md-2'>
+            <h4 >Company</h4>
+            <p class='footer_text_primary'>
+              <a href='/tos'> Terms of Service </a>
+              <br>
+              <a href='/privacy'> Privacy Policy </a>
+            </p>
           </div>
-
-          <div class='rectangle' >
-            <div class='position-square-text'>
-              <span class=' glyphicon glyphicon-envelope small-icon'></span>
-              <a style='color: black;' href="mailto:Team@DigiQuatics.com">
-                Team@DigiQuatics.com
-              </a>
-            </div>
+          <div class='col-md-2'>
+            <h4 >About</h4>
+              <p class='footer_text_primary'>
+              <a href='/team'> The Team </a>
+            </p>
           </div>
+          <div class='col-md-4'></div> <!-- Placeholder -->
+            <br><br><br><br><br><br>
+            <p>
+              Made with <i class='fa fa-heart fa-1x' id='heart'></i>
+              in Denver, CO
+              <%= image_tag('/images/co.png', alt: 'Colorado State Flag') %>
+            </p>
+            <br>
+            <span>&#169; 2013-2014 -</span>
+            <a href='http://www.affektive.com'>
+              Affketive Software LLC
+            </a>
         </div>
-      </center>
-    </div>
-
-    <div id="footer">
-      <center>
-      <br>
-       <p>
-        <a style= 'color: grey;' href='/tos'> Terms of Service </a> -
-        <a style= 'color: grey;' href='/privacy'> Privacy Policy </a> -
-        <a href="https://twitter.com/DigiQuatics">
-           Tweet us! <%= fa_icon 'twitter-square' %>
-        </a>
-        <br/>
-        &#169; 2013-2014
-        <a href='http://affektive.herokuapp.com'> Affketive Software LLC </a>
-      </p>
-
+        <br><br>
+      </div>
     </center>
-    </div>
-  </div>
-
-  <div class='visible-xs'>
-    <center>
-       <br><br><br><br><br>
-       <%= link_to 'Sign In', new_user_session_path,
-                   class: 'btn btn-primary btn-lg', id: 'header-btn' %>
-      <br><br>
-    </center>
-  </div>
-
+  </body>
 </html>
-
-

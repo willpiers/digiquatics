@@ -1,4 +1,6 @@
 DigiQuatics::Application.routes.draw do
+  resources :sign_ups
+
   resources :email_groups
 
   devise_for :users
@@ -38,7 +40,18 @@ DigiQuatics::Application.routes.draw do
     end
   end
 
+  # Default Static Pages
   root 'static_pages#landing'
+  match '/privacy', to: 'static_pages#privacy', via: 'get'
+  match '/tos', to: 'static_pages#tos', via: 'get'
+  match '/team', to: 'static_pages#team', via: 'get'
+  match '/signup', to: 'static_pages#signup', via: 'get'
+
+  # Dashboard
+  match '/dashboard', to: 'static_pages#dashboard', via: 'get'
+
+  # Admin Dashboard
+  match '/admin_dashboard', to: 'accounts#admin_dashboard', via: 'get'
 
   # Chemicals
   match '/chemicals', to: 'static_pages#chemicals',    via: 'get'
@@ -50,36 +63,14 @@ DigiQuatics::Application.routes.draw do
         to: 'static_pages#chemical_record_stats',
         via: 'post'
 
-  # Default Static Pages
-  match '/maintenance', to: 'static_pages#maintenance', via: 'get'
-  match '/contact', to: 'static_pages#contact', via: 'get'
-  match '/instructions', to: 'static_pages#instructions', via: 'get'
-  match '/support', to: 'users#support', via: 'get'
-  match '/privacy', to: 'static_pages#privacy', via: 'get'
-  match '/tos', to: 'static_pages#tos', via: 'get'
-  match '/dashboard', to: 'static_pages#dashboard', via: 'get'
-  match '/availability', to: 'static_pages#availability', via: 'get'
-
   # Certifications
   match '/certifications_stats',
         to: 'static_pages#certifications_stats',
         via: 'get'
 
-  # Schedule
+  # Scheduling
   match '/my_schedule', to: 'shifts#my_schedule', via: 'get'
-
-  # Users
-  match '/user_stats', to: 'static_pages#user_stats', via: 'get'
-  match '/inactive_index', to: 'users#inactive_index', via: 'get'
-  match '/all_users', to: 'users#all_users', via: 'get'
-
-  # Private Lessons
-  match '/private_lesson_stats', to: 'static_pages#private_lesson_stats', via: 'get'
-  match '/admin_index', to: 'private_lessons#admin_index', via: 'get'
-  match '/completed_admin_index', to: 'private_lessons#completed_admin_index', via: 'get'
-  match '/my_lessons', to: 'private_lessons#my_lessons', via: 'get'
-  match '/thank_you', to: 'private_lessons#thank_you', via: 'get'
-  match '/my_lessons', to: 'private_lessons#my_lessons', via: 'get'
+  match '/availability', to: 'static_pages#availability', via: 'get'
 
   # Sub Requests
   match '/processed_sub_requests', to: 'sub_requests#processed', via: 'get'
@@ -94,8 +85,18 @@ DigiQuatics::Application.routes.draw do
         to: 'time_off_requests#my_time_off_requests',
         via: 'get'
 
-  # Admin Dashboard
-  match '/admin_dashboard', to: 'accounts#admin_dashboard', via: 'get'
+  # Users
+  match '/user_stats', to: 'static_pages#user_stats', via: 'get'
+  match '/inactive_index', to: 'users#inactive_index', via: 'get'
+  match '/all_users', to: 'users#all_users', via: 'get'
+
+  # Private Lessons
+  match '/private_lesson_stats', to: 'static_pages#private_lesson_stats', via: 'get'
+  match '/admin_index', to: 'private_lessons#admin_index', via: 'get'
+  match '/completed_admin_index', to: 'private_lessons#completed_admin_index', via: 'get'
+  match '/my_lessons', to: 'private_lessons#my_lessons', via: 'get'
+  match '/thank_you', to: 'private_lessons#thank_you', via: 'get'
+  match '/my_lessons', to: 'private_lessons#my_lessons', via: 'get'
 
   # Help Desk
   match '/closed_index', to: 'help_desks#closed_index', via: 'get'

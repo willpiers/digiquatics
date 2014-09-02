@@ -1,18 +1,18 @@
 <div class='hidden-xs'>
   <ul class = 'nav navbar-nav navbar-right' >
-    <% if signed_in? %>
+
       <% if current_user.chemical_records_access? || current_user.admin? %>
-          <%= active_link_to 'Chemicals', chemical_records_path, :active =>
+          <%= active_link_to 'Chemicals', chemical_records_path, active:
               [['chemical_records', 'static_pages'],
               ['index', 'edit', 'new', 'show', 'chemical_record_stats']],
-              :wrap_tag => :li %>
+              wrap_tag: :li %>
       <% end %>
       <% if current_user && current_user.admin? %>
-        <%= active_link_to 'Certifications', certifications_path, :active =>
-        [['certifications', 'certification_names'], []], :wrap_tag => :li %>
+        <%= active_link_to 'Certifications', certifications_path, active:
+        [['certifications', 'certification_names'], ['index']], wrap_tag: :li %>
       <% end %>
       <% if current_user.private_lesson_access? || current_user.admin? %>
-        <li class = "dropdown <%= active_link_to_class('#', :active =>
+        <li class = "dropdown <%= active_link_to_class('#', active:
               [['private_lessons', 'static_pages'],
               ['index', 'edit', 'new', 'show', 'admin_index',
               'completed_admin_index', 'private_lesson_stats']]) %>">
@@ -35,23 +35,20 @@
           </ul>
       <% end %>
       <li>
-      <%= active_link_to 'Employees', users_path, :active =>
+      <%= active_link_to 'Employees', users_path, active:
           [['users', 'static_pages'],
-          ['index', 'new', 'inactive_index', 'user_stats']], :wrap_tag => :li %>
+          ['index', 'new', 'inactive_index', 'user_stats']], wrap_tag: :li %>
       <li class = "dropdown <%= active_nav('help_desks')%>
                             <%= active_nav('slide_inspections')%>">
         <a href = '#' class = 'dropdown-toggle' data-toggle = 'dropdown'>
           Maintenance<b class = 'caret'></b></a>
         <ul class = 'dropdown-menu'>
           <li><%= link_to 'Slide Inspections', slide_inspections_path %></li>
-          <li><%= link_to 'Daily Checklist', daily_todos_path %></li>
-          <li><%= link_to 'Preventative Maintenance',
-                        preventative_lists_path %></li>
           <li><%= link_to 'Maintenance Issues', help_desks_path %></li>
         </ul>
       </li>
       <% if current_user %>
-        <li class = "dropdown <%= active_link_to_class('#', :active =>
+        <li class = "dropdown <%= active_link_to_class('#', active:
               [['shifts', 'sub_requests', 'time_off_requests'],
               ['index', 'edit', 'new', 'show', 'processed', 'admin_index',
                'archived_time_off_requests']]) %>">
@@ -76,25 +73,26 @@
           </ul>
         </li>
       <% end %>
-      <%= active_link_to 'Shift Reports', shift_reports_path, :active =>
-          [['shift_reports'], []], :wrap_tag => :li %>
-      <li class = "dropdown <%= active_link_to_class('#', :active =>
-            [['accounts', 'availabilities', 'private_lessons', 'shifts',
-              'sub_requests', 'users', 'locations',
-              'positions', 'skills', 'packages'],
+
+      <%= active_link_to 'Shift Reports', shift_reports_path, active:
+          [['shift_reports'], []], wrap_tag: :li %>
+
+      <li class = "dropdown <%= active_link_to_class('#', active:
+            [['availabilities', 'private_lessons', 'shifts',
+              'sub_requests', 'users'],
             ['edit', 'availabilities', 'my_lessons',
-             'my_schedule', 'my_sub_requests', 'my_time_off_requests',
-             'admin_dashboard']]) %>
-             <%= active_link_to_class('#', :active =>
+             'my_schedule', 'my_sub_requests', 'my_time_off_requests']]) %>
+             <%= active_link_to_class('#', active:
                          [['users'],
                          ['show']]) %>
-              <%= active_link_to_class('#', :active =>
+              <%= active_link_to_class('#', active:
                           [['time_off_requests'],
                           ['my_time_off_requests']]) %>
              <%= active_link_to_class(availabilities_path,
-                 :active => :inclusive) %>">
+                 active: :inclusive) %>">
         <a href = '#' class = 'dropdown-toggle' data-toggle = 'dropdown'>
-          Account<b class = 'caret'></b></a>
+
+          <%= "#{current_user.first_name}" %> <b class = 'caret'></b></a>
         <ul class = 'dropdown-menu'>
           <li><%= link_to 'My Profile', current_user %></li>
           <li class='divider'></li>
@@ -103,29 +101,19 @@
           <li><%= link_to 'My Schedule', my_schedule_path %></li>
           <li><%= link_to 'My Sub Requests', my_sub_requests_path %></li>
           <li><%= link_to 'My Time Off', my_time_off_requests_path %></li>
-          <% if current_user && current_user.admin? %>
-            <li class='divider'></li>
-            <li><%= link_to 'Preferences', admin_dashboard_path %></li>
-          <% end %>
           <li class='divider'></li>
           <li><%= link_to 'Sign Out', destroy_user_session_path,
             method: :delete %></li>
         </ul>
       </li>
-    <% else #!signed_in? %>
-      <li><a href='#features'> Features </a> </li>
-      <li><a href='#benefits'> Benefits </a> </li>
-      <li><a href='#testimonials'> Testimonials </a> </li>
-      <li><a href='#pricing'> Pricing </a> </li>
-      <li><a href='#signup'> Sign Up </a> </li>
-      <li><a href='#contact'> Contact Us </a> </li>
-      <li>
-        <div>
-          <%= link_to 'Sign In',
-                      new_user_session_path,
-                      class: 'btn btn-danger btn-default fixbtn' %>
-      </div>
-      </li>
-    <% end %>
+      <% if current_user.admin? %>
+        <li class='<%= active_link_to_class('#', active:
+              [['accounts', 'locations', 'certification_names',
+                'positions', 'skill_levels', 'packages'],
+              ['new', 'edit', 'admin_dashboard']]) %>'>
+          <a href='/admin_dashboard'><span class='glyphicon glyphicon-cog'></span></a>
+        </li>
+      <% end %>
+
   </ul>
 </div>

@@ -27,6 +27,8 @@ gem 'ng-rails-csrf'
 gem 'chartkick'
 gem 'active_link_to'
 gem 'sass-rails', '~> 4.0.0'
+gem 'pace-rails'
+gem 'lazy_high_charts'
 
 # metrics/feedback libs
 gem 'intercom-rails', github: 'kmanzana/intercom-rails'
