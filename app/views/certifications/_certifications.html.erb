@@ -55,7 +55,7 @@
               <div ng-class="cssClass(cert.expiration_date)"
                    class='cert-cell'>
                 <div class='cert-cell-text'>
-                {{cert.expiration_date | date:'MM/dd/yy'}}
+                {{localToUtc(cert.expiration_date)}}
                 </div>
               </div>
             </center>
