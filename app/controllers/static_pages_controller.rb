@@ -221,8 +221,9 @@ class StaticPagesController < ApplicationController
   end
 
   def ch
-    data = ChemicalRecord.where(pool_id: @pool_id, created_at: @start_adj..@end_adj).order('created_at asc').map { |x| [x.created_at.strftime('%-m/%-d/%Y @ %I:%M%p'), x.calcium_hardness.to_f] }
+    data = ChemicalRecord.where(pool_id: @pool_id, created_at: @start_adj..@end_adj).order('created_at asc')
     data.reject(&:blank?)
+    data.map { |x| [x.created_at.strftime('%-m/%-d/%Y @ %I:%M%p'), x.calcium_hardness.to_f] }
     @ch = LazyHighCharts::HighChart.new('graph') do |f|
       f.title({text: 'Calcium Hardness Levels'})
       f.legend({layout: 'vertical',
