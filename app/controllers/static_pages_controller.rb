@@ -38,7 +38,7 @@ class StaticPagesController < ApplicationController
     Tracker.track(current_user.id, 'View Chemical Record Stats') unless Rails.env.test?
     date_picker
     chemical_stats_table
-    cheical_graphs
+    chemical_graphs
   end
 
   def user_stats
@@ -221,6 +221,8 @@ class StaticPagesController < ApplicationController
   end
 
   def ch
+    data = ChemicalRecord.where(pool_id: @pool_id, created_at: @start_adj..@end_adj).order('created_at asc').map { |x| [x.created_at.strftime('%-m/%-d/%Y @ %I:%M%p'), x.calcium_hardness.to_f] }
+    data.compact
     @ch = LazyHighCharts::HighChart.new('graph') do |f|
       f.title({text: 'Calcium Hardness Levels'})
       f.legend({layout: 'vertical',
@@ -228,7 +230,7 @@ class StaticPagesController < ApplicationController
                 verticalAlign: 'middle',
                 borderWidth: 0})
       f.series(name: 'Calcium Hardness',
-               data: ChemicalRecord.where(pool_id: @pool_id, created_at: @start_adj..@end_adj).order('created_at asc').map { |x| [x.created_at.strftime('%-m/%-d/%Y @ %I:%M%p'), x.calcium_hardness.to_f] },
+               data: data,
                color: '#9C27B0')
       f.xAxis [
         {title: {text: 'Record',
