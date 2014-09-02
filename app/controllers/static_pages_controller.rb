@@ -92,7 +92,7 @@ class StaticPagesController < ApplicationController
     @query
   end
 
-  def cheical_graphs
+  def chemical_graphs
     temp
     ph
     cl
