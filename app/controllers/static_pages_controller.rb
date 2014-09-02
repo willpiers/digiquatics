@@ -134,13 +134,13 @@ class StaticPagesController < ApplicationController
                 verticalAlign: 'middle',
                 borderWidth: 0})
       f.series(name: 'Free',
-               data: ChemicalRecord.where(pool_id: @pool_id, created_at: @start_adj..@end_adj).order('created_at asc').map { |x| [x.created_at.strftime('%-m/%-d/%Y @ %I:%M%p'), x.free_chlorine_ppm].compact },
+               data: ChemicalRecord.where(pool_id: @pool_id, created_at: @start_adj..@end_adj).order('created_at asc').map { |x| [x.created_at.strftime('%-m/%-d/%Y @ %I:%M%p'), x.free_chlorine_ppm.to_f] },
                color: '#FFC107')
       f.series(name: 'Combined',
-               data: ChemicalRecord.where(pool_id: @pool_id, created_at: @start_adj..@end_adj).order('created_at asc').map { |x| [x.created_at.strftime('%-m/%-d/%Y @ %I:%M%p'), x.combined_chlorine_ppm].compact },
+               data: ChemicalRecord.where(pool_id: @pool_id, created_at: @start_adj..@end_adj).order('created_at asc').map { |x| [x.created_at.strftime('%-m/%-d/%Y @ %I:%M%p'), x.combined_chlorine_ppm.to_f] },
                color: '#8BC34A')
       f.series(name: 'Total',
-               data: ChemicalRecord.where(pool_id: @pool_id, created_at: @start_adj..@end_adj).order('created_at asc').map { |x| [x.created_at.strftime('%-m/%-d/%Y @ %I:%M%p'), x.total_chlorine_ppm].compact },
+               data: ChemicalRecord.where(pool_id: @pool_id, created_at: @start_adj..@end_adj).order('created_at asc').map { |x| [x.created_at.strftime('%-m/%-d/%Y @ %I:%M%p'), x.total_chlorine_ppm.to_f] },
                color: '#259B24')
       f.xAxis [
         {title: {text: 'Record',
@@ -162,10 +162,10 @@ class StaticPagesController < ApplicationController
                 verticalAlign: 'middle',
                 borderWidth: 0})
       f.series(name: 'Air',
-               data: ChemicalRecord.where(pool_id: @pool_id, created_at: @start_adj..@end_adj).order('created_at asc').map { |x| [x.created_at.strftime('%-m/%-d/%Y @ %I:%M%p'), x.air_temp].compact },
+               data: ChemicalRecord.where(pool_id: @pool_id, created_at: @start_adj..@end_adj).order('created_at asc').map { |x| [x.created_at.strftime('%-m/%-d/%Y @ %I:%M%p'), x.air_temp.to_f] },
                color: '#3F51B5')
       f.series(name: 'Pool',
-               data: ChemicalRecord.where(pool_id: @pool_id, created_at: @start_adj..@end_adj).order('created_at asc').map { |x| [x.created_at.strftime('%-m/%-d/%Y @ %I:%M%p'), x.pool_temp].compact },
+               data: ChemicalRecord.where(pool_id: @pool_id, created_at: @start_adj..@end_adj).order('created_at asc').map { |x| [x.created_at.strftime('%-m/%-d/%Y @ %I:%M%p'), x.pool_temp.to_f] },
                color: '#5677FC')
       f.xAxis [
         {title: {text: 'Record',
@@ -186,7 +186,7 @@ class StaticPagesController < ApplicationController
                 verticalAlign: 'middle',
                 borderWidth: 0})
       f.series(name: 'PH',
-               data: ChemicalRecord.where(pool_id: @pool_id, created_at: @start_adj..@end_adj).order('created_at asc').map { |x| [x.created_at.strftime('%-m/%-d/%Y @ %I:%M%p'), x.ph].compact },
+               data: ChemicalRecord.where(pool_id: @pool_id, created_at: @start_adj..@end_adj).order('created_at asc').map { |x| [x.created_at.strftime('%-m/%-d/%Y @ %I:%M%p'), x.ph.to_f] },
                color: '#E84E40')
       f.xAxis [
         {title: {text: 'Record',
@@ -207,7 +207,7 @@ class StaticPagesController < ApplicationController
                 verticalAlign: 'middle',
                 borderWidth: 0})
       f.series(name: 'Alkalinity',
-               data: ChemicalRecord.where(pool_id: @pool_id, created_at: @start_adj..@end_adj).order('created_at asc').map { |x| [x.created_at.strftime('%-m/%-d/%Y @ %I:%M%p'), x.alkalinity].compact },
+               data: ChemicalRecord.where(pool_id: @pool_id, created_at: @start_adj..@end_adj).order('created_at asc').map { |x| [x.created_at.strftime('%-m/%-d/%Y @ %I:%M%p'), x.alkalinity.to_f] },
                color: '#009688')
       f.xAxis [
         {title: {text: 'Record',
@@ -221,7 +221,7 @@ class StaticPagesController < ApplicationController
   end
 
   def ch
-    data = ChemicalRecord.where(pool_id: @pool_id, created_at: @start_adj..@end_adj).order('created_at asc').map { |x| [x.created_at.strftime('%-m/%-d/%Y @ %I:%M%p'), x.calcium_hardness].compact }
+    data = ChemicalRecord.where(pool_id: @pool_id, created_at: @start_adj..@end_adj).order('created_at asc').map { |x| [x.created_at.strftime('%-m/%-d/%Y @ %I:%M%p'), x.calcium_hardness.to_f] }
     data.compact
     @ch = LazyHighCharts::HighChart.new('graph') do |f|
       f.title({text: 'Calcium Hardness Levels'})
@@ -251,7 +251,7 @@ class StaticPagesController < ApplicationController
                 verticalAlign: 'middle',
                 borderWidth: 0})
       f.series(name: 'SI Index',
-               data: ChemicalRecord.where(pool_id: @pool_id, created_at: @start_adj..@end_adj).order('created_at asc').map { |x| [x.created_at.strftime('%-m/%-d/%Y @ %I:%M%p'), x.si_index].compact },
+               data: ChemicalRecord.where(pool_id: @pool_id, created_at: @start_adj..@end_adj).order('created_at asc').map { |x| [x.created_at.strftime('%-m/%-d/%Y @ %I:%M%p'), x.si_index.to_f] },
                color: '#FF5722')
       f.xAxis [
         {title: {text: 'Record',
