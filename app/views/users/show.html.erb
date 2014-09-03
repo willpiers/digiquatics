@@ -21,13 +21,13 @@
       <i class='fa fa-pencil fa-lg'></i> Edit Profile
     <% end %>
 
-    <div class="btn-group">
-      <button type="button" class="btn btn-default btn-success dropdown-toggle"
-              data-toggle="dropdown">
-        <span class="fa fa-user fa-lg"></span> My Information
-        <span class="caret"></span>
+    <div class='btn-group'>
+      <button type='button' class='btn btn-default btn-success dropdown-toggle'
+              data-toggle='dropdown'>
+        <span class='fa fa-user fa-lg'></span> My Information
+        <span class='caret'></span>
       </button>
-      <ul class="dropdown-menu" role="menu">
+      <ul class='dropdown-menu' role='menu'>
         <li><%= link_to 'My Availability', availability_path %></li>
         <li><%= link_to 'My Private Lessons', my_lessons_path %></li>
         <li><%= link_to 'My Schedule', my_schedule_path %></li>
@@ -37,18 +37,18 @@
     </div>
   </div>
 
-  <div class="btn-group visible-xs pull-right">
+  <div class='btn-group visible-xs pull-right'>
     <%= link_to edit_user_path(@user),
                 class:'btn btn-xs btn-primary' do %>
       <i class='fa fa-pencil fa-lg'></i> Edit Profile
     <% end %>
-    <div class="btn-group">
-      <button type="button" class="btn btn-xs btn-success dropdown-toggle"
-              data-toggle="dropdown">
-        <span class="fa fa-user fa-lg"></span> My Information
-        <span class="caret"></span>
+    <div class='btn-group'>
+      <button type='button' class='btn btn-xs btn-success dropdown-toggle'
+              data-toggle='dropdown'>
+        <span class='fa fa-user fa-lg'></span> My Information
+        <span class='caret'></span>
       </button>
-      <ul class="dropdown-menu" role="menu">
+      <ul class='dropdown-menu' role='menu'>
         <li><%= link_to 'Availability', availability_path %></li>
         <li><%= link_to 'Lessons', my_lessons_path %></li>
         <li><%= link_to 'Schedule', my_schedule_path %></li>
@@ -134,7 +134,7 @@
       </td>
     </tr>
     <tr>
-      <th> Email </th>
+      <th>Email</th>
       <td>
       <%= mail_to "#{ @user.email}" do %>
         <span> <%= @user.email %> </span>
@@ -152,7 +152,7 @@
       </td>
     </tr>
     <tr>
-      <th> Position </th>
+      <th>Position</th>
       <td>
         <% if @user.position %>
           <%= @user.position.name %>
@@ -176,10 +176,11 @@
         "#{@user.date_of_birth.strftime('%-m/%-d/%Y')} (#{age(@user.date_of_birth)} Years Old)" : '-' %></td>
     </tr>
     <tr>
-      <th> Sex </th><td><%= @user.sex %></td>
+      <th>Sex</th>
+      <td><%= @user.sex %></td>
     </tr>
     <tr>
-      <th> Secondary Phone# </th>
+      <th>Secondary Phone#</th>
       <td>
         <% if @user.secondary_phone_number? %>
           <%= phone_number_link(@user.secondary_phone_number) %>
@@ -187,17 +188,20 @@
       </td>
     </tr>
     <tr>
-      <th> Address </th>
+      <th>Address</th>
       <td><%= "#{@user.address1} #{@user.address2}" %></td>
     </tr>
     <tr>
-      <th> City </th><td><%= @user.city %></td>
+      <th>City</th>
+      <td><%= @user.city %></td>
     </tr>
     <tr>
-      <th> State </th><td><%= @user.state %></td>
+      <th>State</th>
+      <td><%= @user.state %></td>
     </tr>
     <tr>
-      <th> Zip Code </th><td><%= @user.zipcode %></td>
+      <th>Zip Code</th>
+      <td><%= @user.zipcode %></td>
     </tr>
   </table>
 
@@ -214,11 +218,13 @@
         <td><%= @user.shirt_size %></td>
       </tr>
       <tr>
-        <th> Suit Size </th><td><%= @user.suit_size %></td>
+        <th>Suit Size</th>
+        <td><%= @user.suit_size %></td>
       </tr>
       <% if @user.sex == 'F' %>
         <tr>
-          <th> One Piece Size </th><td><%= @user.femalesuit %></td>
+          <th>One Piece Size</th>
+          <td><%= @user.femalesuit %></td>
         </tr>
       <% end %>
     </table>
@@ -236,7 +242,7 @@
         <td><%= "#{@user.emergency_first} #{@user.emergency_last}" %></td>
       </tr>
       <tr>
-        <th>Emergency Phone Number </th>
+        <th>Emergency Phone Number</th>
         <td>
           <% if @user.emergency_phone? %>
             <%= phone_number_link(@user.emergency_phone) %>
@@ -246,7 +252,6 @@
     </table>
 
   <% if signed_in? && current_user.admin? %>
-
     <h4>
       Admin
       <%= link_to ' Edit', "/users/#{@user.id}/edit#admin",
@@ -256,15 +261,15 @@
 
     <table class='table table-bordered table-condensed' >
       <tr>
-      <th> Grouping </th>
+      <th>Grouping</th>
         <td><%= @user.grouping%></td>
       </tr>
       <tr>
-      <th> Employee ID </th>
+      <th>Employee ID</th>
         <td><%= @user.employee_id %></td>
       </tr>
       <tr>
-      <th> Pay Rate</th>
+      <th>Pay Rate</th>
         <td>
           <% if @user.payrate? %>
           <%= number_to_currency(@user.payrate) %>/hr
@@ -272,31 +277,33 @@
         </td>
       </tr>
       <tr>
-        <th> DOH </th><td><%= @user.date_of_hire ?
-          @user.date_of_hire.strftime('%-m/%-d/%Y') : '-' %></td>
+        <th>DOH</th>
+        <td>
+          <%= @user.date_of_hire ?
+                @user.date_of_hire.strftime('%-m/%-d/%Y') : '-' %>
+        </td>
       </tr>
       <tr>
-      <th> Admin </th>
+      <th>Admin</th>
         <td><%= boolean_to_words(@user.admin) %></td>
       </tr>
       <tr>
-      <th> Active </th>
+      <th>Active</th>
         <td><%= boolean_to_words(@user.active) %></td>
       </tr>
       <tr>
-      <th> Chemical Records Access</th>
+      <th>Chemical Records Access</th>
         <td>
           <%= boolean_to_words(@user.chemical_records_access) %>
         </td>
       </tr>
       <tr>
-      <th> Private Lesson Access</th>
+      <th>Private Lesson Access</th>
         <td>
           <%= boolean_to_words(@user.private_lesson_access) %>
         </td>
       </tr>
     </table>
-
   <% end %>
 
   <h4>
@@ -309,53 +316,63 @@
   <div class='pull-left' style="font-size: 75%">
     <br>
       <p>
-        <img src="/images/reddot.png" alt="red" height="10px" width="10px" /> = Expired
-        <img src="/images/yellowdot.png" alt="yellow" height="10px" width="10px" /> = Expires within 90 days
-        <img src="/images/bluedot.png" alt="blue" height="10px" width="10px" /> = Expires in 90 to 180 days
-        <img src="/images/greendot.png" alt="green" height="10px" width="10px" /> = Normal
+        <img src='/images/reddot.png'
+             alt='red'
+             height='10px'
+             width='10px' />Expired
+        <img src='/images/yellowdot.png'
+             alt='yellow'
+             height='10px'
+             width='10px' />Expires within 90 days
+        <img src='/images/bluedot.png'
+             alt='blue'
+             height='10px'
+             width='10px' />Expires in 90 to 180 days
+        <img src='/images/greendot.png'
+             alt='green'
+             height='10px'
+             width='10px' />Current
      </p>
     </div>
+
 
   <table class='table table-bordered table-condensed' >
     <thead>
       <tr>
-        <th class='fixtablewidth'> Certification Name </th>
+        <th class='fixtablewidth'>Certification Name</th>
         <% @user.certifications.each do |cert| %>
         <th><%= cert.certification_name.name %></th>
         <% end %>
       </tr>
     </thead>
     <tbody>
-      <tr><th> Issue Date </th>
+      <tr><th>Issue Date</th>
         <% @user.certifications.each do |cert| %>
           <td>
             <%= cert.issue_date.strftime('%-m/%-d/%Y') if cert.issue_date %>
           </td>
         <% end %>
       </tr>
-      <tr><th> Expiration Date </th>
+      <tr><th>Expiration Date</th>
         <% @user.certifications.each do |cert| %>
-
-
-
           <td class=<%=css_class(cert.expiration_date)%>>
             <%= cert.expiration_date.strftime('%-m/%-d/%Y') %>
           </td>
         <% end %>
       </tr>
       <tr>
-        <th> Attached File (PDF) </th>
+        <th>Attached File (PDF)</th>
         <% @user.certifications.each do |cert| %>
           <th>
             <% if cert.attachment? %>
-              <%= link_to '', cert.attachment.url, class: 'glyphicon glyphicon-download-alt' %>
+              <%= link_to '', cert.attachment.url,
+                  class: 'glyphicon glyphicon-download-alt' %>
             <% end %>
           </th>
         <% end %>
       </tr>
     </tbody>
   </table>
-
 
   <% if signed_in? && current_user.admin? %>
 
