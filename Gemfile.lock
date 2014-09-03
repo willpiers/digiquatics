@@ -20,12 +20,6 @@ GIT
       activesupport (> 3.0)
 
 GIT
-  remote: git://github.com/potenza/bootstrap_form.git
-  revision: 82a9ae3efb11cdcd7c2a371dc3424a15f283308b
-  specs:
-    bootstrap_form (2.1.1)
-
-GIT
   remote: git://github.com/rails/activerecord-session_store.git
   revision: e879bf087eb684452aaddb734efa20b95588b141
   specs:
@@ -80,6 +74,7 @@ GEM
       sass (~> 3.2)
     bootstrap-will_paginate (0.0.10)
       will_paginate
+    bootstrap_form (2.1.1)
     brakeman (2.5.0)
       erubis (~> 2.6)
       fastercsv (~> 1.5)
@@ -373,7 +368,7 @@ DEPENDENCIES
   bcrypt-ruby (= 3.1.2)
   bootstrap-sass (= 3.0.3.0)
   bootstrap-will_paginate
-  bootstrap_form!
+  bootstrap_form
   brakeman
   browser!
   byebug

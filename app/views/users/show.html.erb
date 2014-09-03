@@ -101,7 +101,7 @@
 
   <% if current_user.admin? %>
     <div ng-app='digiquatics'>
-      <div ng-controller='UsersCtrl' style='width: 155px;' class='pull-right'>
+      <div ng-controller='UsersCtrl' class='pull-right user_search_form'>
         <select ng-model='selectedUserId' class='form-control'>
           <option value=''>Select Employee</option>
           <option ng-repeat="user in users | orderBy: 'last_name'"
@@ -109,7 +109,7 @@
             {{user.last_name}}, {{user.first_name}}</option>
         </select>
       <%= link_to '/users/{{selectedUserId}}',
-                  class:'btn btn-default btn-info' do %>
+                  class:'btn btn-default btn-info user_search_form' do %>
         <i class='fa fa-exchange'></i> Change Employee
       <% end %>
       </div>
