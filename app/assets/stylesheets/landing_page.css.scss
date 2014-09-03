@@ -44,28 +44,44 @@ width: 100%
   #pricing_content {
     width: 700px;
   }
+
+  #landing_sign_in_link{
+    padding-right: 50px;
+    position: relative;
+    top: 38px;
+    color: white;
+    text-decoration: none;
+  }
 }
 
 @media (max-width: 750px) {
   .mobile_fix {
-    width: 375px;
+    width: 300px;
     text-align: left;
     padding: 10px;
   }
   .mobile_fix_team {
-    width: 375px;
+    width: 325px;
     text-align: middle;
     padding: 10px;
   }
 
   #pricing_content {
-    width: 375px;
+    width: 325px;
+  }
+
+  #landing_sign_in_link{
+    padding-right: 10px;
+    position: relative;
+    top: 10px;
+    color: white;
+    text-decoration: none;
   }
 }
 
 @media (max-width: 780px) {
   .mobile_features_text {
-    width: 375px;
+    width: 325px;
     text-align: middle;
     padding: 10px;
   }
@@ -205,14 +221,6 @@ width: 100%
     }
 .nav-hoover .navbar-nav > li > a:hover {
 &:hover { color: $indigo600;}
-}
-
-#landing_sign_in_link{
-  padding-right: 50px;
-  position: relative;
-  top: 38px;
-  color: white;
-  text-decoration: none;
 }
 
 #landing_back_link{
