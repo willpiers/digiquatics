@@ -2,30 +2,34 @@
 
 <div class='box-position'>
   <center>
-    <img src='/images/water.png' alt='red' height='100px' width='100px'/>
+    <img src='/images/water.png' alt='digi_logo' height='100px' width='100px'/>
     <br><br>
   </center>
   <div class='fixwidth box'>
-    <%= bootstrap_form_for(resource, :as => resource_name,
-                           :url => session_path(resource_name)) do |f| %>
+    <%= bootstrap_form_for(resource, as: resource_name,
+                           url: session_path(resource_name)) do |f| %>
       <center><h4>Welcome to DigiQuatics</h4></center><hr>
-      <%= f.email_field :email, :autofocus => true, hide_label: :true,  placeholder: 'Email' %>
-      <%= f.password_field :password, hide_label: :true, placeholder: 'Password' %>
+      <%= f.email_field :email, autofocus: true, hide_label: :true,
+                        placeholder: 'Email' %>
+      <%= f.password_field :password, hide_label: :true,
+                        placeholder: 'Password' %>
       <center>
         <%= f.submit 'Sign in to your account', class: 'devise-button' %>
       </center>
     <% end %>
     <div class='hidden-xs'>
       <hr>
-      <%= render "devise/shared/links" %>
-      <div> Don't have an account? <%= link_to('Sign Up', new_user_path) %></div>
+      <%= render 'devise/shared/links' %>
+      <div>
+        Don't have an account?
+        <%= link_to('Sign Up', new_user_path) %>
+      </div>
     </div>
     <div class='visible-xs'>
       <br>
       <center>
-        <p style='color: #C0C0C0'>&#169;2013-2014 Affektive Limited</p>
+        <p style='color: #C0C0C0'>&#169;2013-2014 Affektive LLC</p>
       </center>
     </div>
   </div>
 </div>
-
