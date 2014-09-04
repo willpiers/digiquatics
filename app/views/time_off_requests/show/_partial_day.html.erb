@@ -2,7 +2,7 @@
 <div class='row'>
   <div class='col-md-8 col-xs-12'>
     <div class='fix_angular_date_picker'>
-     <%= render 'time_off_requests/form_elements/start_date' %>
+     <dq-start-date></dq-start-date>
     </div>
   </div>
   <div class='col-md-4 col-xs-12'>
@@ -20,7 +20,7 @@
 <div class='row'>
   <div class='col-md-8 col-xs-12'>
     <div class='fix_angular_date_picker'>
-     <%= render 'time_off_requests/form_elements/end_date' %>
+     <dq-end-date></dq-end-date>
     </div>
   </div>
   <div class='col-md-4 col-xs-12'>
@@ -33,4 +33,3 @@
                            {{partialDayEndTime | date:'HH:mm:ss Z' }}" %>
 
 <%= f.hidden_field :all_day, value: false %>
-
