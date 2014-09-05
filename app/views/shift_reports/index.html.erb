@@ -1,10 +1,12 @@
 <div ng-app='digiquatics'>
   <div ng-controller='ShiftReportsCtrl'>
     <% provide(:title, 'Shift Reports') %>
+    <h1 class='cross_platform_header'>Shift Reports</h1>
     <div class='row'>
-      <dq-search></dq-search>
       <div class='visible-xs'><br></div>
       <%= render 'layouts/location_select' %>
+      <dq-search></dq-search>
+      <div class='visible-xs'><br></div>
       <div class='col-md-5'></div>
       <div class='col-md-2 pull-right'>
         <div class='btn-group pull-right'>

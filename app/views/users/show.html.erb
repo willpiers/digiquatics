@@ -1,11 +1,13 @@
 <% provide(:title, "#{@user.first_name} #{@user.last_name.each_char.first}.") %>
 
 <div style='margin-left:0px;'>
-<h1 class='hidden-xs'>
-  <%= image_tag @user.avatar.url, size: '100x100', class: 'img-circle' %>
-  <%= "#{@user.first_name} #{@user.last_name}" %>
+<h2 class='hidden-xs'>
+  <center>
+    <%= image_tag @user.avatar.url, size: '100x100', class: 'img-circle' %>
+    <%= "#{@user.first_name} #{@user.last_name}" %>
+  </center>
   <br>
-</h1>
+</h2>
 <h4 class='visible-xs'>
   <center>
     <%= image_tag @user.avatar.url, size: '50x50', class: 'img-circle' %>

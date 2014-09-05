@@ -93,8 +93,9 @@
         </a>
       </td>
       <td>
-        <%= link_to 'View Request', "/sub_requests/{{request.id}}",
-          class: 'btn btn-info btn-xs', role: 'button' %>
+        <%= link_to '/sub_requests/{{request.id}}' do %>
+          <i class='fa fa-external-link fa-lg'></i>
+        <% end %>
       </td>
     </tr>
   </tbody>
@@ -106,5 +107,3 @@
                   | limitTo:totalDisplayed > 10'>
   <dq-load-more></dq-load-more>
 </div>
-
-

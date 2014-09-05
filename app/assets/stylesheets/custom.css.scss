@@ -28,6 +28,7 @@ $infoBtn:       rgba(3,   169, 244, 1.0);
 $pinkAccent:    rgba(255,  64, 129, 1.0);
 
 $indigo700:     rgba(48,   63, 159, 1.0);
+$indigo600: #3949AB;
 $indigo500:     rgba(63,   81, 181, 1.0);
 $grey400:       rgba(189, 189, 189, 1.0);
 $grey900:       rgba(33,   33, 33,  1.0);
@@ -143,12 +144,31 @@ textarea {
   }
 }
 
+// Navbar
+
+.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active >
+ a:hover, .navbar-default .navbar-nav > .active > a:focus {
+color: $indigo500;
+}
+.dropdown-menu > li > a:hover,
+ .dropdown-menu > li > a:focus {
+  color: $indigo500;
+ text-decoration: none;
+ }
+.nav > li > a:hover,
+.nav > li > a:focus {
+  color: $indigo500;
+  text-decoration: none;
+}
+
 h1, h2, h3,h4, h5, h6{
   line-height: $lineHeight-normal;
 }
 
 P {
-  line-height: $lineHeight-tallest;
+  color: lighten($baseTextColor, 13%);
+  font-size: $fontSize-base;
+  line-height: 1.7em; //fix this
 }
 
 h1 {
@@ -183,6 +203,14 @@ strong {
   font-size: $fontSize-small;
   letter-spacing: $letterSpacing-normal;
   line-height: $lineHeight-normal;
+}
+.panel-title{
+  color: lighten($baseTextColor, 13%);
+  font-size: $fontSize-base;
+  letter-spacing: $letterSpacing-normal;
+  line-height: $lineHeight-normal;
+
+  padding: 5px;
 }
 
 // @media (max-width: 500px) {

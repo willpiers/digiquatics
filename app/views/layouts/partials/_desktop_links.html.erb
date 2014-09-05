@@ -62,9 +62,9 @@
         </a>
         <ul class = 'dropdown-menu'>
             <% if current_user && current_user.admin? %>
-              <li><%= link_to 'Certifications Index', certifications_path %></li>
+              <li><%= link_to 'Certifications', certifications_path %></li>
             <% end %>
-            <li><%= link_to 'Employee Index', users_path %></li>
+            <li><%= link_to 'Employees', users_path %></li>
         </ul>
       </li>
 
@@ -118,7 +118,7 @@
              <%= active_link_to_class(availabilities_path,
                  active: :inclusive) %>">
         <a href = '#' class = 'dropdown-toggle' data-toggle = 'dropdown'>
-          <span class='fa fa-user fa-lg'></span>
+          <%= image_tag current_user.avatar.url, size: '25x25', class: 'img-circle' %>
           <%= "#{current_user.first_name.upcase}" %>
           <b class = 'caret'></b>
         </a>

@@ -5,7 +5,7 @@
   <accordion close-others='oneAtATime'>
     <accordion-group>
         <accordion-heading>
-          <i class='fa fa-home'></i> Manage Account
+          <i class='fa fa-home'>Manage Account</i>
         </accordion-heading>
         <%= render 'account' %>
     </accordion-group>
@@ -38,12 +38,6 @@
         <%= render 'locations' %>
     </accordion-group>
 
-    <% if FeatureToggleHelper.attendance? %>
-      <accordion-group heading='Manage Attendance'>
-        <%= render 'attendance' %>
-      </accordion-group>
-    <% end %>
-
     <accordion-group>
         <accordion-heading>
           <i class='fa fa-users'></i> Manage Positions
@@ -64,6 +58,5 @@
         </accordion-heading>
         <%= render 'exports' %>
     </accordion-group>
-
   </accordion>
 </div>
