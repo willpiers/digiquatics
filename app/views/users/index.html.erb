@@ -3,10 +3,11 @@
     <% provide(:title, 'Active Employees') %>
     <h1 class='cross_platform_header'>Active Employees</h1>
     <div class='row'>
-      <dq-search></dq-search>
       <div class='visible-xs'><br></div>
       <%= render 'layouts/location_select' %>
-      <div class='col-md-3'></div>
+      <div class='visible-xs'><br></div>
+      <dq-search></dq-search>
+      <div class='col-md-2'></div>
       <div class='col-md-4'>
         <% if signed_in? && current_user.admin? %>
           <div class='btn-group hidden-xs pull-right'>

@@ -1,7 +1,16 @@
+$lightgrey: #999;
+$grayMediumLight: #eaeaea;
+$yellow: #FED845;
+$blueLink: #658BCA;
+
+
+
 // Material Design Indigo
 $indigo500: #3f51b5;
 $indigo600: #3949AB;
 $indigo700: #303f9f;
+
+
 
 // Material Design Grey
 $grey400: #BDBDBD;
@@ -21,7 +30,6 @@ width: 100%
   margin-top: 0px;
   text-align: center;
 }
-
 #splash_page_other {
   height: 100px;
   vertical-align: middle;
@@ -29,6 +37,12 @@ width: 100%
   color: white;
   margin-top: 0px;
   text-align: center;
+}
+#splash_page_other_2 {
+  height: 35px;
+  background-color: $indigo500;
+  margin: 0px;
+  padding: 0px;
 }
 #info-header {
   font-size: 25px;

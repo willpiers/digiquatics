@@ -67,8 +67,9 @@
             {{inspection.all_ok | booleanToWords}}
         </td>
         <td>
-          <%= link_to 'View Inspection', "/slide_inspections/{{inspection.id}}",
-            class: 'btn btn-info btn-xs', role: 'button' %>
+          <%= link_to '/slide_inspections/{{inspection.id}}' do %>
+            <i class='fa fa-external-link fa-lg'></i>
+          <% end %>
         </td>
       </tr>
     </tbody>

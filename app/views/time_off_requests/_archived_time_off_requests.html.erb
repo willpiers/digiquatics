@@ -121,8 +121,9 @@
         {{request.approved_at | date:'M/d/yy h:mm a'}}
       </td>
       <td>
-        <%= link_to 'View Request', "/time_off_requests/{{request.id}}",
-          class: 'btn btn-info btn-xs', role: 'button' %>
+        <%= link_to '/time_off_requests/{{request.id}}' do %>
+          <i class='fa fa-external-link fa-lg'></i>
+        <% end %>
       </td>
     </tr>
   </tbody>

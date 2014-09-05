@@ -2,17 +2,27 @@
               | orderBy:order.value:order.reverse
               | filter:locationFilter
               | filter:search).length'>
-  <table class='table table-hover' >
+  <table class='table' >
     <thead>
       <tr>
-        <th class='visible-xs'>Name</th>
-        <th class='hidden-xs'>Last Name</th>
-        <th class='hidden-xs'>First Name</th>
-        <th>Age</th>
-        <th class='hidden-xs'>Gender</th>
+        <th class='visible-xs'>
+          <strong>Name</strong>
+        </th>
+        <th class='hidden-xs'>
+          <strong>Last Name</strong>
+        </th>
+        <th class='hidden-xs'>
+          <strong>First Name</strong>
+        </th>
+        <th>
+          <strong>Age</strong>
+        </th>
+        <th class='hidden-xs'>
+          <strong>Gender</strong>
+        </th>
         <th>
           <a href='' ng-click="predicate.value = '-location.name'; reverse=!reverse">
-          Location
+          <strong>Location</strong>
           </a>
           <span ng-show="thArrow(predicate.value, '-location.name')">
             <dq-arrow></dq-arrow>
@@ -20,7 +30,7 @@
         </th>
         <th class='hidden-xs'>
           <a href="" ng-click="predicate.value = '-created_at'; reverse=!reverse">
-          Date
+          <strong>Date</strong>
           </a>
           <span ng-show="thArrow(predicate.value, '-created_at')">
             <dq-arrow></dq-arrow>
@@ -68,8 +78,9 @@
             {{lesson.created_at | date:'M/d/yy @ h:mma'}}
         </td>
         <td>
-          <%= link_to 'View Lesson', '/private_lessons/{{lesson.id}}',
-            class: 'btn btn-info btn-xs' %>
+          <%= link_to '/private_lessons/{{lesson.id}}' do %>
+            <i class='fa fa-external-link fa-lg'></i>
+          <% end %>
         </td>
       </tr>
     </tbody>
