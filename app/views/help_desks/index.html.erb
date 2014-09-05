@@ -3,9 +3,10 @@
     <% provide(:title, 'Open Issues') %>
     <h1 class='cross_platform_header'>Open Issues</h1>
     <div class='row'>
+      <%= render 'layouts/location_select' %>
+      <div class='visible-xs'><br></div>
       <dq-search></dq-search>
       <div class='visible-xs'><br></div>
-      <%= render 'layouts/location_select' %>
       <div class='col-md-4'></div>
       <div class='col-md-3 pull-right'>
        <div class='btn-group pull-right'>

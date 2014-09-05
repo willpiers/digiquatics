@@ -79,8 +79,9 @@
           </a>
         </td>
         <td>
-          <%= link_to 'View Issue', "/help_desks/{{item.id}}",
-            class: 'btn btn-info btn-xs', role: 'button' %>
+          <%= link_to '/help_desks/{{item.id}}' do %>
+            <i class='fa fa-external-link fa-lg'></i>
+          <% end %>
         </td>
       </tr>
     </tbody>

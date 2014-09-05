@@ -31,10 +31,10 @@ $indigo700:     rgba(48,   63, 159, 1.0);
 $indigo500:     rgba(63,   81, 181, 1.0);
 $grey400:       rgba(189, 189, 189, 1.0);
 $grey900:       rgba(33,   33, 33,  1.0);
-$blueLink:      rgba(62, 130, 247, 1);
+$blueLink:      rgba(62, 130, 247, 1.0);
 
 $yellowAccent:  rgba(255, 205, 64,  1.0);
-$whiteBody:     rgba(250, 250, 250, 1.0);
+$whiteBody:     rgba(254, 254, 254, 1.0);
 $whiteText:     rgba(255, 255, 255, 1.0);
 
 //Font Sizes
@@ -68,12 +68,11 @@ $lineHeight-tallest:  1.75pt;
 /* universal */
 html {
   overflow-y: scroll;
-  background-color: $whiteBody;
-  color: $baseTextColor;
-
 }
 body {
   padding-top: 0px;
+  background-color: $whiteBody;
+  color: $baseTextColor;
 }
 section {
   overflow: auto;
@@ -143,10 +142,20 @@ textarea {
     color: $blueLink;
   }
 }
+
+h1, h2, h3,h4, h5, h6{
+  line-height: $lineHeight-normal;
+}
+
+P {
+  line-height: $lineHeight-tallest;
+}
+
 h1 {
   color: lighten($baseTextColor, 13%);
   font-size: $fontSize-jumbo;
   letter-spacing: $letterSpacing-normal;
+  margin-top: 20px;
   margin-bottom: 50px;
   text-align: center;
   line-height: $lineHeight-normal;
@@ -442,4 +451,22 @@ legend{
   width: 200px;
   position: relative;
   left: 41%;
+}
+
+.pace .pace-progress {
+  background: $pinkAccent;
+  position: fixed;
+  z-index: 2000;
+  top: 0;
+  left: 0;
+  height: 2px;
+
+  -webkit-transition: width 1s;
+  -moz-transition: width 1s;
+  -o-transition: width 1s;
+  transition: width 1s;
+}
+
+.pace-inactive {
+  display: none;
 }

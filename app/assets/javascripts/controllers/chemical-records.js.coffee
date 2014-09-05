@@ -22,7 +22,7 @@
       else if  record.si_index >= -0.6 && record.si_index < -0.3 then 'Warning'
       else if  record.si_index >= -0.3 && record.si_index <= 0.3 then 'Balanced'
       else if  record.si_index > 0.3 && record.si_index < 0.6 then 'Warning'
-      else if  record.si_index > 0.6 then 'Danger SI Index > 0.6'
+      else if  record.si_index > 0.6 then 'Danger'
       else    'info'
 
     $scope.totalDisplayed = 10

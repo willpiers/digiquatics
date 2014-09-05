@@ -12,21 +12,3 @@ a.pointer-hand {
 .btn.btn-wide {
   b: 180px;
 }
-
-.pace .pace-progress {
-  background: #f8ffff;
-  position: fixed;
-  z-index: 2000;
-  top: 0;
-  left: 0;
-  height: 2px;
-
-  -webkit-transition: width 1s;
-  -moz-transition: width 1s;
-  -o-transition: width 1s;
-  transition: width 1s;
-}
-
-.pace-inactive {
-  display: none;
-}
