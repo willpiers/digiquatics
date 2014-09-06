@@ -3,18 +3,20 @@
   <div ng-controller='AvailabilityCtrl'>
     <h1 class='cross_platform_header'>My Availability</h1>
     <div class='hidden-xs'>
-      <table class='table table-bordered print-schedule-font'>
+      <table class='table table-bordered table-white shadow-effect print-schedule-font'>
         <thead>
           <tr>
             <th class='my_schedule_header' ng-repeat='day in days'>
-              {{day}}
+              <center>{{day}}</center>
             </th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <td ng-repeat='day in days'>
-              <div ng-repeat='availability in availabilities | orderBy:sortTime | filter: { day: $index }'>
+              <div ng-repeat='availability in availabilities
+                              | orderBy:sortTime
+                              | filter: { day: $index }'>
                 <%= render 'availability' %>
               </div>
               <div class='shift';
@@ -27,18 +29,21 @@
       </table>
     </div>
     <div class='visible-xs'>
-      <table class='table table-bordered print-schedule-font' ng-repeat='day in days'>
+      <table class='table table-bordered table-white shadow-effect'
+             ng-repeat='day in days'>
         <thead>
           <tr>
             <th class='my_schedule_header'>
-              {{day}}
+              <center>{{day}}</center>
             </th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <td>
-              <div ng-repeat="availability in availabilities | orderBy:sortTime | filter: { day: $index }">
+              <div ng-repeat="availability in availabilities
+                             | orderBy:sortTime
+                             | filter: { day: $index }">
                 <%= render 'availability' %>
               </div>
               <button class='btn btn-default btn-xs btn-block' ng-click='open($index)'>Add Availability</button>

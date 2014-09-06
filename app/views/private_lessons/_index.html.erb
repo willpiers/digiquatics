@@ -1,28 +1,28 @@
 <div ng-show='(privateLessons
               | orderBy:order.value:order.reverse
               | filter:locationFilter
-              | filter:search).length'>
-  <table class='table' >
+              | filter:search).length' class='shadow-effect'>
+  <table class='table table-clean table-white' >
     <thead>
       <tr>
         <th class='visible-xs'>
-          <strong>Name</strong>
+          Name
         </th>
         <th class='hidden-xs'>
-          <strong>Last Name</strong>
+          Last Name
         </th>
         <th class='hidden-xs'>
-          <strong>First Name</strong>
+          First Name
         </th>
         <th>
-          <strong>Age</strong>
+          Age
         </th>
         <th class='hidden-xs'>
-          <strong>Gender</strong>
+          Gender
         </th>
         <th>
           <a href='' ng-click="predicate.value = '-location.name'; reverse=!reverse">
-          <strong>Location</strong>
+          Location
           </a>
           <span ng-show="thArrow(predicate.value, '-location.name')">
             <dq-arrow></dq-arrow>
@@ -30,7 +30,7 @@
         </th>
         <th class='hidden-xs'>
           <a href="" ng-click="predicate.value = '-created_at'; reverse=!reverse">
-          <strong>Date</strong>
+          Date
           </a>
           <span ng-show="thArrow(predicate.value, '-created_at')">
             <dq-arrow></dq-arrow>

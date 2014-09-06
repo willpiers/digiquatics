@@ -1,19 +1,14 @@
 <% provide(:title, 'Lesson Request') %>
 <br><br>
 <% if signed_in? %>
-  <div class='userform well'>
-    <%= render partial: 'form', locals: {
-      legend: "#{Account.find(@private_lesson.account).name} Lesson Request",
-      resources: [@private_lesson.account, @private_lesson]
-    } %>
+  <h1><%= "#{Account.find(@private_lesson.account).name} Lesson Request" %></h1>
+  <div class='userform well shadow-effect'>
+    <%= render partial: 'form', locals: {resources: [@private_lesson.account, @private_lesson]} %>
   </div>
 <% end %>
 <% unless signed_in? %>
+  <h1><%= "#{Account.find(@private_lesson.account).name} Lesson Request" %></h1>
   <div class='userform box'>
-    <%= render partial: 'form', locals: {
-      legend: "#{Account.find(@private_lesson.account).name} Lesson Request",
-      resources: [@private_lesson.account, @private_lesson]
-    } %>
+    <%= render partial: 'form', locals: {resources: [@private_lesson.account, @private_lesson]} %>
   </div>
 <% end %>
-

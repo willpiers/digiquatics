@@ -54,8 +54,9 @@
       $scope.weekCounter = 0
 
     $scope.displayStartDate = ->
-      moment().startOf('week').add('days', $scope.weekCounter).format('MMM D')
+      moment().startOf('week').add('days', $scope.weekCounter).format('MMMM YYYY')
 
+    ##### Might not need this
     $scope.displayEndDate = (days) ->
       moment().startOf('week').add('days', $scope.weekCounter + days).format('MMM D, YYYY')
 

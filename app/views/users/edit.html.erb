@@ -1,9 +1,9 @@
 <% provide(:title, 'Edit Employee') %>
+<div class='hidden-xs'><legend>Edit Employee</legend></div>
+<div class='visible-xs'><center><h4>Edit Employee</h4></center></div>
 <div class='userform well'>
   <%= bootstrap_form_for(@user,
     style: :horizontal, left: 'col-sm-4', right: 'col-sm-8') do |f| %>
-    <div class='hidden-xs'><legend>Edit Employee</legend></div>
-    <div class='visible-xs'><center><h4>Edit Employee</h4></center></div>
     <%= render 'shared/required' %>
     <div id='basic'><%= render 'basic_user_fields', f: f %></div>
     <div id='additional'>

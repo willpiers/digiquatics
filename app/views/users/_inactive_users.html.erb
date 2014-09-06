@@ -2,8 +2,8 @@
   <div ng-show='(inactive_users
                 | orderBy:order.value:order.reverse
                 | filter:locationFilter
-                | filter:search).length'>
-    <table class='table table-hover'>
+                | filter:search).length' class='shadow-effect'>
+    <table class='table table-clean table-white'>
       <thead>
         <tr>
           <th class='visible-xs'>
@@ -86,8 +86,9 @@
           <td><a ng-href='tel:{{user.phone_number}}'>{{user.phone_number}}</td>
           <td class='hidden-xs'>{{user.admin | booleanToWords}}</td>
           <td>
-            <%= link_to 'View Employee', '/users/{{user.id}}',
-              class: 'btn btn-info btn-xs' %>
+            <%= link_to '/users/{{user.id}}' do %>
+              <i class='fa fa-external-link fa-lg'></i>
+            <% end %>
           </td>
         </tr>
       </tbody>

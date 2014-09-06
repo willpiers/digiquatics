@@ -7,15 +7,15 @@
       <%= render 'layouts/location_select' %>
       <dq-search></dq-search>
       <div class='visible-xs'><br></div>
-      <div class='col-md-4'></div>
-      <div class='col-md-3 pull-right'>
-        <div class='btn-group pull-right'>
+      <div class='col-md-3'></div>
+      <div class='col-md-4 pull-right'>
+        <div class='pull-right'>
           <%= link_to sub_requests_path,
-              class:'btn btn-sm btn-success' do %>
+              class:'btn btn-success' do %>
             <i class='fa fa-list fa-lg'></i> Queue
           <% end %>
           <%= link_to processed_sub_requests_path,
-              class:'btn btn-sm btn-warning' do %>
+              class:'btn btn-warning' do %>
             <i class='fa fa-history fa-lg'></i> View Processed
           <% end %>
         </div>

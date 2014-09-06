@@ -1,13 +1,13 @@
-<div class='userform well'>
-  <%= bootstrap_form_for(@user,
-    style: :horizontal, left: 'col-sm-4', right: 'col-sm-8') do |f| %>
-    <div class='hidden-xs'><legend><%= legend %></legend></div>
-    <div class='visible-xs'><center><h4><%= legend %></h4></center></div>
-    <%= render 'shared/required' %>
-    <div id='basic'><%= render 'basic_user_fields', f: f %></div>
-    <button type='submit' class='btn btn-block btn-primary'>
-      <i class='fa fa-check'></i> Create New Employee
-    </button>
-  <% end %>
+<%= bootstrap_form_for(@user,
+  style: :horizontal, left: 'col-sm-4', right: 'col-sm-8') do |f| %>
+  <div class='hidden-xs'><legend><%= legend %></legend></div>
+  <div class='visible-xs'><center><h4><%= legend %></h4></center></div>
+  <div class='userform well'>
+  <%= render 'shared/required' %>
+  <div id='basic'><%= render 'basic_user_fields', f: f %></div>
+  <button type='submit' class='btn btn-block btn-primary'>
+    <i class='fa fa-check'></i> Create New Employee
+  </button>
 </div>
+<% end %>
 </div>

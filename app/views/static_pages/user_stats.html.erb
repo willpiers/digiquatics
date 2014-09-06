@@ -4,86 +4,104 @@
 <div ng-app='digiquatics'>
   <div ng-controller='AnalyticsCtrl'>
 
-  <div class='table-width-desktop'>
     <div class='pull-left'>
-      <%= link_to ' Back', users_path,
-          class: 'glyphicon glyphicon-arrow-left' %>
+      <%= link_to users_path,
+          class:'btn btn-default btn-circle' do %>
+        <i class='fa fa-arrow-left fa-lg'></i>
+      <% end %>
     </div>
+
 
   <div class='pull-right'>
     <div class='btn-group'>
-      <label class='btn btn-info' ng-model='requestMode' btn-radio="'graphical'">
+      <label class='btn btn-primary' ng-model='requestMode' btn-radio="'graphical'">
         Graphical View
       </label>
-      <label class='btn btn-info' ng-model='requestMode' btn-radio="'numerical'">
+      <label class='btn btn-primary' ng-model='requestMode' btn-radio="'numerical'">
         Numerical View
       </label>
     </div>
   </div>
 
+  <br><br><br>
+
   <div ng-show='numericalMode()'>
     <br><br>
-    <%= high_chart('employee_demographics', @employee_demographics) %>
+    <div class='shadow-effect'>
+      <%= high_chart('employee_demographics', @employee_demographics) %>
+    </div>
     <br><br>
-    <%= high_chart('employee_admin', @employee_admin) %>
+    <div class='shadow-effect'>
+      <%= high_chart('employee_admin', @employee_admin) %>
+    </div>
     <br><br>
-    <%= high_chart('employee_status', @employee_status) %>
+    <div class='shadow-effect'>
+      <%= high_chart('employee_status', @employee_status) %>
+    </div>
     <br><br>
-    <%= high_chart('employee_shirts', @employee_shirts) %>
+    <div class='shadow-effect'>
+      <%= high_chart('employee_shirts', @employee_shirts) %>
+    </div>
     <br><br>
-    <%= high_chart('male_suits', @male_suits) %>
+    <div class='shadow-effect'>
+      <%= high_chart('male_suits', @male_suits) %>
+    </div>
     <br><br>
-    <%= high_chart('one_pieces', @one_pieces) %>
+    <div class='shadow-effect'>
+      <%= high_chart('one_pieces', @one_pieces) %>
+    </div>
     <br><br>
-    <%= high_chart('female_tops', @female_tops) %>
+    <div class='shadow-effect'>
+      <%= high_chart('female_tops', @female_tops) %>
+    </div>
     <br><br>
+    <div class='shadow-effect'>
     <%= high_chart('female_bottoms', @female_bottoms) %>
+    </div>
   </div>
 
   <div ng-if='graphicalMode()'>
-    <div class='table-width-desktop'>
       <br><br>
-        <h4>Basic Information</h4>
-        <table class='table table-bordered'>
+      <h4>Basic Information</h4>
+      <table class='table table-clean table-white shadow-effect'>
+        <tr>
+          <th style='width:50%'>Location</th><!-- TODO: pull this style out-->
+          <th>Number <br/>Male</td>
+          <th>Number <br/>Female</td>
+          <th>Total <br/>Employees</td>
+        </tr>
+        <% @facade.locations.each do |location| %>
           <tr>
-            <th style='width:50%'>Location</th><!-- TODO: pull this style out-->
-            <th>Number <br/>Male</td>
-            <th>Number <br/>Female</td>
-            <th>Total <br/>Employees</td>
+            <td><%= location.name %></td>
+            <td><%= @facade.total_male_employees(location) %></td>
+            <td><%= @facade.total_female_employees(location) %></td>
+            <td><%= @facade.total_employees(location) %></td>
           </tr>
-          <% @facade.locations.each do |location| %>
-            <tr>
-              <td><%= location.name %></td>
-              <td><%= @facade.total_male_employees(location) %></td>
-              <td><%= @facade.total_female_employees(location) %></td>
-              <td><%= @facade.total_employees(location) %></td>
-            </tr>
-          <% end %>
-        </table>
-      </div>
+        <% end %>
+      </table>
+      <br><br>
 
-      <div class='table-width-desktop'>
-        <h4>Classification</h4>
-        <table class='table table-bordered'>
+      <h4>Classification</h4>
+      <table class='table table-clean table-white shadow-effect'>
+        <tr>
+          <th style='width:50%'>Location</th><!-- TODO: pull this style out-->
+          <th>Number <br/>Admin</td>
+          <th>Number <br/>Active</td>
+          <th>Number <br/>Inactive</td>
+        </tr>
+        <% @facade.locations.each do |location| %>
           <tr>
-            <th style='width:50%'>Location</th><!-- TODO: pull this style out-->
-            <th>Number <br/>Admin</td>
-            <th>Number <br/>Active</td>
-            <th>Number <br/>Inactive</td>
+            <td><%= location.name %></td>
+            <td><%= @facade.admin(location) %></td>
+            <td><%= @facade.active(location) %></td>
+            <td><%= @facade.inactive(location) %></td>
           </tr>
-          <% @facade.locations.each do |location| %>
-            <tr>
-              <td><%= location.name %></td>
-              <td><%= @facade.admin(location) %></td>
-              <td><%= @facade.active(location) %></td>
-              <td><%= @facade.inactive(location) %></td>
-            </tr>
-          <% end %>
-        </table>
-      </div>
+        <% end %>
+      </table>
+      <br><br>
 
       <h4>Inventory</h4>
-      <table class='table table-bordered'>
+      <table class='table table-clean table-white shadow-effect'>
         <tr>
           <th style='width:25%'>Location</th><!-- TODO: pull this style out-->
           <th>Shirts</td>

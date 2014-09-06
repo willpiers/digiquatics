@@ -7,22 +7,23 @@
       <div class='visible-xs'><br></div>
       <dq-search></dq-search>
       <div class='visible-xs'><br></div>
-      <div class='col-md-4'></div>
-      <div class='col-md-3 pull-right'>
-       <div class='btn-group pull-right'>
+      <div class='col-md-7 pull-right'>
+       <div class='pull-right'>
          <%= link_to new_help_desk_path,
-             class:'btn btn-sm btn-primary' do %>
-           <i class='fa fa-plus fa-lg'></i> Add Issue
+             class:'btn btn-primary' do %>
+           <i class='fa fa-plus fa-lg'></i>
+           Add Issue
          <% end %>
          <%= link_to closed_index_path,
-             class:'btn btn-sm btn-danger' do %>
-           <i class='fa fa-cogs fa-lg'></i> Manage Closed
+             class:'btn btn-danger' do %>
+           <i class='fa fa-archive fa-lg'></i>
+           Closed Issues
          <% end %>
        </div>
       </div>
     </div>
     <div class='hidden-xs'>
-      <div><i class="fa fa-star star"></i> New</div>
+      <div><i class='fa fa-star star'></i> New</div>
     </div>
     <br>
     <%= render 'help_desks' %>

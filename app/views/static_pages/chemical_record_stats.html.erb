@@ -5,8 +5,8 @@
   <div class='col-md-4'>
     <div ng-app='digiquatics'>
       <div ng-controller='AnalyticsCtrl'>
-        <div class='well'>
-          <center><h2>Parameters</h2></center><br>
+        <div class='well shadow-effect'>
+          <h4><b>Parameters<b></h4>
           <label>Start Date</label>
           <dq-start-date></dq-start-date>
           <br>
@@ -20,37 +20,56 @@
   </div>
 
   <div class='col-md-8'>
-    <h4> Numerical Analysis </h4>
-    <table class='table table-bordered'>
-    <tr>
-      <th>Metric</th>
-      <th>Min</th>
-      <th>Max</th>
-      <th>Avg</th>
-      <th>Count</th>
-    </tr>
-    <% @metrics.each do |name, metric| %>
+      <div class='shadow-effect'>
+      <table class='table table-clean table-white'>
       <tr>
-        <td><%= name %></td>
-        <td><%= @facade.minimum(metric, @pool_id) %></td>
-        <td><%= @facade.maximum(metric, @pool_id) %></td>
-        <td><%= @facade.average(metric, @pool_id) %></td>
-        <td><%= @facade.total_records(metric, @pool_id)%></td>
+        <th>Metric</th>
+        <th>Min</th>
+        <th>Max</th>
+        <th>Avg</th>
+        <th>Count</th>
       </tr>
-    <% end %>
-    </table>
+      <% @metrics.each do |name, metric| %>
+        <tr>
+          <td><%= name %></td>
+          <td><%= @facade.minimum(metric, @pool_id) %></td>
+          <td><%= @facade.maximum(metric, @pool_id) %></td>
+          <td><%= @facade.average(metric, @pool_id) %></td>
+          <td><%= @facade.total_records(metric, @pool_id)%></td>
+        </tr>
+      <% end %>
+      </table>
+    </div>
   </div>
 </div>
 
-<h4>Graphical Analysis</h4>
-<%= high_chart('cl', @cl) %>
+<br>
+
+<div class='shadow-effect'>
+  <%= high_chart('cl', @cl) %>
+</div>
 <br><br>
+
+<div class='shadow-effect'>
 <%= high_chart('ph', @ph) %>
+</div>
 <br><br>
+
+<div class='shadow-effect'>
 <%= high_chart('alk', @alk) %>
+</div>
 <br><br>
+
+<div class='shadow-effect'>
 <%= high_chart('ch', @ch) %>
+</div>
 <br><br>
+
+<div class='shadow-effect'>
 <%= high_chart('temp', @temp) %>
+</div>
 <br><br>
+
+<div class='shadow-effect'>
 <%= high_chart('si', @si) %>
+</div>

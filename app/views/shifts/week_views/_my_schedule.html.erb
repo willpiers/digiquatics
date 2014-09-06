@@ -1,28 +1,35 @@
 <div ng-controller='SubRequestsCtrl'>
   <div class='hidden-xs visible-sm visible-md visible-lg visible-print'>
-    <table class='table table-bordered print-schedule-font'>
+    <table class='table table-bordered table-white print-schedule-font'>
       <thead>
         <tr>
           <th class='schedule_day_header'>
-            {{weekDay(0).format('ddd, MMM D')}}
+            <h4>{{weekDay(0).format('ddd')}}</h4>
+            <h2>{{weekDay(0).format('D')}}</h2>
           </th>
           <th class='schedule_day_header'>
-            {{weekDay(1).format('ddd, MMM D')}}
+            <h4>{{weekDay(1).format('ddd')}}</h4>
+            <h2>{{weekDay(1).format('D')}}</h2>
           </th>
           <th class='schedule_day_header'>
-            {{weekDay(2).format('ddd, MMM D')}}
+            <h4>{{weekDay(2).format('ddd')}}</h4>
+            <h2>{{weekDay(2).format('D')}}</h2>
           </th>
           <th class='schedule_day_header'>
-            {{weekDay(3).format('ddd, MMM D')}}
+            <h4>{{weekDay(3).format('ddd')}}</h4>
+            <h2>{{weekDay(3).format('D')}}</h2>
           </th>
           <th class='schedule_day_header'>
-            {{weekDay(4).format('ddd, MMM D')}}
+            <h4>{{weekDay(4).format('ddd')}}</h4>
+            <h2>{{weekDay(4).format('D')}}</h2>
           </th>
           <th class='schedule_day_header'>
-            {{weekDay(5).format('ddd, MMM D')}}
+            <h4>{{weekDay(5).format('ddd')}}</h4>
+            <h2>{{weekDay(5).format('D')}}</h2>
           </th>
           <th class='schedule_day_header'>
-            {{weekDay(6).format('ddd, MMM D')}}
+            <h4>{{weekDay(6).format('ddd')}}</h4>
+            <h2>{{weekDay(6).format('D')}}</h2>
           </th>
         </tr>
       </thead>
@@ -112,8 +119,9 @@
       </tbody>
     </table>
   </div>
+
   <div class='visible-xs hidden-print'>
-    <table class='table table-bordered'>
+    <table class='table table-bordered table-white shadow-effect'>
       <thead>
         <tr>
           <th class='my_schedule_header'>
@@ -140,7 +148,7 @@
       </tbody>
     </table>
 
-    <table class='table table-bordered print-schedule-font'>
+    <table class='table table-bordered table-white shadow-effect'>
       <thead>
         <tr>
           <th class='my_schedule_header'>
@@ -167,7 +175,7 @@
       </tbody>
     </table>
 
-    <table class='table table-bordered print-schedule-font'>
+    <table class='table table-bordered table-white shadow-effect'>
       <thead>
         <tr>
           <th class='my_schedule_header'>
@@ -194,7 +202,7 @@
       </tbody>
     </table>
 
-    <table class='table table-bordered print-schedule-font'>
+    <table class='table table-bordered table-white shadow-effect'>
       <thead>
         <tr>
           <th class='my_schedule_header'>
@@ -221,7 +229,7 @@
       </tbody>
     </table>
 
-    <table class='table table-bordered print-schedule-font'>
+    <table class='table table-bordered table-white shadow-effect'>
       <thead>
         <tr>
           <th class='my_schedule_header'>
@@ -248,7 +256,7 @@
       </tbody>
     </table>
 
-    <table class='table table-bordered print-schedule-font'>
+    <table class='table table-bordered table-white shadow-effect'>
       <thead>
         <tr>
           <th class='my_schedule_header'>
@@ -275,7 +283,7 @@
       </tbody>
     </table>
 
-    <table class='table table-bordered print-schedule-font'>
+    <table class='table table-bordered table-white shadow-effect'>
       <thead>
         <tr>
           <th class='my_schedule_header'>

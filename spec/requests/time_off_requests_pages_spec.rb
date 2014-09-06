@@ -156,7 +156,7 @@ describe 'Time Off Request pages' do
     describe 'time_off_request' do
       it { should have_selector('h1', text: 'Time Off Request') }
       it { should have_title(full_title('Time Off Request')) }
-      it { should have_link('Back', time_off_requests_path) }
+      it { should have_link('', time_off_requests_path) }
 
       describe 'attributes' do
         it { should have_selector('th', text: 'Submitted By') }

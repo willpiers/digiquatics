@@ -122,7 +122,6 @@ describe 'Private Lessons' do
     end
 
     it { should have_title(full_title('Lesson Request')) }
-    it { should have_selector('legend', text: 'Lesson Request') }
     it { should have_selector('h4', text: 'Parent Information') }
     it { should have_selector('h4', text: 'Student Information') }
     it { should have_selector('h4', text: 'Lesson Request') }
@@ -186,7 +185,6 @@ describe 'Private Lessons' do
     end
 
     it { should have_title(full_title('Lesson Request')) }
-    it { should have_selector('legend', text: 'Lesson Request') }
     it { should have_selector('h4', text: 'Parent Information') }
     it { should have_selector('h4', text: 'Student Information') }
     it { should have_selector('h4', text: 'Lesson Request') }
@@ -296,7 +294,6 @@ describe 'Private Lessons' do
     end
 
     describe 'page' do
-      it { should have_selector('legend', text: 'Edit Private Lesson') }
       it { should have_title(full_title('Edit Private Lesson')) }
 
       describe 'with invalid information' do
