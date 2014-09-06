@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>DigiQuatics - Web Based Scheduling & Aquatics Management</title>
+    <title>DigiQuatics - Web Based Scheduling for Aquatics Management</title>
     <meta name='viewport'
           content='width=device-width, initial-scale=1.0 user-scalable=no'>
     <meta name='description'
@@ -12,7 +12,7 @@
     <%= render 'layouts/google_analytics' %>
   </head>
 
-  <body>
+  <body id='ladningBody'>
     <%= flash_messages %>
     <div>
       <div id='splash_page'>
@@ -25,8 +25,10 @@
         <br>
         <center>
           <h3>DigiQuatics</h3>
-          <strong id='main-heading'>Aquatics Redefined</strong>
-          <h4 id='sub-heading'>
+          <strong id='main-heading'>
+            Aquatics Redefined
+          </strong>
+          <h5 id='sub-heading'>
             Online scheduling, data management and web</br>based private lesson
             portal that puts you in control.
           </h4>
@@ -161,11 +163,11 @@
             <br>
             <h4>Any Size Organization</h4>
             <br>
-            <h2>Request Quote<br><br>
+            <h5>Request Quote<br><br>
               <%= link_to 'Team@DigiQuatics.com',
                           'mailto:Team@DigiQuatics.com',
                            id: 'email_link' %>
-            </h2>
+            </h5>
           </div>
         </div>
         <br><br><br>
@@ -253,7 +255,7 @@
         <div class='row'>
           <div class='col-md-4'></div> <!-- Placeholder -->
           <div class='col-md-2'>
-            <h4 >Company</h4>
+            <h4 class='whiteText'>Company</h4>
             <p class='footer_text_primary'>
               <a href='/tos'> Terms of Service </a>
               <br>
@@ -261,14 +263,14 @@
             </p>
           </div>
           <div class='col-md-2'>
-            <h4 >About</h4>
+            <h4 class='whiteText'>About</h4>
               <p class='footer_text_primary'>
               <a href='/team'> The Team </a>
             </p>
           </div>
           <div class='col-md-4'></div> <!-- Placeholder -->
             <br><br><br><br><br><br>
-            <p>
+            <p class='whiteText'>
               Made with <i class='fa fa-heart fa-1x' id='heart'></i>
               in Denver, CO
               <%= image_tag('/images/co.png', alt: 'Colorado State Flag') %>

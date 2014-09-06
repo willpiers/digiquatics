@@ -22,6 +22,10 @@ overflow-x: hidden;
 width: 100%
 }
 
+#ladningBody{
+  background-color:white;
+}
+
 #splash_page {
   height: 525px;
   vertical-align: middle;
@@ -146,12 +150,14 @@ width: 100%
   font-size: 28px;
   position:relative;
   top:100px;
+  color: white;
 }
 
 #sub-heading {
   font-size: 24px;
   position:relative;
   top:100px;
+  color: white;
 }
 
 #sub-heading2 {

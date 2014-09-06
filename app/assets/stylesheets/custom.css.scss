@@ -103,7 +103,25 @@ textarea {
   margin-bottom: 10px;
   }
 }
+.pace .pace-progress {
+  background: $pinkAccent;
+  position: fixed;
+  z-index: 2000;
+  top: 0;
+  left: 0;
+  height: 2px;
 
+  -webkit-transition: width 1s;
+  -moz-transition: width 1s;
+  -o-transition: width 1s;
+  transition: width 1s;
+}
+.pace-inactive {
+  display: none;
+}
+.shadow-effect {
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+}
 .legendBlue{
   color: $primaryProgressBar;
 }
@@ -125,11 +143,13 @@ textarea {
 .legendBlueCell{
   color: $infoCell;
 }
-
 .panel-default > .panel-heading {
 color: rgb(51, 51, 51);
 background-color: white;
 border-color: rgb(221, 221, 221);
+}
+.whiteText{
+  color: $whiteText;
 }
 
 // Tables
@@ -185,7 +205,6 @@ border-color: rgb(221, 221, 221);
 .btn-info {
    @include button-variant($whiteText, $infoBtn, $whiteText);
 }
-
 .btn-circle {
   width: 50px;
   height: 50px;
@@ -245,7 +264,7 @@ $bgHighlight    : #3F51B5; //Indigo700
 $colDefault     : #9FA8DA; //Grey
 $colHover       : white;
 
-.navbar-default {
+.navbar-inverse {
     background-color: $bgDefault;
     border-color: $bgHighlight;
     .navbar-brand {
@@ -292,7 +311,6 @@ $colHover       : white;
             background-color: $bgHighlight; }}
 }
 
-
 // Typography
 * {
   font-family: 'Roboto', sans-serif;
@@ -300,8 +318,8 @@ $colHover       : white;
     color: $blueLink;
   }
 }
-h1, h2, h3,h4, h5, h6{
-  line-height: $lineHeight-normal;
+h4 {
+  line-height: 1.7em; //fix this
 }
 P {
   color: lighten($baseTextColor, 13%);
@@ -335,15 +353,6 @@ h3 {
   text-align: center;
   line-height: $lineHeight-normal;
 }
-h4 {
-  padding-bottom: 25px;
-  margin: 0px;
-  color: lighten($baseTextColor, 25%);
-  font-size: $fontSize-base;
-  letter-spacing: $letterSpacing-normal;
-  text-align: center;
-  line-height: $lineHeight-normal;
-}
 strong {
   color: lighten($baseTextColor, 13%);
   font-size: $fontSize-small;
@@ -358,57 +367,7 @@ strong {
   padding: 5px;
 }
 
-
-
-.contact {
-  color: #065BA0;
-}
-
-
-
-.contact_body {
-  color: black;
-}
-
-a.contact_body {
-  color: black;
-}
-
-/* header */
-#logo {
-  float: left;
-  margin-right: 10px;
-  font-size: 1.7em;
-  color: #fff;
-  letter-spacing: 1px;
-  padding-top: 12px;
-  font-weight: bold;
-  line-height: 1;
-
-  &:hover {
-  color: #fff;
-  text-decoration: none;
-  }
-}
-
-#logoimage {
-  float: left;
-  margin-right: 10px;
-  font-size: 1.7em;
-  color: #fff;
-  letter-spacing: -1px;
-  padding-top: 5px;
-  font-weight: bold;
-  line-height: 1;
-
-  &:hover {
-  color: #fff;
-  text-decoration: none;
-  }
-}
-
 // Footer
-
 footer {
   margin-top: 45px;
   padding-top: 5px;
@@ -431,13 +390,11 @@ footer ul li {
 }
 
 /* miscellaneous */
-
 @mixin box_sizing {
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
-
 .debug_dump {
   background-color: #EEEEEE;
   clear: both;
@@ -448,18 +405,15 @@ footer ul li {
 }
 
 /* forms */
-
 input, textarea, select, .uneditable-input {
   border: 1px solid #bbb;
   width: 100%;
   margin-bottom: 15px;
   @include box_sizing;
 }
-
 input {
   height: auto !important;
 }
-
 .date-select{
   .form-group select {
     @extend .col-sm-4;
@@ -473,11 +427,9 @@ input {
     display: block;
   }
 }
-
 legend{
   @extend h1;
 }
-
 #error_explanation {
   color: #f00;
   ul {
@@ -485,21 +437,16 @@ legend{
     margin: 0 0 18px 0;
   }
 }
-
 .field_with_errors {
   @extend .control-group;
   @extend .error;
 }
-
-
-// Default form width convenience class
 .userform{
   @extend .col-sm-8;
   @extend .col-sm-offset-2;
 }
 
 /* Users index */
-
 .users {
   list-style: none;
   margin: 0;
@@ -616,26 +563,4 @@ legend{
   width: 200px;
   position: relative;
   left: 41%;
-}
-
-.pace .pace-progress {
-  background: $pinkAccent;
-  position: fixed;
-  z-index: 2000;
-  top: 0;
-  left: 0;
-  height: 2px;
-
-  -webkit-transition: width 1s;
-  -moz-transition: width 1s;
-  -o-transition: width 1s;
-  transition: width 1s;
-}
-
-.pace-inactive {
-  display: none;
-}
-
-.shadow-effect {
-  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
 }
