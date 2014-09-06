@@ -3,14 +3,12 @@
 <div style='margin-left:0px;'>
 <h1 class='hidden-xs'>
   <center>
-    <%= image_tag @user.avatar.url, size: '100x100', class: 'img-circle' %>
     <%= "#{@user.first_name} #{@user.last_name}" %>
   </center>
   <br>
 </h1>
 <h4 class='visible-xs'>
   <center>
-    <%= image_tag @user.avatar.url, size: '50x50', class: 'img-circle' %>
     <%= "#{@user.first_name} #{@user.last_name}" %>
   </center>
 </h4>
@@ -315,29 +313,21 @@
   <h4>
     Certification Information
   </h4>
-  <div class='pull-left' style="font-size: 75%">
-    <br>
-      <p>
-        <img src='/images/reddot.png'
-             alt='red'
-             height='10px'
-             width='10px' />Expired
-        <img src='/images/yellowdot.png'
-             alt='yellow'
-             height='10px'
-             width='10px' />Expires within 90 days
-        <img src='/images/bluedot.png'
-             alt='blue'
-             height='10px'
-             width='10px' />Expires in 90 to 180 days
-        <img src='/images/greendot.png'
-             alt='green'
-             height='10px'
-             width='10px' />Current
-     </p>
+  <div class='pull-left'>
+    <span class='legendRedCell'>
+      <i class='fa fa-circle fa-border'></i>
+    </span> Expired
+    <span class='legendYellowCell'>
+      <i class='fa fa-circle fa-border'></i>
+    </span> Expires within 90 days
+    <span class='legendBlue'>
+      <i class='fa fa-circle fa-border'></i>
+    </span> Expires in 90 to 180 days
+    <span class='legendGreenCell'>
+      <i class='fa fa-circle fa-border'></i>
+    </span> Current
     </div>
     <div class='pull-right'>
-      <br>
       <p>
       <%= link_to ' Edit', "/users/#{@user.id}/edit#certifications",
           class: 'glyphicon glyphicon-pencil pull-right',
