@@ -20,11 +20,14 @@
           <% unless signed_in? %>
             <%= link_to 'Sign In', new_user_session_path,
                         id: 'landing_sign_in_link' %>
+          <% else %>
+            <%= link_to 'Dashboard', dashboard_path,
+                        id: 'landing_sign_in_link' %>
           <% end %>
         </div>
         <br>
         <center>
-          <h3>DigiQuatics</h3>
+          <h3><i class='fa fa-tint fa-lg'></i> DigiQuatics</h3>
           <strong id='main-heading'>
             Aquatics Redefined
           </strong>
