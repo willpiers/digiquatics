@@ -1,7 +1,7 @@
-<div class='userform well'>
+<%= content_tag(:legend, legend) if legend %>
+<div class='userform well shadow-effect'>
   <%= bootstrap_form_for(@package,
     style: :horizontal, left: 'col-sm-4', right: 'col-sm-8') do |f| %>
-      <%= content_tag(:legend, legend) if legend %>
       <%= render 'shared/required' %>
       <%= f.text_field :name %>
       <% if @package.new_record?() %>

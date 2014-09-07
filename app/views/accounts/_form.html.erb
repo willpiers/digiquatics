@@ -1,13 +1,13 @@
-<div class='userform well'>
-<%= bootstrap_form_for @account do |f| %>
-  <%= content_tag(:legend, legend) if legend %>
-  <%= render 'shared/required' %>
-  <%= f.text_field :name, label: 'Organization Name *' %>
-  <%= f.file_field :logo %>
-  <%= f.time_zone_select :time_zone, ActiveSupport::TimeZone.us_zones %>
-  <button type='submit' class='btn btn-block btn-primary'>
-    <i class='fa fa-refresh'></i> Update Account
-  </button>
-<% end %>
+<%= content_tag(:legend, legend) if legend %>
+<div class='userform well shadow-effect'>
+  <%= bootstrap_form_for @account do |f| %>
+    <%= render 'shared/required' %>
+    <%= f.text_field :name, label: 'Organization Name *' %>
+    <%= f.file_field :logo %>
+    <%= f.time_zone_select :time_zone, ActiveSupport::TimeZone.us_zones %>
+    <button type='submit' class='btn btn-block btn-primary'>
+      <i class='fa fa-refresh'></i> Update Account
+    </button>
+  <% end %>
 </div>
 </div>

@@ -1,8 +1,8 @@
 <div ng-show='(completedAdminPrivateLessons
               | orderBy:order.value:order.reverse
               | filter:locationFilter
-              | filter:search).length'>
-  <table class='table table-hover' >
+              | filter:search).length' class='shadow-effect'>
+  <table class='table table-clean table-white' >
     <thead>
       <tr>
         <th>
@@ -32,6 +32,7 @@
           <a href="" ng-click="predicate.value = '-completed_on'; reverse=!reverse">
           Completed</a>
         </th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
@@ -74,6 +75,11 @@
         </td>
         <td>
           {{lesson.completed_on | date:'M/d/yy @ h:mma'}}
+        </td>
+        <td>
+          <%= link_to '/private_lessons/{{lesson.id}}' do %>
+            <i class='fa fa-external-link fa-lg'></i>
+          <% end %>
         </td>
       </tr>
     </tbody>

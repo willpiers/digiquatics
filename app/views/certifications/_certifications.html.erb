@@ -1,7 +1,9 @@
-<div ng-show='(users | orderBy:predicate.value:predicate.reverse | filter:locationFilter | filter:search).length'>
-  <table class='certs-table'>
+<div ng-show='(users | orderBy:predicate.value:predicate.reverse | filter:locationFilter | filter:search).length' class='shadow-effect'>
+  <table class='certs-table table-clean table-white'>
     <thead>
       <tr>
+        <th></th>
+        <th></th>
         <th class='visible-xs'>
           <a class='pointer-hand' ng-click="predicate.value = '-last_name';">
           Name</a>
@@ -26,6 +28,8 @@
             {{certName.name}}
           </center>
         </th>
+        <th></th>
+        <th></th>
       </tr>
     </thead>
 
@@ -35,6 +39,8 @@
                     | filter:locationFilter
                     | filter:search
                     | filter:dateFilter'>
+        <td></td>
+        <td></td>
         <td class='visible-xs'>
           <a ng-href='/users/{{user.id}}'>
             {{user.last_name}}, {{user.first_name}}
@@ -61,6 +67,8 @@
             </center>
           </div>
         </td>
+        <td></td>
+        <td></td>
       </tr>
     </tbody>
   </table>

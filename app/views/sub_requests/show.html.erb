@@ -1,9 +1,7 @@
 <% provide(:title, 'Sub Request') %>
-
 <h1 class='cross_platform_header'>Sub Request</h1>
 
 <div class='table-width-desktop'>
-
   <% if @sub_request.active? %>
     <ul class='pull-right'>
       <%= bootstrap_form_for @sub_request do |f| %>
@@ -42,10 +40,14 @@
   <% end %>
 
   <div class='pull-left'>
-    <%= link_to ' Back', sub_requests_path , class: 'glyphicon glyphicon-arrow-left' %>
+    <%= link_to sub_requests_path,
+        class:'btn btn-default btn-circle' do %>
+      <i class='fa fa-arrow-left fa-lg'></i>
+    <% end %>
   </div>
+  <br><br><br>
 
-  <table class='table table-bordered table-condensed'>
+  <table class='table table-clean table-white shadow-effect'>
       <tr>
         <th id='fixtablewidth'>Shift Location</th>
         <td><%= @sub_request.shift.location.name %></td>

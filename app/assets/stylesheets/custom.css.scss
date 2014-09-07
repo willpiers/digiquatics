@@ -1,26 +1,99 @@
-@import "bootstrap";
+@import 'bootstrap';
 @import url(http://fonts.googleapis.com/css?family=Roboto:400,400italic,900);
+
+$baseTextColor: rgba(0, 0, 0, 1); //black
 
 $lightgrey: #999;
 $grayMediumLight: #eaeaea;
 $yellow: #FED845;
 $blueLink: #658BCA;
 
+$headerBlue: #5265A2;
+
+// Cell Colors
+$warningCell:   rgba(251, 203, 67,  0.5);
+$successCell:   rgba(15,  157, 88,  0.5);
+$infoCell:      rgba(86,  119, 252, 0.5);
+$dangerCell:    rgba(255,  82, 82,  0.5);
+
+// Button Colors
+$warningBtn:    rgba(243, 177, 20, 1);
+$successBtn:    rgba(15, 157, 88, 1);
+$dangerBtn:     rgba(213, 73, 55, 1);
+$primaryBtn:    rgba(69, 133, 243, 1);
+$infoBtn:       rgba(3,   169, 244, 1.0);
+
+// Progress Bar Colors
+$warningProgressBar:    rgba(251, 203, 67,  0.9);
+$successProgressBar:    rgba(15,  157, 88,  0.9);
+$dangerProgressBar:     rgba(255,  82, 82,  0.9);
+$defaultProgressBar:    rgba(223, 223, 223, 0.9);
+$primaryProgressBar:    rgba(86,  119, 252, 0.9);
+$infoProgressBar:       rgba(3,   169, 244, 0.9);
+
+// Accent Colors
+$pinkAccent:    rgba(255,  64, 129, 1.0);
+
+
+$indigo700:     rgba(48,   63, 159, 1.0);
+$indigo600: #3949AB;
+$indigo500:     rgba(63,   81, 181, 1.0);
+$grey400:       rgba(189, 189, 189, 1.0);
+$grey900:       rgba(33,   33, 33,  1.0);
+$blueLink:      rgba(62, 130, 247, 1.0);
+
+$yellowAccent:  rgba(255, 205, 64,  1.0);
+$whiteBody:     rgba(238, 238, 238, 1);
+$whiteText:     rgba(255, 255, 255, 1.0);
+
+//Font Sizes
+$fontSize-smallest: 6pt;
+$fontSize-smaller:  8pt;
+$fontSize-small:    10pt;
+$fontSize-base:     12pt;
+$fontSize-large:    14pt;
+$fontSize-larger:   24pt;
+$fontSize-largest:  30pt;
+$fontSize-jumbo:    32pt;
+
+//Font Kerning/Tracking
+$letterSpacing-loosest: -3pt;
+$letterSpacing-looser:  -2pt;
+$letterSpacing-loose:   -1pt;
+$letterSpacing-normal:   0pt;
+$letterSpacing-tight:    1pt;
+$letterSpacing-tighter:  2pt;
+$letterSpacing-tightest: 3pt;
+
+//Line Height
+$lineHeight-shortest: 0.25pt;
+$lineHeight-shorter:  0.50pt;
+$lineHeight-short:    0.75pt;
+$lineHeight-normal:   1.00pt;
+$lineHeight-tall:     1.25pt;
+$lineHeight-taller:   1.50pt;
+$lineHeight-tallest:  1.75pt;
+
 /* universal */
 html {
   overflow-y: scroll;
 }
-
 body {
   padding-top: 0px;
+  background-color: $whiteBody;
+  color: $baseTextColor;
 }
-
 section {
   overflow: auto;
 }
-
+.well{
+  background-color: white;
+}
 textarea {
   resize: vertical;
+}
+.copyright{
+  color: lighten($baseTextColor, 66%);
 }
 
 .center {
@@ -30,133 +103,304 @@ textarea {
   margin-bottom: 10px;
   }
 }
+.pace .pace-progress {
+  background: $pinkAccent;
+  position: fixed;
+  z-index: 2000;
+  top: 0;
+  left: 0;
+  height: 2px;
 
-/* typography */
+  -webkit-transition: width 1s;
+  -moz-transition: width 1s;
+  -o-transition: width 1s;
+  transition: width 1s;
+}
+.pace-inactive {
+  display: none;
+}
+.shadow-effect {
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+}
+.legendBlue{
+  color: $primaryProgressBar;
+}
+.legendRed{
+  color: $dangerProgressBar;
+}
+.legendGreen{
+  color: $successProgressBar;
+}
+.legendYellowCell{
+  color: $warningCell;
+}
+.legendRedCell{
+  color: $dangerCell;
+}
+.legendGreenCell{
+  color: $successCell;
+}
+.legendBlueCell{
+  color: $infoCell;
+}
+.panel-default > .panel-heading {
+color: rgb(51, 51, 51);
+background-color: white;
+border-color: rgb(221, 221, 221);
+}
+.whiteText{
+  color: $whiteText;
+}
+.shift-title {
+  margin-top: 10px;
+  padding-top: 10px;
+}
+
+// Tables
+
+.table-white{
+  background-color: white;
+}
+.table-bordered > thead > tr > th,
+.table-bordered > tbody > tr > th,
+.table-bordered > tfoot > tr > th {
+  border: 1px solid #DDDDDD;
+  border-right-width:0px;
+  border-left-width:0px;
+}
+.table-bordered > thead > tr > td,
+.table-bordered > tbody > tr > td,
+.table-bordered > tfoot > tr > td {
+  border: 1px solid #DDDDDD;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.table-clean > thead > tr > th,
+.table-clean > tbody > tr > th,
+.table-clean > tfoot > tr > th {
+  border: 1px solid #DDDDDD;
+  border-right-width:0px;
+  border-left-width:0px;
+}
+.table-clean > thead > tr > td,
+.table-clean > tbody > tr > td,
+.table-clean > tfoot > tr > td {
+  border: 1px solid #DDDDDD;
+  border-right-width:0px;
+  border-left-width:0px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+
+// Buttons
+.btn-primary {
+   @include button-variant($whiteText, $primaryBtn, $whiteText);
+}
+.btn-warning {
+   @include button-variant($whiteText, $warningBtn, $whiteText);
+}
+.btn-success {
+   @include button-variant($whiteText, $successBtn, $whiteText);
+}
+.btn-danger {
+   @include button-variant($whiteText, $dangerBtn, $whiteText);
+}
+.btn-info {
+   @include button-variant($whiteText, $infoBtn, $whiteText);
+}
+.btn-circle {
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  padding: 15px 0;
+  font-size: 12px;
+  line-height: 1.42;
+  border-radius: 25px;
+}
+
+// Progress Bars
+.progress-bar-primary {
+   @include button-variant($whiteText, $primaryProgressBar, $whiteText);
+}
+.progress-bar-warning {
+   @include button-variant($whiteText, $warningProgressBar, $whiteText);
+}
+.progress-bar-success {
+   @include button-variant($whiteText, $successProgressBar, $whiteText);
+}
+.progress-bar-danger {
+   @include button-variant($whiteText, $dangerProgressBar, $whiteText);
+}
+.progress-bar-info {
+   @include button-variant($whiteText, $infoProgressBar, $whiteText);
+}
+
+// Table Cells
+.table tbody tr > td.success {
+  background-color: $successCell !important;
+}
+.table tbody tr > td.danger {
+  background-color: $dangerCell !important;
+}
+.table tbody tr > td.warning {
+  background-color: $warningCell !important;
+}
+.table tbody tr > td.info {
+  background-color: $infoCell !important;
+}
+.greenCell{
+  background-color: $successCell;
+}
+.redCell{
+  background-color: $dangerCell;
+}
+.yellowCell{
+  background-color: $warningCell;
+}
+.blueCell{
+  background-color: $infoCell;
+}
+
+// Navbar
+$bgDefault      : #3F51B5; //Indigo700
+$bgHighlight    : #3F51B5; //Indigo700
+$colDefault     : #9FA8DA; //Grey
+$colHover       : white;
+
+.navbar-inverse {
+    background-color: $bgDefault;
+    border-color: $bgHighlight;
+    .navbar-brand {
+        color: $colDefault;
+        &:hover, &:focus {
+            color: $colHover; }}
+    .navbar-nav {
+        > li {
+            > a {
+                color: $colDefault;
+                &:hover, &:focus {
+                    color: $colHover;   }}}
+        .active {
+            > a, > a:hover, > a:focus {
+                color: white;
+                background-color: $bgHighlight; }}
+        .open {
+            > a, > a:hover, > a:focus {
+                color: $colHover;
+                background-color: $bgHighlight;
+                .caret {
+                    border-top-color: $colHover;
+                    border-bottom-color: $colHover; }}}
+        > .dropdown {
+            > a {
+                .caret {
+                    border-top-color: $colDefault;
+                    border-bottom-color: $colDefault; }
+                &:hover, &:focus {
+                    .caret {
+                        border-top-color: $colHover;
+                        border-bottom-color: $colHover; }}}}}
+    .navbar-toggle {
+        border-color: $bgHighlight;
+        &:hover, &:focus {
+            background-color: $bgHighlight; }
+        .icon-bar {
+            background-color: $colDefault; }}}
+@media (max-width: 767px) {
+    .navbar-default .navbar-nav .open .dropdown-menu > li > a {
+        color: $colDefault;
+        &:hover, &:focus {
+            color: $colHover;
+            background-color: $bgHighlight; }}
+}
+
+// Typography
 * {
   font-family: 'Roboto', sans-serif;
-}
-
-h1, h2, h3, h4, h5, h6 {
-  line-height: 1;
-}
-
-h1 {
-  font-size: 3em;
-  letter-spacing: -2px;
-  margin-bottom: 30px;
-  text-align: center;
-}
-
-@media (max-width: 500px) {
-  .cross_platform_header {
-    font-size: 1.5em;
-    letter-spacing: -2px;
-    margin-bottom: 10px;
-    text-align: center;
+  a {
+    color: $blueLink;
   }
 }
-
-h2 {
-  font-size: 2.0em;
-  letter-spacing: -2px;
-  margin-bottom: 30px;
-  text-align: center;
+h4 {
+  line-height: 1.7em; //fix this
 }
-
 P {
-  font-size: 1.1em;
-  line-height: 1.7em;
+  color: lighten($baseTextColor, 13%);
+  font-size: $fontSize-base;
+  line-height: 1.7em; //fix this
+}
+h1 {
+  color: lighten($baseTextColor, 13%);
+  font-size: $fontSize-jumbo;
+  letter-spacing: $letterSpacing-normal;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  text-align: center;
+  line-height: $lineHeight-normal;
+}
+h2 {
+  color: lighten($baseTextColor, 40%);
+  font-size: $fontSize-largest;
+  letter-spacing: $letterSpacing-normal;
+  margin-top: 0px;
+  margin-bottom: 18px;
+  text-align: center;
+  line-height: $lineHeight-normal;
+}
+h3 {
+  padding: 15px;
+  margin: 0px;
+  color: $whiteText;
+  font-size: $fontSize-large;
+  letter-spacing: $letterSpacing-normal;
+  text-align: center;
+  line-height: $lineHeight-normal;
+}
+strong {
+  color: lighten($baseTextColor, 13%);
+  font-size: $fontSize-small;
+  letter-spacing: $letterSpacing-normal;
+  line-height: $lineHeight-normal;
+}
+.panel-title{
+  color: lighten($baseTextColor, 13%);
+  font-size: $fontSize-base;
+  letter-spacing: $letterSpacing-normal;
+  line-height: $lineHeight-normal;
+  padding: 5px;
 }
 
-.contact {
-  color: #065BA0;
-}
-
-.copyright {
-  color: #C0C0C0;
-}
-
-.contact_body {
-  color: black;
-}
-
-a.contact_body {
-  color: black;
-}
-
-/* header */
-#logo {
-  float: left;
-  margin-right: 10px;
-  font-size: 1.7em;
-  color: #fff;
-  letter-spacing: 1px;
-  padding-top: 12px;
-  font-weight: bold;
-  line-height: 1;
-
-  &:hover {
-  color: #fff;
-  text-decoration: none;
-  }
-}
-
-#logoimage {
-  float: left;
-  margin-right: 10px;
-  font-size: 1.7em;
-  color: #fff;
-  letter-spacing: -1px;
-  padding-top: 5px;
-  font-weight: bold;
-  line-height: 1;
-
-  &:hover {
-  color: #fff;
-  text-decoration: none;
-  }
-}
-
-/* Footer */
-
+// Footer
 footer {
   margin-top: 45px;
   padding-top: 5px;
   border-top: 1px solid #eaeaea;
-  color: $lightgrey;  //defined via bootstrap-sass gem
+  text-align: center;
 }
-
 footer a {
-  color: #555;
+  color: $blueLink;
 }
-
 footer a:hover {
-  color: #222;
+  color: $pinkAccent;
 }
-
-footer small {
-  float: left;
-}
-
 footer ul {
   float: left;
   list-style: none;
 }
-
 footer ul li {
   float: left;
   margin-left: 10px;
 }
 
+/* miscellaneous */
 @mixin box_sizing {
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
-
-/* miscellaneous */
-
 .debug_dump {
+  background-color: #EEEEEE;
   clear: both;
   float: left;
   width: 100%;
@@ -165,18 +409,15 @@ footer ul li {
 }
 
 /* forms */
-
 input, textarea, select, .uneditable-input {
   border: 1px solid #bbb;
   width: 100%;
   margin-bottom: 15px;
   @include box_sizing;
 }
-
 input {
   height: auto !important;
 }
-
 .date-select{
   .form-group select {
     @extend .col-sm-4;
@@ -190,11 +431,9 @@ input {
     display: block;
   }
 }
-
 legend{
   @extend h1;
 }
-
 #error_explanation {
   color: #f00;
   ul {
@@ -202,21 +441,16 @@ legend{
     margin: 0 0 18px 0;
   }
 }
-
 .field_with_errors {
   @extend .control-group;
   @extend .error;
 }
-
-
-// Default form width convenience class
 .userform{
   @extend .col-sm-8;
   @extend .col-sm-offset-2;
 }
 
 /* Users index */
-
 .users {
   list-style: none;
   margin: 0;
@@ -326,7 +560,7 @@ legend{
 }
 
 .star {
-  color:$yellow;
+  color:#FF4081;
 }
 
 #dashboard_email_button{

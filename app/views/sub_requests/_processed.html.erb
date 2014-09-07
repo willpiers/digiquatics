@@ -1,7 +1,8 @@
 <table ng-show='(processedSubRequests
                 | orderBy:predicate.value:predicate.reverse
                 | filter:locationFilter
-                | filter:search).length' class='table'>
+                | filter:search).length'
+      class='table table-clean table-white shadow-effect'>
   <thead>
     <tr>
       <th class='hidden-xs'>
@@ -109,10 +110,10 @@
           {{request.processed_by_last_name}}, {{request.processed_by_first_name}}
         </a>
       </td>
-
       <td>
-        <%= link_to 'View Request', "/sub_requests/{{request.id}}",
-          class: 'btn btn-info btn-xs', role: 'button' %>
+        <%= link_to '/sub_requests/{{request.id}}' do %>
+          <i class='fa fa-external-link fa-lg'></i>
+        <% end %>
       </td>
     </tr>
   </tbody>

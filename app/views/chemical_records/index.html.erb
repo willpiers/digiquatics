@@ -11,27 +11,34 @@
       </div>
       <div class='col-md-3'></div>
       <div class='col-md-3 pull-right'>
-        <div class='btn-group pull-right'>
+        <div class='pull-right'>
           <%= link_to new_chemical_record_path,
-              class:'btn btn-sm btn-primary' do %>
-            <i class='fa fa-plus fa-lg'></i> Add Record
+              class:'btn btn-primary' do %>
+            <i class='fa fa-plus fa-lg'></i>
+            Add Record
           <% end %>
           <%= link_to chemical_record_stats_path,
-              class:'btn btn-sm btn-success' do %>
-            <i class='fa fa-bar-chart-o fa-lg'></i> Analytics
+              class:'btn btn-success' do %>
+            <i class='fa fa-line-chart fa-lg'></i>
+            Analytics
           <% end %>
         </div>
       </div>
     </div>
-    <div class='hidden-xs'>
-      <br>
-      <img src='/images/reddot.png' alt='red' height='10px' width='10px'/>
-      Danger
-      <img src='/images/yellowdot.png' alt='yellow' height='10px' width='10px'/>
-      Warning
-      <img src='/images/greendot.png' alt='green' height='10px' width='10px'/>
-      Balanced
+    <div class='row'>
+      <div class='col-md-12'>
+        <span class='legendRedCell'>
+          <i class='fa fa-circle fa-border'></i>
+        </span> Danger
+        <span class='legendYellowCell'>
+          <i class='fa fa-circle fa-border'></i>
+        </span> Warning
+        <span class='legendGreenCell'>
+          <i class='fa fa-circle fa-border'></i>
+        </span> Balanced
+      </div>
     </div>
+    <br>
     <%= render 'chemicals' %>
   </div>
 </div>

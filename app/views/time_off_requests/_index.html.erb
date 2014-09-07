@@ -1,7 +1,8 @@
 <table ng-show='(timeOff
                 | orderBy:predicate.value:predicate.reverse
                 | filter:locationFilter
-                | filter:search).length' class='table'>
+                | filter:search).length'
+       class='table table-clean table-white shadow-effect'>
   <thead>
     <tr>
       <th class='visible-xs'>
@@ -70,8 +71,9 @@
         {{request.reason | limitTo:15}}
       </td>
       <td>
-        <%= link_to 'View Request', "/time_off_requests/{{request.id}}",
-          class: 'btn btn-info btn-xs', role: 'button' %>
+        <%= link_to '/time_off_requests/{{request.id}}' do %>
+          <i class='fa fa-external-link fa-lg'></i>
+        <% end %>
       </td>
     </tr>
   </tbody>
@@ -94,4 +96,3 @@
     </p>
   </center>
 </div>
-

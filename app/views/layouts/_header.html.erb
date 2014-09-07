@@ -1,19 +1,19 @@
-<div class = 'navbar navbar-inverse navbar-static-top'>
-  <div class = 'container'>
-    <button class = 'navbar-toggle' data-toggle = 'collapse'
-    data-target = '.navHeaderCollapse'>
-      <span class = 'icon-bar'></span>
-      <span class = 'icon-bar'></span>
-      <span class = 'icon-bar'></span>
-    </button>
+<div class='shadow-effect'>
+  <div class = 'navbar navbar-inverse navbar-static-top'>
+    <div class = 'container'>
+      <button class = 'navbar-toggle' data-toggle = 'collapse'
+      data-target = '.navHeaderCollapse'>
+        <span class = 'icon-bar'></span>
+        <span class = 'icon-bar'></span>
+        <span class = 'icon-bar'></span>
+      </button>
 
-    <%= render 'layouts/partials/logo' %>
-
-    <% if signed_in? %>
-      <div class = 'collapse navbar-collapse navHeaderCollapse'>
-        <%= render 'layouts/partials/desktop_links' %>
-        <%= render 'layouts/partials/mobile_links' %>
-      </div>
-    <% end %>
+      <% if signed_in? %>
+        <div class = 'collapse navbar-collapse navHeaderCollapse'>
+          <%= render 'layouts/partials/desktop_links' %>
+          <%= render 'layouts/partials/mobile_links' %>
+        </div>
+      <% end %>
+    </div>
   </div>
 </div>

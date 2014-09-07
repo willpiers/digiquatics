@@ -1,11 +1,10 @@
 <div ng-show='(closedHelpDesks
               | orderBy:order.value:order.reverse
               | filter:locationFilter
-              | filter:search).length'>
-  <table class='table'>
+              | filter:search).length' class='shadow-effect'>
+  <table class='table table-clean table-white'>
     <thead>
       <tr>
-        <th></th>
         <th class='hidden-xs'>
           <a href="" ng-click="predicate.value = '-location.name'; reverse=!reverse">
             Location
@@ -63,13 +62,13 @@
         | filter:locationFilter
         | filter:search
         | limitTo:totalDisplayed'>
-        <td>
-          <div ng-show='showPic(item)' %>
+        <td class='hidden-xs'>
+          <span ng-show='showPic(item)' %>
             <a ng-href='{{item.attachment_url}}'>
             <span class='glyphicon glyphicon-picture'></span>
-          </div>
+          </span>
+          {{item.location.name}}
         </td>
-        <td class='hidden-xs'>{{item.location.name}}</td>
         <td>{{item.created_at | date:'M/d/yy @ h:mma'}}</td>
         <td>{{item.closed_date_time | date:'M/d/yy @ h:mma'}}</td>
         <td>
@@ -82,8 +81,9 @@
           </a>
         </td>
         <td>
-          <%= link_to 'View Issue', "/help_desks/{{item.id}}",
-            class: 'btn btn-info btn-xs', role: 'button' %>
+          <%= link_to '/help_desks/{{item.id}}' do %>
+            <i class='fa fa-external-link fa-lg'></i>
+          <% end %>
         </td>
       </tr>
     </tbody>

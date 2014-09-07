@@ -3,24 +3,25 @@
     <% provide(:title, 'Time Off Requests') %>
     <h1 class='cross_platform_header'>Time Off Requests</h1>
     <div class='row'>
-      <dq-search></dq-search>
       <div class='visible-xs'><br></div>
       <%= render 'layouts/location_select' %>
-      <div class='col-md-3'></div>
-      <div class='col-md-3 pull-right'>
-        <div class='btn-group pull-right'>
+      <dq-search></dq-search>
+      <div class='visible-xs'><br></div>
+      <div class='col-md-2'></div>
+      <div class='col-md-4 pull-right'>
+        <div class='pull-right'>
           <%= link_to new_time_off_request_path,
-              class:'btn btn-sm btn-primary' do %>
+              class:'btn btn-primary' do %>
             <i class='fa fa-plus fa-lg'></i> Add Request
           <% end %>
           <%= link_to archived_time_off_requests_path,
-              class:'btn btn-sm btn-warning' do %>
+              class:'btn btn-warning' do %>
             <i class='fa fa-history fa-lg'></i> View Processed
           <% end %>
         </div>
       </div>
     </div>
     <br>
-    <%= render 'time_off_requests' %>
+    <%= render 'index' %>
   </div>
 </div>

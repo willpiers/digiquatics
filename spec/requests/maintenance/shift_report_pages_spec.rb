@@ -27,7 +27,7 @@ describe 'Shift Report pages' do
     it { should have_selector('th', text: 'Location') }
     it { should have_selector('th', text: 'Date') }
     it { should have_selector('th', text: 'Submitted By') }
-    it { should have_selector('th', text: 'Incident / Accident Report Filed') }
+    it { should have_selector('th', text: 'Incident Report') }
     it { should have_content('report.location.name') }
     it { should have_content("report.created_at | date:'M/d/yy @ h:mma'") }
     it { should have_content('report.user.last_name') }
@@ -144,7 +144,7 @@ describe 'Shift Report pages' do
     describe 'shift report' do
       it { should have_selector('h1', text: 'Shift Report') }
       it { should have_title(full_title('Shift Report')) }
-      it { should have_link('Back', shift_reports_path) }
+      it { should have_link('', shift_reports_path) }
 
       describe 'attributes' do
         it { should have_selector('th', text: 'Location') }

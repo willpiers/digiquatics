@@ -20,18 +20,13 @@ $blueCert: #DBF2FF;
 }
 
 .cert-cell {
-  height: 37px;
-  vertical-align: middle;
-}
-
-.cert-cell {
-  height: 37px;
+  height: 45px;
   vertical-align: middle;
 }
 
 .cert-cell-text {
   position: relative;
-  top: 8px;
+  top: 12px;
 }
 
   .certs-table  {
@@ -42,7 +37,7 @@ $blueCert: #DBF2FF;
   .certs-table > thead > tr > th {
     line-height: 1.42857143;
     vertical-align: middle;
-    height: 37px;
+    height: 45px;
   }
 
   .certs-table > tbody > tr > th,
@@ -53,7 +48,7 @@ $blueCert: #DBF2FF;
     line-height: 1.42857143;
     vertical-align: middle;
     border-top: 1px solid #ddd;
-    height: 37px;
+    height: 45px;
   }
   .certs-table > thead > tr > th {
     vertical-align: bottom;

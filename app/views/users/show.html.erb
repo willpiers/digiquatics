@@ -2,20 +2,20 @@
 
 <div style='margin-left:0px;'>
 <h1 class='hidden-xs'>
-  <%= image_tag @user.avatar.url, size: '100x100', class: 'img-circle' %>
-  <%= "#{@user.first_name} #{@user.last_name}" %>
+  <center>
+    <%= "#{@user.first_name} #{@user.last_name}" %>
+  </center>
   <br>
 </h1>
 <h4 class='visible-xs'>
   <center>
-    <%= image_tag @user.avatar.url, size: '50x50', class: 'img-circle' %>
     <%= "#{@user.first_name} #{@user.last_name}" %>
   </center>
 </h4>
 </div>
 
 <div class='table-width-desktop'>
-  <div class='btn-group pull-right hidden-xs'>
+  <div class='pull-right hidden-xs'>
     <%= link_to edit_user_path(@user),
                 class:'btn btn-default btn-primary' do %>
       <i class='fa fa-pencil fa-lg'></i> Edit Profile
@@ -37,7 +37,7 @@
     </div>
   </div>
 
-  <div class='btn-group visible-xs pull-right'>
+  <div class='visible-xs pull-right'>
     <%= link_to edit_user_path(@user),
                 class:'btn btn-xs btn-primary' do %>
       <i class='fa fa-pencil fa-lg'></i> Edit Profile
@@ -59,8 +59,13 @@
   </div>
 
   <div class='pull-left'>
-    <%= link_to ' Back', users_path, class: 'glyphicon glyphicon-arrow-left' %>
+    <%= link_to users_path,
+        class:'btn btn-default btn-circle' do %>
+      <i class='fa fa-arrow-left fa-lg'></i>
+    <% end %>
   </div>
+
+  <br>
 
   <div id='shift_buttons_users_profile' class='hidden-xs'>
 
@@ -78,7 +83,6 @@
           <% end %>
         <% end %>
       </ul>
-
       <ul class='pull-right'>
         <% if @user.admin? %>
           <%= bootstrap_form_for @user do |f| %>
@@ -114,7 +118,7 @@
       <% end %>
       </div>
     </div>
-    <br><br><br><br><br>
+    <br><br><br><br><br><br>
   <% end %>
 
   <h4>
@@ -123,8 +127,7 @@
         class: 'glyphicon glyphicon-pencil pull-right',
         style: 'font-size: 80%' %>
   </h4>
-
-  <table class='table table-bordered table-condensed' >
+  <table class='table table-clean table-white shadow-effect' >
     <tr>
       <th style='width:25%'>Phone Number</th>
       <td>
@@ -162,6 +165,7 @@
       </td>
     </tr>
   </table>
+  <br><br>
 
   <h4>
     Additional Employee Information
@@ -169,8 +173,7 @@
         class: 'glyphicon glyphicon-pencil pull-right',
         style: 'font-size: 80%' %>
   </h4>
-
-  <table class='table table-bordered table-condensed' >
+  <table class='table table-clean table-white shadow-effect' >
     <tr>
       <th style='width:25%'> DOB </th><td><%= @user.date_of_birth ?
         "#{@user.date_of_birth.strftime('%-m/%-d/%Y')} (#{age(@user.date_of_birth)} Years Old)" : '-' %></td>
@@ -204,6 +207,7 @@
       <td><%= @user.zipcode %></td>
     </tr>
   </table>
+  <br><br>
 
   <h4>
     Sizing Information
@@ -211,23 +215,23 @@
         class: 'glyphicon glyphicon-pencil pull-right',
         style: 'font-size: 80%' %>
   </h4>
-
-    <table class='table table-bordered table-condensed' >
+  <table class='table table-clean table-white shadow-effect' >
+    <tr>
+      <th style='width:25%'>Shirt Size </th>
+      <td><%= @user.shirt_size %></td>
+    </tr>
+    <tr>
+      <th>Suit Size</th>
+      <td><%= @user.suit_size %></td>
+    </tr>
+    <% if @user.sex == 'F' %>
       <tr>
-        <th style='width:25%'>Shirt Size </th>
-        <td><%= @user.shirt_size %></td>
+        <th>One Piece Size</th>
+        <td><%= @user.femalesuit %></td>
       </tr>
-      <tr>
-        <th>Suit Size</th>
-        <td><%= @user.suit_size %></td>
-      </tr>
-      <% if @user.sex == 'F' %>
-        <tr>
-          <th>One Piece Size</th>
-          <td><%= @user.femalesuit %></td>
-        </tr>
-      <% end %>
-    </table>
+    <% end %>
+  </table>
+  <br><br>
 
   <h4>
     Emergency Contact Information
@@ -235,21 +239,21 @@
         class: 'glyphicon glyphicon-pencil pull-right',
         style: 'font-size: 80%' %>
   </h4>
-
-    <table class='table table-bordered table-condensed' >
-      <tr>
-        <th style='width:25%'> Emergency Contact </th>
-        <td><%= "#{@user.emergency_first} #{@user.emergency_last}" %></td>
-      </tr>
-      <tr>
-        <th>Emergency Phone Number</th>
-        <td>
-          <% if @user.emergency_phone? %>
-            <%= phone_number_link(@user.emergency_phone) %>
-            <% end %>
-          </td>
-      </tr>
-    </table>
+  <table class='table table-clean table-white shadow-effect' >
+    <tr>
+      <th style='width:25%'> Emergency Contact </th>
+      <td><%= "#{@user.emergency_first} #{@user.emergency_last}" %></td>
+    </tr>
+    <tr>
+      <th>Emergency Phone Number</th>
+      <td>
+        <% if @user.emergency_phone? %>
+          <%= phone_number_link(@user.emergency_phone) %>
+          <% end %>
+        </td>
+    </tr>
+  </table>
+  <br><br>
 
   <% if signed_in? && current_user.admin? %>
     <h4>
@@ -258,8 +262,7 @@
           class: 'glyphicon glyphicon-pencil pull-right',
           style: 'font-size: 80%' %>
     </h4>
-
-    <table class='table table-bordered table-condensed' >
+    <table class='table table-clean table-white shadow-effect' >
       <tr>
       <th>Grouping</th>
         <td><%= @user.grouping%></td>
@@ -304,86 +307,80 @@
         </td>
       </tr>
     </table>
+    <br><br>
   <% end %>
 
   <h4>
     Certification Information
-    <%= link_to ' Edit', "/users/#{@user.id}/edit#certifications",
-        class: 'glyphicon glyphicon-pencil pull-right',
-        style: 'font-size: 80%' %>
   </h4>
-
-  <div class='pull-left' style="font-size: 75%">
-    <br>
-      <p>
-        <img src='/images/reddot.png'
-             alt='red'
-             height='10px'
-             width='10px' />Expired
-        <img src='/images/yellowdot.png'
-             alt='yellow'
-             height='10px'
-             width='10px' />Expires within 90 days
-        <img src='/images/bluedot.png'
-             alt='blue'
-             height='10px'
-             width='10px' />Expires in 90 to 180 days
-        <img src='/images/greendot.png'
-             alt='green'
-             height='10px'
-             width='10px' />Current
-     </p>
+  <div class='pull-left'>
+    <span class='legendRedCell'>
+      <i class='fa fa-circle fa-border'></i>
+    </span> Expired
+    <span class='legendYellowCell'>
+      <i class='fa fa-circle fa-border'></i>
+    </span> Expires within 90 days
+    <span class='legendBlue'>
+      <i class='fa fa-circle fa-border'></i>
+    </span> Expires in 90 to 180 days
+    <span class='legendGreenCell'>
+      <i class='fa fa-circle fa-border'></i>
+    </span> Current
     </div>
-
-
-  <table class='table table-bordered table-condensed' >
-    <thead>
-      <tr>
-        <th class='fixtablewidth'>Certification Name</th>
-        <% @user.certifications.each do |cert| %>
-        <th><%= cert.certification_name.name %></th>
-        <% end %>
-      </tr>
-    </thead>
-    <tbody>
-      <tr><th>Issue Date</th>
-        <% @user.certifications.each do |cert| %>
-          <td>
-            <%= cert.issue_date.strftime('%-m/%-d/%Y') if cert.issue_date %>
-          </td>
-        <% end %>
-      </tr>
-      <tr><th>Expiration Date</th>
-        <% @user.certifications.each do |cert| %>
-          <td class=<%=css_class(cert.expiration_date)%>>
-            <%= cert.expiration_date.strftime('%-m/%-d/%Y') %>
-          </td>
-        <% end %>
-      </tr>
-      <tr>
-        <th>Attached File (PDF)</th>
-        <% @user.certifications.each do |cert| %>
-          <th>
-            <% if cert.attachment? %>
-              <%= link_to '', cert.attachment.url,
-                  class: 'glyphicon glyphicon-download-alt' %>
-            <% end %>
-          </th>
-        <% end %>
-      </tr>
-    </tbody>
-  </table>
+    <div class='pull-right'>
+      <p>
+      <%= link_to ' Edit', "/users/#{@user.id}/edit#certifications",
+          class: 'glyphicon glyphicon-pencil pull-right',
+          style: 'font-size: 80%' %>
+      </p>
+    </div>
+    <table class='table table-clean table-white shadow-effect' >
+      <thead>
+        <tr>
+          <th class='fixtablewidth'>Certification Name</th>
+          <% @user.certifications.each do |cert| %>
+          <th><%= cert.certification_name.name %></th>
+          <% end %>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><th>Issue Date</th>
+          <% @user.certifications.each do |cert| %>
+            <td>
+              <%= cert.issue_date.strftime('%-m/%-d/%Y') if cert.issue_date %>
+            </td>
+          <% end %>
+        </tr>
+        <tr><th>Expiration Date</th>
+          <% @user.certifications.each do |cert| %>
+            <td class=<%=css_class(cert.expiration_date)%>>
+              <%= cert.expiration_date.strftime('%-m/%-d/%Y') %>
+            </td>
+          <% end %>
+        </tr>
+        <tr>
+          <th>Attached File (PDF)</th>
+          <% @user.certifications.each do |cert| %>
+            <th>
+              <% if cert.attachment? %>
+                <%= link_to '', cert.attachment.url,
+                    class: 'glyphicon glyphicon-download-alt' %>
+              <% end %>
+            </th>
+          <% end %>
+        </tr>
+      </tbody>
+    </table>
+    <br><br>
 
   <% if signed_in? && current_user.admin? %>
-
     <h4>
       Notes
       <%= link_to ' Edit', "/users/#{@user.id}/edit#notes",
           class: 'glyphicon glyphicon-pencil pull-right',
           style: 'font-size: 80%' %>
     </h4>
-
-    <table class='table table-bordered table-condensed'>
+    <table class='table table-clean table-white shadow-effect'>
       <tr>
         <td>
           <% if !@user.notes? %>
@@ -393,5 +390,6 @@
         </td>
       </tr>
     </table>
+    <br><br>
   <% end %>
 </div>

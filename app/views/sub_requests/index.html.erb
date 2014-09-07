@@ -3,19 +3,20 @@
     <% provide(:title, 'Sub Requests') %>
     <h1 class='cross_platform_header'>Sub Requests</h1>
     <div class='row'>
-      <dq-search></dq-search>
       <div class='visible-xs'><br></div>
       <%= render 'layouts/location_select' %>
-      <div class='col-md-4'></div>
-      <div class='col-md-3 pull-right'>
-        <div class='btn-group pull-right'>
+      <dq-search></dq-search>
+      <div class='visible-xs'><br></div>
+      <div class='col-md-3'></div>
+      <div class='col-md-4 pull-right'>
+        <div class='pull-right'>
           <% if current_user.admin? %>
             <%= link_to processed_sub_requests_path,
-                class:'btn btn-sm btn-warning' do %>
+                class:'btn btn-warning' do %>
               <i class='fa fa-history fa-lg'></i> Processed
             <% end %>
             <%= link_to admin_sub_requests_path,
-                class:'btn btn-sm btn-danger' do %>
+                class:'btn btn-danger' do %>
               <i class='fa fa-cogs fa-lg'></i> Management
             <% end %>
           <% end %>
@@ -23,6 +24,6 @@
       </div>
     </div>
     <br>
-    <%= render 'sub_requests' %>
+    <%= render 'index' %>
   </div>
 </div>

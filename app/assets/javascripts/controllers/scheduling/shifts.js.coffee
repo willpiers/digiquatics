@@ -25,6 +25,7 @@
 
     $scope.startTime = (days) ->
       start = new Date()
+      start.setMonth($scope.weekDay(days).format('MM') - 1)
       start.setDate($scope.weekDay(days).format('DD'))
       start.setHours(7)
       start.setMinutes(0)
@@ -32,6 +33,7 @@
 
     $scope.endTime = (days) ->
       end = new Date()
+      end.setMonth($scope.weekDay(days).format('MM') - 1)
       end.setDate($scope.weekDay(days).format('DD'))
       end.setHours(8)
       end.setMinutes(0)
@@ -54,8 +56,9 @@
       $scope.weekCounter = 0
 
     $scope.displayStartDate = ->
-      moment().startOf('week').add('days', $scope.weekCounter).format('MMM D')
+      moment().startOf('week').add('days', $scope.weekCounter).format('MMMM YYYY')
 
+    ##### Might not need this
     $scope.displayEndDate = (days) ->
       moment().startOf('week').add('days', $scope.weekCounter + days).format('MMM D, YYYY')
 

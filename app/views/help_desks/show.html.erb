@@ -1,5 +1,5 @@
 <% provide(:title, 'Maintenance Issue') %>
-<h1 class='cross_platform_header'>Help Desk</h1>
+<h1 class='cross_platform_header'>Help Desk Issue</h1>
 
 <div class='table-width-desktop'>
   <ul class='pull-right'>
@@ -9,16 +9,16 @@
     <% end %>
   </ul>
 
-  <br>
-  <div class='pull-left'>
-    <%= link_to ' Back', help_desks_path ,
-        class: 'glyphicon glyphicon-arrow-left' %>
-  </div>
-  <br>
+<div class='pull-left'>
+  <%= link_to help_desks_path,
+      class:'btn btn-default btn-circle' do %>
+    <i class='fa fa-arrow-left fa-lg'></i>
+  <% end %>
+</div>
+<br><br><br>
 
-<h4>Issue Description</h4>
-
-  <table class='table table-bordered table-condensed' >
+<div class='shadow-effect'>
+  <table class='table table-bordered table-white' >
     <tr>
       <th id='fixtablewidth'> Problem </th>
       <td> <%= @help_desk.name %> </td>
@@ -99,30 +99,24 @@
       </tr>
     <% end %>
   </table>
+</div>
 
-  <center>
-  <% if @help_desk.help_desk_attachment? %>
-    <h4> Attached Picture </h4>
-    <%= image_tag @help_desk.help_desk_attachment.url, height: '300px'%>
-  <% end %>
-  </center>
-
-  <div class='userform'>
-    <% if @help_desk.issue_status? %>
-      <h4> Actions taken to resolve this issue </h4>
-      <%= bootstrap_form_for @help_desk do |f| %>
-        <%= f.hidden_field :issue_status, value: false %>
-        <%= f.text_area :issue_resolution_description,
-                        hide_label: true, size: '2x' %>
-        <%= f.submit 'Close Issue'  %>
-      <% end %>
-    <% else %>
-      <%= bootstrap_form_for @help_desk do |f| %>
-        <%= f.hidden_field :issue_status, value: true %>
-        <%= f.submit 'Reopen Issue'  %>
-      <% end %>
+<% if @help_desk.issue_status? %>
+  <br>
+  <div class='well table-white shadow-effect'>
+    <%= bootstrap_form_for @help_desk do |f| %>
+      <%= f.hidden_field :issue_status, value: false %>
+      <%= f.text_area :issue_resolution_description,
+                      hide_label: true, size: '2x',
+                      placeholder: 'Action taken to close this issue'%>
+      <%= f.submit 'Close Issue', class: 'btn btn-block btn-info' %>
     <% end %>
-  </div>
+    <% else %>
+    <%= bootstrap_form_for @help_desk do |f| %>
+      <%= f.hidden_field :issue_status, value: true %>
+      <%= f.submit 'Reopen Issue', class: 'btn btn-block btn-info' %>
+    <% end %>
+  <% end %>
 </div>
 
 <br><br><br><br><br><br><br><br>

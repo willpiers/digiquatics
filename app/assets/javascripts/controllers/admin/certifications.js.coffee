@@ -30,10 +30,10 @@
 
     $scope.cssClass = (certification) ->
       if      moment(certification).isBefore($scope.today) ||
-              moment(certification).isSame($scope.today) then 'red'
+              moment(certification).isSame($scope.today) then 'redCell'
       else if moment(certification).isAfter($scope.today) &&
-              moment(certification).isBefore($scope.ninetyDays) then 'yellow'
+              moment(certification).isBefore($scope.ninetyDays) then 'yellowCell'
       else if moment(certification).isAfter($scope.ninetyDays) &&
-              moment(certification).isBefore($scope.onehundredeighty) then 'blue'
-      else 'green'
+              moment(certification).isBefore($scope.onehundredeighty) then 'blueCell'
+      else 'greenCell'
 ]

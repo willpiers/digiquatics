@@ -3,20 +3,22 @@
     <% provide(:title, 'Shift Reports') %>
     <h1 class='cross_platform_header'>Shift Reports</h1>
     <div class='row'>
-      <dq-search></dq-search>
       <div class='visible-xs'><br></div>
       <%= render 'layouts/location_select' %>
+      <dq-search></dq-search>
+      <div class='visible-xs'><br></div>
       <div class='col-md-5'></div>
       <div class='col-md-2 pull-right'>
-        <div class='btn-group pull-right'>
+        <div class='pull-right'>
           <%= link_to new_shift_report_path,
-              class:'btn btn-sm btn-primary' do %>
-            <i class='fa fa-plus fa-lg'></i> Add Report
+              class:'btn btn-primary' do %>
+            <i class='fa fa-plus fa-lg'></i>
+            Add Report
           <% end %>
         </div>
       </div>
     </div>
-    <br>
+    <br><br>
     <%= render 'shift_reports' %>
   </div>
 </div>

@@ -2,12 +2,14 @@
 <h1 class='cross_platform_header'>Private Lesson Statistics</h1>
 
 <div class='pull-left'>
-  <%= link_to ' Back', account_private_lessons_path(account_id: current_user.account_id) ,
-      class: 'glyphicon glyphicon-arrow-left' %>
+  <%= link_to account_private_lessons_path(account_id: current_user.account_id),
+      class:'btn btn-default btn-circle' do %>
+    <i class='fa fa-arrow-left fa-lg'></i>
+  <% end %>
 </div>
-<br><br>
+<br><br><br><br>
 
-<table class='table table-bordered'>
+<table class='table table-bordered table-white shadow-effect'>
   <tr>
     <th>Metric</th>
     <th>Uncliamed</th>
@@ -21,6 +23,8 @@
     <th><%= @facade.total %></th>
   </tr>
 </table>
-<br><br>
+<br>
 
-<%= high_chart('private_lessons_graph', @private_lessons_graph) %>
+<div class='shadow-effect'>
+  <%= high_chart('private_lessons_graph', @private_lessons_graph) %>
+</div>

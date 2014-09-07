@@ -2,13 +2,13 @@ module CertificationsHelper
   def css_class(date)
     case date.to_date
     when (Date.today - 3000.days)..(Date.today)
-      'danger'
+      'redCell'
     when (Date.today)...(Date.today + 90.days)
-      'warning'
+      'yellowCell'
     when (Date.today + 90.days)..(Date.today + 180.days)
-      'cert_blue'
+      'blueCell'
     else
-      'success'
+      'greenCell'
     end
   end
 end

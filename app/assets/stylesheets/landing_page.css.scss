@@ -1,7 +1,16 @@
+$lightgrey: #999;
+$grayMediumLight: #eaeaea;
+$yellow: #FED845;
+$blueLink: #658BCA;
+
+
+
 // Material Design Indigo
 $indigo500: #3f51b5;
 $indigo600: #3949AB;
 $indigo700: #303f9f;
+
+
 
 // Material Design Grey
 $grey400: #BDBDBD;
@@ -13,6 +22,10 @@ overflow-x: hidden;
 width: 100%
 }
 
+#ladningBody{
+  background-color:white;
+}
+
 #splash_page {
   height: 525px;
   vertical-align: middle;
@@ -21,7 +34,6 @@ width: 100%
   margin-top: 0px;
   text-align: center;
 }
-
 #splash_page_other {
   height: 100px;
   vertical-align: middle;
@@ -29,6 +41,12 @@ width: 100%
   color: white;
   margin-top: 0px;
   text-align: center;
+}
+#splash_page_other_2 {
+  height: 45px;
+  background-color: #303F9F;
+  margin: 0px;
+  padding: 0px;
 }
 #info-header {
   font-size: 25px;
@@ -132,12 +150,14 @@ width: 100%
   font-size: 28px;
   position:relative;
   top:100px;
+  color: white;
 }
 
 #sub-heading {
   font-size: 24px;
   position:relative;
   top:100px;
+  color: white;
 }
 
 #sub-heading2 {

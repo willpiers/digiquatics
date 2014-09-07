@@ -23,7 +23,7 @@ describe 'Help Desk pages' do
     it { should have_selector('h1', text: 'Open Issues') }
     it { should have_title(full_title('Open Issues')) }
     it { should have_link('Add Issue', new_help_desk_path) }
-    it { should have_link('Manage Closed', closed_index_path) }
+    it { should have_link('Closed Issues', closed_index_path) }
 
     it { should have_selector('th', text: 'Location') }
     it { should have_selector('th', text: 'Date') }
@@ -47,7 +47,7 @@ describe 'Help Desk pages' do
     it { should have_selector('h1', text: 'Closed Issues') }
     it { should have_title(full_title('Closed Issues')) }
     it { should_not have_link('Add Issue', new_help_desk_path) }
-    it { should have_link('Manage Open', help_desks_path) }
+    it { should have_link('Open Issues', help_desks_path) }
     it { should_not have_link('View Closed', closed_index_path) }
 
     it { should have_selector('th', text: 'Location') }

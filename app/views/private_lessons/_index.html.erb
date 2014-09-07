@@ -1,15 +1,25 @@
 <div ng-show='(privateLessons
               | orderBy:order.value:order.reverse
               | filter:locationFilter
-              | filter:search).length'>
-  <table class='table table-hover' >
+              | filter:search).length' class='shadow-effect'>
+  <table class='table table-clean table-white' >
     <thead>
       <tr>
-        <th class='visible-xs'>Name</th>
-        <th class='hidden-xs'>Last Name</th>
-        <th class='hidden-xs'>First Name</th>
-        <th>Age</th>
-        <th class='hidden-xs'>Gender</th>
+        <th class='visible-xs'>
+          Name
+        </th>
+        <th class='hidden-xs'>
+          Last Name
+        </th>
+        <th class='hidden-xs'>
+          First Name
+        </th>
+        <th>
+          Age
+        </th>
+        <th class='hidden-xs'>
+          Gender
+        </th>
         <th>
           <a href='' ng-click="predicate.value = '-location.name'; reverse=!reverse">
           Location
@@ -68,8 +78,9 @@
             {{lesson.created_at | date:'M/d/yy @ h:mma'}}
         </td>
         <td>
-          <%= link_to 'View Lesson', '/private_lessons/{{lesson.id}}',
-            class: 'btn btn-info btn-xs' %>
+          <%= link_to '/private_lessons/{{lesson.id}}' do %>
+            <i class='fa fa-external-link fa-lg'></i>
+          <% end %>
         </td>
       </tr>
     </tbody>

@@ -1,8 +1,8 @@
 <div ng-show='(myPrivateLessons
               | orderBy:order.value:order.reverse
               | filter:locationFilter
-              | filter:search).length'>
-  <table class='table table-hover' >
+              | filter:search).length' class='shadow-effect'>
+  <table class='table table-clean table-white' >
     <thead>
       <tr>
         <th>Student</th>
@@ -32,6 +32,7 @@
             <dq-arrow></dq-arrow>
           </span>
         </th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
@@ -41,9 +42,7 @@
                     | filter:search'>
         <td>
           <div ng-repeat='participant in lesson.participants'>
-            <a ng-href='/private_lessons/{{lesson.id}}'>
               {{participant.last_name}}, {{participant.first_name}} <br/>
-            </a>
           </div>
         </td>
         <td>
@@ -62,6 +61,11 @@
         </td>
         <td class='hidden-xs'>
           {{lesson.completed_on | date:'M/d/yy @ h:mma'}}
+        </td>
+        <td>
+          <%= link_to '/private_lessons/{{lesson.id}}' do %>
+            <i class='fa fa-external-link fa-lg'></i>
+          <% end %>
         </td>
       </tr>
     </tbody>

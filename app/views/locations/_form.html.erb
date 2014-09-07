@@ -1,6 +1,6 @@
-<div class='userform well'>
+<%= content_tag(:legend, legend) if legend %>
+<div class='userform well shadow-effect'>
   <%= bootstrap_form_for(@location) do |f| %>
-    <%= content_tag(:legend, legend) if legend %>
     <%= render 'shared/required' %>
     <h4> Location </h4>
     <%= f.text_field :name, label: 'Name *' %>

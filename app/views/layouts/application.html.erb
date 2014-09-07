@@ -14,10 +14,14 @@
     <%= javascript_include_tag "//www.google.com/jsapi", "chartkick" %>
     <%= csrf_meta_tags %>
     <%= intercom_script_tag if Rails.env.production? %>
-
     <%= render 'layouts/shim' %>
   </head>
   <body>
+    <div>
+      <div id='splash_page_other_2'>
+        <h3><i class='fa fa-tint fa-lg'></i> DigiQuatics</h3>
+      </div>
+    </div>
     <%= render 'layouts/header' %>
     <div class='container'>
       <% browser_check %>

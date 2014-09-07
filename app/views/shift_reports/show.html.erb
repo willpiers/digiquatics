@@ -13,13 +13,14 @@
   </ul>
 
   <div class='pull-left'>
-    <%= link_to ' Back', shift_reports_path,
-        class: 'glyphicon glyphicon-arrow-left' %>
+    <%= link_to shift_reports_path,
+        class:'btn btn-default btn-circle' do %>
+      <i class='fa fa-arrow-left fa-lg'></i>
+    <% end %>
   </div>
+  <br><br><br>
 
-  <br>
-
-  <table class='table table-bordered table-condensed' >
+  <table class='table table-clean table-white shadow-effect' >
     <tr>
       <th style='width:25%'> Location </th>
         <td><%= @shift_report.location.name %></td>

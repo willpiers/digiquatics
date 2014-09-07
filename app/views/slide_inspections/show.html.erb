@@ -1,24 +1,16 @@
 <% provide(:title, 'Slide Inspection') %>
-
 <h1 class='cross_platform_header'>Slide Inspection</h1>
 
 <div class='table-width-desktop'>
-
-<!--   <%if current_user.admin? %>
-    <ul class = 'pull-right'>
-      <%= link_to 'Edit Slide Inspection', edit_slide_inspection_path(@slide_inspection),
-          class: 'btn btn-default btn-primary' %>
-    </ul>
-  <% end %> -->
-
   <div class='pull-left'>
-    <%= link_to ' Back', slide_inspections_path,
-        class: 'glyphicon glyphicon-arrow-left' %>
+    <%= link_to slide_inspections_path,
+        class:'btn btn-default btn-circle' do %>
+      <i class='fa fa-arrow-left fa-lg'></i>
+    <% end %>
   </div>
+  <br><br><br>
 
-  <br><br>
-
-  <table class='table table-bordered'>
+  <table class='table table-bordered table-white'>
     <tr>
       <th id='fixtablewidth'>Slide</th>
       <td><%= @slide_inspection.slide.name %></td>

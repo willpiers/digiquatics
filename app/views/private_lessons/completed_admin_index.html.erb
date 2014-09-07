@@ -3,23 +3,24 @@
     <% provide(:title, 'Completed Private Lessons') %>
     <h1 class='cross_platform_header'>Completed Private Lessons Mangement</h1>
     <div class='row'>
+      <dq-location></dq-location>
+      <div class='visible-xs'><br></div>
       <dq-search></dq-search>
       <div class='visible-xs'><br></div>
-      <dq-location></dq-location>
-      <div class='col-md-5'></div>
-      <div class='col-md-4 pull-right'>
-        <div class='btn-group pull-right'>
+      <div class='col-md-4'></div>
+      <div class='col-md-5 pull-right'>
+        <div class='pull-right'>
           <%= link_to new_account_private_lesson_path(account_id: current_account.id),
-              class:'btn btn-sm btn-primary' do %>
-            <i class='fa fa-plus fa-lg'></i> New Lesson
+              class:'btn btn-primary' do %>
+            <i class='fa fa-plus fa-lg'></i> Add Lesson
           <% end %>
           <% if current_user.admin? %>
             <%= link_to admin_index_path,
-                class:'btn btn-sm btn-danger' do %>
+                class:'btn btn-danger' do %>
               <i class='fa fa-cogs fa-lg'></i> Management
             <% end %>
             <%= link_to account_private_lessons_path(account_id: current_user.account_id),
-                class:'btn btn-sm btn-warning' do %>
+                class:'btn btn-success' do %>
               <i class='fa fa-list fa-lg'></i> Queue
             <% end %>
           <% end %>
