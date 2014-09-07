@@ -31,7 +31,7 @@ class LocationsController < ApplicationController
 
   def update
     if @location.update(location_params)
-      flash[:success] = 'Location was successfully updated.'
+      flash[:info] = 'Location was successfully updated.'
       redirect_to admin_dashboard_path
     else
       render 'edit'
@@ -41,6 +41,7 @@ class LocationsController < ApplicationController
   def destroy
     @location.destroy
     redirect_to admin_dashboard_path
+    flash[:error] = 'Location was successfully deleted.'
   end
 
   private

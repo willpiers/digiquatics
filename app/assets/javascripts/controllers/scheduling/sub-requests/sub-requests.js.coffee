@@ -42,6 +42,8 @@
       $scope.ok = ->
         $scope.requestSub(shift)
         $modalInstance.close(shift)
+        toastr.success('Sub Request has been requested!')
+        return true #Fixes error with returns elements through Angular to the DOM
 
       $scope.cancel = ->
         $modalInstance.dismiss "Cancel"

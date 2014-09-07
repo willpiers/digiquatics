@@ -34,8 +34,8 @@ class CertificationNamesController < ApplicationController
                     certification_name: @certification_name.name
       ) unless Rails.env.test?
 
-      redirect_to admin_dashboard_path,
-                  notice: 'Certification name was successfully created.'
+      redirect_to admin_dashboard_path
+      flash[:success] = 'Certification was successfully created.'
     else
       render action: 'new'
     end
@@ -43,8 +43,8 @@ class CertificationNamesController < ApplicationController
 
   def update
     if @certification_name.update(certification_name_params)
-      redirect_to admin_dashboard_path,
-                  notice: 'Certification name was successfully updated.'
+      redirect_to admin_dashboard_path
+      flash[:info] = 'Certification was successfully updated.'
     else
       render action: 'edit'
     end
@@ -53,6 +53,7 @@ class CertificationNamesController < ApplicationController
   def destroy
     @certification_name.destroy
     redirect_to admin_dashboard_path
+    flash[:error] = 'Certification was successfully deleted.'
   end
 
   private

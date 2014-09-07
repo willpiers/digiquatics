@@ -29,7 +29,7 @@ class PackagesController < ApplicationController
 
   def update
     if @package.update(package_params)
-      flash[:success] = 'Package was successfully updated.'
+      flash[:info] = 'Package was successfully updated.'
       redirect_to admin_dashboard_path
     else
       render 'edit'
@@ -39,6 +39,7 @@ class PackagesController < ApplicationController
   def destroy
     @package.destroy
     redirect_to admin_dashboard_path
+    flash[:error] = 'Package was successfully deleted.'
   end
 
   private
