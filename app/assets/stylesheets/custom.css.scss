@@ -33,15 +33,12 @@ $infoProgressBar:       rgba(3,   169, 244, 0.9);
 
 // Accent Colors
 $pinkAccent:    rgba(255,  64, 129, 1.0);
-
-
 $indigo700:     rgba(48,   63, 159, 1.0);
-$indigo600: #3949AB;
+$indigo600:     #3949AB;
 $indigo500:     rgba(63,   81, 181, 1.0);
 $grey400:       rgba(189, 189, 189, 1.0);
 $grey900:       rgba(33,   33, 33,  1.0);
 $blueLink:      rgba(62, 130, 247, 1.0);
-
 $yellowAccent:  rgba(255, 205, 64,  1.0);
 $whiteBody:     rgba(238, 238, 238, 1);
 $whiteText:     rgba(255, 255, 255, 1.0);
@@ -96,13 +93,6 @@ textarea {
   color: lighten($baseTextColor, 66%);
 }
 
-.center {
-  text-align: center;
-
-  h1 {
-  margin-bottom: 10px;
-  }
-}
 .pace .pace-progress {
   background: $pinkAccent;
   position: fixed;
@@ -191,7 +181,6 @@ border-color: rgb(221, 221, 221);
   padding-top: 10px;
   padding-bottom: 10px;
 }
-
 
 // Buttons
 .btn-primary {
@@ -306,14 +295,10 @@ $colHover       : white;
         &:hover, &:focus {
             background-color: $bgHighlight; }
         .icon-bar {
-            background-color: $colDefault; }}}
-@media (max-width: 767px) {
-    .navbar-default .navbar-nav .open .dropdown-menu > li > a {
-        color: $colDefault;
-        &:hover, &:focus {
-            color: $colHover;
-            background-color: $bgHighlight; }}
-}
+            background-color: white }}}
+    .navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form {
+      border-color: transparent;
+    }
 
 // Typography
 * {
@@ -330,15 +315,30 @@ P {
   font-size: $fontSize-base;
   line-height: 1.7em; //fix this
 }
-h1 {
-  color: lighten($baseTextColor, 13%);
-  font-size: $fontSize-jumbo;
-  letter-spacing: $letterSpacing-normal;
-  margin-top: 50px;
-  margin-bottom: 50px;
-  text-align: center;
-  line-height: $lineHeight-normal;
-}
+@media (min-width: 400px) {
+    h1 {
+      color: lighten($baseTextColor, 13%);
+      font-size: $fontSize-jumbo;
+      letter-spacing: $letterSpacing-normal;
+      margin-top: 50px;
+      margin-bottom: 50px;
+      text-align: center;
+      line-height: $lineHeight-normal;
+    }
+  }
+
+  @media (max-width: 400px) {
+    h1 {
+      color: lighten($baseTextColor, 13%);
+      font-size: $fontSize-larger;
+      letter-spacing: 5;
+      margin-top: 10px;
+      margin-bottom: 20px;
+      text-align: center;
+      line-height: 1.1em;
+    }
+  }
+
 h2 {
   color: lighten($baseTextColor, 40%);
   font-size: $fontSize-largest;

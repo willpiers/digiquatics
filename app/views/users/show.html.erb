@@ -1,18 +1,6 @@
 <% provide(:title, "#{@user.first_name} #{@user.last_name.each_char.first}.") %>
-
-<div style='margin-left:0px;'>
-<h1 class='hidden-xs'>
-  <center>
-    <%= "#{@user.first_name} #{@user.last_name}" %>
-  </center>
-  <br>
-</h1>
-<h4 class='visible-xs'>
-  <center>
-    <%= "#{@user.first_name} #{@user.last_name}" %>
-  </center>
-</h4>
-</div>
+<h1><%= "#{@user.first_name} #{@user.last_name}" %></h1>
+<br>
 
 <div class='table-width-desktop'>
   <div class='pull-right hidden-xs'>
@@ -39,11 +27,11 @@
 
   <div class='visible-xs pull-right'>
     <%= link_to edit_user_path(@user),
-                class:'btn btn-xs btn-primary' do %>
+                class:'btn btn-sm btn-primary' do %>
       <i class='fa fa-pencil fa-lg'></i> Edit Profile
     <% end %>
     <div class='btn-group'>
-      <button type='button' class='btn btn-xs btn-success dropdown-toggle'
+      <button type='button' class='btn btn-sm btn-success dropdown-toggle'
               data-toggle='dropdown'>
         <span class='fa fa-user fa-lg'></span> My Information
         <span class='caret'></span>
@@ -58,7 +46,7 @@
     </div>
   </div>
 
-  <div class='pull-left'>
+  <div class='pull-left hidden-xs'>
     <%= link_to users_path,
         class:'btn btn-default btn-circle' do %>
       <i class='fa fa-arrow-left fa-lg'></i>
@@ -103,28 +91,30 @@
 
   <br><br><br>
 
-  <% if current_user.admin? %>
-    <div ng-app='digiquatics'>
-      <div ng-controller='UsersCtrl' class='pull-right user_search_form'>
-        <select ng-model='selectedUserId' class='form-control'>
-          <option value=''>Select Employee</option>
-          <option ng-repeat="user in users | orderBy: 'last_name'"
-                  value='{{user.id}}' name='private_lesson[user_id]'>
-            {{user.last_name}}, {{user.first_name}}</option>
-        </select>
-      <%= link_to '/users/{{selectedUserId}}',
-                  class:'btn btn-default btn-info user_search_form' do %>
-        <i class='fa fa-exchange'></i> Change Employee
-      <% end %>
+  <div class='hidden-xs'>
+    <% if current_user.admin? %>
+      <div ng-app='digiquatics'>
+        <div ng-controller='UsersCtrl' class='pull-right user_search_form'>
+          <select ng-model='selectedUserId' class='form-control'>
+            <option value=''>Select Employee</option>
+            <option ng-repeat="user in users | orderBy: 'last_name'"
+                    value='{{user.id}}' name='private_lesson[user_id]'>
+              {{user.last_name}}, {{user.first_name}}</option>
+          </select>
+        <%= link_to '/users/{{selectedUserId}}',
+                    class:'btn btn-default btn-info user_search_form' do %>
+          <i class='fa fa-exchange'></i> Change Employee
+        <% end %>
+        </div>
       </div>
-    </div>
-    <br><br><br><br><br><br>
-  <% end %>
+      <br><br><br><br><br><br>
+    <% end %>
+  </div>
 
   <h4>
     Basic Employee Information
     <%= link_to ' Edit', "/users/#{@user.id}/edit#basic",
-        class: 'glyphicon glyphicon-pencil pull-right',
+        class: 'glyphicon glyphicon-pencil pull-right hidden-xs',
         style: 'font-size: 80%' %>
   </h4>
   <table class='table table-clean table-white shadow-effect' >
@@ -170,7 +160,7 @@
   <h4>
     Additional Employee Information
     <%= link_to ' Edit', "/users/#{@user.id}/edit#additional",
-        class: 'glyphicon glyphicon-pencil pull-right',
+        class: 'glyphicon glyphicon-pencil pull-right hidden-xs',
         style: 'font-size: 80%' %>
   </h4>
   <table class='table table-clean table-white shadow-effect' >
@@ -212,7 +202,7 @@
   <h4>
     Sizing Information
     <%= link_to ' Edit', "/users/#{@user.id}/edit#sizing",
-        class: 'glyphicon glyphicon-pencil pull-right',
+        class: 'glyphicon glyphicon-pencil pull-right hidden-xs',
         style: 'font-size: 80%' %>
   </h4>
   <table class='table table-clean table-white shadow-effect' >
@@ -236,7 +226,7 @@
   <h4>
     Emergency Contact Information
     <%= link_to ' Edit', "/users/#{@user.id}/edit#emergency",
-        class: 'glyphicon glyphicon-pencil pull-right',
+        class: 'glyphicon glyphicon-pencil pull-right hidden-xs',
         style: 'font-size: 80%' %>
   </h4>
   <table class='table table-clean table-white shadow-effect' >
@@ -259,7 +249,7 @@
     <h4>
       Admin
       <%= link_to ' Edit', "/users/#{@user.id}/edit#admin",
-          class: 'glyphicon glyphicon-pencil pull-right',
+          class: 'glyphicon glyphicon-pencil pull-right hidden-xs',
           style: 'font-size: 80%' %>
     </h4>
     <table class='table table-clean table-white shadow-effect' >
@@ -330,7 +320,7 @@
     <div class='pull-right'>
       <p>
       <%= link_to ' Edit', "/users/#{@user.id}/edit#certifications",
-          class: 'glyphicon glyphicon-pencil pull-right',
+          class: 'glyphicon glyphicon-pencil pull-right hidden-xs',
           style: 'font-size: 80%' %>
       </p>
     </div>
@@ -377,7 +367,7 @@
     <h4>
       Notes
       <%= link_to ' Edit', "/users/#{@user.id}/edit#notes",
-          class: 'glyphicon glyphicon-pencil pull-right',
+          class: 'glyphicon glyphicon-pencil pull-right hidden-xs',
           style: 'font-size: 80%' %>
     </h4>
     <table class='table table-clean table-white shadow-effect'>

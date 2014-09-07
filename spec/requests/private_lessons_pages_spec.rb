@@ -88,7 +88,7 @@ describe 'Private Lessons' do
     before { visit admin_index_path }
 
     it { should have_title(full_title('Open Private Lessons')) }
-    it { should have_content('Open Private Lessons Mangement') }
+    it { should have_content('Admin Private Lessons') }
     it { should have_selector('th', text: 'Instructor') }
     it { should have_selector('th', text: 'Instructor Phone') }
     it { should have_selector('th', text: 'Parent') }
