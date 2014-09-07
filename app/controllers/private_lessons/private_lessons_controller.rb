@@ -80,14 +80,14 @@ class PrivateLessonsController < ApplicationController
     .build(private_lesson_params)
     message = 'Private lesson was successfully created.'
     @account = Account.find(@private_lesson.account_id)
-    handle_action(@private_lesson, message, :new, @account, &:save)
+    handle_action(@private_lesson, message, 'success', :new, @account, &:save)
   end
 
   def update
     Tracker.track(current_user.id, 'Update Private Lesson') unless Rails.env.test?
     message = 'Private lesson was successfully updated.'
     @account = @private_lesson.account
-    handle_action(@private_lesson, message, :edit, @account) do |resource|
+    handle_action(@private_lesson, message, 'info', :edit, @account) do |resource|
       resource.update(private_lesson_params)
     end
   end
@@ -95,6 +95,7 @@ class PrivateLessonsController < ApplicationController
   def destroy
     @private_lesson.destroy
     redirect_to private_lessons_url
+    flash[:error] = 'Private lesson was successfully deleted.'
   end
 
   private
@@ -102,11 +103,15 @@ class PrivateLessonsController < ApplicationController
   include ApplicationHelper
   include PrivateLessonsHelper
 
-  def handle_action(resource, message, page, account)
+  def handle_action(resource, message, type, page, account)
     if yield(resource)
       thank_you_email(resource, account)
       if signed_in?
-        flash[:success] = message
+        if type == 'success' then
+          flash[:success] = message
+        else
+          flash[:info] = message
+        end
         redirect_to resource
       else
         redirect_to thank_you_path

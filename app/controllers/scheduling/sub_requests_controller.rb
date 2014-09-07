@@ -35,13 +35,13 @@ class SubRequestsController < ApplicationController
 
     message = 'Sub Request was successfully created.'
 
-    handle_action(@sub_request, message, :new, &:save)
+    handle_action(@sub_request, message, 'success', :new, &:save)
   end
 
   def update
     Tracker.track(current_user.id, 'Update Sub Request') unless Rails.env.test?
     message = 'Sub Request was successfully updated.'
-    handle_action(@sub_request, message, :edit) do |resource|
+    handle_action(@sub_request, message, 'info', :edit) do |resource|
       resource.update(sub_request_params)
     end
   end
@@ -102,10 +102,14 @@ class SubRequestsController < ApplicationController
             :processed_by_last_name, :processed_by_first_name, :processed)
   end
 
-  def handle_action(resource, message, page)
+  def handle_action(resource, message, type, page)
     if yield(resource)
       handle_shift_change(resource)
-      flash[:success] = message
+      if type == 'success' then
+        flash[:success] = message
+      else
+        flash[:info] = message
+      end
       redirect_to resource
     else
       render page

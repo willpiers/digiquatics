@@ -163,6 +163,13 @@
         $scope.assignShift user, location, position, startTime, endTime, shift
         $modalInstance.close $scope.user
 
+        if shift
+          toastr.info('Shift was successfully updated.')
+          return true #Fixes error with returns elements through Angular to the DOM
+        else
+          toastr.success('Shift was successfully created.')
+          return true #Fixes error with returns elements through Angular to the DOM
+
       $scope.cancel = ->
         $modalInstance.dismiss 'Cancel'
 
@@ -170,6 +177,8 @@
         Shifts.destroy id: shift.id
         _.remove user.shifts, (userShift) -> userShift.id is shift.id
         $modalInstance.close $scope.user
+        toastr.error('Shift was successfully deleted.')
+        return true #Fixes error with returns elements through Angular to the DOM
 
     ModalInstanceCtrl['$inject'] = [
       '$scope'

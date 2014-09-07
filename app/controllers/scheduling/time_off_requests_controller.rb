@@ -28,13 +28,13 @@ class TimeOffRequestsController < ApplicationController
 
     message = 'Time Off Request was successfully created.'
 
-    handle_action(@time_off_request, message, :new, &:save)
+    handle_action(@time_off_request, message, 'success', :new, &:save)
   end
 
   def update
     Tracker.track(current_user.id, 'Update Time Off Request') unless Rails.env.test?
     message = 'Time Off Request was successfully updated.'
-    handle_action(@time_off_request, message, :edit) do |resource|
+    handle_action(@time_off_request, message, 'info', :edit) do |resource|
       resource.update(time_off_request_params)
     end
     @time_off_request ? nil : approve_or_deny_logic
@@ -70,9 +70,13 @@ class TimeOffRequestsController < ApplicationController
             :processed_by_last_name, :processed_by_first_name)
   end
 
-  def handle_action(resource, message, page)
+  def handle_action(resource, message, type, page)
     if yield(resource)
-      flash[:success] = message
+      if type == 'success' then
+        flash[:success] = message
+      else
+        flash[:info] = message
+      end
       redirect_to resource
     else
       render page

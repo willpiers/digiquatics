@@ -8,11 +8,11 @@
     <%= csrf_meta_tags %>
     <%= intercom_script_tag if Rails.env.production? %>
     <%= render 'layouts/shim' %>
-    <%= flash_messages %>
   </head>
   <body id='devise_body'>
     <div class='container'>
       <% browser_check %>
+      <%= custom_bootstrap_flash %>
       <%= yield %>
       <%= render 'layouts/devise_footer' %>
     </div>

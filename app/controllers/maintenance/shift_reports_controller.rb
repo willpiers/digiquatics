@@ -34,22 +34,22 @@ class ShiftReportsController < ApplicationController
 
     message = 'Shift Report was successfully created.'
 
-    handle_action(@shift_report, message, :new, &:save)
+    handle_action(@shift_report, message, 'success', :new, &:save)
   end
 
   def update
     Tracker.track(current_user.id, 'Update Shift Report') unless Rails.env.test?
     message = 'Shift Report was successfully updated.'
 
-    handle_action(@shift_report, message, :edit) do |resource|
+    handle_action(@shift_report, message, 'info', :edit) do |resource|
       resource.update(shift_report_params)
     end
   end
 
   def destroy
     @shift_report.destroy
-
     redirect_to shift_reports_url
+    flash[:error] = 'Shift Report was successfully deleted.'
   end
 
   private
@@ -65,9 +65,13 @@ class ShiftReportsController < ApplicationController
             users_attributes: [:id, :first_name, :last_name])
   end
 
-  def handle_action(resource, message, page)
+  def handle_action(resource, message, type, page)
     if yield(resource)
-      flash[:success] = message
+      if type == 'success' then
+        flash[:success] = message
+      else
+        flash[:info] = message
+      end
       redirect_to resource
     else
       render page
