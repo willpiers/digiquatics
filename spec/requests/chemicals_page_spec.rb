@@ -42,8 +42,8 @@ describe 'Chemicals' do
     end
 
     describe 'should have the correct title and heading' do
-      it { should have_title(full_title('Chemical Statistics')) }
-      it { should have_selector('h1', text: 'Chemical Record Statistics') }
+      it { should have_title(full_title('Chemical Record Analytics')) }
+      it { should have_selector('h1', text: 'Chemical Record Analytics') }
     end
   end
 end
