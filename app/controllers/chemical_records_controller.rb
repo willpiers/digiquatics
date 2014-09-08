@@ -51,6 +51,7 @@ class ChemicalRecordsController < ApplicationController
   def destroy
     @chemical_record.destroy
     redirect_to chemical_records_url
+    flash[:error] = 'Chemical Record was successfully deleted.'
   end
 
   private
@@ -92,7 +93,7 @@ class ChemicalRecordsController < ApplicationController
   end
 
   def record_updated?(record)
-    flash[:success] = 'Chemical record was successfully updated.'
+    flash[:info] = 'Chemical record was successfully updated.'
     redirect_to @chemical_record
   end
 

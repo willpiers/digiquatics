@@ -3,9 +3,6 @@
 <h1 class='cross_platform_header'>DigiQuatics Dashboard</h1>
 </div>
 <div class='visible-xs visible-sm'>
-  <center>
-    <h4>DigiQuatics Dashboard</h4>
-  </center>
   <br>
   <% if current_user.chemical_records_access? || current_user.admin? %>
    <%= link_to new_chemical_record_path,

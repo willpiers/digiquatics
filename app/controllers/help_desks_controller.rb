@@ -62,7 +62,7 @@ class HelpDesksController < ApplicationController
 
     if @help_desk.update(help_desk_params)
       urgent_email(@help_desk)
-      flash[:success] = 'Help desk was successfully updated.'
+      flash[:info] = 'Help desk was successfully updated.'
       redirect_to @help_desk
     else
       render 'edit'
@@ -72,6 +72,7 @@ class HelpDesksController < ApplicationController
   def destroy
     @help_desk.destroy
     redirect_to help_desks_url
+    flash[:error] = 'Help desk was successfully deleted.'
   end
 
   private

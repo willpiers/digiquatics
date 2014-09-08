@@ -29,7 +29,7 @@ class PositionsController < ApplicationController
 
   def update
     if @position.update(position_params)
-      flash[:success] = 'Position was successfully updated.'
+      flash[:info] = 'Position was successfully updated.'
       redirect_to admin_dashboard_path
     else
       render 'edit'
@@ -39,6 +39,7 @@ class PositionsController < ApplicationController
   def destroy
     @position.destroy
     redirect_to admin_dashboard_path
+    flash[:error] = 'Position was successfully deleted.'
   end
 
   private

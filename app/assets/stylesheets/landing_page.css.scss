@@ -79,7 +79,7 @@ width: 100%
     padding: 10px;
   }
   .mobile_fix_team {
-    width: 325px;
+    width: 300px;
     text-align: middle;
     padding: 10px;
   }
@@ -99,7 +99,7 @@ width: 100%
 
 @media (max-width: 780px) {
   .mobile_features_text {
-    width: 325px;
+    width: 275px;
     text-align: middle;
     padding: 10px;
   }
@@ -111,6 +111,11 @@ width: 100%
 
 #benefit_content {
   width: 200px;
+  text-align: left;
+}
+
+#mobile-content{
+  width: 300px;
   text-align: left;
 }
 

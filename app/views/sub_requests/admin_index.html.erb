@@ -1,7 +1,7 @@
 <div ng-app='digiquatics'>
   <div ng-controller='AdminSubRequestsCtrl'>
     <% provide(:title, 'Admin Sub Requests') %>
-    <h1 class='cross_platform_header'>Sub Request Management</h1>
+    <h1 class='cross_platform_header'>Admin Sub Request</h1>
     <div class='row'>
       <div class='visible-xs'><br></div>
       <%= render 'layouts/location_select' %>
@@ -12,11 +12,11 @@
         <div class='pull-right'>
           <%= link_to sub_requests_path,
               class:'btn btn-success' do %>
-            <i class='fa fa-list fa-lg'></i> Queue
+            <i class='fa fa-list fa-lg'></i> Open
           <% end %>
           <%= link_to processed_sub_requests_path,
               class:'btn btn-warning' do %>
-            <i class='fa fa-history fa-lg'></i> View Processed
+            <i class='fa fa-history fa-lg'></i> Processed
           <% end %>
         </div>
       </div>

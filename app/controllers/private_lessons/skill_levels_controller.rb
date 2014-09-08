@@ -29,7 +29,7 @@ class SkillLevelsController < ApplicationController
 
   def update
     if @skill_level.update(skill_level_params)
-      flash[:success] = 'Skill Level was successfully updated.'
+      flash[:info] = 'Skill Level was successfully updated.'
       redirect_to admin_dashboard_path
     else
       render 'edit'
@@ -39,6 +39,7 @@ class SkillLevelsController < ApplicationController
   def destroy
     @skill_level.destroy
     redirect_to admin_dashboard_path
+    flash[:error] = 'Skill Level was successfully deleted.'
   end
 
   private

@@ -14,11 +14,9 @@
               class:'btn btn-primary' do %>
             <i class='fa fa-plus fa-lg'></i> Add Lesson
           <% end %>
-          <% if current_user.admin? %>
-            <%= link_to admin_index_path,
-                class:'btn btn-danger' do %>
-              <i class='fa fa-cogs fa-lg'></i> Management
-            <% end %>
+          <%= link_to admin_index_path,
+              class:'btn btn-danger' do %>
+            <i class='fa fa-cogs fa-lg'></i> Admin
           <% end %>
           <%= link_to private_lesson_stats_path,
               class:'btn btn-success' do %>
@@ -27,6 +25,7 @@
         </div>
       </div>
     </div>
+    <div class='visible-xs'><br></div>
     <div style='font-size: 75%' class='hidden-xs'>
       <p>
         <img src='/images/reddot.png' alt='red' height='10px' width='10px' /> 8+ Days

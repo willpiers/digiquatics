@@ -74,6 +74,13 @@
 
         $modalInstance.close $scope.availability
 
+        if availability
+          toastr.info('Availability was successfully updated.')
+          return true #Fixes error with returns elements through Angular to the DOM
+        else
+          toastr.success('Availability was successfully created.')
+          return true #Fixes error with returns elements through Angular to the DOM
+
       $scope.cancel = ->
         $modalInstance.dismiss "Cancel"
 
@@ -82,6 +89,9 @@
         _.remove $scope.availabilities, (userAvail) -> userAvail.id is availability.id
 
         $modalInstance.close $scope.availability
+        toastr.error('Availability was successfully deleted.')
+        return true #Fixes error with returns elements through Angular to the DOM
+
 
     ModalInstanceCtrl['$inject'] = [
       '$scope'

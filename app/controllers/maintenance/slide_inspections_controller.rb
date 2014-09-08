@@ -49,6 +49,7 @@ class SlideInspectionsController < ApplicationController
   def destroy
     @slide_inspection.destroy
     redirect_to slide_inspections_url
+    flash[:error] = 'Slide Inspection was successfully deleted.'
   end
 
   private

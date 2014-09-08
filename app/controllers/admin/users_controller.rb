@@ -74,8 +74,7 @@ class UsersController < ApplicationController
     if @user.update_attributes(user_params)
       mixpanel_track_people
       sign_in(@user, bypass: true) if @user == current_user
-
-      flash[:success] = 'Profile updated'
+      flash[:info] = 'Employee Profile updated'
       redirect_to @user
     else
       render 'edit'
@@ -104,7 +103,7 @@ class UsersController < ApplicationController
   def redirect_to_created_user
     mixpanel_track_people
 
-    flash[:success] = 'You have successfully created a user account!'
+    flash[:success] = 'You have successfully added a new employee!'
     if signed_in?
       Tracker.track(current_user.id, 'Create New User',
                     created_user_id: @user.id) unless Rails.env.test?

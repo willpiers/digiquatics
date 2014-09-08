@@ -8,6 +8,7 @@ gem 'less', '2.4.0'
 gem 'font-awesome-rails'
 gem 'pace-rails'
 gem 'sass-rails', '~> 4.0.0'
+gem 'toastr-rails'
 
 # graph libs
 gem 'lazy_high_charts'

@@ -17,11 +17,11 @@
           <% if current_user.admin? %>
             <%= link_to admin_index_path,
                 class:'btn btn-danger' do %>
-              <i class='fa fa-cogs fa-lg'></i> Management
+              <i class='fa fa-cogs fa-lg'></i> Admin
             <% end %>
             <%= link_to account_private_lessons_path(account_id: current_user.account_id),
                 class:'btn btn-success' do %>
-              <i class='fa fa-list fa-lg'></i> Queue
+              <i class='fa fa-list fa-lg'></i> Open
             <% end %>
           <% end %>
         </div>
