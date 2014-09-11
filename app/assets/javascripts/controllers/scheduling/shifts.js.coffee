@@ -17,10 +17,11 @@
       shifts = user.shifts
       total = 0
       for shift in shifts
-        hours = moment(shift.end_time).hours() - moment(shift.start_time).hours()
-        minutes = moment(shift.end_time).minutes() - moment(shift.start_time).minutes()
-        hours = hours + ( minutes / 60 )
-        total += hours
+        if moment(shift.start_time).isSame($scope.weekDay(0), 'week')
+          hours = moment(shift.end_time).hours() - moment(shift.start_time).hours()
+          minutes = moment(shift.end_time).minutes() - moment(shift.start_time).minutes()
+          hours = hours + ( minutes / 60 )
+          total += hours
       total
 
     $scope.startTime = (days) ->
