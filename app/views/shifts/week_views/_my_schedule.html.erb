@@ -36,43 +36,43 @@
       <tbody>
         <tr ng-repeat='user in myShifts | orderBy:predicate.value:reverse'>
           <td>
-            <div ng-if="sameDayTimeOff(time_off.starts_at, time_off.ends_at, 0)"
+            <div ng-if="sameDayTimeOff(time_off, 0)"
                  ng-repeat='time_off in user.time_off_requests'>
               <%= render 'shifts/week_views/my_time_off' %>
             </div>
           </td>
           <td>
-            <div ng-if="sameDayTimeOff(time_off.starts_at, time_off.ends_at, 1)"
+            <div ng-if="sameDayTimeOff(time_off, 1)"
                  ng-repeat='time_off in user.time_off_requests'>
               <%= render 'shifts/week_views/my_time_off' %>
             </div>
           </td>
           <td>
-            <div ng-if="sameDayTimeOff(time_off.starts_at, time_off.ends_at, 2)"
+            <div ng-if="sameDayTimeOff(time_off, 2)"
                  ng-repeat='time_off in user.time_off_requests'>
               <%= render 'shifts/week_views/my_time_off' %>
             </div>
           </td>
           <td>
-            <div ng-if="sameDayTimeOff(time_off.starts_at, time_off.ends_at, 3)"
+            <div ng-if="sameDayTimeOff(time_off, 3)"
                  ng-repeat='time_off in user.time_off_requests'>
               <%= render 'shifts/week_views/my_time_off' %>
             </div>
           </td>
           <td>
-            <div ng-if="sameDayTimeOff(time_off.starts_at, time_off.ends_at, 4)"
+            <div ng-if="sameDayTimeOff(time_off, 4)"
                  ng-repeat='time_off in user.time_off_requests'>
               <%= render 'shifts/week_views/my_time_off' %>
             </div>
           </td>
           <td>
-            <div ng-if="sameDayTimeOff(time_off.starts_at, time_off.ends_at, 5)"
+            <div ng-if="sameDayTimeOff(time_off, 5)"
                  ng-repeat='time_off in user.time_off_requests'>
               <%= render 'shifts/week_views/my_time_off' %>
             </div>
           </td>
           <td>
-            <div ng-if="sameDayTimeOff(time_off.starts_at, time_off.ends_at, 6)"
+            <div ng-if="sameDayTimeOff(time_off, 6)"
                  ng-repeat='time_off in user.time_off_requests'>
               <%= render 'shifts/week_views/my_time_off' %>
             </div>
@@ -132,7 +132,7 @@
       <tbody>
         <tr ng-repeat='user in myShifts | orderBy:predicate.value:reverse'>
           <td>
-            <div ng-if="sameDayTimeOff(time_off.starts_at, time_off.ends_at, 0)"
+            <div ng-if="sameDayTimeOff(time_off, 0)"
                  ng-repeat='time_off in user.time_off_requests'>
               <%= render 'shifts/week_views/my_time_off_mobile' %>
             </div>
@@ -159,7 +159,7 @@
       <tbody>
         <tr ng-repeat='user in myShifts | orderBy:predicate.value:reverse'>
           <td>
-            <div ng-if="sameDayTimeOff(time_off.starts_at, time_off.ends_at, 1)"
+            <div ng-if="sameDayTimeOff(time_off, 1)"
                  ng-repeat='time_off in user.time_off_requests'>
               <%= render 'shifts/week_views/my_time_off_mobile' %>
             </div>
@@ -186,7 +186,7 @@
       <tbody>
         <tr ng-repeat='user in myShifts | orderBy:predicate.value:reverse'>
           <td>
-            <div ng-if="sameDayTimeOff(time_off.starts_at, time_off.ends_at, 2)"
+            <div ng-if="sameDayTimeOff(time_off, 2)"
                  ng-repeat='time_off in user.time_off_requests'>
               <%= render 'shifts/week_views/my_time_off_mobile' %>
             </div>
@@ -213,7 +213,7 @@
       <tbody>
         <tr ng-repeat='user in myShifts | orderBy:predicate.value:reverse'>
           <td>
-            <div ng-if="sameDayTimeOff(time_off.starts_at, time_off.ends_at, 3)"
+            <div ng-if="sameDayTimeOff(time_off, 3)"
                  ng-repeat='time_off in user.time_off_requests'>
               <%= render 'shifts/week_views/my_time_off_mobile' %>
             </div>
@@ -240,7 +240,7 @@
       <tbody>
         <tr ng-repeat='user in myShifts | orderBy:predicate.value:reverse'>
           <td>
-            <div ng-if="sameDayTimeOff(time_off.starts_at, time_off.ends_at, 4)"
+            <div ng-if="sameDayTimeOff(time_off, 4)"
                  ng-repeat='time_off in user.time_off_requests'>
               <%= render 'shifts/week_views/my_time_off_mobile' %>
             </div>
@@ -267,7 +267,7 @@
       <tbody>
         <tr ng-repeat='user in myShifts | orderBy:predicate.value:reverse'>
           <td>
-            <div ng-if="sameDayTimeOff(time_off.starts_at, time_off.ends_at, 5)"
+            <div ng-if="sameDayTimeOff(time_off, 5)"
                  ng-repeat='time_off in user.time_off_requests'>
               <%= render 'shifts/week_views/my_time_off_mobile' %>
             </div>
@@ -294,7 +294,7 @@
       <tbody>
         <tr ng-repeat='user in myShifts | orderBy:predicate.value:reverse'>
           <td>
-            <div ng-if="sameDayTimeOff(time_off.starts_at, time_off.ends_at, 6)"
+            <div ng-if="sameDayTimeOff(time_off, 6)"
                  ng-repeat='time_off in user.time_off_requests'>
               <%= render 'shifts/week_views/my_time_off_mobile' %>
             </div>
