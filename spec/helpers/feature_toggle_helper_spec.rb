@@ -1,24 +1,31 @@
 require 'spec_helper'
 
-describe FeatureToggleHelper do
+describe FeatureToggle do
+  let(:current_user) { double() }
   before do
-    FeatureToggleHelper.stub(:load_feature_toggles)
-    .and_return('private_lessons' => true)
+    current_user.stub(:account_id) { 1 }
+
+    FeatureToggle.stub(:load_feature_toggles)
+    .and_return('private_lessons' => true, 'chemicals' => '1,2')
   end
 
   it 'should return true for features that are toggled on' do
-    FeatureToggleHelper.private_lessons?.should == true
+    FeatureToggle.private_lessons?(current_user).should == true
+  end
+
+  it 'should return true for features that are toggled on for that account' do
+    FeatureToggle.chemicals?(current_user).should == true
   end
 
   it 'should return nil for features that aren\'t toggled on' do
-    FeatureToggleHelper.schedule?.should be_nil
+    FeatureToggle.scheduling?(current_user).should == false
   end
 
   it 'should still call default methods' do
-    FeatureToggleHelper.class.should == Module
+    FeatureToggle.class.should == Module
   end
 
   it 'should still call default ? methods' do
-    FeatureToggleHelper.kind_of?(Object).should == true
+    FeatureToggle.kind_of?(Object).should == true
   end
 end
