@@ -2,7 +2,6 @@ class AttendanceRecordsController < ApplicationController
   before_action :set_attendance_record, only: [:show, :edit, :update, :destroy]
 
   def index
-    debugger
     Tracker.track(current_user.id, 'Attendance Record Index') unless Rails.env.test?
     @attendance_records = AttendanceRecord.all
   end
