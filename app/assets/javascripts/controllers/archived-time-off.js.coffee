@@ -21,7 +21,7 @@
       $scope.totalDisplayed += 50
 
     $scope.checkActive = (request) ->
-      if request.active == false then false
+      if request.active == false and request.approved == true then false
       else true
 
     $scope.thArrow = (current_column, anchored_column) ->

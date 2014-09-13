@@ -100,7 +100,7 @@
       <td>{{request.starts_at | date:'M/d/yy @ h:mma'}}</td>
       <td>{{request.ends_at | date:'M/d/yy @ h:mma'}}</td>
       <td class='hidden-xs'>
-        {{request.reason | limitTo:15}}
+        {{request.reason | limitTo:15}}...
       </td>
       <td ng-class='cssClass(request)'>
         {{request.approved | booleanToWordsTimeOff}}

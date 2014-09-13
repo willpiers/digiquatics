@@ -23,9 +23,9 @@
         <%= f.fields_for :slide_inspection_tasks do |builder| %>
           <tr>
             <td id='slide_checkbox_td_width'>
-              <div id='checkbox_fix'>
+              <div id='u-slide-inspections-checkbox-fix'>
                 <%= builder.check_box :completed,
-                                      label: 'Completed', checked: true %>
+                                      label: 'OK', checked: true %>
                 <%= builder.hidden_field :task_name, value: task %>
               </div>
             </td>
@@ -41,3 +41,14 @@
     </button>
   <% end %>
 </div>
+
+<style>
+#u-slide-inspections-checkbox-fix input[type=checkbox]{
+    /* Double-sized Checkboxes */
+    -ms-transform: scale(2); /* IE */
+    -moz-transform: scale(2); /* FF */
+    -webkit-transform: scale(2); /* Safari and Chrome */
+    -o-transform: scale(2); /* Opera */
+    padding: 20px;
+  }
+</style>
