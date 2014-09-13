@@ -21,6 +21,18 @@ describe FeatureToggle do
     FeatureToggle.scheduling?(current_user).should == false
   end
 
+  it 'checks only boolean if no current_user is passed in' do
+    FeatureToggle.private_lessons?.should == true
+  end
+
+  it 'checks only boolean if no current_user is passed in' do
+    FeatureToggle.maintenance?.should == false
+  end
+
+  it 'defaults to false if no current_user is passed in for account toggles' do
+    FeatureToggle.chemicals?.should == false
+  end
+
   it 'should still call default methods' do
     FeatureToggle.class.should == Module
   end

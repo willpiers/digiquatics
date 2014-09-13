@@ -7,7 +7,9 @@ module FeatureToggle
     if name.to_s.ends_with?('?') && !methods.include?(name)
       toggle = feature_toggles[name[0...-1]]
 
-      if !!toggle == toggle || toggle.nil?
+      if args[0].nil?
+        toggle == true
+      elsif !!toggle == toggle || toggle.nil?
         !!toggle
       else
         toggle.to_s.split(',').include? args[0].account_id.to_s
