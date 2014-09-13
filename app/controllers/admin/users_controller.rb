@@ -24,8 +24,7 @@ class UsersController < ApplicationController
         render json: users.to_json(include: [
           :location, {position: {only: :name}},
           {shifts: { include: {position: {only: :name} } }},
-          :time_off_requests,
-          :availabilities, :certifications])
+          :time_off_requests, :availabilities, :certifications])
       end
     end
   end

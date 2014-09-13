@@ -102,10 +102,11 @@
       moment(shift).isSame($scope.weekDay(day), 'day')
 
     # Show Time off request over multiple days
-    $scope.sameDayTimeOff = (start, end, day) ->
-      moment(start).isSame($scope.weekDay(day), 'day') or
-      moment($scope.weekDay(day)).isAfter(start) and
-      moment($scope.weekDay(day)).isBefore(end)
+    $scope.sameDayTimeOff = (request, day) ->
+      if request.approved
+        moment(request.starts_at).isSame($scope.weekDay(day), 'day') or
+        moment($scope.weekDay(day)).isAfter(request.starts_at) and
+        moment($scope.weekDay(day)).isBefore(request.ends_at)
 
     $scope.open = (user, day, shift, size) ->
       modalInstance = $modal.open(
