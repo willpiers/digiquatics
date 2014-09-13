@@ -129,7 +129,6 @@ describe 'User pages' do
         visit user_path(user)
       end
 
-      it { should have_link('Employees', users_path) }
       it { should have_selector('h4', text: 'Notes') }
       it { should have_link('Edit', edit_user_path(user)) }
 
