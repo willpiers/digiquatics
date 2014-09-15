@@ -5,7 +5,6 @@
       <a href='/dashboard'><span class='fa fa-home fa-lg'></span></a>
     </li>
 
-
     <% if FeatureToggle.chemicals? current_user %>
       <% if current_user.chemical_records_access? || current_user.admin? %>
         <li class='<%= active_link_to_class('#',
