@@ -68,7 +68,9 @@
       <td>{{request.starts_at | date:'M/d/yy @ h:mma' }}</td>
       <td>{{request.ends_at | date:'M/d/yy @ h:mma'}}</td>
       <td class='hidden-xs'>
-        {{request.reason | limitTo:15}}...
+        <div ng-if='hasReason(request)'>
+          {{request.reason | limitTo:15}}...
+        </div>
       </td>
       <td>
         <%= link_to '/time_off_requests/{{request.id}}' do %>

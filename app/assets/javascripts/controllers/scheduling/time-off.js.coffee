@@ -91,4 +91,7 @@
 
     $scope.thArrow = (current_column, anchored_column) ->
       if current_column == anchored_column then true
+
+    $scope.hasReason = (request) ->
+      request.reason
 ]
