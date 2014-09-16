@@ -3,6 +3,14 @@ class PositionsController < ApplicationController
 
   def index
     @positions = Position.joins(:account).same_account_as(current_user)
+    if stale?(@positions)
+      respond_to do |format|
+        format.html
+        format.json do
+          render json: oj_dumper(@positions)
+        end
+      end
+    end
   end
 
   def show
@@ -50,5 +58,9 @@ class PositionsController < ApplicationController
 
   def position_params
     params.require(:position).permit(:name)
+  end
+
+  def oj_dumper(view)
+    Oj.dump(view, mode: :compat)
   end
 end
