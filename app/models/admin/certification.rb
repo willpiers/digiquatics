@@ -28,7 +28,7 @@ class Certification < ActiveRecord::Base
 
   def track
     Tracker.track(nil, 'Create New Certification',
-                  certification_name: certification_name.name,
+                  certification_name_id: certification_name_id,
                   user_id: user_id)
   end
 end
