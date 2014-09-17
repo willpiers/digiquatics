@@ -13,6 +13,16 @@
     $scope.locations = Locations.index()
     $scope.positions = Positions.index()
 
+    $scope.days = [
+      'Sunday'
+      'Monday'
+      'Tuesday'
+      'Wednesday'
+      'Thursday'
+      'Friday'
+      'Saturday'
+    ]
+
     $scope.calculateHours = (user) ->
       shifts = user.shifts
       total = 0
