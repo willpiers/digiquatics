@@ -6,9 +6,8 @@ class ShiftsController < ApplicationController
     @shifts = Shift.all
     respond_to do |format|
       format.html
-      format.json
-      format.csv do
-        render csv: @shifts, filename: 'shifts'
+      format.json do
+        render json: oj_dumper(@shifts)
       end
     end
   end
@@ -76,6 +75,11 @@ class ShiftsController < ApplicationController
   def shift_params
     params.require(:shift)
     .permit(:user_id, :location_id, :position_id, :start_time, :end_time)
+  end
+
+  def oj_dumper(view)
+    Oj.dump(view.select([:id, :user_id, :location_id, :position_id, :start_time,
+                          :end_time]), mode: :compat)
   end
 
   def handle_action(resource, page)
