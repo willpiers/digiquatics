@@ -62,7 +62,9 @@
         {{endsAt(request)}}
       </td>
       <td class='hidden-xs'>
-        {{request.reason | limitTo:15}}
+        <div ng-if='hasReason(request)'>
+          {{request.reason | limitTo:15}}...
+        </div>
       </td>
       <td ng-class='cssClass(request)'>
         <div ng-hide='checkActive(request)' %>
