@@ -2,7 +2,7 @@ class ShiftsController < ApplicationController
   before_action :set_shift, only: [:show, :edit, :update, :destroy]
 
   def index
-    Tracker.track(current_user.id, 'Schedule Index') unless Rails.env.test?
+    Tracker.track(current_user.id, 'Schedule Index')
     @shifts = Shift.all
     respond_to do |format|
       format.html
@@ -14,7 +14,7 @@ class ShiftsController < ApplicationController
   end
 
   def my_schedule
-    Tracker.track(current_user.id, 'My Schedule') unless Rails.env.test?
+    Tracker.track(current_user.id, 'My Schedule')
     @my_schedule = Shift.all
     respond_to do |format|
       format.html
