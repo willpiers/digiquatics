@@ -6,7 +6,7 @@ class ChemicalRecordsController < ApplicationController
                 only: [:index, :show, :edit, :update, :destroy, :new]
 
   def index
-    Tracker.track(current_user.id, 'View Chemical Records Index') unless Rails.env.test?
+    Tracker.track(current_user.id, 'View Chemical Records Index')
     @chemical_records = ChemicalRecord.same_account_as(current_user)
 
     respond_to do |format|
@@ -19,7 +19,7 @@ class ChemicalRecordsController < ApplicationController
   end
 
   def show
-    Tracker.track(current_user.id, 'Show Chemical Record') unless Rails.env.test?
+    Tracker.track(current_user.id, 'Show Chemical Record')
   end
 
   def new
@@ -27,18 +27,18 @@ class ChemicalRecordsController < ApplicationController
   end
 
   def edit
-    Tracker.track(current_user.id, 'Edit Chemical Record') unless Rails.env.test?
+    Tracker.track(current_user.id, 'Edit Chemical Record')
   end
 
   def create
-    Tracker.track(current_user.id, 'Create Chemical Record') unless Rails.env.test?
+    Tracker.track(current_user.id, 'Create Chemical Record')
     @chemical_record = ChemicalRecord.new(chemical_record_params)
     calculations(@chemical_record)
     record_saved?(@chemical_record)
   end
 
   def update
-    Tracker.track(current_user.id, 'Update Chemical Record') unless Rails.env.test?
+    Tracker.track(current_user.id, 'Update Chemical Record')
     if @chemical_record.update(chemical_record_params)
       calculations(@chemical_record)
       @chemical_record.save!

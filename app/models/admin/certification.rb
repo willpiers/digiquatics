@@ -29,6 +29,6 @@ class Certification < ActiveRecord::Base
   def track
     Tracker.track(nil, 'Create New Certification',
                   certification_name: certification_name.name,
-                  user_id: user_id) unless Rails.env.test?
+                  user_id: user_id)
   end
 end

@@ -2,7 +2,7 @@ class ShiftReportsController < ApplicationController
   before_action :set_shift_report, only: [:show, :edit, :update, :destroy]
 
   def index
-    Tracker.track(current_user.id, 'Shift Reports Index') unless Rails.env.test?
+    Tracker.track(current_user.id, 'Shift Reports Index')
     @shift_reports = ShiftReport.joins(:location)
                      .where(locations: { account_id: current_user.account_id })
 
@@ -16,7 +16,7 @@ class ShiftReportsController < ApplicationController
   end
 
   def show
-    Tracker.track(current_user.id, 'Show Shift Report') unless Rails.env.test?
+    Tracker.track(current_user.id, 'Show Shift Report')
   end
 
   def new
@@ -24,11 +24,11 @@ class ShiftReportsController < ApplicationController
   end
 
   def edit
-    Tracker.track(current_user.id, 'Edit Shift Report') unless Rails.env.test?
+    Tracker.track(current_user.id, 'Edit Shift Report')
   end
 
   def create
-    Tracker.track(current_user.id, 'Create Shift Report') unless Rails.env.test?
+    Tracker.track(current_user.id, 'Create Shift Report')
     @shift_report = ShiftReport.new(shift_report_params)
     @shift_report.user_id = current_user.id
 
@@ -38,7 +38,7 @@ class ShiftReportsController < ApplicationController
   end
 
   def update
-    Tracker.track(current_user.id, 'Update Shift Report') unless Rails.env.test?
+    Tracker.track(current_user.id, 'Update Shift Report')
     message = 'Shift Report was successfully updated.'
 
     handle_action(@shift_report, message, 'info', :edit) do |resource|
