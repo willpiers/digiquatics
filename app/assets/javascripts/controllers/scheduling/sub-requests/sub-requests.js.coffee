@@ -9,6 +9,16 @@
     $scope.predicate =
       value: 'shift.start_time'
 
+    $scope.days = [
+      'Sunday'
+      'Monday'
+      'Tuesday'
+      'Wednesday'
+      'Thursday'
+      'Friday'
+      'Saturday'
+    ]
+
     $scope.totalDisplayed = 10
 
     $scope.loadMore = ->

@@ -3,76 +3,16 @@
     <table class='table table-bordered table-white print-schedule-font'>
       <thead>
         <tr>
-          <th class='schedule_day_header'>
-            <h4>{{weekDay(0).format('ddd')}}</h4>
-            <h2>{{weekDay(0).format('D')}}</h2>
-          </th>
-          <th class='schedule_day_header'>
-            <h4>{{weekDay(1).format('ddd')}}</h4>
-            <h2>{{weekDay(1).format('D')}}</h2>
-          </th>
-          <th class='schedule_day_header'>
-            <h4>{{weekDay(2).format('ddd')}}</h4>
-            <h2>{{weekDay(2).format('D')}}</h2>
-          </th>
-          <th class='schedule_day_header'>
-            <h4>{{weekDay(3).format('ddd')}}</h4>
-            <h2>{{weekDay(3).format('D')}}</h2>
-          </th>
-          <th class='schedule_day_header'>
-            <h4>{{weekDay(4).format('ddd')}}</h4>
-            <h2>{{weekDay(4).format('D')}}</h2>
-          </th>
-          <th class='schedule_day_header'>
-            <h4>{{weekDay(5).format('ddd')}}</h4>
-            <h2>{{weekDay(5).format('D')}}</h2>
-          </th>
-          <th class='schedule_day_header'>
-            <h4>{{weekDay(6).format('ddd')}}</h4>
-            <h2>{{weekDay(6).format('D')}}</h2>
+          <th class='schedule_day_header' ng-repeat='day in days'>
+            <h4>{{weekDay($index).format('ddd')}}</h4>
+            <h2>{{weekDay($index).format('D')}}</h2>
           </th>
         </tr>
       </thead>
       <tbody>
         <tr ng-repeat='user in myShifts | orderBy:predicate.value:reverse'>
-          <td>
-            <div ng-if="sameDayTimeOff(time_off, 0)"
-                 ng-repeat='time_off in user.time_off_requests'>
-              <%= render 'shifts/week_views/my_time_off' %>
-            </div>
-          </td>
-          <td>
-            <div ng-if="sameDayTimeOff(time_off, 1)"
-                 ng-repeat='time_off in user.time_off_requests'>
-              <%= render 'shifts/week_views/my_time_off' %>
-            </div>
-          </td>
-          <td>
-            <div ng-if="sameDayTimeOff(time_off, 2)"
-                 ng-repeat='time_off in user.time_off_requests'>
-              <%= render 'shifts/week_views/my_time_off' %>
-            </div>
-          </td>
-          <td>
-            <div ng-if="sameDayTimeOff(time_off, 3)"
-                 ng-repeat='time_off in user.time_off_requests'>
-              <%= render 'shifts/week_views/my_time_off' %>
-            </div>
-          </td>
-          <td>
-            <div ng-if="sameDayTimeOff(time_off, 4)"
-                 ng-repeat='time_off in user.time_off_requests'>
-              <%= render 'shifts/week_views/my_time_off' %>
-            </div>
-          </td>
-          <td>
-            <div ng-if="sameDayTimeOff(time_off, 5)"
-                 ng-repeat='time_off in user.time_off_requests'>
-              <%= render 'shifts/week_views/my_time_off' %>
-            </div>
-          </td>
-          <td>
-            <div ng-if="sameDayTimeOff(time_off, 6)"
+          <td ng-repeat='day in days'>
+            <div ng-if="sameDayTimeOff(time_off, days.indexOf(day))"
                  ng-repeat='time_off in user.time_off_requests'>
               <%= render 'shifts/week_views/my_time_off' %>
             </div>
@@ -80,38 +20,9 @@
         </tr>
 
         <tr ng-repeat='user in myShifts | orderBy:predicate.value:reverse'>
-          <td class='my_schedule'>
-            <div ng-if="sameDay(shift.start_time, 0)" ng-repeat="shift in user.shifts">
-                <%= render 'shifts/week_views/my_shift' %>
-            </div>
-          </td>
-          <td class='my_schedule'>
-            <div ng-if="sameDay(shift.start_time, 1)" ng-repeat="shift in user.shifts">
-                <%= render 'shifts/week_views/my_shift' %>
-            </div>
-          </td>
-          <td class='my_schedule'>
-            <div ng-if="sameDay(shift.start_time, 2)" ng-repeat="shift in user.shifts">
-                <%= render 'shifts/week_views/my_shift' %>
-            </div>
-          </td>
-          <td class='my_schedule'>
-            <div ng-if="sameDay(shift.start_time, 3)" ng-repeat="shift in user.shifts">
-                <%= render 'shifts/week_views/my_shift' %>
-            </div>
-          </td>
-          <td class='my_schedule'>
-            <div ng-if="sameDay(shift.start_time, 4)" ng-repeat="shift in user.shifts">
-                <%= render 'shifts/week_views/my_shift' %>
-            </div>
-          </td>
-          <td class='my_schedule'>
-            <div ng-if="sameDay(shift.start_time, 5)" ng-repeat="shift in user.shifts">
-                <%= render 'shifts/week_views/my_shift' %>
-            </div>
-          </td>
-          <td class='my_schedule'>
-            <div ng-if="sameDay(shift.start_time, 6)" ng-repeat="shift in user.shifts">
+          <td class='my_schedule' ng-repeat='day in days'>
+            <div ng-if="sameDay(shift.start_time, days.indexOf(day))"
+                 ng-repeat="shift in user.shifts">
                 <%= render 'shifts/week_views/my_shift' %>
             </div>
           </td>
@@ -121,18 +32,19 @@
   </div>
 
   <div class='visible-xs hidden-print'>
-    <table class='table table-bordered table-white shadow-effect'>
+    <table class='table table-bordered table-white shadow-effect'
+           ng-repeat='day in days'>
       <thead>
         <tr>
           <th class='my_schedule_header'>
-            {{weekDay(0).format('ddd, MMM D')}}
+            {{weekDay(days.indexOf(day)).format('ddd, MMM D')}}
           </th>
         </tr>
       </thead>
       <tbody>
         <tr ng-repeat='user in myShifts | orderBy:predicate.value:reverse'>
           <td>
-            <div ng-if="sameDayTimeOff(time_off, 0)"
+            <div ng-if='sameDayTimeOff(time_off, days.indexOf(day))'
                  ng-repeat='time_off in user.time_off_requests'>
               <%= render 'shifts/week_views/my_time_off_mobile' %>
             </div>
@@ -140,169 +52,8 @@
         </tr>
         <tr ng-repeat='user in myShifts | orderBy:predicate.value:reverse'>
           <td>
-            <div ng-if="sameDay(shift.start_time, 0)" ng-repeat="shift in user.shifts">
-                <%= render 'shifts/week_views/my_shift_mobile' %>
-            </div>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-
-    <table class='table table-bordered table-white shadow-effect'>
-      <thead>
-        <tr>
-          <th class='my_schedule_header'>
-            {{weekDay(1).format('ddd, MMM D')}}
-          </th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr ng-repeat='user in myShifts | orderBy:predicate.value:reverse'>
-          <td>
-            <div ng-if="sameDayTimeOff(time_off, 1)"
-                 ng-repeat='time_off in user.time_off_requests'>
-              <%= render 'shifts/week_views/my_time_off_mobile' %>
-            </div>
-          </td>
-        </tr>
-        <tr ng-repeat='user in myShifts | orderBy:predicate.value:reverse'>
-          <td>
-            <div ng-if="sameDay(shift.start_time, 1)" ng-repeat="shift in user.shifts">
-                <%= render 'shifts/week_views/my_shift_mobile' %>
-            </div>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-
-    <table class='table table-bordered table-white shadow-effect'>
-      <thead>
-        <tr>
-          <th class='my_schedule_header'>
-            {{weekDay(2).format('ddd, MMM D')}}
-          </th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr ng-repeat='user in myShifts | orderBy:predicate.value:reverse'>
-          <td>
-            <div ng-if="sameDayTimeOff(time_off, 2)"
-                 ng-repeat='time_off in user.time_off_requests'>
-              <%= render 'shifts/week_views/my_time_off_mobile' %>
-            </div>
-          </td>
-        </tr>
-        <tr ng-repeat='user in myShifts | orderBy:predicate.value:reverse'>
-          <td>
-            <div ng-if="sameDay(shift.start_time, 2)" ng-repeat="shift in user.shifts">
-                <%= render 'shifts/week_views/my_shift_mobile' %>
-            </div>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-
-    <table class='table table-bordered table-white shadow-effect'>
-      <thead>
-        <tr>
-          <th class='my_schedule_header'>
-            {{weekDay(3).format('ddd, MMM D')}}
-          </th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr ng-repeat='user in myShifts | orderBy:predicate.value:reverse'>
-          <td>
-            <div ng-if="sameDayTimeOff(time_off, 3)"
-                 ng-repeat='time_off in user.time_off_requests'>
-              <%= render 'shifts/week_views/my_time_off_mobile' %>
-            </div>
-          </td>
-        </tr>
-        <tr ng-repeat='user in myShifts | orderBy:predicate.value:reverse'>
-          <td>
-            <div ng-if="sameDay(shift.start_time, 3)" ng-repeat="shift in user.shifts">
-                <%= render 'shifts/week_views/my_shift_mobile' %>
-            </div>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-
-    <table class='table table-bordered table-white shadow-effect'>
-      <thead>
-        <tr>
-          <th class='my_schedule_header'>
-            {{weekDay(4).format('ddd, MMM D')}}
-          </th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr ng-repeat='user in myShifts | orderBy:predicate.value:reverse'>
-          <td>
-            <div ng-if="sameDayTimeOff(time_off, 4)"
-                 ng-repeat='time_off in user.time_off_requests'>
-              <%= render 'shifts/week_views/my_time_off_mobile' %>
-            </div>
-          </td>
-        </tr>
-        <tr ng-repeat='user in myShifts | orderBy:predicate.value:reverse'>
-          <td>
-            <div ng-if="sameDay(shift.start_time, 4)" ng-repeat="shift in user.shifts">
-                <%= render 'shifts/week_views/my_shift_mobile' %>
-            </div>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-
-    <table class='table table-bordered table-white shadow-effect'>
-      <thead>
-        <tr>
-          <th class='my_schedule_header'>
-            {{weekDay(5).format('ddd, MMM D')}}
-          </th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr ng-repeat='user in myShifts | orderBy:predicate.value:reverse'>
-          <td>
-            <div ng-if="sameDayTimeOff(time_off, 5)"
-                 ng-repeat='time_off in user.time_off_requests'>
-              <%= render 'shifts/week_views/my_time_off_mobile' %>
-            </div>
-          </td>
-        </tr>
-        <tr ng-repeat='user in myShifts | orderBy:predicate.value:reverse'>
-          <td>
-            <div ng-if="sameDay(shift.start_time, 5)" ng-repeat="shift in user.shifts">
-                <%= render 'shifts/week_views/my_shift_mobile' %>
-            </div>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-
-    <table class='table table-bordered table-white shadow-effect'>
-      <thead>
-        <tr>
-          <th class='my_schedule_header'>
-            {{weekDay(6).format('ddd, MMM D')}}
-          </th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr ng-repeat='user in myShifts | orderBy:predicate.value:reverse'>
-          <td>
-            <div ng-if="sameDayTimeOff(time_off, 6)"
-                 ng-repeat='time_off in user.time_off_requests'>
-              <%= render 'shifts/week_views/my_time_off_mobile' %>
-            </div>
-          </td>
-        </tr>
-        <tr ng-repeat='user in myShifts | orderBy:predicate.value:reverse'>
-          <td>
-            <div ng-if="sameDay(shift.start_time, 6)" ng-repeat="shift in user.shifts">
+            <div ng-if="sameDay(shift.start_time, days.indexOf(day))"
+                 ng-repeat="shift in user.shifts">
                 <%= render 'shifts/week_views/my_shift_mobile' %>
             </div>
           </td>
