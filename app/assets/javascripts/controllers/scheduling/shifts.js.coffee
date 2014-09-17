@@ -7,22 +7,19 @@
   'Positions'
   '$modal'
   '$log'
+
   @ShiftsCtrl = ($scope, $filter, Shifts, Users, Locations, Positions, $modal, $log) ->
-    # Services
     $scope.users = Users.index()
     $scope.locations = Locations.index()
     $scope.positions = Positions.index()
 
     $scope.calculateHours = (user) ->
-      shifts = user.shifts
-      total = 0
-      for shift in shifts
-        if moment(shift.start_time).isSame($scope.weekDay(0), 'week')
-          hours = moment(shift.end_time).hours() - moment(shift.start_time).hours()
-          minutes = moment(shift.end_time).minutes() - moment(shift.start_time).minutes()
-          hours = hours + ( minutes / 60 )
-          total += hours
-      total
+      _.reduce user.shifts, (total, shift) ->
+        if moment(shift.start_time).isSame $scope.weekDay(0), 'week'
+          total += moment(shift.end_time).diff(shift.start_time, 'hours', true)
+
+        total
+      , 0
 
     $scope.startTime = (days) ->
       start = new Date()
@@ -30,7 +27,6 @@
       start.setDate($scope.weekDay(days).format('DD'))
       start.setHours(7)
       start.setMinutes(0)
-      start
 
     $scope.endTime = (days) ->
       end = new Date()
