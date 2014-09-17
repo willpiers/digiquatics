@@ -23,7 +23,7 @@ describe 'Time Off Request pages' do
     it { should have_selector('h1', text: 'Time Off Requests') }
     it { should have_title(full_title('Time Off Requests')) }
     it { should have_link('Add Request', new_time_off_request_path) }
-    it { should have_link('View Processed', new_time_off_request_path) }
+    it { should have_link('View Processed', archived_time_off_requests_path) }
 
     it { should have_selector('th', text: 'Last Name') }
     it { should have_selector('th', text: 'First Name') }
@@ -31,11 +31,6 @@ describe 'Time Off Request pages' do
     it { should have_selector('th', text: 'Start Date') }
     it { should have_selector('th', text: 'End Date') }
     it { should have_selector('th', text: 'Reason') }
-    it { should have_content('request.user.last_name') }
-    it { should have_content('request.user.first_name') }
-    it { should have_content('request.starts_at') }
-    it { should have_content('request.ends_at') }
-    it { should have_content('request.reason') }
   end
 
   describe 'processed time off requests' do
@@ -59,16 +54,6 @@ describe 'Time Off Request pages' do
     it { should have_selector('th', text: 'Status') }
     it { should have_selector('th', text: 'Processed By') }
     it { should have_selector('th', text: 'Processed On') }
-
-    it { should have_content('request.user.last_name') }
-    it { should have_content('request.user.first_name') }
-    it { should have_content('request.starts_at') }
-    it { should have_content('request.ends_at') }
-    it { should have_content('request.reason') }
-    it { should have_content('request.created_at') }
-    it { should have_content('request.approved') }
-    it { should have_content('request.processed_by_last_name') }
-    it { should have_content('request.approved_at') }
   end
 
   describe 'my time off requests' do
@@ -88,15 +73,6 @@ describe 'Time Off Request pages' do
     it { should have_selector('th', text: 'Date Submitted') }
     it { should have_selector('th', text: 'Processed By') }
     it { should have_selector('th', text: 'Processed On') }
-
-    it { should have_content('request.starts_at') }
-    it { should have_content('request.ends_at') }
-    it { should have_content('request.reason') }
-    it { should have_content('request.approved') }
-    it { should have_content('request.created_at') }
-    it { should have_content('request.approved') }
-    it { should have_content('request.processed_by_last_name') }
-    it { should have_content('request.approved_at') }
   end
 
   describe 'new' do

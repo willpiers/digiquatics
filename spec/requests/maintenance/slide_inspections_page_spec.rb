@@ -49,12 +49,6 @@ describe 'Slide Inspection pages' do
     it { should have_selector('th', text: 'Completed By') }
     it { should have_selector('th', text: 'Date') }
     it { should have_selector('th', text: 'All OK?') }
-
-    it { should have_content('location.name') }
-    it { should have_content('slide.name') }
-    it { should have_content("inspection.created_at | date:'M/d/yy @ h:mma'") }
-    it { should have_content('user.first_name') }
-    it { should have_content('user.last_name') }
   end
 
   describe 'new' do

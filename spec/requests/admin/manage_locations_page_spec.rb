@@ -57,8 +57,6 @@ describe 'Manage Locations' do
 
       describe 'after saving location' do
         before { click_button 'Submit Location' }
-
-        # it { should have_content('Location was successfully created.') }
       end
 
       it 'should also create the locations pool' do

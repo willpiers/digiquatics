@@ -28,11 +28,6 @@ describe 'Shift Report pages' do
     it { should have_selector('th', text: 'Date') }
     it { should have_selector('th', text: 'Submitted By') }
     it { should have_selector('th', text: 'Incident Report') }
-    it { should have_content('report.location.name') }
-    it { should have_content("report.created_at | date:'M/d/yy @ h:mma'") }
-    it { should have_content('report.user.last_name') }
-    it { should have_content('report.user.first_name') }
-    it { should have_content('report.report_filed | booleanToWords') }
   end
 
   describe 'new' do
@@ -64,7 +59,6 @@ describe 'Shift Report pages' do
         describe 'redirect to index' do
           before { click_button submit }
           it { current_path.should eq shift_report_path(ShiftReport.last) }
-          # it { should have_content('Shift Report was successfully created.') }
         end
       end
 
