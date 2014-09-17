@@ -35,7 +35,6 @@ gem 'sendgrid'
 gem 'aws-sdk'
 gem 'active_link_to'
 gem 'ng-rails-csrf'
-gem 'oj'
 
 # metrics/feedback libs
 gem 'intercom-rails', github: 'kmanzana/intercom-rails'
