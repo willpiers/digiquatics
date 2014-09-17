@@ -94,4 +94,16 @@
 
     $scope.hasReason = (request) ->
       request.reason
+
+    $scope.startsAt = (request) ->
+      if request.all_day
+        moment(request.starts_at).format('M/D/YY')
+      else
+        moment(request.ends_at).format('M/D/YY @ h:mma')
+
+    $scope.endsAt = (request) ->
+      if request.all_day
+        moment(request.ends_at).format('M/D/YY')
+      else
+        moment(request.ends_at).format('M/D/YY @ h:mma')
 ]

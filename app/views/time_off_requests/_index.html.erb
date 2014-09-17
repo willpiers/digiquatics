@@ -65,8 +65,12 @@
         </a>
       </td>
       <td class='hidden-xs'>{{request.user.first_name}}</td>
-      <td>{{request.starts_at | date:'M/d/yy @ h:mma' }}</td>
-      <td>{{request.ends_at | date:'M/d/yy @ h:mma'}}</td>
+      <td>
+        {{startsAt(request)}}
+      </td>
+      <td>
+        {{endsAt(request)}}
+      </td>
       <td class='hidden-xs'>
         <div ng-if='hasReason(request)'>
           {{request.reason | limitTo:15}}...
