@@ -32,9 +32,9 @@
             Aquatics Redefined
           </strong>
           <h5 id='sub-heading'>
-            Online scheduling, data management and web</br>based private lesson
-            portal that puts you in control.
-          </h4>
+            Making your life easier</br>
+            starting with web-based staff scheduling.
+          </h5>
         </center>
         <div id='sub-heading2'>
           <%= link_to 'TRY IT FREE FOR 30 DAYS', '#dq_sign_up',
@@ -64,18 +64,21 @@
         <strong id='info-header'>FEATURES</strong>
         <br><br><br>
         <div class='row'>
-          <div class='col-sm-1'></div> <!-- Placeholder -->
+          <div class='col-sm-2'></div> <!-- Placeholder -->
           <div class='col-sm-2'>
-            <div class='blue_icon'>
-              <i class='fa fa-calendar fa-5x'></i>
-            </div>
-            <br>
-            <h4>Staff<br>Scheduling</h4>
-            <p class='mobile_features_text'>
-              Create schedules for your staff and publish online. Designed to
-              work with multiple locations. Staff can submit availabilities,
-              sub requests and time off requests online.
-            </p>
+            <% if FeatureToggle.chemicals? %>
+              <div class='blue_icon'>
+                <i class='fa fa-flask fa-5x'></i>
+              </div>
+              <br>
+              <h4>Chemical<br>Records</h4>
+              <p class='mobile_features_text'>
+                Submit pool chemical readings on the go. Instantly calculate
+                combined chlorine and langelier saturation index upon submitting
+                a chemical record. Receive detailed recomendations. Track trends
+                with robust analytics.
+              </p>
+            <% end %>
           </div>
           <div class='col-sm-2'>
             <div class='blue_icon'>
@@ -91,44 +94,48 @@
             </p>
           </div>
           <div class='col-sm-2'>
-            <div class='blue_icon'>
-              <i class='fa fa-flask fa-5x'></i>
-            </div>
-            <br>
-            <h4>Chemical<br>Records</h4>
-            <p class='mobile_features_text'>
-              Submit pool chemical readings on the go. Instantly calculate
-              combined chlorine and langelier saturation index upon submitting
-              a chemical record. Receive detailed recomendations. Track trends
-              with robust analytics.
-            </p>
+            <% if FeatureToggle.scheduling? %>
+              <div class='blue_icon'>
+                <i class='fa fa-calendar fa-5x'></i>
+              </div>
+              <br>
+              <h4>Staff<br>Scheduling</h4>
+              <p class='mobile_features_text'>
+                Create schedules for your staff and publish online. Designed to
+                work with multiple locations. Staff can submit availabilities,
+                sub requests and time off requests online.
+              </p>
+            <% end %>
           </div>
           <div class='col-sm-2'>
-            <div class='blue_icon'>
-              <i class='fa fa-child fa-5x'></i>
-            </div>
-            <br>
-            <h4>Private Lessons<br>Portal</h4>
-            <p class='mobile_features_text'>
-              Parents can request private lessons online 24/7 - without an
-              account. Online queue system designed to pair
-              instructors with students faster and supervisor dashboard.
-            </p>
+          <% if FeatureToggle.private_lessons? %>
+              <div class='blue_icon'>
+                <i class='fa fa-child fa-5x'></i>
+              </div>
+              <br>
+              <h4>Private Lessons<br>Portal</h4>
+              <p class='mobile_features_text'>
+                Parents can request private lessons online 24/7 - without an
+                account. Online queue system designed to pair
+                instructors with students faster and supervisor dashboard.
+              </p>
+            <% end %>
           </div>
           <div class='col-sm-2'>
-            <div class='blue_icon'>
-              <i class='fa fa-wrench fa-5x'></i>
-            </div>
-            <br>
-            <h4>Maintenance<br>Tracking</h4>
-            <p class='mobile_features_text'>
-              Issue tracking system allows any staff member to flag issues.
-              Upload photos of any problems from your mobile device. Handle and
-              manage slide inspections online with instant notifications of
-              potential problems.
-            </p>
+            <% if FeatureToggle.maintenance? %>
+              <div class='blue_icon'>
+                <i class='fa fa-wrench fa-5x'></i>
+              </div>
+              <br>
+              <h4>Maintenance<br>Tracking</h4>
+              <p class='mobile_features_text'>
+                Issue tracking system allows any staff member to flag issues.
+                Upload photos of any problems from your mobile device. Handle and
+                manage slide inspections online with instant notifications of
+                potential problems.
+              </p>
+              <% end %>
           </div>
-          <div class='col-sm-1'></div> <!-- Placeholder -->
         </div>
         <br><br>
       </div>
