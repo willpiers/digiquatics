@@ -10,7 +10,7 @@ class StaticPagesController < ApplicationController
               'SI Index' => 'si_index' }
 
   def dashboard
-    Tracker.track(current_user.id, 'View Dashboard') unless Rails.env.test?
+    Tracker.track(current_user.id, 'View Dashboard')
   end
 
   def privacy
@@ -35,7 +35,7 @@ class StaticPagesController < ApplicationController
   end
 
   def chemical_record_stats
-    Tracker.track(current_user.id, 'View Chemical Record Stats') unless Rails.env.test?
+    Tracker.track(current_user.id, 'View Chemical Record Stats')
     date_picker
     chemical_stats_table
     chemical_graphs

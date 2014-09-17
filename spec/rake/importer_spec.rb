@@ -47,9 +47,6 @@ describe Importer do
         user.date_of_hire.should == Date.parse('Mon, 13 Sep 1993')
         user.active.should be_false
       end
-
-      it 'should have the correct associations' do
-      end
     end
 
     describe 'for positions' do

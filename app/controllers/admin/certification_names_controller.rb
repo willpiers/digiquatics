@@ -32,7 +32,7 @@ class CertificationNamesController < ApplicationController
     if @certification_name.save
       Tracker.track(current_user.id, 'Create New Certification Name',
                     certification_name: @certification_name.name
-      ) unless Rails.env.test?
+      )
 
       redirect_to admin_dashboard_path
       flash[:success] = 'Certification was successfully created.'
