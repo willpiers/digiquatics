@@ -3,8 +3,8 @@ describe 'usersFilters', ->
 
   describe 'age', ->
     it 'should give the age in years from a date', inject((ageFilter) ->
-      ageFilter('1992-09-14T18:00:00.000-06:00').should.equal 21
-      ageFilter('1993-01-14T18:00:00.000-06:00').should.equal 21
+      ageFilter(moment().subtract(21, 'years')).should.equal 21
+      ageFilter(moment().subtract(22, 'years').add(3, 'months')).should.equal 21
     )
 
     it 'should handle null correctly', inject((ageFilter) ->

@@ -9,6 +9,8 @@ require 'sprockets/railtie'
 require 'csv'
 require 'mixpanel-ruby'
 
+require File.expand_path('../mixpanel_stub', __FILE__)
+
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(:default, Rails.env)
@@ -18,7 +20,11 @@ unless ENV['MIXPANEL_TOKEN']
     'Put `export MIXPANEL_TOKEN=<dev token>` in your `~/.zshrc` file'
 end
 
-Tracker = Mixpanel::Tracker.new(ENV['MIXPANEL_TOKEN'] || '1')
+if Rails.env.production?
+  Tracker = Mixpanel::Tracker.new(ENV['MIXPANEL_TOKEN'] || '1')
+else
+  Tracker = MixpanelStub
+end
 
 module DigiQuatics
   class Application < Rails::Application

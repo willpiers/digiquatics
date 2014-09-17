@@ -3,6 +3,14 @@ class LocationsController < ApplicationController
 
   def index
     @locations = Location.joins(:account).same_account_as(current_user)
+    if stale?(@locations)
+      respond_to do |format|
+        format.html
+        format.json do
+          render json: oj_dumper(@locations)
+        end
+      end
+    end
   end
 
   def show
@@ -54,5 +62,9 @@ class LocationsController < ApplicationController
     params.require(:location)
     .permit(:name, pools_attributes: [:id, :location_id, :name, :_destroy],
                    slides_attributes: [:id, :location_id, :name, :_destroy])
+  end
+
+  def oj_dumper(view)
+    Oj.dump(view, mode: :compat)
   end
 end

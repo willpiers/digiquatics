@@ -2,19 +2,18 @@ class ShiftsController < ApplicationController
   before_action :set_shift, only: [:show, :edit, :update, :destroy]
 
   def index
-    Tracker.track(current_user.id, 'Schedule Index') unless Rails.env.test?
+    Tracker.track(current_user.id, 'Schedule Index')
     @shifts = Shift.all
     respond_to do |format|
       format.html
-      format.json
-      format.csv do
-        render csv: @shifts, filename: 'shifts'
+      format.json do
+        render json: oj_dumper(@shifts)
       end
     end
   end
 
   def my_schedule
-    Tracker.track(current_user.id, 'My Schedule') unless Rails.env.test?
+    Tracker.track(current_user.id, 'My Schedule')
     @my_schedule = Shift.all
     respond_to do |format|
       format.html
@@ -79,6 +78,11 @@ class ShiftsController < ApplicationController
   def shift_params
     params.require(:shift)
     .permit(:user_id, :location_id, :position_id, :start_time, :end_time)
+  end
+
+  def oj_dumper(view)
+    Oj.dump(view.select([:id, :user_id, :location_id, :position_id, :start_time,
+                          :end_time]), mode: :compat)
   end
 
   def handle_action(resource, page)

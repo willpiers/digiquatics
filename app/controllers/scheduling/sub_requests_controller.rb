@@ -4,7 +4,7 @@ class SubRequestsController < ApplicationController
   include ApplicationHelper
 
   def index
-    Tracker.track(current_user.id, 'Sub Requests Index') unless Rails.env.test?
+    Tracker.track(current_user.id, 'Sub Requests Index')
     @sub_requests = SubRequest.joins(:user)
                               .where(users: { account_id: current_user.account_id })
                               .where(active: true).where(processed: false)
@@ -17,7 +17,7 @@ class SubRequestsController < ApplicationController
   end
 
   def show
-    Tracker.track(current_user.id, 'Show Sub Request') unless Rails.env.test?
+    Tracker.track(current_user.id, 'Show Sub Request')
     @approver = User.find_by(@sub_request.processed_by_user_id)
   end
 
@@ -26,11 +26,11 @@ class SubRequestsController < ApplicationController
   end
 
   def edit
-    Tracker.track(current_user.id, 'Edit Sub Request') unless Rails.env.test?
+    Tracker.track(current_user.id, 'Edit Sub Request')
   end
 
   def create
-    Tracker.track(current_user.id, 'Create Sub Request') unless Rails.env.test?
+    Tracker.track(current_user.id, 'Create Sub Request')
     @sub_request = SubRequest.new(sub_request_params)
 
     message = 'Sub Request was successfully created.'
@@ -39,7 +39,7 @@ class SubRequestsController < ApplicationController
   end
 
   def update
-    Tracker.track(current_user.id, 'Update Sub Request') unless Rails.env.test?
+    Tracker.track(current_user.id, 'Update Sub Request')
     message = 'Sub Request was successfully updated.'
     handle_action(@sub_request, message, 'info', :edit) do |resource|
       resource.update(sub_request_params)
@@ -47,7 +47,7 @@ class SubRequestsController < ApplicationController
   end
 
   def processed
-    Tracker.track(current_user.id, 'View Processed Sub Requests') unless Rails.env.test?
+    Tracker.track(current_user.id, 'View Processed Sub Requests')
     respond_to do |format|
       format.html
       format.json do
@@ -60,7 +60,7 @@ class SubRequestsController < ApplicationController
   end
 
   def admin_index
-    Tracker.track(current_user.id, 'View My Sub Requests') unless Rails.env.test?
+    Tracker.track(current_user.id, 'View My Sub Requests')
     respond_to do |format|
       format.html
       format.json do
@@ -80,7 +80,7 @@ class SubRequestsController < ApplicationController
         render json: sub_requests.to_json(include: { shift: { include: [:location, :position, :user] } })
       end
     end
-    Tracker.track(current_user.id, 'View My Sub Requests') unless Rails.env.test?
+    Tracker.track(current_user.id, 'View My Sub Requests')
   end
 
   def destroy

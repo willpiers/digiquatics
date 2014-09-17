@@ -21,9 +21,7 @@ class AccountsController < ApplicationController
   end
 
   def admin_dashboard
-    unless Rails.env.test?
-      Tracker.track(current_user.id, 'View Admin Dashboard')
-    end
+    Tracker.track(current_user.id, 'View Admin Dashboard')
 
     @locations = Location.joins(:account).same_account_as(current_user)
     @positions = Position.joins(:account).same_account_as(current_user)

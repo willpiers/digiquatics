@@ -2,7 +2,7 @@ class AvailabilitiesController < ApplicationController
   before_action :set_availability, only: [:show, :edit, :update, :destroy]
 
   def index
-    Tracker.track(current_user.id, 'Availability Page') unless Rails.env.test?
+    Tracker.track(current_user.id, 'Availability Page')
     @availabilities = Availability.where(user_id: current_user.id)
     respond_to do |format|
       format.html
