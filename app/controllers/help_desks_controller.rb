@@ -2,7 +2,7 @@ class HelpDesksController < ApplicationController
   before_action :set_help_desk, only: [:show, :edit, :update, :destroy]
 
   def index
-    Tracker.track(current_user.id, 'Help Desk Index') unless Rails.env.test?
+    Tracker.track(current_user.id, 'Help Desk Index')
     @help_desks = HelpDesk.joins(:location)
                   .where(locations: { account_id: current_user.account_id })
                   .where(issue_status: true)
@@ -18,12 +18,12 @@ class HelpDesksController < ApplicationController
   end
 
   def show
-    Tracker.track(current_user.id, 'Show Help Desk Issue') unless Rails.env.test?
+    Tracker.track(current_user.id, 'Show Help Desk Issue')
     @facade = HelpDeskFacade.new(@help_desk)
   end
 
   def closed_index
-    Tracker.track(current_user.id, 'View Closed Help Desk') unless Rails.env.test?
+    Tracker.track(current_user.id, 'View Closed Help Desk')
     @closed_index = HelpDesk.joins(:location)
                   .where(locations: { account_id: current_user.account_id })
                   .where(issue_status: false)
@@ -38,11 +38,11 @@ class HelpDesksController < ApplicationController
   end
 
   def edit
-    Tracker.track(current_user.id, 'Edit Help Desk Issue') unless Rails.env.test?
+    Tracker.track(current_user.id, 'Edit Help Desk Issue')
   end
 
   def create
-    Tracker.track(current_user.id, 'Create Help Desk Issue') unless Rails.env.test?
+    Tracker.track(current_user.id, 'Create Help Desk Issue')
     @help_desk = HelpDesk.new(help_desk_params)
     @help_desk.user_id = current_user.id
 
@@ -56,7 +56,7 @@ class HelpDesksController < ApplicationController
   end
 
   def update
-    Tracker.track(current_user.id, 'Update Help Desk Issue') unless Rails.env.test?
+    Tracker.track(current_user.id, 'Update Help Desk Issue')
     @help_desk.closed_user_id = current_user.id
     @help_desk.closed_date_time = Time.now
 

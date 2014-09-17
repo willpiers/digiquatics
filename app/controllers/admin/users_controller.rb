@@ -7,9 +7,7 @@ class UsersController < ApplicationController
   def index
     respond_to do |format|
       format.html do
-        unless Rails.env.test?
-          Tracker.track(current_user.id, 'View User\'s Index')
-        end
+        Tracker.track(current_user.id, 'View User\'s Index')
       end
 
       format.csv do
@@ -105,7 +103,7 @@ class UsersController < ApplicationController
     flash[:success] = 'You have successfully added a new employee!'
     if signed_in?
       Tracker.track(current_user.id, 'Create New User',
-                    created_user_id: @user.id) unless Rails.env.test?
+                    created_user_id: @user.id)
       redirect_to(@user)
     else
       sign_in_and_redirect(@user)
