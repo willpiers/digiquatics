@@ -30,12 +30,6 @@ describe 'Help Desk pages' do
     it { should have_selector('th', text: 'Problem') }
     it { should have_selector('th', text: 'Urgency') }
     it { should have_selector('th', text: 'Submitted By') }
-    it { should have_content('location.name') }
-    it { should have_content('item.name') }
-    it { should have_content('item.urgency') }
-    it { should have_content("item.created_at | date:'M/d/yy @ h:mma'") }
-    it { should have_content('user.first_name') }
-    it { should have_content('user.last_name') }
   end
 
   describe 'closed index' do
@@ -56,14 +50,6 @@ describe 'Help Desk pages' do
     it { should have_selector('th', text: 'Problem') }
     it { should have_selector('th', text: 'Urgency') }
     it { should have_selector('th', text: 'Submitted By') }
-
-    it { should have_content('location.name') }
-    it { should have_content('item.name') }
-    it { should have_content('item.urgency') }
-    it { should have_content("item.created_at | date:'M/d/yy @ h:mma'") }
-    it { should have_content("item.closed_date_time | date:'M/d/yy @ h:mma'") }
-    it { should have_content('user.first_name') }
-    it { should have_content('user.last_name') }
   end
 
   describe 'new' do

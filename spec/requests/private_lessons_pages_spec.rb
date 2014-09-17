@@ -337,7 +337,6 @@ describe 'Private Lessons' do
         end
 
         it { should have_title('Lesson Request') }
-        # it { should have_selector('div.alert') }
         specify { current_path.should eq private_lesson_path(created_lesson) }
       end
     end
@@ -365,7 +364,6 @@ describe 'Private Lessons' do
           before { click_button 'Claim Lesson' }
 
           specify { current_path.should eq private_lesson_path(lesson) }
-          # it { should have_selector('div.alert') }
 
           describe 'from admin view' do
             before do

@@ -38,6 +38,7 @@ class ShiftsController < ApplicationController
   end
 
   def create
+    Tracker.track(current_user.id, 'Create Shift') unless Rails.env.test?
     @shift = Shift.new(shift_params)
 
     if @shift.save
@@ -51,6 +52,7 @@ class ShiftsController < ApplicationController
   end
 
   def update
+    Tracker.track(current_user.id, 'Update Shift') unless Rails.env.test?
     if @shift.update(shift_params)
       render json: @shift.to_json(include: {
         position: { only: :name },
@@ -62,6 +64,7 @@ class ShiftsController < ApplicationController
   end
 
   def destroy
+    Tracker.track(current_user.id, 'Delete Shift') unless Rails.env.test?
     @shift.destroy
     render :show
   end
