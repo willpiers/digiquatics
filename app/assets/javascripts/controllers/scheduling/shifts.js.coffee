@@ -31,77 +31,38 @@
         total
       , 0
 
-    $scope.startTime = (days) ->
-      start = new Date()
-      start.setMonth($scope.weekDay(days).format('MM') - 1)
-      start.setDate($scope.weekDay(days).format('DD'))
-      start.setHours(7)
-      start.setMinutes(0)
+    startTime = (days) ->
+      $scope.weekDay(days).startOf('day').add 5, 'hours'
 
-    $scope.endTime = (days) ->
-      end = new Date()
-      end.setMonth($scope.weekDay(days).format('MM') - 1)
-      end.setDate($scope.weekDay(days).format('DD'))
-      end.setHours(8)
-      end.setMinutes(0)
-      end
+    endTime = (days) ->
+      $scope.weekDay(days).startOf('day').add 10, 'hours'
 
-    $scope.buildMode = 'Build'
-
-    $scope.build = ->
-      $scope.buildMode is 'Build'
+    $scope.buildMode = true
 
     $scope.weekCounter = 0
 
     $scope.previousWeek = ->
+      # should send a request with a query param to load more weeks
       $scope.weekCounter -= 7
 
     $scope.nextWeek = ->
+      # should send a request with a query param to load more weeks
       $scope.weekCounter += 7
 
     $scope.resetWeekCounter = ->
       $scope.weekCounter = 0
 
     $scope.displayStartDate = ->
-      moment().startOf('week').add('days', $scope.weekCounter).format('MMMM YYYY')
+      moment().startOf('week').add('days', $scope.weekCounter).format 'MMMM YYYY'
 
-    ##### Might not need this
     $scope.displayEndDate = (days) ->
       moment().startOf('week').add('days', $scope.weekCounter + days).format('MMM D, YYYY')
 
     $scope.weekDay = (days) ->
       moment().startOf('week').add('days', $scope.weekCounter + days)
 
-    # Days
-
-    $scope.dayCounter = 0
-
-    $scope.previousDay = ->
-      $scope.dayCounter -= 1
-
-    $scope.nextDay = ->
-      $scope.dayCounter += 1
-
-    $scope.resetDayCounter = ->
-      $scope.dayCounter = 0
-
-    $scope.today = ->
-      moment().format('MMM D, YYYY')
-
-    $scope.displayDay = ->
-      moment().add('days', $scope.dayCounter).format('dddd, MMM D YYYY')
-
-    # Other
     $scope.predicate =
       value: 'last_name'
-
-    $scope.ifValue = true
-
-    $scope.showIf = ->
-      $scope.ifValue
-
-    $scope.hideIf = ->
-      not $scope.ifValue
 
     # show shifts by day of week
     $scope.sameDay = (shift, day) ->
@@ -129,9 +90,9 @@
           location: ->
             $scope.buildLocation
           startTime: ->
-            $scope.startTime(day)
+            startTime(day)
           endTime: ->
-            $scope.endTime(day)
+            endTime(day)
           positions: ->
             $scope.positions
           position: ->
