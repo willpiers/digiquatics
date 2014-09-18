@@ -5,33 +5,9 @@
       <tr>
         <th id='schedule_info_column'>
         </th>
-        <th class='schedule_day_header'>
-          <h4>{{weekDay(0).format('ddd')}}</h4>
-          <h2>{{weekDay(0).format('D')}}</h2>
-        </th>
-        <th class='schedule_day_header'>
-          <h4>{{weekDay(1).format('ddd')}}</h4>
-          <h2>{{weekDay(1).format('D')}}</h2>
-        </th>
-        <th class='schedule_day_header'>
-          <h4>{{weekDay(2).format('ddd')}}</h4>
-          <h2>{{weekDay(2).format('D')}}</h2>
-        </th>
-        <th class='schedule_day_header'>
-          <h4>{{weekDay(3).format('ddd')}}</h4>
-          <h2>{{weekDay(3).format('D')}}</h2>
-        </th>
-        <th class='schedule_day_header'>
-          <h4>{{weekDay(4).format('ddd')}}</h4>
-          <h2>{{weekDay(4).format('D')}}</h2>
-        </th>
-        <th class='schedule_day_header'>
-          <h4>{{weekDay(5).format('ddd')}}</h4>
-          <h2>{{weekDay(5).format('D')}}</h2>
-        </th>
-        <th class='schedule_day_header'>
-          <h4>{{weekDay(6).format('ddd')}}</h4>
-          <h2>{{weekDay(6).format('D')}}</h2>
+        <th class='schedule_day_header' ng-repeat='day in days'>
+          <h4>{{weekDay(days.indexOf(day)).format('ddd')}}</h4>
+          <h2>{{weekDay(days.indexOf(day)).format('D')}}</h2>
         </th>
       </tr>
     </thead>
@@ -42,160 +18,28 @@
           {{user.last_name}}, </br>
           {{user.first_name}}
           <div class='hidden-print'>
-            <br><i class="fa fa-clock-o"></i>
+            <br><i class='fa fa-clock-o'></i>
             {{calculateHours(user)}}
           </div>
         </td>
 
-        <td>
+        <td ng-repeat='day in days'>
           <div ng-if='build()'>
-            <div ng-if="sameDayTimeOff(time_off, 0)"
+            <div ng-if='sameDayTimeOff(time_off, days.indexOf(day))'
                  ng-repeat="time_off in user.time_off_requests | orderBy:'starts_at'">
               <%= render 'shifts/week_views/week_view_time_off_request' %>
             </div>
-            <div ng-repeat="avail in user.availabilities | orderBy:'start_time' | filter: { day: 0 }">
+            <div ng-repeat="avail in user.availabilities | orderBy:'start_time' | filter: { day: days.indexOf(day) }">
               <%= render 'shifts/week_views/week_view_availability' %>
             </div>
           </div>
-          <div ng-if='sameDay(shift.start_time, 0)'
+          <div ng-if='sameDay(shift.start_time, days.indexOf(day))'
                ng-repeat="shift in user.shifts | orderBy:'start_time'">
             <%= render 'shifts/week_views/week_view_shifts' %>
           </div>
           <div ng-if='build()'>
             <div class='shift'
-              ng-click='open(user, 0)'
-              data-hover='Assign Shift'>
-            </div>
-          </div>
-        </td>
-
-        <td>
-          <div ng-if='build()'>
-            <div ng-if="sameDayTimeOff(time_off, 1)"
-                 ng-repeat="time_off in user.time_off_requests | orderBy:'starts_at'">
-              <%= render 'shifts/week_views/week_view_time_off_request' %>
-            </div>
-            <div ng-repeat="avail in user.availabilities | orderBy:'start_time' | filter: { day: 1 }">
-              <%= render 'shifts/week_views/week_view_availability' %>
-            </div>
-          </div>
-          <div ng-if='sameDay(shift.start_time, 1)'
-               ng-repeat="shift in user.shifts | orderBy:'start_time'">
-            <%= render 'shifts/week_views/week_view_shifts' %>
-          </div>
-          <div ng-if='build()'>
-            <div class='shift'
-              ng-click='open(user, 1)'
-              data-hover='Assign Shift'>
-            </div>
-          </div>
-        </td>
-
-        <td>
-          <div ng-if='build()'>
-            <div ng-if='sameDayTimeOff(time_off, 2)'
-                 ng-repeat="time_off in user.time_off_requests | orderBy:'starts_at'">
-              <%= render 'shifts/week_views/week_view_time_off_request' %>
-            </div>
-            <div ng-repeat="avail in user.availabilities | orderBy:'start_time' | filter: { day: 2 }">
-              <%= render 'shifts/week_views/week_view_availability' %>
-            </div>
-          </div>
-          <div ng-if='sameDay(shift.start_time, 2)'
-               ng-repeat="shift in user.shifts | orderBy:'start_time'">
-            <%= render 'shifts/week_views/week_view_shifts' %>
-          </div>
-          <div ng-if='build()'>
-            <div class='shift'
-                 ng-click='open(user, 2)'
-                 data-hover='Assign Shift'>
-            </div>
-          </div>
-        </td>
-
-        <td>
-          <div ng-if='build()'>
-            <div ng-if='sameDayTimeOff(time_off, 3)'
-                 ng-repeat="time_off in user.time_off_requests | orderBy:'starts_at'">
-              <%= render 'shifts/week_views/week_view_time_off_request' %>
-            </div>
-            <div ng-repeat="avail in user.availabilities | orderBy:'start_time' | filter: { day: 3 }">
-              <%= render 'shifts/week_views/week_view_availability' %>
-            </div>
-          </div>
-          <div ng-if='sameDay(shift.start_time, 3)'
-               ng-repeat="shift in user.shifts | orderBy:'start_time'">
-            <%= render 'shifts/week_views/week_view_shifts' %>
-          </div>
-          <div ng-if='build()'>
-            <div class='shift'
-                 ng-click='open(user, 3)'
-                 data-hover='Assign Shift'>
-            </div>
-          </div>
-        </td>
-
-        <td>
-          <div ng-if='build()'>
-            <div ng-if='sameDayTimeOff(time_off, 4)'
-                 ng-repeat="time_off in user.time_off_requests | orderBy:'starts_at'">
-              <%= render 'shifts/week_views/week_view_time_off_request' %>
-            </div>
-            <div ng-repeat="avail in user.availabilities | orderBy:'start_time' | filter: { day: 4 }">
-              <%= render 'shifts/week_views/week_view_availability' %>
-            </div>
-          </div>
-          <div ng-if='sameDay(shift.start_time, 4)'
-               ng-repeat="shift in user.shifts | orderBy:'start_time'">
-            <%= render 'shifts/week_views/week_view_shifts' %>
-          </div>
-          <div ng-if='build()'>
-            <div class='shift'
-                 ng-click='open(user, 4)'
-                 data-hover='Assign Shift'>
-            </div>
-          </div>
-        </td>
-
-        <td>
-          <div ng-if='build()'>
-            <div ng-if='sameDayTimeOff(time_off, 5)'
-                 ng-repeat="time_off in user.time_off_requests | orderBy:'starts_at'">
-              <%= render 'shifts/week_views/week_view_time_off_request' %>
-            </div>
-            <div ng-repeat="avail in user.availabilities | orderBy:'start_time' | filter: { day: 5 }">
-              <%= render 'shifts/week_views/week_view_availability' %>
-            </div>
-          </div>
-          <div ng-if='sameDay(shift.start_time, 5)'
-               ng-repeat="shift in user.shifts | orderBy:'start_time'">
-            <%= render 'shifts/week_views/week_view_shifts' %>
-          </div>
-          <div ng-if='build()'>
-            <div class='shift'
-                 ng-click='open(user, 5)'
-                 data-hover='Assign Shift'>
-            </div>
-          </div>
-        </td>
-
-        <td>
-          <div ng-if='build()'>
-            <div ng-if='sameDayTimeOff(time_off, 6)'
-                 ng-repeat="time_off in user.time_off_requests | orderBy:'starts_at'">
-              <%= render 'shifts/week_views/week_view_time_off_request' %>
-            </div>
-            <div ng-repeat="avail in user.availabilities | orderBy:'start_time' | filter: { day: 6 }">
-              <%= render 'shifts/week_views/week_view_availability' %>
-            </div>
-          </div>
-          <div ng-if='sameDay(shift.start_time, 6)'
-               ng-repeat="shift in user.shifts | orderBy:'start_time'">
-            <%= render 'shifts/week_views/week_view_shifts' %>
-          </div>
-          <div ng-if='build()'>
-            <div class='shift'
-              ng-click='open(user, 6)'
+              ng-click='open(user, days.indexOf(day))'
               data-hover='Assign Shift'>
             </div>
           </div>

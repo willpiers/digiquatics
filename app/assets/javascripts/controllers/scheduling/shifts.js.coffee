@@ -13,6 +13,16 @@
     $scope.locations = Locations.index()
     $scope.positions = Positions.index()
 
+    $scope.days = [
+      'Sunday'
+      'Monday'
+      'Tuesday'
+      'Wednesday'
+      'Thursday'
+      'Friday'
+      'Saturday'
+    ]
+
     $scope.calculateHours = (user) ->
       _.reduce user.shifts, (total, shift) ->
         if moment(shift.start_time).isSame $scope.weekDay(0), 'week'
