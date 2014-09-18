@@ -1,6 +1,12 @@
-@digiquatics.controller 'TimeOffCtrl', ['$scope', 'TimeOff', 'Users',
-                                       'Locations', 'Positions',
-  @UsersCtrl = ($scope, TimeOff, Users, Locations, Positions) ->
+@digiquatics.controller 'TimeOffCtrl', [
+  '$scope'
+  'TimeOff'
+  'Users'
+  'Locations'
+  'Positions'
+  'TimeOffHelper'
+  @TimeOffCtrl = ($scope, TimeOff, Users, Locations, Positions, TimeOffHelper) ->
+    angular.extend $scope, TimeOffHelper
     # Services
     $scope.timeOff = TimeOff.index()
     $scope.users = Users.index()
@@ -11,17 +17,17 @@
     $scope.requestMode = 'partialDay'
 
     $scope.allDayRequestMode = ->
-      $scope.requestMode  == 'allDay'
+      $scope.requestMode is 'allDay'
 
     $scope.partialDayRequestMode = ->
-      $scope.requestMode  == 'partialDay'
+      $scope.requestMode is 'partialDay'
 
     # Date picker defaults
     $scope.today1 = ->
-      $scope.dt1 = new Date()
+      $scope.dt1 = moment().format('YYYY-MM-DD')
 
     $scope.today2 = ->
-      $scope.dt2 = new Date()
+      $scope.dt2 = moment().format('YYYY-MM-DD')
 
     $scope.today1()
     $scope.today2()
@@ -41,32 +47,16 @@
       "starting-day": 1
 
     $scope.setPartial1 = ->
-      partialDayStartTime = new Date()
-      partialDayStartTime.setHours 7
-      partialDayStartTime.setMinutes 0
-      partialDayStartTime.setSeconds 0
-      $scope.partialDayStartTime = partialDayStartTime
+      $scope.partialDayStartTime = moment().startOf('day').add 7, 'hours'
 
     $scope.setPartial2 = ->
-      partialDayEndTime = new Date()
-      partialDayEndTime.setHours 8
-      partialDayEndTime.setMinutes 0
-      partialDayEndTime.setSeconds 0
-      $scope.partialDayEndTime = partialDayEndTime
+      $scope.partialDayEndTime = moment().startOf('day').add 8, 'hours'
 
     $scope.setAll1 = ->
-      allDayStartTime = new Date()
-      allDayStartTime.setHours 0
-      allDayStartTime.setMinutes 1
-      allDayStartTime.setSeconds 0
-      $scope.allDayStartTime = allDayStartTime
+      $scope.allDayStartTime = moment().startOf('day').add 1, 'minutes'
 
     $scope.setAll2 = ->
-      allDayEndTime = new Date()
-      allDayEndTime.setHours 23
-      allDayEndTime.setMinutes 59
-      allDayEndTime.setSeconds 0
-      $scope.allDayEndTime = allDayEndTime
+      $scope.allDayEndTime = moment().startOf('day').add(23, 'hours').add(59, 'minutes')
 
     $scope.setPartial1()
     $scope.setPartial2()
@@ -88,22 +78,4 @@
 
     $scope.loadMore = ->
       $scope.totalDisplayed += 50
-
-    $scope.thArrow = (current_column, anchored_column) ->
-      if current_column == anchored_column then true
-
-    $scope.hasReason = (request) ->
-      request.reason
-
-    $scope.startsAt = (request) ->
-      if request.all_day
-        moment(request.starts_at).format('M/D/YY')
-      else
-        moment(request.ends_at).format('M/D/YY @ h:mma')
-
-    $scope.endsAt = (request) ->
-      if request.all_day
-        moment(request.ends_at).format('M/D/YY')
-      else
-        moment(request.ends_at).format('M/D/YY @ h:mma')
 ]

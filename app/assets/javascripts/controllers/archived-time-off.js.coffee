@@ -1,6 +1,13 @@
-@digiquatics.controller 'ArchivedTimeOffCtrl', ['$scope', 'ArchivedTimeOff', 'Users',
-                                                'Locations', 'Positions',
-  @UsersCtrl = ($scope, ArchivedTimeOff, Users, Locations, Positions) ->
+@digiquatics.controller 'ArchivedTimeOffCtrl', [
+  '$scope'
+  'ArchivedTimeOff'
+  'Users'
+  'Locations'
+  'Positions'
+  'TimeOffHelper'
+  @ArchivedTimeOffCtrl = ($scope, ArchivedTimeOff, Users, Locations, Positions,
+                          TimeOffHelper) ->
+    angular.extend $scope, TimeOffHelper
     # Services
     $scope.archivedTimeOff = ArchivedTimeOff.index()
     $scope.users = Users.index()
@@ -12,33 +19,13 @@
       value: 'last_name'
 
     $scope.cssClass = (request) ->
-      if request.approved == true then 'success'
-      else 'danger'
+      if request.approved then 'success' else 'danger'
 
     $scope.totalDisplayed = 10
 
     $scope.loadMore = ->
       $scope.totalDisplayed += 50
 
-    $scope.checkActive = (request) ->
-      if request.active == false and request.approved == true then false
-      else true
-
-    $scope.thArrow = (current_column, anchored_column) ->
-      if current_column == anchored_column then true
-
-    $scope.hasReason = (request) ->
-      request.reason
-
-    $scope.startsAt = (request) ->
-      if request.all_day
-        moment(request.starts_at).format('M/D/YY')
-      else
-        moment(request.ends_at).format('M/D/YY @ h:mma')
-
-    $scope.endsAt = (request) ->
-      if request.all_day
-        moment(request.ends_at).format('M/D/YY')
-      else
-        moment(request.ends_at).format('M/D/YY @ h:mma')
+    $scope.checkIfProcessed = (request) ->
+      !request.active
 ]

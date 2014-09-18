@@ -116,7 +116,7 @@
       </td>
       <td class='hidden-xs'>
         <a ng-href='/users/{{request.approved_by_user_id}}'>
-          <div ng-hide='checkActive(request)' %>
+          <div ng-if='checkIfProcessed(request)' %>
             <a ng-href='/users/{{request.approved_by_user_id}}'>
               {{request.processed_by_last_name}},
               {{request.processed_by_first_name}}
