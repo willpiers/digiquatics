@@ -1,5 +1,8 @@
-@digiquatics.controller 'HelpDesksCtrl', ['$scope', 'HelpDesks',
-                                             'Locations'
+@digiquatics.controller 'HelpDesksCtrl', [
+  '$scope'
+  'HelpDesks'
+  'Locations'
+
   @HelpDesksCtrl = ($scope, HelpDesks, Locations) ->
       $scope.helpDesks = HelpDesks.index()
 

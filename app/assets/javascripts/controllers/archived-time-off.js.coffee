@@ -5,6 +5,7 @@
   'Locations'
   'Positions'
   'TimeOffHelper'
+
   @ArchivedTimeOffCtrl = ($scope, ArchivedTimeOff, Users, Locations, Positions,
                           TimeOffHelper) ->
     angular.extend $scope, TimeOffHelper

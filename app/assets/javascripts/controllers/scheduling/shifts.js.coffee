@@ -7,6 +7,7 @@
   'Positions'
   '$modal'
   '$log'
+
   @ShiftsCtrl = ($scope, $filter, Shifts, Users, Locations, Positions, $modal, $log) ->
     # Services
     $scope.users = Users.index()

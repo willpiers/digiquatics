@@ -1,5 +1,8 @@
-@digiquatics.controller 'SlideInspectionsCtrl', ['$scope', 'SlideInspections',
-                                                 'Locations'
+@digiquatics.controller 'SlideInspectionsCtrl', [
+  '$scope'
+  'SlideInspections'
+  'Locations'
+
   @SlideInspectionsCtrl = ($scope, SlideInspections, Locations) ->
     $scope.predicate =
       value: '-created_at'

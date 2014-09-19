@@ -4,6 +4,7 @@
   'Users'
   'Locations'
   'Positions'
+
   @ProcessedSubRequestsCtrl = ($scope, ProcessedSubRequests, Users, Locations, Positions) ->
     # Services
     $scope.processedSubRequests = ProcessedSubRequests.index()

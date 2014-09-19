@@ -7,6 +7,7 @@
   'SubRequests'
   '$modal'
   '$log'
+
   @MyScheduleCtrl = ($scope, Shifts, MyShifts, Locations, Positions,
                      SubRequests, $modal, $log) ->
     # Services

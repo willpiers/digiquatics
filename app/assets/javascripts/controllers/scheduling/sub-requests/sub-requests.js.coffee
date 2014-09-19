@@ -6,6 +6,7 @@
   'Positions'
   '$modal'
   '$log'
+
   @SubRequestsCtrl = ($scope, SubRequests, Users, Locations, Positions, $modal, $log) ->
     # Services
     $scope.subRequests = SubRequests.index()

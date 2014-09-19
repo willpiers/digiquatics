@@ -4,6 +4,7 @@
   'Users'
   'Locations'
   'Positions'
+
   @AdminSubRequestsCtrl = ($scope, AdminSubRequests, Users, Locations, Positions) ->
     # Services
     $scope.adminSubRequests = AdminSubRequests.index()
