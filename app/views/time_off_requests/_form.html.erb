@@ -24,6 +24,9 @@
     <button type='submit' class='btn btn-block btn-primary'>
       <i class='fa fa-check'></i> Submit Request
     </button>
+    <%= link_to ' Delete', @time_off_request, method: :delete,
+      class: 'btn btn-danger btn-block',
+      data: { confirm: 'Are you sure?' } %>
   <% end %>
 </div>
 </div>

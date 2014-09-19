@@ -7,14 +7,27 @@
   'SubRequests'
   '$modal'
   '$log'
+  'ScheduleHelper'
 
   @MyScheduleCtrl = ($scope, Shifts, MyShifts, Locations, Positions,
-                     SubRequests, $modal, $log) ->
+                     SubRequests, $modal, $log, ScheduleHelper) ->
+    angular.extend $scope, ScheduleHelper
     # Services
     $scope.myShifts = MyShifts.index()
     $scope.locations = Locations.index()
     $scope.positions = Positions.index()
     $scope.subRequests = SubRequests.index()
+
+    $scope.calculateHours = (user) ->
+      shifts = user.shifts
+      total = 0
+      for shift in shifts
+        if moment(shift.start_time).isSame($scope.weekDay(0), 'week')
+          hours = moment(shift.end_time).hours() - moment(shift.start_time).hours()
+          minutes = moment(shift.end_time).minutes() - moment(shift.start_time).minutes()
+          hours = hours + ( minutes / 60 )
+          total += hours
+      total
 
     $scope.weekCounter = 0
 
@@ -47,16 +60,6 @@
         moment($scope.weekDay(day)).isAfter(request.starts_at) and
         moment($scope.weekDay(day)).isBefore(request.ends_at)
 
-    $scope.days = [
-      'Sunday'
-      'Monday'
-      'Tuesday'
-      'Wednesday'
-      'Thursday'
-      'Friday'
-      'Saturday'
-    ]
-
     $scope.predicate =
       value: 'shift.start_time'
 
@@ -71,4 +74,3 @@
       modalInstance.result.then ->
         $log.info('Modal dismissed at: ' + new Date())
 ]
-

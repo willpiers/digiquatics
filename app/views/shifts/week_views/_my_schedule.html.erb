@@ -1,4 +1,5 @@
 <div class='hidden-xs visible-sm visible-md visible-lg visible-print'>
+  <h4 ng-repeat='user in myShifts'>My Hours: {{calculateHours(user)}}</h4>
   <table class='table table-bordered table-white print-schedule-font'>
     <thead>
       <tr>
@@ -31,6 +32,7 @@
 </div>
 
 <div class='visible-xs hidden-print'>
+  <h4 ng-repeat='user in myShifts'>My Hours: {{calculateHours(user)}}</h4>
   <table class='table table-bordered table-white shadow-effect'
          ng-repeat='day in days'>
     <thead>
