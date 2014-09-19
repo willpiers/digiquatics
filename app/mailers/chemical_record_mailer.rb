@@ -1,10 +1,10 @@
 class ChemicalRecordMailer < ActionMailer::Base
-  default from: 'Team@digiquatics.com'
+  default from: 'Josh@digiquatics.com'
 
   def urgent_email(record, account_id, location_id, current_user_location_id)
     @chemical_record = record
     mail(to: email(account_id, location_id, current_user_location_id),
-         from: 'Team@digiquatics.com',
+         from: 'Josh@digiquatics.com',
          subject: "Urgent Chemical Record Issue at #{Location.find(@chemical_record.location_id).name}")
   end
 
