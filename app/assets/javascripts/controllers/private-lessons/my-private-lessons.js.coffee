@@ -1,5 +1,8 @@
-@digiquatics.controller 'MyPrivateLessonsCtrl', ['$scope', 'MyPrivateLessons',
-                                             'Locations'
+@digiquatics.controller 'MyPrivateLessonsCtrl', [
+  '$scope'
+  'MyPrivateLessons'
+  'Locations'
+
   @AdminPrivateLessonsCtrl = ($scope, MyPrivateLessons, Locations) ->
       $scope.myPrivateLessons = MyPrivateLessons.index()
 

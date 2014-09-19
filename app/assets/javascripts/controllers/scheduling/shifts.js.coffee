@@ -7,21 +7,13 @@
   'Positions'
   '$modal'
   '$log'
-  @ShiftsCtrl = ($scope, $filter, Shifts, Users, Locations, Positions, $modal, $log) ->
-    # Services
+  @ShiftsCtrl = ($scope, $filter, Shifts, Users, Locations, Positions,
+                 $modal, $log, ScheduleHelper) ->
+    angular.extend $scope, ScheduleHelper
+
     $scope.users = Users.index()
     $scope.locations = Locations.index()
     $scope.positions = Positions.index()
-
-    $scope.days = [
-      'Sunday'
-      'Monday'
-      'Tuesday'
-      'Wednesday'
-      'Thursday'
-      'Friday'
-      'Saturday'
-    ]
 
     $scope.calculateHours = (user) ->
       shifts = user.shifts

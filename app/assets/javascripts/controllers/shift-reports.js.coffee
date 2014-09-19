@@ -1,5 +1,8 @@
-@digiquatics.controller 'ShiftReportsCtrl', ['$scope', 'ShiftReports',
-                                             'Locations'
+@digiquatics.controller 'ShiftReportsCtrl', [
+  '$scope'
+  'ShiftReports'
+  'Locations'
+
   @ShiftReportsCtrl = ($scope, ShiftReports, Locations) ->
 
     $scope.predicate =
