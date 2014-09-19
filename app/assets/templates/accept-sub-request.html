@@ -1,0 +1,42 @@
+<div class='userform well'>
+  <a class='pull-right close-button link-color' ng-click='cancel()'>
+    <i class='fa fa-times fa-lg'></i></a>
+  <h1 class='shift-title'>Sub Request</h1>
+
+  <table class='table table-clean table-white shadow-effect'>
+      <tr>
+        <th id='fixtablewidth'>Location</th>
+        <td>{{location}}</td>
+      </tr>
+      <tr>
+        <th>Position</th>
+        <td>{{position}}</td>
+      </tr>
+      <tr>
+        <th>Date</th>
+        <td>{{shiftDate}}</td>
+      </tr>
+      <tr>
+        <th>Time</th>
+        <td>
+          {{shiftStartTime}} - {{shiftEndTime}}
+        </td>
+      </tr>
+    <tr>
+      <th>Requested By</th>
+        <td>
+          {{requestedByFirstName}},
+          {{requestedByLastName}}
+        </td>
+    </tr>
+    <tr>
+      <th>Requested On</th>
+      <td>{{requestedOn}}</td>
+    </tr>
+  </table>
+
+  <a class='btn btn-success btn-block' ng-click='ok()'>
+    <i class="fa fa-check fa-lg"></i> Accept Shift</a>
+</div>
+
+
