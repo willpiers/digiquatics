@@ -7,12 +7,10 @@
   'Positions'
   '$modal'
   '$log'
-  'ScheduleHelper'
-
   @ShiftsCtrl = ($scope, $filter, Shifts, Users, Locations, Positions,
                  $modal, $log, ScheduleHelper) ->
     angular.extend $scope, ScheduleHelper
-    # Services
+
     $scope.users = Users.index()
     $scope.locations = Locations.index()
     $scope.positions = Positions.index()
