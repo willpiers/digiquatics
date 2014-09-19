@@ -1,5 +1,9 @@
-@digiquatics.controller 'ChemicalRecordsCtrl', ['$scope', 'ChemicalRecords',
-                                                'Locations', 'Pools',
+@digiquatics.controller 'ChemicalRecordsCtrl', [
+  '$scope'
+  'ChemicalRecords'
+  'Locations'
+  'Pools'
+
   @ChemicalRecordsCtrl = ($scope, ChemicalRecords, Locations, Pools) ->
     $scope.predicate =
       value: '-time_stamp'

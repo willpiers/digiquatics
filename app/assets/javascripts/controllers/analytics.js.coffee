@@ -1,4 +1,6 @@
-@digiquatics.controller 'AnalyticsCtrl', ['$scope',
+@digiquatics.controller 'AnalyticsCtrl', [
+  '$scope'
+
   @AnalyticsControllerCtrl = ($scope) ->
     $scope.today1 = ->
       $scope.dt1 = new Date()

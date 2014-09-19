@@ -1,4 +1,6 @@
-@digiquatics.controller 'AdminDashboardCtrl', ['$scope',
+@digiquatics.controller 'AdminDashboardCtrl', [
+  '$scope'
+
   @AdminDashboardControllerCtrl = ($scope) ->
     $scope.oneAtATime = true
 ]

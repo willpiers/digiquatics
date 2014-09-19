@@ -1,6 +1,11 @@
-@digiquatics.controller 'ProcessedSubRequestsCtrl', ['$scope', 'ProcessedSubRequests', 'Users',
-                                                     'Locations', 'Positions',
-  @UsersCtrl = ($scope, ProcessedSubRequests, Users, Locations, Positions) ->
+@digiquatics.controller 'ProcessedSubRequestsCtrl', [
+  '$scope'
+  'ProcessedSubRequests'
+  'Users'
+  'Locations'
+  'Positions'
+
+  @ProcessedSubRequestsCtrl = ($scope, ProcessedSubRequests, Users, Locations, Positions) ->
     # Services
     $scope.processedSubRequests = ProcessedSubRequests.index()
     $scope.locations = Locations.index()

@@ -1,6 +1,13 @@
-@digiquatics.controller 'SubRequestsCtrl', ['$scope', 'SubRequests', 'Users',
-                                            'Locations', 'Positions', '$modal', '$log',
-  @UsersCtrl = ($scope, SubRequests, Users, Locations, Positions, $modal, $log) ->
+@digiquatics.controller 'SubRequestsCtrl', [
+  '$scope'
+  'SubRequests'
+  'Users'
+  'Locations'
+  'Positions'
+  '$modal'
+  '$log'
+
+  @SubRequestsCtrl = ($scope, SubRequests, Users, Locations, Positions, $modal, $log) ->
     # Services
     $scope.subRequests = SubRequests.index()
     $scope.locations = Locations.index()
@@ -43,13 +50,14 @@
         SubRequests.create
           shift_id: shift.id
           user_id: shift.user_id
+        console.log 'requested sub successfully'
 
       $scope.ok = ->
         $scope.requestSub(shift)
-        $modalInstance.close(shift)
+        $modalInstance.close shift
 
-        toastr.success('Sub Request has been requested!')
-        return true #Fixes error with returns elements through Angular to the DOM
+        # toastr.success('Sub Request has been requested!')
+        # return true #Fixes error with returns elements through Angular to the DOM
 
       $scope.cancel = ->
         $modalInstance.dismiss "Cancel"
