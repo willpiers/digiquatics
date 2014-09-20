@@ -34,37 +34,20 @@
     $scope.thArrow = (current_column, anchored_column) ->
       if current_column == anchored_column then true
 
-    $scope.open = (shift, size) ->
+    $scope.open = (request, size) ->
       modalInstance = $modal.open
-        templateUrl: 'sub-request.html',
-        controller: ModalInstanceCtrl,
+        templateUrl: 'accept-sub-request.html',
+        controller: SubRequestModalCtrl,
         size: size,
         resolve:
-          shift: -> shift
+          request: -> request
+          userIsAdmin: -> $scope.userIsAdmin
+          subUserId: -> $scope.subUserId
+          subUserFirstName: -> $scope.subUserFirstName
+          subUserLastName: -> $scope.subUserLastName
+          subRequests: -> $scope.subRequests
+
 
       modalInstance.result.then ->
         $log.info('Modal dismissed at: ' + new Date())
-
-    ModalInstanceCtrl = ($scope, $modalInstance, shift) ->
-      $scope.requestSub = (shift) ->
-        SubRequests.create
-          shift_id: shift.id
-          user_id: shift.user_id
-        console.log 'requested sub successfully'
-
-      $scope.ok = ->
-        $scope.requestSub(shift)
-        $modalInstance.close shift
-
-        # toastr.success('Sub Request has been requested!')
-        # return true #Fixes error with returns elements through Angular to the DOM
-
-      $scope.cancel = ->
-        $modalInstance.dismiss "Cancel"
-
-    ModalInstanceCtrl['$inject'] = [
-      '$scope'
-      '$modalInstance'
-      'shift'
-    ]
 ]
