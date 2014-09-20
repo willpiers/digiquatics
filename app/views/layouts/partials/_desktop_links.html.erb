@@ -31,7 +31,7 @@
             <li>
               <%= link_to account_private_lessons_path(account_id: current_user.account_id) do %>
                  Private Lessons Queue
-                <% if show_badge_notification('private_lessons_queue') == true %>
+                <% if show_badge_notification('private_lessons_queue') %>
                   <span class='badge pull-right'>
                     <%= badge_notifications('private_lessons_queue') %>
                   </span>
@@ -63,7 +63,7 @@
           <li>
             <%= link_to help_desks_path do %>
                Open Issues
-                <% if show_badge_notification('open_issues') == true %>
+                <% if show_badge_notification('open_issues') %>
                  <span class='badge pull-right'>
                    <%= badge_notifications('open_issues') %>
                  </span>
@@ -109,7 +109,7 @@
               <li>
                 <%= link_to sub_requests_path do %>
                    Sub Requests Queue
-                   <% if show_badge_notification('sub_requests') == true %>
+                   <% if show_badge_notification('sub_requests') %>
                      <span class='badge pull-right'>
                        <%= badge_notifications('sub_requests') %>
                      </span>
@@ -120,7 +120,7 @@
                 <li>
                   <%= link_to time_off_requests_path do %>
                      Time Off Requests
-                     <% if show_badge_notification('time_off_requests') == true %>
+                     <% if show_badge_notification('time_off_requests') %>
                        <span class='badge pull-right'>
                          <%= badge_notifications('time_off_requests') %>
                        </span>

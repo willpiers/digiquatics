@@ -135,21 +135,13 @@ module ApplicationHelper
   def show_badge_notification(page)
     case page
     when 'private_lessons_queue'
-      if number_private_lessons > 0 then
-        return true
-      end
+      number_private_lessons > 0
     when 'open_issues'
-      if number_open_issues > 0 then
-        return true
-      end
+      number_open_issues > 0
     when 'sub_requests'
-      if number_sub_requests > 0 then
-        return true
-      end
+      number_sub_requests > 0
     when 'time_off_requests'
-      if number_time_off_requests > 0 then
-        return true
-      end
+      number_time_off_requests > 0
     end
   end
 
