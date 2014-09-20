@@ -1,5 +1,8 @@
 <div class='hidden-xs visible-sm visible-md visible-lg visible-print'>
-  <h4 ng-repeat='user in myShifts'>My Hours: {{calculateHours(user)}}</h4>
+  <h4 ng-repeat='user in myShifts'>
+    <i class='fa fa-clock-o'></i> {{calculateHours(user)}}
+    Hours
+  </h4>
   <table class='table table-bordered table-white print-schedule-font'>
     <thead>
       <tr>
