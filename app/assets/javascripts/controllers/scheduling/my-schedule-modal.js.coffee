@@ -5,7 +5,6 @@
   'SubRequests'
 
   @MyScheduleModalCtrl = ($scope, $modalInstance, shift, SubRequests) ->
-
     $scope.requestSub = (shift) ->
       SubRequests.create
         shift_id: shift.id

@@ -70,6 +70,7 @@
         size: size,
         resolve:
           shift: -> shift
+          SubRequests: -> SubRequests
 
       modalInstance.result.then ->
         $log.info('Modal dismissed at: ' + new Date())
