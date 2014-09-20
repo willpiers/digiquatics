@@ -1,5 +1,9 @@
 <div ng-app='digiquatics'>
   <div ng-controller='SubRequestsCtrl'>
+    <div ng-init='userIsAdmin = <%= current_user.admin %>'>
+    <div ng-init='subUserId = <%= current_user.id %>'>
+    <div ng-init="subUserFirstName = '<%= current_user.first_name %>'">
+    <div ng-init="subUserLastName = '<%= current_user.last_name %>'">
     <% provide(:title, 'Sub Requests') %>
     <h1 class='cross_platform_header'>Sub Requests</h1>
     <div class='row'>

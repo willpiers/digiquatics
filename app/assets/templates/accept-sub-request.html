@@ -37,6 +37,11 @@
 
   <a class='btn btn-success btn-block' ng-click='ok()'>
     <i class="fa fa-check fa-lg"></i> Accept Shift</a>
+  <div ng-if='correctUser(request, subUserId)'>
+    <a class='btn btn-danger btn-block'
+       ng-click='delete()'>
+      <i class='fa fa-trash-o fa-lg'></i> {{'Cancel Request'}}</a>
+  </div>
 </div>
 
 

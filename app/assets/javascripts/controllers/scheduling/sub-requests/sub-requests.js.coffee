@@ -41,6 +41,12 @@
         size: size,
         resolve:
           request: -> request
+          userIsAdmin: -> $scope.userIsAdmin
+          subUserId: -> $scope.subUserId
+          subUserFirstName: -> $scope.subUserFirstName
+          subUserLastName: -> $scope.subUserLastName
+          subRequests: -> $scope.subRequests
+
 
       modalInstance.result.then ->
         $log.info('Modal dismissed at: ' + new Date())
