@@ -16,9 +16,7 @@
       <center><h4>Forgot Your Password?</h4></center><hr>
       <%= devise_error_messages! %>
       <%= f.email_field :email, :autofocus => true %>
-      <center>
-        <%= f.submit 'Send me reset instructions', class: 'devise-button' %>
-      </center>
+      <%= f.submit 'Reset', class: 'btn btn-block btn-primary' %>
     <% end %>
     <div class='visible-xs'>
       <br>

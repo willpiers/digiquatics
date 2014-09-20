@@ -13,9 +13,8 @@
                         placeholder: 'Email' %>
       <%= f.password_field :password, hide_label: :true,
                         placeholder: 'Password' %>
-      <center>
-        <%= f.submit 'Sign in to your account', class: 'devise-button' %>
-      </center>
+
+      <%= f.submit 'Sign in', class: 'btn btn-block btn-primary' %>
     <% end %>
     <div class='hidden-xs'>
       <hr>
