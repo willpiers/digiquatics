@@ -91,4 +91,11 @@
 
       $scope.cancel = ->
         $modalInstance.dismiss "Cancel"
+
+    MyScheduleModalCtrl['$inject'] = [
+      '$scope'
+      '$modalInstance'
+      'shift'
+      'SubRequests'
+    ]
 ]
