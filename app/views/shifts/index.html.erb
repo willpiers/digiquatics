@@ -2,17 +2,12 @@
   <div ng-controller='ShiftsCtrl'>
     <% provide(:title, 'Scheduler') %>
     <div class='hidden-print'>
-      <div ng-if='showIf()'>
+      <div>
         <h1 class='cross_platform_header'>
           <div ng-if='buildLocation'>
             <!-- Left blank for print view -->
           </div>
           {{displayStartDate()}}
-        </h1>
-      </div>
-      <div ng-if='hideIf()'>
-        <h1 class='cross_platform_header'>
-          {{displayDay()}}
         </h1>
       </div>
       <div class='row'>
@@ -25,10 +20,10 @@
         <div class='pull-right'>
           <br>
           <div class='btn-group pull-right'>
-            <label class='btn btn-default' ng-model='buildMode' btn-radio="'Build'">
+            <label class='btn btn-default' ng-model='buildMode' btn-radio='true'>
               <i class='fa fa-wrench fa-lg'></i> Build
             </label>
-            <label class='btn btn-default' ng-model='buildMode' btn-radio="'View'">
+            <label class='btn btn-default' ng-model='buildMode' btn-radio='false'>
               <i class='fa fa-calendar fa-lg'></i></a> View
             </label>
           </div>
@@ -37,39 +32,21 @@
       </div>
       <div class='row'>
         <div class='col-md-1'>
-          <div ng-if='showIf()'>
+          <div>
             <btn class='btn btn-default btn-sm' ng-click='resetWeekCounter()'>
-              <i class='fa fa-calendar-o fa-lg'></i>
-              <b> Today</b>
-            </btn>
-          </div>
-          <div ng-if='hideIf()'>
-            <btn class='btn btn-default btn-sm' ng-click='resetDayCounter()'>
               <i class='fa fa-calendar-o fa-lg'></i>
               <b> Today</b>
             </btn>
           </div>
         </div>
         <div class='col-md-2'>
-          <div ng-if='showIf()'>
+          <div>
             <div class='btn-group'>
               <btn class='btn btn-default btn-sm' ng-click='previousWeek()'
                    style='width: 40px;'>
                 <%= fa_icon 'chevron-left' %>
               </btn>
               <btn class='btn btn-default btn-sm' ng-click='nextWeek()'
-                   style='width: 40px;'>
-                <%= fa_icon 'chevron-right' %>
-              </btn>
-            </div>
-          </div>
-          <div ng-if='hideIf()'>
-            <div class='btn-group'>
-              <btn class='btn btn-default btn-sm' ng-click='previousDay()'
-                   style='width: 40px;'>
-                <%= fa_icon 'chevron-left' %>
-              </btn>
-              <btn class='btn btn-default btn-sm' ng-click='nextDay()'
                    style='width: 40px;'>
                 <%= fa_icon 'chevron-right' %>
               </btn>
@@ -94,13 +71,8 @@
       <br>
     </div>
     <div>
-
-    </div>
-    <div ng-if='showIf()'>
+    <div>
       <%= render 'shifts/week_views/week_view' %>
-    </div>
-    <div ng-if='hideIf()'>
-      <%= render 'day_view' %>
     </div>
   </div>
 </div>
