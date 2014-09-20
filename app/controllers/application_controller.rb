@@ -21,5 +21,4 @@ class ApplicationController < ActionController::Base
   def account_time_zone(&block)
     Time.use_zone(current_user.account.time_zone, &block)
   end
-
 end

@@ -31,9 +31,11 @@
             <li>
               <%= link_to account_private_lessons_path(account_id: current_user.account_id) do %>
                  Private Lessons Queue
-                 <span class='badge pull-right'>
-                   <%= badge_notifications('private_lessons_queue') %>
-                 </span>
+                <% if show_badge_notification('private_lessons_queue') == true %>
+                  <span class='badge pull-right'>
+                    <%= badge_notifications('private_lessons_queue') %>
+                  </span>
+                <% end %>
               <% end %>
             </li>
             <% if current_user && current_user.admin? %>
@@ -61,9 +63,11 @@
           <li>
             <%= link_to help_desks_path do %>
                Open Issues
-               <span class='badge pull-right'>
-                 <%= badge_notifications('open_issues') %>
-               </span>
+                <% if show_badge_notification('open_issues') == true %>
+                 <span class='badge pull-right'>
+                   <%= badge_notifications('open_issues') %>
+                 </span>
+                <% end %>
             <% end %>
           </li>
         </ul>
@@ -105,18 +109,22 @@
               <li>
                 <%= link_to sub_requests_path do %>
                    Sub Requests Queue
-                   <span class='badge pull-right'>
-                     <%= badge_notifications('sub_requests') %>
-                   </span>
+                   <% if show_badge_notification('sub_requests') == true %>
+                     <span class='badge pull-right'>
+                       <%= badge_notifications('sub_requests') %>
+                     </span>
+                   <% end %>
                 <% end %>
               </li>
               <% if current_user.admin? %>
                 <li>
                   <%= link_to time_off_requests_path do %>
                      Time Off Requests
-                     <span class='badge pull-right'>
-                       <%= badge_notifications('time_off_requests') %>
-                     </span>
+                     <% if show_badge_notification('time_off_requests') == true %>
+                       <span class='badge pull-right'>
+                         <%= badge_notifications('time_off_requests') %>
+                       </span>
+                     <% end %>
                   <% end %>
                 </li>
                 <li class='divider'></li>

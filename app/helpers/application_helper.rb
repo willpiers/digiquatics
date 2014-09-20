@@ -13,8 +13,6 @@ module ApplicationHelper
     %w(WI WI), %w(WV WV), %w(WY WY)
   ]
 
-
-
   def full_title(page_title)
     if page_title.empty?
       BASE_TITLE
@@ -110,32 +108,61 @@ module ApplicationHelper
     date ? date.strftime('%-m/%-d/%Y @ %I:%M%p') : ''
   end
 
-  def badge_notifications(page)
+  def number_private_lessons
+    PrivateLesson.joins(:account)
+                  .same_account_as(current_user).unclaimed.count
+  end
+
+  def number_open_issues
+    HelpDesk.joins(:location)
+            .where(locations: { account_id: current_user.account_id })
+            .where(issue_status: true).count
+  end
+
+  def number_sub_requests
+    SubRequest.joins(:user)
+              .where(users: { account_id: current_user.account_id })
+              .where(active: false)
+              .where(processed: false).count
+  end
+
+  def number_time_off_requests
+    TimeOffRequest.joins(:user)
+                  .where(users: { account_id: current_user.account_id })
+                  .where(active: true).count
+  end
+
+  def show_badge_notification(page)
     case page
     when 'private_lessons_queue'
-      PrivateLesson.joins(:account)
-                    .same_account_as(current_user).unclaimed.count
+      if number_private_lessons > 0 then
+        return true
+      end
     when 'open_issues'
-      HelpDesk.joins(:location)
-              .where(locations: { account_id: current_user.account_id })
-              .where(issue_status: true).count
+      if number_open_issues > 0 then
+        return true
+      end
     when 'sub_requests'
-      SubRequest.joins(:user)
-                .where(users: { account_id: current_user.account_id })
-                .where(active: false)
-                .where(processed: false).count
+      if number_sub_requests > 0 then
+        return true
+      end
     when 'time_off_requests'
-      TimeOffRequest.joins(:user)
-                    .where(users: { account_id: current_user.account_id })
-                    .where(active: true).count
+      if number_time_off_requests > 0 then
+        return true
+      end
     end
   end
 
-  def star_notifications(page)
+  def badge_notifications(page)
     case page
-    when 'lessons'
-    when 'maintenance'
-    when 'scheduling'
+    when 'private_lessons_queue'
+      number_private_lessons
+    when 'open_issues'
+      number_open_issues
+    when 'sub_requests'
+      number_sub_requests
+    when 'time_off_requests'
+      number_time_off_requests
     end
   end
 end
