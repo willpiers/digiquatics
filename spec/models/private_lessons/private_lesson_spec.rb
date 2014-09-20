@@ -95,11 +95,6 @@ describe PrivateLesson do
     it { should_not be_valid }
   end
 
-  describe 'without email is not present' do
-    before { @private_lesson.email = nil }
-    it { should_not be_valid }
-  end
-
   describe 'when contact methid is not present' do
     before { @private_lesson.contact_method = nil }
     it { should_not be_valid }
