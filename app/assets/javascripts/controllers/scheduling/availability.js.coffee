@@ -4,17 +4,11 @@
   'Availabilities'
   '$modal'
   '$log'
+  'ScheduleHelper'
 
-  @AvailabilityCtrl = ($scope, $filter, Availabilities, $modal, $log) ->
-    $scope.days = [
-      'Sunday'
-      'Monday'
-      'Tuesday'
-      'Wednesday'
-      'Thursday'
-      'Friday'
-      'Saturday'
-    ]
+  @AvailabilityCtrl = ($scope, $filter, Availabilities, $modal,
+                       $log, ScheduleHelper) ->
+    angular.extend $scope, ScheduleHelper
 
     $scope.availabilities = Availabilities.index()
 
