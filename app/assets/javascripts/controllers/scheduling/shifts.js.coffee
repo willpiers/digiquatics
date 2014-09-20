@@ -106,15 +106,6 @@
       ]
 
       $scope.assignShift = (user, location, position, start, end, shift) ->
-        console.log $scope.day
-        console.log $scope.occurences
-        console.log $scope.daysChecked[0].checked
-        console.log $scope.daysChecked[1].checked
-        console.log $scope.daysChecked[2].checked
-        console.log $scope.daysChecked[3].checked
-        console.log $scope.daysChecked[4].checked
-        console.log $scope.daysChecked[5].checked
-        console.log $scope.daysChecked[6].checked
         if shift
           shiftData = angular.extend shift,
             start_time: start
