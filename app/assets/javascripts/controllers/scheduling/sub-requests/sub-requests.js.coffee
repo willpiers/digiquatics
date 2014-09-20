@@ -7,7 +7,8 @@
   '$modal'
   '$log'
 
-  @SubRequestsCtrl = ($scope, SubRequests, Users, Locations, Positions, $modal, $log) ->
+  @SubRequestsCtrl = ($scope, SubRequests, Users, Locations, Positions, $modal,
+                      $log) ->
     # Services
     $scope.subRequests = SubRequests.index()
     $scope.locations = Locations.index()
@@ -15,16 +16,6 @@
     # Other
     $scope.predicate =
       value: 'shift.start_time'
-
-    $scope.days = [
-      'Sunday'
-      'Monday'
-      'Tuesday'
-      'Wednesday'
-      'Thursday'
-      'Friday'
-      'Saturday'
-    ]
 
     $scope.totalDisplayed = 10
 
