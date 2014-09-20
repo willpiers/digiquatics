@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
+
   before_filter :authenticate_user!, except: [:new, :create, :landing,
                                               :thank_you, :tos, :privacy,
                                               :team, :signup]
@@ -20,4 +21,5 @@ class ApplicationController < ActionController::Base
   def account_time_zone(&block)
     Time.use_zone(current_user.account.time_zone, &block)
   end
+
 end

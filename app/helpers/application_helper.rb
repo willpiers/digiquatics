@@ -13,6 +13,8 @@ module ApplicationHelper
     %w(WI WI), %w(WV WV), %w(WY WY)
   ]
 
+
+
   def full_title(page_title)
     if page_title.empty?
       BASE_TITLE
@@ -106,5 +108,34 @@ module ApplicationHelper
 
   def date_and_time(date)
     date ? date.strftime('%-m/%-d/%Y @ %I:%M%p') : ''
+  end
+
+  def badge_notifications(page)
+    case page
+    when 'private_lessons_queue'
+      PrivateLesson.joins(:account)
+                    .same_account_as(current_user).unclaimed.count
+    when 'open_issues'
+      HelpDesk.joins(:location)
+              .where(locations: { account_id: current_user.account_id })
+              .where(issue_status: true).count
+    when 'sub_requests'
+      SubRequest.joins(:user)
+                .where(users: { account_id: current_user.account_id })
+                .where(active: false)
+                .where(processed: false).count
+    when 'time_off_requests'
+      TimeOffRequest.joins(:user)
+                    .where(users: { account_id: current_user.account_id })
+                    .where(active: true).count
+    end
+  end
+
+  def star_notifications(page)
+    case page
+    when 'lessons'
+    when 'maintenance'
+    when 'scheduling'
+    end
   end
 end

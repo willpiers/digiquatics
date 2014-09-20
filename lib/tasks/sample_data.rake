@@ -272,9 +272,9 @@ namespace :db do
               'Clean Pumproom', 'Rewrap Lane Lines']
       HelpDesk.create!(name: name.sample,
                        urgency: %w(Low Medium High).sample,
-                       issue_status: [true, false].sample,
-                       location_id: [1, 2, 3, 4].sample,
-                       user_id: n + 1,
+                       issue_status: false,
+                       location_id: 1,
+                       user_id: 1,
                        closed_user_id: n + 2
                        )
     end
