@@ -8,11 +8,9 @@
   '$modal'
   '$log'
   'ScheduleHelper'
-  'MyScheduleModalCtrl'
 
   @MyScheduleCtrl = ($scope, Shifts, MyShifts, Locations, Positions,
-                     SubRequests, $modal, $log, ScheduleHelper
-                     MyScheduleModalCtrl) ->
+                     SubRequests, $modal, $log, ScheduleHelper) ->
     angular.extend $scope, ScheduleHelper
     # Services
     $scope.myShifts = MyShifts.index()
