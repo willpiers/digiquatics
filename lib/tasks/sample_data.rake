@@ -658,7 +658,7 @@ namespace :db do
     10.times do |n|
       print '.'
       SubRequest.create!(shift_id: rand(20) + 1,
-                         user_id: 1,
+                         user_id: rand(20) + 1,
                          active: true,
                          processed: false
                          )

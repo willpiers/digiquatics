@@ -85,8 +85,8 @@ class SubRequestsController < ApplicationController
 
   def destroy
     @sub_request.destroy
-
-    redirect_to sub_requests_url
+    Tracker.track(current_user.id, 'Delete Sub Request') unless Rails.env.test?
+    render :show
   end
 
   private

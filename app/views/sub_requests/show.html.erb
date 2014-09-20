@@ -2,18 +2,6 @@
 <h1 class='cross_platform_header'>Sub Request</h1>
 
 <div class='table-width-desktop'>
-  <% if @sub_request.active? %>
-    <ul class='pull-right'>
-      <%= bootstrap_form_for @sub_request do |f| %>
-        <%= f.hidden_field :active, value: false %>
-        <%= f.hidden_field :sub_user_id, value: current_user.id %>
-        <%= f.hidden_field :sub_first_name, value: current_user.first_name %>
-        <%= f.hidden_field :sub_last_name, value: current_user.last_name %>
-        <%= f.submit 'Accept', class: 'btn btn-success' %>
-      <% end %>
-    </ul>
-  <% end %>
-
   <% if current_user.admin? && !@sub_request.active && !@sub_request.processed? %>
     <ul class='pull-right'>
       <%= bootstrap_form_for @sub_request do |f| %>

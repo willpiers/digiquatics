@@ -127,9 +127,9 @@ describe SubRequestsController do
       end.to change(SubRequest, :count).by(-1)
     end
 
-    it 'redirects to sub_requests#index' do
+    it 'renders json show template' do
       delete :destroy, id: @sub_request
-      response.should redirect_to sub_requests_url
+      response.should render_template :show
     end
   end
 end
