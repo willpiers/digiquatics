@@ -35,6 +35,10 @@
           ng-model='positionSelect'
           ng-options='position.id as position.name for position in positions'>
   </select>
+  <h4>For</h4>
+  <select class='form-control' ng-model='occurences'
+          ng-options="n for n in range"></select>
+  <h4>Weeks</h4>
 </div>
 
 <div class='modal-footer'>

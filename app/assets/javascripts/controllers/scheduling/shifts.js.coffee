@@ -143,8 +143,10 @@
       $scope.positionSelect = if shift then shift.position_id else position
       $scope.startTime = if shift then shift.start_time else startTime
       $scope.endTime = if shift then shift.end_time else endTime
-
+      $scope.range = _.range(0,10)
+      $scope.occurences = 3
       $scope.assignShift = (user, location, position, start, end, shift) ->
+        console.log $scope.occurences
         if shift
           shiftData = angular.extend shift,
             start_time: start
@@ -156,14 +158,15 @@
             _.remove user.shifts, (userShift) -> userShift.id is shift.id
             user.shifts.push updatedShift
         else
-          Shifts.create
-            user_id: user.id
-            location_id: location
-            position_id: position
-            start_time: start
-            end_time: end
-          .$promise.then (newShift) ->
-            user.shifts.push newShift
+          for i in [1..$scope.occurences] by 1
+            Shifts.create
+              user_id: user.id
+              location_id: location
+              position_id: position
+              start_time: moment(start).add(i, 'weeks')
+              end_time: moment(end).add(i, 'weeks')
+            .$promise.then (newShift) ->
+              user.shifts.push newShift
 
       $scope.ok = (position, startTime, endTime) ->
         $scope.assignShift user, location, position, startTime, endTime, shift
