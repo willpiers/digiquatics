@@ -27,14 +27,8 @@ class ShiftsController < ApplicationController
     end
   end
 
-  def show
-  end
-
   def new
     @shift = Shift.new
-  end
-
-  def edit
   end
 
   def create
@@ -66,7 +60,7 @@ class ShiftsController < ApplicationController
   def destroy
     Tracker.track(current_user.id, 'Delete Shift') unless Rails.env.test?
     @shift.destroy
-    render :show
+    render :index
   end
 
   private
@@ -87,7 +81,7 @@ class ShiftsController < ApplicationController
 
   def handle_action(resource, page)
     if yield(resource)
-      render :show
+      render :index
     else
       render page
     end

@@ -18,88 +18,45 @@
     $scope.positions = Positions.index()
 
     $scope.calculateHours = (user) ->
-      shifts = user.shifts
-      total = 0
-      for shift in shifts
-        if moment(shift.start_time).isSame($scope.weekDay(0), 'week')
-          hours = moment(shift.end_time).hours() - moment(shift.start_time).hours()
-          minutes = moment(shift.end_time).minutes() - moment(shift.start_time).minutes()
-          hours = hours + ( minutes / 60 )
-          total += hours
-      total
+      _.reduce user.shifts, (total, shift) ->
+        if moment(shift.start_time).isSame $scope.weekDay(0), 'week'
+          total += moment(shift.end_time).diff(shift.start_time, 'hours', true)
 
-    $scope.startTime = (days) ->
-      start = new Date()
-      start.setMonth($scope.weekDay(days).format('MM') - 1)
-      start.setDate($scope.weekDay(days).format('DD'))
-      start.setHours(7)
-      start.setMinutes(0)
-      start
+        total
+      , 0
 
-    $scope.endTime = (days) ->
-      end = new Date()
-      end.setMonth($scope.weekDay(days).format('MM') - 1)
-      end.setDate($scope.weekDay(days).format('DD'))
-      end.setHours(8)
-      end.setMinutes(0)
-      end
+    startTime = (days) ->
+      $scope.weekDay(days).startOf('day').add 5, 'hours'
 
-    $scope.buildMode = 'Build'
+    endTime = (days) ->
+      $scope.weekDay(days).startOf('day').add 10, 'hours'
 
-    $scope.build = ->
-      $scope.buildMode is 'Build'
+    $scope.buildMode = true
 
     $scope.weekCounter = 0
 
     $scope.previousWeek = ->
+      # should send a request with a query param to load more weeks
       $scope.weekCounter -= 7
 
     $scope.nextWeek = ->
+      # should send a request with a query param to load more weeks
       $scope.weekCounter += 7
 
     $scope.resetWeekCounter = ->
       $scope.weekCounter = 0
 
     $scope.displayStartDate = ->
-      moment().startOf('week').add('days', $scope.weekCounter).format('MMMM YYYY')
+      moment().startOf('week').add('days', $scope.weekCounter).format 'MMMM YYYY'
 
-    ##### Might not need this
     $scope.displayEndDate = (days) ->
       moment().startOf('week').add('days', $scope.weekCounter + days).format('MMM D, YYYY')
 
     $scope.weekDay = (days) ->
       moment().startOf('week').add('days', $scope.weekCounter + days)
 
-    # Days
-
-    $scope.dayCounter = 0
-
-    $scope.previousDay = ->
-      $scope.dayCounter -= 1
-
-    $scope.nextDay = ->
-      $scope.dayCounter += 1
-
-    $scope.resetDayCounter = ->
-      $scope.dayCounter = 0
-
-    $scope.today = ->
-      moment().format('MMM D, YYYY')
-
-    $scope.displayDay = ->
-      moment().add('days', $scope.dayCounter).format('dddd, MMM D YYYY')
-
-    # Other
     $scope.predicate =
       value: 'last_name'
-
-    $scope.ifValue = true
-
-    $scope.showIf = ->
-      $scope.ifValue
-
-    $scope.hideIf = ->
-      not $scope.ifValue
 
     # show shifts by day of week
     $scope.sameDay = (shift, day) ->
@@ -126,7 +83,6 @@
           positions: -> $scope.positions
           position: -> user.position_id
           day: -> day
-        )
 
     ModalInstanceCtrl = ($scope, $modalInstance, shift, user, location,
                          startTime, endTime, positions, position, day) ->
@@ -134,9 +90,9 @@
       $scope.user = user
       $scope.shift = shift
       $scope.positions = positions
-      $scope.positionSelect = if shift then shift.position_id else position
-      $scope.startTime = if shift then shift.start_time else startTime
-      $scope.endTime = if shift then shift.end_time else endTime
+      $scope.positionSelect = shift?.position_id ? position
+      $scope.startTime = shift?.start_time ? startTime
+      $scope.endTime = shift?.end_time ? endTime
       $scope.range = _.range(1,10)
       $scope.occurences = $scope.range[0]
       $scope.daysChecked = [
@@ -148,6 +104,7 @@
         {day: 'Friday', checked: false }
         {day: 'Saturday', checked: false }
       ]
+
       $scope.assignShift = (user, location, position, start, end, shift) ->
         console.log $scope.day
         console.log $scope.occurences
@@ -185,12 +142,9 @@
         $scope.assignShift user, location, position, startTime, endTime, shift
         $modalInstance.close $scope.user
 
-        if shift
-          toastr.info('Shift was successfully updated.')
-          return true #Fixes error with returns elements through Angular to the DOM
-        else
-          toastr.success('Shift was successfully created.')
-          return true #Fixes error with returns elements through Angular to the DOM
+        if shift then toastr.info('Shift was successfully updated.')
+        else toastr.success('Shift was successfully created.')
+        true #Fixes error with returns elements through Angular to the DOM
 
       $scope.cancel = ->
         $modalInstance.dismiss 'Cancel'
@@ -200,7 +154,7 @@
         _.remove user.shifts, (userShift) -> userShift.id is shift.id
         $modalInstance.close $scope.user
         toastr.error('Shift was successfully deleted.')
-        return true #Fixes error with returns elements through Angular to the DOM
+        true #Fixes error with returns elements through Angular to the DOM
 
     ModalInstanceCtrl['$inject'] = [
       '$scope'
