@@ -22,26 +22,6 @@ describe ShiftsController do
     end
   end
 
-  describe 'GET #show' do
-    it 'assigns the requested shift to @shift' do
-      shift = FactoryGirl.create(:shift)
-      get :show, id: shift
-      assigns(:shift).should eq(shift)
-    end
-
-    it 'renders the #show view' do
-      get :show, id: FactoryGirl.create(:shift)
-      response.should render_template :show
-    end
-  end
-
-  describe 'GET #new' do
-    it 'renders the #new view' do
-      get :new
-      response.should render_template :new
-    end
-  end
-
   describe 'POST #create' do
     context 'with valid attributes' do
       it 'creates a new shift' do
@@ -153,11 +133,6 @@ describe ShiftsController do
       expect do
         delete :destroy, id: @shift
       end.to change(Shift, :count).by(-1)
-    end
-
-    it 'renders json show template' do
-      delete :destroy, id: @shift
-      response.should render_template :show
     end
   end
 end
