@@ -598,15 +598,15 @@ namespace :db do
 
     puts "\n\nAdmin Sub Requests"
 
-    20.times do |n|
+    5.times do |n|
       print '.'
       SubRequest.create!(shift_id: rand(20) + 1,
-                         user_id: rand(100) + 1,
+                         user_id: rand(20) + 1,
                          processed_on: Time.now,
-                         processed_by_user_id: rand(100) + 1,
+                         processed_by_user_id: rand(20) + 1,
                          processed_by_first_name: Faker::Name.first_name,
                          processed_by_last_name: Faker::Name.last_name,
-                         sub_user_id: rand(100) + 1,
+                         sub_user_id: rand(20) + 1,
                          sub_first_name: Faker::Name.first_name,
                          sub_last_name: Faker::Name.last_name,
                          approved: [true, false].sample,
@@ -617,15 +617,15 @@ namespace :db do
 
     puts "\n\nSub Requests Processed"
 
-    20.times do |n|
+    5.times do |n|
       print '.'
       SubRequest.create!(shift_id: rand(20) + 1,
-                         user_id: rand(100) + 1,
+                         user_id: rand(20) + 1,
                          processed_on: Time.now,
-                         processed_by_user_id: rand(100) + 1,
+                         processed_by_user_id: rand(20) + 1,
                          processed_by_first_name: Faker::Name.first_name,
                          processed_by_last_name: Faker::Name.last_name,
-                         sub_user_id: rand(100) + 1,
+                         sub_user_id: rand(20) + 1,
                          sub_first_name: Faker::Name.first_name,
                          sub_last_name: Faker::Name.last_name,
                          approved: [true, false].sample,
@@ -641,10 +641,10 @@ namespace :db do
       SubRequest.create!(shift_id: rand(20) + 1,
                          user_id: 1,
                          processed_on: Time.now,
-                         processed_by_user_id: rand(100) + 1,
+                         processed_by_user_id: rand(20) + 1,
                          processed_by_first_name: Faker::Name.first_name,
                          processed_by_last_name: Faker::Name.last_name,
-                         sub_user_id: rand(100) + 1,
+                         sub_user_id: rand(20) + 1,
                          sub_first_name: Faker::Name.first_name,
                          sub_last_name: Faker::Name.last_name,
                          approved: [true, false].sample,
@@ -658,7 +658,7 @@ namespace :db do
     10.times do |n|
       print '.'
       SubRequest.create!(shift_id: rand(20) + 1,
-                         user_id: rand(20) + 1,
+                         user_id: 1,
                          active: true,
                          processed: false
                          )
