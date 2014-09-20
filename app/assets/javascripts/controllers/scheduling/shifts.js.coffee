@@ -70,7 +70,7 @@
         moment($scope.weekDay(day)).isBefore(request.ends_at)
 
     $scope.open = (user, day, shift, size) ->
-      modalInstance = $modal.open(
+      modalInstance = $modal.open
         templateUrl: 'scheduling/shift-assigner.html',
         controller: ModalInstanceCtrl,
         size: size,
@@ -83,6 +83,7 @@
           positions: -> $scope.positions
           position: -> user.position_id
           day: -> day
+
 
     ModalInstanceCtrl = ($scope, $modalInstance, shift, user, location,
                          startTime, endTime, positions, position, day) ->
@@ -120,12 +121,13 @@
           for weekCounter in [0..$scope.occurences-1] by 1
             for dayCounter in [0..5] by 1
               if $scope.daysChecked[dayCounter].checked
+                adjustedDayCounter = dayCounter - $scope.day
                 Shifts.create
                   user_id: user.id
                   location_id: location
                   position_id: position
-                  start_time: moment(start).add(weekCounter, 'weeks').add(dayCounter, 'days').subtract($scope.day, 'days')
-                  end_time: moment(end).add(weekCounter, 'weeks').add(dayCounter, 'days').subtract($scope.day, 'days')
+                  start_time: moment(start).add(weekCounter, 'weeks').add(adjustedDayCounter, 'days')
+                  end_time: moment(end).add(weekCounter, 'weeks').add(adjustedDayCounter, 'days')
                 .$promise.then (newShift) ->
                   user.shifts.push newShift
 
