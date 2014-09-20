@@ -7,6 +7,8 @@
   'Positions'
   '$modal'
   '$log'
+  'ScheduleHelper'
+
   @ShiftsCtrl = ($scope, $filter, Shifts, Users, Locations, Positions,
                  $modal, $log, ScheduleHelper) ->
     angular.extend $scope, ScheduleHelper
