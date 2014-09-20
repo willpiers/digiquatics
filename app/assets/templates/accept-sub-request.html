@@ -1,8 +1,10 @@
-<div class='userform well'>
-  <a class='pull-right close-button link-color' ng-click='cancel()'>
-    <i class='fa fa-times fa-lg'></i></a>
-  <h1 class='shift-title'>Sub Request</h1>
+<a class='pull-right close-button link-color' ng-click='cancel()'>
+  <i class='fa fa-times fa-lg'></i></a>
+<div class='modal-header'>
+  <h1 class='modal-title'>Sub Request</h1>
+</div>
 
+<div class='modal-body'>
   <table class='table table-clean table-white shadow-effect'>
       <tr>
         <th id='fixtablewidth'>Location</th>
@@ -34,14 +36,14 @@
       <td>{{requestedOn}}</td>
     </tr>
   </table>
+</div>
 
+<div class='modal-footer'>
   <a class='btn btn-success btn-block' ng-click='ok()'>
     <i class="fa fa-check fa-lg"></i> Accept Shift</a>
   <div ng-if='correctUser(request, subUserId)'>
     <a class='btn btn-danger btn-block'
        ng-click='delete()'>
-      <i class='fa fa-trash-o fa-lg'></i> {{'Cancel Request'}}</a>
+      <i class='fa fa-times fa-lg'></i> {{'Cancel Request'}}</a>
   </div>
 </div>
-
-

@@ -1,13 +1,15 @@
-<div class='userform well'>
-  <a class='pull-right close-button link-color' ng-click='cancel()'>
-    <i class='fa fa-times fa-lg'></i></a>
-  <h1 class='shift-title'>
-    {{shift ? ' Edit' : ' Assign'}} Shift
-  </h1>
+<a class='pull-right close-button link-color' ng-click='cancel()'>
+  <i class='fa fa-times fa-lg'></i></a>
+<div class='modal-header'>
+  <h1 class='modal-title'>{{shift ? ' Edit' : ' Assign'}} Shift</h1>
+  <center><p>{{user.last_name}}, {{user.first_name}}</p></center>
+</div>
+
+<div class='modal-body'>
   <center>
-    <p>{{user.last_name}}, {{user.first_name}}</p>
     <div class='row'>
-      <div class='col-md-6'>
+      <div class='col-md-2'></div>
+      <div class='col-md-4'>
         <h4> Start Time </h4>
         <div class='fix_ampm_button'>
           <timepicker ng-model='startTime' ng-change='changed()'
@@ -16,7 +18,7 @@
           </timepicker>
         </div>
       </div>
-      <div class='col-md-6'>
+      <div class='col-md-4'>
         <h4> End Time </h4>
         <div class='fix_ampm_button'>
           <timepicker ng-model='endTime' ng-change='changed()'
@@ -25,6 +27,7 @@
           </timepicker>
         </div>
       </div>
+      <div class='col-md-2'></div>
     </div>
   </center>
   <h4>Position</h4>
@@ -32,6 +35,9 @@
           ng-model='positionSelect'
           ng-options='position.id as position.name for position in positions'>
   </select>
+</div>
+
+<div class='modal-footer'>
   <div ng-show='shift'>
     <a class='btn btn-primary btn-block'
        ng-click='ok(positionSelect, startTime, endTime)'>
