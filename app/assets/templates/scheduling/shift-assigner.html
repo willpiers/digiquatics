@@ -35,48 +35,49 @@
           ng-model='positionSelect'
           ng-options='position.id as position.name for position in positions'>
   </select>
-
-  <input type='checkbox' ng-model='$parent.recurring'/>
-  <span class='u-repeat-label'><b>Repeat...</b></span>
-
+  <div class='u-modal-repeat'>
+    <label for='a'>Repeat</label>
+    <input class='repeat-checkbox' type='checkbox' ng-model='$parent.recurring' id='a'/>
+  </div>
+  <br>
   <div ng-show='$parent.recurring'>
     <div class='row'>
       <div class='col-md-3'>
-        <h4>Repeat On</h4>
+        <h4>Repeat On:</h4>
       </div>
       <div class='col-md-9 pull-left'>
         <div id='u-modal-checkbox-positions'>
-          <div class='u-modal-checkbox' id='u-slide-inspections-checkbox-fix'>
+          <div class='u-modal-checkbox'>
             <span class='u-checkbox-label'><b>S</b></span>
             <input type='checkbox' ng-model='$parent.daysChecked[0].checked'/>
           </div>
 
-          <div class='u-modal-checkbox' id='u-slide-inspections-checkbox-fix'>
+          <div class='u-modal-checkbox'>
             <span class='u-checkbox-label'><b>M</b></span>
             <input type='checkbox' ng-model='$parent.daysChecked[1].checked'/>
           </div>
 
-          <div class='u-modal-checkbox' id='u-slide-inspections-checkbox-fix'>
+          <div class='u-modal-checkbox'>
             <span class='u-checkbox-label'><b>T</b></span>
             <input type='checkbox' ng-model='$parent.daysChecked[2].checked'/>
           </div>
 
-          <div class='u-modal-checkbox' id='u-slide-inspections-checkbox-fix'>
+          <div class='u-modal-checkbox'>
             <span class='u-checkbox-label'><b>W</b></span>
             <input type='checkbox' ng-model='$parent.daysChecked[3].checked'/>
           </div>
 
-          <div class='u-modal-checkbox' id='u-slide-inspections-checkbox-fix'>
+          <div class='u-modal-checkbox'>
             <span class='u-checkbox-label'><b>T</b></span>
             <input type='checkbox' ng-model='$parent.daysChecked[4].checked'/>
           </div>
 
-          <div class='u-modal-checkbox' id='u-slide-inspections-checkbox-fix'>
+          <div class='u-modal-checkbox'>
             <span class='u-checkbox-label'><b>F</b></span>
             <input type='checkbox' ng-model='$parent.daysChecked[5].checked'/>
           </div>
 
-          <div class='u-modal-checkbox' id='u-slide-inspections-checkbox-fix'>
+          <div class='u-modal-checkbox'>
             <span class='u-checkbox-label'><b>S</b></span>
             <input type='checkbox' ng-model='$parent.daysChecked[6].checked'/>
           </div>
@@ -133,16 +134,25 @@
     float: left;
     width: 50px;
 }
+.u-modal-repeat {
+    float: left;
+    width: 150px;
+    height: 15px;
+    display: inline;
+}
 .u-checkbox-label {
   position: relative;
-  left: 10px;
+  left: 5px;
   top: 21px;
+}
+.repeat-checkbox {
+  width: 20%;
 }
 
 .u-repeat-label {
   position: relative;
-  left: 20px;
-  bottom: 19px;
+  left: 5px;
+  top: 21px;
 }
 
 #u-modal-checkbox-positions {
