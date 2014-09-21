@@ -75,14 +75,22 @@
         controller: ModalInstanceCtrl,
         size: size,
         resolve:
-          shift: -> shift
-          user: -> user
-          location: -> $scope.buildLocation
-          startTime: -> $scope.startTime(day)
-          endTime: -> $scope.endTime(day)
-          positions: -> $scope.positions
-          position: -> user.position_id
-          day: -> day
+          shift: ->
+            shift
+          user: ->
+            user
+          location: ->
+            $scope.buildLocation
+          startTime: ->
+            startTime(day)
+          endTime: ->
+            endTime(day)
+          positions: ->
+            $scope.positions
+          position: ->
+            user.position_id
+          day: ->
+            day
 
 
     ModalInstanceCtrl = ($scope, $modalInstance, shift, user, location,
