@@ -35,18 +35,20 @@
           ng-model='positionSelect'
           ng-options='position.id as position.name for position in positions'>
   </select>
-  Recurring?<input type='checkbox' ng-model='$parent.recurring' />
-  <input type='checkbox' ng-model='$parent.daysChecked[0].checked'/>S
-  <input type='checkbox' ng-model='$parent.daysChecked[1].checked'/>M
-  <input type='checkbox' ng-model='$parent.daysChecked[2].checked'/>T
-  <input type='checkbox' ng-model='$parent.daysChecked[3].checked'/>W
-  <input type='checkbox' ng-model='$parent.daysChecked[4].checked'/>R
-  <input type='checkbox' ng-model='$parent.daysChecked[5].checked'/>F
-  <input type='checkbox' ng-model='$parent.daysChecked[6].checked'/>S
-  <h4>For</h4>
-  <select class='form-control' ng-model='$parent.occurences'
-          ng-options="n for n in range"></select>
-  <h4>Weeks</h4>
+  Repeat...<input type='checkbox' ng-model='recurring'/>
+  <div ng-if='recurring'>
+    <input type='checkbox' ng-model='$parent.daysChecked[0].checked'/>S
+    <input type='checkbox' ng-model='$parent.daysChecked[1].checked'/>M
+    <input type='checkbox' ng-model='$parent.daysChecked[2].checked'/>T
+    <input type='checkbox' ng-model='$parent.daysChecked[3].checked'/>W
+    <input type='checkbox' ng-model='$parent.daysChecked[4].checked'/>R
+    <input type='checkbox' ng-model='$parent.daysChecked[5].checked'/>F
+    <input type='checkbox' ng-model='$parent.daysChecked[6].checked'/>S
+    <h4>For</h4>
+    <select class='form-control' ng-model='$parent.occurences'
+            ng-options="n for n in range"></select>
+    <h4>Weeks</h4>
+  </div>
 </div>
 
 <div class='modal-footer'>
