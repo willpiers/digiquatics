@@ -41,64 +41,54 @@
   </div>
   <br>
   <div ng-show='$parent.recurring'>
-    <div class='row'>
-      <div class='col-md-3'>
-        <h4>Repeat On:</h4>
-      </div>
-      <div class='col-md-9 pull-left'>
-        <div id='u-modal-checkbox-positions'>
-          <div class='u-modal-checkbox'>
-            <span class='u-checkbox-label'><b>S</b></span>
-            <input type='checkbox' ng-model='$parent.daysChecked[0].checked'/>
-          </div>
-
-          <div class='u-modal-checkbox'>
-            <span class='u-checkbox-label'><b>M</b></span>
-            <input type='checkbox' ng-model='$parent.daysChecked[1].checked'/>
-          </div>
-
-          <div class='u-modal-checkbox'>
-            <span class='u-checkbox-label'><b>T</b></span>
-            <input type='checkbox' ng-model='$parent.daysChecked[2].checked'/>
-          </div>
-
-          <div class='u-modal-checkbox'>
-            <span class='u-checkbox-label'><b>W</b></span>
-            <input type='checkbox' ng-model='$parent.daysChecked[3].checked'/>
-          </div>
-
-          <div class='u-modal-checkbox'>
-            <span class='u-checkbox-label'><b>T</b></span>
-            <input type='checkbox' ng-model='$parent.daysChecked[4].checked'/>
-          </div>
-
-          <div class='u-modal-checkbox'>
-            <span class='u-checkbox-label'><b>F</b></span>
-            <input type='checkbox' ng-model='$parent.daysChecked[5].checked'/>
-          </div>
-
-          <div class='u-modal-checkbox'>
-            <span class='u-checkbox-label'><b>S</b></span>
-            <input type='checkbox' ng-model='$parent.daysChecked[6].checked'/>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class='row'>
-      <div class='col-md-2'>
-        <h4>For</h4>
-      </div>
-      <div class='col-md-2'>
-        <div id='u-modal-selecbox'>
-          <select class='form-control' ng-model='$parent.occurences'
-                  ng-options="n for n in range"></select>
-        </div>
-      </div>
-      <div class='col-md-8'>
-        <h4>Weeks</h4>
-      </div>
-    </div>
+    <center>
+      <table>
+        <tr>
+          <td valign='top'>
+            <div class='u-modal-repeat'>
+              <input class='repeat-checkbox' id='sunday' type='checkbox' ng-model='$parent.daysChecked[0].checked'/>
+              <label for='sunday'>Sunday</label>
+            </div>
+            <br>
+            <div class='u-modal-repeat'>
+              <input class='repeat-checkbox' id='monday' type='checkbox' ng-model='$parent.daysChecked[1].checked'/>
+              <label for='monday'>Monday</label>
+            </div>
+            <br>
+            <div class='u-modal-repeat'>
+              <input class='repeat-checkbox' id='tuesday' type='checkbox' ng-model='$parent.daysChecked[2].checked'/>
+              <label for='tuesday'>Tuesday</label>
+            </div>
+            <br>
+            <div class='u-modal-repeat'>
+              <input class='repeat-checkbox' id='wednesday' type='checkbox' ng-model='$parent.daysChecked[3].checked'/>
+              <label for='wednesday'>Wednesday</label>
+            </div>
+            <br>
+            <div class='u-modal-repeat'>
+              <input class='repeat-checkbox' id='thursday' type='checkbox' ng-model='$parent.daysChecked[4].checked'/>
+              <label for='thursday'>Thursday</label>
+            </div>
+            <br>
+            <div class='u-modal-repeat'>
+              <input class='repeat-checkbox' id='friday' type='checkbox' ng-model='$parent.daysChecked[5].checked'/>
+              <label for='friday'>Friday</label>
+            </div>
+            <br>
+            <div class='u-modal-repeat'>
+              <input class='repeat-checkbox' id='saturday' type='checkbox' ng-model='$parent.daysChecked[6].checked'/>
+              <label for='saturday'>Saturday</label>
+            </div>
+          </td>
+          <td valign='top'>
+            <label>For</label>
+            <select class='form-control' ng-model='$parent.occurences'
+                    ng-options="n for n in range"></select>
+            <label>Weeks</label>
+          </td>
+        </tr>
+      <table>
+    </center>
   </div>
 <div>
 
