@@ -9,13 +9,11 @@
 
   @TimeOffCtrl = ($scope, TimeOff, Users, Locations, Positions, $modal, TimeOffHelper) ->
     angular.extend $scope, TimeOffHelper
-    # Services
     $scope.timeOff = TimeOff.index()
     $scope.users = Users.index()
     $scope.locations = Locations.index()
     $scope.positions = Positions.index()
 
-    # Used to show and hide form elements on new time off request
     $scope.requestMode = 'partialDay'
 
     $scope.allDayRequestMode = ->
@@ -24,7 +22,6 @@
     $scope.partialDayRequestMode = ->
       $scope.requestMode is 'partialDay'
 
-    # Date picker defaults
     $scope.today1 = ->
       $scope.dt1 = moment().format('YYYY-MM-DD')
 
@@ -72,7 +69,6 @@
     $scope.changed = ->
       console.log "Time changed to: " + $scope.mytime
 
-    # Other
     $scope.predicate =
       value: 'last_name'
 
@@ -80,8 +76,6 @@
 
     $scope.loadMore = ->
       $scope.totalDisplayed += 50
-
-    #Modal
 
     $scope.open = (request, user) ->
       modalInstance = $modal.open
@@ -132,7 +126,7 @@
         TimeOff.destroy id: request.id
         _.remove timeOff, (timeOff) -> timeOff.id is request.id
         $modalInstance.close $scope.user
-        toastr.error('Sub Request was successfully deleted.')
+        toastr.error('Time Off Request was successfully deleted.')
         true
 
     TimeOffRequestModalCtrl['$inject'] = [
