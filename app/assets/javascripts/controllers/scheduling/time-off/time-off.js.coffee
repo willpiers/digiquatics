@@ -4,9 +4,10 @@
   'Users'
   'Locations'
   'Positions'
+  '$modal'
   'TimeOffHelper'
 
-  @TimeOffCtrl = ($scope, TimeOff, Users, Locations, Positions, TimeOffHelper) ->
+  @TimeOffCtrl = ($scope, TimeOff, Users, Locations, Positions, $modal, TimeOffHelper) ->
     angular.extend $scope, TimeOffHelper
     # Services
     $scope.timeOff = TimeOff.index()
@@ -79,4 +80,67 @@
 
     $scope.loadMore = ->
       $scope.totalDisplayed += 50
+
+    #Modal
+
+    $scope.open = (request, user) ->
+      modalInstance = $modal.open
+        templateUrl: 'scheduling/time_off_requests/time-off-request.html',
+        controller: TimeOffRequestModalCtrl,
+        resolve:
+          request: -> request
+          timeOff: -> $scope.timeOff
+
+      modalInstance.result.then ->
+        $log.info('Modal dismissed at: ' + new Date())
+
+    TimeOffRequestModalCtrl = ($scope, $modalInstance, request, TimeOff, timeOff, TimeOffHelper) ->
+      angular.extend $scope, TimeOffHelper
+      $scope.request = request
+      $scope.location = request.location.name
+      $scope.user = request.user
+
+      # $scope.approveRequet = (request) ->
+      #   requestData = angular.extend request,
+      #     active: false
+      #     sub_user_id: $scope.subUserId
+      #     sub_first_name: $scope.subUserFirstName
+      #     sub_last_name: $scope.subUserLastName
+      #
+      #   SubRequests.update id: requestData.id, requestData
+      #   .$promise.then (updatedSubRequest) ->
+      #     _.remove subRequests, (subRequest) -> subRequest.id is request.id
+      #     subRequests.push updatedSubRequest
+
+      $scope.approve = ->
+        $scope.approveRequest(request)
+        $modalInstance.close request
+
+        toastr.success('Time Off Request has been approved.')
+        true
+
+      $scope.deny = ->
+        $scope.denyRequest(request)
+
+        toastr.error('Time Off Request has been denied.')
+        true
+
+      $scope.cancel = ->
+        $modalInstance.dismiss "Cancel"
+
+      $scope.delete = ->
+        TimeOff.destroy id: request.id
+        _.remove timeOff, (timeOff) -> timeOff.id is request.id
+        $modalInstance.close $scope.user
+        toastr.error('Sub Request was successfully deleted.')
+        true
+
+    TimeOffRequestModalCtrl['$inject'] = [
+      '$scope'
+      '$modalInstance'
+      'request'
+      'TimeOff'
+      'timeOff'
+      'TimeOffHelper'
+    ]
 ]

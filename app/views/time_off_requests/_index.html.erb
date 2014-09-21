@@ -77,9 +77,9 @@
         </div>
       </td>
       <td>
-        <%= link_to '/time_off_requests/{{request.id}}' do %>
-          <i class='fa fa-external-link fa-lg'></i>
-        <% end %>
+        <div ng-click="open(request)">
+          <a><i class='fa fa-external-link-square fa-lg'></i></a>
+        </div>
       </td>
     </tr>
   </tbody>

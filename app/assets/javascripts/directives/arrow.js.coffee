@@ -1,5 +1,5 @@
 @digiquatics.directive 'dqArrow', [
   ->
     restrict: 'E'
-    templateUrl: 'arrow.html'
+    templateUrl: 'general/arrow.html'
 ]

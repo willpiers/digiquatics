@@ -1,5 +1,5 @@
 @digiquatics.directive 'dqStartDate', [
   ->
     restrict: 'E'
-    templateUrl: 'start_date.html'
+    templateUrl: 'general/start_date.html'
 ]

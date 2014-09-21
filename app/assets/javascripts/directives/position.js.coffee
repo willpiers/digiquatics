@@ -1,5 +1,5 @@
 @digiquatics.directive 'dqPosition', [
   ->
     restrict: 'E'
-    templateUrl: 'position.html'
+    templateUrl: 'general/position.html'
 ]

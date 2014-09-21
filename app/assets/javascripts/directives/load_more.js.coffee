@@ -1,5 +1,5 @@
 @digiquatics.directive 'dqLoadMore', [
   ->
     restrict: 'E'
-    templateUrl: 'load_more.html'
+    templateUrl: 'general/load_more.html'
 ]

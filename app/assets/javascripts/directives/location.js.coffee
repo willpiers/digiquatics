@@ -1,5 +1,5 @@
 @digiquatics.directive 'dqLocation', [
   ->
     restrict: 'E'
-    templateUrl: 'location.html'
+    templateUrl: 'general/location.html'
 ]

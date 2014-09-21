@@ -1,5 +1,5 @@
 @digiquatics.directive 'dqEndDate', [
   ->
     restrict: 'E'
-    templateUrl: 'end_date.html'
+    templateUrl: 'general/end_date.html'
 ]

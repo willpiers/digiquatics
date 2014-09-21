@@ -38,7 +38,6 @@
           subUserLastName: -> $scope.subUserLastName
           subRequests: -> $scope.subRequests
 
-
       modalInstance.result.then ->
         $log.info('Modal dismissed at: ' + new Date())
 
