@@ -114,7 +114,6 @@
       ]
 
       $scope.assignShift = (user, location, position, start, end, shift) ->
-        console.log $scope.occurences
         if shift
           shiftData = angular.extend shift,
             start_time: start
@@ -127,8 +126,7 @@
             user.shifts.push updatedShift
         else
           if $scope.recurring
-            $scope.occurences -= 1
-            for weekCounter in [0..$scope.occurences] by 1
+            for weekCounter in [0..$scope.occurences-1] by 1
               for dayCounter in [0..6] by 1
                 if $scope.daysChecked[dayCounter].checked
                   adjustedDayCounter = dayCounter - $scope.day
