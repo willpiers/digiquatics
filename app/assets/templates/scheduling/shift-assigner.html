@@ -35,8 +35,8 @@
           ng-model='positionSelect'
           ng-options='position.id as position.name for position in positions'>
   </select>
-  Repeat...<input type='checkbox' ng-model='recurring'/>
-  <div ng-if='recurring'>
+  Repeat...<input type='checkbox' ng-model='$parent.recurring'/>
+  <div ng-show='$parent.recurring'>
     <input type='checkbox' ng-model='$parent.daysChecked[0].checked'/>S
     <input type='checkbox' ng-model='$parent.daysChecked[1].checked'/>M
     <input type='checkbox' ng-model='$parent.daysChecked[2].checked'/>T

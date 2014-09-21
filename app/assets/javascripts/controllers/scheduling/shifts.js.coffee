@@ -92,7 +92,6 @@
           day: ->
             day
 
-
     ModalInstanceCtrl = ($scope, $modalInstance, shift, user, location,
                          startTime, endTime, positions, position, day) ->
       $scope.day = day
@@ -115,6 +114,7 @@
       ]
 
       $scope.assignShift = (user, location, position, start, end, shift) ->
+        console.log $scope.occurences
         if shift
           shiftData = angular.extend shift,
             start_time: start
@@ -126,18 +126,29 @@
             _.remove user.shifts, (userShift) -> userShift.id is shift.id
             user.shifts.push updatedShift
         else
-          for weekCounter in [0..$scope.occurences-1] by 1
-            for dayCounter in [0..5] by 1
-              if $scope.daysChecked[dayCounter].checked
-                adjustedDayCounter = dayCounter - $scope.day
-                Shifts.create
-                  user_id: user.id
-                  location_id: location
-                  position_id: position
-                  start_time: moment(start).add(weekCounter, 'weeks').add(adjustedDayCounter, 'days')
-                  end_time: moment(end).add(weekCounter, 'weeks').add(adjustedDayCounter, 'days')
-                .$promise.then (newShift) ->
-                  user.shifts.push newShift
+          if $scope.recurring
+            $scope.occurences -= 1
+            for weekCounter in [0..$scope.occurences] by 1
+              for dayCounter in [0..6] by 1
+                if $scope.daysChecked[dayCounter].checked
+                  adjustedDayCounter = dayCounter - $scope.day
+                  Shifts.create
+                    user_id: user.id
+                    location_id: location
+                    position_id: position
+                    start_time: moment(start).add(weekCounter, 'weeks').add(adjustedDayCounter, 'days')
+                    end_time: moment(end).add(weekCounter, 'weeks').add(adjustedDayCounter, 'days')
+                  .$promise.then (newShift) ->
+                    user.shifts.push newShift
+          else
+            Shifts.create
+              user_id: user.id
+              location_id: location
+              position_id: position
+              start_time: start
+              end_time: end
+            .$promise.then (newShift) ->
+              user.shifts.push newShift
 
       $scope.ok = (position, startTime, endTime) ->
         $scope.assignShift user, location, position, startTime, endTime, shift
