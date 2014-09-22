@@ -42,7 +42,8 @@ style: :horizontal, left: 'col-sm-4', right: 'col-sm-8' do |f| %>
                                          :name, @private_lesson.location_id) %>
   <% end %>
   <%= f.text_area :notes,
-                  placeholder: 'Special requests or comments',
+                  placeholder:
+                  'Special requests or comments. Please enter any additional information about your availability here.',
                   size: '2x' %>
   <%= f.text_area :lesson_objective,
                   placeholder: 'Learning objectives',
