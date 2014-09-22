@@ -14,7 +14,7 @@
     <%= "#{Account.find(@private_lesson.account).name}" %>
   </h1>
   <center><h4>Lesson Request</h4></center>
-  <div class='userform box'>
+  <div class='userform well shadow-effect'>
     <%= render partial: 'form', locals: {resources: [@private_lesson.account, @private_lesson]} %>
   </div>
 <% end %>

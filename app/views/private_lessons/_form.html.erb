@@ -11,12 +11,12 @@ style: :horizontal, left: 'col-sm-4', right: 'col-sm-8' do |f| %>
   <h4>Parent Information</h4>
   <%= f.text_field :parent_first_name, label: 'Parent First Name *' %>
   <%= f.text_field :parent_last_name, label: 'Parent Last Name *' %>
-  <%= f.telephone_field :phone_number, label: 'Phone Number *' %>
+  <%= f.telephone_field :phone_number, label: 'Primary Phone Number *' %>
+  <%= f.telephone_field :secondary_phone_number, label: 'Secondary Phone Number' %>
   <%= f.text_field :email, label: 'Email (Required to receive email confirmation)' %>
   <%= f.select :contact_method, options_for_select(%w[Primary\ (Call) Secondary\ (Call) Email Primary\ (Text) Secondary\ (Text)],
                @private_lesson.contact_method.to_s),
                  label: 'Preferred Contact Method' %>
-
   <br>
   <h4>Student Information</h4>
   <%= f.fields_for :participants do |builder| %>
@@ -208,7 +208,7 @@ style: :horizontal, left: 'col-sm-4', right: 'col-sm-8' do |f| %>
       <% end %>
     <% else %>
       <center>
-        <%= f.submit 'Submit Lesson', class: 'devise-button' %>
+        <%= f.submit 'Submit Lesson', class: 'btn btn-block btn-primary' %>
       </center>
     <% end %>
 <% end %>
