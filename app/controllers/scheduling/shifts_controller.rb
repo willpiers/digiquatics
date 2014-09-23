@@ -60,7 +60,7 @@ class ShiftsController < ApplicationController
   def destroy
     Tracker.track(current_user.id, 'Delete Shift') unless Rails.env.test?
     @shift.destroy
-    render :index
+    render json: 'success'
   end
 
   private
