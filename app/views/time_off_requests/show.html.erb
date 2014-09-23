@@ -3,8 +3,24 @@
   <h1 class='cross_platform_header'>Time Off Request</h1>
 </div>
 <div class='table-width-desktop'>
+  <div class='pull-left'>
+    <%= link_to time_off_requests_path,
+        class:'btn btn-default btn-circle' do %>
+      <i class='fa fa-arrow-left fa-lg'></i>
+    <% end %>
+  </div>
+
+  <ul class = 'pull-right'>
+    <%= link_to edit_time_off_request_path(@time_off_request),
+                class:'btn btn-default btn-primary' do %>
+      <i class='fa fa-pencil'></i> Edit Request
+    <% end %>
+  </ul>
+
+  <br><br><br>
+
   <% if current_user.admin? %>
-    <ul class = 'pull-right'>
+    <ul class='pull-right'>
       <%= bootstrap_form_for @time_off_request do |f| %>
         <%= f.hidden_field :approved, value: false %>
         <%= f.hidden_field :approved_by_user_id, value: current_user.id %>
@@ -19,7 +35,7 @@
         </button>
       <% end %>
     </ul>
-    <ul class = 'pull-right'>
+    <ul class='pull-right'>
       <%= bootstrap_form_for @time_off_request do |f| %>
         <%= f.hidden_field :approved, value: true %>
         <%= f.hidden_field :approved_by_user_id, value: current_user.id %>
@@ -34,21 +50,8 @@
         </button>
       <% end %>
     </ul>
-    <ul class = 'pull-right hidden-xs'>
-      <%= link_to edit_time_off_request_path(@time_off_request),
-                  class:'btn btn-default btn-primary' do %>
-        <i class='fa fa-pencil'></i> Edit Request
-      <% end %>
-    </ul>
+    <br><br><br>
   <% end %>
-
-  <div class='pull-left'>
-    <%= link_to time_off_requests_path,
-        class:'btn btn-default btn-circle' do %>
-      <i class='fa fa-arrow-left fa-lg'></i>
-    <% end %>
-  </div>
-  <br><br><br>
 
   <table class='table table-clean table-white shadow-effect' >
     <tr>

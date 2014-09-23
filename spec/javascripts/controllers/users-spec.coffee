@@ -14,10 +14,8 @@ describe 'UsersCtrl', ->
   beforeEach inject((_$httpBackend_, $rootScope, $controller) ->
     $httpBackend = _$httpBackend_
 
-    $httpBackend.expectGET('/time_off_requests.json').respond []
     $httpBackend.expectGET('/users.json').respond users
     $httpBackend.expectGET('/locations.json').respond []
-    $httpBackend.expectGET('/positions.json').respond []
 
     scope = $rootScope.$new()
     ctrl = $controller UsersCtrl,

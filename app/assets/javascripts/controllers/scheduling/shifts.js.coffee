@@ -7,10 +7,9 @@
   'Locations'
   'Positions'
   '$modal'
-  '$window'
 
   class ShiftsCtrl
-    constructor: (@$q, @$scope, $filter, @Shifts, @Users, @Locations, @Positions, $modal, $window) ->
+    constructor: (@$q, @$scope, $filter, @Shifts, @Users, @Locations, @Positions, $modal) ->
       @currentWeek = 0
 
       @_loadAndProcessData()
@@ -157,7 +156,6 @@
 
     _addDayIndicesToTimeOffRequests: (request) ->
       request.dayIndices = []
-      console.log @currentWeek
 
       if request.approved
         startOfWeek = moment().startOf('week').add 'days', @currentWeek

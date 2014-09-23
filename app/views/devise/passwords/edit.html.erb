@@ -5,7 +5,7 @@
     <img src='/images/water.png' alt='red' height='100px' width='100px'/>
     <br><br>
   </center>
-  <div class='fixwidth box'>
+  <div class='fixwidth well shadow-effect'>
     <%= bootstrap_form_for(resource,
                            :as => resource_name,
                            :url => password_path(resource_name),
@@ -21,9 +21,7 @@
       <%= f.password_field :password, :autofocus => true %>
 
       <%= f.password_field :password_confirmation %>
-      <center>
-        <%= f.submit 'Change my password', class: 'devise-button' %>
-      </center>
+      <%= f.submit 'Update', class: 'btn btn-block btn-primary' %>
     <% end %>
     <div class='visible-xs'>
       <br>

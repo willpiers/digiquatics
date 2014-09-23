@@ -53,11 +53,11 @@
         {{request.shift.start_time | date:'M/d/yy'}}
       </td>
       <td class='hidden-xs'>
-        {{request.shift.start_time | date:'h:mm'}}-
+        {{request.shift.start_time | date:'h:mm'}} -
         {{request.shift.end_time | date:'h:mm a'}}
       </td>
       <td class='visible-xs'>
-        {{request.shift.start_time | date:'h:mm'}}-
+        {{request.shift.start_time | date:'h:mm'}} -
         {{request.shift.end_time | date:'h:mm a M/d/yy '}}
       </td>
       <td class='hidden-xs'>
@@ -66,9 +66,9 @@
         </a>
       </td>
       <td>
-        <%= link_to '/sub_requests/{{request.id}}' do %>
-          <i class='fa fa-external-link fa-lg'></i>
-        <% end %>
+        <div ng-click="open(request, 'lg')">
+          <a><i class='fa fa-columns fa-lg'></i></a>
+        </div>
       </td>
     </tr>
   </tbody>

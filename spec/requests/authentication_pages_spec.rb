@@ -25,7 +25,7 @@ describe 'Authentication' do
     before { visit new_user_session_path }
 
     describe 'with invalid information' do
-      before { click_button 'Sign in to your account' }
+      before { click_button 'Sign in' }
 
       it { should have_title('Sign In') }
     end

@@ -107,4 +107,54 @@ module ApplicationHelper
   def date_and_time(date)
     date ? date.strftime('%-m/%-d/%Y @ %I:%M%p') : ''
   end
+
+  def number_private_lessons
+    PrivateLesson.joins(:account)
+                  .same_account_as(current_user).unclaimed.count
+  end
+
+  def number_open_issues
+    HelpDesk.joins(:location)
+            .where(locations: { account_id: current_user.account_id })
+            .where(issue_status: true).count
+  end
+
+  def number_sub_requests
+    SubRequest.joins(:user)
+              .where(users: { account_id: current_user.account_id })
+              .where(active: false)
+              .where(processed: false).count
+  end
+
+  def number_time_off_requests
+    TimeOffRequest.joins(:user)
+                  .where(users: { account_id: current_user.account_id })
+                  .where(active: true).count
+  end
+
+  def show_badge_notification(page)
+    case page
+    when 'private_lessons_queue'
+      number_private_lessons > 0
+    when 'open_issues'
+      number_open_issues > 0
+    when 'sub_requests'
+      number_sub_requests > 0
+    when 'time_off_requests'
+      number_time_off_requests > 0
+    end
+  end
+
+  def badge_notifications(page)
+    case page
+    when 'private_lessons_queue'
+      number_private_lessons
+    when 'open_issues'
+      number_open_issues
+    when 'sub_requests'
+      number_sub_requests
+    when 'time_off_requests'
+      number_time_off_requests
+    end
+  end
 end

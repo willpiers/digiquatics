@@ -93,10 +93,11 @@
                 <div class='hidden-print'>
                   <br><i class='fa fa-clock-o'></i>
                   {{user.hours}}
+                  <br><i class='fa fa-child'></i></i>
+                  <!-- Private Lesson Counter -->
                 </div>
               </td>
-
-              <td ng-repeat='day in days track by day'>
+              <td ng-repeat='day in days'>
                 <div ng-if='buildMode'>
 
                   <div ng-if='time_off.dayIndices.length && time_off.dayIndices.indexOf(days.indexOf(day)) > -1'
@@ -119,7 +120,7 @@
                   </div>
                 </div>
                 <div ng-if='shift.dayIndex == days.indexOf(day)'
-                     ng-repeat="shift in user.shifts | orderBy:'start_time' track by shift.id">
+                     ng-repeat="shift in user.shifts | orderBy:'start_time'">
                   <div class='edit_shift'>
                     <progressbar ng-click='open(user, day, shift)'
                                  class='progress fix-schedule-time-bar shift'

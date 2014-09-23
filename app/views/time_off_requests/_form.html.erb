@@ -22,8 +22,13 @@
     <%= f.hidden_field :user_id, value: current_user.id %>
     <%= f.hidden_field :location_id, value: current_user.location_id %>
     <button type='submit' class='btn btn-block btn-primary'>
-      <i class='fa fa-check'></i> Submit Request
+      <i class='fa fa-refresh fa-lg'></i> Update Request
     </button>
+    <%= link_to @time_off_request, method: :delete,
+        class: 'btn btn-danger btn-block',
+        data: { confirm: 'Are you sure?' } do %>
+        <i class='fa fa-trash-o fa-lg'></i> Delete Request
+    <% end %>
   <% end %>
 </div>
 </div>
