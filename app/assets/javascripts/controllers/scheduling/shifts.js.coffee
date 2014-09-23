@@ -1,7 +1,6 @@
 @digiquatics.controller 'ShiftsCtrl', [
   '$q'
   '$scope'
-  '$filter'
   'Shifts'
   'Users'
   'Locations'
@@ -9,7 +8,7 @@
   '$modal'
 
   class ShiftsCtrl
-    constructor: (@$q, @$scope, $filter, @Shifts, @Users, @Locations, @Positions, $modal) ->
+    constructor: (@$q, @$scope, @Shifts, @Users, @Locations, @Positions, $modal) ->
       @currentWeek = 0
 
       @_loadAndProcessData()
@@ -28,15 +27,15 @@
 
       @$scope.previousWeek = =>
         @currentWeek -= 7
-        @_loadAndProcessData()
+        @_addViewDataToUsers()
 
       @$scope.nextWeek = =>
         @currentWeek += 7
-        @_loadAndProcessData()
+        @_addViewDataToUsers()
 
       @$scope.resetWeekCounter = =>
         @currentWeek = 0
-        @_loadAndProcessData()
+        @_addViewDataToUsers()
 
       @$scope.displayStartDate = =>
         moment().startOf('week').add('days', @currentWeek).format 'MMMM YYYY'
@@ -85,7 +84,7 @@
             .$promise.then (updatedShift) =>
               _.remove user.shifts, (userShift) -> userShift.id is shift.id
               user.shifts.push updatedShift
-              @_loadAndProcessData()
+              @_addViewDataToUsers()
           else
             @Shifts.create
               user_id: user.id
@@ -95,7 +94,7 @@
               end_time: end
             .$promise.then (newShift) =>
               user.shifts.push newShift
-              @_loadAndProcessData()
+              @_addViewDataToUsers()
 
         $scope.ok = (position, startTime, endTime) ->
           assignShift $scope.user, data.location, position, startTime, endTime, shift
@@ -114,7 +113,7 @@
         $scope.delete = =>
           Shifts.destroy id: shift.id
           _.remove $scope.user.shifts, (userShift) -> userShift.id is shift.id
-          @_loadAndProcessData()
+          @_addViewDataToUsers()
 
           $modalInstance.close $scope.user
           toastr.error('Shift was successfully deleted.')
@@ -176,6 +175,8 @@
             request.dayIndices.push moment(request.starts_at).day()
 
     _addDayIndexToShift: (shift) ->
+      delete shift.dayIndex if shift.dayIndex
+
       shiftStartTime = moment shift.start_time
 
       if shiftStartTime.isSame moment().startOf('week').add('days', @currentWeek), 'week'
