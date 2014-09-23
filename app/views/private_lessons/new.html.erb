@@ -2,7 +2,7 @@
 <br><br>
 <% if signed_in? %>
   <h1>
-    <%= "#{Account.find(@private_lesson.account).name}" %>
+    <%= @private_lesson.account.name %>
   </h1>
   <center><h4>Lesson Request</h4></center>
   <div class='userform well shadow-effect'>
@@ -11,7 +11,7 @@
 <% end %>
 <% unless signed_in? %>
   <h1>
-    <%= "#{Account.find(@private_lesson.account).name}" %>
+    <%= @private_lesson.account.name %>
   </h1>
   <center><h4>Lesson Request</h4></center>
   <div class='userform well shadow-effect'>
