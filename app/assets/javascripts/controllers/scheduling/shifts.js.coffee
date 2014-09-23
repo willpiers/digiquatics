@@ -102,7 +102,6 @@
       $scope.startTime = shift?.start_time ? startTime
       $scope.endTime = shift?.end_time ? endTime
       $scope.range = _.range(1,10)
-      $scope.occurences = $scope.range[0]
       $scope.daysChecked = [
         {day: 'Sunday', checked: false }
         {day: 'Monday', checked: false }
@@ -112,6 +111,9 @@
         {day: 'Friday', checked: false }
         {day: 'Saturday', checked: false }
       ]
+      $scope.state =
+        recurring: false
+        occurences: $scope.range[0]
 
       $scope.assignShift = (user, location, position, start, end, shift) ->
         if shift
@@ -125,8 +127,8 @@
             _.remove user.shifts, (userShift) -> userShift.id is shift.id
             user.shifts.push updatedShift
         else
-          if $scope.recurring
-            for weekCounter in [0..$scope.occurences-1] by 1
+          if $scope.state.recurring
+            for weekCounter in [0..$scope.state.occurences-1] by 1
               for dayCounter in [0..6] by 1
                 if $scope.daysChecked[dayCounter].checked
                   adjustedDayCounter = dayCounter - $scope.day

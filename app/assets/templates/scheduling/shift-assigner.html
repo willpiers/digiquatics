@@ -37,52 +37,25 @@
   </select>
   <div class='u-modal-repeat'>
     <label for='a'>Repeat</label>
-    <input class='repeat-checkbox' type='checkbox' ng-model='$parent.recurring' id='a'/>
+    <input class='repeat-checkbox' type='checkbox' ng-model='state.recurring' id='a'/>
   </div>
   <br>
-  <div ng-show='$parent.recurring'>
+  <div ng-show='state.recurring'>
     <center>
       <table>
         <tr>
           <td valign='top'>
             <div class='u-modal-repeat'>
-              <input class='repeat-checkbox' id='sunday' type='checkbox' ng-model='$parent.daysChecked[0].checked'/>
-              <label for='sunday'>Sunday</label>
-            </div>
-            <br>
-            <div class='u-modal-repeat'>
-              <input class='repeat-checkbox' id='monday' type='checkbox' ng-model='$parent.daysChecked[1].checked'/>
-              <label for='monday'>Monday</label>
-            </div>
-            <br>
-            <div class='u-modal-repeat'>
-              <input class='repeat-checkbox' id='tuesday' type='checkbox' ng-model='$parent.daysChecked[2].checked'/>
-              <label for='tuesday'>Tuesday</label>
-            </div>
-            <br>
-            <div class='u-modal-repeat'>
-              <input class='repeat-checkbox' id='wednesday' type='checkbox' ng-model='$parent.daysChecked[3].checked'/>
-              <label for='wednesday'>Wednesday</label>
-            </div>
-            <br>
-            <div class='u-modal-repeat'>
-              <input class='repeat-checkbox' id='thursday' type='checkbox' ng-model='$parent.daysChecked[4].checked'/>
-              <label for='thursday'>Thursday</label>
-            </div>
-            <br>
-            <div class='u-modal-repeat'>
-              <input class='repeat-checkbox' id='friday' type='checkbox' ng-model='$parent.daysChecked[5].checked'/>
-              <label for='friday'>Friday</label>
-            </div>
-            <br>
-            <div class='u-modal-repeat'>
-              <input class='repeat-checkbox' id='saturday' type='checkbox' ng-model='$parent.daysChecked[6].checked'/>
-              <label for='saturday'>Saturday</label>
+                <div ng-repeat='day in daysChecked'>
+                <input class='repeat-checkbox' id='day.day' type='checkbox' ng-model='day.checked'/>
+                <label for='day.day'>{{day.day}}</label>
+                <br>
+              </div>
             </div>
           </td>
           <td valign='top'>
             <label>For</label>
-            <select class='form-control' ng-model='$parent.occurences'
+            <select class='form-control' ng-model='state.occurences'
                     ng-options="n for n in range"></select>
             <label>Weeks</label>
           </td>
@@ -107,53 +80,3 @@
       <i class='fa fa-check fa-lg'></i> {{'Assign Shift'}}</a>
   </div>
 </div>
-
-<style>
-#u-slide-inspections-checkbox-fix input[type=checkbox]{
-    /* Double-sized Checkboxes */
-    -ms-transform: scale(2); /* IE */
-    -moz-transform: scale(2); /* FF */
-    -webkit-transform: scale(2); /* Safari and Chrome */
-    -o-transform: scale(2); /* Opera */
-    padding-left: 25px;
-  }
-.u-modal-label {
-    float: left;
-}
-.u-modal-checkbox {
-    float: left;
-    width: 50px;
-}
-.u-modal-repeat {
-    float: left;
-    width: 150px;
-    height: 15px;
-    display: inline;
-}
-.u-checkbox-label {
-  position: relative;
-  left: 5px;
-  top: 21px;
-}
-.repeat-checkbox {
-  width: 20%;
-}
-
-.u-repeat-label {
-  position: relative;
-  left: 5px;
-  top: 21px;
-}
-
-#u-modal-checkbox-positions {
-  position: relative;
-  right: 25px;
-  bottom: 5px;
-}
-
-#u-modal-selecbox {
-  position: relative;
-  right: 30px;
-  top: 10px;
-}
-</style>
