@@ -6,10 +6,45 @@
   'Locations'
   'Positions'
   '$modal'
-  '$log'
+  '$window'
 
-  @ShiftsCtrl = ($scope, $filter, Shifts, Users, Locations, Positions, $modal, $log) ->
-    $scope.users = Users.index()
+  @ShiftsCtrl = ($scope, $filter, Shifts, Users, Locations, Positions, $modal, $window) ->
+    $scope.users = Users.index (users) ->
+      _.each users, (user) ->
+        user.hours = _.reduce user.shifts, (total, shift) ->
+          if moment(shift.start_time).isSame $scope.weekDay(0), 'week'
+            total += moment(shift.end_time).diff(shift.start_time, 'hours', true)
+
+          total
+        , 0
+
+        _.each user.time_off_requests, (request) ->
+          request.dayIndices = []
+
+          if request.approved
+            weekRange = moment().range moment().startOf('week'), moment().endOf('week')
+
+            if request.all_day
+              requestRange = moment().range moment(request.starts_at), moment(request.ends_at)
+
+              if weekRange.overlaps requestRange
+                requestRangeDuringThisWeek = weekRange.intersect requestRange
+
+                requestRangeDuringThisWeek.by 'days', (momentDay) ->
+                  request.dayIndices.push momentDay.day()
+            else
+              if moment(request.starts_at).within weekRange
+                request.dayIndices.push moment(request.starts_at).day()
+
+        _.each user.shifts, (shift) ->
+          shiftStartTime = moment shift.start_time
+
+          if shiftStartTime.isSame moment().startOf('week'), 'week'
+            shift.dayIndex = shiftStartTime.day()
+
+        # user.shifts = _.filter user.shifts, (shift) ->
+        #   moment(shift.start_time).isSame(moment().startOf('week'), 'week')
+
     $scope.locations = Locations.index()
     $scope.positions = Positions.index()
 
@@ -22,14 +57,6 @@
       'Friday'
       'Saturday'
     ]
-
-    $scope.calculateHours = (user) ->
-      _.reduce user.shifts, (total, shift) ->
-        if moment(shift.start_time).isSame $scope.weekDay(0), 'week'
-          total += moment(shift.end_time).diff(shift.start_time, 'hours', true)
-
-        total
-      , 0
 
     startTime = (days) ->
       $scope.weekDay(days).startOf('day').add 5, 'hours'
@@ -56,56 +83,37 @@
       moment().startOf('week').add('days', $scope.weekCounter).format 'MMMM YYYY'
 
     $scope.displayEndDate = (days) ->
-      moment().startOf('week').add('days', $scope.weekCounter + days).format('MMM D, YYYY')
+      moment().startOf('week').add('days', $scope.weekCounter + days).format 'MMM D, YYYY'
 
     $scope.weekDay = (days) ->
-      moment().startOf('week').add('days', $scope.weekCounter + days)
+      moment().startOf('week').add 'days', $scope.weekCounter + days
 
     $scope.predicate =
       value: 'last_name'
 
-    # show shifts by day of week
-    $scope.sameDay = (shift, day) ->
-      moment(shift).isSame($scope.weekDay(day), 'day')
-
-    # Show Time off request over multiple days
-    $scope.sameDayTimeOff = (request, day) ->
-      if request.approved
-        moment(request.starts_at).isSame($scope.weekDay(day), 'day') or
-        moment($scope.weekDay(day)).isAfter(request.starts_at) and
-        moment($scope.weekDay(day)).isBefore(request.ends_at)
-
     $scope.open = (user, day, shift, size) ->
-      modalInstance = $modal.open(
-        templateUrl: 'scheduling/shift-assigner.html',
-        controller: ModalInstanceCtrl,
-        size: size,
+      modalInstance = $modal.open
+        templateUrl: 'scheduling/shift-assigner.html'
+        controller: ModalInstanceCtrl
+        size: size
         resolve:
-          shift: ->
-            shift
-          user: ->
-            user
-          day: ->
-            day
-          location: ->
-            $scope.buildLocation
-          startTime: ->
-            startTime(day)
-          endTime: ->
-            endTime(day)
-          positions: ->
-            $scope.positions
-          position: ->
-            user.position_id
-        )
+          shift: -> shift
+          data: ->
+            user: user
+            day: day
+            location: $scope.buildLocation
+            startTime: startTime day
+            endTime: endTime day
+            positions: $scope.positions
+            position: user.position_id
 
-    ModalInstanceCtrl = ($scope, $modalInstance, shift, user, location, startTime, endTime, positions, position) ->
-      $scope.user = user
+    ModalInstanceCtrl = ($scope, $modalInstance, shift, data) ->
+      $scope.user = data.user
       $scope.shift = shift
-      $scope.positions = positions
-      $scope.positionSelect = shift?.position_id ? position
-      $scope.startTime = shift?.start_time ? startTime
-      $scope.endTime = shift?.end_time ? endTime
+      $scope.positions = data.positions
+      $scope.positionSelect = shift?.position_id ? data.position
+      $scope.startTime = shift?.start_time ? data.startTime
+      $scope.endTime = shift?.end_time ? data.endTime
 
       $scope.assignShift = (user, location, position, start, end, shift) ->
         if shift
@@ -132,12 +140,18 @@
         $scope.assignShift user, location, position, startTime, endTime, shift
         $modalInstance.close $scope.user
 
-        if shift then toastr.info('Shift was successfully updated.')
-        else toastr.success('Shift was successfully created.')
+        if shift
+          toastr.info('Shift was successfully updated.')
+        else
+          toastr.success('Shift was successfully created.')
+
         true #Fixes error with returns elements through Angular to the DOM
 
       $scope.cancel = ->
         $modalInstance.dismiss 'Cancel'
+
+      $scope.changed = ->
+        console.log 'here'
 
       $scope.delete = ->
         Shifts.destroy id: shift.id
@@ -150,11 +164,6 @@
       '$scope'
       '$modalInstance'
       'shift'
-      'user'
-      'location'
-      'startTime'
-      'endTime'
-      'positions'
-      'position'
+      'data'
     ]
 ]

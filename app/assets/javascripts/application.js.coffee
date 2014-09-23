@@ -9,7 +9,9 @@
 #= require angular-resource
 #= require angular-ui-bootstrap-tpls
 #= require ng-rails-csrf
+
 #= require moment
+#= require moment-range.1.0.2
 
 #= require angular-rails-templates
 #= require_tree ../templates

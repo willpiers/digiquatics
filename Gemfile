@@ -41,7 +41,7 @@ gem 'intercom-rails', github: 'kmanzana/intercom-rails'
 gem 'mixpanel-ruby'
 
 # js libs
-gem 'angularjs-rails', '~> 1.2.14'
+gem 'angularjs-rails', '~> 1.2.22'
 gem 'angular-ui-bootstrap-rails'
 gem 'angular-rails-templates'
 gem 'jquery-turbolinks'
