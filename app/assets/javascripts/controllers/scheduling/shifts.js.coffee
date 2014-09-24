@@ -72,6 +72,19 @@
         $scope.positionSelect = shift?.position_id ? data.position
         $scope.startTime = shift?.start_time ? data.startTime
         $scope.endTime = shift?.end_time ? data.endTime
+        $scope.range = _.range(1,10)
+        $scope.daysChecked = [
+          {day: 'Sunday', checked: false }
+          {day: 'Monday', checked: false }
+          {day: 'Tuesday', checked: false }
+          {day: 'Wednesday', checked: false }
+          {day: 'Thursday', checked: false }
+          {day: 'Friday', checked: false }
+          {day: 'Saturday', checked: false }
+        ]
+        $scope.state =
+          recurring: false
+          occurences: $scope.range[0]
 
         assignShift = (user, location, position, start, end, shift) =>
           if shift
@@ -86,15 +99,30 @@
               user.shifts.push updatedShift
               @_addViewDataToUsers()
           else
-            @Shifts.create
-              user_id: user.id
-              location_id: location
-              position_id: position
-              start_time: start
-              end_time: end
-            .$promise.then (newShift) =>
-              user.shifts.push newShift
-              @_addViewDataToUsers()
+            if $scope.state.recurring
+              for weekCounter in [0..$scope.state.occurences-1] by 1
+                for dayCounter in [0..6] by 1
+                  if $scope.daysChecked[dayCounter].checked
+                    adjustedDayCounter = dayCounter - $scope.day
+                    @Shifts.create
+                      user_id: user.id
+                      location_id: location
+                      position_id: position
+                      start_time: moment(start).add(weekCounter, 'weeks').add(adjustedDayCounter, 'days')
+                      end_time: moment(end).add(weekCounter, 'weeks').add(adjustedDayCounter, 'days')
+                    .$promise.then (newShift) ->
+                      user.shifts.push newShift
+                      @_addViewDataToUsers()
+            else
+              @Shifts.create
+                user_id: user.id
+                location_id: location
+                position_id: position
+                start_time: start
+                end_time: end
+              .$promise.then (newShift) ->
+                user.shifts.push newShift
+                @_addViewDataToUsers()
 
         $scope.ok = (position, startTime, endTime) ->
           assignShift $scope.user, data.location, position, startTime, endTime, shift
@@ -181,126 +209,4 @@
 
       if shiftStartTime.isSame moment().startOf('week').add('days', @currentWeek), 'week'
         shift.dayIndex = shiftStartTime.day()
-
-<<<<<<< HEAD
-    # Show Time off request over multiple days
-    $scope.sameDayTimeOff = (request, day) ->
-      if request.approved
-        moment(request.starts_at).isSame($scope.weekDay(day), 'day') or
-        moment($scope.weekDay(day)).isAfter(request.starts_at) and
-        moment($scope.weekDay(day)).isBefore(request.ends_at)
-
-    $scope.open = (user, day, shift, size) ->
-      modalInstance = $modal.open
-        templateUrl: 'scheduling/shift-assigner.html',
-        controller: ModalInstanceCtrl,
-        size: size,
-        resolve:
-          shift: ->
-            shift
-          user: ->
-            user
-          location: ->
-            $scope.buildLocation
-          startTime: ->
-            startTime(day)
-          endTime: ->
-            endTime(day)
-          positions: ->
-            $scope.positions
-          position: ->
-            user.position_id
-          day: ->
-            day
-
-    ModalInstanceCtrl = ($scope, $modalInstance, shift, user, location,
-                         startTime, endTime, positions, position, day) ->
-      $scope.day = day
-      $scope.user = user
-      $scope.shift = shift
-      $scope.positions = positions
-      $scope.positionSelect = shift?.position_id ? position
-      $scope.startTime = shift?.start_time ? startTime
-      $scope.endTime = shift?.end_time ? endTime
-      $scope.range = _.range(1,10)
-      $scope.daysChecked = [
-        {day: 'Sunday', checked: false }
-        {day: 'Monday', checked: false }
-        {day: 'Tuesday', checked: false }
-        {day: 'Wednesday', checked: false }
-        {day: 'Thursday', checked: false }
-        {day: 'Friday', checked: false }
-        {day: 'Saturday', checked: false }
-      ]
-      $scope.state =
-        recurring: false
-        occurences: $scope.range[0]
-
-      $scope.assignShift = (user, location, position, start, end, shift) ->
-        if shift
-          shiftData = angular.extend shift,
-            start_time: start
-            end_time: end
-            position_id: position
-
-          Shifts.update id: shiftData.id, shiftData
-          .$promise.then (updatedShift) ->
-            _.remove user.shifts, (userShift) -> userShift.id is shift.id
-            user.shifts.push updatedShift
-        else
-          if $scope.state.recurring
-            for weekCounter in [0..$scope.state.occurences-1] by 1
-              for dayCounter in [0..6] by 1
-                if $scope.daysChecked[dayCounter].checked
-                  adjustedDayCounter = dayCounter - $scope.day
-                  Shifts.create
-                    user_id: user.id
-                    location_id: location
-                    position_id: position
-                    start_time: moment(start).add(weekCounter, 'weeks').add(adjustedDayCounter, 'days')
-                    end_time: moment(end).add(weekCounter, 'weeks').add(adjustedDayCounter, 'days')
-                  .$promise.then (newShift) ->
-                    user.shifts.push newShift
-          else
-            Shifts.create
-              user_id: user.id
-              location_id: location
-              position_id: position
-              start_time: start
-              end_time: end
-            .$promise.then (newShift) ->
-              user.shifts.push newShift
-
-      $scope.ok = (position, startTime, endTime) ->
-        $scope.assignShift user, location, position, startTime, endTime, shift
-        $modalInstance.close $scope.user
-
-        if shift then toastr.info('Shift was successfully updated.')
-        else toastr.success('Shift was successfully created.')
-        true #Fixes error with returns elements through Angular to the DOM
-
-      $scope.cancel = ->
-        $modalInstance.dismiss 'Cancel'
-
-      $scope.delete = ->
-        Shifts.destroy id: shift.id
-        _.remove user.shifts, (userShift) -> userShift.id is shift.id
-        $modalInstance.close $scope.user
-        toastr.error('Shift was successfully deleted.')
-        true #Fixes error with returns elements through Angular to the DOM
-
-    ModalInstanceCtrl['$inject'] = [
-      '$scope'
-      '$modalInstance'
-      'shift'
-      'user'
-      'location'
-      'startTime'
-      'endTime'
-      'positions'
-      'position'
-      'day'
-    ]
-=======
->>>>>>> master
 ]
