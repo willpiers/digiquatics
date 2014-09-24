@@ -103,7 +103,7 @@
               for weekCounter in [0..$scope.state.occurences-1] by 1
                 for dayCounter in [0..6] by 1
                   if $scope.daysChecked[dayCounter].checked
-                    adjustedDayCounter = dayCounter - $scope.day
+                    adjustedDayCounter = dayCounter - data.day
                     @Shifts.create
                       user_id: user.id
                       location_id: location
