@@ -86,7 +86,7 @@
           recurring: false
           occurences: $scope.range[0]
 
-        assignShift = (user, location, position, start, end, shift) =>
+        $scope.assignShift = (user, location, position, start, end, shift) =>
           if shift
             shiftData = angular.extend shift,
               start_time: start
