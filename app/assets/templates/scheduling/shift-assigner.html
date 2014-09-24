@@ -33,32 +33,34 @@
           ng-model='positionSelect'
           ng-options='position.id as position.name for position in positions'>
   </select>
-  <div class='u-modal-repeat'>
-    <label for='a'>Repeat</label>
-    <input class='repeat-checkbox' type='checkbox' ng-model='state.recurring' id='a'/>
-  </div>
-  <div ng-show='state.recurring'>
-    <center>
-      <table>
-        <tr>
-          <td valign='top'>
-            <div class='u-modal-repeat'>
-              <div ng-repeat='day in daysChecked'>
-                <input class='repeat-checkbox' id='day.day' type='checkbox' ng-model='day.checked'/>
-                <label for='day.day'>{{day.day}}</label>
-                <br>
+  <div ng-if='!shift'>
+    <div class='u-modal-repeat'>
+      <label for='a'>Repeat</label>
+      <input class='repeat-checkbox' type='checkbox' ng-model='state.recurring' id='a'/>
+    </div>
+    <div ng-show='state.recurring'>
+      <center>
+        <table>
+          <tr>
+            <td valign='top'>
+              <div class='u-modal-repeat'>
+                <div ng-repeat='day in daysChecked'>
+                  <input class='repeat-checkbox' id='day.day' type='checkbox' ng-model='day.checked'/>
+                  <label for='day.day'>{{day.day}}</label>
+                  <br>
+                </div>
               </div>
-            </div>
-          </td>
-          <td valign='top'>
-            <label>For</label>
-            <select class='form-control' ng-model='state.occurences'
-                    ng-options="n for n in range"></select>
-            <label>Weeks</label>
-          </td>
-        </tr>
-      </table>
-    </center>
+            </td>
+            <td valign='top'>
+              <label>For</label>
+              <select class='form-control' ng-model='state.occurences'
+                      ng-options="n for n in range"></select>
+              <label>Weeks</label>
+            </td>
+          </tr>
+        </table>
+      </center>
+    </div>
   </div>
 </div>
 
