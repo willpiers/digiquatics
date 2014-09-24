@@ -203,7 +203,7 @@
             request.dayIndices.push moment(request.starts_at).day()
 
     _addDayIndexToShift: (shift) ->
-      delete shift.dayIndex if shift.dayIndex
+      delete shift.dayIndex if shift.dayIndex?
 
       shiftStartTime = moment shift.start_time
 
