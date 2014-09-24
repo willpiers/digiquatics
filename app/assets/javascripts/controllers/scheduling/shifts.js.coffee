@@ -86,7 +86,7 @@
           recurring: false
           occurences: $scope.range[0]
 
-        $scope.assignShift = (user, location, position, start, end, shift) =>
+        assignShift = (user, location, position, start, end, shift) =>
           if shift
             shiftData = angular.extend shift,
               start_time: start
@@ -110,7 +110,7 @@
                       position_id: position
                       start_time: moment(start).add(weekCounter, 'weeks').add(adjustedDayCounter, 'days')
                       end_time: moment(end).add(weekCounter, 'weeks').add(adjustedDayCounter, 'days')
-                    .$promise.then (newShift) ->
+                    .$promise.then (newShift) =>
                       user.shifts.push newShift
                       @_addViewDataToUsers()
             else
@@ -120,7 +120,7 @@
                 position_id: position
                 start_time: start
                 end_time: end
-              .$promise.then (newShift) ->
+              .$promise.then (newShift) =>
                 user.shifts.push newShift
                 @_addViewDataToUsers()
 
