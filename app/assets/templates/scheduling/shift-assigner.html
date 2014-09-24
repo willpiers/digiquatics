@@ -12,18 +12,16 @@
       <div class='col-md-4'>
         <h4> Start Time </h4>
         <div class='fix_ampm_button'>
-          <timepicker ng-model='startTime' ng-change='changed()'
-                      hour-step='1' minute-step='15'>
-           {{startTime}}
+          <timepicker ng-model='startTime' hour-step='1' minute-step='15'>
+            {{startTime}}
           </timepicker>
         </div>
       </div>
       <div class='col-md-4'>
         <h4> End Time </h4>
         <div class='fix_ampm_button'>
-          <timepicker ng-model='endTime' ng-change='changed()'
-                      hour-step='1' minute-step='15'>
-           {{endTime}}
+          <timepicker ng-model='endTime' hour-step='1' minute-step='15'>
+            {{endTime}}
           </timepicker>
         </div>
       </div>
@@ -66,7 +64,7 @@
 <div>
 
 <div class='modal-footer'>
-  <div ng-show='shift'>
+  <div ng-if='shift'>
     <a class='btn btn-primary btn-block'
        ng-click='ok(positionSelect, startTime, endTime)'>
       <i class='fa fa-refresh fa-lg'></i> {{'Update Shift'}}</a>
@@ -74,7 +72,7 @@
        ng-click='delete()'>
       <i class='fa fa-trash-o fa-lg'></i> {{'Delete Shift'}}</a>
   </div>
-  <div ng-hide='shift'>
+  <div ng-if='!shift'>
     <a class='btn btn-primary btn-block'
        ng-click='ok(positionSelect, startTime, endTime)'>
       <i class='fa fa-check fa-lg'></i> {{'Assign Shift'}}</a>

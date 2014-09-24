@@ -72,7 +72,75 @@
     </div>
     <div>
     <div>
-      <%= render 'shifts/week_views/week_view' %>
+      <div class='shadow-effect'>
+        <table class='table table-bordered table-white print-schedule-font'>
+          <thead>
+            <tr>
+              <th id='schedule_info_column'>
+              </th>
+              <th class='schedule_day_header' ng-repeat='day in days'>
+                <h4>{{weekDay(days.indexOf(day)).format('ddd')}}</h4>
+                <h2>{{weekDay(days.indexOf(day)).format('D')}}</h2>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat='user in users | orderBy:predicate.value:reverse |
+                           filter:locationFilter | filter:positionFilter'>
+              <td>
+                {{user.last_name}}, </br>
+                {{user.first_name}}
+                <div class='hidden-print'>
+                  <br><i class='fa fa-clock-o'></i>
+                  {{user.hours}}
+                  <br><i class='fa fa-child'></i></i>
+                  <!-- Private Lesson Counter -->
+                </div>
+              </td>
+              <td ng-repeat='day in days'>
+                <div ng-if='buildMode'>
+
+                  <div ng-if='time_off.dayIndices.length && time_off.dayIndices.indexOf(days.indexOf(day)) > -1'
+                       ng-repeat="time_off in user.time_off_requests | orderBy:'starts_at'">
+                    <progressbar class='progress fix-schedule-time-bar'
+                                 value='100' type='danger'>
+                      <div ng-if='time_off.all_day'>
+                        Time Off
+                      </div>
+                      <div ng-hide='time_off.all_day'>
+                        {{time_off.starts_at | date:'h:mma'}}-{{time_off.ends_at | date:'h:mma'}}
+                      </div>
+                    </progressbar>
+                  </div>
+                  <div ng-repeat="avail in user.availabilities | orderBy:'start_time' | filter:{day: days.indexOf(day)}">
+                    <progressbar class='progress fix-schedule-time-bar'
+                                 value='100' type='success'>
+                      {{avail.start_time | date:'h:mma'}}-{{avail.end_time | date:'h:mma'}}
+                    </progressbar>
+                  </div>
+                </div>
+                <div ng-if='shift.dayIndex == days.indexOf(day)'
+                     ng-repeat="shift in user.shifts | orderBy:'start_time'">
+                  <div class='edit_shift'>
+                    <progressbar ng-click='open(user, day, shift)'
+                                 class='progress fix-schedule-time-bar shift'
+                                 value='100' type='primary'>
+                      {{shift.start_time | date:'h:mma'}}-{{shift.end_time | date:'h:mma'}}<br/>
+                      {{shift.position.name}}
+                    </progressbar>
+                  </div>
+                </div>
+                <div ng-if='buildMode'>
+                  <div class='shift'
+                    ng-click='open(user, days.indexOf(day))'
+                    data-hover='Assign Shift'>
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 </div>
