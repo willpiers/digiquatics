@@ -49,16 +49,26 @@
       <div class='col-md-3'>
         <h3 style='color:black;'>Pending Sub<br><br>Requests</h3>
         <h1>
-          <%= SubRequest.joins(:user)
-                                   .where(users: { account_id: current_user.account_id })
-                                   .where(active: false).where(processed: false).count %>
+          <%= number_sub_requests %>
         </h1>
       </div>
       <div class='col-md-3'>
         <h3 style='color:black;'>Pending Time Off<br><br>Requests</h3>
         <h1>
-          <%= TimeOffRequest.joins(:user)
-          .where(users: { account_id: current_user.account_id }).where(active: true).count %>
+          <%= number_time_off_requests %>
+        </h1>
+      </div>
+      <br>
+      <div class='col-md-3'>
+        <h3 style='color:black;'>Pending Private Lesson<br><br>Requests</h3>
+        <h1>
+          <%= number_private_lessons %>
+        </h1>
+      </div>
+      <div class='col-md-3'>
+        <h3 style='color:black;'>Open Maintenance<br><br>Issues</h3>
+        <h1>
+          <%= number_open_issues %>
         </h1>
       </div>
     <% end %>
