@@ -103,50 +103,9 @@ cursor: pointer;
   height: 80px;
 }
 
-// Schedule Modal Recurring Shifts
-
-#u-slide-inspections-checkbox-fix input[type=checkbox]{
-    /* Double-sized Checkboxes */
-    -ms-transform: scale(2); /* IE */
-    -moz-transform: scale(2); /* FF */
-    -webkit-transform: scale(2); /* Safari and Chrome */
-    -o-transform: scale(2); /* Opera */
-    padding-left: 25px;
-  }
-.u-modal-label {
-    float: left;
-}
-.u-modal-checkbox {
-    float: left;
-    width: 50px;
-}
 .u-modal-repeat {
     width: 150px;
-}
-.u-checkbox-label {
-  position: relative;
-  left: 5px;
-  top: 21px;
 }
 .repeat-checkbox {
   width: 20%;
 }
-
-.u-repeat-label {
-  position: relative;
-  left: 5px;
-  top: 21px;
-}
-
-#u-modal-checkbox-positions {
-  position: relative;
-  right: 25px;
-  bottom: 5px;
-}
-
-#u-modal-selecbox {
-  position: relative;
-  right: 30px;
-  top: 10px;
-}
-

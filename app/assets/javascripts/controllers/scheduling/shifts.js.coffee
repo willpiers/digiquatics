@@ -72,7 +72,7 @@
         $scope.positionSelect = shift?.position_id ? data.position
         $scope.startTime = shift?.start_time ? data.startTime
         $scope.endTime = shift?.end_time ? data.endTime
-        $scope.range = _.range(1,10)
+        $scope.weekSelectBox = [1..10]
         $scope.daysChecked = [
           {day: 'Sunday', checked: false }
           {day: 'Monday', checked: false }
@@ -84,7 +84,7 @@
         ]
         $scope.state =
           recurring: false
-          occurences: $scope.range[0]
+          occurences: $scope.weekSelectBox[0]
 
         assignShift = (user, location, position, start, end, shift) =>
           if shift

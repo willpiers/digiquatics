@@ -35,10 +35,10 @@
   </select>
   <div ng-if='!shift'>
     <div class='u-modal-repeat'>
-      <label for='a'>Repeat</label>
-      <input class='repeat-checkbox' type='checkbox' ng-model='state.recurring' id='a'/>
+      <label>Repeat</label>
+      <input class='repeat-checkbox' type='checkbox' ng-model='state.recurring'/>
     </div>
-    <div ng-show='state.recurring'>
+    <div ng-if='state.recurring'>
       <center>
         <table>
           <tr>
@@ -54,7 +54,7 @@
             <td valign='top'>
               <label>For</label>
               <select class='form-control' ng-model='state.occurences'
-                      ng-options="n for n in range"></select>
+                      ng-options="numberWeeks for numberWeeks in weekSelectBox"></select>
               <label>Weeks</label>
             </td>
           </tr>
