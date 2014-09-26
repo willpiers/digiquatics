@@ -52,7 +52,10 @@
                     start_time: moment(start).add(week, 'weeks').add(adjustedDayCounter, 'days')
                     end_time: moment(end).add(week, 'weeks').add(adjustedDayCounter, 'days')
                   .$promise.then (newShift) =>
-                    @_updateViewWithNewShift user, newShift
+                    console.log 'emit!'
+                    $scope.$broadcast "updateViewWithNewShift",
+                      someProp: "Sending you an Object!"
+
           else
             @Shifts.create
               user_id: user.id
@@ -86,8 +89,4 @@
         toastr.error('Shift was successfully deleted.')
 
         true #Fixes error with returns elements through Angular to the DOM
-
-    _updateViewWithNewShift: (user, newShift) ->
-      user.shifts.push newShift
-      @_addViewDataToUsers()
 ]

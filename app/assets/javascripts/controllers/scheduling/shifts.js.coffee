@@ -9,10 +9,13 @@
 
   class ShiftsCtrl
     constructor: (@$q, @$scope, @Shifts, @Users, @Locations, @Positions, $modal) ->
-      console.log @Users
       @currentWeek = 0
 
       @_loadAndProcessData()
+
+      $scope.$on 'updateViewWithNewShift', (someProp) ->
+        console.log someProp
+        # @_updateViewWithNewShift user, newShift
 
       @$scope.days = [
         'Sunday'
