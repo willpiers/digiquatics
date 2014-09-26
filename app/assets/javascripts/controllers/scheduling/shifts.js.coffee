@@ -100,16 +100,16 @@
               @_addViewDataToUsers()
           else
             if $scope.state.recurring
-              for weekCounter in [0..$scope.state.occurences-1] by 1
-                for dayCounter in [0..6] by 1
-                  if $scope.daysChecked[dayCounter].checked
-                    adjustedDayCounter = dayCounter - data.day
+              _.each [0..($scope.state.occurences - 1)], (week) =>
+                _.each [0..6], (day) =>
+                  if $scope.daysChecked[day].checked
+                    adjustedDayCounter = day - data.day
                     @Shifts.create
                       user_id: user.id
                       location_id: location
                       position_id: position
-                      start_time: moment(start).add(weekCounter, 'weeks').add(adjustedDayCounter, 'days')
-                      end_time: moment(end).add(weekCounter, 'weeks').add(adjustedDayCounter, 'days')
+                      start_time: moment(start).add(week, 'weeks').add(adjustedDayCounter, 'days')
+                      end_time: moment(end).add(week, 'weeks').add(adjustedDayCounter, 'days')
                     .$promise.then (newShift) =>
                       user.shifts.push newShift
                       @_addViewDataToUsers()
