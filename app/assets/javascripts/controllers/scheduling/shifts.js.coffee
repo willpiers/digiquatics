@@ -9,6 +9,7 @@
 
   class ShiftsCtrl
     constructor: (@$q, @$scope, @Shifts, @Users, @Locations, @Positions, $modal) ->
+      console.log @Users
       @currentWeek = 0
 
       @_loadAndProcessData()
@@ -52,7 +53,7 @@
       @$scope.open = (user, day, shift, size) =>
         modalInstance = $modal.open
           templateUrl: 'scheduling/shift-assigner.html'
-          controller: @ShiftModalInstanceCtrl
+          controller: 'ShiftModalInstanceCtrl'
           size: size
           resolve:
             shift: -> shift

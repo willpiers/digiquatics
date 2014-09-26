@@ -3,9 +3,10 @@
   '$modalInstance'
   'shift'
   'data'
+  'Shifts'
 
   class ShiftModalInstanceCtrl
-    constructor: (@$scope, $modalInstance, @shift, @data) ->
+    constructor: (@$scope, $modalInstance, @shift, @data, @Shifts) ->
       $scope.user = data.user
       $scope.shift = shift
       $scope.positions = data.positions
@@ -85,4 +86,8 @@
         toastr.error('Shift was successfully deleted.')
 
         true #Fixes error with returns elements through Angular to the DOM
+
+    _updateViewWithNewShift: (user, newShift) ->
+      user.shifts.push newShift
+      @_addViewDataToUsers()
 ]
