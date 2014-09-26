@@ -1,3 +1,31 @@
 <% provide(:title, 'New Time Off Request') %>
 <h1 class='cross_platform_header'>New Time Off Request</h1>
-<%= render partial: 'form' %>
+<div ng-app='digiquatics' ng-controller='TimeOffCtrl'
+     class='userform well shadow-effect'>
+  <%= bootstrap_form_for(@time_off_request) do |f| %>
+    <%= render 'shared/required' %>
+    <div class='center'>
+      <div class='btn-group'>
+        <label class='btn btn-info' ng-model='requestMode' btn-radio="'partialDay'">
+          Partial Day
+        </label>
+        <label class='btn btn-info' ng-model='requestMode' btn-radio="'allDay'">
+          All Day
+        </label>
+      </div>
+    </div>
+    <div ng-if='allDayRequestMode()'>
+      <%= render 'time_off_requests/show/all_day', f: f %>
+    </div>
+    <div ng-if='partialDayRequestMode()'>
+      <%= render 'time_off_requests/show/partial_day', f: f %>
+    </div>
+    <%= f.text_area :reason, label: 'Reason' %>
+    <%= f.hidden_field :user_id, value: current_user.id %>
+    <%= f.hidden_field :location_id, value: current_user.location_id %>
+    <button type='submit' class='btn btn-block btn-primary'>
+      <i class='fa fa-check fa-lg'></i> Create Request
+    </button>
+  <% end %>
+</div>
+</div>
