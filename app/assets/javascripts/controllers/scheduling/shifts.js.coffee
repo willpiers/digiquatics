@@ -111,8 +111,7 @@
                       start_time: moment(start).add(week, 'weeks').add(adjustedDayCounter, 'days')
                       end_time: moment(end).add(week, 'weeks').add(adjustedDayCounter, 'days')
                     .$promise.then (newShift) =>
-                      user.shifts.push newShift
-                      @_addViewDataToUsers()
+                      @_updateViewWithNewShift(user, newShift)
             else
               @Shifts.create
                 user_id: user.id
@@ -121,8 +120,7 @@
                 start_time: start
                 end_time: end
               .$promise.then (newShift) =>
-                user.shifts.push newShift
-                @_addViewDataToUsers()
+                @_updateViewWithNewShift(user, newShift)
 
         $scope.ok = (position, startTime, endTime) ->
           assignShift $scope.user, data.location, position, startTime, endTime, shift
@@ -209,4 +207,9 @@
 
       if shiftStartTime.isSame moment().startOf('week').add('days', @currentWeek), 'week'
         shift.dayIndex = shiftStartTime.day()
+
+    _updateViewWithNewShift: (user, newShift) ->
+      user.shifts.push newShift
+      @_addViewDataToUsers()
+
 ]
