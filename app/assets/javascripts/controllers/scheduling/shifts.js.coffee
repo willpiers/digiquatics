@@ -72,6 +72,19 @@
         $scope.positionSelect = shift?.position_id ? data.position
         $scope.startTime = shift?.start_time ? data.startTime
         $scope.endTime = shift?.end_time ? data.endTime
+        $scope.weekSelectBox = [1..10]
+        $scope.daysChecked = [
+          {day: 'Sunday', checked: false }
+          {day: 'Monday', checked: false }
+          {day: 'Tuesday', checked: false }
+          {day: 'Wednesday', checked: false }
+          {day: 'Thursday', checked: false }
+          {day: 'Friday', checked: false }
+          {day: 'Saturday', checked: false }
+        ]
+        $scope.state =
+          recurring: false
+          occurences: $scope.weekSelectBox[0]
 
         assignShift = (user, location, position, start, end, shift) =>
           if shift
@@ -86,15 +99,28 @@
               user.shifts.push updatedShift
               @_addViewDataToUsers()
           else
-            @Shifts.create
-              user_id: user.id
-              location_id: location
-              position_id: position
-              start_time: start
-              end_time: end
-            .$promise.then (newShift) =>
-              user.shifts.push newShift
-              @_addViewDataToUsers()
+            if $scope.state.recurring
+              _.each [0..($scope.state.occurences - 1)], (week) =>
+                _.each [0..6], (day) =>
+                  if $scope.daysChecked[day].checked
+                    adjustedDayCounter = day - data.day
+                    @Shifts.create
+                      user_id: user.id
+                      location_id: location
+                      position_id: position
+                      start_time: moment(start).add(week, 'weeks').add(adjustedDayCounter, 'days')
+                      end_time: moment(end).add(week, 'weeks').add(adjustedDayCounter, 'days')
+                    .$promise.then (newShift) =>
+                      @_updateViewWithNewShift user, newShift
+            else
+              @Shifts.create
+                user_id: user.id
+                location_id: location
+                position_id: position
+                start_time: start
+                end_time: end
+              .$promise.then (newShift) =>
+                @_updateViewWithNewShift user, newShift
 
         $scope.ok = (position, startTime, endTime) ->
           assignShift $scope.user, data.location, position, startTime, endTime, shift
@@ -181,5 +207,9 @@
 
       if shiftStartTime.isSame moment().startOf('week').add('days', @currentWeek), 'week'
         shift.dayIndex = shiftStartTime.day()
+
+    _updateViewWithNewShift: (user, newShift) ->
+      user.shifts.push newShift
+      @_addViewDataToUsers()
 
 ]
