@@ -33,6 +33,35 @@
           ng-model='positionSelect'
           ng-options='position.id as position.name for position in positions'>
   </select>
+  <div ng-if='!shift'>
+    <div class='u-modal-repeat'>
+      <label>Repeat</label>
+      <input class='repeat-checkbox' type='checkbox' ng-model='state.recurring'/>
+    </div>
+    <div ng-if='state.recurring'>
+      <center>
+        <table>
+          <tr>
+            <td valign='top'>
+              <div class='u-modal-repeat'>
+                <div ng-repeat='day in daysChecked'>
+                  <input class='repeat-checkbox' id='day.day' type='checkbox' ng-model='day.checked'/>
+                  <label for='day.day'>{{day.day}}</label>
+                  <br>
+                </div>
+              </div>
+            </td>
+            <td valign='top'>
+              <label>For</label>
+              <select class='form-control' ng-model='state.occurences'
+                      ng-options="numberWeeks for numberWeeks in weekSelectBox"></select>
+              <label>Weeks</label>
+            </td>
+          </tr>
+        </table>
+      </center>
+    </div>
+  </div>
 </div>
 
 <div class='modal-footer'>

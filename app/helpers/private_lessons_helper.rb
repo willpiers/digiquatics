@@ -1,6 +1,6 @@
 module PrivateLessonsHelper
   PRIVATE_LESSON_PARAMS = [
-    :email, :phone_number, :parent_first_name,
+    :email, :phone_number, :secondary_phone_number, :parent_first_name,
     :parent_last_name, :contact_method, :instructor_gender,
     :notes, :day, :time, :preferred_location, :user_id, :attachment,
     :lesson_objective, :account_id, :location_id,

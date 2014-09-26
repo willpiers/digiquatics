@@ -209,7 +209,8 @@ namespace :db do
                             parent_last_name: Faker::Name.last_name,
                             email: Faker::Internet.email,
                             phone_number: Faker::PhoneNumber.phone_number,
-                            contact_method: %w(Call Email Text).sample,
+                            secondary_phone_number: Faker::PhoneNumber.phone_number,
+                            contact_method: %w[Primary\ (Call) Secondary\ (Call) Email Primary\ (Text) Secondary\ (Text)].sample,
                             location_id: rand(3) + 1,
                             package_id: rand(2) + 1,
                             account_id: 1)
