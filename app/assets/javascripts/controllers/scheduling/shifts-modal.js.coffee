@@ -53,7 +53,7 @@
                     start_time: moment(start).add(week, 'weeks').add(adjustedDayCounter, 'days')
                     end_time: moment(end).add(week, 'weeks').add(adjustedDayCounter, 'days')
                   .$promise.then (newShift) =>
-                    $rootScope.$broadcast 'updateView', user, newShift
+                    $rootScope.$broadcast 'newShiftCreated', user, newShift
           else
             @Shifts.create
               user_id: user.id
@@ -62,7 +62,7 @@
               start_time: start
               end_time: end
             .$promise.then (newShift) =>
-              $rootScope.$broadcast 'updateView', user, newShift
+              $rootScope.$broadcast 'newShiftCreated', user, newShift
 
 
       $scope.ok = (position, startTime, endTime) ->

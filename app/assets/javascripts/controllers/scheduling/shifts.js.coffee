@@ -13,9 +13,6 @@
 
       @_loadAndProcessData()
 
-      @$scope.$on 'updateView', (event, user, newShift) =>
-        @_updateViewWithNewShift user, newShift
-
       @$scope.days = [
         'Sunday'
         'Monday'
@@ -67,6 +64,9 @@
               endTime: @$scope.weekDay(day).startOf('day').add 10, 'hours'
               positions: $scope.positions
               position: user.position_id
+
+      @$scope.$on 'newShiftCreated', (event, user, newShift) =>
+        @_updateViewWithNewShift user, newShift
 
     _loadAndProcessData: ->
       @$q.all
