@@ -13,9 +13,11 @@
 
       @_loadAndProcessData()
 
-      $scope.$on 'updateViewWithNewShift', (someProp) ->
-        console.log someProp
-        # @_updateViewWithNewShift user, newShift
+      $scope.$on 'updateView', (event, user, newShift) ->
+        console.log user
+        console.log newShift
+        @_updateViewWithNewShift user, newShift
+        return
 
       @$scope.days = [
         'Sunday'

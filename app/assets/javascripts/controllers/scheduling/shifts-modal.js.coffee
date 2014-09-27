@@ -40,6 +40,7 @@
             user.shifts.push updatedShift
             @_addViewDataToUsers()
         else
+          someData = 'hi this is some example data'
           if $scope.state.recurring
             _.each [0..($scope.state.occurences - 1)], (week) =>
               _.each [0..6], (day) =>
@@ -52,10 +53,8 @@
                     start_time: moment(start).add(week, 'weeks').add(adjustedDayCounter, 'days')
                     end_time: moment(end).add(week, 'weeks').add(adjustedDayCounter, 'days')
                   .$promise.then (newShift) =>
-                    console.log 'emit!'
-                    $scope.$broadcast "updateViewWithNewShift",
-                      someProp: "Sending you an Object!"
-
+                    # @_updateViewWithNewShift user, newShift
+                    $scope.$parent.$broadcast 'updateView', user, newShift
           else
             @Shifts.create
               user_id: user.id
@@ -64,7 +63,9 @@
               start_time: start
               end_time: end
             .$promise.then (newShift) =>
-              @_updateViewWithNewShift user, newShift
+              # @_updateViewWithNewShift user, newShift
+              $scope.$parent.$broadcast 'updateView', user, newShift
+
 
       $scope.ok = (position, startTime, endTime) ->
         assignShift $scope.user, data.location, position, startTime, endTime, shift
