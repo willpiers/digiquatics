@@ -13,11 +13,8 @@
 
       @_loadAndProcessData()
 
-      @$scope.$on 'updateView', (event, user, newShift) ->
-        # console.log user
-        # console.log newShift
+      @$scope.$on 'updateView', (event, user, newShift) =>
         @_updateViewWithNewShift user, newShift
-        return
 
       @$scope.days = [
         'Sunday'
@@ -127,7 +124,6 @@
         shift.dayIndex = shiftStartTime.day()
 
     _updateViewWithNewShift: (user, newShift) ->
-      console.log 'update view'
       user.shifts.push newShift
       @_addViewDataToUsers()
 
