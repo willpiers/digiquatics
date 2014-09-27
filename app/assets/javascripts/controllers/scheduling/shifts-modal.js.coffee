@@ -1,12 +1,13 @@
 @digiquatics.controller 'ShiftModalInstanceCtrl', [
   '$scope'
+  '$rootScope'
   '$modalInstance'
   'shift'
   'data'
   'Shifts'
 
   class ShiftModalInstanceCtrl
-    constructor: (@$scope, $modalInstance, @shift, @data, @Shifts) ->
+    constructor: (@$scope, @$rootScope, $modalInstance, @shift, @data, @Shifts) ->
       $scope.user = data.user
       $scope.shift = shift
       $scope.positions = data.positions
@@ -52,7 +53,7 @@
                     start_time: moment(start).add(week, 'weeks').add(adjustedDayCounter, 'days')
                     end_time: moment(end).add(week, 'weeks').add(adjustedDayCounter, 'days')
                   .$promise.then (newShift) =>
-                    $scope.$parent.$broadcast 'updateView', user, newShift
+                    $rootScope.$broadcast 'updateView', user, newShift
           else
             @Shifts.create
               user_id: user.id
@@ -61,7 +62,7 @@
               start_time: start
               end_time: end
             .$promise.then (newShift) =>
-              $scope.$parent.$broadcast 'updateView', user, newShift
+              $rootScope.$broadcast 'updateView', user, newShift
 
 
       $scope.ok = (position, startTime, endTime) ->
