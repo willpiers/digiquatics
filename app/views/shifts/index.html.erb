@@ -1,5 +1,6 @@
 <div ng-app='digiquatics'>
   <div ng-controller='ShiftsCtrl'>
+    <div ng-init='isAdmin = <%= current_user.admin %>'>
     <% provide(:title, 'Scheduler') %>
     <div class='hidden-print'>
       <div>
@@ -12,22 +13,26 @@
       </div>
       <div class='row'>
         <div class='visible-xs'><br></div>
-        <%= render 'layouts/location_select_build' %>
-        <%= render 'layouts/location_select_shifts' %>
-        <dq-position></dq-position>
-        <div class='col-lg-1'></div>
-        <div class='col-lg-2'>
-        <div class='pull-right'>
-          <br>
-          <div class='btn-group pull-right'>
-            <label class='btn btn-default' ng-model='buildMode' btn-radio='true'>
-              <i class='fa fa-wrench fa-lg'></i> Build
-            </label>
-            <label class='btn btn-default' ng-model='buildMode' btn-radio='false'>
-              <i class='fa fa-calendar fa-lg'></i></a> View
-            </label>
-          </div>
+        <div ng-if='isAdmin'>
+          <%= render 'layouts/location_select_build' %>
         </div>
+          <%= render 'layouts/location_select_shifts' %>
+        <div ng-if='isAdmin'>
+          <dq-position></dq-position>
+          <div class='col-lg-1'></div>
+          <div class='col-lg-2'>
+            <div class='pull-right'>
+              <br>
+              <div class='btn-group pull-right'>
+                <label class='btn btn-default' ng-model='buildMode' btn-radio='true'>
+                  <i class='fa fa-wrench fa-lg'></i> Build
+                </label>
+                <label class='btn btn-default' ng-model='buildMode' btn-radio='false'>
+                  <i class='fa fa-calendar fa-lg'></i></a> View
+                </label>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
       <div class='row'>
@@ -53,18 +58,20 @@
             </div>
           </div>
         </div>
-        <div class='col-md-5'>
-          <div class='hidden-xs'>
-            <span class='legendBlue'><i class='fa fa-circle fa-border'></i> Shift </span>
-            <span class='legendGreen'><i class='fa fa-circle fa-border'></i> Availability </span>
-            <span class='legendRed'><i class='fa fa-circle fa-border'></i> Time Off </span>
+        <div ng-if='isAdmin'>
+          <div class='col-md-5'>
+            <div class='hidden-xs'>
+              <span class='legendBlue'><i class='fa fa-circle fa-border'></i> Shift </span>
+              <span class='legendGreen'><i class='fa fa-circle fa-border'></i> Availability </span>
+              <span class='legendRed'><i class='fa fa-circle fa-border'></i> Time Off </span>
+            </div>
           </div>
-        </div>
-        <div class='col-md-2'></div>
-        <div class='col-md-2'>
-          <div class='pull-right'>
-            <%= link_to_function(' Print', 'javascript:print()',
-                                 class: 'btn btn-default fa fa-print fa-lg') %>
+          <div class='col-md-2'></div>
+          <div class='col-md-2'>
+            <div class='pull-right'>
+              <%= link_to_function(' Print', 'javascript:print()',
+                                   class: 'btn btn-default fa fa-print fa-lg') %>
+            </div>
           </div>
         </div>
       </div>
@@ -119,9 +126,16 @@
                 </div>
                 <div ng-if='shift.dayIndex == days.indexOf(day)'
                      ng-repeat="shift in user.shifts | orderBy:'start_time'">
-                  <div class='edit_shift'>
+                  <div class='edit_shift' ng-if='isAdmin'>
                     <progressbar ng-click='open(user, day, shift)'
                                  class='progress fix-schedule-time-bar shift'
+                                 value='100' type='primary'>
+                      {{shift.start_time | date:'h:mma'}}-{{shift.end_time | date:'h:mma'}}<br/>
+                      {{shift.position.name}}
+                    </progressbar>
+                  </div>
+                  <div ng-if='!isAdmin'>
+                    <progressbar class='progress fix-schedule-time-bar shift'
                                  value='100' type='primary'>
                       {{shift.start_time | date:'h:mma'}}-{{shift.end_time | date:'h:mma'}}<br/>
                       {{shift.position.name}}

@@ -23,7 +23,7 @@
         'Saturday'
       ]
 
-      @$scope.buildMode = true
+      @$scope.buildMode = $scope.isAdmin?
 
       @$scope.previousWeek = =>
         @currentWeek -= 7
