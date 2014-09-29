@@ -11,6 +11,8 @@
     constructor: (@$q, @$scope, @Shifts, @Users, @Locations, @Positions, $modal) ->
       @currentWeek = 0
 
+      @currentDayCounter = 0
+
       @_loadAndProcessData()
 
       @$scope.days = [
@@ -23,7 +25,7 @@
         'Saturday'
       ]
 
-      @$scope.buildMode = $scope.isAdmin?
+      @$scope.buildMode = true
 
       @$scope.previousWeek = =>
         @currentWeek -= 7
@@ -33,9 +35,27 @@
         @currentWeek += 7
         @_addViewDataToUsers()
 
+      @$scope.previousDay = =>
+        @currentDayCounter -= 1
+        @_addViewDataToUsers()
+
+      @$scope.nextDay = =>
+        @currentDayCounter += 1
+        @_addViewDataToUsers()
+
       @$scope.resetWeekCounter = =>
         @currentWeek = 0
+        @currentDayCounter = 0
         @_addViewDataToUsers()
+
+      @$scope.currentDay = =>
+        moment().add('days', @currentDayCounter).format 'MMM D'
+
+      @$scope.currentDayName = =>
+        moment().add('days', @currentDayCounter).format 'dddd'
+
+      @$scope.currentDayOfWeek = =>
+        moment().add('days', @currentDayCounter).format 'd'
 
       @$scope.displayStartDate = =>
         moment().startOf('week').add('days', @currentWeek).format 'MMMM YYYY'

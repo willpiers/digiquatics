@@ -1,6 +1,7 @@
 <div ng-app='digiquatics'>
   <div ng-controller='ShiftsCtrl'>
-    <div ng-init='isAdmin = <%= current_user.admin %>'>
+    <div ng-init='userIsAdmin = <%= current_user.admin %>'>
+    <div ng-init='buildMode = <%= current_user.admin %>'>
     <% provide(:title, 'Scheduler') %>
     <div class='hidden-print'>
       <div>
@@ -8,16 +9,20 @@
           <div ng-if='buildLocation'>
             <!-- Left blank for print view -->
           </div>
-          {{displayStartDate()}}
+          <div class='visible-xs'>
+            {{currentDay()}}
+          </div>
+          <div class='hidden-xs'>
+            {{displayStartDate()}}
+          </div>
         </h1>
       </div>
       <div class='row'>
-        <div class='visible-xs'><br></div>
-        <div ng-if='isAdmin'>
+        <div class='hidden-xs' ng-if='userIsAdmin'>
           <%= render 'layouts/location_select_build' %>
         </div>
           <%= render 'layouts/location_select_shifts' %>
-        <div ng-if='isAdmin'>
+        <div class='hidden-xs' ng-if='userIsAdmin'>
           <dq-position></dq-position>
           <div class='col-lg-1'></div>
           <div class='col-lg-2'>
@@ -45,8 +50,8 @@
           </div>
         </div>
         <div class='col-md-2'>
-          <div>
-            <div class='btn-group'>
+          <div class='btn-group'>
+            <div class='hidden-xs'>
               <btn class='btn btn-default btn-sm' ng-click='previousWeek()'
                    style='width: 40px;'>
                 <%= fa_icon 'chevron-left' %>
@@ -56,15 +61,23 @@
                 <%= fa_icon 'chevron-right' %>
               </btn>
             </div>
+            <div class='visible-xs'>
+              <btn class='btn btn-default btn-sm' ng-click='previousDay()'
+                   style='width: 40px;'>
+                <%= fa_icon 'chevron-left' %>
+              </btn>
+              <btn class='btn btn-default btn-sm' ng-click='nextDay()'
+                   style='width: 40px;'>
+                <%= fa_icon 'chevron-right' %>
+              </btn>
+            </div>
           </div>
         </div>
-        <div ng-if='isAdmin'>
+        <div class='hidden-xs' ng-if='userIsAdmin'>
           <div class='col-md-5'>
-            <div class='hidden-xs'>
-              <span class='legendBlue'><i class='fa fa-circle fa-border'></i> Shift </span>
-              <span class='legendGreen'><i class='fa fa-circle fa-border'></i> Availability </span>
-              <span class='legendRed'><i class='fa fa-circle fa-border'></i> Time Off </span>
-            </div>
+            <span class='legendBlue'><i class='fa fa-circle fa-border'></i> Shift </span>
+            <span class='legendGreen'><i class='fa fa-circle fa-border'></i> Availability </span>
+            <span class='legendRed'><i class='fa fa-circle fa-border'></i> Time Off </span>
           </div>
           <div class='col-md-2'></div>
           <div class='col-md-2'>
@@ -80,78 +93,127 @@
     <div>
     <div>
       <div class='shadow-effect'>
-        <table class='table table-bordered table-white print-schedule-font'>
-          <thead>
-            <tr>
-              <th id='schedule_info_column'>
-              </th>
-              <th class='schedule_day_header' ng-repeat='day in days'>
-                <h4>{{weekDay(days.indexOf(day)).format('ddd')}}</h4>
-                <h2>{{weekDay(days.indexOf(day)).format('D')}}</h2>
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr ng-repeat='user in users | orderBy:predicate.value:reverse |
-                           filter:locationFilter | filter:positionFilter'>
-              <td>
-                {{user.last_name}}, </br>
-                {{user.first_name}}
-                <div class='hidden-print'>
-                  <br><i class='fa fa-clock-o'></i>
-                  {{user.hours}}
-                </div>
-              </td>
-              <td ng-repeat='day in days'>
-                <div ng-if='buildMode'>
+        <div class='hidden-xs'>
+          <table class='table table-bordered table-white print-schedule-font'>
+            <thead>
+              <tr>
+                <th id='schedule_info_column'>
+                </th>
+                <th class='schedule_day_header' ng-repeat='day in days'>
+                  <h4>{{weekDay(days.indexOf(day)).format('ddd')}}</h4>
+                  <h2>{{weekDay(days.indexOf(day)).format('D')}}</h2>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat='user in users | orderBy:predicate.value:reverse |
+                             filter:locationFilter | filter:positionFilter'>
+                <td>
+                  {{user.last_name}}, </br>
+                  {{user.first_name}}
+                  <div class='hidden-print'>
+                    <br><i class='fa fa-clock-o'></i>
+                    {{user.hours}}
+                  </div>
+                </td>
+                <td ng-repeat='day in days'>
+                  <div ng-if='buildMode'>
+                    <div ng-if='time_off.dayIndices.length && time_off.dayIndices.indexOf(days.indexOf(day)) > -1'
+                         ng-repeat="time_off in user.time_off_requests | orderBy:'starts_at'">
+                      <progressbar class='progress fix-schedule-time-bar'
+                                   value='100' type='danger'>
+                        <div ng-if='time_off.all_day'>
+                          Time Off
+                        </div>
+                        <div ng-hide='time_off.all_day'>
+                          {{time_off.starts_at | date:'h:mma'}}-{{time_off.ends_at | date:'h:mma'}}
+                        </div>
+                      </progressbar>
+                    </div>
+                    <div ng-repeat="avail in user.availabilities | orderBy:'start_time' | filter:{day: days.indexOf(day)}">
+                      <progressbar class='progress fix-schedule-time-bar'
+                                   value='100' type='success'>
+                        {{avail.start_time | date:'h:mma'}}-{{avail.end_time | date:'h:mma'}}
+                      </progressbar>
+                    </div>
+                  </div>
+                  <div ng-if='shift.dayIndex == days.indexOf(day)'
+                       ng-repeat="shift in user.shifts | orderBy:'start_time'">
+                    <div class='edit_shift' ng-if='userIsAdmin'>
+                      <progressbar ng-click='open(user, day, shift)'
+                                   class='progress fix-schedule-time-bar shift'
+                                   value='100' type='primary'>
+                        {{shift.start_time | date:'h:mma'}}-{{shift.end_time | date:'h:mma'}}<br/>
+                        {{shift.position.name}}
+                      </progressbar>
+                    </div>
+                    <div ng-if='!userIsAdmin'>
+                      <progressbar class='progress fix-schedule-time-bar shift'
+                                   value='100' type='primary'>
+                        {{shift.start_time | date:'h:mma'}}-{{shift.end_time | date:'h:mma'}}<br/>
+                        {{shift.position.name}}
+                      </progressbar>
+                    </div>
+                  </div>
+                  <div ng-if='buildMode'>
+                    <div class='shift'
+                      ng-click='open(user, days.indexOf(day))'
+                      data-hover='Assign Shift'>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class='visible-xs'>
+          <table class='table table-bordered table-white print-schedule-font'>
+            <tbody>
+              <tr ng-repeat='user in users | orderBy:predicate.value:reverse |
+                             filter:locationFilter | filter:positionFilter'>
+                <td>
+                  {{user.last_name}}, </br>
+                  {{user.first_name}}
+                  <div class='hidden-print'>
+                    <br><i class='fa fa-clock-o'></i>
+                    {{user.hours}}
+                  </div>
+                </td>
+                <td>
+                  <div ng-if='userIsAdmin'>
+                    <div ng-if='time_off.dayIndices.length && time_off.dayIndices.indexOf(days.indexOf(currentDayName())) > -1'
+                         ng-repeat="time_off in user.time_off_requests | orderBy:'starts_at'">
+                      <progressbar class='progress fix-schedule-time-bar'
+                                   value='100' type='danger'>
+                        <div ng-if='time_off.all_day'>
+                          Time Off
+                        </div>
+                        <div ng-hide='time_off.all_day'>
+                          {{time_off.starts_at | date:'h:mma'}}-{{time_off.ends_at | date:'h:mma'}}
+                        </div>
+                      </progressbar>
+                    </div>
+                    <div ng-repeat="avail in user.availabilities | orderBy:'start_time' | filter:{day: currentDayOfWeek()}">
+                      <progressbar class='progress fix-schedule-time-bar'
+                                   value='100' type='success'>
+                        {{avail.start_time | date:'h:mma'}}-{{avail.end_time | date:'h:mma'}}
+                      </progressbar>
+                    </div>
+                  </div>
 
-                  <div ng-if='time_off.dayIndices.length && time_off.dayIndices.indexOf(days.indexOf(day)) > -1'
-                       ng-repeat="time_off in user.time_off_requests | orderBy:'starts_at'">
-                    <progressbar class='progress fix-schedule-time-bar'
-                                 value='100' type='danger'>
-                      <div ng-if='time_off.all_day'>
-                        Time Off
-                      </div>
-                      <div ng-hide='time_off.all_day'>
-                        {{time_off.starts_at | date:'h:mma'}}-{{time_off.ends_at | date:'h:mma'}}
-                      </div>
-                    </progressbar>
-                  </div>
-                  <div ng-repeat="avail in user.availabilities | orderBy:'start_time' | filter:{day: days.indexOf(day)}">
-                    <progressbar class='progress fix-schedule-time-bar'
-                                 value='100' type='success'>
-                      {{avail.start_time | date:'h:mma'}}-{{avail.end_time | date:'h:mma'}}
-                    </progressbar>
-                  </div>
-                </div>
-                <div ng-if='shift.dayIndex == days.indexOf(day)'
-                     ng-repeat="shift in user.shifts | orderBy:'start_time'">
-                  <div class='edit_shift' ng-if='isAdmin'>
-                    <progressbar ng-click='open(user, day, shift)'
-                                 class='progress fix-schedule-time-bar shift'
-                                 value='100' type='primary'>
-                      {{shift.start_time | date:'h:mma'}}-{{shift.end_time | date:'h:mma'}}<br/>
-                      {{shift.position.name}}
-                    </progressbar>
-                  </div>
-                  <div ng-if='!isAdmin'>
+                  <div ng-if='shift.dayIndex == currentDayOfWeek()'
+                       ng-repeat="shift in user.shifts | orderBy:'start_time'">
                     <progressbar class='progress fix-schedule-time-bar shift'
                                  value='100' type='primary'>
                       {{shift.start_time | date:'h:mma'}}-{{shift.end_time | date:'h:mma'}}<br/>
                       {{shift.position.name}}
                     </progressbar>
                   </div>
-                </div>
-                <div ng-if='buildMode'>
-                  <div class='shift'
-                    ng-click='open(user, days.indexOf(day))'
-                    data-hover='Assign Shift'>
-                  </div>
-                </div>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </div>
