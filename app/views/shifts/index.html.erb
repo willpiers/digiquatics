@@ -137,8 +137,7 @@
                       </progressbar>
                     </div>
                   </div>
-                  <div ng-if='shift.dayIndex == days.indexOf(day)'
-                       ng-repeat="shift in user.shifts | orderBy:'start_time'">
+                  <div ng-repeat="shift in user.shifts | orderBy:'start_time' | filter:{dayIndex: days.indexOf(day)}">
                     <div class='edit_shift' ng-if='userIsAdmin'>
                       <progressbar ng-click='open(user, day, shift)'
                                    class='progress fix-schedule-time-bar shift'
@@ -200,9 +199,7 @@
                       </progressbar>
                     </div>
                   </div>
-
-                  <div ng-if='shift.dayIndex == currentDayOfWeek()'
-                       ng-repeat="shift in user.shifts | orderBy:'start_time'">
+                  <div ng-repeat="shift in user.shifts | orderBy:'start_time' | filter:{dayIndex: currentDayOfWeek()}">
                     <progressbar class='progress fix-schedule-time-bar shift'
                                  value='100' type='primary'>
                       {{shift.start_time | date:'h:mma'}}-{{shift.end_time | date:'h:mma'}}<br/>
