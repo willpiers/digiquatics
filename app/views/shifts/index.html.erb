@@ -118,8 +118,8 @@
                 </td>
                 <td ng-repeat='day in days'>
                   <div ng-if='buildMode'>
-                    <div ng-if='time_off.dayIndices.length && time_off.dayIndices.indexOf(days.indexOf(day)) > -1'
-                         ng-repeat="time_off in user.time_off_requests | orderBy:'starts_at'">
+                    <div ng-repeat="time_off in user.time_off_requests | orderBy:'starts_at'
+                    | filter:timeOffFilter">
                       <progressbar class='progress fix-schedule-time-bar'
                                    value='100' type={{time_off.color}}>
                         <div ng-if='time_off.all_day'>
@@ -138,7 +138,7 @@
                     </div>
                   </div>
                   <div ng-if='shift.dayIndex == days.indexOf(day)'
-                       ng-repeat="shift in user.shifts | orderBy:'start_time' | filter:{dayIndex: days.indexOf(day)">
+                       ng-repeat="shift in user.shifts | orderBy:'start_time' | filter:{dayIndex: days.indexOf(day)}">
                     <div class='edit_shift' ng-if='userIsAdmin'>
                       <progressbar ng-click='open(user, day, shift)'
                                    class='progress fix-schedule-time-bar shift'
