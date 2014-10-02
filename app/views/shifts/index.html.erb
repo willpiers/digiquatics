@@ -119,7 +119,7 @@
                 <td ng-repeat='day in days'>
                   <div ng-if='buildMode'>
                     <div ng-repeat="time_off in user.time_off_requests | orderBy:'starts_at'
-                    | filter:timeOffFilter">
+                    | filter:timeOffFilter(day)">
                       <progressbar class='progress fix-schedule-time-bar'
                                    value='100' type={{time_off.color}}>
                         <div ng-if='time_off.all_day'>
