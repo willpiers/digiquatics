@@ -9,9 +9,7 @@
 
   class ShiftsCtrl
     constructor: (@$q, @$scope, @Shifts, @Users, @Locations, @Positions, $modal) ->
-      @currentWeek = 0
-
-      @currentDayCounter = 0
+      @daysFromToday = 0
 
       @_loadAndProcessData()
 
@@ -28,43 +26,43 @@
       @$scope.buildMode = true
 
       @$scope.previousWeek = =>
-        @currentWeek -= 7
+        @daysFromToday -= 7
         @_addViewDataToUsers()
 
       @$scope.nextWeek = =>
-        @currentWeek += 7
+        @daysFromToday += 7
         @_addViewDataToUsers()
 
       @$scope.previousDay = =>
-        @currentDayCounter -= 1
+        @daysFromToday -= 1
         @_addViewDataToUsers()
 
       @$scope.nextDay = =>
-        @currentDayCounter += 1
+        @daysFromToday += 1
         @_addViewDataToUsers()
 
       @$scope.resetWeekCounter = =>
-        @currentWeek = 0
-        @currentDayCounter = 0
+        @daysFromToday = 0
+        @daysFromToday = 0
         @_addViewDataToUsers()
 
       @$scope.currentDay = =>
-        moment().add('days', @currentDayCounter).format 'MMM D'
+        moment().add('days', @daysFromToday).format 'MMM D'
 
       @$scope.currentDayName = =>
-        moment().add('days', @currentDayCounter).format 'dddd'
+        moment().add('days', @daysFromToday).format 'dddd'
 
       @$scope.currentDayOfWeek = =>
-        moment().add('days', @currentDayCounter).format 'd'
+        moment().add('days', @daysFromToday).format 'd'
 
       @$scope.displayStartDate = =>
-        moment().startOf('week').add('days', @currentWeek).format 'MMMM YYYY'
+        moment().startOf('week').add('days', @daysFromToday).format 'MMMM YYYY'
 
       @$scope.displayEndDate = (days) =>
-        moment().startOf('week').add('days', @currentWeek + days).format 'MMM D, YYYY'
+        moment().startOf('week').add('days', @daysFromToday + days).format 'MMM D, YYYY'
 
       @$scope.weekDay = (days) =>
-        moment().startOf('week').add 'days', @currentWeek + days
+        moment().startOf('week').add 'days', @daysFromToday + days
 
       @$scope.predicate =
         value: 'last_name'
@@ -210,8 +208,8 @@
       if request.approved or request.active
         request.color = 'danger' if request.approved
         request.color = 'warning' if request.active
-        startOfWeek = moment().startOf('week').add 'days', @currentWeek
-        endOfWeek = moment().endOf('week').add 'days', @currentWeek
+        startOfWeek = moment().startOf('week').add 'days', @daysFromToday
+        endOfWeek = moment().endOf('week').add 'days', @daysFromToday
 
         weekRange = moment().range startOfWeek, endOfWeek
 
@@ -232,7 +230,7 @@
 
       shiftStartTime = moment shift.start_time
 
-      if shiftStartTime.isSame moment().startOf('week').add('days', @currentWeek), 'week'
+      if shiftStartTime.isSame moment().startOf('week').add('days', @daysFromToday), 'week'
         shift.dayIndex = shiftStartTime.day()
 
     _updateViewWithNewShift: (user, newShift) ->
