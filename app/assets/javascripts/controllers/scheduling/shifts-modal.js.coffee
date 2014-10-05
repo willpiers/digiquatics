@@ -9,13 +9,17 @@
 
   class ShiftModalInstanceCtrl
     constructor: (@$q, @$scope, @$rootScope, $modalInstance, @shift, @data, @Shifts) ->
-      @$scope.user = data.user
-      @$scope.shift = shift
-      @$scope.positions = data.positions
-      @$scope.positionSelect = shift?.position_id ? data.position
-      @$scope.startTime = shift?.start_time ? data.startTime
-      @$scope.endTime = shift?.end_time ? data.endTime
+      {@user, @day, @location} = @data
+
+      @$scope.user = @user
+      @$scope.shift = @shift
+      @$scope.positions = @data.positions
+      @$scope.positionSelect = @shift?.position_id ? @data.position
+      @$scope.startTime = @shift?.start_time ? @data.startTime
+      @$scope.endTime = @shift?.end_time ? @data.endTime
+
       @$scope.weekSelectBox = [1..10]
+
       @$scope.daysChecked = [
         {day: 'Sunday', checked: false }
         {day: 'Monday', checked: false }
@@ -25,53 +29,46 @@
         {day: 'Friday', checked: false }
         {day: 'Saturday', checked: false }
       ]
+
       @$scope.state =
         recurring: false
         occurences: @$scope.weekSelectBox[0]
 
       @$scope.ok = (position, startTime, endTime) =>
-        @_assignShift @$scope.user, data.location, position, startTime, endTime, shift
-        $modalInstance.close @$scope.user
+        @_assignShift position, startTime, endTime
+        .then => @$rootScope.$broadcast 'newShiftCreated'
 
-        if shift
-          toastr.info('Shift was successfully updated.')
-        else
-          toastr.success('Shift was successfully created.')
+        $modalInstance.close @user
 
-        true #Fixes error with returns elements through Angular to the DOM
-
-      @$scope.cancel = ->
-        $modalInstance.dismiss 'Cancel'
+      @$scope.cancel = -> $modalInstance.dismiss 'Cancel'
 
       @$scope.delete = =>
-        Shifts.destroy id: shift.id
-        _.remove @$scope.user.shifts, (userShift) -> userShift.id is shift.id
-        @_addViewDataToUsers()
+        $modalInstance.close @user
 
-        $modalInstance.close @$scope.user
-        toastr.error('Shift was successfully deleted.')
+        @Shifts.destroy id: @shift.id
+        .$promise.then =>
+          _.remove @user.shifts, id: @shift.id
+          toastr.error 'Shift was successfully deleted.'
 
-        true #Fixes error with returns elements through Angular to the DOM
+    _assignShift: (position, start, end) ->
+      if @shift
+        shiftData = angular.extend @shift,
+          start_time: start
+          end_time: end
+          position_id: position
 
-    _assignShift: (user, location, position, start, end, shift) ->
-        if shift
-          shiftData = angular.extend shift,
-            start_time: start
-            end_time: end
-            position_id: position
+        @Shifts.update id: shiftData.id, shiftData
+        .$promise.then (updatedShift) =>
+          _.remove @user.shifts, id: updatedShift.id
+          @user.shifts.push updatedShift
+          toastr.info 'Shift was successfully updated.'
+      else
+        @_createShifts {position, start, end}
+        .then (newShifts) =>
+          @user.shifts = @user.shifts.concat newShifts
+          toastr.success 'Shift was successfully created.'
 
-          @Shifts.update id: shiftData.id, shiftData
-          .$promise.then (updatedShift) =>
-            _.remove user.shifts, (userShift) -> userShift.id is shift.id
-            user.shifts.push updatedShift
-            @_addViewDataToUsers()
-        else
-          @_createShifts {user, location, position, start, end}
-          .then (newShifts) =>
-            user.shifts = user.shifts.concat newShifts
-            @$rootScope.$broadcast 'newShiftCreated'
-
-    _createShifts: ({user, location, position, start, end}) ->
+    _createShifts: ({position, start, end}) ->
       if @$scope.state.recurring
         promises = []
 
@@ -81,11 +78,11 @@
               adjustedDayCounter = day - @data.day
 
               shiftResource = @Shifts.create
-                user_id: user.id
-                location_id: location
+                user_id: @user.id
+                location_id: @location
                 position_id: position
-                start_time: moment(start).add(week, 'weeks').add(adjustedDayCounter, 'days')
-                end_time: moment(end).add(week, 'weeks').add(adjustedDayCounter, 'days')
+                start_time: moment(start).add(week, 'weeks').add adjustedDayCounter, 'days'
+                end_time: moment(end).add(week, 'weeks').add adjustedDayCounter, 'days'
 
               promises.push shiftResource.$promise
 
@@ -93,10 +90,11 @@
 
       else
         @Shifts.create
-          user_id: user.id
-          location_id: location
+          user_id: @user.id
+          location_id: @location
           position_id: position
           start_time: start
           end_time: end
         .$promise
+
 ]
