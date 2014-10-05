@@ -33,11 +33,12 @@ class TimeOffRequestsController < ApplicationController
 
   def update
     Tracker.track(current_user.id, 'Update Time Off Request')
-    message = 'Time Off Request was successfully updated.'
-    handle_action(@time_off_request, message, 'info', :edit) do |resource|
-      resource.update(time_off_request_params)
+
+    if @time_off_request.update(time_off_request_params)
+      render json: @time_off_request.to_json
+    else
+      render json: @time_off_request.errors, status: :unprocessable_entity
     end
-    @time_off_request ? nil : approve_or_deny_logic
   end
 
   def archived_time_off_requests
@@ -52,9 +53,9 @@ class TimeOffRequestsController < ApplicationController
   end
 
   def destroy
+    Tracker.track(current_user.id, 'Delete Time Off Request')
     @time_off_request.destroy
-
-    redirect_to time_off_requests_url
+    render json: 'success'
   end
 
   private
@@ -81,12 +82,5 @@ class TimeOffRequestsController < ApplicationController
     else
       render page
     end
-  end
-
-  def approve_or_deny_logic
-    @time_off_request.approved_by_user_id = current_user.id
-    @time_off_request.processed_by_last_name = current_user.last_name
-    @time_off_request.processed_by_first_name = current_user.first_name
-    @time_off_request.approved_at = Time.now
   end
 end

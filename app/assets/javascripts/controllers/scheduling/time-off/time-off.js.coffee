@@ -6,8 +6,9 @@
   'Positions'
   '$modal'
   'TimeOffHelper'
+  '$log'
 
-  @TimeOffCtrl = ($scope, TimeOff, Users, Locations, Positions, $modal, TimeOffHelper) ->
+  @TimeOffCtrl = ($scope, TimeOff, Users, Locations, Positions, $modal, TimeOffHelper, $log) ->
     angular.extend $scope, TimeOffHelper
     $scope.timeOff = TimeOff.index()
     $scope.users = Users.index()
@@ -84,27 +85,52 @@
         resolve:
           request: -> request
           timeOff: -> $scope.timeOff
+          timeOffUserId: -> $scope.timeOffUserId
+          timeOffUserFirstName: -> $scope.timeOffUserFirstName
+          timeOffUserLastName: -> $scope.timeOffUserLastName
 
       modalInstance.result.then ->
         $log.info('Modal dismissed at: ' + new Date())
 
-    TimeOffRequestModalCtrl = ($scope, $modalInstance, request, TimeOff, timeOff, TimeOffHelper) ->
+    TimeOffRequestModalCtrl = ($scope, $modalInstance, request, TimeOff,
+                               timeOff, TimeOffHelper, timeOffUserId,
+                               timeOffUserFirstName, timeOffUserLastName) ->
       angular.extend $scope, TimeOffHelper
       $scope.request = request
       $scope.location = request.location.name
       $scope.user = request.user
+      $scope.timeOffUserId = timeOffUserId
+      $scope.timeOffUserFirstName = timeOffUserFirstName
+      $scope.timeOffUserLastName = timeOffUserLastName
 
-      # $scope.approveRequet = (request) ->
-      #   requestData = angular.extend request,
-      #     active: false
-      #     sub_user_id: $scope.subUserId
-      #     sub_first_name: $scope.subUserFirstName
-      #     sub_last_name: $scope.subUserLastName
-      #
-      #   SubRequests.update id: requestData.id, requestData
-      #   .$promise.then (updatedSubRequest) ->
-      #     _.remove subRequests, (subRequest) -> subRequest.id is request.id
-      #     subRequests.push updatedSubRequest
+      $scope.approveRequest = (request) ->
+        console.log request
+        requestData = angular.extend request,
+          approved: true
+          active: false
+          time_off_user_id: $scope.timeOffUserId
+          time_off_first_name: $scope.timeOffUserFirstName
+          time_off_last_name: $scope.timeOffUserLastName
+          approved_at: moment()
+
+        TimeOff.update id: requestData.id, requestData
+        .$promise.then (updatedRequest) ->
+          _.remove timeOff, (timeOffRequest) -> timeOffRequest.id is request.id
+          timeOff.push updatedRequest
+
+      $scope.denyRequest = (request) ->
+        requestData = angular.extend request,
+          approved: false
+          active: false
+          time_off_user_id: $scope.timeOffUserId
+          time_off_first_name: $scope.timeOffUserFirstName
+          time_off_last_name: $scope.timeOffUserLastName
+          approved_at: moment()
+
+        TimeOff.update id: requestData.id, requestData
+        .$promise.then (updatedRequest) ->
+          _.remove timeOff, (timeOffRequest) -> timeOffRequest.id is request.id
+          timeOff.push updatedRequest
 
       $scope.approve = ->
         $scope.approveRequest(request)
@@ -115,6 +141,7 @@
 
       $scope.deny = ->
         $scope.denyRequest(request)
+        $modalInstance.close request
 
         toastr.error('Time Off Request has been denied.')
         true
@@ -126,15 +153,20 @@
         TimeOff.destroy id: request.id
         _.remove timeOff, (timeOff) -> timeOff.id is request.id
         $modalInstance.close $scope.user
+
         toastr.error('Time Off Request was successfully deleted.')
         true
 
-    TimeOffRequestModalCtrl['$inject'] = [
-      '$scope'
-      '$modalInstance'
-      'request'
-      'TimeOff'
-      'timeOff'
-      'TimeOffHelper'
-    ]
+      TimeOffRequestModalCtrl['$inject'] = [
+        '$scope'
+        '$modalInstance'
+        'request'
+        'TimeOff'
+        'timeOff'
+        'TimeOffHelper'
+        'timeOffUserId'
+        'timeOffUserFirstName'
+        'timeOffUserLastName'
+      ]
+
 ]

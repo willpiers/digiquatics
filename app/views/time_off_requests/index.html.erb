@@ -1,6 +1,9 @@
 <div ng-app='digiquatics'>
   <div ng-controller='TimeOffCtrl'>
     <% provide(:title, 'Time Off Requests') %>
+    <div ng-init='timeOffUserId = <%= current_user.id %>'>
+    <div ng-init="timeOffUserFirstName = '<%= current_user.first_name %>'">
+    <div ng-init="timeOffUserLastName = '<%= current_user.last_name %>'">
     <h1 class='cross_platform_header'>Time Off Requests</h1>
     <div class='row'>
       <div class='visible-xs'><br></div>
