@@ -12,18 +12,16 @@
       <div class='col-md-4'>
         <h4> Start Time </h4>
         <div class='fix_ampm_button'>
-          <timepicker ng-model='startTime' ng-change='changed()'
-                      hour-step='1' minute-step='15'>
-           {{startTime}}
+          <timepicker ng-model='startTime' hour-step='1' minute-step='15'>
+            {{startTime}}
           </timepicker>
         </div>
       </div>
       <div class='col-md-4'>
         <h4> End Time </h4>
         <div class='fix_ampm_button'>
-          <timepicker ng-model='endTime' ng-change='changed()'
-                      hour-step='1' minute-step='15'>
-           {{endTime}}
+          <timepicker ng-model='endTime' hour-step='1' minute-step='15'>
+            {{endTime}}
           </timepicker>
         </div>
       </div>
@@ -35,14 +33,39 @@
           ng-model='positionSelect'
           ng-options='position.id as position.name for position in positions'>
   </select>
-  <h4>For</h4>
-  <select class='form-control' ng-model='occurences'
-          ng-options="n for n in range"></select>
-  <h4>Weeks</h4>
+  <div ng-if='!shift'>
+    <div class='u-modal-repeat'>
+      <label>Repeat</label>
+      <input class='repeat-checkbox' type='checkbox' ng-model='state.recurring'/>
+    </div>
+    <div ng-if='state.recurring'>
+      <center>
+        <table>
+          <tr>
+            <td valign='top'>
+              <div class='u-modal-repeat'>
+                <div ng-repeat='day in daysChecked'>
+                  <input class='repeat-checkbox' id='day.day' type='checkbox' ng-model='day.checked'/>
+                  <label for='day.day'>{{day.day}}</label>
+                  <br>
+                </div>
+              </div>
+            </td>
+            <td valign='top'>
+              <label>For</label>
+              <select class='form-control' ng-model='state.occurences'
+                      ng-options="numberWeeks for numberWeeks in weekSelectBox"></select>
+              <label>Weeks</label>
+            </td>
+          </tr>
+        </table>
+      </center>
+    </div>
+  </div>
 </div>
 
 <div class='modal-footer'>
-  <div ng-show='shift'>
+  <div ng-if='shift'>
     <a class='btn btn-primary btn-block'
        ng-click='ok(positionSelect, startTime, endTime)'>
       <i class='fa fa-refresh fa-lg'></i> {{'Update Shift'}}</a>
@@ -50,7 +73,7 @@
        ng-click='delete()'>
       <i class='fa fa-trash-o fa-lg'></i> {{'Delete Shift'}}</a>
   </div>
-  <div ng-hide='shift'>
+  <div ng-if='!shift'>
     <a class='btn btn-primary btn-block'
        ng-click='ok(positionSelect, startTime, endTime)'>
       <i class='fa fa-check fa-lg'></i> {{'Assign Shift'}}</a>

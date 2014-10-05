@@ -150,6 +150,9 @@ border-color: rgb(221, 221, 221);
   bottom: 3px;
   right: 4px;
 }
+.badge{
+  background-color: $pinkAccent
+}
 
 // Tables
 
@@ -420,6 +423,7 @@ input, textarea, select, .uneditable-input {
   margin-bottom: 15px;
   @include box_sizing;
 }
+
 input {
   height: auto !important;
 }

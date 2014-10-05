@@ -1,10 +1,11 @@
 <div class='edit_shift'>
   <progressbar class='progress fix-schedule-time-bar my_shift_bar'
-               ng-click="open(shift)" value='100'
+               ng-click='open(shift)' value='100'
                type='primary'>
     Shift <br>
     {{shift.start_time | date:'h:mma'}}-{{shift.end_time | date:'h:mma'}} </br>
     {{shift.position.name}} </br>
-    {{shift.location.name}}
+    {{shift.location.name}} </br>
+    <i>(Click to Request Sub)</i>
   </progressbar>
 </div>

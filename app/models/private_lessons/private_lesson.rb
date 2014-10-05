@@ -19,7 +19,7 @@ class PrivateLesson < ActiveRecord::Base
   accepts_nested_attributes_for :participants, allow_destroy: true
 
   validates_presence_of :account_id, :parent_first_name, :parent_last_name,
-                        :phone_number, :email, :contact_method,
+                        :phone_number, :contact_method,
                         :package_id
 
   comma do

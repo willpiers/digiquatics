@@ -132,7 +132,8 @@ describe 'Private Lessons' do
       before do
         fill_in 'Parent First Name', with: 'Josh'
         fill_in 'Parent Last Name',  with: 'Josh'
-        fill_in 'Phone Number',      with: '303-921-8628'
+        fill_in 'Primary Phone Number *', with: '303-921-8628'
+        fill_in 'Secondary Phone Number', with: '303-921-8628'
         fill_in 'Parent First Name', with: 'Josh'
         fill_in 'Email',             with: 'Josh.m.duffy@gmail.com'
         select 'Primary (Call)',               from: 'Preferred Contact Method'
@@ -195,7 +196,8 @@ describe 'Private Lessons' do
       before do
         fill_in 'Parent First Name', with: 'Josh'
         fill_in 'Parent Last Name',  with: 'Josh'
-        fill_in 'Phone Number',      with: '303-921-8628'
+        fill_in 'Primary Phone Number *', with: '303-921-8628'
+        fill_in 'Secondary Phone Number',with: '303-921-8628'
         fill_in 'Parent First Name', with: 'Josh'
         fill_in 'Email',             with: 'Josh.m.duffy@gmail.com'
         select 'Primary (Call)',               from: 'Preferred Contact Method'
@@ -316,7 +318,8 @@ describe 'Private Lessons' do
           # Parent information
           fill_in 'Parent First Name', with: 'Parent First'
           fill_in 'Parent Last Name',  with: 'Parent Last'
-          fill_in 'Phone Number',      with: '1234'
+          fill_in 'Primary Phone Number *', with: '1234'
+          fill_in 'Secondary Phone Number', with: '1234'
           fill_in 'Email',             with: 'lesson@example.com'
           select 'Primary (Call)',              from: 'Preferred Contact Method'
 
