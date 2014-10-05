@@ -25,6 +25,8 @@
 
       @$scope.buildMode = true
 
+      @$scope.$on 'newShiftCreated', _.bind @_addViewDataToUsers, @
+
       @$scope.previousWeek = =>
         @currentWeek -= 7
         @_addViewDataToUsers()
@@ -64,9 +66,6 @@
               endTime: @$scope.weekDay(day).startOf('day').add 10, 'hours'
               positions: $scope.positions
               position: user.position_id
-
-      @$scope.$on 'newShiftCreated', (event, user, newShift) =>
-        @_updateViewWithNewShift user, newShift
 
     _loadAndProcessData: ->
       @$q.all
@@ -124,9 +123,5 @@
 
       if shiftStartTime.isSame moment().startOf('week').add('days', @currentWeek), 'week'
         shift.dayIndex = shiftStartTime.day()
-
-    _updateViewWithNewShift: (user, newShift) ->
-      user.shifts.push newShift
-      @_addViewDataToUsers()
 
 ]
