@@ -54,7 +54,7 @@
       @$scope.open = (user, day, shift, size) =>
         modalInstance = $modal.open
           templateUrl: 'scheduling/shift-assigner.html'
-          controller: 'ShiftModalInstanceCtrl'
+          controller: 'ShiftModalCtrl as controller'
           size: size
           resolve:
             shift: -> shift

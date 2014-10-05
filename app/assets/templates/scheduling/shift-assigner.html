@@ -1,4 +1,4 @@
-<a class='pull-right close-button link-color' ng-click='cancel()'>
+<a class='pull-right close-button link-color' ng-click='controller.cancel()'>
   <i class='fa fa-times fa-lg'></i></a>
 <div class='modal-header'>
   <h1 class='modal-title'>{{shift ? ' Edit' : ' Assign'}} Shift</h1>
@@ -45,7 +45,7 @@
             <td valign='top'>
               <div class='u-modal-repeat'>
                 <div ng-repeat='day in daysChecked'>
-                  <input class='repeat-checkbox' id='day.day' type='checkbox' ng-model='day.checked'/>
+                  <input class='repeat-checkbox' type='checkbox' ng-model='day.checked'/>
                   <label for='day.day'>{{day.day}}</label>
                   <br>
                 </div>
@@ -67,15 +67,15 @@
 <div class='modal-footer'>
   <div ng-if='shift'>
     <a class='btn btn-primary btn-block'
-       ng-click='ok(positionSelect, startTime, endTime)'>
+       ng-click='controller.ok(positionSelect, startTime, endTime)'>
       <i class='fa fa-refresh fa-lg'></i> {{'Update Shift'}}</a>
     <a class='btn btn-danger btn-block'
-       ng-click='delete()'>
+       ng-click='controller.delete()'>
       <i class='fa fa-trash-o fa-lg'></i> {{'Delete Shift'}}</a>
   </div>
   <div ng-if='!shift'>
     <a class='btn btn-primary btn-block'
-       ng-click='ok(positionSelect, startTime, endTime)'>
+       ng-click='controller.ok(positionSelect, startTime, endTime)'>
       <i class='fa fa-check fa-lg'></i> {{'Assign Shift'}}</a>
   </div>
 </div>

@@ -1,4 +1,4 @@
-@digiquatics.controller 'ShiftModalInstanceCtrl', [
+@digiquatics.controller 'ShiftModalCtrl', [
   '$q'
   '$scope'
   '$rootScope'
@@ -7,18 +7,18 @@
   'data'
   'Shifts'
 
-  class ShiftModalInstanceCtrl
-    constructor: (@$q, @$scope, @$rootScope, $modalInstance, @shift, @data, @Shifts) ->
+  class ShiftModalCtrl
+    constructor: (@$q, @$scope, @$rootScope, @$modalInstance, @shift, @data, @Shifts) ->
       {@user, @day, @location} = @data
 
-      @$scope.user = @user
-      @$scope.shift = @shift
-      @$scope.positions = @data.positions
-      @$scope.positionSelect = @shift?.position_id ? @data.position
-      @$scope.startTime = @shift?.start_time ? @data.startTime
-      @$scope.endTime = @shift?.end_time ? @data.endTime
-
-      @$scope.weekSelectBox = [1..10]
+      angular.extend @$scope,
+        user: @user
+        shift: @shift
+        positions: @data.positions
+        positionSelect: @shift?.position_id ? @data.position
+        startTime: @shift?.start_time ? @data.startTime
+        endTime: @shift?.end_time ? @data.endTime
+        weekSelectBox: [1..10]
 
       @$scope.daysChecked = [
         {day: 'Sunday', checked: false }
@@ -34,21 +34,21 @@
         recurring: false
         occurences: @$scope.weekSelectBox[0]
 
-      @$scope.ok = (position, startTime, endTime) =>
-        @_assignShift position, startTime, endTime
-        .then => @$rootScope.$broadcast 'newShiftCreated'
+    ok: (position, startTime, endTime) =>
+      @_assignShift position, startTime, endTime
+      .then => @$rootScope.$broadcast 'newShiftCreated'
 
-        $modalInstance.close @user
+      @$modalInstance.close @user
 
-      @$scope.cancel = -> $modalInstance.dismiss 'Cancel'
+    cancel: -> @$modalInstance.dismiss 'Cancel'
 
-      @$scope.delete = =>
-        $modalInstance.close @user
+    delete: =>
+      @$modalInstance.close @user
 
-        @Shifts.destroy id: @shift.id
-        .$promise.then =>
-          _.remove @user.shifts, id: @shift.id
-          toastr.error 'Shift was successfully deleted.'
+      @Shifts.destroy id: @shift.id
+      .$promise.then =>
+        _.remove @user.shifts, id: @shift.id
+        toastr.error 'Shift was successfully deleted.'
 
     _assignShift: (position, start, end) ->
       if @shift
