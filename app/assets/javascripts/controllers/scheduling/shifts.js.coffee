@@ -97,7 +97,9 @@
     _addDayIndicesToTimeOffRequests: (request) ->
       request.dayIndices = []
 
-      if request.approved
+      if request.approved or request.active
+        request.color = 'danger' if request.approved
+        request.color = 'warning' if request.active
         startOfWeek = moment().startOf('week').add 'days', @currentWeek
         endOfWeek = moment().endOf('week').add 'days', @currentWeek
 
