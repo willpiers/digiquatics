@@ -80,7 +80,6 @@
         @_addViewDataToUsers()
 
     _addViewDataToUsers: ->
-      console.log '_addViewDataToUsers'
       _.each @$scope.users, (user) =>
         user.hours = @_calculateHours user
         _.each user.time_off_requests, @_addDayIndicesToTimeOffRequests, @
