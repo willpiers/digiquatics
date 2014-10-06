@@ -21,20 +21,22 @@ describe.only 'ShiftModalCtrl', ->
 
   describe '#ok', ->
     it 'creates a new shift if no shift', ->
-      $httpBackend.expectPOST '/shifts.json'
+      $httpBackend.expectPOST '/shifts.json',
         user_id: 1
-        start_time:
-        end_time:
+        start_time: moment()
+        end_time: moment()
         location_id: 2
         position_id: 3
       .respond {}
-
 
     it 'creates multiple shifts if recurring'
 
     it 'updates a shift if shift'
 
-    it 'closes the modal'
+    it 'closes the modal', ->
+      @controller.cancel()
+
+      @modalInstanceStub.dismiss.should.have.been.calledOnce
 
     it 'broadcasts that a new shift was created'
 
