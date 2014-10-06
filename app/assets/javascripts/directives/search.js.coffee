@@ -1,5 +1,5 @@
 @digiquatics.directive 'dqSearch', [
   ->
     restrict: 'E'
-    templateUrl: 'general/search.html'
+    templateUrl: 'search.html'
 ]

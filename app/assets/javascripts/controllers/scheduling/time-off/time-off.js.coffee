@@ -80,7 +80,7 @@
 
     $scope.open = (request, user) ->
       modalInstance = $modal.open
-        templateUrl: 'scheduling/time_off_requests/time-off-request.html',
+        templateUrl: 'time-off-request.html',
         controller: TimeOffRequestModalCtrl,
         resolve:
           request: -> request
