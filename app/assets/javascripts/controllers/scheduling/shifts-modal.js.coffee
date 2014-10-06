@@ -36,7 +36,7 @@
 
     ok: (position, startTime, endTime) =>
       @_assignShift position, startTime, endTime
-      .then => @$rootScope.$broadcast 'newShiftCreated'
+      .then => @$rootScope.$broadcast 'shifts:created'
 
       @$modalInstance.close @user
 
