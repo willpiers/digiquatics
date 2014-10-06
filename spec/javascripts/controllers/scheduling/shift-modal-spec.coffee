@@ -21,7 +21,13 @@ describe.only 'ShiftModalCtrl', ->
 
   describe '#ok', ->
     it 'creates a new shift if no shift', ->
-      $httpBackend.expectGET
+      $httpBackend.expectPOST '/shifts.json'
+        user_id: 1
+        start_time:
+        end_time:
+        location_id: 2
+        position_id: 3
+      .respond {}
 
 
     it 'creates multiple shifts if recurring'
