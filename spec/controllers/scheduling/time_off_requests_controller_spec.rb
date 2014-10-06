@@ -5,6 +5,7 @@ describe TimeOffRequestsController do
   let!(:user) { FactoryGirl.create(:user, account_id: account.id) }
 
   before do
+    @compare_attrs = Shift.column_names - ['id', 'user_id']
     sign_in user
   end
 
@@ -98,9 +99,11 @@ describe TimeOffRequestsController do
         @time_off_request.ends_at.should eq('Sun, 02 Feb 2014 13:45:00 UTC +00:00')
       end
 
-      it 'redirects to the updated time_off_request' do
+      it 'sends the updated time off request as json' do
         put :update, id: @time_off_request, time_off_request: FactoryGirl.attributes_for(:time_off_request)
-        response.should redirect_to @time_off_request
+
+        JSON.parse(response.body).slice(*@compare_attrs).should ==
+          TimeOffRequest.last.attributes.slice(*@compare_attrs)
       end
     end
 
@@ -124,11 +127,6 @@ describe TimeOffRequestsController do
         @time_off_request.starts_at.should_not eq('Sun, 02 Feb 2014 08:45:00 UTC +00:00')
         @time_off_request.ends_at.should_not eq('Sun, 02 Feb 2014 13:45:00 UTC +00:00')
       end
-
-      it 're-renders the #edit template' do
-        put :update, id: @time_off_request, time_off_request: FactoryGirl.attributes_for(:invalid_time_off_request)
-        response.should render_template :edit
-      end
     end
   end
 
@@ -141,11 +139,6 @@ describe TimeOffRequestsController do
       expect do
         delete :destroy, id: @time_off_request
       end.to change(TimeOffRequest, :count).by(-1)
-    end
-
-    it 'redirects to time_off_requests#index' do
-      delete :destroy, id: @time_off_request
-      response.should redirect_to time_off_requests_url
     end
   end
 end
