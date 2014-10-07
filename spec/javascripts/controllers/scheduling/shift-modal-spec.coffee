@@ -29,6 +29,7 @@ describe 'ShiftModalCtrl', ->
     before ->
       @stub toastr, 'success'
       @stub toastr, 'info'
+      @stub toastr, 'error'
 
     beforeEach ->
       @startTime = moment().toString()
@@ -95,11 +96,13 @@ describe 'ShiftModalCtrl', ->
           user:
             id: 1
             shifts: []
+      @user = @controller.data.user
 
     it 'deletes the shift', ->
       @$httpBackend.expectDELETE('/shifts/52.json').respond 'success'
 
       @controller.delete()
+      _.remove(@user.shifts).should.have.been.calledOnce
 
       @$httpBackend.flush()
 
