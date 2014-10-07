@@ -49,7 +49,14 @@ describe 'ShiftModalCtrl', ->
 
       @$httpBackend.flush()
 
-    it 'creates multiple shifts if recurring'
+    it 'creates multiple shifts if recurring', ->
+      @scope.state.recurring = true
+      @scope.state.occurences = 2
+
+      @controller.ok 3, @startTime, @endTime
+
+      @user.shifts.push.should.have.been.calledTwice
+      @modalInstanceStub.close.should.have.been.calledOnce
 
     it 'updates a shift if shift', ->
       @controller = @$controller 'ShiftModalCtrl',
