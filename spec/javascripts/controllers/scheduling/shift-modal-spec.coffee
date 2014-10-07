@@ -18,6 +18,7 @@ describe 'ShiftModalCtrl', ->
         user:
           id: 1
           shifts: []
+    @user = @controller.data.user
 
   describe '#cancel', ->
     it 'dismisses the modal', ->
@@ -69,6 +70,8 @@ describe 'ShiftModalCtrl', ->
       .respond {}
 
       @controller.ok 3, @startTime, @endTime
+      _.remove(@user.shifts).should.have.been.calledOnce
+      @user.shifts.push.should.have.been.calledOnce
 
       @$httpBackend.flush()
 
