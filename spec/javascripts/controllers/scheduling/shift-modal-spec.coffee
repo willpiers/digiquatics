@@ -85,3 +85,25 @@ describe 'ShiftModalCtrl', ->
       @$httpBackend.flush()
 
   describe '#delete', ->
+    it 'deletes the shift', ->
+      @controller = @$controller 'ShiftModalCtrl',
+        $scope: @scope
+        $modalInstance: @modalInstanceStub
+        shift: id: 54
+        data:
+          location: 2
+          user:
+            id: 1
+            shifts: []
+
+      @$httpBackend.expectDELETE '/shifts/54.json',
+        id: 54
+      .respond {}
+
+      @controller.delete()
+
+      @$httpBackend.flush()
+
+    it 'closes the modal', ->
+      @controller.delete
+      @modalInstanceStub.close.should.have.been.calledOnce
