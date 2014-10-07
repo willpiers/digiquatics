@@ -103,5 +103,15 @@ describe 'ShiftModalCtrl', ->
       @$httpBackend.flush()
 
     it 'closes the modal', ->
-      @controller.delete
+      @controller = @$controller 'ShiftModalCtrl',
+        $scope: @scope
+        $modalInstance: @modalInstanceStub
+        shift: id: 52
+        data:
+          location: 2
+          user:
+            id: 1
+            shifts: []
+
+      @controller.delete()
       @modalInstanceStub.close.should.have.been.calledOnce
