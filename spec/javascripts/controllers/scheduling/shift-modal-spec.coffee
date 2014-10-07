@@ -89,16 +89,14 @@ describe 'ShiftModalCtrl', ->
       @controller = @$controller 'ShiftModalCtrl',
         $scope: @scope
         $modalInstance: @modalInstanceStub
-        shift: id: 54
+        shift: id: 52
         data:
           location: 2
           user:
             id: 1
             shifts: []
 
-      @$httpBackend.expectDELETE '/shifts/54.json',
-        id: 54
-      .respond {}
+      @$httpBackend.expectDELETE('/shifts/52.json').respond 'success'
 
       @controller.delete()
 
