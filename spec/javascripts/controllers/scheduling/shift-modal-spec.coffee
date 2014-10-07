@@ -33,8 +33,8 @@ describe 'ShiftModalCtrl', ->
       @stub toastr, 'error'
 
     beforeEach ->
-      @startTime = moment().toString()
-      @endTime = moment().add(2, 'hours').toString()
+      @startTime = moment().toISOString()
+      @endTime = moment().add(2, 'hours').toISOString()
 
     it 'creates a new shift if no shift', ->
       @$httpBackend.expectPOST '/shifts.json',
@@ -48,14 +48,26 @@ describe 'ShiftModalCtrl', ->
       @controller.ok 3, @startTime, @endTime
 
       @$httpBackend.flush()
+      @controller.data.user.shifts.length.should.equal 1
 
     it 'creates multiple shifts if recurring', ->
       @scope.state.recurring = true
+      @scope.daysChecked[2].checked = true
       @scope.state.occurences = 2
+
+      @$httpBackend.expectPOST '/shifts.json',
+        user_id: 1
+        location_id: 2
+        position_id: 3
+        start_time: @startTime
+        end_time: @endTime
+      .respond({shift}, {shift})
 
       @controller.ok 3, @startTime, @endTime
 
-      @user.shifts.push.should.have.been.calledTwice
+      @$httpBackend.flush()
+
+      @controller.data.user.shifts.length.should.equal 2
       @modalInstanceStub.close.should.have.been.calledOnce
 
     it 'updates a shift if shift', ->
@@ -81,6 +93,7 @@ describe 'ShiftModalCtrl', ->
       @user.shifts.push.should.have.been.calledOnce
 
       @$httpBackend.flush()
+      @controller.data.user.shifts.length.should.equal 1
 
     it 'closes the modal', ->
       @controller.ok 1, @startTime, @endTime
@@ -112,9 +125,10 @@ describe 'ShiftModalCtrl', ->
       @$httpBackend.expectDELETE('/shifts/52.json').respond 'success'
 
       @controller.delete()
-      _.remove(@user.shifts).should.have.been.calledOnce
 
       @$httpBackend.flush()
+
+      @controller.data.user.shifts.length.should.equal 0
 
     it 'closes the modal', ->
       @controller.delete()
