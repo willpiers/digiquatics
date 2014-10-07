@@ -61,7 +61,15 @@ describe 'ShiftModalCtrl', ->
         position_id: 3
         start_time: @startTime
         end_time: @endTime
-      .respond({shift}, {shift})
+      .respond {}
+
+      @$httpBackend.expectPOST '/shifts.json',
+        user_id: 1
+        location_id: 2
+        position_id: 3
+        start_time: moment(@startTime).add(1, 'weeks').toISOString()
+        end_time: moment(@endTime).add(1, 'weeks').toISOString()
+      .respond {}
 
       @controller.ok 3, @startTime, @endTime
 
