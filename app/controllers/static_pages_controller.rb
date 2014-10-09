@@ -19,9 +19,6 @@ class StaticPagesController < ApplicationController
   def tos
   end
 
-  def availability
-  end
-
   def landing
     render :index, layout: false
   end

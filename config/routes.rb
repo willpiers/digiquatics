@@ -70,7 +70,6 @@ DigiQuatics::Application.routes.draw do
 
   # Scheduling
   match '/my_schedule', to: 'shifts#my_schedule', via: 'get'
-  match '/availability', to: 'static_pages#availability', via: 'get'
 
   # Sub Requests
   match '/processed_sub_requests', to: 'sub_requests#processed', via: 'get'

@@ -1,11 +1,10 @@
 @digiquatics.directive 'dqTimeOffRequests', [
-  'TimeOffHelper'
+  'ScheduleHelper'
 
-  (TimeOffHelper) ->
+  (ScheduleHelper) ->
     restrict: 'E'
-    templateUrl: 'scheduling/shifts/time-off-requests.html'
+    templateUrl: 'scheduling/time-off-requests.html'
     scope:
-      days: '='
       dayName: '='
       timeOffRequests: '='
 
@@ -14,13 +13,13 @@
         if timeOffRequest.all_day
           'Time Off'
         else
-          start = TimeOffHelper.timeFormat timeOffRequest.starts_at
-          end = TimeOffHelper.timeFormat timeOffRequest.ends_at
+          start = ScheduleHelper.timeFormat timeOffRequest.starts_at
+          end = ScheduleHelper.timeFormat timeOffRequest.ends_at
           "#{start}-#{end}"
 
       scope.timeOffRequestFilter = (day) ->
         (timeOffRequest) ->
-          dayIndex = scope.days.indexOf day
+          dayIndex = ScheduleHelper.days.indexOf day
 
           timeOffRequest.dayIndices.length and
             dayIndex in timeOffRequest.dayIndices

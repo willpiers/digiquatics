@@ -18,7 +18,4 @@
           moment(request.ends_at).format('M/D/YY')
         else
           moment(request.ends_at).format('M/D/YY @ h:mma')
-
-      @timeFormat: (time) ->
-        moment(time).format 'h:mmA'
 ]

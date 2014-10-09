@@ -118,17 +118,12 @@
                 </td>
                 <td ng-repeat='day in days'>
                   <div ng-if='buildMode'>
-                    <dq-time-off-requests days='days' day-name='day' time-off-requests='user.time_off_requests'>
+                    <dq-time-off-requests day-name='day' time-off-requests='user.time_off_requests'>
                     </dq-time-off-requests>
-                    <div ng-repeat="avail in user.availabilities | orderBy:'start_time' | filter:{day: days.indexOf(day)}">
-                      <progressbar class='progress fix-schedule-time-bar'
-                                   value='100' type='success'>
-                        {{startEndTimes(avail)}}
-                      </progressbar>
-                    </div>
+                    <dq-availabilities day-name='day' availabilities='user.availabilities'>
+                    </dq-availabilities>
                   </div>
-                  <div ng-if='shift.dayIndex == days.indexOf(day)'
-                       ng-repeat="shift in user.shifts | orderBy:'start_time' | filter:{dayIndex: days.indexOf(day)}">
+                  <div ng-repeat="shift in user.shifts | orderBy:'start_time' | filter:{dayIndex: days.indexOf(day)}">
                     <div class='edit_shift' ng-if='userIsAdmin'>
                       <progressbar ng-click='open(user, day, shift)'
                                    class='progress fix-schedule-time-bar shift'
@@ -171,14 +166,10 @@
                 </td>
                 <td>
                   <div ng-if='userIsAdmin'>
-                    <dq-time-off-requests days='days' day-name='currentDayName()' time-off-requests='user.time_off_requests'>
+                    <dq-time-off-requests day-name='currentDayName()' time-off-requests='user.time_off_requests'>
                     </dq-time-off-requests>
-                    <div ng-repeat="avail in user.availabilities | orderBy:'start_time' | filter:{day: currentDayOfWeek()}">
-                      <progressbar class='progress fix-schedule-time-bar'
-                                   value='100' type='success'>
-                        {{startEndTimes(avail)}}
-                      </progressbar>
-                    </div>
+                    <dq-availabilities day-name='currentDayName()' availabilities='user.availabilities'>
+                    </dq-availabilities>
                   </div>
                   <div ng-repeat="shift in user.shifts | orderBy:'start_time' | filter:{dayIndex: currentDayOfWeek()}">
                     <progressbar class='progress fix-schedule-time-bar shift'

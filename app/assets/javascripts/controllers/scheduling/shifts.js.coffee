@@ -6,23 +6,15 @@
   'Locations'
   'Positions'
   '$modal'
-  'TimeOffHelper'
+  'ScheduleHelper'
 
   class ShiftsCtrl
-    constructor: (@$q, @$scope, @Shifts, @Users, @Locations, @Positions, $modal, @TimeOffHelper) ->
+    constructor: (@$q, @$scope, @Shifts, @Users, @Locations, @Positions, $modal, @ScheduleHelper) ->
       @daysFromToday = 0
 
       @_loadAndProcessData()
 
-      @$scope.days = [
-        'Sunday'
-        'Monday'
-        'Tuesday'
-        'Wednesday'
-        'Thursday'
-        'Friday'
-        'Saturday'
-      ]
+      @$scope.days = @ScheduleHelper.days
 
       @$scope.buildMode = true
 
@@ -69,11 +61,6 @@
 
       @$scope.predicate =
         value: 'last_name'
-
-      @$scope.startEndTimes = (object) =>
-        start = @TimeOffHelper.timeFormat(object.start_time)
-        end = @TimeOffHelper.timeFormat(object.end_time)
-        return "#{start}-#{end}"
 
       @$scope.open = (user, day, shift, size) =>
         modalInstance = $modal.open
