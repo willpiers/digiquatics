@@ -1,12 +1,12 @@
 <div ng-app='digiquatics'>
   <div ng-controller='ShiftsCtrl as controller'>
-    <div ng-init='userIsAdmin = <%= current_user.admin %>'>
-    <div ng-init='buildMode = <%= current_user.admin %>'>
+    <div ng-init='state.userIsAdmin = <%= current_user.admin %>'>
+    <div ng-init='state.buildMode = <%= current_user.admin %>'>
     <% provide(:title, 'Scheduler') %>
     <div class='hidden-print'>
       <div>
         <h1 class='cross_platform_header'>
-          <div ng-if='buildLocation'>
+          <div ng-if='state.buildLocation'>
             <!-- Left blank for print view -->
           </div>
           <div class='visible-xs'>
@@ -18,21 +18,28 @@
         </h1>
       </div>
       <div class='row'>
-        <div class='hidden-xs' ng-if='userIsAdmin'>
-          <%= render 'layouts/location_select_build' %>
+        <div class='hidden-xs' ng-if='state.userIsAdmin'>
+          <div class='col-md-3 col-xs-3'>
+            <b>Schedule Location</b>
+            <div ng-init="state.buildLocation = <%= current_user.location.id %>"></div>
+            <select ng-model='state.buildLocation'
+                    class='form-control'
+                    ng-options='location.id as location.name for location in locations'>
+            </select>
+          </div>
         </div>
           <%= render 'layouts/location_select_shifts' %>
-        <div class='hidden-xs' ng-if='userIsAdmin'>
+        <div class='hidden-xs' ng-if='state.userIsAdmin'>
           <dq-position></dq-position>
           <div class='col-lg-1'></div>
           <div class='col-lg-2'>
             <div class='pull-right'>
               <br>
               <div class='btn-group pull-right'>
-                <label class='btn btn-default' ng-model='buildMode' btn-radio='true'>
+                <label class='btn btn-default' ng-model='state.buildMode' btn-radio='true'>
                   <i class='fa fa-wrench fa-lg'></i> Build
                 </label>
-                <label class='btn btn-default' ng-model='buildMode' btn-radio='false'>
+                <label class='btn btn-default' ng-model='state.buildMode' btn-radio='false'>
                   <i class='fa fa-calendar fa-lg'></i></a> View
                 </label>
               </div>
@@ -73,7 +80,7 @@
             </div>
           </div>
         </div>
-        <div class='hidden-xs' ng-if='userIsAdmin'>
+        <div class='hidden-xs' ng-if='state.userIsAdmin'>
           <div class='col-md-5'>
             <span class='legendBlue'><i class='fa fa-circle fa-border'></i> Shift </span>
             <span class='legendGreen'><i class='fa fa-circle fa-border'></i> Availability </span>
@@ -82,6 +89,7 @@
           <div class='col-md-2'></div>
           <div class='col-md-2'>
             <div class='pull-right'>
+              <!-- TODO: pull this into angular -->
               <%= link_to_function(' Print', 'javascript:print()',
                                    class: 'btn btn-default fa fa-print fa-lg') %>
             </div>
@@ -117,18 +125,19 @@
                   </div>
                 </td>
                 <td ng-repeat='day in days'>
-                  <div ng-if='buildMode'>
+                  <div ng-if='state.buildMode'>
                     <dq-time-off-requests day-name='day' time-off-requests='user.time_off_requests'>
                     </dq-time-off-requests>
                     <dq-availabilities day-name='day' availabilities='user.availabilities'>
                     </dq-availabilities>
                   </div>
-                  <dq-shifts user='user' day-name='day' shifts='user.shifts'>
+                  <dq-shifts day-name='day' shifts='user.shifts'
+                             user-is-admin='state.userIsAdmin'
+                             open='open(user, days.indexOf(day), shift)'>
                   </dq-shifts>
-                  <div ng-if='buildMode'>
-                    <div class='shift'
-                      ng-click='open(user, days.indexOf(day))'
-                      data-hover='Assign Shift'>
+                  <div ng-if='state.buildMode'>
+                    <div class='shift' ng-click='open(user, days.indexOf(day))'
+                         data-hover='Assign Shift'>
                     </div>
                   </div>
                 </td>
@@ -150,22 +159,16 @@
                   </div>
                 </td>
                 <td>
-                  <div ng-if='userIsAdmin'>
+                  <div ng-if='state.userIsAdmin'>
                     <dq-time-off-requests day-name='currentDayName()' time-off-requests='user.time_off_requests'>
                     </dq-time-off-requests>
                     <dq-availabilities day-name='currentDayName()' availabilities='user.availabilities'>
                     </dq-availabilities>
                   </div>
-                  <dq-shifts user='user' day-name='currentDayName()' shifts='user.shifts'>
+                  <dq-shifts day-name='day' shifts='user.shifts'
+                             user-is-admin='state.userIsAdmin'
+                             open='open(user, days.indexOf(day), shift)'>
                   </dq-shifts>
-
-                  <!-- <div ng-repeat="shift in user.shifts | orderBy:'start_time' | filter:{dayIndex: currentDayOfWeek()}">
-                    <progressbar class='progress fix-schedule-time-bar shift'
-                                 value='100' type='primary'>
-                      {{startEndTimes(shift)}}<br/>
-                      {{shift.position.name}}
-                    </progressbar>
-                  </div> -->
                 </td>
               </tr>
             </tbody>

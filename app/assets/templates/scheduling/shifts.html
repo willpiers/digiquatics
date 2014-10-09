@@ -1,14 +1,8 @@
-<div ng-repeat="shift in shifts | orderBy:'start_time' | filter:{dayIndex: days.indexOf(dayName)}">
-  <div class='edit_shift' ng-if='userIsAdmin'>
-    <progressbar ng-click='open(user, dayName, shift)'
+<div ng-repeat="shift in shifts | orderBy:'start_time'
+  | filter:{dayIndex: days.indexOf(dayName)}">
+  <div ng-class='{edit_shift: userIsAdmin}'>
+    <progressbar ng-click='open({shift: shift})'
                  class='progress fix-schedule-time-bar shift'
-                 value='100' type='primary'>
-      {{startEndTimes(shift)}}<br/>
-      {{shift.position.name}}
-    </progressbar>
-  </div>
-  <div ng-if='!userIsAdmin'>
-    <progressbar class='progress fix-schedule-time-bar shift'
                  value='100' type='primary'>
       {{startEndTimes(shift)}}<br/>
       {{shift.position.name}}

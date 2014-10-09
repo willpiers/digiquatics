@@ -7,16 +7,18 @@
   'Positions'
   '$modal'
   'ScheduleHelper'
+  '$window'
 
   class ShiftsCtrl
-    constructor: (@$q, @$scope, @Shifts, @Users, @Locations, @Positions, $modal, @ScheduleHelper) ->
+    constructor: (@$q, @$scope, @Shifts, @Users, @Locations, @Positions, $modal, @ScheduleHelper, $window) ->
+      @$scope.state = {}
+      @$scope.state.buildMode = true
+      @$scope.days = @ScheduleHelper.days
+      @$scope.predicate = value: 'last_name'
+
       @daysFromToday = 0
 
       @_loadAndProcessData()
-
-      @$scope.days = @ScheduleHelper.days
-
-      @$scope.buildMode = true
 
       @$scope.$on 'shifts:created', _.bind @_addViewDataToUsers, @
 
@@ -59,24 +61,22 @@
       @$scope.weekDay = (days) =>
         moment().startOf('week').add 'days', @daysFromToday + days
 
-      @$scope.predicate =
-        value: 'last_name'
-
       @$scope.open = (user, day, shift, size) =>
-        modalInstance = $modal.open
-          templateUrl: 'scheduling/shift-assigner.html'
-          controller: 'ShiftModalCtrl as controller'
-          size: size
-          resolve:
-            shift: -> shift
-            data: =>
-              user: user
-              day: day
-              location: $scope.buildLocation
-              startTime: @$scope.weekDay(day).startOf('day').add 5, 'hours'
-              endTime: @$scope.weekDay(day).startOf('day').add 10, 'hours'
-              positions: $scope.positions
-              position: user.position_id
+        if @$scope.state.userIsAdmin
+          $modal.open
+            templateUrl: 'scheduling/shift-assigner.html'
+            controller: 'ShiftModalCtrl as controller'
+            size: size
+            resolve:
+              shift: -> shift
+              data: =>
+                user: user
+                day: day
+                location: @$scope.state.buildLocation
+                startTime: @$scope.weekDay(day).startOf('day').add 5, 'hours'
+                endTime: @$scope.weekDay(day).startOf('day').add 10, 'hours'
+                positions: $scope.positions
+                position: user.position_id
 
     _loadAndProcessData: ->
       @$q.all
