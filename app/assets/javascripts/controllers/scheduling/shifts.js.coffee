@@ -72,16 +72,20 @@
           timeOff.dayIndices.length and
           timeOff.dayIndices.indexOf(@$scope.days.indexOf(day)) > -1
 
-      @timeOffFormat = (time) ->
-        moment(time).format 'h:mma'
+      @timeFormat = (time) ->
+        moment(time).format 'h:mmA'
 
-      @$scope.timeOffContent = (time_off) =>
+      @$scope.timeOffTimes = (time_off) =>
         if time_off.all_day? then 'Time Off'
         else
-          start = @timeOffFormat(time_off.starts_at)
-          end = @timeOffFormat(time_off.ends_at)
+          start = @timeFormat(time_off.starts_at)
+          end = @timeFormat(time_off.ends_at)
           return "#{start}-#{end}"
 
+      @$scope.startEndTimes = (object) =>
+        start = @timeFormat(object.start_time)
+        end = @timeFormat(object.end_time)
+        return "#{start}-#{end}"
 
       @$scope.open = (user, day, shift, size) =>
         modalInstance = $modal.open

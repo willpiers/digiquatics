@@ -122,13 +122,13 @@
                     | filter:timeOffFilter(day)">
                       <progressbar class='progress fix-schedule-time-bar'
                                    value='100' type={{time_off.color}}>
-                        {{timeOffContent(time_off)}}
+                        {{timeOffTimes(time_off)}}
                       </progressbar>
                     </div>
                     <div ng-repeat="avail in user.availabilities | orderBy:'start_time' | filter:{day: days.indexOf(day)}">
                       <progressbar class='progress fix-schedule-time-bar'
                                    value='100' type='success'>
-                        {{avail.start_time | date:'h:mma'}}-{{avail.end_time | date:'h:mma'}}
+                        {{startEndTimes(avail)}}
                       </progressbar>
                     </div>
                   </div>
@@ -138,14 +138,14 @@
                       <progressbar ng-click='open(user, day, shift)'
                                    class='progress fix-schedule-time-bar shift'
                                    value='100' type='primary'>
-                        {{shift.start_time | date:'h:mma'}}-{{shift.end_time | date:'h:mma'}}<br/>
+                        {{startEndTimes(shift)}}<br/>
                         {{shift.position.name}}
                       </progressbar>
                     </div>
                     <div ng-if='!userIsAdmin'>
                       <progressbar class='progress fix-schedule-time-bar shift'
                                    value='100' type='primary'>
-                        {{shift.start_time | date:'h:mma'}}-{{shift.end_time | date:'h:mma'}}<br/>
+                        {{startEndTimes(shift)}}<br/>
                         {{shift.position.name}}
                       </progressbar>
                     </div>
@@ -180,20 +180,20 @@
                     | filter:timeOffFilter(currentDayName())">
                       <progressbar class='progress fix-schedule-time-bar'
                                    value='100' type={{time_off.color}}>
-                        {{timeOffContent(time_off)}}
+                        {{timeOffTimes(time_off)}}
                       </progressbar>
                     </div>
                     <div ng-repeat="avail in user.availabilities | orderBy:'start_time' | filter:{day: currentDayOfWeek()}">
                       <progressbar class='progress fix-schedule-time-bar'
                                    value='100' type='success'>
-                        {{avail.start_time | date:'h:mma'}}-{{avail.end_time | date:'h:mma'}}
+                        {{startEndTimes(avail)}}
                       </progressbar>
                     </div>
                   </div>
                   <div ng-repeat="shift in user.shifts | orderBy:'start_time' | filter:{dayIndex: currentDayOfWeek()}">
                     <progressbar class='progress fix-schedule-time-bar shift'
                                  value='100' type='primary'>
-                      {{shift.start_time | date:'h:mma'}}-{{shift.end_time | date:'h:mma'}}<br/>
+                      {{startEndTimes(shift)}}<br/>
                       {{shift.position.name}}
                     </progressbar>
                   </div>
