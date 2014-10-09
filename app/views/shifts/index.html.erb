@@ -123,23 +123,8 @@
                     <dq-availabilities day-name='day' availabilities='user.availabilities'>
                     </dq-availabilities>
                   </div>
-                  <div ng-repeat="shift in user.shifts | orderBy:'start_time' | filter:{dayIndex: days.indexOf(day)}">
-                    <div class='edit_shift' ng-if='userIsAdmin'>
-                      <progressbar ng-click='open(user, day, shift)'
-                                   class='progress fix-schedule-time-bar shift'
-                                   value='100' type='primary'>
-                        {{startEndTimes(shift)}}<br/>
-                        {{shift.position.name}}
-                      </progressbar>
-                    </div>
-                    <div ng-if='!userIsAdmin'>
-                      <progressbar class='progress fix-schedule-time-bar shift'
-                                   value='100' type='primary'>
-                        {{startEndTimes(shift)}}<br/>
-                        {{shift.position.name}}
-                      </progressbar>
-                    </div>
-                  </div>
+                  <dq-shifts user='user' day-name='day' shifts='user.shifts'>
+                  </dq-shifts>
                   <div ng-if='buildMode'>
                     <div class='shift'
                       ng-click='open(user, days.indexOf(day))'
@@ -171,13 +156,16 @@
                     <dq-availabilities day-name='currentDayName()' availabilities='user.availabilities'>
                     </dq-availabilities>
                   </div>
-                  <div ng-repeat="shift in user.shifts | orderBy:'start_time' | filter:{dayIndex: currentDayOfWeek()}">
+                  <dq-shifts user='user' day-name='currentDayName()' shifts='user.shifts'>
+                  </dq-shifts>
+
+                  <!-- <div ng-repeat="shift in user.shifts | orderBy:'start_time' | filter:{dayIndex: currentDayOfWeek()}">
                     <progressbar class='progress fix-schedule-time-bar shift'
                                  value='100' type='primary'>
                       {{startEndTimes(shift)}}<br/>
                       {{shift.position.name}}
                     </progressbar>
-                  </div>
+                  </div> -->
                 </td>
               </tr>
             </tbody>
