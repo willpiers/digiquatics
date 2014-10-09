@@ -122,12 +122,7 @@
                     | filter:timeOffFilter(day)">
                       <progressbar class='progress fix-schedule-time-bar'
                                    value='100' type={{time_off.color}}>
-                        <div ng-if='time_off.all_day'>
-                          Time Off
-                        </div>
-                        <div ng-hide='time_off.all_day'>
-                          {{time_off.starts_at | date:'h:mma'}}-{{time_off.ends_at | date:'h:mma'}}
-                        </div>
+                        {{timeOffContent(time_off)}}
                       </progressbar>
                     </div>
                     <div ng-repeat="avail in user.availabilities | orderBy:'start_time' | filter:{day: days.indexOf(day)}">
@@ -185,12 +180,7 @@
                     | filter:timeOffFilter(currentDayName())">
                       <progressbar class='progress fix-schedule-time-bar'
                                    value='100' type={{time_off.color}}>
-                        <div ng-if='time_off.all_day'>
-                          Time Off
-                        </div>
-                        <div ng-hide='time_off.all_day'>
-                          {{time_off.starts_at | date:'h:mma'}}-{{time_off.ends_at | date:'h:mma'}}
-                        </div>
+                        {{timeOffContent(time_off)}}
                       </progressbar>
                     </div>
                     <div ng-repeat="avail in user.availabilities | orderBy:'start_time' | filter:{day: currentDayOfWeek()}">

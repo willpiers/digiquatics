@@ -72,6 +72,17 @@
           timeOff.dayIndices.length and
           timeOff.dayIndices.indexOf(@$scope.days.indexOf(day)) > -1
 
+      @timeOffFormat = (time) ->
+        moment(time).format 'h:mma'
+
+      @$scope.timeOffContent = (time_off) =>
+        if time_off.all_day? then 'Time Off'
+        else
+          start = @timeOffFormat(time_off.starts_at)
+          end = @timeOffFormat(time_off.ends_at)
+          return "#{start}-#{end}"
+
+
       @$scope.open = (user, day, shift, size) =>
         modalInstance = $modal.open
           templateUrl: 'scheduling/shift-assigner.html'
