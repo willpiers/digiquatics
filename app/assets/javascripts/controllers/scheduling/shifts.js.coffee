@@ -72,11 +72,6 @@
           timeOff.dayIndices.length and
           timeOff.dayIndices.indexOf(@$scope.days.indexOf(day)) > -1
 
-      @$scope.timeOffFilterMobile = (currentDayName) =>
-        (timeOff) =>
-          timeOff.dayIndices.length and
-          timeOff.dayIndices.indexOf(@$scope.days.indexOf(currentDayName)) > -1
-
       @$scope.open = (user, day, shift, size) =>
         modalInstance = $modal.open
           templateUrl: 'scheduling/shift-assigner.html'
