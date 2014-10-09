@@ -1,0 +1,7 @@
+<div ng-repeat="timeOffRequest in timeOffRequests | orderBy:'starts_at'
+  | filter:timeOffRequestFilter(dayName)">
+  <progressbar class='progress fix-schedule-time-bar' value='100'
+               type='{{timeOffRequest.color}}'>
+    {{timeOffRequestTimes(timeOffRequest)}}
+  </progressbar>
+</div>

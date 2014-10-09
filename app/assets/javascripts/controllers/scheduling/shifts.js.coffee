@@ -6,9 +6,10 @@
   'Locations'
   'Positions'
   '$modal'
+  'TimeOffHelper'
 
   class ShiftsCtrl
-    constructor: (@$q, @$scope, @Shifts, @Users, @Locations, @Positions, $modal) ->
+    constructor: (@$q, @$scope, @Shifts, @Users, @Locations, @Positions, $modal, @TimeOffHelper) ->
       @daysFromToday = 0
 
       @_loadAndProcessData()
@@ -69,24 +70,9 @@
       @$scope.predicate =
         value: 'last_name'
 
-      @$scope.timeOffFilter = (day) =>
-        (timeOff) =>
-          timeOff.dayIndices.length and
-          timeOff.dayIndices.indexOf(@$scope.days.indexOf(day)) > -1
-
-      @timeFormat = (time) ->
-        moment(time).format 'h:mmA'
-
-      @$scope.timeOffTimes = (time_off) =>
-        if time_off.all_day? then 'Time Off'
-        else
-          start = @timeFormat(time_off.starts_at)
-          end = @timeFormat(time_off.ends_at)
-          return "#{start}-#{end}"
-
       @$scope.startEndTimes = (object) =>
-        start = @timeFormat(object.start_time)
-        end = @timeFormat(object.end_time)
+        start = @TimeOffHelper.timeFormat(object.start_time)
+        end = @TimeOffHelper.timeFormat(object.end_time)
         return "#{start}-#{end}"
 
       @$scope.open = (user, day, shift, size) =>

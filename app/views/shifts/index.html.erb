@@ -1,5 +1,5 @@
 <div ng-app='digiquatics'>
-  <div ng-controller='ShiftsCtrl'>
+  <div ng-controller='ShiftsCtrl as controller'>
     <div ng-init='userIsAdmin = <%= current_user.admin %>'>
     <div ng-init='buildMode = <%= current_user.admin %>'>
     <% provide(:title, 'Scheduler') %>
@@ -118,13 +118,8 @@
                 </td>
                 <td ng-repeat='day in days'>
                   <div ng-if='buildMode'>
-                    <div ng-repeat="time_off in user.time_off_requests | orderBy:'starts_at'
-                    | filter:timeOffFilter(day)">
-                      <progressbar class='progress fix-schedule-time-bar'
-                                   value='100' type={{time_off.color}}>
-                        {{timeOffTimes(time_off)}}
-                      </progressbar>
-                    </div>
+                    <dq-time-off-requests days='days' day-name='day' time-off-requests='user.time_off_requests'>
+                    </dq-time-off-requests>
                     <div ng-repeat="avail in user.availabilities | orderBy:'start_time' | filter:{day: days.indexOf(day)}">
                       <progressbar class='progress fix-schedule-time-bar'
                                    value='100' type='success'>
@@ -176,13 +171,8 @@
                 </td>
                 <td>
                   <div ng-if='userIsAdmin'>
-                    <div ng-repeat="time_off in user.time_off_requests | orderBy:'starts_at'
-                    | filter:timeOffFilter(currentDayName())">
-                      <progressbar class='progress fix-schedule-time-bar'
-                                   value='100' type={{time_off.color}}>
-                        {{timeOffTimes(time_off)}}
-                      </progressbar>
-                    </div>
+                    <dq-time-off-requests days='days' day-name='currentDayName()' time-off-requests='user.time_off_requests'>
+                    </dq-time-off-requests>
                     <div ng-repeat="avail in user.availabilities | orderBy:'start_time' | filter:{day: currentDayOfWeek()}">
                       <progressbar class='progress fix-schedule-time-bar'
                                    value='100' type='success'>
