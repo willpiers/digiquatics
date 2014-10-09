@@ -205,7 +205,7 @@
 
     _addViewDataToUsers: ->
       _.each @$scope.users, (user) =>
-        user.hours = @_calculateHours user
+        user.weeklyHours = @_calculateHours user
         _.each user.time_off_requests, @_addDayIndicesToTimeOffRequests, @
         _.each user.shifts, @_addDayIndexToShift, @
 
