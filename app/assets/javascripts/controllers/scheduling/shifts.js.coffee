@@ -60,7 +60,7 @@
 
       @$scope.weekDay = (days) =>
         moment().startOf('week').add 'days', @daysFromToday + days
-g
+
       @$scope.open = (user, day, shift, size) =>
         if @$scope.state.userIsAdmin
           $modal.open
