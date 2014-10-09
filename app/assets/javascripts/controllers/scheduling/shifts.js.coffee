@@ -62,22 +62,6 @@
       @$scope.predicate =
         value: 'last_name'
 
-      @$scope.open = (user, day, shift, size) =>
-        modalInstance = $modal.open
-          templateUrl: 'scheduling/shift-assigner.html'
-          controller: 'ShiftModalCtrl as controller'
-          size: size
-          resolve:
-            shift: -> shift
-            data: =>
-              user: user
-              day: day
-              location: $scope.buildLocation
-              startTime: @$scope.weekDay(day).startOf('day').add 5, 'hours'
-              endTime: @$scope.weekDay(day).startOf('day').add 10, 'hours'
-              positions: $scope.positions
-              position: user.position_id
-
     _loadAndProcessData: ->
       @$q.all
         users: @Users.index().$promise
