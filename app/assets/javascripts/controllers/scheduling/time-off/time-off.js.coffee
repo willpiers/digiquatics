@@ -6,9 +6,8 @@
   'Positions'
   '$modal'
   'TimeOffHelper'
-  '$log'
 
-  @TimeOffCtrl = ($scope, TimeOff, Users, Locations, Positions, $modal, TimeOffHelper, $log) ->
+  @TimeOffCtrl = ($scope, TimeOff, Users, Locations, Positions, $modal, TimeOffHelper) ->
     angular.extend $scope, TimeOffHelper
     $scope.timeOff = TimeOff.index()
     $scope.users = Users.index()
@@ -67,9 +66,6 @@
 
     $scope.ismeridian = true
 
-    $scope.changed = ->
-      console.log "Time changed to: " + $scope.mytime
-
     $scope.predicate =
       value: 'last_name'
 
@@ -89,9 +85,6 @@
           timeOffUserFirstName: -> $scope.timeOffUserFirstName
           timeOffUserLastName: -> $scope.timeOffUserLastName
 
-      modalInstance.result.then ->
-        $log.info('Modal dismissed at: ' + new Date())
-
     TimeOffRequestModalCtrl = ($scope, $modalInstance, request, TimeOff,
                                timeOff, TimeOffHelper, timeOffUserId,
                                timeOffUserFirstName, timeOffUserLastName) ->
@@ -103,8 +96,7 @@
       $scope.timeOffUserFirstName = timeOffUserFirstName
       $scope.timeOffUserLastName = timeOffUserLastName
 
-      $scope.approveRequest = (request) ->
-        console.log request
+      approveRequest = (request) ->
         requestData = angular.extend request,
           approved: true
           active: false
@@ -115,10 +107,10 @@
 
         TimeOff.update id: requestData.id, requestData
         .$promise.then (updatedRequest) ->
-          _.remove timeOff, (timeOffRequest) -> timeOffRequest.id is request.id
+          _.remove timeOff, id: request.id
           timeOff.push updatedRequest
 
-      $scope.denyRequest = (request) ->
+      denyRequest = (request) ->
         requestData = angular.extend request,
           approved: false
           active: false
@@ -129,33 +121,28 @@
 
         TimeOff.update id: requestData.id, requestData
         .$promise.then (updatedRequest) ->
-          _.remove timeOff, (timeOffRequest) -> timeOffRequest.id is request.id
+          _.remove timeOff, id: request.id
           timeOff.push updatedRequest
 
       $scope.approve = ->
-        $scope.approveRequest(request)
-        $modalInstance.close request
-
-        toastr.success('Time Off Request has been approved.')
-        true
+        approveRequest(request).then ->
+          $modalInstance.close request
+          toastr.success('Time Off Request has been approved.')
 
       $scope.deny = ->
-        $scope.denyRequest(request)
-        $modalInstance.close request
-
-        toastr.error('Time Off Request has been denied.')
-        true
+        denyRequest(request).then ->
+          $modalInstance.close request
+          toastr.error('Time Off Request has been denied.')
 
       $scope.cancel = ->
         $modalInstance.dismiss "Cancel"
 
       $scope.delete = ->
         TimeOff.destroy id: request.id
-        _.remove timeOff, (timeOff) -> timeOff.id is request.id
-        $modalInstance.close $scope.user
-
-        toastr.error('Time Off Request was successfully deleted.')
-        true
+        .$promise.then ->
+          _.remove timeOff, id: request.id
+          $modalInstance.close $scope.user
+          toastr.error('Time Off Request was successfully deleted.')
 
       TimeOffRequestModalCtrl['$inject'] = [
         '$scope'
@@ -168,5 +155,4 @@
         'timeOffUserFirstName'
         'timeOffUserLastName'
       ]
-
 ]
