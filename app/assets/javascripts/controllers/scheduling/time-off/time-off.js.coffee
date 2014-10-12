@@ -24,7 +24,7 @@
 
     $scope.open = (editMode, request) ->
       modalInstance = $modal.open
-        templateUrl: 'time-off-request.html',
+        templateUrl: 'scheduling/time-off/time-off-request-modal.html',
         controller: TimeOffRequestModalCtrl,
         scope: $scope
         resolve:

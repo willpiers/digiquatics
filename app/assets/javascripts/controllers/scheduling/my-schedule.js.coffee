@@ -65,7 +65,7 @@
 
     $scope.open = (shift, size) ->
       modalInstance = $modal.open
-        templateUrl: 'sub-request.html',
+        templateUrl: 'scheduling/sub-requests/sub-request.html',
         controller: MyScheduleModalCtrl,
         size: size,
         resolve:

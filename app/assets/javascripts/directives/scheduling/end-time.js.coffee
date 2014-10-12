@@ -1,7 +1,7 @@
 @digiquatics.directive 'dqEndTime', [
   ->
     restrict: 'E'
-    templateUrl: 'end-time.html'
+    templateUrl: 'scheduling/end-time.html'
     scope:
       request: '='
       data: '='

@@ -1,7 +1,7 @@
 @digiquatics.directive 'dqStartTime', [
   ->
     restrict: 'E'
-    templateUrl: 'start-time.html'
+    templateUrl: 'scheduling/start-time.html'
     scope:
       request: '='
       data: '='
