@@ -125,8 +125,12 @@
               <tr ng-repeat='user in users | orderBy:predicate.value:reverse |
                              filter:locationFilter | filter:positionFilter'>
                 <td>
-                  <dq-user-info user='user'>
-                  </dq-user-info>
+                  {{user.last_name}}, </br>
+                  {{user.first_name}}
+                  <div class='hidden-print'>
+                    <br><i class='fa fa-clock-o'></i>
+                    {{user.weeklyHours}}
+                  </div>
                 </td>
                 <td ng-repeat='day in days'>
                   <div ng-if='state.buildMode'>
@@ -155,8 +159,12 @@
               <tr ng-repeat='user in users | orderBy:predicate.value:reverse |
                              filter:locationFilter | filter:positionFilter'>
                 <td>
-                  <dq-user-info user='user'>
-                  </dq-user-info>
+                  {{user.last_name}}, </br>
+                  {{user.first_name}}
+                  <div class='hidden-print'>
+                    <br><i class='fa fa-clock-o'></i>
+                    {{user.weeklyHours}}
+                  </div>
                 </td>
                 <td>
                   <div ng-if='state.userIsAdmin'>
