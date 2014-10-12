@@ -3,15 +3,18 @@ require 'spec_helper'
 describe TimeOffRequestsController do
   let!(:account) { FactoryGirl.create(:account) }
   let!(:user) { FactoryGirl.create(:user, account_id: account.id) }
+  let!(:location) { FactoryGirl.create(:location, account_id: account.id) }
 
   before do
-    @compare_attrs = Shift.column_names - ['id', 'user_id']
+    @compare_attrs = TimeOffRequest.column_names - ['id', 'user_id', 'start_at', 'ends_at']
     sign_in user
   end
 
   describe 'GET #index' do
     it 'assigns @time_off_requests' do
-      time_off_request = FactoryGirl.create(:time_off_request, user_id: user.id)
+      time_off_request = FactoryGirl.create(:time_off_request,
+                                            user_id: user.id,
+                                            location_id: location.id)
       get :index
       assigns(:time_off_requests).should eq([time_off_request])
     end
@@ -50,9 +53,12 @@ describe TimeOffRequestsController do
         end.to change(TimeOffRequest, :count).by(1)
       end
 
-      it 'redirects to the new time_off_request' do
+      it 'sends the new time off request as json' do
         post :create, time_off_request: FactoryGirl.attributes_for(:time_off_request)
-        response.should redirect_to TimeOffRequest.last
+        parsed_body = JSON.parse(response.body)
+        parsed_body['location_id'].should == TimeOffRequest.last.location_id
+        parsed_body['user_id'].should == TimeOffRequest.last.user_id
+        parsed_body['id'].should == TimeOffRequest.last.id
       end
     end
 
@@ -63,9 +69,11 @@ describe TimeOffRequestsController do
         end.to_not change(TimeOffRequest, :count)
       end
 
-      it 're-renders the #new template' do
+      it 'sends a 422 with an error message' do
         post :create, time_off_request: FactoryGirl.attributes_for(:invalid_time_off_request)
-        response.should render_template :new
+
+        response.status.should == 422
+        response.body.should == { user_id: ["can't be blank"] }.to_json
       end
     end
   end
@@ -101,9 +109,10 @@ describe TimeOffRequestsController do
 
       it 'sends the updated time off request as json' do
         put :update, id: @time_off_request, time_off_request: FactoryGirl.attributes_for(:time_off_request)
-
-        JSON.parse(response.body).slice(*@compare_attrs).should ==
-          TimeOffRequest.last.attributes.slice(*@compare_attrs)
+        parsed_body = JSON.parse(response.body)
+        parsed_body['location_id'].should == TimeOffRequest.last.location_id
+        parsed_body['user_id'].should == TimeOffRequest.last.user_id
+        parsed_body['id'].should == TimeOffRequest.last.id
       end
     end
 

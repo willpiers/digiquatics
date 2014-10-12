@@ -22,7 +22,6 @@ describe 'Time Off Request pages' do
 
     it { should have_selector('h1', text: 'Time Off Requests') }
     it { should have_title(full_title('Time Off Requests')) }
-    it { should have_link('Add Request', new_time_off_request_path) }
     it { should have_link('View Processed', archived_time_off_requests_path) }
 
     it { should have_selector('th', text: 'Last Name') }
@@ -41,7 +40,6 @@ describe 'Time Off Request pages' do
 
     it { should have_selector('h1', text: 'Processed Time Off Requests') }
     it { should have_title(full_title('Processed Time Off Requests')) }
-    it { should have_link('Add Request', new_time_off_request_path) }
     it { should have_link('Queue', time_off_requests_path) }
 
     it { should have_selector('th', text: 'Last Name') }

@@ -167,8 +167,8 @@ FactoryGirl.define do
 
   factory :invalid_time_off_request, parent: :time_off_request do
     user_id nil
-    starts_at nil
-    ends_at nil
+    starts_at Time.now
+    ends_at Time.zone.now + 5.hours
   end
 
   factory :availability do
