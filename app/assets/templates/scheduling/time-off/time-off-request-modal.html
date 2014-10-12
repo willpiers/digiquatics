@@ -1,23 +1,24 @@
 <a class='pull-right close-button link-color' ng-click='cancel()'>
   <i class='fa fa-times fa-lg'></i></a>
 <div class='modal-header'>
-    <h1 ng-if='data.user' class='modal-title'>{{editMode ? 'Edit' : ''}} Time Off Request</h1>
-    <h1 ng-if='!data.user' class='modal-title'>New Time Off Request</h1>
+    <h1 ng-if='request' class='modal-title'>{{editMode ? 'Edit' : ''}} Time Off Request</h1>
+    <h1 ng-if='!request' class='modal-title'>New Time Off Request</h1>
   <center>
     <p ng-if='request.user'>
       {{data.user.last_name}}, {{data.user.first_name}}
     </p>
   </center>
 </div>
-
 <div ng-if='editMode'>
   <div class='modal-body'>
     <center>
       <div class='btn-group'>
-        <label class='btn btn-info' ng-click='setTimesPartialDay()' ng-model='state.allDayRequest' btn-radio=false>
+        <label class='btn btn-info' ng-click='setTimesPartialDay()'
+               ng-model='state.allDayRequest' btn-radio=false>
           Partial Day
         </label>
-        <label class='btn btn-info' ng-click='setTimesAllDay()' ng-model='state.allDayRequest' btn-radio=true>
+        <label class='btn btn-info' ng-click='setTimesAllDay()'
+               ng-model='state.allDayRequest' btn-radio=true>
           All Day
         </label>
       </div>
@@ -28,7 +29,8 @@
     <div class='row'>
       <div class='col-md-8 col-xs-12'>
         <div class='fix_angular_date_picker'>
-         <dq-time-off-start-date request='request' data='data'></dq-time-off-start-date>
+         <dq-time-off-start-date request='request' data='data'>
+         </dq-time-off-start-date>
         </div>
       </div>
       <div class='col-md-4 col-xs-12'>
@@ -37,12 +39,12 @@
         </center>
       </div>
     </div>
-
     <label>End</label>
     <div class='row'>
       <div class='col-md-8 col-xs-12'>
         <div class='fix_angular_date_picker'>
-         <dq-time-off-end-date request='request' data='data'></dq-time-off-end-date>
+         <dq-time-off-end-date request='request' data='data'>
+         </dq-time-off-end-date>
         </div>
       </div>
       <div class='col-md-4 col-xs-12'>
@@ -55,9 +57,10 @@
     <textarea rows='2' cols='50' ng-model='data.reason'></textarea>
   </div>
   <div class='modal-footer'>
-
     <a class='btn btn-primary btn-block' ng-click='ok()'>
-      <i class='fa fa-refresh fa-lg'></i> {{data.user ? 'Update' : 'Submit'}} Request</a>
+      <i class='fa fa-refresh fa-lg'></i>
+      {{request ? 'Update' : 'Submit'}} Request
+    </a>
     <a class='btn btn-danger btn-block' ng-click='delete()'>
       <i class='fa fa-trash fa-lg'></i> Delete Request</a>
   </div>

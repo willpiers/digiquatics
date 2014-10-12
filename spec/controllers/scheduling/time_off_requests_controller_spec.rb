@@ -25,26 +25,6 @@ describe TimeOffRequestsController do
     end
   end
 
-  describe 'GET #show' do
-    it 'assigns the requested time_off_request to @time_off_request' do
-      time_off_request = FactoryGirl.create(:time_off_request)
-      get :show, id: time_off_request
-      assigns(:time_off_request).should eq(time_off_request)
-    end
-
-    it 'renders the #show view' do
-      get :show, id: FactoryGirl.create(:time_off_request)
-      response.should render_template :show
-    end
-  end
-
-  describe 'GET #new' do
-    it 'renders the #new view' do
-      get :new
-      response.should render_template :new
-    end
-  end
-
   describe 'POST #create' do
     context 'with valid attributes' do
       it 'creates a new time_off_request' do

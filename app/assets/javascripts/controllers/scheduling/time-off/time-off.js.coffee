@@ -39,8 +39,8 @@
           request: -> request
           editMode: -> editMode
           data: ->
-            startTime: moment().startOf('day').add(7, 'hours').format 'YYYY-MM-DD'
-            endTime: moment().startOf('day').add(8, 'hours').format 'YYYY-MM-DD'
+            startTime: moment().startOf('day').add(7, 'hours')
+            endTime: moment().startOf('day').add(8, 'hours')
             user: $scope.data.user
             location: $scope.data.location
 
