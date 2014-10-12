@@ -1,7 +1,7 @@
 @digiquatics.factory 'TimeOff', [
   '$resource'
   ($resource) ->
-    $resource('/time_off_requests/:id.json', {id: '@id'},
+    $resource('/time_off_requests/:id.json', null,
       index:
         method: 'GET'
         isArray: true

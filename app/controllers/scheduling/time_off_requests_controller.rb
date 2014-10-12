@@ -6,7 +6,7 @@ class TimeOffRequestsController < ApplicationController
   def index
     Tracker.track(current_user.id, 'Time Off Requests Index')
     @time_off_requests = TimeOffRequest.joins(:user)
-    .where(users: { account_id: current_user.account_id }).where(active: true)
+    .where(users: { account_id: current_user.account_id }).where(active: true).joins(:location)
   end
 
   def show
@@ -26,16 +26,21 @@ class TimeOffRequestsController < ApplicationController
     Tracker.track(current_user.id, 'Create Time Off Request')
     @time_off_request = TimeOffRequest.new(time_off_request_params)
 
-    message = 'Time Off Request was successfully created.'
-
-    handle_action(@time_off_request, message, 'success', :new, &:save)
+    if @time_off_request.save
+      render json: @time_off_request.as_json(include: {
+        user: { only: [:first_name, :last_name] },
+        location: { only: :name }
+      })
+    else
+      render json: @time_off_request.errors, status: :unprocessable_entity
+    end
   end
 
   def update
     Tracker.track(current_user.id, 'Update Time Off Request')
 
     if @time_off_request.update(time_off_request_params)
-      render json: @time_off_request.to_json
+      render json: @time_off_request.as_json
     else
       render json: @time_off_request.errors, status: :unprocessable_entity
     end

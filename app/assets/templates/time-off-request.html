@@ -1,64 +1,107 @@
 <a class='pull-right close-button link-color' ng-click='cancel()'>
   <i class='fa fa-times fa-lg'></i></a>
 <div class='modal-header'>
-  <h1 class='modal-title'>Time Off Request</h1>
+    <h1 ng-if='data.user' class='modal-title'>{{editMode ? 'Edit' : ''}} Time Off Request</h1>
+    <h1 ng-if='!data.user' class='modal-title'>New Time Off Request</h1>
   <center>
-    <p>{{request.user.last_name}}, {{request.user.first_name}}</p>
+    <p ng-if='request.user'>
+      {{data.user.last_name}}, {{data.user.first_name}}
+    </p>
   </center>
 </div>
 
-<div class='modal-body'>
-  <center>
-    <div class='pull-right'>
-      <a class='btn btn-primary btn-circle'
-         ng-href='/time_off_requests/{{request.user.id}}/edit'>
-        <span class='u-modal-circle-fix'>
-          <i class='fa fa-pencil fa-2x'></i>
-        </span>
-      </a>
-      <a class='btn btn-danger btn-circle' ng-click='delete()'>
-        <span class='u-modal-circle-fix'>
-          <i class='fa fa-trash fa-2x'></i>
-        </span>
-      </a>
+<div ng-if='editMode'>
+  <div class='modal-body'>
+    <center>
+      <div class='btn-group'>
+        <label class='btn btn-info' ng-click='setTimesPartialDay()' ng-model='state.allDayRequest' btn-radio=false>
+          Partial Day
+        </label>
+        <label class='btn btn-info' ng-click='setTimesAllDay()' ng-model='state.allDayRequest' btn-radio=true>
+          All Day
+        </label>
+      </div>
+    </center>
+      <br><br>
+    <label>Start</label>
+    {{startDate}}
+    <div class='row'>
+      <div class='col-md-8 col-xs-12'>
+        <div class='fix_angular_date_picker'>
+         <dq-time-off-start-date request='request' data='data'></dq-time-off-start-date>
+        </div>
+      </div>
+      <div class='col-md-4 col-xs-12'>
+        <center>
+          <dq-start-time request='request' data='data'></dq-start-time>
+        </center>
+      </div>
     </div>
-    <br><br><br>
-    <table class='table table-clean table-white shadow-effect'>
-        <tr>
-          <th id='fixtablewidth'>Location</th>
-          <td>{{location}}</td>
-        </tr>
-        <tr>
-          <th>Date Submitted</th>
-          <td>
-            {{submittedAt(request)}}
-          </td>
-        </tr>
-        <tr>
-          <th>Start Date</th>
-          <td>
-            {{startsAt(request)}}
-          </td>
-        </tr>
-        <tr>
-          <th>End Date</th>
-          <td>
-            {{endsAt(request)}}
-          </td>
-        </tr>
-      <tr>
-        <th>Reason</th>
-          <td>
-            {{request.reason}}
-          </td>
-      </tr>
-    </table>
-  </center>
+
+    <label>End</label>
+    <div class='row'>
+      <div class='col-md-8 col-xs-12'>
+        <div class='fix_angular_date_picker'>
+         <dq-time-off-end-date request='request' data='data'></dq-time-off-end-date>
+        </div>
+      </div>
+      <div class='col-md-4 col-xs-12'>
+        <center>
+          <dq-end-time request='request' data='data'></dq-end-time>
+        </center>
+      </div>
+    </div>
+    <label>Reason</label>
+    <textarea rows='2' cols='50' ng-model='data.reason'></textarea>
+  </div>
+  <div class='modal-footer'>
+
+    <a class='btn btn-primary btn-block' ng-click='ok()'>
+      <i class='fa fa-refresh fa-lg'></i> {{data.user ? 'Update' : 'Submit'}} Request</a>
+    <a class='btn btn-danger btn-block' ng-click='delete()'>
+      <i class='fa fa-trash fa-lg'></i> Delete Request</a>
+  </div>
 </div>
 
-<div class='modal-footer'>
-  <a class='btn btn-success btn-block' ng-click='approve()'>
-    <i class='fa fa-check fa-lg'></i> Approve Request</a>
-  <a class='btn btn-danger btn-block' ng-click='deny()'>
-    <i class='fa fa-times fa-lg'></i> Deny Request</a>
+<div ng-if='!editMode'>
+  <div class='modal-body'>
+    <center>
+      <table class='table table-clean table-white shadow-effect'>
+          <tr>
+            <th id='fixtablewidth'>Location</th>
+            <td>{{request.location.name}}</td>
+          </tr>
+          <tr>
+            <th>Date Submitted</th>
+            <td>
+              {{submittedAt(request)}}
+            </td>
+          </tr>
+          <tr>
+            <th>Start Date</th>
+            <td>
+              {{startsAt(request)}}
+            </td>
+          </tr>
+          <tr>
+            <th>End Date</th>
+            <td>
+              {{endsAt(request)}}
+            </td>
+          </tr>
+        <tr>
+          <th>Reason</th>
+            <td>
+              {{request.reason}}
+            </td>
+        </tr>
+      </table>
+    </center>
+  </div>
+  <div class='modal-footer'>
+    <a class='btn btn-success btn-block' ng-click='approve()'>
+      <i class='fa fa-check fa-lg'></i> Approve Request</a>
+    <a class='btn btn-danger btn-block' ng-click='deny()'>
+      <i class='fa fa-times fa-lg'></i> Deny Request</a>
+  </div>
 </div>

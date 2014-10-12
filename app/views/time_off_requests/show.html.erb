@@ -19,40 +19,6 @@
 
   <br><br><br>
 
-  <% if current_user.admin? %>
-    <ul class='pull-right'>
-      <%= bootstrap_form_for @time_off_request do |f| %>
-        <%= f.hidden_field :approved, value: false %>
-        <%= f.hidden_field :approved_by_user_id, value: current_user.id %>
-        <%= f.hidden_field :processed_by_last_name,
-                           value: current_user.last_name %>
-        <%= f.hidden_field :processed_by_first_name,
-                           value: current_user.first_name %>
-        <%= f.hidden_field :approved_at, value: Time.now %>
-        <%= f.hidden_field :active, value: false %>
-        <button type='submit' class='btn btn-default btn-danger'>
-          <i class='fa fa-times'></i> Deny
-        </button>
-      <% end %>
-    </ul>
-    <ul class='pull-right'>
-      <%= bootstrap_form_for @time_off_request do |f| %>
-        <%= f.hidden_field :approved, value: true %>
-        <%= f.hidden_field :approved_by_user_id, value: current_user.id %>
-        <%= f.hidden_field :processed_by_last_name,
-                           value: current_user.last_name %>
-        <%= f.hidden_field :processed_by_first_name,
-                           value: current_user.first_name %>
-        <%= f.hidden_field :approved_at, value: Time.now %>
-        <%= f.hidden_field :active, value: false %>
-        <button type='submit' class='btn btn-default btn-success'>
-          <i class='fa fa-check'></i> Approve
-        </button>
-      <% end %>
-    </ul>
-    <br><br><br>
-  <% end %>
-
   <table class='table table-clean table-white shadow-effect' >
     <tr>
       <th style='width:25%'>Submitted By</th>

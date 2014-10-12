@@ -1,9 +1,8 @@
 <div ng-app='digiquatics'>
   <div ng-controller='TimeOffCtrl'>
     <% provide(:title, 'Time Off Requests') %>
-    <div ng-init='timeOffUserId = <%= current_user.id %>'>
-    <div ng-init="timeOffUserFirstName = '<%= current_user.first_name %>'">
-    <div ng-init="timeOffUserLastName = '<%= current_user.last_name %>'">
+    <div ng-init='data.user = <%= current_user.to_json %>'>
+    <div ng-init='data.location = <%= current_user.location.to_json %>'>
     <h1 class='cross_platform_header'>Time Off Requests</h1>
     <div class='row'>
       <div class='visible-xs'><br></div>
@@ -13,10 +12,11 @@
       <div class='col-md-2'></div>
       <div class='col-md-4 pull-right'>
         <div class='pull-right'>
-          <%= link_to new_time_off_request_path,
-              class:'btn btn-primary' do %>
-            <i class='fa fa-plus fa-lg'></i> Add Request
-          <% end %>
+          <div ng-click='open(true)'>
+            <btn class='btn btn-primary'>
+              <i class='fa fa-plus fa-lg'></i> Add Request
+            </btn>
+          </div>
           <%= link_to archived_time_off_requests_path,
               class:'btn btn-warning' do %>
             <i class='fa fa-history fa-lg'></i> View Processed

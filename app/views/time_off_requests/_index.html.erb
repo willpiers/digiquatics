@@ -55,6 +55,7 @@
       </th>
       <th class='hidden-xs'>Reason</th>
       <th></th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
@@ -88,7 +89,12 @@
         </div>
       </td>
       <td>
-        <div ng-click="open(request)">
+        <div ng-click='open(true, request)'>
+          <a><i class='fa fa-pencil fa-lg'></i></a>
+        </div>
+      </td>
+      <td>
+        <div ng-click='open(false, request)'>
           <a><i class='fa fa-external-link-square fa-lg'></i></a>
         </div>
       </td>

@@ -8,7 +8,7 @@
         request.reason
 
       @submittedAt: (request) ->
-        moment(request.starts_at).format('M/D/YY @ h:mmA')
+        moment(request.created_at).format('M/D/YY @ h:mmA')
 
       @startsAt: (request) ->
         if request.all_day
