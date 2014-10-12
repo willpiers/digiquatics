@@ -31,8 +31,8 @@
           request: -> request
           editMode: -> editMode
           data: ->
-            startTime: moment().startOf('day').add(7, 'hours').format('YYYY-MM-DD')
-            endTime: moment().startOf('day').add(8, 'hours').format('YYYY-MM-DD')
+            startTime: moment().startOf('day').add(7, 'hours').format 'YYYY-MM-DD'
+            endTime: moment().startOf('day').add(8, 'hours').format 'YYYY-MM-DD'
             user: $scope.data.user
             location: $scope.data.location
 
@@ -69,71 +69,78 @@
 
       $scope.setAllDayLogic()
 
-      approveRequest = (request) ->
-        requestData = angular.extend request,
-          approved: true
-          active: false
-          time_off_user_id: $scope.timeOffUserId
-          time_off_first_name: $scope.timeOffUserFirstName
-          time_off_last_name: $scope.timeOffUserLastName
-          approved_at: moment()
-
-        TimeOff.update id: requestData.id, requestData
-        .$promise.then (updatedRequest) ->
-          _.remove $scope.timeOff, id: request.id
-
-      denyRequest = (request) ->
-        requestData = angular.extend request,
-          approved: false
-          active: false
-          time_off_user_id: $scope.timeOffUserId
-          time_off_first_name: $scope.timeOffUserFirstName
-          time_off_last_name: $scope.timeOffUserLastName
-          approved_at: moment()
-
-        TimeOff.update id: requestData.id, requestData
-        .$promise.then (updatedRequest) ->
-          _.remove $scope.timeOff, id: request.id
-
-      assignRequest = (request) ->
-        if request
-          requestData = angular.extend request,
-            starts_at: $scope.data.start
-            ends_at: $scope.data.end
-            all_day: $scope.state.allDayRequest
-            reason: $scope.data.reason
-
-          TimeOff.update id: requestData.id, requestData
-          .$promise.then (updatedRequest) ->
-            _.remove $scope.timeOff, (timeOffRequest) -> timeOffRequest is request.id
-            $scope.timeOff.push updatedRequest
-            toastr.success('Time Off Request has been updated.')
-        else
-          TimeOff.create
-            user_id: $scope.data.user.id
-            location_id: $scope.data.location.id
-            starts_at: $scope.data.start
-            ends_at: $scope.data.end
-            all_day: $scope.state.allDayRequest
-            reason: $scope.data.reason
-
-          .$promise.then (newRequest) ->
-            $scope.timeOff.push newRequest
-            toastr.success('Time Off Request has been created.')
-
       $scope.ok = ->
         assignRequest(request).then ->
           $modalInstance.close request
+
+      assignRequest = (request) ->
+        if request
+          updateExistingRequest(request)
+        else
+          createNewRequest()
+
+      updateExistingRequest = (request) ->
+        requestData = angular.extend request,
+          starts_at: $scope.data.start
+          ends_at: $scope.data.end
+          all_day: $scope.state.allDayRequest
+          reason: $scope.data.reason
+
+        TimeOff.update id: requestData.id, requestData
+        .$promise.then (updatedRequest) ->
+          _.remove $scope.timeOff, (timeOffRequest) -> timeOffRequest is request.id
+          $scope.timeOff.push updatedRequest
+          toastr.success('Time Off Request has been updated.')
+
+      createNewRequest = ->
+        TimeOff.create
+          user_id: $scope.data.user.id
+          location_id: $scope.data.location.id
+          starts_at: $scope.data.start
+          ends_at: $scope.data.end
+          all_day: $scope.state.allDayRequest
+          reason: $scope.data.reason
+
+        .$promise.then (newRequest) ->
+          $scope.timeOff.push newRequest
+          toastr.success('Time Off Request has been created.')
+
 
       $scope.approve = ->
         approveRequest(request).then ->
           $modalInstance.close request
           toastr.success('Time Off Request has been approved.')
 
+      approveRequest = (request) ->
+        requestData = angular.extend request,
+          approved: true
+          active: false
+          approved_by_user_id: $scope.data.user.id
+          processed_by_first_name: $scope.data.user.first_name
+          processed_by_last_name: $scope.data.user.last_name
+          approved_at: moment()
+
+        TimeOff.update id: requestData.id, requestData
+        .$promise.then (updatedRequest) ->
+          _.remove $scope.timeOff, id: request.id
+
       $scope.deny = ->
         denyRequest(request).then ->
           $modalInstance.close request
           toastr.error('Time Off Request has been denied.')
+
+      denyRequest = (request) ->
+        requestData = angular.extend request,
+          approved: false
+          active: false
+          approved_by_user_id: $scope.data.user.id
+          processed_by_first_name: $scope.data.user.first_name
+          processed_by_last_name: $scope.data.user.last_name
+          approved_at: moment()
+
+        TimeOff.update id: requestData.id, requestData
+        .$promise.then (updatedRequest) ->
+          _.remove $scope.timeOff, id: request.id
 
       $scope.cancel = ->
         $modalInstance.dismiss "Cancel"
