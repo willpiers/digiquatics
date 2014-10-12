@@ -6,12 +6,10 @@ class TimeOffRequestsController < ApplicationController
   def index
     Tracker.track(current_user.id, 'Time Off Requests Index')
     @time_off_requests = TimeOffRequest.joins(:user)
-    .where(users: { account_id: current_user.account_id }).where(active: true).joins(:location)
+    .where(users: { account_id: current_user.account_id }).joins(:location)
   end
 
   def show
-    Tracker.track(current_user.id, 'Show Time Off Request')
-    @approver = User.find_by(@time_off_request.approved_by_user_id)
   end
 
   def new
@@ -19,7 +17,6 @@ class TimeOffRequestsController < ApplicationController
   end
 
   def edit
-    Tracker.track(current_user.id, 'Edit Time Off Request')
   end
 
   def create
@@ -48,13 +45,10 @@ class TimeOffRequestsController < ApplicationController
 
   def archived_time_off_requests
     Tracker.track(current_user.id, 'Archived Time Off Requests')
-    @archived_time_off_requests = TimeOffRequest.joins(:user)
-    .where(users: { account_id: current_user.account_id }).where(active: false)
   end
 
   def my_time_off_requests
     Tracker.track(current_user.id, 'My Time Off Requests')
-    @my_time_off_requests = TimeOffRequest.where(user_id: current_user.id)
   end
 
   def destroy
@@ -74,18 +68,5 @@ class TimeOffRequestsController < ApplicationController
     .permit(:user_id, :starts_at, :ends_at, :all_day, :reason, :approved,
             :approved_by_user_id, :approved_at, :active, :location_id,
             :processed_by_last_name, :processed_by_first_name)
-  end
-
-  def handle_action(resource, message, type, page)
-    if yield(resource)
-      if type == 'success' then
-        flash[:success] = message
-      else
-        flash[:info] = message
-      end
-      redirect_to resource
-    else
-      render page
-    end
   end
 end

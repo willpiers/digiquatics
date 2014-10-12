@@ -15,12 +15,20 @@
     $scope.positions = Positions.index()
 
     $scope.predicate =
-      value: 'last_name'
+      value: '-created_at'
 
     $scope.totalDisplayed = 10
 
     $scope.loadMore = ->
       $scope.totalDisplayed += 50
+
+    $scope.cssClass = (request) ->
+      if request.approved and !request.active then 'success'
+      else if !request.approved and !request.active then 'danger'
+      else 'warning'
+
+    $scope.checkActive = (request) ->
+      request.active
 
     $scope.open = (editMode, request) ->
       modalInstance = $modal.open

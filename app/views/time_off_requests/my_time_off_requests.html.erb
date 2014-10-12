@@ -1,20 +1,124 @@
 <div ng-app='digiquatics'>
-  <div ng-controller='MyTimeOffCtrl'>
+  <div ng-controller='TimeOffCtrl'>
     <% provide(:title, 'My Time Off Requests') %>
+    <div ng-init='data.user = <%= current_user.to_json %>'>
+    <div ng-init='data.location = <%= current_user.location.to_json %>'>
     <h1 class='cross_platform_header'>My Time Off Requests</h1>
     <div class='row'>
       <div class='visible-xs'><br></div>
       <div class='col-md-10'></div>
       <div class='col-md-2 pull-right'>
         <div class='pull-right'>
-          <%= link_to new_time_off_request_path,
-              class:'btn btn-primary' do %>
+          <btn ng-click='open(true)' class='btn btn-primary'>
             <i class='fa fa-plus fa-lg'></i> Add Request
-          <% end %>
+          </btn>
         </div>
       </div>
     </div>
     <br>
-    <%= render 'my_time_off_requests' %>
+    <table class='table table-clean table-white shadow-effect'>
+      <thead>
+        <tr>
+          <th>
+            <a ng-click="predicate.value = '-starts_at'; reverse=!reverse">
+              Start Date
+            </a>
+            <span ng-show="thArrow(predicate.value, '-starts_at')">
+              <dq-arrow></dq-arrow>
+            </span>
+          </th>
+          <th>
+            <a ng-click="predicate.value = '-ends_at'; reverse=!reverse">
+              End Date
+            </a>
+            <span ng-show="thArrow(predicate.value, '-ends_at')">
+              <dq-arrow></dq-arrow>
+            </span>
+          </th>
+          <th class='hidden-xs'>Reason</th>
+          <th>
+            <a ng-click="predicate.value = '-approved'; reverse=!reverse">
+              Status
+            </a>
+            <span ng-show="thArrow(predicate.value, '-approved')">
+              <dq-arrow></dq-arrow>
+            </span>
+          </th>
+          <th class='hidden-xs'>
+            <a ng-click="predicate.value = '-created_at'; reverse=!reverse">
+              Date Submitted
+            </a>
+            <span ng-show="thArrow(predicate.value, '-created_at')">
+              <dq-arrow></dq-arrow>
+            </span>
+          </th>
+          <th class='hidden-xs'>
+            <a ng-click="predicate.value = '-approved_by_user_id'; reverse=!reverse">
+              Processed By
+            </a>
+            <span ng-show="thArrow(predicate.value, '-approved_by_user_id')">
+              <dq-arrow></dq-arrow>
+            </span>
+          </th>
+          <th class='hidden-xs'>
+            <a ng-click="predicate.value = '-approved_at'; reverse=!reverse">
+              Processed On
+            </a>
+            <span ng-show="thArrow(predicate.value, '-approved_at')">
+              <dq-arrow></dq-arrow>
+            </span>
+          </th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat='request in timeOff
+                       | orderBy:predicate.value:reverse
+                       | filter:locationFilter
+                       | filter:search
+                       | filter:myTimeOffFilter(data.user)'>
+          <td>
+            {{startsAt(request)}}
+          </td>
+          <td>
+            {{endsAt(request)}}
+          </td>
+          <td class='hidden-xs'>
+            <div ng-if='hasReason(request)'>
+              {{request.reason | limitTo:15}}...
+            </div>
+          </td>
+          <td ng-class='cssClass(request)'>
+            <div ng-hide='checkActive(request)' %>
+            {{request.approved | booleanToWordsTimeOff}}
+            </div>
+            <div ng-show='checkActive(request)' %>
+            Pending
+            </div>
+          </td>
+          <td class='hidden-xs'>
+            {{request.created_at | date:'M/d/yy @ h:mma'}}
+          </td>
+          <td class='hidden-xs'>
+            <div ng-hide='checkActive(request)' %>
+              <a ng-href='/users/{{request.approved_by_user_id}}'>
+                {{request.processed_by_last_name}}, {{request.processed_by_first_name}}
+              </a>
+            </div>
+          </td>
+          <td class='hidden-xs'>
+            {{request.approved_at | date:'M/d/yy @ h:mma'}}
+          </td>
+          <td>
+            <div ng-if='request.active' ng-click='open(true, request)'>
+              <a><i class='fa fa-pencil fa-lg'></i></a>
+            </div>
+            <div ng-if='!request.active' ng-click='open(false, request)'>
+              <a><i class='fa fa-external-link-square fa-lg'></i></a>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </div>

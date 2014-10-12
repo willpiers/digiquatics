@@ -91,10 +91,30 @@
           </tr>
         <tr>
           <th>Reason</th>
-            <td>
-              {{request.reason}}
-            </td>
+          <td>
+            {{request.reason}}
+          </td>
         </tr>
+        <div ng-if='!request.active'>
+          <tr>
+            <th>Status</th>
+            <td ng-class="cssClass(request)">
+              {{request.approved | booleanToWordsTimeOff}}
+            </td>
+          </tr>
+          <tr>
+            <th>Processed By</th>
+            <td>
+              {{request.processed_by_last_name}}, {{request.processed_by_first_name}}
+            </td>
+          </tr>
+          <tr>
+            <th>Processed On</th>
+            <td>
+              {{request.approved_at | date:'M/d/yy @ h:mma'}}
+            </td>
+          </tr>
+        </div>
       </table>
     </center>
   </div>
