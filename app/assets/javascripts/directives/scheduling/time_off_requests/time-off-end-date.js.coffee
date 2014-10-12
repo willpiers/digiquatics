@@ -1,7 +1,7 @@
 @digiquatics.directive 'dqTimeOffEndDate', [
   ->
     restrict: 'E'
-    templateUrl: 'time-off-end-date.html'
+    templateUrl: 'scheduling/time-off/time-off-end-date.html'
     scope:
       request: '='
       data: '='
