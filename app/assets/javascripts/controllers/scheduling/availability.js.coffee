@@ -63,7 +63,6 @@
             day: day
             start_time: startTime
             end_time: endTime
-
           $scope.availabilities.push newAvailability
 
         $modalInstance.close $scope.availability
