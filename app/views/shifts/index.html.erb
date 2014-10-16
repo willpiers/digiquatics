@@ -90,10 +90,8 @@
               <td>
                 {{user.last_name}}, </br>
                 {{user.first_name}}
-                <div class='hidden-print'>
-                  <br><i class='fa fa-clock-o'></i>
-                  {{user.hours}}
-                </div>
+                <br><i class='fa fa-clock-o'></i>
+                {{user.hours}}
               </td>
               <td ng-repeat='day in days'>
                 <div ng-if='buildMode'>
