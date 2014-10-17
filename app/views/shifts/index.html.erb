@@ -9,12 +9,7 @@
           <div ng-if='state.buildLocation'>
             <!-- Left blank for print view -->
           </div>
-          <div class='visible-xs'>
-            {{currentDay()}}
-          </div>
-          <div class='hidden-xs'>
-            {{displayStartDate()}}
-          </div>
+          {{displayStartDate()}}
         </h1>
       </div>
       <div class='row'>
@@ -66,26 +61,14 @@
         </div>
         <div class='col-md-2'>
           <div class='btn-group'>
-            <div class='hidden-xs'>
-              <btn class='btn btn-default btn-sm' ng-click='previousWeek()'
-                   style='width: 40px;'>
-                <%= fa_icon 'chevron-left' %>
-              </btn>
-              <btn class='btn btn-default btn-sm' ng-click='nextWeek()'
-                   style='width: 40px;'>
-                <%= fa_icon 'chevron-right' %>
-              </btn>
-            </div>
-            <div class='visible-xs'>
-              <btn class='btn btn-default btn-sm' ng-click='previousDay()'
-                   style='width: 40px;'>
-                <%= fa_icon 'chevron-left' %>
-              </btn>
-              <btn class='btn btn-default btn-sm' ng-click='nextDay()'
-                   style='width: 40px;'>
-                <%= fa_icon 'chevron-right' %>
-              </btn>
-            </div>
+            <btn class='btn btn-default btn-sm' ng-click='previous()'
+                 style='width: 40px;'>
+              <%= fa_icon 'chevron-left' %>
+            </btn>
+            <btn class='btn btn-default btn-sm' ng-click='next()'
+                 style='width: 40px;'>
+              <%= fa_icon 'chevron-right' %>
+            </btn>
           </div>
         </div>
         <div class='hidden-xs' ng-if='state.userIsAdmin'>

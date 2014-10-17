@@ -8,9 +8,10 @@
   '$modal'
   'ScheduleHelper'
   '$window'
+  'Window'
 
   class ShiftsCtrl
-    constructor: (@$q, @$scope, @Shifts, @Users, @Locations, @Positions, $modal, @ScheduleHelper, $window) ->
+    constructor: (@$q, @$scope, @Shifts, @Users, @Locations, @Positions, $modal, @ScheduleHelper, $window, Window) ->
       @$scope.state = {}
       @$scope.state.buildMode = true
       @$scope.days = @ScheduleHelper.days
@@ -22,29 +23,13 @@
 
       @$scope.$on 'shifts:created', _.bind @_addViewDataToUsers, @
 
-      @$scope.previousWeek = =>
-        @daysFromToday -= 7
-        @_addViewDataToUsers()
-
-      @$scope.nextWeek = =>
-        @daysFromToday += 7
-        @_addViewDataToUsers()
-
-      @$scope.previousDay = =>
-        @daysFromToday -= 1
-        @_addViewDataToUsers()
-
-      @$scope.nextDay = =>
-        @daysFromToday += 1
-        @_addViewDataToUsers()
+      @$scope.previous = => @_changeDay if Window.xs then -1 else -7
+      @$scope.next= => @_changeDay if Window.xs then 1 else 7
 
       @$scope.resetWeekCounter = =>
         @daysFromToday = 0
         @daysFromToday = 0
         @_addViewDataToUsers()
-
-      @$scope.currentDay = =>
-        moment().add('days', @daysFromToday).format 'MMM D'
 
       @$scope.currentDayName = =>
         moment().add('days', @daysFromToday).format 'dddd'
@@ -53,10 +38,10 @@
         moment().add('days', @daysFromToday).format 'd'
 
       @$scope.displayStartDate = =>
-        moment().startOf('week').add('days', @daysFromToday).format 'MMMM YYYY'
-
-      @$scope.displayEndDate = (days) =>
-        moment().startOf('week').add('days', @daysFromToday + days).format 'MMM D, YYYY'
+        if Window.xs
+          moment().add('days', @daysFromToday).format 'MMM D'
+        else
+          moment().startOf('week').add('days', @daysFromToday).format 'MMMM YYYY'
 
       @$scope.weekDay = (days) =>
         moment().startOf('week').add 'days', @daysFromToday + days
@@ -77,6 +62,10 @@
                 endTime: @$scope.weekDay(day).startOf('day').add 10, 'hours'
                 positions: $scope.positions
                 position: user.position_id
+
+    _changeDay: (days) ->
+      @daysFromToday += days
+      @_addViewDataToUsers()
 
     _loadAndProcessData: ->
       @$q.all
