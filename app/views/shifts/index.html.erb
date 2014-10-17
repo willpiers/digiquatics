@@ -156,9 +156,9 @@
                     <dq-availabilities day-name='currentDayName()' availabilities='user.availabilities'>
                     </dq-availabilities>
                   </div>
-                  <dq-shifts day-name='day' shifts='user.shifts'
+                  <dq-shifts day-name='currentDayName()' shifts='user.shifts'
                              user-is-admin='state.userIsAdmin'
-                             open='open(user, days.indexOf(day), shift)'>
+                             open='open(user, days.indexOf(currentDayName()), shift)'>
                   </dq-shifts>
                 </td>
               </tr>
