@@ -5,6 +5,7 @@ describe 'Time Off Requests', ->
     $scope.day = 'Thursday'
     $scope.user =
       time_off_requests: [
+        dayIndices: [4]
         all_day: false
         starts_at: moment 'Thu Oct 09 2014 07:54:41 GMT-0600 (MDT)'
         ends_at: moment 'Thu Oct 09 2014 11:45:16 GMT-0600 (MDT)'
