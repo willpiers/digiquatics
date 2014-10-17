@@ -1,20 +1,22 @@
 describe 'Availabilities', ->
   beforeEach inject (@ScheduleHelper, @$rootScope, @$compile) ->
-    $scope = @$rootScope.$new()
+    @$scope = @$rootScope.$new()
 
-    $scope.day = 'Monday'
-    $scope.user =
+    @$scope.day = 'Monday'
+    @$scope.user =
       availabilities: [
         day: 1
-        start_time: moment 'Thu Oct 09 2014 07:58:41 GMT-0600 (MDT)'
-        end_time: moment 'Thu Oct 09 2014 11:59:16 GMT-0600 (MDT)'
+        start_time: moment().startOf('day').add(5, 'hours')
+        end_time: moment().startOf('day').add(10, 'hours')
       ]
 
     html = "<dq-availabilities day-name='day' availabilities='user.availabilities'></dq-availabilities>"
 
-    @element = @$compile(html) $scope
+    @element = @$compile(html) @$scope
     @$rootScope.$digest()
     scope = @element.isolateScope()
 
   it 'renders the availability and formats the time correctly', ->
-    @element.find('span').text().should.contain '7:58AM-11:59AM'
+    startsAt = moment(@$scope.user.availabilities[0].start_time).format('h:mmA')
+    endsAt = moment(@$scope.user.availabilities[0].end_time).format('h:mmA')
+    @element.find('span').text().should.contain "#{startsAt}-#{endsAt}"
