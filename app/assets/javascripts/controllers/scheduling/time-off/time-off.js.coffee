@@ -48,6 +48,7 @@
                                TimeOffHelper, data) ->
       angular.extend $scope, TimeOffHelper
       $scope.state = {}
+      $scope.state.allDayRequest = false
       $scope.request = request
       $scope.data =
         start: data.startTime
