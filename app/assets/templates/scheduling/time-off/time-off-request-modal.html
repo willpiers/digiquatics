@@ -23,11 +23,16 @@
         </label>
       </div>
     </center>
-      <br><br>
-    <label>Start</label>
-    {{startDate}}
+    <br>
+    <style>
+      .time-off-label {
+        position: relative;
+        top: 45px;
+      }
+    </style>
     <div class='row'>
-      <div class='col-md-8 col-xs-12'>
+      <div class='col-md-1'><label class='time-off-label'>Start</label></div>
+      <div class='col-md-7 col-xs-12'>
         <div class='fix_angular_date_picker'>
          <dq-time-off-start-date request='request' data='data'>
          </dq-time-off-start-date>
@@ -39,9 +44,10 @@
         </center>
       </div>
     </div>
-    <label>End</label>
+    <br>
     <div class='row'>
-      <div class='col-md-8 col-xs-12'>
+      <div class='col-md-1'><label class='time-off-label'>End</label></div>
+      <div class='col-md-7 col-xs-12'>
         <div class='fix_angular_date_picker'>
          <dq-time-off-end-date request='request' data='data'>
          </dq-time-off-end-date>
