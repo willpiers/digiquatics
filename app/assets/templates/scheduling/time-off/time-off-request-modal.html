@@ -98,33 +98,37 @@
             {{request.reason}}
           </td>
         </tr>
-        <div ng-if='!request.active'>
-          <tr>
-            <th>Status</th>
-            <td ng-class="cssClass(request)">
-              {{request.approved | booleanToWordsTimeOff}}
-            </td>
-          </tr>
-          <tr>
-            <th>Processed By</th>
-            <td>
-              {{request.processed_by_last_name}}, {{request.processed_by_first_name}}
-            </td>
-          </tr>
-          <tr>
-            <th>Processed On</th>
-            <td>
-              {{request.approved_at | date:'M/d/yy @ h:mma'}}
-            </td>
-          </tr>
-        </div>
+        <tr>
+          <th>Status</th>
+          <td ng-class="cssClass(request)">
+            {{request | booleanToWordsTimeOff}}
+          </td>
+        </tr>
+        <tr ng-if='!request.active'>
+          <th>Processed By</th>
+          <td>
+            {{request.processed_by_last_name}}, {{request.processed_by_first_name}}
+          </td>
+        </tr>
+        <tr ng-if='!request.active'>
+          <th>Processed On</th>
+          <td>
+            {{request.approved_at | date:'M/d/yy @ h:mma'}}
+          </td>
+        </tr>
       </table>
     </center>
   </div>
   <div class='modal-footer'>
-    <a class='btn btn-success btn-block' ng-click='approve()'>
-      <i class='fa fa-check fa-lg'></i> Approve Request</a>
-    <a class='btn btn-danger btn-block' ng-click='deny()'>
-      <i class='fa fa-times fa-lg'></i> Deny Request</a>
+    <div ng-if='request.active'>
+      <a class='btn btn-success btn-block' ng-click='approve()'>
+        <i class='fa fa-check fa-lg'></i> Approve Request</a>
+      <a class='btn btn-danger btn-block' ng-click='deny()'>
+        <i class='fa fa-times fa-lg'></i> Deny Request</a>
+    </div>
+    <div ng-if='!request.active'>
+      <a class='btn btn-primary btn-block' ng-click='cancel()'>
+        <i class='fa fa-check fa-lg'></i> Done</a>
+    <div>
   </div>
 </div>

@@ -133,7 +133,7 @@
             </div>
           </td>
           <td ng-class='cssClass(request)'>
-            {{request.approved | booleanToWordsTimeOff}}
+            {{request | booleanToWordsTimeOff}}
           </td>
           <td class='hidden-xs'>
             {{request.created_at | date:'M/d/yy @ h:mma'}}
