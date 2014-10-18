@@ -129,8 +129,14 @@
                 </li>
                 <li class='divider'></li>
                 <li>
-                  <%= link_to 'Sub Requests Management',
-                              admin_sub_requests_path %>
+                  <%= link_to admin_sub_requests_path do %>
+                     Sub Requests Management
+                     <% if show_badge_notification('admin_sub_requests') %>
+                       <span class='badge pull-right'>
+                         <%= badge_notifications('admin_sub_requests') %>
+                       </span>
+                     <% end %>
+                  <% end %>
                 </li>
               <% end %>
           </ul>
