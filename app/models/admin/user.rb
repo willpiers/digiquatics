@@ -81,7 +81,6 @@ class User < ActiveRecord::Base
 
   comma do
     last_name 'Last Name'
-    nickname 'Preferred Name'
     first_name 'First Name'
     phone_number 'Phone #'
     email 'Email'
