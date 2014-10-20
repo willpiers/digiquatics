@@ -80,12 +80,11 @@
 
       $scope.delete = ->
         availability.$destroy()
-        _.remove $scope.availabilities, (userAvail) -> userAvail.id is availability.id
+        .then ->
+          _.remove $scope.availabilities, id: availability.id
+          toastr.error 'Availability was successfully deleted.'
 
         $modalInstance.close $scope.availability
-        toastr.error 'Availability was successfully deleted.'
-        return true #Fixes error with returns elements through Angular to the DOM
-
 
     ModalInstanceCtrl['$inject'] = [
       '$scope'

@@ -46,18 +46,16 @@
 
     TimeOffRequestModalCtrl = ($scope, $modalInstance, request, editMode, TimeOff,
                                TimeOffHelper, data) ->
-      angular.extend $scope, TimeOffHelper
-      $scope.state = {}
-      $scope.state.allDayRequest = false
-      $scope.request = request
-      $scope.data =
-        start: data.startTime
-        end: data.endTime
-        user: data.user
-        location: data.location
-        reason: $scope.request?.reason
-
-      $scope.editMode = editMode
+      angular.extend $scope, TimeOffHelper,
+        state: allDayRequest: false
+        request: request
+        editMode: editMode
+        data:
+          start: data.startTime
+          end: data.endTime
+          user: data.user
+          location: data.location
+          reason: $scope.request?.reason
 
       $scope.setTimesPartialDay = ->
         $scope.data.start = data.startTime
