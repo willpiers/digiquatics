@@ -2,10 +2,10 @@ describe 'Availabilities', ->
   beforeEach inject (@ScheduleHelper, @$rootScope, @$compile) ->
     @$scope = @$rootScope.$new()
 
-    @$scope.day = 'Monday'
+    @$scope.day = moment().format 'dddd'
     @$scope.user =
       availabilities: [
-        day: 1
+        day: moment().day()
         start_time: moment().startOf('day').add(5, 'hours')
         end_time: moment().startOf('day').add(10, 'hours')
       ]
