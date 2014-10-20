@@ -102,7 +102,7 @@
         </a>
       </td>
       <td ng-class='cssClass(request)'>
-        {{request.approved | booleanToWordsTimeOff}}
+        {{request | booleanToWordsTimeOff}}
       </td>
       <td class='hidden-xs'>{{request.processed_on | date:'M/d/yy'}}</td>
       <td class='hidden-xs'>
