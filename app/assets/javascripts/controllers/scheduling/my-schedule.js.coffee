@@ -41,10 +41,10 @@
       $scope.weekCounter = 0
 
     $scope.displayStartDate = ->
-      moment().startOf('week').add('days', $scope.weekCounter).format('MMM D')
+      moment().startOf('week').add('days', $scope.weekCounter).format 'MMM D'
 
     $scope.displayEndDate = (days) ->
-      moment().startOf('week').add('days', $scope.weekCounter + days).format('MMM D, YYYY')
+      moment().startOf('week').add('days', $scope.weekCounter + days).format 'MMM D, YYYY'
 
     $scope.weekDay = (days) ->
       moment().startOf('week').add('days', $scope.weekCounter + days)
@@ -65,7 +65,7 @@
 
     $scope.open = (shift, size) ->
       modalInstance = $modal.open
-        templateUrl: 'sub-request.html',
+        templateUrl: 'scheduling/sub-requests/sub-request.html',
         controller: MyScheduleModalCtrl,
         size: size,
         resolve:
@@ -76,18 +76,13 @@
         $log.info('Modal dismissed at: ' + new Date())
 
     MyScheduleModalCtrl = ($scope, $modalInstance, shift, SubRequests) ->
-      $scope.requestSub = (shift) ->
+      $scope.ok = ->
         SubRequests.create
           shift_id: shift.id
           user_id: shift.user_id
-        console.log 'requested sub successfully'
-
-      $scope.ok = ->
-        $scope.requestSub(shift)
-        $modalInstance.close shift
-
-        toastr.success('Sub Request has been requested!')
-        return true #Fixes error with returns elements through Angular to the DOM
+        .$promise.then ->
+          $modalInstance.close shift
+          toastr.success 'Sub Request has been requested!'
 
       $scope.cancel = ->
         $modalInstance.dismiss "Cancel"

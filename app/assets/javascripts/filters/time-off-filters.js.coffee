@@ -1,3 +1,8 @@
 @digiquaticsFilters.filter 'booleanToWordsTimeOff', ->
   (input) ->
-    if input then 'Approved' else 'Denied'
+    if input.approved
+      'Approved'
+    else if !input.active and !input.approved
+      'Denied'
+    else
+      'Pending'

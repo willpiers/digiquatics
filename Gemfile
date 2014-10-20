@@ -42,7 +42,7 @@ gem 'mixpanel-ruby'
 
 # js libs
 gem 'angularjs-rails', '~> 1.2.22'
-gem 'angular-ui-bootstrap-rails'
+gem 'angular-ui-bootstrap-rails', '~> 0.11.1'
 gem 'angular-rails-templates'
 gem 'jquery-turbolinks'
 gem 'momentjs-rails'
