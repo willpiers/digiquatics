@@ -1,0 +1,11 @@
+<div ng-repeat="shift in shifts | orderBy:'start_time'
+  | filter:{dayIndex: days.indexOf(dayName)}">
+  <div ng-class='{edit_shift: userIsAdmin}'>
+    <progressbar ng-click='open({shift: shift})'
+                 class='progress fix-schedule-time-bar shift'
+                 value='100' type='primary'>
+      {{startEndTimes(shift)}}<br/>
+      {{shift.position.name}}
+    </progressbar>
+  </div>
+</div>

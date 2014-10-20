@@ -1,8 +1,0 @@
-<div class='col-md-3 col-xs-3'>
-  <b>Schedule Location</b>
-  <div ng-init="buildLocation = <%= current_user.location.id %>"></div>
-  <select ng-model='buildLocation'
-          class='form-control'
-          ng-options='location.id as location.name for location in locations'>
-  </select>
-</div>

@@ -6,152 +6,68 @@
   'Locations'
   'Positions'
   '$modal'
+  'ScheduleHelper'
+  '$window'
+  'Window'
 
   class ShiftsCtrl
-    constructor: (@$q, @$scope, @Shifts, @Users, @Locations, @Positions, $modal) ->
-      @currentWeek = 0
+    constructor: (@$q, @$scope, @Shifts, @Users, @Locations, @Positions, $modal, @ScheduleHelper, $window, Window) ->
+      @$scope.state = {}
+      @$scope.state.buildMode = true
+      @$scope.days = @ScheduleHelper.days
+      @$scope.predicate = value: 'last_name'
+
+      @daysFromToday = 0
 
       @_loadAndProcessData()
 
-      @$scope.days = [
-        'Sunday'
-        'Monday'
-        'Tuesday'
-        'Wednesday'
-        'Thursday'
-        'Friday'
-        'Saturday'
-      ]
+      @$scope.$on 'shifts:created', _.bind @_addViewDataToUsers, @
 
-      @$scope.buildMode = true
+      @$scope.print = _.bind $window.print, $window
 
-      @$scope.previousWeek = =>
-        @currentWeek -= 7
-        @_addViewDataToUsers()
-
-      @$scope.nextWeek = =>
-        @currentWeek += 7
-        @_addViewDataToUsers()
+      @$scope.previous = => @_changeDay if Window.xs then -1 else -7
+      @$scope.next = => @_changeDay if Window.xs then 1 else 7
 
       @$scope.resetWeekCounter = =>
-        @currentWeek = 0
+        @daysFromToday = 0
+        @daysFromToday = 0
         @_addViewDataToUsers()
 
-      @$scope.displayStartDate = =>
-        moment().startOf('week').add('days', @currentWeek).format 'MMMM YYYY'
+      @$scope.currentDayName = =>
+        moment().add('days', @daysFromToday).format 'dddd'
 
-      @$scope.displayEndDate = (days) =>
-        moment().startOf('week').add('days', @currentWeek + days).format 'MMM D, YYYY'
+      @$scope.currentDayOfWeek = =>
+        moment().add('days', @daysFromToday).format 'd'
+
+      @$scope.displayStartDate = =>
+        if Window.xs
+          moment().add('days', @daysFromToday).format 'MMM D'
+        else
+          moment().startOf('week').add('days', @daysFromToday).format 'MMMM YYYY'
 
       @$scope.weekDay = (days) =>
-        moment().startOf('week').add 'days', @currentWeek + days
-
-      @$scope.predicate =
-        value: 'last_name'
+        moment().startOf('week').add 'days', @daysFromToday + days
 
       @$scope.open = (user, day, shift, size) =>
-        modalInstance = $modal.open
-          templateUrl: 'scheduling/shift-assigner.html'
-          controller: ModalInstanceCtrl
-          size: size
-          resolve:
-            shift: -> shift
-            data: =>
-              user: user
-              day: day
-              location: $scope.buildLocation
-              startTime: @$scope.weekDay(day).startOf('day').add 5, 'hours'
-              endTime: @$scope.weekDay(day).startOf('day').add 10, 'hours'
-              positions: $scope.positions
-              position: user.position_id
+        if @$scope.state.userIsAdmin
+          $modal.open
+            templateUrl: 'scheduling/shift-assigner.html'
+            controller: 'ShiftModalCtrl as controller'
+            size: size
+            resolve:
+              shift: -> shift
+              data: =>
+                user: user
+                day: day
+                location: @$scope.state.buildLocation
+                startTime: @$scope.weekDay(day).startOf('day').add 5, 'hours'
+                endTime: @$scope.weekDay(day).startOf('day').add 10, 'hours'
+                positions: $scope.positions
+                position: user.position_id
 
-      ModalInstanceCtrl = ($scope, $modalInstance, shift, data) =>
-        $scope.user = data.user
-        $scope.shift = shift
-        $scope.positions = data.positions
-        $scope.positionSelect = shift?.position_id ? data.position
-        $scope.startTime = shift?.start_time ? data.startTime
-        $scope.endTime = shift?.end_time ? data.endTime
-        $scope.weekSelectBox = [1..10]
-        $scope.daysChecked = [
-          {day: 'Sunday', checked: false }
-          {day: 'Monday', checked: false }
-          {day: 'Tuesday', checked: false }
-          {day: 'Wednesday', checked: false }
-          {day: 'Thursday', checked: false }
-          {day: 'Friday', checked: false }
-          {day: 'Saturday', checked: false }
-        ]
-        $scope.state =
-          recurring: false
-          occurences: $scope.weekSelectBox[0]
-
-        assignShift = (user, location, position, start, end, shift) =>
-          if shift
-            angular.extend shift,
-              start_time: start
-              end_time: end
-              position_id: position
-
-            @Shifts.update id: shift.id, shift
-            .$promise.then (updatedShift) =>
-              _.remove user.shifts, (userShift) -> userShift.id is shift.id
-              user.shifts.push updatedShift
-              @_addViewDataToUsers()
-          else
-            if $scope.state.recurring
-              _.each [0..($scope.state.occurences - 1)], (week) =>
-                _.each [0..6], (day) =>
-                  if $scope.daysChecked[day].checked
-                    adjustedDayCounter = day - data.day
-                    @Shifts.create
-                      user_id: user.id
-                      location_id: location
-                      position_id: position
-                      start_time: moment(start).add(week, 'weeks').add adjustedDayCounter, 'days'
-                      end_time: moment(end).add(week, 'weeks').add adjustedDayCounter, 'days'
-                    .$promise.then (newShift) =>
-                      @_updateViewWithNewShift user, newShift
-            else
-              @Shifts.create
-                user_id: user.id
-                location_id: location
-                position_id: position
-                start_time: start
-                end_time: end
-              .$promise.then (newShift) =>
-                @_updateViewWithNewShift user, newShift
-
-        $scope.ok = (position, startTime, endTime) ->
-          assignShift $scope.user, data.location, position, startTime, endTime, shift
-          $modalInstance.close $scope.user
-
-          if shift
-            toastr.info 'Shift was successfully updated.'
-          else
-            toastr.success 'Shift was successfully created.'
-
-          true #Fixes error with returns elements through Angular to the DOM
-
-        $scope.cancel = ->
-          $modalInstance.dismiss 'Cancel'
-
-        $scope.delete = =>
-          Shifts.destroy id: shift.id
-          _.remove $scope.user.shifts, (userShift) -> userShift.id is shift.id
-          @_addViewDataToUsers()
-
-          $modalInstance.close $scope.user
-          toastr.error 'Shift was successfully deleted.'
-
-          true #Fixes error with returns elements through Angular to the DOM
-
-      ModalInstanceCtrl['$inject'] = [
-        '$scope'
-        '$modalInstance'
-        'shift'
-        'data'
-      ]
+    _changeDay: (days) ->
+      @daysFromToday += days
+      @_addViewDataToUsers()
 
     _loadAndProcessData: ->
       @$q.all
@@ -167,7 +83,7 @@
 
     _addViewDataToUsers: ->
       _.each @$scope.users, (user) =>
-        user.hours = @_calculateHours user
+        user.weeklyHours = @_calculateHours user
         _.each user.time_off_requests, @_addDayIndicesToTimeOffRequests, @
         _.each user.shifts, @_addDayIndexToShift, @
 
@@ -185,8 +101,8 @@
       if request.approved or request.active
         request.color = 'danger' if request.approved
         request.color = 'warning' if request.active
-        startOfWeek = moment().startOf('week').add 'days', @currentWeek
-        endOfWeek = moment().endOf('week').add 'days', @currentWeek
+        startOfWeek = moment().startOf('week').add 'days', @daysFromToday
+        endOfWeek = moment().endOf('week').add 'days', @daysFromToday
 
         weekRange = moment().range startOfWeek, endOfWeek
 
@@ -207,11 +123,7 @@
 
       shiftStartTime = moment shift.start_time
 
-      if shiftStartTime.isSame moment().startOf('week').add('days', @currentWeek), 'week'
+      if shiftStartTime.isSame moment().startOf('week').add('days', @daysFromToday), 'week'
         shift.dayIndex = shiftStartTime.day()
-
-    _updateViewWithNewShift: (user, newShift) ->
-      user.shifts.push newShift
-      @_addViewDataToUsers()
 
 ]

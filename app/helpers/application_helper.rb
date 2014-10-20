@@ -122,6 +122,13 @@ module ApplicationHelper
   def number_sub_requests
     SubRequest.joins(:user)
               .where(users: { account_id: current_user.account_id })
+              .where(active: true)
+              .where(processed: false).count
+  end
+
+  def number_admin_sub_requests
+    SubRequest.joins(:user)
+              .where(users: { account_id: current_user.account_id })
               .where(active: false)
               .where(processed: false).count
   end
@@ -140,6 +147,8 @@ module ApplicationHelper
       number_open_issues > 0
     when 'sub_requests'
       number_sub_requests > 0
+    when 'admin_sub_requests'
+      number_admin_sub_requests > 0
     when 'time_off_requests'
       number_time_off_requests > 0
     end
@@ -153,6 +162,8 @@ module ApplicationHelper
       number_open_issues
     when 'sub_requests'
       number_sub_requests
+    when 'admin_sub_requests'
+      number_admin_sub_requests
     when 'time_off_requests'
       number_time_off_requests
     end

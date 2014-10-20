@@ -32,9 +32,16 @@
 # may get better load performance if you require the specific files that are being used in the spec that tests them.
 
 #= require support/chai
+#= require support/sinon
 
 #= require application
 
 #= require angular-mocks
 
 chai.should()
+
+beforeEach ->
+  # give the test object stub(), spy(), and restore() functions from sinon
+  @[key] = value for key, value of sinon.sandbox.create()
+
+beforeEach angular.mock.module('digiquatics')

@@ -1,33 +1,53 @@
 <div ng-app='digiquatics'>
-  <div ng-controller='ShiftsCtrl'>
+  <div ng-controller='ShiftsCtrl as controller'>
+    <div ng-init='state.userIsAdmin = <%= current_user.admin %>'>
+    <div ng-init='state.buildMode = <%= current_user.admin %>'>
     <% provide(:title, 'Scheduler') %>
     <div class='hidden-print'>
       <div>
         <h1 class='cross_platform_header'>
-          <div ng-if='buildLocation'>
+          <div ng-if='state.buildLocation'>
             <!-- Left blank for print view -->
           </div>
           {{displayStartDate()}}
         </h1>
       </div>
       <div class='row'>
-        <div class='visible-xs'><br></div>
-        <%= render 'layouts/location_select_build' %>
-        <%= render 'layouts/location_select_shifts' %>
-        <dq-position></dq-position>
-        <div class='col-lg-1'></div>
-        <div class='col-lg-2'>
-        <div class='pull-right'>
-          <br>
-          <div class='btn-group pull-right'>
-            <label class='btn btn-default' ng-model='buildMode' btn-radio='true'>
-              <i class='fa fa-wrench fa-lg'></i> Build
-            </label>
-            <label class='btn btn-default' ng-model='buildMode' btn-radio='false'>
-              <i class='fa fa-calendar fa-lg'></i></a> View
-            </label>
+        <div class='hidden-xs' ng-if='state.userIsAdmin'>
+          <div class='col-md-3 col-xs-3'>
+            <b>Schedule Location</b>
+            <div ng-init="state.buildLocation = <%= current_user.location.id %>"></div>
+            <select ng-model='state.buildLocation'
+                    class='form-control'
+                    ng-options='location.id as location.name for location in locations'>
+            </select>
           </div>
         </div>
+        <div class='col-md-3'>
+          <b>Employee Location</b>
+          <div ng-init="locationFilter = '<%= current_user.location.name %>' "></div>
+          <select ng-model='locationFilter'
+                  class='form-control'
+                  ng-options='location.name as location.name for location in locations'>
+            <option value="">All Locations</option>
+          </select>
+        </div>
+        <div class='hidden-xs' ng-if='state.userIsAdmin'>
+          <dq-position></dq-position>
+          <div class='col-lg-1'></div>
+          <div class='col-lg-2'>
+            <div class='pull-right'>
+              <br>
+              <div class='btn-group pull-right'>
+                <label class='btn btn-default' ng-model='state.buildMode' btn-radio='true'>
+                  <i class='fa fa-wrench fa-lg'></i> Build
+                </label>
+                <label class='btn btn-default' ng-model='state.buildMode' btn-radio='false'>
+                  <i class='fa fa-calendar fa-lg'></i></a> View
+                </label>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
       <div class='row'>
@@ -40,31 +60,30 @@
           </div>
         </div>
         <div class='col-md-2'>
-          <div>
-            <div class='btn-group'>
-              <btn class='btn btn-default btn-sm' ng-click='previousWeek()'
-                   style='width: 40px;'>
-                <%= fa_icon 'chevron-left' %>
-              </btn>
-              <btn class='btn btn-default btn-sm' ng-click='nextWeek()'
-                   style='width: 40px;'>
-                <%= fa_icon 'chevron-right' %>
-              </btn>
-            </div>
+          <div class='btn-group'>
+            <btn class='btn btn-default btn-sm' ng-click='previous()'
+                 style='width: 40px;'>
+              <%= fa_icon 'chevron-left' %>
+            </btn>
+            <btn class='btn btn-default btn-sm' ng-click='next()'
+                 style='width: 40px;'>
+              <%= fa_icon 'chevron-right' %>
+            </btn>
           </div>
         </div>
-        <div class='col-md-5'>
-          <div class='hidden-xs'>
+        <div class='hidden-xs' ng-if='state.userIsAdmin'>
+          <div class='col-md-5'>
             <span class='legendBlue'><i class='fa fa-circle fa-border'></i> Shift </span>
             <span class='legendGreen'><i class='fa fa-circle fa-border'></i> Availability </span>
             <span class='legendRed'><i class='fa fa-circle fa-border'></i> Time Off </span>
           </div>
-        </div>
-        <div class='col-md-2'></div>
-        <div class='col-md-2'>
-          <div class='pull-right'>
-            <%= link_to_function(' Print', 'javascript:print()',
-                                 class: 'btn btn-default fa fa-print fa-lg') %>
+          <div class='col-md-2'></div>
+          <div class='col-md-2'>
+            <div class='pull-right'>
+              <button class='btn btn-default fa fa-print fa-lg' ng-click='print()'>
+                Print
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -73,71 +92,79 @@
     <div>
     <div>
       <div class='shadow-effect'>
-        <table class='table table-bordered table-white print-schedule-font'>
-          <thead>
-            <tr>
-              <th id='schedule_info_column'>
-              </th>
-              <th class='schedule_day_header' ng-repeat='day in days'>
-                <h4>{{weekDay(days.indexOf(day)).format('ddd')}}</h4>
-                <h2>{{weekDay(days.indexOf(day)).format('D')}}</h2>
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr ng-repeat='user in users | orderBy:predicate.value:reverse |
-                           filter:locationFilter | filter:positionFilter'>
-              <td>
-                {{user.last_name}}, </br>
-                {{user.first_name}}
-                <div class='hidden-print'>
-                  <br><i class='fa fa-clock-o'></i>
-                  {{user.hours}}
-                </div>
-              </td>
-              <td ng-repeat='day in days'>
-                <div ng-if='buildMode'>
-
-                  <div ng-if='time_off.dayIndices.length && time_off.dayIndices.indexOf(days.indexOf(day)) > -1'
-                       ng-repeat="time_off in user.time_off_requests | orderBy:'starts_at'">
-                    <progressbar class='progress fix-schedule-time-bar'
-                                 value='100' type={{time_off.color}}>
-                      <div ng-if='time_off.all_day'>
-                        Time Off
-                      </div>
-                      <div ng-hide='time_off.all_day'>
-                        {{time_off.starts_at | date:'h:mma'}}-{{time_off.ends_at | date:'h:mma'}}
-                      </div>
-                    </progressbar>
+        <div class='hidden-xs'>
+          <table class='table table-bordered table-white print-schedule-font'>
+            <thead>
+              <tr>
+                <th id='schedule_info_column'>
+                </th>
+                <th class='schedule_day_header' ng-repeat='day in days'>
+                  <h4>{{weekDay(days.indexOf(day)).format('ddd')}}</h4>
+                  <h2>{{weekDay(days.indexOf(day)).format('D')}}</h2>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat='user in users | orderBy:predicate.value:reverse |
+                             filter:locationFilter | filter:positionFilter'>
+                <td>
+                  {{user.last_name}}, </br>
+                  {{user.first_name}}
+                  <div class='hidden-print'>
+                    <br><i class='fa fa-clock-o'></i>
+                    {{user.weeklyHours}}
                   </div>
-                  <div ng-repeat="avail in user.availabilities | orderBy:'start_time' | filter:{day: days.indexOf(day)}">
-                    <progressbar class='progress fix-schedule-time-bar'
-                                 value='100' type='success'>
-                      {{avail.start_time | date:'h:mma'}}-{{avail.end_time | date:'h:mma'}}
-                    </progressbar>
+                </td>
+                <td ng-repeat='day in days'>
+                  <div ng-if='state.buildMode'>
+                    <dq-time-off-requests day-name='day' time-off-requests='user.time_off_requests'>
+                    </dq-time-off-requests>
+                    <dq-availabilities day-name='day' availabilities='user.availabilities'>
+                    </dq-availabilities>
                   </div>
-                </div>
-                <div ng-if='shift.dayIndex == days.indexOf(day)'
-                     ng-repeat="shift in user.shifts | orderBy:'start_time'">
-                  <div class='edit_shift'>
-                    <progressbar ng-click='open(user, day, shift)'
-                                 class='progress fix-schedule-time-bar shift'
-                                 value='100' type='primary'>
-                      {{shift.start_time | date:'h:mma'}}-{{shift.end_time | date:'h:mma'}}<br/>
-                      {{shift.position.name}}
-                    </progressbar>
+                  <dq-shifts day-name='day' shifts='user.shifts'
+                             user-is-admin='state.userIsAdmin'
+                             open='open(user, days.indexOf(day), shift)'>
+                  </dq-shifts>
+                  <div ng-if='state.buildMode'>
+                    <div class='shift' ng-click='open(user, days.indexOf(day))'
+                         data-hover='Assign Shift'>
+                    </div>
                   </div>
-                </div>
-                <div ng-if='buildMode'>
-                  <div class='shift'
-                    ng-click='open(user, days.indexOf(day))'
-                    data-hover='Assign Shift'>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class='visible-xs'>
+          <table class='table table-bordered table-white print-schedule-font'>
+            <tbody>
+              <tr ng-repeat='user in users | orderBy:predicate.value:reverse |
+                             filter:locationFilter | filter:positionFilter'>
+                <td>
+                  {{user.last_name}}, </br>
+                  {{user.first_name}}
+                  <div class='hidden-print'>
+                    <br><i class='fa fa-clock-o'></i>
+                    {{user.weeklyHours}}
                   </div>
-                </div>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+                </td>
+                <td>
+                  <div ng-if='state.userIsAdmin'>
+                    <dq-time-off-requests day-name='currentDayName()' time-off-requests='user.time_off_requests'>
+                    </dq-time-off-requests>
+                    <dq-availabilities day-name='currentDayName()' availabilities='user.availabilities'>
+                    </dq-availabilities>
+                  </div>
+                  <dq-shifts day-name='currentDayName()' shifts='user.shifts'
+                             user-is-admin='state.userIsAdmin'
+                             open='open(user, days.indexOf(currentDayName()), shift)'>
+                  </dq-shifts>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </div>
