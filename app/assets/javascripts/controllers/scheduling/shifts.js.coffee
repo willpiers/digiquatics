@@ -26,7 +26,7 @@
       @$scope.print = _.bind $window.print, $window
 
       @$scope.previous = => @_changeDay if Window.xs then -1 else -7
-      @$scope.next= => @_changeDay if Window.xs then 1 else 7
+      @$scope.next = => @_changeDay if Window.xs then 1 else 7
 
       @$scope.resetWeekCounter = =>
         @daysFromToday = 0

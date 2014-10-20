@@ -7,5 +7,4 @@
 
       angular.element($window).bind 'resize', =>
         @xs = $window.innerWidth < 768
-
 ]
