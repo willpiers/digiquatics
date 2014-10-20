@@ -6,66 +6,68 @@
   'Locations'
   'Positions'
   '$modal'
+  'ScheduleHelper'
+  '$window'
+  'Window'
 
   class ShiftsCtrl
-    constructor: (@$q, @$scope, @Shifts, @Users, @Locations, @Positions, $modal) ->
-      @currentWeek = 0
+    constructor: (@$q, @$scope, @Shifts, @Users, @Locations, @Positions, $modal, @ScheduleHelper, $window, Window) ->
+      @$scope.state = {}
+      @$scope.state.buildMode = true
+      @$scope.days = @ScheduleHelper.days
+      @$scope.predicate = value: 'last_name'
+
+      @daysFromToday = 0
 
       @_loadAndProcessData()
 
-      @$scope.days = [
-        'Sunday'
-        'Monday'
-        'Tuesday'
-        'Wednesday'
-        'Thursday'
-        'Friday'
-        'Saturday'
-      ]
-
-      @$scope.buildMode = true
-
       @$scope.$on 'shifts:created', _.bind @_addViewDataToUsers, @
 
-      @$scope.previousWeek = =>
-        @currentWeek -= 7
-        @_addViewDataToUsers()
+      @$scope.print = _.bind $window.print, $window
 
-      @$scope.nextWeek = =>
-        @currentWeek += 7
-        @_addViewDataToUsers()
+      @$scope.previous = => @_changeDay if Window.xs then -1 else -7
+      @$scope.next = => @_changeDay if Window.xs then 1 else 7
 
       @$scope.resetWeekCounter = =>
-        @currentWeek = 0
+        @daysFromToday = 0
+        @daysFromToday = 0
         @_addViewDataToUsers()
 
-      @$scope.displayStartDate = =>
-        moment().startOf('week').add('days', @currentWeek).format 'MMMM YYYY'
+      @$scope.currentDayName = =>
+        moment().add('days', @daysFromToday).format 'dddd'
 
-      @$scope.displayEndDate = (days) =>
-        moment().startOf('week').add('days', @currentWeek + days).format 'MMM D, YYYY'
+      @$scope.currentDayOfWeek = =>
+        moment().add('days', @daysFromToday).format 'd'
+
+      @$scope.displayStartDate = =>
+        if Window.xs
+          moment().add('days', @daysFromToday).format 'MMM D'
+        else
+          moment().startOf('week').add('days', @daysFromToday).format 'MMMM YYYY'
 
       @$scope.weekDay = (days) =>
-        moment().startOf('week').add 'days', @currentWeek + days
-
-      @$scope.predicate =
-        value: 'last_name'
+        moment().startOf('week').add 'days', @daysFromToday + days
 
       @$scope.open = (user, day, shift, size) =>
-        modalInstance = $modal.open
-          templateUrl: 'scheduling/shift-assigner.html'
-          controller: 'ShiftModalCtrl as controller'
-          size: size
-          resolve:
-            shift: -> shift
-            data: =>
-              user: user
-              day: day
-              location: $scope.buildLocation
-              startTime: @$scope.weekDay(day).startOf('day').add 5, 'hours'
-              endTime: @$scope.weekDay(day).startOf('day').add 10, 'hours'
-              positions: $scope.positions
-              position: user.position_id
+        if @$scope.state.userIsAdmin
+          $modal.open
+            templateUrl: 'scheduling/shift-assigner.html'
+            controller: 'ShiftModalCtrl as controller'
+            size: size
+            resolve:
+              shift: -> shift
+              data: =>
+                user: user
+                day: day
+                location: @$scope.state.buildLocation
+                startTime: @$scope.weekDay(day).startOf('day').add 5, 'hours'
+                endTime: @$scope.weekDay(day).startOf('day').add 10, 'hours'
+                positions: $scope.positions
+                position: user.position_id
+
+    _changeDay: (days) ->
+      @daysFromToday += days
+      @_addViewDataToUsers()
 
     _loadAndProcessData: ->
       @$q.all
@@ -81,7 +83,7 @@
 
     _addViewDataToUsers: ->
       _.each @$scope.users, (user) =>
-        user.hours = @_calculateHours user
+        user.weeklyHours = @_calculateHours user
         _.each user.time_off_requests, @_addDayIndicesToTimeOffRequests, @
         _.each user.shifts, @_addDayIndexToShift, @
 
@@ -99,8 +101,8 @@
       if request.approved or request.active
         request.color = 'danger' if request.approved
         request.color = 'warning' if request.active
-        startOfWeek = moment().startOf('week').add 'days', @currentWeek
-        endOfWeek = moment().endOf('week').add 'days', @currentWeek
+        startOfWeek = moment().startOf('week').add 'days', @daysFromToday
+        endOfWeek = moment().endOf('week').add 'days', @daysFromToday
 
         weekRange = moment().range startOfWeek, endOfWeek
 
@@ -121,7 +123,7 @@
 
       shiftStartTime = moment shift.start_time
 
-      if shiftStartTime.isSame moment().startOf('week').add('days', @currentWeek), 'week'
+      if shiftStartTime.isSame moment().startOf('week').add('days', @daysFromToday), 'week'
         shift.dayIndex = shiftStartTime.day()
 
 ]

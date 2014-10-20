@@ -103,9 +103,7 @@
             <b class = 'caret'></b>
           </a>
           <ul class = 'dropdown-menu'>
-              <% if current_user.admin? %>
-                <li><%= link_to 'Schedule', shifts_path %></li>
-              <% end %>
+              <li><%= link_to 'Schedule', shifts_path %></li>
               <li>
                 <%= link_to sub_requests_path do %>
                    Sub Requests Queue
