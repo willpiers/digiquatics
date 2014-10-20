@@ -44,7 +44,6 @@
             user: $scope.data.user
             location: $scope.data.location
 
-
     TimeOffRequestModalCtrl = ($scope, $modalInstance, request, editMode, TimeOff,
                                TimeOffHelper, data) ->
       angular.extend $scope, TimeOffHelper,
@@ -159,13 +158,13 @@
           $modalInstance.close $scope.user
           toastr.error 'Time Off Request was successfully deleted.'
 
-      TimeOffRequestModalCtrl['$inject'] = [
-        '$scope'
-        '$modalInstance'
-        'request'
-        'editMode'
-        'TimeOff'
-        'TimeOffHelper'
-        'data'
-      ]
+    TimeOffRequestModalCtrl['$inject'] = [
+      '$scope'
+      '$modalInstance'
+      'request'
+      'editMode'
+      'TimeOff'
+      'TimeOffHelper'
+      'data'
+    ]
 ]
