@@ -44,6 +44,7 @@
             user: $scope.data.user
             location: $scope.data.location
 
+
     TimeOffRequestModalCtrl = ($scope, $modalInstance, request, editMode, TimeOff,
                                TimeOffHelper, data) ->
       angular.extend $scope, TimeOffHelper,
