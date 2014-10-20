@@ -76,17 +76,13 @@
         $log.info('Modal dismissed at: ' + new Date())
 
     MyScheduleModalCtrl = ($scope, $modalInstance, shift, SubRequests) ->
-      $scope.requestSub = (shift) ->
+      $scope.ok = ->
         SubRequests.create
           shift_id: shift.id
           user_id: shift.user_id
-
-      $scope.ok = ->
-        $scope.requestSub(shift)
-        $modalInstance.close shift
-
-        toastr.success 'Sub Request has been requested!'
-        return true #Fixes error with returns elements through Angular to the DOM
+        .$promise.then ->
+          $modalInstance.close shift
+          toastr.success 'Sub Request has been requested!'
 
       $scope.cancel = ->
         $modalInstance.dismiss "Cancel"
