@@ -23,6 +23,8 @@
 
       @$scope.$on 'shifts:created', _.bind @_addViewDataToUsers, @
 
+      @$scope.print = _.bind $window.print, $window
+
       @$scope.previous = => @_changeDay if Window.xs then -1 else -7
       @$scope.next= => @_changeDay if Window.xs then 1 else 7
 
