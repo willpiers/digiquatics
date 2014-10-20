@@ -57,7 +57,7 @@
         if availability
           availability.start_time = startTime
           availability.end_time = endTime
-          availability.$save()
+          availability.$update()
         else
           newAvailability = Availabilities.create
             day: day
@@ -69,21 +69,21 @@
         $modalInstance.close $scope.availability
 
         if availability
-          toastr.info('Availability was successfully updated.')
+          toastr.info 'Availability was successfully updated.'
           return true #Fixes error with returns elements through Angular to the DOM
         else
-          toastr.success('Availability was successfully created.')
+          toastr.success 'Availability was successfully created.'
           return true #Fixes error with returns elements through Angular to the DOM
 
       $scope.cancel = ->
         $modalInstance.dismiss "Cancel"
 
       $scope.delete = ->
-        Availabilities.destroy id: availability.id
+        availability.$destroy()
         _.remove $scope.availabilities, (userAvail) -> userAvail.id is availability.id
 
         $modalInstance.close $scope.availability
-        toastr.error('Availability was successfully deleted.')
+        toastr.error 'Availability was successfully deleted.'
         return true #Fixes error with returns elements through Angular to the DOM
 
 

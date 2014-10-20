@@ -88,12 +88,12 @@
 
         assignShift = (user, location, position, start, end, shift) =>
           if shift
-            shiftData = angular.extend shift,
+            angular.extend shift,
               start_time: start
               end_time: end
               position_id: position
 
-            @Shifts.update id: shiftData.id, shiftData
+            @Shifts.update id: shift.id, shift
             .$promise.then (updatedShift) =>
               _.remove user.shifts, (userShift) -> userShift.id is shift.id
               user.shifts.push updatedShift
@@ -108,8 +108,8 @@
                       user_id: user.id
                       location_id: location
                       position_id: position
-                      start_time: moment(start).add(week, 'weeks').add(adjustedDayCounter, 'days')
-                      end_time: moment(end).add(week, 'weeks').add(adjustedDayCounter, 'days')
+                      start_time: moment(start).add(week, 'weeks').add adjustedDayCounter, 'days'
+                      end_time: moment(end).add(week, 'weeks').add adjustedDayCounter, 'days'
                     .$promise.then (newShift) =>
                       @_updateViewWithNewShift user, newShift
             else
@@ -127,9 +127,9 @@
           $modalInstance.close $scope.user
 
           if shift
-            toastr.info('Shift was successfully updated.')
+            toastr.info 'Shift was successfully updated.'
           else
-            toastr.success('Shift was successfully created.')
+            toastr.success 'Shift was successfully created.'
 
           true #Fixes error with returns elements through Angular to the DOM
 
@@ -142,7 +142,7 @@
           @_addViewDataToUsers()
 
           $modalInstance.close $scope.user
-          toastr.error('Shift was successfully deleted.')
+          toastr.error 'Shift was successfully deleted.'
 
           true #Fixes error with returns elements through Angular to the DOM
 
