@@ -5,59 +5,346 @@
      class='shadow-effect'>
   <accordion close-others='oneAtATime'>
     <accordion-group>
-        <accordion-heading>
-          <i class='fa fa-home'> Manage Account</i>
-        </accordion-heading>
-        <%= render 'account' %>
+      <accordion-heading>
+        <i class='fa fa-home'> Manage Account</i>
+      </accordion-heading>
+      <table class='table' >
+        <tbody>
+          <tr>
+            <th>Name</th>
+            <th>Time Zone</th>
+            <th>Logo</th>
+            <th></th>
+          </tr>
+          <tr>
+            <td><%= @account.name %></td>
+            <td><%= @account.time_zone %></td>
+            <td><%= image_tag @account.logo.url, height: '100' %></td>
+            <td> <%= link_to ' Edit', edit_account_path(current_user.account_id),
+              class: 'glyphicon glyphicon-pencil' %>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </accordion-group>
 
     <accordion-group>
-        <accordion-heading>
-          <i class='fa fa-bell'></i> Manage Alerts
-        </accordion-heading>
-        <%= render 'emails' %>
+      <accordion-heading>
+        <i class='fa fa-bell'></i> Manage Alerts
+      </accordion-heading>
+      <p>
+        Please use form below to setup who will receive email alerts. Emails can be
+        sent to: <br/> 1) All admin users <br/>2) Admin users by location that the
+        alert is being generated. <br/> 3) Custom email group, which can be setup
+        <%= link_to 'here!', email_groups_path %>
+      </p>
+
+        <%= bootstrap_form_for @account do |f| %>
+        <table class='table table-bordered' >
+          <tr>
+            <th style='width: 150px;'></th>
+            <th class='lessons_form_table_cell'>All Admin</th>
+            <th class='lessons_form_table_cell'>Admin by Location</th>
+            <th class='lessons_form_table_cell'>Email Group</th>
+          </tr>
+          <tr>
+            <th>Chemical Records</th>
+            <td>
+              <div class='checkbox_fix'>
+                <%= f.check_box :chemical_records_admin_email, label: '' %>
+              </div>
+            </td>
+            <td>
+              <div class='checkbox_fix'>
+                <%= f.check_box :chemical_records_location_email, label: '' %>
+              </div>
+            </td>
+            <td>
+              <div class='checkbox_fix'>
+                <%= f.check_box :chemical_records_group_email, label: '' %>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <th>Maintenance Issues</th>
+            <td>
+              <div class='checkbox_fix'>
+                <%= f.check_box :maintenance_admin_email, label: '' %>
+              </div>
+            </td>
+            <td>
+              <div class='checkbox_fix'>
+                <%= f.check_box :maintenance_location_email, label: '' %>
+              </div>
+            </td>
+            <td>
+              <div class='checkbox_fix'>
+                <%= f.check_box :maintenance_group_email, label: '' %>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <th>Slide Inspections</th>
+            <td>
+              <div class='checkbox_fix'>
+                <%= f.check_box :slides_admin_email, label: '' %>
+              </div>
+            </td>
+            <td>
+              <div class='checkbox_fix'>
+                <%= f.check_box :slides_location_email, label: '' %>
+              </div>
+            </td>
+            <td>
+              <div class='checkbox_fix'>
+                <%= f.check_box :slides_group_email, label: '' %>
+              </div>
+            </td>
+          </tr>
+        </table>
+        <div id='dashboard_email_button'>
+          <button type='submit' class='btn btn-block btn-primary'>
+            <i class='fa fa-refresh'></i> Update Email Prefrences
+          </button>
+        </div>
+      <% end %>
     </accordion-group>
 
     <accordion-group>
-        <accordion-heading>
-          <i class='fa fa-list-alt'></i> Manage Certifications
-        </accordion-heading>
-        <%= render 'certifications' %>
+      <accordion-heading>
+        <i class='fa fa-list-alt'></i> Manage Certifications
+      </accordion-heading>
+      <table class='table'>
+        <tbody>
+          <tr>
+            <th>Name</th>
+            <th></th>
+            <th></th>
+          </tr>
+          <% @certification_names.each do |certification_name| %>
+            <tr>
+              <td class='fixtablewidthadmin'><%= certification_name.name %></td>
+              <td><%= link_to ' Edit', edit_certification_name_path(certification_name),
+                class: 'glyphicon glyphicon-pencil' %></td>
+              <td><%= link_to ' Delete', certification_name,
+              class: 'glyphicon glyphicon-trash', method: :delete,
+                data: { confirm: 'Are you sure?' } %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+
+      <p class='new_button'>
+        <%= link_to ' Add', new_certification_name_path,
+          class: 'glyphicon glyphicon-plus-sign' %>
+      </p>
     </accordion-group>
 
     <accordion-group>
-        <accordion-heading>
-          <i class='fa fa-flask'></i> Manage Chemicals
-        </accordion-heading>
-        <%= render 'chemicals' %>
+      <accordion-heading>
+        <i class='fa fa-flask'></i> Manage Chemicals
+      </accordion-heading>
+      <p>
+        Currently Chemical Records is setup to provide email alerts based off the
+        following parameters:
+        </br>
+        <b> Total Chlorine (PPM): </b> <=1 or >= 5
+        </br>
+        <b> PH: </b> <=6.8 or >= 8.2
+        </br>
+        Email prefrences can be setup in the "Email Alerts" tab.
+      </p>
     </accordion-group>
 
     <accordion-group>
-        <accordion-heading>
-          <i class='fa fa-building'></i> Manage Locations, Pools, and Slides
-        </accordion-heading>
-        <%= render 'locations' %>
+      <accordion-heading>
+        <i class='fa fa-building'></i> Manage Locations, Pools, and Slides
+      </accordion-heading>
+      <table class='table'>
+        <tr>
+          <th class='fixtablewidthadmin'>Location</th>
+          <th>Pools</th>
+          <th>Slides</th>
+          <th></th>
+          <th></th>
+        </tr>
+        <% @locations.each do |location| %>
+        <tr>
+          <td> <%= location.name %> </td>
+          <td>
+            <% location.pools.each do |pool| %>
+            <%= pool.name %></br>
+            <% end %>
+          </td>
+          <td>
+            <% location.slides.each do |slide| %>
+            <%= slide.name %></br>
+            <% end %>
+          </td>
+          <td>
+            <%= link_to ' Edit', edit_location_path(location),
+              class: 'glyphicon glyphicon-pencil' %>
+          </td>
+          <td>
+            <%= link_to ' Delete', location,
+              class: 'glyphicon glyphicon-trash', method: :delete,
+              data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+        <% end %>
+      </table>
+
+      <p class='new_button'>
+        <%= link_to ' Add', new_location_path,
+          class: 'glyphicon glyphicon-plus-sign' %>
+      </p>
     </accordion-group>
 
     <accordion-group>
-        <accordion-heading>
-          <i class='fa fa-users'></i> Manage Positions
-        </accordion-heading>
-        <%= render 'positions' %>
+      <accordion-heading>
+        <i class='fa fa-users'></i> Manage Positions
+      </accordion-heading>
+      <table class='table'>
+        <tbody>
+          <tr>
+            <th>Name</th>
+            <th></th>
+            <th></th>
+          </tr>
+          <% @positions.each do |position| %>
+            <tr>
+              <td class='fixtablewidthadmin'> <%= position.name %></td>
+              <td><%= link_to ' Edit', edit_position_path(position),
+              class: 'glyphicon glyphicon-pencil' %></td>
+              <td><%= link_to ' Delete', position, method: :delete,
+                class: 'glyphicon glyphicon-trash',
+                data: { confirm: 'Are you sure?' } %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+
+      <p class='new_button'>
+        <%= link_to ' Add', new_position_path,
+          class: 'glyphicon glyphicon-plus-sign' %>
+      </p>
     </accordion-group>
 
     <accordion-group>
-        <accordion-heading>
-          <i class='fa fa-child'></i> Manage Private Lessons
-        </accordion-heading>
-        <%= render 'private_lessons' %>
+      <accordion-heading>
+        <i class='fa fa-child'></i> Manage Private Lessons
+      </accordion-heading>
+      <table class='table'>
+        <tbody>
+          <tr>
+            <th>Skill Levels</th>
+            <th></th>
+            <th></th>
+          </tr>
+          <% @skill_levels.each do |skill_level| %>
+            <tr>
+              <td class='fixtablewidthadmin'> <%= skill_level.name %></td>
+              <td><%= link_to ' Edit', edit_skill_level_path(skill_level),
+              class: 'glyphicon glyphicon-pencil' %></td>
+              <td><%= link_to ' Delete', skill_level, method: :delete,
+                class: 'glyphicon glyphicon-trash',
+                data: { confirm: 'Are you sure?' } %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+
+      <p class='new_button'>
+        <%= link_to ' Add', new_skill_level_path,
+          class: 'glyphicon glyphicon-plus-sign' %>
+      </p>
+
+      <table class='table'>
+        <tbody>
+          <tr>
+            <th>Packages</th>
+            <th></th>
+            <th></th>
+          </tr>
+          <% @packages.each do |package| %>
+            <tr>
+              <td class='fixtablewidthadmin'> <%= package.name %></td>
+              <td><%= link_to ' Edit', edit_package_path(package),
+              class: 'glyphicon glyphicon-pencil' %></td>
+              <td><%= link_to ' Delete', package, method: :delete,
+                class: 'glyphicon glyphicon-trash',
+                data: { confirm: 'Are you sure?' } %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+
+      <p class='new_button'>
+        <%= link_to ' Add', new_package_path,
+          class: 'glyphicon glyphicon-plus-sign' %>
+      </p>
+      <hr>
+
+      <h4>External Private Lessons Request Access:</h4>
+      <p>
+        The unique URL below for private lessons allows patrons to access the private
+        lessons portal without needing an account or any additional information
+      </p>
+
+      <div class='hidden-xs'>
+        Unique URL:
+        <%= link_to "http://www.digiquatics.com/account/#{@account.id}/private_lessons/new",
+                    new_account_private_lesson_path(account_id: current_account.id) %>
+      </div>
+      <div class='visible-xs'>
+        Unique
+        <%= link_to "URL",
+                    new_account_private_lesson_path(account_id: current_account.id) %>
+      </div>
     </accordion-group>
 
     <accordion-group>
-        <accordion-heading>
-          <i class='fa fa-download'></i> Export Data
-        </accordion-heading>
-        <%= render 'exports' %>
+      <accordion-heading>
+        <i class='fa fa-download'></i> Export Data
+      </accordion-heading>
+      <p>
+          All data can be exported to a CSV file that is compatiable with any
+          version of Microsoft Excel or other popular spreadsheet suites.
+      </p>
+      <br>
+
+      <div class ='row'>
+        <div class='col-md-3'>
+          <a class='btn btn-success btn-default' disabled="disabled" href='#'>
+            Certifications <i class='fa fa-file-excel-o fa-lg'></i></a>
+        </div>
+
+        <div class='visible-xs'><br></div>
+        <div class='col-md-3'>
+          <a class='btn btn-success btn-default' href='/chemical_records.csv'>
+            Chemical Records <i class='fa fa-file-excel-o fa-lg'></i></a>
+        </div>
+      </div>
+      <br>
+
+      <div class ='row'>
+        <div class='col-md-3'>
+          <a class='btn btn-success btn-default' href='/users.csv'>
+            Active Employees <i class='fa fa-file-excel-o fa-lg'></i></a>
+        </div>
+        <div class='visible-xs'><br></div>
+        <div class='col-md-3'>
+          <a class='btn btn-success btn-default' href='/inactive_index.csv'>
+             Inactive Employees <i class='fa fa-file-excel-o fa-lg'></i></a>
+        </div>
+      </div>
+      <br>
+
+      <b>
+        At this time to export certifications the best solution is to print(or print
+        as PDF) the certification index page. If you have to get an excel list of
+        your certificatios then please contact us directly.
+      </b>
+      <br>
     </accordion-group>
   </accordion>
 </div>

@@ -1,0 +1,12 @@
+@import 'bootstrap';
+@import 'custom';
+
+.dashboard-link{
+  color: $blueLink;
+
+  &:hover {
+    color: $pinkAccent;
+    border-bottom-color: $pinkAccent;
+  }
+
+}
