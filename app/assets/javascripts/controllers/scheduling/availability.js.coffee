@@ -80,8 +80,6 @@
           _.remove $scope.availabilities, id: availability.id
           toastr.error 'Availability was successfully deleted.'
 
-
-
     ModalInstanceCtrl['$inject'] = [
       '$scope'
       '$modalInstance'

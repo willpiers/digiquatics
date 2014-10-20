@@ -112,7 +112,6 @@
           $scope.timeOff.push newRequest
           toastr.success 'Time Off Request has been created.'
 
-
       $scope.approve = ->
         approveRequest(request).then ->
           $modalInstance.close request
