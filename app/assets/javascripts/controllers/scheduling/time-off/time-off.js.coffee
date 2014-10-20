@@ -39,8 +39,8 @@
           request: -> request
           editMode: -> editMode
           data: ->
-            startTime: moment().startOf('day').add(7, 'hours')
-            endTime: moment().startOf('day').add(8, 'hours')
+            startTime: moment().startOf('day').add 7, 'hours'
+            endTime: moment().startOf('day').add 8, 'hours'
             user: $scope.data.user
             location: $scope.data.location
 
@@ -64,8 +64,8 @@
         $scope.data.end = data.endTime
 
       $scope.setTimesAllDay = ->
-        $scope.data.start = moment().startOf('day').add(1, 'minutes')
-        $scope.data.end = moment().startOf('day').add(23, 'hours').add(59, 'minutes')
+        $scope.data.start = moment().startOf('day').add 1, 'minutes'
+        $scope.data.end = moment().startOf('day').add(23, 'hours').add 59, 'minutes'
 
       $scope.setAllDayLogic = ->
         if request and request.all_day
@@ -84,7 +84,7 @@
 
       assignRequest = (request) ->
         if request
-          updateExistingRequest(request)
+          updateExistingRequest request
         else
           createNewRequest()
 
@@ -99,7 +99,7 @@
         .$promise.then (updatedRequest) ->
           _.remove $scope.timeOff, (timeOffRequest) -> timeOffRequest is request.id
           $scope.timeOff.push updatedRequest
-          toastr.success('Time Off Request has been updated.')
+          toastr.success 'Time Off Request has been updated.'
 
       createNewRequest = ->
         TimeOff.create
@@ -112,13 +112,13 @@
 
         .$promise.then (newRequest) ->
           $scope.timeOff.push newRequest
-          toastr.success('Time Off Request has been created.')
+          toastr.success 'Time Off Request has been created.'
 
 
       $scope.approve = ->
         approveRequest(request).then ->
           $modalInstance.close request
-          toastr.success('Time Off Request has been approved.')
+          toastr.success 'Time Off Request has been approved.'
 
       approveRequest = (request) ->
         requestData = angular.extend request,
@@ -136,7 +136,7 @@
       $scope.deny = ->
         denyRequest(request).then ->
           $modalInstance.close request
-          toastr.error('Time Off Request has been denied.')
+          toastr.error 'Time Off Request has been denied.'
 
       denyRequest = (request) ->
         requestData = angular.extend request,
@@ -159,7 +159,7 @@
         .$promise.then ->
           _.remove $scope.timeOff, id: request.id
           $modalInstance.close $scope.user
-          toastr.error('Time Off Request was successfully deleted.')
+          toastr.error 'Time Off Request was successfully deleted.'
 
       TimeOffRequestModalCtrl['$inject'] = [
         '$scope'
