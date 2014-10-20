@@ -58,33 +58,29 @@
           availability.start_time = startTime
           availability.end_time = endTime
           availability.$update()
+          .then ->
+            $modalInstance.close $scope.availability
+            toastr.info 'Availability was successfully updated.'
         else
           newAvailability = Availabilities.create
             day: day
             start_time: startTime
             end_time: endTime
-
-          $scope.availabilities.push newAvailability
-
-        $modalInstance.close $scope.availability
-
-        if availability
-          toastr.info 'Availability was successfully updated.'
-          return true #Fixes error with returns elements through Angular to the DOM
-        else
-          toastr.success 'Availability was successfully created.'
-          return true #Fixes error with returns elements through Angular to the DOM
+          .$promise.then (newAvailability) ->
+            $modalInstance.close $scope.availability
+            $scope.availabilities.push newAvailability
+            toastr.success 'Availability was successfully created.'
 
       $scope.cancel = ->
         $modalInstance.dismiss "Cancel"
 
       $scope.delete = ->
-        availability.$destroy()
-        .then ->
+        availability.$destroy().then ->
+          $modalInstance.close $scope.availability
           _.remove $scope.availabilities, id: availability.id
           toastr.error 'Availability was successfully deleted.'
 
-        $modalInstance.close $scope.availability
+
 
     ModalInstanceCtrl['$inject'] = [
       '$scope'
