@@ -1,11 +1,12 @@
 require 'spec_helper'
+require 'yaml'
 
 describe FeatureToggle do
   let(:current_user) { double() }
   before do
     current_user.stub(:account_id) { 1 }
 
-    FeatureToggle.stub(:load_feature_toggles)
+    YAML.stub(:load_file)
     .and_return('private_lessons' => true, 'chemicals' => '1,2')
   end
 
