@@ -140,12 +140,8 @@
           </td>
           <td class='hidden-xs'>
             <a ng-href='/users/{{request.approved_by_user_id}}'>
-              <div ng-if='checkIfProcessed(request)' %>
-                <a ng-href='/users/{{request.approved_by_user_id}}'>
-                  {{request.processed_by_last_name}},
-                  {{request.processed_by_first_name}}
-                </a>
-              </div>
+              {{request.processed_by_last_name}},
+              {{request.processed_by_first_name}}
             </a>
           </td>
           <td class='hidden-xs'>
