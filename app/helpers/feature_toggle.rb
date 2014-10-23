@@ -24,6 +24,7 @@ module FeatureToggle
       @feature_toggles ||= YAML.load_file(FEATURE_TOGGLE_PATH)
     else
       Rails.logger.warn("WARN: missing file: #{FEATURE_TOGGLE_PATH}")
+      {}
     end
   end
 end
