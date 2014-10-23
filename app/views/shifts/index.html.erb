@@ -47,8 +47,12 @@
               </btn>
             </div>
           </div>
-          <div class='col-md-2 col-xs-2'>
+          <div class='col-md-3 col-xs-3'>
             <div class='btn-group'>
+              <btn class='btn btn-default btn-sm' ng-click='previousMonth()'
+                   style='width: 40px;'>
+                <%= fa_icon 'chevron-left' %><%= fa_icon 'chevron-left' %>
+              </btn>
               <btn class='btn btn-default btn-sm' ng-click='previous()'
                    style='width: 40px;'>
                 <%= fa_icon 'chevron-left' %>
@@ -56,6 +60,10 @@
               <btn class='btn btn-default btn-sm' ng-click='next()'
                    style='width: 40px;'>
                 <%= fa_icon 'chevron-right' %>
+              </btn>
+              <btn class='btn btn-default btn-sm' ng-click='nextMonth()'
+                   style='width: 40px;'>
+                <%= fa_icon 'chevron-right' %><%= fa_icon 'chevron-right' %>
               </btn>
             </div>
           </div>
@@ -71,7 +79,7 @@
                 <i class='fa fa-circle fa-border'></i> Time Off
               </span>
             </div>
-            <div class='col-md-4'>
+            <div class='col-md-3'>
               <div class='pull-right'>
                 <div class='btn-group pull-right'>
                   <label class='btn btn-default' ng-model='state.buildMode' btn-radio='true'>
@@ -99,9 +107,6 @@
     <div class='hidden-xs'>
       <div class='schedule_header_width'>
         <div class='shadow-effect'>
-
-
-
           <table id=special-nav  class='table table-bordered table-white print-schedule-font'>
             <thead>
               <tr>

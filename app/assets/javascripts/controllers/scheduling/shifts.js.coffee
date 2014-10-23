@@ -28,6 +28,9 @@
       @$scope.previous = => @_changeDay if Window.xs then -1 else -7
       @$scope.next = => @_changeDay if Window.xs then 1 else 7
 
+      @$scope.previousMonth = => @_changeDay if Window.xs then -7 else -28
+      @$scope.nextMonth = => @_changeDay if Window.xs then 7 else 28
+
       @$scope.resetWeekCounter = =>
         @daysFromToday = 0
         @daysFromToday = 0
