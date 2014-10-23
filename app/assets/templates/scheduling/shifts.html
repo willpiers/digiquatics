@@ -3,7 +3,7 @@
   <div ng-class='{edit_shift: userIsAdmin}'>
     <progressbar ng-click='open({shift: shift})'
                  class='progress fix-schedule-time-bar shift'
-                 value='100' type='primary'>
+                 value='100' type='{{shift.color}}'>
       {{startEndTimes(shift)}}<br/>
       {{shift.position.name}}
     </progressbar>
