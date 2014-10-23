@@ -11,10 +11,13 @@ describe FeatureToggle do
     File.stub(:exist?).and_return true
 
     YAML.stub(:load_file)
-    .and_return('private_lessons' => true, 'chemicals' => '1,2')
+    .and_return 'private_lessons' => true, 'chemicals' => '1,2'
   end
 
-  after { FeatureToggle.stub(:show_feature?).and_return true }
+  after do
+    FeatureToggle.stub(:show_feature?).and_return true
+    File.unstub :exist?
+  end
 
   it 'returns true for features that are toggled on' do
     FeatureToggle.private_lessons?(current_user).should == true

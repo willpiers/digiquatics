@@ -3,7 +3,7 @@ require 'yaml'
 module FeatureToggle
   FEATURE_TOGGLE_PATH = "#{ENV['HOME']}/feature_toggles.yml"
 
-  def self.method_missing(name, *arguments)
+  def self.method_missing name, *arguments
     if name.to_s.ends_with? '?'
       show_feature? toggle: feature_toggles[name.to_s.chop], user: arguments[0]
     else
@@ -21,9 +21,9 @@ module FeatureToggle
 
   def self.feature_toggles
     if File.exist?(FEATURE_TOGGLE_PATH)
-      @feature_toggles ||= YAML.load_file(FEATURE_TOGGLE_PATH)
+      @feature_toggles ||= YAML.load_file FEATURE_TOGGLE_PATH
     else
-      Rails.logger.warn("WARN: missing file: #{FEATURE_TOGGLE_PATH}")
+      Rails.logger.warn "WARN: missing file: #{FEATURE_TOGGLE_PATH}"
       {}
     end
   end
