@@ -89,81 +89,112 @@
       </div>
       <br>
     </div>
-    <div>
-    <div>
-      <div class='shadow-effect'>
-        <div class='hidden-xs'>
-          <table class='table table-bordered table-white print-schedule-font'>
-            <thead>
-              <tr>
-                <th id='schedule_info_column'>
-                </th>
-                <th class='schedule_day_header' ng-repeat='day in days'>
-                  <h4>{{weekDay(days.indexOf(day)).format('ddd')}}</h4>
-                  <h2>{{weekDay(days.indexOf(day)).format('D')}}</h2>
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr ng-repeat='user in users | orderBy:predicate.value:reverse |
-                             filter:locationFilter | filter:positionFilter'>
-                <td>
-                  {{user.last_name}}, </br>
-                  {{user.first_name}}
-                  <div class='hidden-print'>
-                    <br><i class='fa fa-clock-o'></i>
-                    {{user.weeklyHours}}
-                  </div>
-                </td>
-                <td ng-repeat='day in days'>
-                  <div ng-if='state.buildMode'>
-                    <dq-time-off-requests day-name='day' time-off-requests='user.time_off_requests'>
-                    </dq-time-off-requests>
-                    <dq-availabilities day-name='day' availabilities='user.availabilities'>
-                    </dq-availabilities>
-                  </div>
-                  <dq-shifts day-name='day' shifts='user.shifts'
-                             user-is-admin='state.userIsAdmin'
-                             open='open(user, days.indexOf(day), shift)'>
-                  </dq-shifts>
-                  <div ng-if='state.buildMode'>
-                    <div class='shift' ng-click='open(user, days.indexOf(day))'
-                         data-hover='Assign Shift'>
+
+
+      <style>
+        .fixed {
+        position: fixed;
+        z-index: 10;
+        top: 0;
+        width: 1000px;
+      }
+
+      </style>
+
+          <script>
+            $(function () {
+
+      $(window).scroll(function(event) {
+      if($(this).scrollTop() > 400) {
+      $("#special-nav").fadeIn();
+      $("#special-nav").addClass('fixed',1000,'linear');
+      }
+      else {
+      $("#special-nav").removeClass('fixed')
+      }
+      });
+
+      });
+          </script>
+
+
+
+
+      <div style='width: 1000px; margin:0px; auto;'>
+        <div class='shadow-effect'>
+          <div class='hidden-xs'>
+            <table id=special-nav class='table table-bordered table-white print-schedule-font'>
+              <thead>
+                <tr>
+                  <th id='schedule_info_column'>
+                  </th>
+                  <th class='schedule_day_header' ng-repeat='day in days'>
+                    <h4>{{weekDay(days.indexOf(day)).format('ddd')}}</h4>
+                    <h2>{{weekDay(days.indexOf(day)).format('D')}}</h2>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr ng-repeat='user in users | orderBy:predicate.value:reverse |
+                               filter:locationFilter | filter:positionFilter'>
+                  <td>
+                    {{user.last_name}}, </br>
+                    {{user.first_name}}
+                    <div class='hidden-print'>
+                      <br><i class='fa fa-clock-o'></i>
+                      {{user.weeklyHours}}
                     </div>
-                  </div>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <div class='visible-xs'>
-          <table class='table table-bordered table-white print-schedule-font'>
-            <tbody>
-              <tr ng-repeat='user in users | orderBy:predicate.value:reverse |
-                             filter:locationFilter | filter:positionFilter'>
-                <td>
-                  {{user.last_name}}, </br>
-                  {{user.first_name}}
-                  <div class='hidden-print'>
-                    <br><i class='fa fa-clock-o'></i>
-                    {{user.weeklyHours}}
-                  </div>
-                </td>
-                <td>
-                  <div ng-if='state.userIsAdmin'>
-                    <dq-time-off-requests day-name='currentDayName()' time-off-requests='user.time_off_requests'>
-                    </dq-time-off-requests>
-                    <dq-availabilities day-name='currentDayName()' availabilities='user.availabilities'>
-                    </dq-availabilities>
-                  </div>
-                  <dq-shifts day-name='currentDayName()' shifts='user.shifts'
-                             user-is-admin='state.userIsAdmin'
-                             open='open(user, days.indexOf(currentDayName()), shift)'>
-                  </dq-shifts>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+                  </td>
+                  <td ng-repeat='day in days'>
+                    <div ng-if='state.buildMode'>
+                      <dq-time-off-requests day-name='day' time-off-requests='user.time_off_requests'>
+                      </dq-time-off-requests>
+                      <dq-availabilities day-name='day' availabilities='user.availabilities'>
+                      </dq-availabilities>
+                    </div>
+                    <dq-shifts day-name='day' shifts='user.shifts'
+                               user-is-admin='state.userIsAdmin'
+                               open='open(user, days.indexOf(day), shift)'>
+                    </dq-shifts>
+                    <div ng-if='state.buildMode'>
+                      <div class='shift' ng-click='open(user, days.indexOf(day))'
+                           data-hover='Assign Shift'>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class='visible-xs'>
+            <table class='table table-bordered table-white print-schedule-font'>
+              <tbody>
+                <tr ng-repeat='user in users | orderBy:predicate.value:reverse |
+                               filter:locationFilter | filter:positionFilter'>
+                  <td>
+                    {{user.last_name}}, </br>
+                    {{user.first_name}}
+                    <div class='hidden-print'>
+                      <br><i class='fa fa-clock-o'></i>
+                      {{user.weeklyHours}}
+                    </div>
+                  </td>
+                  <td>
+                    <div ng-if='state.userIsAdmin'>
+                      <dq-time-off-requests day-name='currentDayName()' time-off-requests='user.time_off_requests'>
+                      </dq-time-off-requests>
+                      <dq-availabilities day-name='currentDayName()' availabilities='user.availabilities'>
+                      </dq-availabilities>
+                    </div>
+                    <dq-shifts day-name='currentDayName()' shifts='user.shifts'
+                               user-is-admin='state.userIsAdmin'
+                               open='open(user, days.indexOf(currentDayName()), shift)'>
+                    </dq-shifts>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </div>
