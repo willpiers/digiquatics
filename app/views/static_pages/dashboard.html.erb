@@ -45,42 +45,70 @@
        </center>
       <% end %>
     </div>
-    <% if current_user.admin? %>
+
+    <div class='col-md-6'>
       <div class='dashboard-link'>
-        <div class='col-md-2'>
-          <h3>
-          <%= link_to sub_requests_path do %>Pending<br>Sub Requests<% end %>
-          </h3>
-          <h1><%= number_sub_requests %></h1>
-        </div>
-        <div class='col-md-2'>
-          <h3>
-          <%= link_to admin_sub_requests_path do %>Admin<br>Sub Requests<% end %>
-          </h3>
-          <h1><%= number_admin_sub_requests %></h1>
-        </div>
-        <div class='col-md-2'>
-          <h3>
-          <%= link_to time_off_requests_path do %>Time Off<br>Requests<% end %>
-          </h3>
-          <h1><%= number_time_off_requests %></h1>
-        </div>
-        <br>
-        <div class='col-md-2'>
-          <h3>
-            <%= link_to account_private_lessons_path(account_id: current_user.account_id) do %>
-              Pending<br>Private Lesson Requests
-            <% end %>
-          </h3>
-          <h1><%= number_private_lessons %></h1>
-        </div>
-        <div class='col-md-2'>
-          <h3>
-            <%= link_to help_desks_path do %>Open Maintenance<br>Issues</h3><% end %>
-          </h3>
-          <h1><%= number_open_issues %></h1>
+        <% if !current_user.admin? %>
+          <div class='row'>
+            <div class='col-md-4'>
+              <h3>
+              <%= link_to admin_sub_requests_path do %>Admin<br>Sub Requests<br><br><% end %>
+              </h3>
+              <h1><%= number_admin_sub_requests %></h1>
+            </div>
+            <div class='col-md-4'>
+              <h3>
+              <%= link_to time_off_requests_path do %>Time Off<br>Requests<br><br><% end %>
+              </h3>
+              <h1><%= number_time_off_requests %></h1>
+            </div>
+            <div class='col-md-4'>
+              <h3>
+                <%= link_to help_desks_path do %>Open<br>Maintenance<br>Issues</h3><% end %>
+              </h3>
+              <h1><%= number_open_issues %></h1>
+            </div>
+            <br>
+          </div>
+        <% end %>
+        <% if current_user.admin? %>
+          <div class='row'>
+            <div class='col-md-4'>
+              <h3>
+              <%= link_to sub_requests_path do %>My Pending<br>Sub Requests<br><br><% end %>
+              </h3>
+              <h1><%= number_my_sub_requests %></h1>
+            </div>
+            <div class='col-md-4'>
+              <h3>
+                <%= link_to account_private_lessons_path(account_id: current_user.account_id) do %>
+                  My Private Lesson<br>Requests<br>
+                <% end %>
+              </h3>
+              <h1><%= number_my_private_lessons %></h1>
+            </div>
+            <div class='col-md-4'></div>
+            <br>
+          </div>
+        <% end %>
+        <div class='row'>
+          <div class='col-md-4'>
+            <h3>
+            <%= link_to sub_requests_path do %>Pending<br>Sub Requests<br><br><% end %>
+            </h3>
+            <h1><%= number_sub_requests %></h1>
+          </div>
+          <div class='col-md-4'>
+            <h3>
+              <%= link_to account_private_lessons_path(account_id: current_user.account_id) do %>
+                Pending<br>Private Lesson<br>Requests
+              <% end %>
+            </h3>
+            <h1><%= number_private_lessons %></h1>
+          </div>
+          <div class='col-md-4'></div>
         </div>
       </div>
-    <% end %>
+    </div>
   </div>
 </div>

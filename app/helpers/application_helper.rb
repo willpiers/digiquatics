@@ -108,6 +108,12 @@ module ApplicationHelper
     date ? date.strftime('%-m/%-d/%Y @ %I:%M%p') : ''
   end
 
+  # Need to fix
+  def number_my_private_lessons
+    PrivateLesson.joins(:account)
+                  .same_account_as(current_user).claimed_by(current_user).count
+  end
+
   def number_private_lessons
     PrivateLesson.joins(:account)
                   .same_account_as(current_user).unclaimed.count
@@ -117,6 +123,11 @@ module ApplicationHelper
     HelpDesk.joins(:location)
             .where(locations: { account_id: current_user.account_id })
             .where(issue_status: true).count
+  end
+
+  def number_my_sub_requests
+    SubRequest.where(user_id: current_user.id).count
+
   end
 
   def number_sub_requests

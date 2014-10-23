@@ -1,6 +1,11 @@
 @import 'bootstrap';
 @import 'custom';
 
+.dashboard-link h3 {
+  padding-bottom: 0px;
+  margin-bottom: 0px;
+}
+
 .dashboard-link a {
   color: $blueLink;
 }
