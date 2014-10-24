@@ -1,23 +1,33 @@
 require 'spec_helper'
+require 'yaml'
 
 describe FeatureToggle do
   let(:current_user) { double() }
   before do
+    FeatureToggle.unstub :show_feature?
+
     current_user.stub(:account_id) { 1 }
 
-    FeatureToggle.stub(:load_feature_toggles)
-    .and_return('private_lessons' => true, 'chemicals' => '1,2')
+    File.stub(:exist?).and_return true
+
+    YAML.stub(:load_file)
+    .and_return 'private_lessons' => true, 'chemicals' => '1,2'
   end
 
-  it 'should return true for features that are toggled on' do
+  after do
+    FeatureToggle.stub(:show_feature?).and_return true
+    File.unstub :exist?
+  end
+
+  it 'returns true for features that are toggled on' do
     FeatureToggle.private_lessons?(current_user).should == true
   end
 
-  it 'should return true for features that are toggled on for that account' do
+  it 'returns true for features that are toggled on for that account' do
     FeatureToggle.chemicals?(current_user).should == true
   end
 
-  it 'should return nil for features that aren\'t toggled on' do
+  it 'returns nil for features that aren\'t toggled on' do
     FeatureToggle.scheduling?(current_user).should == false
   end
 
@@ -33,11 +43,15 @@ describe FeatureToggle do
     FeatureToggle.chemicals?.should == false
   end
 
-  it 'should still call default methods' do
-    FeatureToggle.class.should == Module
-  end
+  context 'without file' do
+    before do
+      File.stub(:exist?).and_return false
+    end
 
-  it 'should still call default ? methods' do
-    FeatureToggle.kind_of?(Object).should == true
+    it 'returns false for everything' do
+      FeatureToggle.scheduling?.should == false
+      FeatureToggle.chemicals?.should == false
+      FeatureToggle.maintenance?(current_user).should == false
+    end
   end
 end

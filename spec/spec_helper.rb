@@ -49,6 +49,10 @@ Spork.prefork do
 
     #include Devise test helpers
     config.include Devise::TestHelpers, type: :controller
+
+    config.before do
+      FeatureToggle.stub(:show_feature?).and_return true
+    end
   end
 end
 
