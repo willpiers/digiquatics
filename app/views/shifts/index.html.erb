@@ -110,7 +110,8 @@
     <div class='hidden-xs'>
       <div class='schedule_header_width'>
         <div class='shadow-effect'>
-          <table id=special-nav  class='table table-bordered table-white print-schedule-font'>
+          <dq-floating-table-head days='days'></dq-floating-table-head>
+          <!-- <table id=special-nav  class='table table-bordered table-white print-schedule-font'>
             <thead>
               <tr>
                 <th id='schedule_header'>
@@ -123,7 +124,7 @@
                 </th>
               </tr>
             </thead>
-          </table>
+          </table> -->
         </div>
 
         <br>
@@ -204,21 +205,3 @@
     </div>
   </div>
 </div>
-
-<script>
-  $(function () {
-    $(window).scroll(function(event) {
-      if($(this).scrollTop() > 400) {
-      $("#special-nav").fadeIn();
-      $("#special-nav").addClass('fixed',1000,'linear');
-      $("#special-nav").addClass('pink-scroll-top-border',1000,'linear');
-
-
-    }
-    else {
-      $("#special-nav").removeClass('fixed')
-      $("#special-nav").removeClass('pink-scroll-top-border',1000,'linear');
-    }
-    });
-  });
-</script>

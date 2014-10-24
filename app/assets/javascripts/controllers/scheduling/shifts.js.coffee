@@ -17,8 +17,6 @@
       @$scope.days = @ScheduleHelper.days
       @$scope.predicate = value: 'last_name'
 
-      @daysFromToday = 0
-
       @_loadAndProcessData()
 
       @$scope.$on 'shifts:created', _.bind @_addViewDataToUsers, @
@@ -32,24 +30,22 @@
       @$scope.nextMonth = => @_changeDay if Window.xs then 7 else 28
 
       @$scope.resetWeekCounter = =>
-        @daysFromToday = 0
-        @daysFromToday = 0
+        @ScheduleHelper.daysFromToday = 0
         @_addViewDataToUsers()
 
       @$scope.currentDayName = =>
-        moment().add('days', @daysFromToday).format 'dddd'
+        moment().add('days', @ScheduleHelper.daysFromToday).format 'dddd'
 
       @$scope.currentDayOfWeek = =>
-        moment().add('days', @daysFromToday).format 'd'
+        moment().add('days', @ScheduleHelper.daysFromToday).format 'd'
 
       @$scope.displayStartDate = =>
         if Window.xs
-          moment().add('days', @daysFromToday).format 'MMM D'
+          moment().add('days', @ScheduleHelper.daysFromToday).format 'MMM D'
         else
-          moment().startOf('week').add('days', @daysFromToday).format 'MMMM YYYY'
+          moment().startOf('week').add('days', @ScheduleHelper.daysFromToday).format 'MMMM YYYY'
 
-      @$scope.weekDay = (days) =>
-        moment().startOf('week').add 'days', @daysFromToday + days
+      @$scope.weekDay = _.bind @ScheduleHelper.weekDay, @ScheduleHelper # check to see if it works without bind
 
       @$scope.open = (user, day, shift, size) =>
         if @$scope.state.userIsAdmin
@@ -69,7 +65,7 @@
                 position: user.position_id
 
     _changeDay: (days) ->
-      @daysFromToday += days
+      @ScheduleHelper.daysFromToday += days
       @_addViewDataToUsers()
 
     _loadAndProcessData: ->
@@ -104,8 +100,8 @@
       if request.approved or request.active
         request.color = 'danger' if request.approved
         request.color = 'warning' if request.active
-        startOfWeek = moment().startOf('week').add 'days', @daysFromToday
-        endOfWeek = moment().endOf('week').add 'days', @daysFromToday
+        startOfWeek = moment().startOf('week').add 'days', @ScheduleHelper.daysFromToday
+        endOfWeek = moment().endOf('week').add 'days', @ScheduleHelper.daysFromToday
 
         weekRange = moment().range startOfWeek, endOfWeek
 
@@ -126,7 +122,7 @@
 
       shiftStartTime = moment shift.start_time
 
-      if shiftStartTime.isSame moment().startOf('week').add('days', @daysFromToday), 'week'
+      if shiftStartTime.isSame moment().startOf('week').add('days', @ScheduleHelper.daysFromToday), 'week'
         shift.dayIndex = shiftStartTime.day()
 
 ]
