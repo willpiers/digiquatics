@@ -1,6 +1,5 @@
-div class='col-md-3'
-  b Employee Position
+div class='col-md-4'
+  b FILTER BY THIS POSITION:
   select ng-model='positionFilter' class='form-control'
     option value='' All Positions
     option ng-repeat='position in positions' value='{{position.name}}' {{position.name}}
-
