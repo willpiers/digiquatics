@@ -1,7 +1,7 @@
 <div class='edit_shift'>
   <progressbar class='progress fix-schedule-time-bar my_shift_bar_mobile'
                ng-click="open(shift)" value='100'
-               type='primary'>
+               type='{{shift.color}}'>
     Shift: {{shift.start_time | date:'h:mma'}}-{{shift.end_time | date:'h:mma'}}
     </br>{{shift.position.name}} - {{shift.location.name}} </br>
     <i>(Click to Request Sub)</i>

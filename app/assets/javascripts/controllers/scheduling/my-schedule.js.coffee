@@ -18,6 +18,15 @@
     $scope.positions = Positions.index()
     $scope.subRequests = SubRequests.index()
 
+    addColorsToShifts = ->
+      # user
+      console.log $scope.myShifts
+      _.each $scope.myShifts.shifts, (blah) ->
+        console.log blah
+        shift.color = if _.where($scope.subRequests, {shift_id: shift.id}).length > 0 then 'warning' else 'primary'
+
+    addColorsToShifts()
+
     $scope.calculateHours = (user) ->
       shifts = user.shifts
       total = 0
