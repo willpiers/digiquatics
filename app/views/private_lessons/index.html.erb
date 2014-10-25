@@ -38,6 +38,112 @@
       </span> 1-3 Days
       <br><br>
     </div>
-    <%= render 'index' %>
+    <div ng-show='(privateLessons
+                  | orderBy:order.value:order.reverse
+                  | filter:locationFilter
+                  | filter:search).length' class='shadow-effect'>
+      <table class='table table-clean table-white' >
+        <thead>
+          <tr>
+            <th class='visible-xs'>
+              Name
+            </th>
+            <th class='hidden-xs'>
+              Last Name
+            </th>
+            <th class='hidden-xs'>
+              First Name
+            </th>
+            <th>
+              Age
+            </th>
+            <th class='hidden-xs'>
+              Gender
+            </th>
+            <th>
+              <a href='' ng-click="predicate.value = '-location.name'; reverse=!reverse">
+              Location
+              </a>
+              <span ng-show="thArrow(predicate.value, '-location.name')">
+                <dq-arrow></dq-arrow>
+              </span>
+            </th>
+            <th class='hidden-xs'>
+              <a href="" ng-click="predicate.value = '-created_at'; reverse=!reverse">
+              Date
+              </a>
+              <span ng-show="thArrow(predicate.value, '-created_at')">
+                <dq-arrow></dq-arrow>
+              </span>
+            </th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat='lesson in privateLessons
+            | orderBy:predicate.value:reverse
+            | filter:locationFilter
+            | filter:search
+            | limitTo:totalDisplayed'>
+            <td class='visible-xs'>
+              <div ng-repeat='participant in lesson.participants'>
+                <a ng-href='/private_lessons/{{lesson.id}}'>
+                  {{participant.last_name}}, {{participant.first_name}} <br/>
+                </a>
+              </div>
+            </td>
+            <td class='hidden-xs'>
+              <div ng-repeat='participant in lesson.participants'>
+                  {{participant.last_name}} <br/>
+              </div>
+            </td>
+            <td class='hidden-xs'>
+              <div ng-repeat='participant in lesson.participants'>
+                {{participant.first_name}} <br/>
+              </div>
+            </td>
+            <td>
+              <div ng-repeat='participant in lesson.participants'>
+                {{participant.age}}
+              </div>
+            </td>
+            <td class='hidden-xs'>
+              <div ng-repeat='participant in lesson.participants'>
+                {{participant.sex}}
+              </div>
+            </td>
+            <td>{{lesson.location.name}}</td>
+            <td ng-class='cssClass(lesson.created_at)'
+                class='hidden-xs'>
+                {{lesson.created_at | date:'M/d/yy @ h:mma'}}
+            </td>
+            <td>
+              <%= link_to '/private_lessons/{{lesson.id}}' do %>
+                <i class='fa fa-external-link fa-lg'></i>
+              <% end %>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div ng-show='(privateLessons
+                  | orderBy:order.value:order.reverse
+                  | filter:locationFilter
+                  | filter:search).length > 10'>
+      <dq-load-more></dq-load-more>
+    </div>
+    <div ng-hide='(privateLessons
+                  | orderBy:order.value:order.reverse
+                  | filter:locationFilter
+                  | filter:search).length'>
+      <hr/>
+      <center>
+        <p>
+          No private lessons match this search or you have none yet.
+          <%= link_to 'Click here to add a new private lesson.',
+              new_account_private_lesson_path(account_id: current_account.id) %>
+        </p>
+      </center>
+    </div>
   </div>
 </div>
