@@ -17,7 +17,6 @@
          </center>
        <% end %>
       <% end %>
-
       <%= link_to new_help_desk_path,
                  class:'btn btn-default btn-primary btn-lg btn-block' do %>
        <center>
@@ -26,7 +25,6 @@
          Maintenance Issue
        </center>
       <% end %>
-
       <%= link_to new_shift_report_path,
                  class:'btn btn-default btn-primary btn-lg btn-block' do %>
        <center>
@@ -35,7 +33,6 @@
          Shift Report
        </center>
       <% end %>
-
       <%= link_to new_slide_inspection_path,
                  class:'btn btn-default btn-primary btn-lg btn-block' do %>
        <center>
@@ -45,10 +42,9 @@
        </center>
       <% end %>
     </div>
-
     <div class='col-md-6'>
       <div class='dashboard-link'>
-        <% if !current_user.admin? %>
+        <% if current_user.admin? %>
           <div class='row'>
             <div class='col-md-4'>
               <h3>
@@ -71,7 +67,7 @@
             <br>
           </div>
         <% end %>
-        <% if current_user.admin? %>
+        <% if !current_user.admin? %>
           <div class='row'>
             <div class='col-md-4'>
               <h3>
