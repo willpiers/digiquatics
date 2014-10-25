@@ -10,8 +10,232 @@
 
       <% if signed_in? %>
         <div class = 'collapse navbar-collapse navHeaderCollapse'>
-          <%= render 'layouts/partials/desktop_links' %>
-          <%= render 'layouts/partials/mobile_links' %>
+          <div class='hidden-xs'>
+            <ul class = 'nav navbar-nav'>
+              <li class='<%= active_link_to_class('#', active:
+                    [['static_pages'],['dashboard']]) %>'>
+                <a href='/dashboard'><span class='fa fa-home fa-lg'></span></a>
+              </li>
+
+              <% if FeatureToggle.chemicals? current_user %>
+                <% if current_user.chemical_records_access? || current_user.admin? %>
+                  <li class='<%= active_link_to_class('#',
+                             active: [['chemical_records', 'static_pages'],
+                             ['index', 'edit', 'new', 'show', 'chemical_record_stats']]) %>'>
+                    <a href='/chemical_records'>
+                      <span class='fa fa-flask fa-lg'></span> CHEMICALS
+                    </a>
+                  </li>
+                <% end %>
+              <% end %>
+
+              <% if FeatureToggle.private_lessons? current_user %>
+                <% if current_user.private_lesson_access? || current_user.admin? %>
+                  <li class = "dropdown <%= active_link_to_class('#', active:
+                        [['private_lessons', 'static_pages'],
+                        ['index', 'edit', 'new', 'show', 'admin_index',
+                        'completed_admin_index', 'private_lesson_stats']]) %>">
+                    <a href = '#' class = 'dropdown-toggle' data-toggle = 'dropdown'>
+                      <span class='fa fa-child fa-lg'></span> LESSONS
+                      <b class = 'caret'></b>
+                    </a>
+                    <ul class = 'dropdown-menu'>
+                      <li>
+                        <%= link_to account_private_lessons_path(account_id: current_user.account_id) do %>
+                           Private Lessons Queue
+                          <% if show_badge_notification('private_lessons_queue') %>
+                            <span class='badge pull-right'>
+                              <%= badge_notifications('private_lessons_queue') %>
+                            </span>
+                          <% end %>
+                        <% end %>
+                      </li>
+                      <% if current_user && current_user.admin? %>
+                        <li class='divider'></li>
+                        <li><%= link_to 'New Private Lesson',
+                                new_account_private_lesson_path(account_id: current_account.id) %>
+                        </li>
+                        <li>
+                          <%= link_to 'Private Lessons Management', admin_index_path %>
+                        </li>
+                      <% end %>
+                    </ul>
+                <% end %>
+              <% end %>
+
+              <% if FeatureToggle.maintenance? current_user %>
+                <li class = "dropdown <%= active_nav('help_desks')%>
+                                      <%= active_nav('slide_inspections')%>">
+                  <a href = '#' class = 'dropdown-toggle' data-toggle = 'dropdown'>
+                    <span class='fa fa-wrench fa-lg'></span> MAINTENANCE
+                    <b class = 'caret'></b>
+                  </a>
+                  <ul class = 'dropdown-menu'>
+                    <li><%= link_to 'Slide Inspections', slide_inspections_path %></li>
+                    <li>
+                      <%= link_to help_desks_path do %>
+                         Open Issues
+                          <% if show_badge_notification('open_issues') %>
+                           <span class='badge pull-right'>
+                             <%= badge_notifications('open_issues') %>
+                           </span>
+                          <% end %>
+                      <% end %>
+                    </li>
+                  </ul>
+                </li>
+
+                <li class = "dropdown <%= active_link_to_class('#',
+                      active: [['users', 'static_pages'],
+                               ['index', 'new', 'inactive_index', 'user_stats']]) %>
+                      <%= active_link_to_class('#',
+                      active: [['certifications', 'certification_names'],
+                               ['index']]) %>">
+                  <a href = '#' class = 'dropdown-toggle' data-toggle = 'dropdown'>
+                    <span class='fa fa-users fa-lg'></span> EMPLOYEES
+                    <b class = 'caret'></b>
+                  </a>
+                  <ul class = 'dropdown-menu'>
+                      <% if current_user && current_user.admin? %>
+                        <li><%= link_to 'Certifications', certifications_path %></li>
+                      <% end %>
+                      <li><%= link_to 'Employees', users_path %></li>
+                  </ul>
+                </li>
+              <% end %>
+
+              <% if FeatureToggle.scheduling? current_user %>
+                <% if current_user %>
+                  <li class = "dropdown <%= active_link_to_class('#', active:
+                        [['shifts', 'sub_requests', 'time_off_requests'],
+                        ['index', 'edit', 'new', 'show', 'processed', 'admin_index',
+                         'archived_time_off_requests']]) %>">
+                    <a href = '#' class = 'dropdown-toggle' data-toggle = 'dropdown'>
+                      <span class='fa fa-calendar fa-lg'></span> SCHEDULING
+                      <b class = 'caret'></b>
+                    </a>
+                    <ul class = 'dropdown-menu'>
+                        <li>
+                          <%= link_to shifts_path do %>
+                            <%= Account.find_by_id(current_user.account_id).name %> Schedule
+                          <% end %>
+                        <li>
+                          <%= link_to sub_requests_path do %>
+                             Sub Requests Queue
+                             <% if show_badge_notification('sub_requests') %>
+                               <span class='badge pull-right'>
+                                 <%= badge_notifications('sub_requests') %>
+                               </span>
+                             <% end %>
+                          <% end %>
+                        </li>
+                        <% if current_user.admin? %>
+                          <li>
+                            <%= link_to time_off_requests_path do %>
+                               Time Off Requests
+                               <% if show_badge_notification('time_off_requests') %>
+                                 <span class='badge pull-right'>
+                                   <%= badge_notifications('time_off_requests') %>
+                                 </span>
+                               <% end %>
+                            <% end %>
+                          </li>
+                          <li class='divider'></li>
+                          <li>
+                            <%= link_to admin_sub_requests_path do %>
+                               Admin Sub Requests
+                               <% if show_badge_notification('admin_sub_requests') %>
+                                 <span class='badge pull-right'>
+                                   <%= badge_notifications('admin_sub_requests') %>
+                                 </span>
+                               <% end %>
+                            <% end %>
+                          </li>
+                        <% end %>
+                    </ul>
+                  </li>
+                <% end %>
+              <% end %>
+
+              <% if FeatureToggle.shift_reports? current_user %>
+                <li class='<%= active_link_to_class('#',
+                           active: [['shift_reports'], []]) %>'>
+                  <a href='/shift_reports'>
+                    <span class='fa fa-clipboard fa-lg'></span> SHIFT REPORTS
+                  </a>
+                </li>
+              <% end %>
+
+              <li class = "dropdown <%= active_link_to_class('#', active:
+                    [['availabilities', 'private_lessons', 'shifts',
+                      'sub_requests', 'users'],
+                    ['edit', 'availabilities', 'my_lessons',
+                     'my_schedule', 'my_sub_requests', 'my_time_off_requests']]) %>
+                     <%= active_link_to_class('#', active:
+                                 [['users'],
+                                 ['show']]) %>
+                      <%= active_link_to_class('#', active:
+                                  [['time_off_requests'],
+                                  ['my_time_off_requests']]) %>
+                     <%= active_link_to_class(availabilities_path,
+                         active: :inclusive) %>">
+                <a href = '#' class = 'dropdown-toggle' data-toggle = 'dropdown'>
+                  <span class='fa fa-user fa-lg'></span>
+                  <%= " #{current_user.first_name.upcase}" %>
+                  <b class = 'caret'></b>
+                </a>
+                <ul class = 'dropdown-menu'>
+                  <li><%= link_to ' My Profile', current_user %></li>
+                  <li class='divider'></li>
+                  <li><%= link_to 'My Availability', availabilities_path %></li>
+                  <li><%= link_to 'My Private Lessons', my_lessons_path %></li>
+                  <li><%= link_to 'My Schedule', my_schedule_path %></li>
+                  <li><%= link_to 'My Sub Requests', my_sub_requests_path %></li>
+                  <li><%= link_to 'My Time Off', my_time_off_requests_path %></li>
+                  <li class='divider'></li>
+                  <li><%= link_to 'Sign Out', destroy_user_session_path,
+                    method: :delete %></li>
+                </ul>
+              </li>
+
+              <% if current_user.admin? %>
+                <li class='<%= active_link_to_class('#', active:
+                      [['accounts', 'locations', 'certification_names',
+                        'positions', 'skill_levels', 'packages'],
+                      ['new', 'edit', 'admin_dashboard']]) %>'>
+                  <a href='/admin_dashboard'><span class='fa fa-cog fa-lg'></span></a>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+
+          <div class='visible-xs'>
+            <ul class = 'nav navbar-nav navbar-right' >
+              <li><%= link_to 'Dashboard', dashboard_path %></li>
+              <li><%= link_to 'Schedule', shifts_path %></li>
+              <li class = 'dropdown'>
+                <a href = '#' class = 'dropdown-toggle' data-toggle = 'dropdown'>
+                  My Information
+                </a>
+                <ul class = 'dropdown-menu'>
+                  <li><%= link_to 'My Profile', current_user %></li>
+                  <li><%= link_to 'My Availability', availabilities_path %></li>
+                  <li><%= link_to 'My Private Lessons', my_lessons_path %></li>
+                  <li><%= link_to 'My Schedule', my_schedule_path %></li>
+                  <li><%= link_to 'My Sub Requests', my_sub_requests_path %></li>
+                  <li><%= link_to 'My Time Off', my_time_off_requests_path %></li>
+                </ul>
+              </li>
+              <li>
+                <%= link_to 'Open Private Lessons',
+                             account_private_lessons_path(account_id: current_user.account_id) %>
+              </li>
+              <li><%= link_to 'Open Sub Requests', sub_requests_path %></li>
+              <li><%= link_to 'Contact List', users_path %></li>
+              <li><%= link_to 'Sign Out', destroy_user_session_path,
+                      method: :delete %></li>
+            </ul>
+          </div>
         </div>
       <% end %>
     </div>
