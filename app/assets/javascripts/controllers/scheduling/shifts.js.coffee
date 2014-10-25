@@ -2,6 +2,7 @@
   '$q'
   '$scope'
   'Shifts'
+  'SubRequests'
   'Users'
   'Locations'
   'Positions'
@@ -11,11 +12,12 @@
   'Window'
 
   class ShiftsCtrl
-    constructor: (@$q, @$scope, @Shifts, @Users, @Locations, @Positions, $modal, @ScheduleHelper, $window, Window) ->
+    constructor: (@$q, @$scope, @Shifts, @SubRequests, @Users, @Locations, @Positions, $modal, @ScheduleHelper, $window, Window) ->
       @$scope.state = {}
       @$scope.state.buildMode = true
       @$scope.days = @ScheduleHelper.days
       @$scope.predicate = value: 'last_name'
+      @subRequests = @SubRequests.index()
 
       @_loadAndProcessData()
 
@@ -84,7 +86,8 @@
       _.each @$scope.users, (user) =>
         user.weeklyHours = @_calculateHours user
         _.each user.time_off_requests, @_addDayIndicesToTimeOffRequests, @
-        _.each user.shifts, @_addDayIndexToShift, @
+        _.each user.shifts, @_addShiftData, @
+        _.each user.shifts, @_addColorToShift, @
 
     _calculateHours: (user) ->
       _.reduce user.shifts, (total, shift) =>
@@ -117,12 +120,15 @@
           if moment(request.starts_at).within weekRange
             request.dayIndices.push moment(request.starts_at).day()
 
-    _addDayIndexToShift: (shift) ->
+    _addShiftData: (shift) ->
       delete shift.dayIndex if shift.dayIndex?
 
       shiftStartTime = moment shift.start_time
 
       if shiftStartTime.isSame moment().startOf('week').add('days', @ScheduleHelper.daysFromToday), 'week'
         shift.dayIndex = shiftStartTime.day()
+        @_addColorToShift(shift)
 
+    _addColorToShift: (shift) ->
+      shift.color = if _.where(@subRequests, {shift_id: shift.id}).length > 0 then 'warning' else 'primary'
 ]
