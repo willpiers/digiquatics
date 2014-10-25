@@ -77,36 +77,36 @@
                        | filter:locationFilter
                        | filter:search'>
           <td>
-            {{startsAt(request)}}
+            {{::startsAt(request)}}
           </td>
           <td>
-            {{endsAt(request)}}
+            {{::endsAt(request)}}
           </td>
           <td class='hidden-xs'>
             <div ng-if='hasReason(request)'>
-              {{request.reason | limitTo:15}}...
+              {{::request.reason | limitTo:15}}...
             </div>
           </td>
           <td ng-class='cssClass(request)'>
             <div ng-hide='checkActive(request)' %>
-            {{request.approved | booleanToWordsTimeOff}}
+            {{::request.approved | booleanToWordsTimeOff}}
             </div>
             <div ng-show='checkActive(request)' %>
             Pending
             </div>
           </td>
           <td class='hidden-xs'>
-            {{request.created_at | date:'M/d/yy @ h:mma'}}
+            {{::request.created_at | date:'M/d/yy @ h:mma'}}
           </td>
           <td class='hidden-xs'>
             <div ng-hide='checkActive(request)' %>
-              <a ng-href='/users/{{request.approved_by_user_id}}'>
-                {{request.processed_by_last_name}}, {{request.processed_by_first_name}}
+              <a ng-href='/users/{{::request.approved_by_user_id}}'>
+                {{::request.processed_by_last_name}}, {{::request.processed_by_first_name}}
               </a>
             </div>
           </td>
           <td class='hidden-xs'>
-            {{request.approved_at | date:'M/d/yy @ h:mma'}}
+            {{::request.approved_at | date:'M/d/yy @ h:mma'}}
           </td>
           <td>
             <div ng-if='request.active' ng-click='open(true, request)'>

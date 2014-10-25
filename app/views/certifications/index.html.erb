@@ -24,6 +24,94 @@
      </span> Current
     </div>
     <br>
-    <%= render 'certifications' %>
+    <div ng-show='(users | orderBy:predicate.value:predicate.reverse | filter:locationFilter | filter:search).length'
+         class='shadow-effect'>
+      <table class='certs-table table-clean table-white'>
+        <thead>
+          <tr>
+            <th></th>
+            <th></th>
+            <th class='visible-xs'>
+              <a class='pointer-hand' ng-click="predicate.value = '-last_name';">
+              Name</a>
+              <span ng-show="thArrow(predicate.value, '-last_name')">
+                <dq-arrow></dq-arrow>
+              </span>
+            </th>
+            <th class='hidden-xs'>
+              <a class='pointer-hand' ng-click="predicate.value = '-last_name'; predicate.reverse = !predicate.reverse">
+              Last Name</a>
+            </th>
+            <th class='hidden-xs'>
+              <a class='pointer-hand' ng-click="predicate.value = '-first_name'; predicate.reverse = !predicate.reverse">
+              First Name</a>
+            </th>
+            <th class='hidden-xs'>
+              <a class='pointer-hand' ng-click="predicate.value = '-location.name'; predicate.reverse = !predicate.reverse">
+              Location</a>
+            </th>
+            <th ng-repeat='certName in certificationNames'>
+              <center>
+                {{certName.name}}
+              </center>
+            </th>
+            <th></th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody cellspacing="0" cellpadding="0" >
+          <tr ng-repeat='user in users
+                        | orderBy:predicate.value:predicate.reverse
+                        | filter:locationFilter
+                        | filter:search
+                        | filter:dateFilter'>
+            <td></td>
+            <td></td>
+            <td class='visible-xs'>
+              <a ng-href='/users/{{user.id}}'>
+                {{::user.last_name}}, {{::user.first_name}}
+              </a>
+            </td>
+            <td class='hidden-xs'>
+              <a ng-href='/users/{{::user.id}}'>
+                {{::user.last_name}}
+              </a>
+            </td>
+            <td class='hidden-xs'>{{::user.first_name}}</td>
+            <td class='hidden-xs'>{{::user.location.name}}</td>
+            <td ng-repeat="certName in certificationNames" >
+              <div ng-repeat="cert in user.certifications
+                              | orderBy:'certification_name_id'"
+                   ng-if='checkId(cert, $parent.$index)'>
+                <center>
+                  <div ng-class="cssClass(cert.expiration_date)"
+                       class='cert-cell'>
+                    <div class='cert-cell-text'>
+                    {{localToUtc(cert.expiration_date)}}
+                    </div>
+                  </div>
+                </center>
+              </div>
+            </td>
+            <td></td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div ng-hide='(users
+                  | orderBy:predicate.value:predicate.reverse
+                  | filter:locationFilter
+                  | filter:search).length'>
+      <hr/>
+      <center>
+        <p>
+          No certifications match this search or you have none yet.
+          <a href='/certification_names/new'>
+            Click here to add a certification.
+          </a>
+        </p>
+      </center>
+    </div>
   </div>
 </div>

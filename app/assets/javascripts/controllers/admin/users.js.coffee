@@ -7,6 +7,9 @@
     $scope.users = Users.index()
     $scope.locations = Locations.index()
 
+    $scope.predicate =
+      value: 'last_name'
+
     $scope.userAdmin = (user) ->
       user.admin == true
 
