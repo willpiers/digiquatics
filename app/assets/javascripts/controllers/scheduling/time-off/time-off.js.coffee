@@ -10,6 +10,8 @@
   @TimeOffCtrl = ($scope, TimeOff, Users, Locations, Positions, $modal, TimeOffHelper) ->
     angular.extend $scope, TimeOffHelper
     $scope.timeOff = TimeOff.index()
+    $scope.myTimeOff = (current_user) ->
+      _.where($scope.timeOff, {user_id: current_user})
     $scope.users = Users.index()
     $scope.locations = Locations.index()
     $scope.positions = Positions.index()

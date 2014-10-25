@@ -72,11 +72,10 @@
         </tr>
       </thead>
       <tbody>
-        <tr ng-repeat='request in timeOff
+        <tr ng-repeat='request in myTimeOff(data.user.id)
                        | orderBy:predicate.value:reverse
                        | filter:locationFilter
-                       | filter:search
-                       | filter:myTimeOffFilter(data.user)'>
+                       | filter:search'>
           <td>
             {{startsAt(request)}}
           </td>
