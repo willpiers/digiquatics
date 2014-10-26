@@ -2,7 +2,7 @@
   @CertificationsCtrl = ($scope, Users, Locations, CertificationNames, Certifications) ->
 
     $scope.predicate =
-      value: '-user.last_name'
+      value: 'last_name'
 
     $scope.users = Users.index()
     $scope.locations = Locations.index()

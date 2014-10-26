@@ -91,28 +91,28 @@
                       | filter:search
                       | filter: {active: true}'>
           <td class='visible-xs'>
-            <a ng-href='/users/{{request.user.id}}'>
-              {{request.user.last_name}}, {{request.user.first_name}}
+            <a ng-href='/users/{{::request.user.id}}'>
+              {{::request.user.last_name}}, {{::request.user.first_name}}
             </a>
           </td>
           <td class='hidden-xs'>
-            <a ng-href='/users/{{request.user.id}}'>
-              {{request.user.last_name}}
+            <a ng-href='/users/{{::request.user.id}}'>
+              {{::request.user.last_name}}
             </a>
           </td>
-          <td class='hidden-xs'>{{request.user.first_name}}</td>
+          <td class='hidden-xs'>{{::request.user.first_name}}</td>
           <td class='hidden-xs'>
-            {{request.created_at | date:'M/d/yy @ h:mma'}}
+            {{::request.created_at | date:'M/d/yy @ h:mma'}}
           </td>
           <td>
-            {{startsAt(request)}}
+            {{::startsAt(request)}}
           </td>
           <td>
-            {{endsAt(request)}}
+            {{::endsAt(request)}}
           </td>
           <td class='hidden-xs'>
             <div ng-if='hasReason(request)'>
-              {{request.reason | limitTo:15}}...
+              {{::request.reason | limitTo:15}}...
             </div>
           </td>
           <td>

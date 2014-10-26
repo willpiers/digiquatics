@@ -75,6 +75,10 @@
               <span class='legendBlue'>
                 <i class='fa fa-circle fa-border'></i> Shift
               </span>
+              <span class='legendYellow'>
+                <i class='fa fa-circle fa-border'></i> Pending Sub Request
+              </span>
+              <br>
               <span class='legendGreen'>
                 <i class='fa fa-circle fa-border'></i> Availability
               </span>
@@ -111,20 +115,6 @@
       <div class='schedule_header_width'>
         <div class='shadow-effect'>
           <dq-floating-table-head days='days'></dq-floating-table-head>
-          <!-- <table id=special-nav  class='table table-bordered table-white print-schedule-font'>
-            <thead>
-              <tr>
-                <th id='schedule_header'>
-                </th>
-                <th class='schedule_day_header' ng-repeat='day in days'>
-                  <center>
-                    <h4>{{weekDay(days.indexOf(day)).format('ddd')}}</h4>
-                    <h2>{{weekDay(days.indexOf(day)).format('D')}}</h2>
-                  </center>
-                </th>
-              </tr>
-            </thead>
-          </table> -->
         </div>
 
         <br>
@@ -135,8 +125,8 @@
               <tr ng-repeat='user in users | orderBy:predicate.value:reverse |
                              filter:locationFilter | filter:positionFilter'>
                 <td>
-                  {{user.last_name}}, </br>
-                  {{user.first_name}}
+                  {{::user.last_name}}, </br>
+                  {{::user.first_name}}
                   <div class='hidden-print'>
                     <br><i class='fa fa-clock-o'></i>
                     {{user.weeklyHours}}
@@ -177,8 +167,8 @@
                         | filter:locationFilter
                         | filter:positionFilter'>
             <td>
-              {{user.last_name}}, </br>
-              {{user.first_name}}
+              {{::user.last_name}}, </br>
+              {{::user.first_name}}
               <div class='hidden-print'>
                 <br><i class='fa fa-clock-o'></i>
                 {{user.weeklyHours}}

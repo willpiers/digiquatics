@@ -28,6 +28,97 @@
       </div>
     </div>
     <br>
-    <%= render 'index' %>
+    <table ng-show='(subRequests
+                    | orderBy:predicate.value:predicate.reverse
+                    | filter:locationFilter
+                    | filter:search).length' c
+           class='table table-clean table-white shadow-effect'>
+      <thead>
+        <tr>
+          <th class='hidden-xs'>
+            <a href="" ng-click="predicate.value = '-shift.location.name'; reverse=!reverse">
+            Location</a>
+            <span ng-show="thArrow(predicate.value, '-shift.location.name')">
+              <dq-arrow></dq-arrow>
+            </span>
+          </th>
+          <th>
+            <a href="" ng-click="predicate.value = '-shift.position.name'; reverse=!reverse">
+              Position
+            </a>
+            <span ng-show="thArrow(predicate.value, '-shift.position.name')">
+              <dq-arrow></dq-arrow>
+            </span>
+          </th>
+          <th class='hidden-xs'>
+            <a href="" ng-click="predicate.value = '-shift.start_time'; reverse=!reverse">
+              Shift Date
+            </a>
+            <span ng-show="thArrow(predicate.value, '-shift.start_time')">
+              <dq-arrow></dq-arrow>
+            </span>
+          </th>
+          <th class='hidden-xs'> Shift Time </th>
+          <th class='visible-xs'> Shift </th>
+          <th class='hidden-xs'>
+            <a href="" ng-click="predicate.value = '-shift.user.last_name'; reverse=!reverse">
+              Requested By
+            </a>
+            <span ng-show="thArrow(predicate.value, '-shift.user.last_name')">
+              <dq-arrow></dq-arrow>
+            </span>
+          </th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat='request in subRequests
+                      | orderBy:predicate.value:reverse
+                      | filter:locationFilter
+                      | filter:search
+                      | limitTo:totalDisplayed'>
+          <td class='hidden-xs'>{{::request.shift.location.name}}</td>
+          <td>{{::request.shift.position.name}}</td>
+          <td class='hidden-xs'>
+            {{::request.shift.start_time | date:'M/d/yy'}}
+          </td>
+          <td class='hidden-xs'>
+            {{::request.shift.start_time | date:'h:mm'}} -
+            {{::request.shift.end_time | date:'h:mm a'}}
+          </td>
+          <td class='visible-xs'>
+            {{::request.shift.start_time | date:'h:mm'}} -
+            {{::request.shift.end_time | date:'h:mm a M/d/yy '}}
+          </td>
+          <td class='hidden-xs'>
+            <a ng-href='/users/{{::request.shift.user.id}}'>
+              {{::request.shift.user.last_name}}, {{::request.shift.user.first_name}}
+            </a>
+          </td>
+          <td>
+            <div ng-click="open(request, 'lg')">
+              <a><i class='fa fa-external-link fa-lg'></i></a>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div ng-show='(subRequests
+                  | orderBy:predicate.value:predicate.reverse
+                  | filter:locationFilter
+                  | filter:search).length > 10'>
+      <dq-load-more></dq-load-more>
+    </div>
+    <div ng-hide='(subRequests
+                  | orderBy:predicate.value:predicate.reverse
+                  | filter:locationFilter
+                  | filter:search).length'>
+      <hr/>
+      <center>
+        <p>
+          No sub requests match this search or there is none yet.
+        </p>
+      </center>
+    </div>
   </div>
 </div>

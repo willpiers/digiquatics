@@ -87,38 +87,38 @@
             | limitTo:totalDisplayed'>
             <td class='visible-xs'>
               <div ng-repeat='participant in lesson.participants'>
-                <a ng-href='/private_lessons/{{lesson.id}}'>
-                  {{participant.last_name}}, {{participant.first_name}} <br/>
+                <a ng-href='/private_lessons/{{::lesson.id}}'>
+                  {{::participant.last_name}}, {{::participant.first_name}} <br/>
                 </a>
               </div>
             </td>
             <td class='hidden-xs'>
               <div ng-repeat='participant in lesson.participants'>
-                  {{participant.last_name}} <br/>
+                  {{::participant.last_name}} <br/>
               </div>
             </td>
             <td class='hidden-xs'>
               <div ng-repeat='participant in lesson.participants'>
-                {{participant.first_name}} <br/>
+                {{::participant.first_name}} <br/>
               </div>
             </td>
             <td>
               <div ng-repeat='participant in lesson.participants'>
-                {{participant.age}}
+                {{::participant.age}}
               </div>
             </td>
             <td class='hidden-xs'>
               <div ng-repeat='participant in lesson.participants'>
-                {{participant.sex}}
+                {{::participant.sex}}
               </div>
             </td>
-            <td>{{lesson.location.name}}</td>
+            <td>{{::lesson.location.name}}</td>
             <td ng-class='cssClass(lesson.created_at)'
                 class='hidden-xs'>
-                {{lesson.created_at | date:'M/d/yy @ h:mma'}}
+                {{::lesson.created_at | date:'M/d/yy @ h:mma'}}
             </td>
             <td>
-              <%= link_to '/private_lessons/{{lesson.id}}' do %>
+              <%= link_to '/private_lessons/{{::lesson.id}}' do %>
                 <i class='fa fa-external-link fa-lg'></i>
               <% end %>
             </td>
