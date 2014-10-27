@@ -111,7 +111,7 @@
       </div>
     </div>
 
-    <div class='hidden-xs hidden-sm'>
+    <!-- <div class='hidden-xs hidden-sm'> -->
       <div class='schedule_header_width'>
         <div class='shadow-effect'>
           <dq-floating-table-head days='days'></dq-floating-table-head>
@@ -120,19 +120,17 @@
         <br>
 
         <div class='shadow-effect'>
-          <table class='table table-bordered table-white print-schedule-font table-fixed'>
+          <table class='table table-bordered table-white print-schedule-font table-fixed visible-print-inline schedule-table-print'>
             <tbody>
               <tr ng-repeat='user in users | orderBy:predicate.value:reverse |
                              filter:locationFilter | filter:positionFilter'>
                 <td class='tr-eight-fixed'>
                   {{::user.last_name}}, </br>
                   {{::user.first_name}}
-                  <div class='hidden-print'>
-                    <br><i class='fa fa-clock-o'></i>
-                    {{user.weeklyHours}}
-                  </div>
+                  <br><i class='fa fa-clock-o'></i>
+                  {{user.weeklyHours}}
                 </td>
-                <td ng-repeat='day in days' class='tr-eight-fixed'>
+                <td ng-repeat='day in days' class='tr-eight-fixed print-schedule-font'>
                   <div ng-if='state.buildMode'>
                     <dq-time-off-requests day-name='day'
                                           time-off-requests='user.time_off_requests'>
@@ -147,7 +145,7 @@
                              open='open(user, days.indexOf(day), shift)'>
                   </dq-shifts>
                   <div ng-if='state.buildMode'>
-                    <div class='shift' ng-click='open(user, days.indexOf(day))'
+                    <div class='add-shift' ng-click='open(user, days.indexOf(day))'
                          data-hover='Assign Shift'>
                     </div>
                   </div>
@@ -159,7 +157,7 @@
       </div>
     </div>
 
-    <div class='visible-xs visible-sm'>
+    <!-- <div class='visible-xs visible-sm'>
       <table class='table table-bordered table-white print-schedule-font table-fixed'>
         <tbody>
           <tr ng-repeat='user in users
@@ -192,6 +190,6 @@
           </tr>
         </tbody>
       </table>
-    </div>
+    </div> -->
   </div>
 </div>
