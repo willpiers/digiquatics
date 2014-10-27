@@ -14,7 +14,7 @@
       </div>
       <div class='schedule_header_width'>
         <div class='row'>
-          <div class='hidden-xs' ng-if='state.userIsAdmin'>
+          <div class='hidden-xs hidden-sm' ng-if='state.userIsAdmin'>
             <div class='col-md-4'>
               <b>SCHEDULE EMPLOYEES AT THIS LOCATION:</b>
               <div ng-init="state.buildLocation = <%= current_user.location.id %>"></div>
@@ -36,7 +36,7 @@
               <option value="">All Locations</option>
             </select>
           </div>
-          <div class='hidden-xs' ng-show='state.userIsAdmin'>
+          <div class='hidden-xs hidden-sm' ng-show='state.userIsAdmin'>
             <dq-position></dq-position>
           </div>
         </div>
@@ -99,7 +99,7 @@
               </div>
             </div>
             <div class='col-md-1'>
-              <div class='pull-right'>
+              <div class='pull-right hidden-xs hidden-sm'>
                 <button class='btn btn-default fa fa-print fa-lg' ng-click='print()'>
                   Print
                 </button>
@@ -111,7 +111,7 @@
       </div>
     </div>
 
-    <div class='hidden-xs'>
+    <div class='hidden-xs hidden-sm'>
       <div class='schedule_header_width'>
         <div class='shadow-effect'>
           <dq-floating-table-head days='days'></dq-floating-table-head>
@@ -159,7 +159,7 @@
       </div>
     </div>
 
-    <div class='visible-xs'>
+    <div class='visible-xs visible-sm'>
       <table class='table table-bordered table-white print-schedule-font table-fixed'>
         <tbody>
           <tr ng-repeat='user in users
