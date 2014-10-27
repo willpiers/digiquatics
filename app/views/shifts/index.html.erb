@@ -120,11 +120,11 @@
         <br>
 
         <div class='shadow-effect'>
-          <table class='table table-bordered table-white print-schedule-font'>
+          <table class='table table-bordered table-white print-schedule-font table-fixed'>
             <tbody>
               <tr ng-repeat='user in users | orderBy:predicate.value:reverse |
                              filter:locationFilter | filter:positionFilter'>
-                <td>
+                <td class='tr-eight-fixed'>
                   {{::user.last_name}}, </br>
                   {{::user.first_name}}
                   <div class='hidden-print'>
@@ -132,7 +132,7 @@
                     {{user.weeklyHours}}
                   </div>
                 </td>
-                <td ng-repeat='day in days'>
+                <td ng-repeat='day in days' class='tr-eight-fixed'>
                   <div ng-if='state.buildMode'>
                     <dq-time-off-requests day-name='day'
                                           time-off-requests='user.time_off_requests'>
@@ -160,13 +160,13 @@
     </div>
 
     <div class='visible-xs'>
-      <table class='table table-bordered table-white print-schedule-font'>
+      <table class='table table-bordered table-white print-schedule-font table-fixed'>
         <tbody>
           <tr ng-repeat='user in users
                         | orderBy:predicate.value:reverse
                         | filter:locationFilter
                         | filter:positionFilter'>
-            <td>
+            <td class='tr-eight-fixed'>
               {{::user.last_name}}, </br>
               {{::user.first_name}}
               <div class='hidden-print'>
@@ -174,7 +174,7 @@
                 {{user.weeklyHours}}
               </div>
             </td>
-            <td>
+            <td class='tr-eight-fixed'>
               <div ng-if='state.userIsAdmin'>
                 <dq-time-off-requests day-name='currentDayName()'
                                       time-off-requests='user.time_off_requests'>

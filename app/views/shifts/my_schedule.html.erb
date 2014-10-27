@@ -43,12 +43,12 @@
         </h4>
       </center>
     </div>
-    <div class='hidden-xs visible-sm visible-md visible-lg visible-print'>
+    <div class='hidden-xs hidden-sm visible-md visible-lg visible-print'>
       <h4 ng-repeat='user in myShifts'>
         <i class='fa fa-clock-o'></i> {{calculateHours(user)}}
         Hours
       </h4>
-      <table class='table table-bordered table-white print-schedule-font'>
+      <table class='table table-bordered table-white print-schedule-font fixed-table'>
         <thead>
           <tr>
             <th class='schedule_day_header' ng-repeat='day in days'>
@@ -59,7 +59,7 @@
         </thead>
         <tbody>
           <tr ng-repeat='user in myShifts | orderBy:predicate.value:reverse'>
-            <td ng-repeat='day in days'>
+            <td ng-repeat='day in days' class='td-seven-fixed'>
               <div ng-if='sameDayTimeOff(time_off, days.indexOf(day))'
                    ng-repeat='time_off in user.time_off_requests'>
                 <%= render 'shifts/week_views/my_time_off' %>
@@ -78,7 +78,7 @@
         </tbody>
       </table>
     </div>
-    <div class='visible-xs hidden-print'>
+    <div class='visible-xs visible-sm hidden-print'>
       <h4 ng-repeat='user in myShifts'>My Hours: {{calculateHours(user)}}</h4>
       <table class='table table-bordered table-white shadow-effect'
              ng-repeat='day in days'>

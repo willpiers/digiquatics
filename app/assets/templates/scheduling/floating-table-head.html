@@ -1,9 +1,9 @@
-<table class='table table-bordered table-white print-schedule-font'
+<table class='table table-bordered table-white print-schedule-font fixed-table'
        ng-class="{fixed: fixHead, 'pink-scroll-top-border': fixHead}">
   <thead>
     <tr>
       <th id='schedule_header'></th>
-      <th class='schedule_day_header' ng-repeat='day in days'>
+      <th class='schedule_day_header tr-eight-fixed' ng-repeat='day in days'>
         <center>
           <h4>{{weekDay(days.indexOf(day)).format('ddd')}}</h4>
           <h2>{{weekDay(days.indexOf(day)).format('D')}}</h2>

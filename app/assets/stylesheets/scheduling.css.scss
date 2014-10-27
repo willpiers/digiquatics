@@ -28,7 +28,6 @@ cursor: pointer;
 
 .my_time_off_bar {
   height: 40px;
-  max-width: 120px;
   margin: 0px;
   padding: 0px;
   vertical-align: middle;
@@ -43,7 +42,6 @@ cursor: pointer;
 
 .my_shift_bar {
   height: 150px;
-  max-width: 120px;
   margin: 0px;
   padding: 0px;
   vertical-align: middle;
@@ -138,4 +136,14 @@ cursor: pointer;
   border-top-style: solid;
   border-top-width: 5px;
   border-top-color:  $pinkAccent;
+}
+
+.table-fixed {
+  table-layout: fixed;
+}
+.td-seven-fixed {
+  width: 14.25%;
+}
+.tr-eight-fixed{
+  width: 12.5%;
 }
