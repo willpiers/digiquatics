@@ -54,7 +54,7 @@ class TimeOffRequestsController < ApplicationController
   def destroy
     Tracker.track(current_user.id, 'Delete Time Off Request')
     @time_off_request.destroy
-    render json: 'success'
+    render json: @time_off_request
   end
 
   private
