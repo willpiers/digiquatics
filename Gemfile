@@ -45,7 +45,6 @@ gem 'angularjs-rails', '~> 1.3.0'
 gem 'angular-ui-bootstrap-rails', '~> 0.11.1'
 gem 'angular-rails-templates'
 gem 'jquery-turbolinks'
-gem 'momentjs-rails'
 gem 'lodash-rails'
 
 group :development, :test do

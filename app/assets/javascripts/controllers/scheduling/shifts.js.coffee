@@ -17,7 +17,6 @@
       @$scope.state.buildMode = true
       @$scope.days = @ScheduleHelper.days
       @$scope.predicate = value: 'last_name'
-      @subRequests = @SubRequests.index()
 
       @_loadAndProcessData()
 
@@ -36,16 +35,16 @@
         @_addViewDataToUsers()
 
       @$scope.currentDayName = =>
-        moment().add('days', @ScheduleHelper.daysFromToday).format 'dddd'
+        moment().add(@ScheduleHelper.daysFromToday, 'days').format 'dddd'
 
       @$scope.currentDayOfWeek = =>
-        moment().add('days', @ScheduleHelper.daysFromToday).format 'd'
+        moment().add(@ScheduleHelper.daysFromToday, 'days').format 'd'
 
       @$scope.displayStartDate = =>
         if Window.xs
-          moment().add('days', @ScheduleHelper.daysFromToday).format 'MMM D'
+          moment().add(@ScheduleHelper.daysFromToday, 'days').format 'MMM D'
         else
-          moment().startOf('week').add('days', @ScheduleHelper.daysFromToday).format 'MMMM YYYY'
+          moment().startOf('week').add(@ScheduleHelper.daysFromToday, 'days').format 'MMMM YYYY'
 
       @$scope.weekDay = _.bind @ScheduleHelper.weekDay, @ScheduleHelper # check to see if it works without bind
 
@@ -75,10 +74,12 @@
         users: @Users.index().$promise
         locations: @Locations.index().$promise
         positions: @Positions.index().$promise
-      .then ({users, locations, positions}) =>
+        subRequests: @SubRequests.index().$promise
+      .then ({users, locations, positions, subRequests}) =>
         @$scope.locations = locations
         @$scope.positions = positions
         @$scope.users = users
+        @$scope.subRequests = subRequests
 
         @_addViewDataToUsers()
 
@@ -103,8 +104,8 @@
       if request.approved or request.active
         request.color = 'danger' if request.approved
         request.color = 'warning' if request.active
-        startOfWeek = moment().startOf('week').add 'days', @ScheduleHelper.daysFromToday
-        endOfWeek = moment().endOf('week').add 'days', @ScheduleHelper.daysFromToday
+        startOfWeek = moment().startOf('week').add @ScheduleHelper.daysFromToday, 'days'
+        endOfWeek = moment().endOf('week').add @ScheduleHelper.daysFromToday, 'days'
 
         weekRange = moment().range startOfWeek, endOfWeek
 
@@ -115,20 +116,21 @@
             requestRangeDuringThisWeek = weekRange.intersect requestRange
 
             requestRangeDuringThisWeek.by 'days', (momentDay) ->
-              request.dayIndices.push momentDay.day()
+              request.dayIndices.push momentDay.weekday()
         else
           if moment(request.starts_at).within weekRange
-            request.dayIndices.push moment(request.starts_at).day()
+            request.dayIndices.push moment(request.starts_at).weekday()
 
     _addShiftData: (shift) ->
       delete shift.dayIndex if shift.dayIndex?
 
       shiftStartTime = moment shift.start_time
+      selectedDay = moment().startOf('week').add @ScheduleHelper.daysFromToday, 'days'
 
-      if shiftStartTime.isSame moment().startOf('week').add('days', @ScheduleHelper.daysFromToday), 'week'
-        shift.dayIndex = shiftStartTime.day()
-        @_addColorToShift(shift)
+      if shiftStartTime.isSame selectedDay, 'week'
+        shift.dayIndex = shiftStartTime.weekday()
+        @_addColorToShift shift
 
     _addColorToShift: (shift) ->
-      shift.color = if _.where(@subRequests, {shift_id: shift.id}).length > 0 then 'warning' else 'primary'
+      shift.color = if _.size(@subRequests, shift_id: shift.id) then 'warning' else 'primary'
 ]

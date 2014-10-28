@@ -25,8 +25,8 @@
       if current_column == anchored_column then true
 
     $scope.today = moment()
-    $scope.ninetyDays = moment().add('days', 90)
-    $scope.onehundredeighty = moment().add('days', 180)
+    $scope.ninetyDays = moment().add 90, 'days'
+    $scope.onehundredeighty = moment().add 180, 'days'
 
     $scope.cssClass = (certification) ->
       if      moment(certification).isBefore($scope.today) ||

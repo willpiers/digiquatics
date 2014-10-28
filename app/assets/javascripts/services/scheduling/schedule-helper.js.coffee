@@ -1,7 +1,9 @@
 @digiquatics.factory 'ScheduleHelper', [
   ->
     class ScheduleHelper
-      @days = [
+      moment.locale 'dq', week: dow: 1
+
+      _days = [
         'Sunday'
         'Monday'
         'Tuesday'
@@ -10,6 +12,11 @@
         'Friday'
         'Saturday'
       ]
+
+      @days = []
+
+      _days.forEach (dayName) =>
+        @days[Number(moment().day(dayName).weekday())] = dayName
 
       @daysFromToday = 0
 

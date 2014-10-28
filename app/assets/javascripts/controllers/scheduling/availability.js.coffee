@@ -17,7 +17,7 @@
       momentTime - momentTime.clone().startOf 'day'
 
     weekDay = (days) ->
-      moment().startOf('week').add('days', days)
+      moment().startOf('week').add days, 'days'
 
     $scope.startTime = (days) ->
       start = new Date()
