@@ -10,7 +10,7 @@
 #= require angular-ui-bootstrap-tpls
 #= require ng-rails-csrf
 
-#= require moment-2.8.3
+#= require moment
 #= require moment-range-1.0.2
 
 #= require angular-rails-templates
