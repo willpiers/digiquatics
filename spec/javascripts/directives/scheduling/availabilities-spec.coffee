@@ -17,7 +17,6 @@ describe 'Availabilities', ->
     scope = @element.isolateScope()
 
   it 'renders the availability and formats the time correctly', ->
-    debugger
     startsAt = moment(@$scope.user.availabilities[0].start_time).format('h:mmA')
     endsAt = moment(@$scope.user.availabilities[0].end_time).format('h:mmA')
     @element.find('span').text().should.contain "#{startsAt}-#{endsAt}"
