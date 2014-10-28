@@ -111,7 +111,42 @@
       </div>
     </div>
 
-    <!-- <div class='hidden-xs hidden-sm'> -->
+    <div class='hidden-print'>
+      <table class='table table-bordered table-white print-schedule-font table-fixed visible-xs visible-sm'>
+        <tbody>
+          <tr ng-repeat='user in users
+                        | orderBy:predicate.value:reverse
+                        | filter:locationFilter
+                        | filter:positionFilter'>
+            <td class='tr-eight-fixed'>
+              {{::user.last_name}}, </br>
+              {{::user.first_name}}
+              <div class='hidden-print'>
+                <br><i class='fa fa-clock-o'></i>
+                {{user.weeklyHours}}
+              </div>
+            </td>
+            <td class='tr-eight-fixed'>
+              <div ng-if='state.userIsAdmin'>
+                <dq-time-off-requests day-name='currentDayName()'
+                                      time-off-requests='user.time_off_requests'>
+                </dq-time-off-requests>
+                <dq-availabilities day-name='currentDayName()'
+                                   availabilities='user.availabilities'>
+                </dq-availabilities>
+              </div>
+              <dq-shifts day-name='currentDayName()'
+                         shifts='user.shifts'
+                         user-is-admin='state.userIsAdmin'
+                         open='open(user, days.indexOf(currentDayName()), shift)'>
+              </dq-shifts>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class='desktop-view'>
       <div class='schedule_header_width'>
         <div class='shadow-effect'>
           <dq-floating-table-head days='days'></dq-floating-table-head>
@@ -156,40 +191,5 @@
         </div>
       </div>
     </div>
-
-    <!-- <div class='visible-xs visible-sm'>
-      <table class='table table-bordered table-white print-schedule-font table-fixed'>
-        <tbody>
-          <tr ng-repeat='user in users
-                        | orderBy:predicate.value:reverse
-                        | filter:locationFilter
-                        | filter:positionFilter'>
-            <td class='tr-eight-fixed'>
-              {{::user.last_name}}, </br>
-              {{::user.first_name}}
-              <div class='hidden-print'>
-                <br><i class='fa fa-clock-o'></i>
-                {{user.weeklyHours}}
-              </div>
-            </td>
-            <td class='tr-eight-fixed'>
-              <div ng-if='state.userIsAdmin'>
-                <dq-time-off-requests day-name='currentDayName()'
-                                      time-off-requests='user.time_off_requests'>
-                </dq-time-off-requests>
-                <dq-availabilities day-name='currentDayName()'
-                                   availabilities='user.availabilities'>
-                </dq-availabilities>
-              </div>
-              <dq-shifts day-name='currentDayName()'
-                         shifts='user.shifts'
-                         user-is-admin='state.userIsAdmin'
-                         open='open(user, days.indexOf(currentDayName()), shift)'>
-              </dq-shifts>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div> -->
   </div>
 </div>
