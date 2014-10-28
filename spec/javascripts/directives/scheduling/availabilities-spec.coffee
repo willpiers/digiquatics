@@ -5,7 +5,7 @@ describe 'Availabilities', ->
     @$scope.day = moment().format 'dddd'
     @$scope.user =
       availabilities: [
-        day: moment().weekday()
+        day: moment().day()
         start_time: moment().startOf('day').add 5, 'hours'
         end_time: moment().startOf('day').add 10, 'hours'
       ]

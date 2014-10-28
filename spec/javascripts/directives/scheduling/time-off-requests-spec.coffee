@@ -5,7 +5,7 @@ describe 'Time Off Requests', ->
     @$scope.day = moment().format 'dddd'
     @$scope.user =
       time_off_requests: [
-        dayIndices: [moment().weekday()]
+        dayIndices: [moment().day()]
         starts_at: moment().startOf('day').add(5, 'hours')
         ends_at: moment().startOf('day').add(10, 'hours')
       ]
