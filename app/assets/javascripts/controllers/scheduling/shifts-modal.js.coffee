@@ -75,7 +75,7 @@
         _.each [0..(@$scope.state.occurences - 1)], (week) =>
           _.each [0..6], (day) =>
             if @$scope.daysChecked[day].checked
-              adjustedDayCounter = day - @data.day
+              adjustedDayCounter = day - @data.day - 1
 
               shiftResource = @Shifts.create
                 user_id: @user.id
