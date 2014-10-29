@@ -114,7 +114,7 @@
     </div>
 
     <div class='hidden-print'>
-      <table class='table table-bordered table-white print-schedule-font table-fixed visible-xs visible-sm'>
+      <table class='table table-bordered table-white print-schedule-font visible-xs visible-sm'>
         <tbody>
           <tr ng-repeat='user in users
                         | orderBy:predicate.value:reverse
@@ -157,7 +157,7 @@
         <br>
 
         <div class='shadow-effect'>
-          <table class='table table-bordered table-white print-schedule-font table-fixed visible-print-inline schedule-table-print'>
+          <table class='table table-bordered table-white print-schedule-font visible-print-inline schedule-table-print'>
             <tbody>
               <tr ng-repeat='user in users | orderBy:predicate.value:reverse |
                              filter:locationFilter | filter:positionFilter'>
