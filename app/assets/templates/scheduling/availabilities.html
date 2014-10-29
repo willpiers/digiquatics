@@ -1,5 +1,5 @@
 <div ng-repeat="avail in availabilities | orderBy:'start_time'
-  | filter:{day: days.indexOf(dayName)}">
+  | filter:{day: days.indexOf(dayName) + 1}">
   <progressbar class='progress fix-schedule-time-bar'
                value='100' type='success'>
     {{startEndTimes(avail)}}
