@@ -176,17 +176,17 @@
             </td>
             <td>
               <div ng-if='state.userIsAdmin'>
-                <dq-time-off-requests day-name='currentDayName()'
+                <dq-time-off-requests day='currentDayOfWeek()'
                                       time-off-requests='user.time_off_requests'>
                 </dq-time-off-requests>
-                <dq-availabilities day-name='currentDayName()'
+                <dq-availabilities day='currentDayOfWeek()'
                                    availabilities='user.availabilities'>
                 </dq-availabilities>
               </div>
-              <dq-shifts day-name='currentDayName()'
+              <dq-shifts day='currentDayOfWeek()'
                          shifts='user.shifts'
                          user-is-admin='state.userIsAdmin'
-                         open='open(user, days.indexOf(currentDayName()), shift)'>
+                         open='open(user, days.indexOf(currentDayOfWeek()), shift)'>
               </dq-shifts>
             </td>
           </tr>

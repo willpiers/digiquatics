@@ -5,7 +5,7 @@
     restrict: 'E'
     templateUrl: 'scheduling/availabilities.html'
     scope:
-      dayName: '='
+      day: '='
       availabilities: '='
 
     link: (scope, element, attrs) ->

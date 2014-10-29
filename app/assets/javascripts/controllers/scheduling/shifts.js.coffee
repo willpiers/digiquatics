@@ -34,11 +34,8 @@
         @ScheduleHelper.daysFromToday = 0
         @_addViewDataToUsers()
 
-      @$scope.currentDayName = =>
-        moment().add(@ScheduleHelper.daysFromToday, 'days').format 'dddd'
-
       @$scope.currentDayOfWeek = =>
-        moment().add(@ScheduleHelper.daysFromToday, 'days').format 'd'
+        moment().add(@ScheduleHelper.daysFromToday, 'days').weekday()
 
       @$scope.displayStartDate = =>
         if Window.xs

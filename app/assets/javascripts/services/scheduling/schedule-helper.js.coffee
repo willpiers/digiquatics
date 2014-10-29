@@ -3,7 +3,7 @@
     class ScheduleHelper
       moment.locale 'dq', week: dow: 1
 
-      @days = [
+      _days = [
         'Sunday'
         'Monday'
         'Tuesday'
@@ -12,6 +12,14 @@
         'Friday'
         'Saturday'
       ]
+
+      @days = []
+
+      _days.forEach (dayName) =>
+        dayIndex = (Number(moment().day(dayName).weekday()) + 1) % 7
+        @days[dayIndex] = dayName
+
+      console.log @days
 
       @daysFromToday = 0
 
