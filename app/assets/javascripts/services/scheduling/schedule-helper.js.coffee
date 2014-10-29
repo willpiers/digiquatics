@@ -1,6 +1,8 @@
 @digiquatics.factory 'ScheduleHelper', [
   ->
     class ScheduleHelper
+      moment.locale 'dq', week: dow: 1
+
       @days = [
         'Sunday'
         'Monday'

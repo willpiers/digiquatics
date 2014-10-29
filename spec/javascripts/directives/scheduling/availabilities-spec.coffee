@@ -6,8 +6,8 @@ describe 'Availabilities', ->
     @$scope.user =
       availabilities: [
         day: moment().day()
-        start_time: moment().startOf('day').add(5, 'hours')
-        end_time: moment().startOf('day').add(10, 'hours')
+        start_time: moment().startOf('day').add 5, 'hours'
+        end_time: moment().startOf('day').add 10, 'hours'
       ]
 
     html = "<dq-availabilities day-name='day' availabilities='user.availabilities'></dq-availabilities>"
