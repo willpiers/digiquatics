@@ -18,6 +18,9 @@
       @$scope.days = @ScheduleHelper.days
       @$scope.predicate = value: 'last_name'
 
+      # Needed to change color of shift if it has open sub request
+      @subRequests = @SubRequests.index()
+
       @_loadAndProcessData()
 
       @$scope.$on 'shifts:created', _.bind @_addViewDataToUsers, @
@@ -132,5 +135,5 @@
         @_addColorToShift shift
 
     _addColorToShift: (shift) ->
-      shift.color = if _.size(@subRequests, shift_id: shift.id) then 'warning' else 'primary'
+      shift.color = if _.find(@subRequests, shift_id: shift.id) then 'warning' else 'primary'
 ]
