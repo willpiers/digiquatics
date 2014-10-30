@@ -105,14 +105,14 @@
             {{::request.created_at | date:'M/d/yy @ h:mma'}}
           </td>
           <td>
-            {{::startsAt(request)}}
+            {{startsAt(request)}}
           </td>
           <td>
-            {{::endsAt(request)}}
+            {{endsAt(request)}}
           </td>
           <td class='hidden-xs'>
             <div ng-if='hasReason(request)'>
-              {{::request.reason | limitTo:15}}...
+              {{request.reason | limitTo:15}}...
             </div>
           </td>
           <td>
