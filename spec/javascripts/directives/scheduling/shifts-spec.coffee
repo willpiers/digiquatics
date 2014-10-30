@@ -2,11 +2,11 @@ describe 'Shifts', ->
   beforeEach inject (@$rootScope, @$compile) ->
     @$scope = @$rootScope.$new()
 
-    @$scope.day = moment().format 'dddd'
+    @$scope.day = moment().weekday(4).format 'dddd'
 
     @$scope.user =
       shifts: [
-        dayIndex: [moment().day()]
+        dayIndex: [moment().weekday(3).day()]
         position: name: 'MOD'
         start_time: moment().startOf('day').add 5, 'hours'
         end_time: moment().startOf('day').add 10, 'hours'

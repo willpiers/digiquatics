@@ -2,10 +2,10 @@ describe 'Time Off Requests', ->
   beforeEach inject (@ScheduleHelper, @$rootScope, @$compile) ->
     @$scope = @$rootScope.$new()
 
-    @$scope.day = moment().format 'dddd'
+    @$scope.day = moment().weekday(4).format 'dddd'
     @$scope.user =
       time_off_requests: [
-        dayIndices: [moment().day()]
+        dayIndices: [moment().weekday(3).day()]
         starts_at: moment().startOf('day').add(5, 'hours')
         ends_at: moment().startOf('day').add(10, 'hours')
       ]
