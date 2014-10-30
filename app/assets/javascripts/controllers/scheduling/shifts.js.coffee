@@ -125,7 +125,7 @@
 
       shiftStartTime = moment shift.start_time
 
-      if shiftStartTime.isSame moment().startOf('week').add('days', @ScheduleHelper.daysFromToday), 'week'
+      if shiftStartTime.isSame moment().add('days', @ScheduleHelper.daysFromToday).startOf('week'), 'week'
         shift.dayIndex = shiftStartTime.day()
         @_addColorToShift(shift)
 
