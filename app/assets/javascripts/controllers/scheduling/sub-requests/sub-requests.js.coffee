@@ -25,6 +25,38 @@
     $scope.thArrow = (current_column, anchored_column) ->
       if current_column == anchored_column then true
 
+    $scope.approveButton = (current_user, request) ->
+      angular.extend current_user, request
+
+      updatedRequestData =
+        approved: true
+        processed: true
+        processed_on: moment()
+        processed_by_user_id: current_user.id
+        processed_by_first_name: current_user.first_name
+        processed_by_last_name: current_user.last_name
+
+      SubRequests.update id: $scope.request.id, updatedRequestData
+      .$promise.then (updatedRequestData) ->
+        $scope.subRequests.push updatedRequestData
+        toastr.success('Employee Sub Request has been approved.')
+
+    $scope.denyButton = (current_user, request) ->
+      angular.extend current_user, request
+
+      updatedRequestData =
+        approved: false
+        processed: true
+        processed_on: moment()
+        processed_by_user_id: current_user.id
+        processed_by_first_name: current_user.first_name
+        processed_by_last_name: current_user.last_name
+
+      SubRequests.update id: $scope.request.id, updatedRequestData
+      .$promise.then (updatedRequestData) ->
+        $scope.subRequests.push updatedRequestData
+        toastr.error('Employee Sub Request has been denied.')
+
     $scope.open = (request, size) ->
       modalInstance = $modal.open
         templateUrl: 'scheduling/sub-requests/accept-sub-request.html',
@@ -60,7 +92,7 @@
       $scope.correctUser = (request, subUserId) ->
         userIsAdmin or request.user_id is subUserId
 
-      $scope.acceptShift = (request, subUserId, subUserFirstName, subUserLastName) ->
+      acceptShift = (request, subUserId, subUserFirstName, subUserLastName) ->
         requestData = angular.extend request,
           active: false
           sub_user_id: $scope.subUserId
@@ -71,13 +103,11 @@
         .$promise.then (updatedSubRequest) ->
           _.remove subRequests, (subRequest) -> subRequest.id is request.id
           subRequests.push updatedSubRequest
+          $modalInstance.close updatedSubRequest
+          toastr.success('Shift has been accepted!')
 
       $scope.ok = ->
-        $scope.acceptShift(request)
-        $modalInstance.close request
-
-        toastr.success('Shift has been accepted!')
-        return true #Fixes error with returns elements through Angular to the DOM
+        acceptShift(request)
 
       $scope.cancel = ->
         $modalInstance.dismiss "Cancel"

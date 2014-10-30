@@ -1,96 +1,88 @@
 <% provide(:title, 'Sub Request') %>
-<h1 class='cross_platform_header'>Sub Request</h1>
+<div ng-app='digiquatics'>
+  <div ng-controller='SubRequestsCtrl'>
+    <div ng-init='current_user = <%= current_user.to_json %>'></div>
+    <div ng-init='request = <%= @sub_request.to_json %>'></div>
 
-<div class='table-width-desktop'>
-  <% if current_user.admin? && !@sub_request.active && !@sub_request.processed? %>
-    <ul class='pull-right'>
-      <%= bootstrap_form_for @sub_request do |f| %>
-        <%= f.hidden_field :approved, value: false %>
-        <%= f.hidden_field :processed, value: true %>
-        <%= f.hidden_field :processed_on, value: Time.now %>
-        <%= f.hidden_field :processed_by_user_id, value: current_user.id %>
-        <%= f.hidden_field :processed_by_first_name, value: current_user.first_name %>
-        <%= f.hidden_field :processed_by_last_name, value: current_user.last_name %>
-        <%= f.submit 'Deny', class: 'btn btn-danger' %>
+    <h1 class='cross_platform_header'>Sub Request</h1>
+
+    <div class='table-width-desktop'>
+      <% if current_user.admin? && !@sub_request.active && !@sub_request.processed? %>
+        <ul class='pull-right'>
+          <btn ng-click='denyButton(current_user, request)'
+               class='btn btn-danger'>
+            <i class='fa fa-times fa-lg'></i> Deny
+          </btn>
+        </ul>
+        <ul class='pull-right'>
+          <btn ng-click='approveButton(current_user, request)'
+               class='btn btn-success'>
+            <i class='fa fa-check fa-lg'></i> Approve
+          </btn>
+        </ul>
       <% end %>
-    </ul>
-    <ul class='pull-right'>
-      <%= bootstrap_form_for @sub_request do |f| %>
-        <%= f.hidden_field :approved, value: true %>
-        <%= f.hidden_field :processed, value: true %>
-        <%= f.hidden_field :processed_on, value: Time.now %>
-        <%= f.hidden_field :processed_by_user_id, value: current_user.id %>
-        <%= f.hidden_field :processed_by_first_name, value: current_user.first_name %>
-        <%= f.hidden_field :processed_by_last_name, value: current_user.last_name %>
-        <%= f.submit 'Approve', class: 'btn btn-success' %>
-      <% end %>
-    </ul>
-  <% end %>
 
-  <div class='pull-left hidden-xs'>
-    <%= link_to sub_requests_path,
-        class:'btn btn-default btn-circle' do %>
-      <i class='fa fa-arrow-left fa-lg'></i>
-    <% end %>
-  </div>
-  <br><br><br>
+      <div class='pull-left hidden-xs'>
+        <%= link_to sub_requests_path,
+            class:'btn btn-default btn-circle' do %>
+          <i class='fa fa-arrow-left fa-lg'></i>
+        <% end %>
+      </div>
+      <br><br><br>
 
-  <table class='table table-clean table-white shadow-effect'>
-      <tr>
-        <th id='fixtablewidth'>Shift Location</th>
-        <td><%= @sub_request.shift.location.name %></td>
-      </tr>
-      <tr>
-        <th>Shift Position</th>
-        <td><%= @sub_request.shift.position.name %></td>
-      </tr>
-      <tr>
-        <th>Shift Date</th>
-        <td><%= @sub_request.shift.start_time.strftime('%-m/%-d/%Y') %></td>
-      </tr>
-      <tr>
-        <th>Shift Time</th>
-        <td>
-          <%= "#{@sub_request.shift.start_time.strftime('%l:%M')} -
-               #{@sub_request.shift.end_time.strftime('%l:%M%p')}" %>
-        </td>
-      </tr>
-    <tr>
-      <th>Requested By</th>
-        <td>
-            <%= link_to "#{@sub_request.shift.user.last_name},
-                         #{@sub_request.shift.user.first_name}",
-                         user_path(id: @sub_request.shift.user.id) %>
-        </td>
-    </tr>
-    <tr>
-      <th>Requested On</th>
-      <td><%= @sub_request.created_at.strftime('%-m/%-d/%Y @ %I:%M%p')%></td>
-    </tr>
-    <% if !@sub_request.active? %>
-      <tr>
-        <th>Sub Name</th>
-        <td>
-            <%= link_to "#{@sub_request.sub_last_name},
-                         #{@sub_request.sub_first_name}",
-                         user_path(id: @sub_request.sub_user_id) %>
-        </td>
-      </tr>
-      <% if @sub_request.processed? %>
+      <table class='table table-clean table-white shadow-effect'>
+          <tr>
+            <th id='fixtablewidth'>Shift Location</th>
+            <td><%= @sub_request.shift.location.name %></td>
+          </tr>
+          <tr>
+            <th>Shift Position</th>
+            <td><%= @sub_request.shift.position.name %></td>
+          </tr>
+          <tr>
+            <th>Shift Date</th>
+            <td><%= @sub_request.shift.start_time.strftime('%-m/%-d/%Y') %></td>
+          </tr>
+          <tr>
+            <th>Shift Time</th>
+            <td>
+              <%= "#{@sub_request.shift.start_time.strftime('%l:%M')} -
+                   #{@sub_request.shift.end_time.strftime('%l:%M%p')}" %>
+            </td>
+          </tr>
         <tr>
+          <th>Requested By</th>
+            <td>
+                <%= link_to "#{@sub_request.shift.user.last_name},
+                             #{@sub_request.shift.user.first_name}",
+                             user_path(id: @sub_request.shift.user.id) %>
+            </td>
+        </tr>
+        <tr>
+          <th>Requested On</th>
+          <td><%= @sub_request.created_at.strftime('%-m/%-d/%Y @ %I:%M%p')%></td>
+        </tr>
+        <tr ng-show='!request.active'>
+          <th>Sub Name</th>
+          <td>
+              <%= link_to "#{@sub_request.sub_last_name},
+                           #{@sub_request.sub_first_name}",
+                           user_path(id: @sub_request.sub_user_id) %>
+          </td>
+        </tr>
+
+        <tr ng-show='request.processed'>
           <th>Status</th>
           <td class= <%=BooleanToWordsTimeOffCSS(@sub_request.approved)%>>
             <%= BooleanToWordsTimeOff(@sub_request.approved) %>
           </td>
         </tr>
-        <tr>
+        <tr ng-show='request.processed'>
           <th>Processed By</th>
           <td>
-              <%= link_to "#{@sub_request.processed_by_last_name},
-                           #{@sub_request.processed_by_first_name}",
-                           user_path(id: @sub_request.processed_by_user_id) %>
+              <a ng-href='/users/{{request.processed_by_user_id}}'>{{request.processed_by_last_name}}, {{request.processed_by_first_name}}</a>
           </td>
-        <tr>
+        <tr ng-show='request.processed'>
           <th>Processed On</th>
           <td>
             <% if @sub_request.processed_on? %>
@@ -98,7 +90,7 @@
             <% end %>
           </td>
         </tr>
-      <% end %>
-    <% end %>
-  </table>
+      </table>
+    </div>
+  </div>
 </div>
