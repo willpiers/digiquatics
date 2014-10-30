@@ -2,7 +2,7 @@
 <div ng-app='digiquatics'>
   <div ng-controller='AvailabilityCtrl'>
     <h1 class='cross_platform_header'>My Availability</h1>
-    <div class='hidden-xs'>
+    <div class='hidden-sm hidden-xs'>
       <table class='table table-bordered table-white shadow-effect print-schedule-font'>
         <thead>
           <tr>
@@ -13,13 +13,13 @@
         </thead>
         <tbody>
           <tr>
-            <td ng-repeat='day in days'>
+            <td ng-repeat='day in days' class='td-seven-fixed'>
               <div ng-repeat='availability in availabilities
                               | orderBy:sortTime
                               | filter: { day: $index }'>
                 <%= render 'availability' %>
               </div>
-              <div class='shift';
+              <div class='add-shift';
                 ng-click="open($index)"
                 data-hover='Add Availability'>
               </div>
@@ -28,7 +28,7 @@
         </tbody>
       </table>
     </div>
-    <div class='visible-xs'>
+    <div class='visible-sm visible-xs'>
       <table class='table table-bordered table-white shadow-effect'
              ng-repeat='day in days'>
         <thead>

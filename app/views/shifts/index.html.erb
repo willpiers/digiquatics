@@ -14,7 +14,7 @@
       </div>
       <div class='schedule_header_width'>
         <div class='row'>
-          <div class='hidden-xs' ng-if='state.userIsAdmin'>
+          <div class='hidden-xs hidden-sm' ng-if='state.userIsAdmin'>
             <div class='col-md-4'>
               <b>SCHEDULE EMPLOYEES AT THIS LOCATION:</b>
               <div ng-init="state.buildLocation = <%= current_user.location.id %>"></div>
@@ -36,7 +36,7 @@
               <option value="">All Locations</option>
             </select>
           </div>
-          <div class='hidden-xs' ng-show='state.userIsAdmin'>
+          <div class='hidden-xs hidden-sm' ng-show='state.userIsAdmin'>
             <dq-position></dq-position>
           </div>
         </div>
@@ -99,8 +99,10 @@
               </div>
             </div>
             <div class='col-md-1'>
-              <div class='pull-right'>
-                <button class='btn btn-default fa fa-print fa-lg' ng-click='print()'>
+              <div class='pull-right hidden-xs hidden-sm'>
+                <button class='btn btn-default fa fa-print fa-lg' ng-click='print()'
+                        tooltip-popup-delay='1000' tooltip-placement='right'
+                        tooltip='For best results print in landscape mode.'>
                   Print
                 </button>
               </div>
@@ -111,62 +113,14 @@
       </div>
     </div>
 
-    <div class='hidden-xs'>
-      <div class='schedule_header_width'>
-        <div class='shadow-effect'>
-          <dq-floating-table-head days='days'></dq-floating-table-head>
-        </div>
-
-        <br>
-
-        <div class='shadow-effect'>
-          <table class='table table-bordered table-white print-schedule-font'>
-            <tbody>
-              <tr ng-repeat='user in users | orderBy:predicate.value:reverse |
-                             filter:locationFilter | filter:positionFilter'>
-                <td>
-                  {{::user.last_name}}, </br>
-                  {{::user.first_name}}
-                  <div class='hidden-print'>
-                    <br><i class='fa fa-clock-o'></i>
-                    {{user.weeklyHours}}
-                  </div>
-                </td>
-                <td ng-repeat='day in days'>
-                  <div ng-if='state.buildMode'>
-                    <dq-time-off-requests day-name='day'
-                                          time-off-requests='user.time_off_requests'>
-                    </dq-time-off-requests>
-                    <dq-availabilities day-name='day'
-                                       availabilities='user.availabilities'>
-                    </dq-availabilities>
-                  </div>
-                  <dq-shifts day-name='day'
-                             shifts='user.shifts'
-                             user-is-admin='state.userIsAdmin'
-                             open='open(user, days.indexOf(day), shift)'>
-                  </dq-shifts>
-                  <div ng-if='state.buildMode'>
-                    <div class='shift' ng-click='open(user, days.indexOf(day))'
-                         data-hover='Assign Shift'>
-                    </div>
-                  </div>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-
-    <div class='visible-xs'>
-      <table class='table table-bordered table-white print-schedule-font'>
+    <div class='hidden-print'>
+      <table class='table table-bordered table-white print-schedule-font visible-xs visible-sm'>
         <tbody>
           <tr ng-repeat='user in users
                         | orderBy:predicate.value:reverse
                         | filter:locationFilter
                         | filter:positionFilter'>
-            <td>
+            <td class='tr-eight-fixed'>
               {{::user.last_name}}, </br>
               {{::user.first_name}}
               <div class='hidden-print'>
@@ -174,7 +128,7 @@
                 {{user.weeklyHours}}
               </div>
             </td>
-            <td>
+            <td class='tr-eight-fixed'>
               <div ng-if='state.userIsAdmin'>
                 <dq-time-off-requests day-name='currentDayName()'
                                       time-off-requests='user.time_off_requests'>
@@ -192,6 +146,52 @@
           </tr>
         </tbody>
       </table>
+    </div>
+
+    <div class='desktop-view'>
+      <div class='schedule_header_width'>
+        <div class='shadow-effect'>
+          <dq-floating-table-head days='days'></dq-floating-table-head>
+        </div>
+
+        <br>
+
+        <div class='shadow-effect'>
+          <table class='table table-bordered table-white print-schedule-font visible-print-inline schedule-table-print'>
+            <tbody>
+              <tr ng-repeat='user in users | orderBy:predicate.value:reverse |
+                             filter:locationFilter | filter:positionFilter'>
+                <td class='tr-eight-fixed'>
+                  {{::user.last_name}}, </br>
+                  {{::user.first_name}}
+                  <br><i class='fa fa-clock-o'></i>
+                  {{user.weeklyHours}}
+                </td>
+                <td ng-repeat='day in days' class='tr-eight-fixed print-schedule-font'>
+                  <div ng-if='state.buildMode'>
+                    <dq-time-off-requests day-name='day'
+                                          time-off-requests='user.time_off_requests'>
+                    </dq-time-off-requests>
+                    <dq-availabilities day-name='day'
+                                       availabilities='user.availabilities'>
+                    </dq-availabilities>
+                  </div>
+                  <dq-shifts day-name='day'
+                             shifts='user.shifts'
+                             user-is-admin='state.userIsAdmin'
+                             open='open(user, days.indexOf(day), shift)'>
+                  </dq-shifts>
+                  <div ng-if='state.buildMode'>
+                    <div class='add-shift' ng-click='open(user, days.indexOf(day))'
+                         data-hover='Assign Shift'>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
   </div>
 </div>
