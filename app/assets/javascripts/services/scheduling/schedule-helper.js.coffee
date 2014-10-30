@@ -4,13 +4,13 @@
       moment.locale 'dq', week: dow: 1
 
       @days = [
-        'Sunday'
-        'Monday'
-        'Tuesday'
-        'Wednesday'
-        'Thursday'
-        'Friday'
-        'Saturday'
+        moment().weekday(0).format 'dddd'
+        moment().weekday(1).format 'dddd'
+        moment().weekday(2).format 'dddd'
+        moment().weekday(3).format 'dddd'
+        moment().weekday(4).format 'dddd'
+        moment().weekday(5).format 'dddd'
+        moment().weekday(6).format 'dddd'
       ]
 
       @daysFromToday = 0
