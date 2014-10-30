@@ -40,9 +40,10 @@ class SubRequestsController < ApplicationController
 
   def update
     Tracker.track(current_user.id, 'Update Sub Request')
-    message = 'Sub Request was successfully updated.'
-    handle_action(@sub_request, message, 'info', :edit) do |resource|
-      resource.update(sub_request_params)
+    if @sub_request.update(sub_request_params)
+      render json: @sub_request.to_json
+    else
+      render json: @sub_request.errors, status: :unprocessable_entity
     end
   end
 

@@ -89,7 +89,7 @@ describe SubRequestsController do
 
       it 'redirects to the updated sub_request' do
         put :update, id: @sub_request, sub_request: FactoryGirl.attributes_for(:sub_request)
-        response.should redirect_to @sub_request
+        response.status.should == 200
       end
     end
 
@@ -102,16 +102,16 @@ describe SubRequestsController do
         assigns(:sub_request).should eq(@sub_request)
       end
 
-      it "changes @sub_request's attributes" do
+      it "does not change @sub_request's attributes" do
         put :update, id: @sub_request,
                      sub_request: FactoryGirl.attributes_for(:sub_request, user_id: nil)
         @sub_request.reload
         @sub_request.user_id.should eq 1
       end
 
-      it 're-renders the #edit template' do
+      it 'throws an error' do
         put :update, id: @sub_request, sub_request: FactoryGirl.attributes_for(:invalid_sub_request)
-        response.should render_template :edit
+        response.status.should == 422
       end
     end
   end
